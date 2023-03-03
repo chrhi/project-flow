@@ -1,13 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { Navbar } from "~/components/landing/Navbar";
-import { Hero } from "~/components/landing/Hero";
+import { FirstForm } from "~/components/forms/startup/FirstForm";
+import { Sidebar } from "~/components/ui/Sidebar";
 
 import { api } from "~/utils/api";
-import About from "~/components/landing/About";
-import NewLatter from "~/components/landing/newLatter";
-
 
 const Page: NextPage = () => {
   const hello = api.example.hello.useQuery({ text: "from tRPC" });
@@ -21,14 +18,10 @@ const Page: NextPage = () => {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        <script src="//code.tidio.co/f4ntqdkrkcmkov2pbgapiuevig4fhtbq.js" async></script>
       </Head>
-      <main className=" min-h-screen bg-white ">
- 
-      <Hero />
-      <About />
-      <NewLatter />
-  
+      <main className=" min-h-screen flex w-full bg-gray-50 ">
+       <Sidebar />
+      <FirstForm />
       </main>
     </>
   );
