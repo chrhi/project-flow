@@ -3,6 +3,7 @@ import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Navbar } from './Navbar'
 
+
 const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
@@ -12,10 +13,13 @@ const navigation = [
 
 export  function Hero() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
+  //bg-gradient-to-r from-indigo-700 to-sky-500
   return (
-    <div className="isolate bg-gradient-to-r from-indigo-700 to-sky-500 h-screen">
-   
+    <div className="isolate  h-screen bg-gradient-to-r from-[#53f] to-[#05d5f0] ">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
         <Navbar />
       <main className='custom-hieght-navbar '>
         <div className="relative px-6 lg:px-8">
