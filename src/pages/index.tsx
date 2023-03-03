@@ -1,12 +1,9 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { Navbar } from "~/components/landing/Navbar";
 import { Hero } from "~/components/landing/Hero";
-
 import { api } from "~/utils/api";
 import About from "~/components/landing/About";
-import NewLatter from "~/components/landing/newLatter";
+import NewLatter from "~/components/landing/NewLatter";
 
 
 const Page: NextPage = () => {
