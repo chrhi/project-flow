@@ -16,6 +16,7 @@ export const startupRouter = createTRPCRouter({
         chefProjetPhone:z.string(),
      }))
     .mutation(({ input }) => {
+        console.log(`this is in the server from trpc rout ${input.Description}`)
       return {
         greeting: `Hello from the server this is  ${input.title}`,
         something: `Hello from the server this is  ${input.Description}`,
