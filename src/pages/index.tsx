@@ -4,6 +4,8 @@ import { Hero } from "~/components/landing/Hero";
 import { api } from "~/utils/api";
 import About from "~/components/landing/About";
 import NewLatter from "~/components/landing/NewLatter";
+import { Pricing } from "~/components/landing/Pricing";
+import { Creators } from "~/components/landing/Creators";
 
 
 const Page: NextPage = () => {
@@ -24,7 +26,10 @@ const Page: NextPage = () => {
  
       <Hero />
       <About />
+     
       <NewLatter />
+      <Pricing />
+      <Creators />
   
       </main>
     </>
