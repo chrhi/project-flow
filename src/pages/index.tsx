@@ -1,13 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Hero } from "~/components/landing/Hero";
-import { api } from "~/utils/api";
 import About from "~/components/landing/About";
 import NewLatter from "~/components/landing/NewLatter";
 
 
 const Page: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+ // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
   return (
     <>
