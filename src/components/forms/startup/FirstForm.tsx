@@ -51,7 +51,7 @@ export const FirstForm = () => {
     chefProjetEmail: chefProjetEmailRef.current?.value as string , 
     chefProjetPhone: chefProjetPhoneRef.current?.value as string ,
   }
-  const response = mutation.mutate({
+   mutation.mutate({
     title:data.title,
     Description:data.Description,
     ObjectifSduProjet:data.ObjectifSduProjet,
@@ -62,7 +62,7 @@ export const FirstForm = () => {
     chefProjetEmail:data.chefProjetEmail,
     chefProjetPhone:data.chefProjetPhone
   })
-   console.log(response)
+ 
 
   }
  
