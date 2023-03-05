@@ -1,11 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-
-import { FirstForm } from "~/components/forms/startup/FirstForm";
 import { Sidebar } from "~/components/ui/Sidebar";
 
 
+
 const Page: NextPage = () => {
+  
 
   return (
     <>
@@ -19,7 +19,10 @@ const Page: NextPage = () => {
       </Head>
       <main className=" min-h-screen flex w-full bg-gray-50 ">
        <Sidebar />
-      <FirstForm />
+       <div className="ml-[16rem] bg-blue-600 custom-width h-fit min-h-screen">
+
+       </div>
+     
       </main>
     </>
   );

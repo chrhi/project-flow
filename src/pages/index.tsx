@@ -26,10 +26,9 @@ const Page: NextPage = () => {
  
       <Hero />
       <About />
-     
-      <NewLatter />
       <Pricing />
       <Creators />
+      <NewLatter />
   
       </main>
     </>

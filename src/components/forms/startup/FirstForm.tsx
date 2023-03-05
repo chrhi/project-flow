@@ -73,8 +73,11 @@ export const FirstForm = () => {
 
 
   return (
-   <div className='ml-[16rem] custom-width min-h-screen h-fit flex justify-center pt-8'>
-     <form className='bg-white mb-8 '  onSubmit={(e) => HandleSubmit(e)}>
+   <div className='ml-[16rem] custom-width min-h-screen h-fit flex flex-col items-center pt-8'>
+   <div className="w-full h-[50px] flex items-center justify-start p-4 my-4">
+   <h1 className="text-2xl font-bold text-start text-gray-900">fill the needed information of the project</h1>
+   </div>
+     <form className='bg-white mb-8 w-[95%] md:w-[70%] xl:w-[50%] '  onSubmit={(e) => HandleSubmit(e)}>
     <div className="overflow-hidden shadow  sm:rounded-md">
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
