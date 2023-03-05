@@ -22,14 +22,21 @@ const Page: NextPage = () => {
       <main className=" min-h-screen flex w-full bg-gray-50 ">
        <Sidebar />
        <div className="ml-[16rem] flex flex-col items-center  custom-width h-fit min-h-screen">
-      
-        <div className='w-full h-[50px] flex items-center justify-between  p-8 '>
-           <div>
-           <h1 className='font-bold text-gray-900 text-2xl '>startup/documents </h1>
-           </div>
-      <Create />
-       </div>
-        
+{/*       
+       all the contenet goes in here */}
+    <table>
+        <tr>
+            <th>name</th>
+            <th>email</th>
+            <th>telephone</th>
+            <th>impuct</th>
+            <th>description</th>
+        </tr>
+
+
+
+    </table>
+        {/* this is the end of the page */}
        </div>
      
       </main>
