@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { Row } from "~/components/common/Row";
 import Create from "~/components/common/Upload";
 import { Sidebar } from "~/components/ui/Sidebar";
 
@@ -24,18 +25,22 @@ const Page: NextPage = () => {
        <div className="ml-[16rem] flex flex-col items-center  custom-width h-fit min-h-screen">
 {/*       
        all the contenet goes in here */}
-    <table>
-        <tr>
-            <th>name</th>
-            <th>email</th>
-            <th>telephone</th>
-            <th>impuct</th>
-            <th>description</th>
-        </tr>
-
-
-
-    </table>
+      
+    <div className='w-full h-[50px] flex items-center justify-between  p-8 my-4 '>
+         <div>
+              <h1 className='font-bold text-gray-900 text-2xl '>startup/stakeholders </h1>
+        </div>
+               <Create />
+    </div>
+  <div className="bg-indigo-500 w-[90%] mx-auto flex items-center justify-evenly rounded-xl p-4 gap-x-4">
+       <p className="text-white font-bold text-xl  ">Name</p>
+       <p className="text-white font-bold text-xl  ">email</p>
+       <p className="text-white font-bold  text-xl ">phone</p>
+       <p className="text-white font-bold  text-xl ">desciption</p>
+       <p className="text-white font-bold  text-xl ">impuct</p>
+       <p className="text-white font-bold  text-xl ">actions</p>
+  </div>
+  <Row />
         {/* this is the end of the page */}
        </div>
      

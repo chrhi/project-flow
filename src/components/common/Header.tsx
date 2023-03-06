@@ -13,8 +13,8 @@ export const Header = () => {
       </button>
     </div>
     <div className="container mx-auto h-[30px] gap-x-4 flex items-end justify-start pb-2" >
-    <Link href={"/"} className={`text-md text-indigo-600  cursor-pointer font-bold`} >Home</Link>
-    <Link href={"/"} className={`text-md text-gray-700 cursor-pointer hover:text-black `} >My project</Link>
+    <Link href={"/app"} className={`text-md text-indigo-600  cursor-pointer font-bold`} >Home</Link>
+    <Link href={"/app/myProject"} className={`text-md text-gray-700 cursor-pointer hover:text-black `} >My project</Link>
     <Link href={"/"} className={`text-md text-gray-700 cursor-pointer hover:text-black `} >settings</Link>
     </div>
    </header>

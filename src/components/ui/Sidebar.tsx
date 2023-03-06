@@ -28,13 +28,13 @@ export  const Sidebar = () => {
           </div>
         </li>
         <li>
-          <Link href="app/startup" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+          <Link href="/app/startup" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
           
             <span className="ml-2 text-sm tracking-wide truncate">start up</span>
           </Link>
         </li>
         <li>
-          <Link href="/startup/stakeholders" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+          <Link href="/app/startup/stakeholders" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
         
 
             <span className="ml-2 text-sm tracking-wide truncate">stakeholders</span>
@@ -42,14 +42,14 @@ export  const Sidebar = () => {
           </Link>
         </li>
         <li>
-          <Link href="app/startup/documents" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+          <Link href="/app/startup/documents" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
        
             <span className="ml-2 text-sm tracking-wide truncate">documents </span>
           
           </Link>
         </li>
         <li>
-          <Link href="/startup/application" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+          <Link href="/app/startup/application" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
            
             <span className="ml-2 text-sm tracking-wide truncate">application</span>
             <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-white bg-red-600 rounded-full">bad</span>

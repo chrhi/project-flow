@@ -22,13 +22,15 @@ const Page: NextPage = () => {
       </Head>
       <main className=" min-h-screen w-full ">
            <Header />
-           <h1 className="text-gray-800 font-bold text-2xl text-start ml-4 my-8  " >Contrôlez et configurez votre projet</h1>
+          <div className="container mx-auto">
+        <h1 className="text-gray-800 font-bold text-2xl text-start ml-4 my-8  " >Contrôlez et configurez votre projet</h1>
         <div className="w-[65%] mx-auto relative h-fit flex justify-center items-center my-4">
         <Chain />
         <div className='z-10 absolute  top-0 -left-4 w-80 h-80 bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-blob '  />
         <div className='z-10 absolute top-0 -right-4 w-80 h-80 bg-sky-400 rounded-full mix-blend-multiply filter blur-xl opacity-25  animate-Blob'  />
         <div className='z-10 absolute -bottom-8 -left-20 w-80 h-80 bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-Blob'  />
         </div>
+          </div>
       </main>
     </>
   );
