@@ -17,41 +17,26 @@ const inputFile = (ref:React.RefObject<HTMLInputElement>) =>(
 </div> 
 )
 
-export default function Upload() {
-  
-  
+export default function AddStakeHolder() {
   const inputTagRef = useRef<HTMLInputElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
 
-    const [isOpen, setIsOpen] = useState(false)
-   
-
-    
+    const [isOpen, setIsOpen] = useState(false)    
     function openModal() {
       setIsOpen(true)
     }
     function closeModal(){
       setIsOpen(false)
     }
-
-   
-
-
-
-
-
   return (
     <>
-   
         <button 
          onClick={openModal}
          className="flex-none rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
       >
-       upload documant 
+       add new stakeholder
        
         </button>
-
-
     <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
           <Transition.Child
@@ -77,41 +62,72 @@ export default function Upload() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className=" max-w-md w-[600px] h-[350px] transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="  w-[800px] min-h-[350px] h-fit transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-2xl my-4 font-medium leading-6 text-gray-900"
                   >
-                   upload a new documant
+                   adding a new stakeholder
                   </Dialog.Title>
                   <div className="w-full h-full mt-1 ">
-                    <form className='w-full flex flex-col '>
+                    <form className='w-full flex flex-col px-8 '>
                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                     file tag
+                     name
                      </label>
                      <input 
                      ref={inputTagRef}
                      className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                      placeholder='add a tag to your file '  />
+                    {/*  this is the email field */}
                       <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                    file type
+                    email
                      </label>
-                     <select
-                      className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     >
-                    <option >project</option>
-                    <option >stakeholder</option>
-                     </select>
-                    <div className='w-full flex justify-end p-4 my-4 gap-x-4 '>
-                    {inputFile(fileRef)}
-                   
+                     <input 
+                     ref={inputTagRef}
+                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     placeholder='add a tag to your file '  />
 
+                     {/* this is the phone field  */}
+                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
+                    phone number
+                     </label>
+                     <input 
+                     ref={inputTagRef}
+                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     placeholder='add a tag to your file '  />
+
+                     {/* this is the discription field  */}
+                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
+                    discription
+                     </label>
+                     <textarea 
+                     className="mt-2 block w-full h-[100xp] p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     placeholder='add a tag to your file ' />
+                    
+
+                     {/* this is the impact section */}
+                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
+                    impact
+                     </label>
+                     <input 
+                     ref={inputTagRef}
+                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     placeholder='add a tag to your file '  />
+
+                     {/* this is the type field */}
+                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
+                    email
+                     </label>
+                     <input 
+                     ref={inputTagRef}
+                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     placeholder='add a tag to your file '  />
+                    <div className='w-full flex justify-end p-4 my-4 gap-x-4 '>
                     <button 
                    
                   className='py-2 px-4 flex items-center bg-[#9147ff] hover:bg-[#7927f6] text-white rounded-lg cursor-pointer font-bold'>
                      confirme 
                    </button>
-
                     </div>
                     </form>
                   </div>

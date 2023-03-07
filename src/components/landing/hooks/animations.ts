@@ -26,19 +26,16 @@ const B = function(x:number, y:number, t:number) {
 
 let t = 0;
 
+
+
 const run = function() {
   for(x=0;x<=35;x++) {
     for(y=0;y<=35;y++) {
-      col(x, y, R(x,y,t), G(x,y,t), B(x,y,t));
+     col(x, y, R(x,y,t), G(x,y,t), B(x,y,t));
     }
   }
   t = t + 0.01;
-
-
-
   window.requestAnimationFrame(run);
-  
-
 }
 
 run();

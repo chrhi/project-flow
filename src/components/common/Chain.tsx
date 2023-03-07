@@ -2,31 +2,27 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 
-const items = [
-    {
-        name :"démarrage",
-        path:"/startup"
-    },
-  
-]
 
-export const Chain = () => {
+type chainType = {
+    path: string , 
+    name :string
+}
+
+
+export const Chain = ({path , name} : chainType) => {
 
 
     const router = useRouter()
+    //"/app/startup"
 
   return (
-    <div className='w-[800px] h-[500px] rounded-lg bg-white z-50 shadow-xl  flex justify-center items-center gap-x-4 p-4 flex-wrap'>
-
-      
-        {items && items.map(item => (
-            <div key={item.name}
+    
+    <div key={path + name}
              
-            onClick={() => router.push("/app/startup") }
-            className="bg-black flex cursor-pointer rounded-lg justify-center w-[150px]  h-[150px] items-center">
-                    <h3 className='text-white font-bold'>{item.name}</h3>
-            </div>
-        ))}
+     onClick={() => router.push(path) }
+     className="bg-white shadow transition duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-lg justify-center w-[150px]  h-[150px] items-center">
+        <h3 className='text-gray-900 font-bold  '>{name}</h3>
     </div>
+   
   )
 }

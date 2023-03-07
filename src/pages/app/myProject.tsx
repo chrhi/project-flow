@@ -20,17 +20,22 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
 
       </Head>
-      <main className=" min-h-screen w-full ">
+      <main className=" min-h-screen w-full bg-gray-50 ">
            <Header />
-          <div className="container mx-auto">
+      <div className="container mx-auto">
         <h1 className="text-gray-800 font-bold text-2xl text-start ml-4 my-8  " >Contrôlez et configurez votre projet</h1>
-        <div className="w-[65%] mx-auto relative h-fit flex justify-center items-center my-4">
-        <Chain />
-        <div className='z-10 absolute  top-0 -left-4 w-80 h-80 bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-blob '  />
+        <div className="w-[80%] xl:w-[1060] mx-auto gap-x-8  rounded-lg min-h-[400px] h-fit flex justify-center items-center my-4">
+          <Chain path={`/app/startup`} name="startup" />
+          <Chain path={`/app/startup`} name="planning" />
+          <Chain path={`/app/startup`} name="controlling" />
+          <Chain path={`/app/startup`} name="executing" />
+          <Chain path={`/app/startup`} name="close" />
+            {/* <Chain /> */}
+        {/* <div className='z-10 absolute  top-0 -left-4 w-80 h-80 bg-indigo-600 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-blob '  />
         <div className='z-10 absolute top-0 -right-4 w-80 h-80 bg-sky-400 rounded-full mix-blend-multiply filter blur-xl opacity-25  animate-Blob'  />
-        <div className='z-10 absolute -bottom-8 -left-20 w-80 h-80 bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-Blob'  />
+        <div className='z-10 absolute -bottom-8 -left-20 w-80 h-80 bg-pink-600 rounded-full mix-blend-multiply filter blur-xl opacity-25 animate-Blob'  /> */}
         </div>
-          </div>
+      </div>
       </main>
     </>
   );

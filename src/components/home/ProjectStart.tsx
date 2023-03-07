@@ -17,7 +17,7 @@ if(projectStarted){
 }
 
   return (
-    <div className='w-full h-[120px] flex flex-col justify-center gap-y-4  p-8'>
+    <div className='w-full h-[120px] flex flex-col justify-center gap-y-4 my-4  p-8'>
        <div className='w-full flex flex-col justify-center gap-y-4  my-4 h-[50px]'>
        <h1  className='text-gray-900 font-bold text-3xl text-start ' >start your project </h1>
        <p className='text-lg text-gray-600 text-start'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minima</p>

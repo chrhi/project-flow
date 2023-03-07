@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Create from "~/components/common/Upload";
+import Upload from "~/components/common/Upload";
 import { Sidebar } from "~/components/ui/Sidebar";
 
 
@@ -27,7 +27,7 @@ const Page: NextPage = () => {
            <div>
            <h1 className='font-bold text-gray-900 text-2xl '>startup/documents </h1>
            </div>
-      <Create />
+      <Upload />
        </div>
         
        </div>

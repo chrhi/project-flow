@@ -1,15 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import AddStakeHolder from "~/components/common/AddStakeHolder";
 import { Row } from "~/components/common/Row";
-import Create from "~/components/common/Upload";
 import { Sidebar } from "~/components/ui/Sidebar";
-
-
-
-
+import { TableHeader } from "~/components/ui/TableHeader";
 const Page: NextPage = () => {
-  
-
   return (
     <>
       <Head>
@@ -30,17 +25,18 @@ const Page: NextPage = () => {
          <div>
               <h1 className='font-bold text-gray-900 text-2xl '>startup/stakeholders </h1>
         </div>
-               <Create />
+              <AddStakeHolder />
     </div>
-  <div className="bg-indigo-500 w-[90%] mx-auto flex items-center justify-evenly rounded-xl p-4 gap-x-4">
-       <p className="text-white font-bold text-xl  ">Name</p>
-       <p className="text-white font-bold text-xl  ">email</p>
-       <p className="text-white font-bold  text-xl ">phone</p>
-       <p className="text-white font-bold  text-xl ">desciption</p>
-       <p className="text-white font-bold  text-xl ">impuct</p>
-       <p className="text-white font-bold  text-xl ">actions</p>
-  </div>
-  <Row />
+
+    <TableHeader />
+    <Row />
+    <Row />
+    <Row />
+    <Row />
+    <Row />
+    <Row />
+    <Row />
+    <Row />
         {/* this is the end of the page */}
        </div>
      
