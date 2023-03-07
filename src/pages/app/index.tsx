@@ -28,7 +28,7 @@ const Page: NextPage = () => {
            <Header />
           
 
-            <div className="container mx-auto flex flex-col gap-y-4 ">
+            <div className="container mx-auto flex flex-col p-4 xl:p-16 gap-y-4 ">
             <div className="w-full flex items-center my-4 gap-x-8">
               <Reminder />
               <PrayerTimer />

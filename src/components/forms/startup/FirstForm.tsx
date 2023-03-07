@@ -1,6 +1,7 @@
 import { FormEvent, useRef } from "react"
 import { api } from "~/utils/api";
 import { useRouter } from "next/router";
+import { TimePicker } from "~/components/ui/TimePicker";
 type inputsType ={
   title:string , 
   Description:string,
@@ -99,6 +100,12 @@ export const FirstForm = () => {
             />
           </div>
         
+        <div className="col-span-6">
+        <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
+            date
+        </label>
+            <TimePicker />
+        </div>
 
 
           <div className="col-span-6 ">
