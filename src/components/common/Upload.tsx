@@ -34,24 +34,16 @@ export default function Upload() {
       setIsOpen(false)
     }
 
-   
-
-
-
-
-
   return (
     <>
    
         <button 
          onClick={openModal}
-         className="flex-none rounded-md bg-indigo-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+         className="flex-none rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
       >
        upload documant 
        
         </button>
-
-
     <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
           <Transition.Child
@@ -108,7 +100,7 @@ export default function Upload() {
 
                     <button 
                    
-                  className='py-2 px-4 flex items-center bg-[#9147ff] hover:bg-[#7927f6] text-white rounded-lg cursor-pointer font-bold'>
+                  className='py-2 px-4 flex items-center bg-gradient-to-r from-sky-500 to-indigo-600 hover:bg-[#7927f6] text-white rounded-lg cursor-pointer font-bold'>
                      confirme 
                    </button>
 

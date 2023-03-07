@@ -5,6 +5,8 @@ import { Chain } from "~/components/common/Chain";
 import { Header } from "~/components/common/Header";
 import { HowItWorks } from "~/components/home/HowItWorks";
 import { ProjectStart } from "~/components/home/ProjectStart";
+import { Reminder } from "~/components/home/Reminder";
+import { PrayerTimer } from "~/components/home/prayerTimer";
 
 import { api } from "~/utils/api";
 
@@ -22,13 +24,17 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
 
       </Head>
-      <main className="  min-h-screen w-full ">
+      <main className="  min-h-screen w-full bg-gray-50 ">
            <Header />
           
 
-            <div className="container mx-auto ">
+            <div className="container mx-auto flex flex-col gap-y-4 ">
+            <div className="w-full flex items-center my-4 gap-x-8">
+              <Reminder />
+              <PrayerTimer />
+            </div>
                   <ProjectStart />
-                  <HowItWorks />
+                 
             </div>
              
          
