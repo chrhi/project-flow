@@ -4,6 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+    font-family: "Poppins", "sans-serif";
+}
+
 .custom-width{
     width: calc(100vw - 16rem);
 }
@@ -57,7 +61,7 @@ canvas {
     left: calc(calc(calc(100% / 3) / 2) / 2);
     bottom: auto;
     clip-path: polygon(0 0, 100% 0, 100% 44%, 0% 100%);
-    background: #06121b;
+    background: #25a3fc;
 }
 .light3{
     z-index: -10;

@@ -1,6 +1,6 @@
-import Link from "next/link"
 import { header_page_Reducer , PAGES } from "~/store/app-reducer/headerReducer"
 import { useRouter } from "next/router"
+import {  Button } from '@mui/material'
 
 
 export const Header = () => {
@@ -16,23 +16,30 @@ export const Header = () => {
   }
 
   return (
-   <header className ="w-full h-[100px] flex flex-col px-6 xl:px-8 bg-white border-b border-gray-200 ">
-    <div className="container mx-auto flex justify-between items-center h-[70px]">
-      <a className="font-bold text-blue-900 cursor-pointer hover:text-black  text-2xl">sonatrach</a>
-      <button  
-          className="flex-none rounded-full bg-gray-900 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-      >
-        log out
-      </button>
+   <div className ="w-full h-[60px] flex flex-col px-6 xl:px-8 bg-white border-b border-gray-200 ">
+   
+    <div 
+    className="container mx-auto h-[60px] gap-x-4 flex items-center justify-start " 
+    >
+    <Button 
+    variant="text"
+     onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
+     className={`!text-md !normal-case !text-lg  ${current_page === PAGES.HOME ? '!text-indigo-600 !font-bold  ' : '!text-gray-700'}  !cursor-pointer `}
+    >
+        Home
+    </Button>
+    <Button
+     variant="text"
+     onClick={ () =>  handleClick("/app/myProject" ,PAGES.MYPROJECT) as unknown} 
+     className={`!text-md !normal-case !text-lg gap-x-2 ${current_page === PAGES.MYPROJECT ? '!text-indigo-600 !font-bold  ' : '!text-gray-700'}  !cursor-pointer `}
+     > Project
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+       </svg>
+    </Button>
+    
     </div>
-    <div className="container mx-auto h-[30px] gap-x-4 flex items-end justify-start pb-2" >
-    <button onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
-     className={`text-md  ${current_page === PAGES.HOME ? 'text-indigo-600 font-bold  ' : 'text-gray-700'}  cursor-pointer `} >Home</button>
-    <button  onClick={ () =>  handleClick("/app/myProject" ,PAGES.MYPROJECT) as unknown} 
-    className={`text-md cursor-pointer  ${current_page === PAGES.MYPROJECT ? 'text-indigo-600 font-bold ' : 'text-gray-700'}  `} > Project</button>
-    <Link href={"/"} className={`text-md  cursor-pointer  ${current_page === PAGES.SETTINGS ? 'text-indigo-600 font-bold ' : 'text-gray-700'}    `} >Settings</Link>
-    </div>
-   </header>
+   </div>
   )
 }
 
