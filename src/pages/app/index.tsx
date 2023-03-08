@@ -1,17 +1,13 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { Chain } from "~/components/common/Chain";
 import { Header } from "~/components/common/Header";
-import { HowItWorks } from "~/components/home/HowItWorks";
 import { ProjectStart } from "~/components/home/ProjectStart";
 import { Reminder } from "~/components/home/Reminder";
-import { PrayerTimer } from "~/components/home/prayerTimer";
 
-import { api } from "~/utils/api";
+
 
 const Page: NextPage = () => {
-  const hello = api.example.hello.useQuery({ text: "from tRPC" });
+  
 
   return (
     <>
@@ -31,7 +27,7 @@ const Page: NextPage = () => {
             <div className="container mx-auto flex flex-col p-4 xl:p-16 gap-y-4 ">
             <div className="w-full flex items-center my-4 gap-x-8">
               <Reminder />
-              <PrayerTimer />
+             
             </div>
                   <ProjectStart />
                  
