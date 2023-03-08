@@ -1,5 +1,5 @@
-import { useState , useRef , useEffect} from 'react'
-import { runAnimations } from './hooks/animations'  
+
+
 import { Navbar } from './Navbar'
 
 
@@ -14,16 +14,17 @@ const navigation = [
 export  function Hero() {
 
   //bg-gradient-to-r from-indigo-700 to-sky-500
-  const canvasRef = useRef<HTMLCanvasElement>(null)
+  // const canvasRef = useRef<HTMLCanvasElement>(null)
 
-  useEffect(() => {
-    runAnimations(canvasRef.current)
-  },[])
+  // useEffect(() => {
+  //   runAnimations(canvasRef.current)
+  // },[])
   
   return (
      
-    <div className="isolate  h-screen relative  ">
-    <canvas id="canv" ref={canvasRef} width="32" height="32"></canvas>
+    <div className="isolate  h-screen relative ">
+    {/* <canvas id="canv" ref={canvasRef} width="32" height="32"></canvas> */}
+    <div className='background-hero bg-gradient-to-r from-indigo-700 to-sky-400  '  />
         <Navbar />
       <main className='custom-hieght-navbar z-10    mx-auto max-w-7xl   sm:flex sm:justify-start sm:pl-8'>
         <div className="relative px-6 lg:px-0">
