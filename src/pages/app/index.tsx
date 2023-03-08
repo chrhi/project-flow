@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
-import PrayerTimes from "~/components/home/PrayerTimer";
 import { ProjectStart } from "~/components/home/ProjectStart";
 import { Reminder } from "~/components/home/Reminder";
 
@@ -30,7 +29,7 @@ const Page: NextPage = () => {
                </div>
             <div className="w-full flex items-center  gap-x-8">
               <Reminder />
-              <PrayerTimes />
+            
             </div>
               <ProjectStart />
             </div>

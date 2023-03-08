@@ -2,7 +2,6 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { Hero } from "~/components/landing/Hero";
 import { api } from "~/utils/api";
-import About from "~/components/landing/About";
 import NewLatter from "~/components/landing/NewLatter";
 import { Pricing } from "~/components/landing/Pricing";
 import { Creators } from "~/components/landing/Creators";
@@ -25,7 +24,7 @@ const Page: NextPage = () => {
       <main className=" min-h-screen bg-white ">
  
       <Hero />
-      <About />
+    
       <Pricing />
       <Creators />
       <NewLatter />

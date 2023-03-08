@@ -42,7 +42,7 @@ export  function Hero() {
           <div className="mx-auto  w-full flex  justify-between gap-x-2 ">
            
           
-            <div className="text-start w-[58%] z-30 py-32 sm:py-28 lg:py-32  xl:py-48 ">
+            <div className="text-start w-[58%]  py-32 sm:py-28 lg:py-32  xl:py-48 ">
                   <h1 className="text-5xl  font-bold tracking-tight text-gray-900 lg:text-7xl  mix-blend-darken ">
                      Gestion de projet <br />
                       Sonatrach R&D <br />
