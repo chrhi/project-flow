@@ -24,7 +24,11 @@ export  function Hero() {
      
     <div className="isolate  h-screen relative ">
     {/* <canvas id="canv" ref={canvasRef} width="32" height="32"></canvas> */}
-    <div className='background-hero bg-gradient-to-r from-indigo-700 to-sky-400  '  />
+    <div className='background-hero  relative' >
+    <div  className='light1 light  filter blur-xl animate-blob h-[100px] ' />
+    <div  className=' light2 light  filter blur-xl animate-blob h-[200px] '   />
+    <div className='light light3  filter blur-xl animate-blob h-[100px]'  />
+    </div>
         <Navbar />
       <main className='custom-hieght-navbar z-10    mx-auto max-w-7xl   sm:flex sm:justify-start sm:pl-8'>
         <div className="relative px-6 lg:px-0">
@@ -33,7 +37,7 @@ export  function Hero() {
               
             </div>
             <div className="text-start ">
-             <h1 className="text-5xl  font-bold tracking-tight text-gray-900 sm:text-7xl mix-blend-color-burn ">
+             <h1 className="text-5xl  font-bold tracking-tight text-gray-900 sm:text-7xl mix-blend-darken ">
               Gestion de projet Sonatrach R&D
               guidée par PMBOK
               </h1>
