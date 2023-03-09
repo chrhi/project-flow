@@ -26,7 +26,7 @@ export  const Sidebar = () => {
                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
            </svg>
 
-            <span className="ml-2 text-sm tracking-wide truncate">go back</span>
+            <span className="ml-2 text-sm tracking-wide truncate">retourner</span>
       </button>
     </div>
     <div className="overflow-y-auto overflow-x-hidden flex-grow">
@@ -42,7 +42,16 @@ export  const Sidebar = () => {
           className={`relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50  hover:text-gray-800 border-l-4 border-transparent
            pr-6 ${current_page == NAVS.STARTUP ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide truncate">start up</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Détails du projet</span>
+          </button>
+        </li>
+        <li>
+          <button
+          onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
+          className={`relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50  hover:text-gray-800 border-l-4 border-transparent
+           pr-6 ${current_page == NAVS.STARTUP && 9 < 1 ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
+          
+            <span className="ml-2 text-sm tracking-wide truncate">Considerations relatives au projet</span>
           </button>
         </li>
         <li>

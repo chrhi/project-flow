@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { FormEvent, useRef } from "react"
 import { api } from "~/utils/api";
 import { useRouter } from "next/router";
@@ -78,7 +79,7 @@ export const FirstForm = () => {
   return (
    <div className='ml-[16rem] custom-width min-h-screen h-fit flex flex-col items-center pt-8'>
    <div className="w-full h-[50px] flex items-center justify-start p-4 my-4">
-   <h1 className="text-2xl font-bold text-start text-gray-900">fill the needed information of the project</h1>
+   <h1 className="text-2xl font-bold text-start text-gray-900">remplir les informations nécessaires du projet</h1>
    </div>
      <form className='bg-white mb-8 w-[95%] md:w-[70%] xl:w-[50%] '  onSubmit={(e) => HandleSubmit(e)}>
     <div className="overflow-hidden shadow  sm:rounded-md">
@@ -110,7 +111,8 @@ export const FirstForm = () => {
 
           <div className="col-span-6 ">
             <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
-            Description
+          
+            Besoin de l'organisation / objectifs du projet
             </label>
             <textarea
                         ref={ DescriptionRef}
@@ -124,7 +126,7 @@ export const FirstForm = () => {
           </div>
           <div className="col-span-6 ">
             <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
-            Objectifs du projet
+            Exigences  du projet
             </label>
             <textarea
                         ref={ObjectifSduProjet}
@@ -138,7 +140,7 @@ export const FirstForm = () => {
           </div>
           <div className="col-span-6 ">
             <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
-            exigence de haut niveau
+            Description du produit / des livrables
             </label>
             <textarea
                       
@@ -154,7 +156,7 @@ export const FirstForm = () => {
           <div className="col-span-6 ">
             <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
              {/* eslint-disable-next-line react/no-unescaped-entities */}
-            exigence d'approbation de projet
+            Le projet n'inclut pas 
             </label>
             <textarea
                         ref={exigenceApprobationDeProjetRef}
@@ -172,16 +174,17 @@ export const FirstForm = () => {
 
           <div className="col-span-6">
             <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-            Budget
+            Ressources preapprouvees
             </label>
-            <input
-            ref={Budget}
-              type="number"
-              name="street-address"
-              id="street-address"
-              autoComplete="street-address"
-              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
+            <textarea
+                        ref={exigenceApprobationDeProjetRef}
+                        id="about"
+                        name="about"
+                        rows={3}
+                        className="mt-1 block  w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
+                        placeholder="you@example.com"
+                        defaultValue={''}
+                      />
           </div>
           <div className="col-span-6">
             <h3 className="block text-xl font-medium leading-6 text-gray-900">
@@ -189,49 +192,7 @@ export const FirstForm = () => {
             </h3>
            
           </div>
-          <div className="col-span-6 sm:col-span-6 lg:col-span-2">
-            <label htmlFor="city" className="block text-sm font-medium leading-6 text-gray-900">
-            nom
-            </label>
-            <input
-            ref={chefProjetNameRef}
-              type="text"
-              name="city"
-              id="city"
-              autoComplete="address-level2"
-              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-
-          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label htmlFor="region" className="block text-sm font-medium leading-6 text-gray-900">
-            e-mail
-            </label>
-            <input
-            ref={chefProjetEmailRef}
-              type="text"
-              name="region"
-              id="region"
-              autoComplete="address-level1"
-              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-
-        
-
-          <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-            <label htmlFor="postal-code" className="block text-sm font-medium leading-6 text-gray-900">
-            téléphone
-            </label>
-            <input
-            ref={chefProjetPhoneRef}
-              type="text"
-              name="postal-code"
-              id="postal-code"
-              autoComplete="postal-code"
-              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
+          
         
 
         </div>

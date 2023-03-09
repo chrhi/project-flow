@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
@@ -26,7 +27,7 @@ const Page: NextPage = () => {
             <div className="container mx-auto flex flex-col mt-3  xl:p-16 gap-y-4 ">
                <div className='w-full h-[50px] flex md:justify-start justify-center    items-center'>
     
-                <h1 className='text-3xl font-bold ' >Hi 👋 this is the dashboard and your personal space</h1>
+                <h1 className='text-3xl font-bold ' >Salut 👋 c'est le tableau de bord et votre espace personnel</h1>
                </div>
             <div className="w-full flex items-center  gap-x-8">
               <Reminder />
