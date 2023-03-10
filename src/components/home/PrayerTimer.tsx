@@ -1,5 +1,5 @@
 import {useEffect , useState} from 'react'
-import Clock from 'react-clock'; 
+import Clock from 'react-clock'
 
 const style ={
   clock :"!w-[100px] bg-gray-100 !h-[100px] rounded-[50%]"

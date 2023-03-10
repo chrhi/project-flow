@@ -5,6 +5,10 @@ import { Header } from "~/components/common/Header";
 // import  PrayerTimer  from "~/components/home/PrayerTimer";
 import { ProjectStart } from "~/components/home/ProjectStart";
 import { Reminder } from "~/components/home/Reminder";
+import dynamic from 'next/dynamic';
+const PrayerTimes = dynamic(() => import('~/components/home/PrayerTimer'), {
+  ssr: false,
+});
 
 
 
@@ -24,14 +28,14 @@ const Page: NextPage = () => {
       </Head>
       <main className="  min-h-screen w-full bg-gray-50 ">
            <Header />
-            <div className="container mx-auto flex flex-col mt-3  xl:p-16 gap-y-4 ">
+            <div className=" flex flex-col mt-3  xl:p-16 gap-y-4 ">
                <div className='w-full h-[50px] flex md:justify-start justify-center    items-center'>
     
                 <h1 className='text-3xl font-bold ' >Salut 👋 c'est le tableau de bord et votre espace personnel</h1>
                </div>
             <div className="w-full flex items-center  gap-x-8">
               <Reminder />
-              {/* <PrayerTimer /> */}
+              <PrayerTimes />
             </div>
               <ProjectStart />
             </div>
