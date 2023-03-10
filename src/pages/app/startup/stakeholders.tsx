@@ -4,7 +4,34 @@ import AddStakeHolder from "~/components/common/AddStakeHolder";
 import { Row } from "~/components/common/Row";
 import { Sidebar } from "~/components/ui/Sidebar";
 import { TableHeader } from "~/components/ui/TableHeader";
+import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
+import { toast } from "react-toastify";
+import { api } from "~/utils/api";
+import { useEffect } from "react";
 const Page: NextPage = () => {
+
+  const stakeholders = api.stakeholder.getStakeholders.useQuery()
+  const set_isLoading = loading_Reducer(state => state.set_isLoading)
+
+  useEffect(()=>{
+    if(!stakeholders.data){
+      set_isLoading(true)
+    }else{
+      set_isLoading(false)
+    }
+    if(stakeholders.error){
+      toast("something went wrong",{
+        className:" !text-white !bg-gradient-to-r !from-sky-300 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       set_isLoading(false)
+
+       
+    }
+
+    
+  },[set_isLoading , stakeholders.data ,stakeholders.error ])
+
   return (
     <>
       <Head>
@@ -29,14 +56,11 @@ const Page: NextPage = () => {
     </div>
 
     <TableHeader />
-    <Row />
-    <Row />
-    <Row />
-    <Row />
-    <Row />
-    <Row />
-    <Row />
-    <Row />
+    {/* <Row /> */}
+   {stakeholders.data?.data?.length &&
+   stakeholders.data?.data?.length > 0  && 
+   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+   stakeholders.data?.data.map((item) => <Row   key={item.name } name={item?.name} title={item?.title} role={item?.role}  /> )}
         {/* this is the end of the page */}
        </div>
      

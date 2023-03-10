@@ -1,25 +1,61 @@
-import React, {type FormEvent, useRef} from 'react'
+import  { useRef , useEffect, type FormEvent} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
+import { toast } from "react-toastify";
+import { api } from "~/utils/api";
 
 
 
 
-const inputFile = (ref:React.RefObject<HTMLInputElement>) =>(
-    <div  className='py-1 px-2 flex items-center bg-[#9147ff] hover:bg-[#7927f6] text-white rounded-lg cursor-pointer font-bold'>
-    <label htmlFor="dropzone-file" >
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 cursor-pointer">
-     <path fillRule="evenodd" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
-   </svg>
-   
-    <input ref={ref} id="dropzone-file" type="file" className="hidden" />
-    </label>
-</div> 
-)
 
 export default function AddStakeHolder() {
-  const inputTagRef = useRef<HTMLInputElement>(null)
-  const fileRef = useRef<HTMLInputElement>(null)
+  const nameRef = useRef<HTMLInputElement>(null)
+  const roleRef = useRef<HTMLTextAreaElement>(null)
+  const titleRef = useRef<HTMLInputElement>(null)
+
+  const mutation = api.stakeholder.uploadStakeHolder.useMutation()
+  const set_isLoading = loading_Reducer(state => state.set_isLoading)
+
+  const handleSubmit = (event : FormEvent) => {
+    event.preventDefault()
+    if(!nameRef.current?.value || !roleRef.current?.value || !titleRef.current?.value ){
+      toast("tous les liens sont requis",{
+        className:" !text-white !bg-gradient-to-r !from-sky-300 !to-indigo-600",
+        hideProgressBar: true,
+       })
+      return
+    }
+    mutation.mutate({
+      name : nameRef.current?.value,
+      title : titleRef.current?.value ,
+      role : roleRef.current?.value
+    })
+    toast("changes saved seccusfully",{
+      className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+      hideProgressBar: true,
+     })
+     closeModal()
+  }
+
+  useEffect(()=> {
+    if(mutation.isLoading){
+      set_isLoading(true)
+    }else{
+      set_isLoading(false)
+      
+    }
+    if(mutation.error){
+      set_isLoading(false)
+      closeModal()
+      toast("some thing went wrong",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+    }
+    
+  },[mutation.isLoading , set_isLoading , mutation.error])
+ 
 
     const [isOpen, setIsOpen] = useState(false)    
     function openModal() {
@@ -69,13 +105,13 @@ export default function AddStakeHolder() {
                   >
                    adding a new stakeholder
                   </Dialog.Title>
-                  <div className="w-full h-full mt-1 ">
-                    <form className='w-full flex flex-col px-8 '>
+                  <div className="w-full h-fit mt-1 ">
+                    <form className='w-full flex flex-col h-fit min-h-full px-8 ' onSubmit={handleSubmit} >
                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
                      Nom
                      </label>
                      <input 
-                     ref={inputTagRef}
+                     ref={nameRef}
                      className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                      placeholder='add a tag to your file '  />
                  
@@ -83,7 +119,7 @@ export default function AddStakeHolder() {
                      Titre
                      </label>
                      <input 
-                     ref={inputTagRef}
+                     ref={titleRef}
                      className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                      placeholder='add a tag to your file '  />
                  
@@ -94,6 +130,7 @@ export default function AddStakeHolder() {
                       Role / Responsabilite
                      </label>
                      <textarea 
+                     ref={roleRef}
                      className="mt-2 block w-full h-[200xp] p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                      placeholder='add a tag to your file ' />
                     
@@ -101,7 +138,7 @@ export default function AddStakeHolder() {
                    
                     <div className='w-full flex justify-end p-4 my-4 gap-x-4 '>
                     <button 
-                   
+                    type='submit'
                   className='py-2 px-4 flex items-center bg-gradient-to-r from-sky-500 to-indigo-600 hover:bg-[#7927f6] text-white rounded-lg cursor-pointer font-bold'>
                      confirme 
                    </button>

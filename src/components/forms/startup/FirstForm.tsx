@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { FormEvent, useRef  , useEffect} from "react"
 import { api } from "~/utils/api";
-import { useRouter } from "next/router";
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 
@@ -21,7 +20,7 @@ type inputsType ={
 
 export const FirstForm = () => {
   //defined the hooks
-  const router = useRouter()
+  
 
   const set_isLoading = loading_Reducer(state => state.set_isLoading)
 

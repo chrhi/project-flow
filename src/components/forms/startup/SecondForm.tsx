@@ -1,19 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import { FormEvent, useRef } from "react"
+import { FormEvent, useRef , useEffect } from "react"
+import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
+import { toast } from "react-toastify";
 import { api } from "~/utils/api";
-import { useRouter } from "next/router";
-import { TimePicker } from "~/components/ui/TimePicker";
-type inputsType ={
-  title:string , 
-  Description:string,
-  ObjectifSduProjet:string,
-  exigencEdeHautNiveau:string,
-  exigenceApprobationDeProjet:string , 
-  Budget:string , 
 
-  chefProjetName:string , 
-  chefProjetEmail:string , 
-  chefProjetPhone:string
+
+type inputsType ={
+
+  HighLevelRisks:string,
+  AcceptanceCriteria:string,
+  Hypotheses:string,
+  Constraints:string , 
+
   
 }
 
@@ -22,41 +20,68 @@ type inputsType ={
 
 export const SecondForm = () => {
 
-  const router = useRouter()
+  const mutation = api.startup.UploadConsiderationsProject.useMutation()
+  
+  const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
-  const titleRef = useRef<HTMLInputElement>(null)
-  const DescriptionRef = useRef<HTMLTextAreaElement>(null)
-  const ObjectifSduProjet = useRef<HTMLTextAreaElement>(null)
-  const exigencEdeHautNiveauRef = useRef<HTMLTextAreaElement>(null)
-  const  exigenceApprobationDeProjetRef = useRef<HTMLTextAreaElement>(null)
-  const Budget = useRef<HTMLInputElement>(null)
-  const chefProjetNameRef = useRef<HTMLInputElement>(null)
-  const chefProjetEmailRef = useRef<HTMLInputElement>(null)
-  const chefProjetPhoneRef = useRef<HTMLInputElement>(null)
+
+  const HighLevelRisksRef = useRef<HTMLTextAreaElement>(null)
+  const AcceptanceCriteriaRef = useRef<HTMLTextAreaElement>(null)
+  const HypothesesRef = useRef<HTMLTextAreaElement>(null)
+  const  ConstraintsRef = useRef<HTMLTextAreaElement>(null)
+
 
   //trpc hook 
  
   const HandleSubmit =  (e : FormEvent) => {
     e.preventDefault()
-   if(!titleRef.current?.value || !DescriptionRef.current?.value || !ObjectifSduProjet.current?.value || !exigencEdeHautNiveauRef.current?.value || !exigenceApprobationDeProjetRef.current?.value || !Budget.current?.value || !chefProjetNameRef.current?.value){
-    console.log("please enter the required data ...")
+   if( !HighLevelRisksRef.current?.value || !AcceptanceCriteriaRef.current?.value || !HypothesesRef.current?.value || !ConstraintsRef.current?.value){
+    toast("tous les liens sont requis",{
+      className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+      hideProgressBar: true,
+     })
     return
    }
    const data : inputsType = {
-    title: titleRef.current?.value   ,
-    Description: DescriptionRef.current?.value ,
-    ObjectifSduProjet: ObjectifSduProjet.current?.value , 
-    exigencEdeHautNiveau: exigencEdeHautNiveauRef.current?.value , 
-    exigenceApprobationDeProjet: exigenceApprobationDeProjetRef.current?.value , 
-    Budget : Budget.current?.value  , 
-    chefProjetName: chefProjetNameRef.current?.value , 
-    chefProjetEmail: chefProjetEmailRef.current?.value as string , 
-    chefProjetPhone: chefProjetPhoneRef.current?.value as string ,
+
+    HighLevelRisks: HighLevelRisksRef.current?.value ,
+    AcceptanceCriteria: AcceptanceCriteriaRef.current?.value , 
+    Hypotheses: HypothesesRef.current?.value , 
+    Constraints: ConstraintsRef.current?.value , 
+
   }
+  mutation.mutate({
+    HighLevelRisks : data.HighLevelRisks ,
+    AcceptanceCriteria : data.AcceptanceCriteria,
+    Hypotheses : data.Hypotheses ,
+    Constraints : data.Constraints
+   
+  })
+ 
+  toast("changes saved seccusfully",{
+    className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+    hideProgressBar: true,
+   })
   
  
 
   }
+ 
+  useEffect(()=> {
+    if(mutation.isLoading){
+      set_isLoading(true)
+    }else{
+      set_isLoading(false)
+      
+    }
+    if(mutation.error){
+      toast("some thing went wrong",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+    }
+    
+  },[mutation.isLoading , set_isLoading , mutation.error])
  
 
 
@@ -85,7 +110,7 @@ export const SecondForm = () => {
             Risques de haut niveau
             </label>
             <textarea
-                        ref={ DescriptionRef}
+                        ref={ HighLevelRisksRef}
                         id="about"
                         name="about"
                         rows={3}
@@ -99,7 +124,7 @@ export const SecondForm = () => {
            Criteres d,acceptation
             </label>
             <textarea
-                        ref={ObjectifSduProjet}
+                        ref={AcceptanceCriteriaRef}
                         id="about"
                         name="about"
                         rows={3}
@@ -114,7 +139,7 @@ export const SecondForm = () => {
             </label>
             <textarea
                       
-                        ref={exigencEdeHautNiveauRef}
+                        ref={HypothesesRef}
                         id="about"
                         name="about"
                         rows={3}
@@ -129,7 +154,7 @@ export const SecondForm = () => {
            Contraintes 
             </label>
             <textarea
-                        ref={exigenceApprobationDeProjetRef}
+                        ref={ConstraintsRef}
                         id="about"
                         name="about"
                         rows={3}
@@ -152,7 +177,7 @@ export const SecondForm = () => {
       <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
         <button
           type="submit"
-          onClick={() => router.push("/app/startup/documents") as unknown}
+         
           className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
         >
          enregistrer & continuer
