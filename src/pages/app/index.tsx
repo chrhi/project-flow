@@ -28,7 +28,7 @@ const Page: NextPage = () => {
       </Head>
       <main className="  min-h-screen w-full bg-gray-50 ">
            <Header />
-            <div className=" flex flex-col mt-3  xl:p-16 gap-y-4 ">
+            <div className=" w-[100%] px-[7%] xl:px-[10%] flex flex-col mt-3  xl:p-16 gap-y-4 ">
                <div className='w-full h-[50px] flex md:justify-start justify-center    items-center'>
     
                 <h1 className='text-3xl font-bold ' >Salut 👋 c'est le tableau de bord et votre espace personnel</h1>

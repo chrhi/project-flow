@@ -4,7 +4,8 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 export enum NAVS {
     STARTUP,
     DOCUMENT,
-    STAKEHOLDER
+    STAKEHOLDER,
+    SECONDFORM
 }
 
 

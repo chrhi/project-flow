@@ -72,56 +72,33 @@ export default function AddStakeHolder() {
                   <div className="w-full h-full mt-1 ">
                     <form className='w-full flex flex-col px-8 '>
                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                     name
+                     Nom
                      </label>
                      <input 
                      ref={inputTagRef}
                      className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                      placeholder='add a tag to your file '  />
-                    {/*  this is the email field */}
-                      <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                    email
+                 
+                 <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
+                     Titre
                      </label>
                      <input 
                      ref={inputTagRef}
                      className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                      placeholder='add a tag to your file '  />
+                 
 
-                     {/* this is the phone field  */}
+                     {/* this is the Role / Responsabilite field  */}
                      <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                    phone number
-                     </label>
-                     <input 
-                     ref={inputTagRef}
-                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     placeholder='add a tag to your file '  />
-
-                     {/* this is the discription field  */}
-                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                    discription
+                   
+                      Role / Responsabilite
                      </label>
                      <textarea 
-                     className="mt-2 block w-full h-[100xp] p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                     className="mt-2 block w-full h-[200xp] p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                      placeholder='add a tag to your file ' />
                     
 
-                     {/* this is the impact section */}
-                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                    impact
-                     </label>
-                     <input 
-                     ref={inputTagRef}
-                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     placeholder='add a tag to your file '  />
-
-                     {/* this is the type field */}
-                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                    email
-                     </label>
-                     <input 
-                     ref={inputTagRef}
-                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     placeholder='add a tag to your file '  />
+                   
                     <div className='w-full flex justify-end p-4 my-4 gap-x-4 '>
                     <button 
                    

@@ -47,9 +47,9 @@ export  const Sidebar = () => {
         </li>
         <li>
           <button
-          onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
+          onClick={() => handleClick("/app/startup/secondForm" , NAVS.SECONDFORM)}
           className={`relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50  hover:text-gray-800 border-l-4 border-transparent
-           pr-6 ${current_page == NAVS.STARTUP && 9 < 1 ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
+           pr-6 ${current_page == NAVS.SECONDFORM  ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
           
             <span className="ml-2 text-sm tracking-wide truncate">Considerations relatives au projet</span>
           </button>

@@ -6,6 +6,8 @@ import 'react-clock/dist/Clock.css';
 import "~/styles/globals.css";
 import { supabase } from "~/config/supbase";
 import { Loading } from "~/components/common/Loading";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
 
@@ -26,11 +28,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   
   return(
-    <>
+    <div className="w-full h-fit relative">
        <NextNProgress options={{ showSpinner: false }} />
        <Loading />
+       <ToastContainer theme="dark" />
        <Component {...pageProps} />
-    </>
+    </div>
     )
 };
 

@@ -1,28 +1,35 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { create_flow } from "~/server/model/test";
+import { UploadProjectDetails } from "~/server/model/projectDetails";
+
+// This code exports a startupRouter object which is created using the createTRPCRouter function. The router defines a single public procedure called uploadProjectDetails.
+
+// The uploadProjectDetails procedure is defined as a mutation which takes an input object. The input object is expected to have the following properties: title, NeedForOrganization, ProjectRequirements, ProductDescription, ThePojectDoesNotInclude, and PreApprovedResources.
+
+// When uploadProjectDetails is called, it invokes the UploadProjectDetails function with the values of the input object properties as arguments. If an error occurs during the execution of the UploadProjectDetails function, a TRPCError is thrown with the error code INTERNAL_SERVER_ERROR and an error message.
+
+// Overall, it appears that this code is defining a server-side endpoint that allows clients to upload project details. The createTRPCRouter function and publicProcedure indicate that this code is likely using the TRPC library for server-side communication.
 
 export const startupRouter = createTRPCRouter({
-  firstForm: publicProcedure
+  uploadProjectDetails: publicProcedure
     .input(z.object({
          title: z.string(),
-         Description: z.string(),
-         ObjectifSduProjet: z.string(),
-         exigencEdeHautNiveau: z.string(),
-         exigenceApprobationDeProjet: z.string(),
-         Budget: z.number(),
-        chefProjetName:z.string(),
-        chefProjetEmail:z.string(),
-        chefProjetPhone:z.string(),
+         NeedForOrganization: z.string(),
+         ProjectRequirements: z.string(),
+         ProductDescription: z.string(),
+         ThePojectDoesNotInclude: z.string(),
+         PreApprovedResources: z.string()
+        
      }))
-    .mutation(async ({ input }) => {
-        console.log(`this is in the server from trpc rout ${input.Description}`)
-     await create_flow("ce130c77-182c-4c79-a023-ddcc3c7e263e" ,input.title , input.Description,true , input.Description ,"Thu Feb 16 2023","Thu Feb 16 2023",["171ca249-ff5e-4617-a0d1-13fd3273893e"])
-      return {
-        greeting: `Hello from the server this is  ${input.title}`,
-        something: `Hello from the server this is  ${input.Description}`,
-        somethingelse: `Hello from the server this is  ${input.exigenceApprobationDeProjet}`,
-      };
+    .mutation( async  ({ input }) => {
+     
+      await UploadProjectDetails(input.title , input.NeedForOrganization , input.PreApprovedResources , input.ProductDescription , input.ProjectRequirements , input.ThePojectDoesNotInclude)
+      .catch(error =>{ 
+         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+         throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})
+    })
+     
     }),
 });
