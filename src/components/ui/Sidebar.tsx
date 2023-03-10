@@ -1,7 +1,6 @@
-import Link from 'next/link'
-import React from 'react'
 import { useRouter } from 'next/router'
 import { NAVS , sidebar_Reducer  } from '~/store/app-reducer/SideBarReducer'
+import { Button } from '@mui/material'
 
 export  const Sidebar = () => {
   const router = useRouter()
@@ -18,7 +17,7 @@ export  const Sidebar = () => {
 
   <div className="fixed flex flex-col top-0 left-0 w-[16rem] bg-white h-full shadow-lg border-r border-gray-[100px]">
     <div className="flex items-center justify-start h-14 pl-4 ">
-        <button
+        <Button
         onClick={() => handleClick("/app/myProject" , NAVS.STARTUP)}
         
         className="relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6">
@@ -27,7 +26,7 @@ export  const Sidebar = () => {
            </svg>
 
             <span className="ml-2 text-sm tracking-wide truncate">retourner</span>
-      </button>
+      </Button>
     </div>
     <div className="overflow-y-auto overflow-x-hidden flex-grow">
       <ul className="flex flex-col py-4 space-y-1">
@@ -37,48 +36,50 @@ export  const Sidebar = () => {
           </div>
         </li>
         <li>
-          <button
+          <Button
           onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
           className={`relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50  hover:text-gray-800 border-l-4 border-transparent
            pr-6 ${current_page == NAVS.STARTUP ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
           
             <span className="ml-2 text-sm tracking-wide truncate">Détails du projet</span>
-          </button>
+          </Button>
         </li>
         <li>
-          <button
+          <Button
           onClick={() => handleClick("/app/startup/secondForm" , NAVS.SECONDFORM)}
           className={`relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50  hover:text-gray-800 border-l-4 border-transparent
            pr-6 ${current_page == NAVS.SECONDFORM  ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
           
             <span className="ml-2 text-sm tracking-wide truncate">Considerations relatives au projet</span>
-          </button>
+          </Button>
         </li>
         <li>
-          <button 
+          <Button 
           onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
           className={`relative flex w-full flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6  ${current_page == NAVS.STAKEHOLDER ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' } `}>
         
 
             <span className="ml-2 text-sm tracking-wide truncate">stakeholders</span>
         
-          </button>
+          </Button>
         </li>
         <li>
-          <button 
+          <Button 
           onClick={() => handleClick("/app/startup/documents" , NAVS.DOCUMENT) }
           className={`relative flex w-full flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6  ${current_page == NAVS.DOCUMENT ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' } `}>
        
             <span className="ml-2 text-sm tracking-wide truncate">documents </span>
           
-          </button>
+          </Button>
         </li>
         <li>
-          <Link href="/app/startup/application" className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
+        <Button
+        onClick={() => handleClick("/app/startup/application" , NAVS.APPLICATION) }
+        className={`relative flex w-full flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6  ${current_page == NAVS.APPLICATION ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' } `}>
            
             <span className="ml-2 text-sm tracking-wide truncate">application</span>
             <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-white bg-red-600 rounded-full">bad</span>
-          </Link>
+            </Button>
         </li> 
       </ul>
     </div>
