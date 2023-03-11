@@ -18,8 +18,13 @@ const result = template(data);
 // We can use this to add dynamic data to our  template at run time from database or API as per need. you can read the official doc to learn more https://handlebarsjs.com/
 const html = result;
 // we are using headless mode
+
+
+// puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token=YOUR-API-TOKEN' })
+
+
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const browser = await puppeteer.launch();
+const browser = await puppeteer.connect({ browserWSEndpoint: 'wss://chrome.browserless.io?token=c8dc96e8-a6c8-4b7c-97e3-5e7977f7389f' })
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 const page = await browser.newPage()
 // We set the page content as the generated html by handlebars
