@@ -6,12 +6,12 @@ import hb  from 'handlebars'
 
 
 
-export const generatePdf  = async (name:string , content:()=> string ) =>{
+export const generatePdf  = async (pdfFileAsString : string ) =>{
 
 const data = {};
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const template = hb?.compile(() => content(), { strict: true });
+const template = hb?.compile(pdfFileAsString , { strict: true });
 
 // we have compile our code with handlebars
 const result = template(data);
@@ -28,7 +28,7 @@ await page.setContent(html)
 // We use pdf function to generate the pdf in the same folder as this file.
 //{ path: `./docs/${name}.pdf`, format: 'A4' }
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const buffer = await (await page.pdf()).buffer
+const buffer =  (await page.pdf()).buffer
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 await browser.close();
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return

@@ -1,15 +1,16 @@
 
-export const DetailsTemplates = (
+export type ParamsType = {
     title : string , 
     NeedForOrganization : string ,
     ProjectRequirements : string ,
     ProductDescription : string ,
     ThePojectDoesNotInclude : string ,
     PreApprovedResources : string 
-) => {
+}
 
-
-    return `
+export const PdfTemplates = (param:ParamsType) : string => {
+  
+    const template =  `
     <!doctype html>
     <html>
     <head>
@@ -69,7 +70,7 @@ export const DetailsTemplates = (
     <body>
         <div class="pdf-box">
             <div class="row">
-                <h1>Title de project : ${title} </h1>
+                <h1>Title de project : ${param.title} </h1>
             </div>
             <div class="row">
                 <h2 style="font-size: 2.2rem;">Charte du projet</h2>
@@ -85,7 +86,7 @@ export const DetailsTemplates = (
                 <h3>Besoin de l'organisation / objectifs du projet</h3>
                </div>
                <div>
-                <p>${NeedForOrganization}</p>
+                <p>${param.NeedForOrganization}</p>
                </div>
             </div>
     
@@ -95,7 +96,7 @@ export const DetailsTemplates = (
                  <h3>Exigences du projet</h3>
                 </div>
                 <div>
-                 <p>${ProjectRequirements}</p>
+                 <p>${param.ProjectRequirements}</p>
                 </div>
              </div>
     
@@ -105,7 +106,7 @@ export const DetailsTemplates = (
                  <h3>Description du produit / des livrables</h3>
                 </div>
                 <div>
-                 <p>${ProductDescription}</p>
+                 <p>${param.ProductDescription}</p>
                 </div>
              </div>
     
@@ -114,7 +115,7 @@ export const DetailsTemplates = (
                  <h3>Le projet n'inclut pas :</h3>
                 </div>
                 <div>
-                 <p>${ThePojectDoesNotInclude}</p>
+                 <p>${param.ThePojectDoesNotInclude}</p>
                 </div>
              </div>
     
@@ -124,11 +125,12 @@ export const DetailsTemplates = (
                  <h3>Ressources preapprouvees</h3>
                 </div>
                 <div>
-                 <p>${PreApprovedResources}</p>
+                 <p>${param.PreApprovedResources}</p>
                 </div>
              </div>
         </div>
     </body>
     </html>
     `
+    return template
 }

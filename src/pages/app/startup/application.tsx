@@ -2,9 +2,12 @@ import { Button } from "@mui/material";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Sidebar } from "~/components/ui/Sidebar";
+import { api } from "~/utils/api";
 
 
 const Page: NextPage = () => {
+
+  const mutation = api.pdf.createPdfFiles.useMutation()
 
   return (
     <>
@@ -28,10 +31,12 @@ const Page: NextPage = () => {
                 </div>
                 <div className="w-[400px] h-[400px] flex flex-col items-center justify-center bg-white rounded-lg shadow-lg ">
                     <Button
+                    onClick={() => mutation.mutate()}
                      className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
-                        generate pdf
+                      {mutation.isLoading ? "loading ..." : "   generate pdf" }
                     </Button>
+                    <h1>{mutation.error && mutation.error.message}</h1>
                  </div>
         </div>
      </div>
