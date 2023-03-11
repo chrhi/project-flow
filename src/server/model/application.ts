@@ -26,7 +26,7 @@ export const pdfStatus = async () => {
     .from('app')
     .select('has_pdf_exist')
     if(error ) throw new Error(error.message)
-    return app 
+    return app[0]
 }
 
 
@@ -34,7 +34,7 @@ export const updatePdfStatus = async (value:boolean) => {
     const { error } = await supabase
     .from('app')
     .update({ has_pdf_exist: value })
-    .eq('id', 'someValue')
+    .eq('id', '1234567890')
     if(error ) throw new Error(error.message) 
 }
 
