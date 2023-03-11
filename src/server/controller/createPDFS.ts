@@ -1,3 +1,3 @@
-export const start_project = () => {
+export const createPDFS = () => {
     //TODO : handle starting the prokject
 }
