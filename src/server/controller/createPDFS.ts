@@ -2,6 +2,8 @@ import { supabase } from "~/config/supbase"
 import {generatePdf} from "../util/generatePDF"
 import { ParamsType } from "../util/templatesPdf/DetailsTemplates"
 import { PdfTemplates } from "../util/templatesPdf/DetailsTemplates"
+import { get_publicUrl } from "~/utils/pdf/getPublicUrl"
+import { updatePdfStatus } from "../model/application"
 
 export const createPDFS = async  () => {
     const { data: projectDetails, error } = await supabase
@@ -32,13 +34,17 @@ export const createPDFS = async  () => {
      stakeHolders : stakeholders
      
     }
-
+    //this is before the document exists 
+   
   
     //we get the buffer from the template and the data
     const PdfAsString = PdfTemplates(dataDetails)
     const buffer = await generatePdf(PdfAsString )
     const { error : error1} = await supabase.storage
     .from("documents")
-    .upload("detailsPdf.pdf" , buffer )
+    .upload("Charte.pdf" , buffer , { contentType: "application/pdf" } )
     if(error1)   throw new Error(error1.message)
+    await updatePdfStatus(true).catch(error => {throw new Error("server error")})
+
+
 }
