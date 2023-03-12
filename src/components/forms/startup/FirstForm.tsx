@@ -29,11 +29,15 @@ export const FirstForm = () => {
   const  PreApprovedResourcesRef = useRef<HTMLTextAreaElement>(null)
 
   //trpc hook 
-  const ProjectDetails = api.startup.gatProjectDetails.useQuery()
+  const {  data : ProjectDetails, isLoading , refetch , isFetching }= api.startup.gatProjectDetails.useQuery()
+
+
+  
+
    // This can either be a tuple ['login'] or string 'login'
    const mutation = api.startup.uploadProjectDetails.useMutation({
     onSuccess() {
-      ProjectDetails.refetch().then(data => console.log(data)).catch(error => console.log(error))
+      refetch().then(data => console.log(data)).catch(error => console.log(error))
       toast("changes saved seccusfully",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
@@ -49,7 +53,7 @@ export const FirstForm = () => {
   })
 
 
-  
+
   const HandleSubmit =  (e : FormEvent) => {
     e.preventDefault()
    if(!titleRef.current?.value || !NeedForOrganizationRef.current?.value || !ProjectRequirementsRef.current?.value || !ProductDescriptionRef.current?.value || !ThePojectDoesNotIncludeRef.current?.value || !PreApprovedResourcesRef.current?.value ){
@@ -91,11 +95,11 @@ export const FirstForm = () => {
       
     }
    
-    if(ProjectDetails.isFetching){
+    if(isFetching){
       set_isLoading(true)
     }else{ set_isLoading(false)}
     
-  },[mutation.isLoading , set_isLoading , mutation.error , ProjectDetails.isFetching])
+  },[mutation.isLoading , set_isLoading , mutation.error , isFetching])
  
 
 
@@ -123,6 +127,9 @@ export const FirstForm = () => {
               type="text"
               name="titre"
               id="titre"
+             
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+              value={ProjectDetails?.data && ProjectDetails?.data[0]?.titre }
               autoComplete="titre"
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
@@ -133,6 +140,8 @@ export const FirstForm = () => {
             Besoin de l'organisation / objectifs du projet
             </label>
             <textarea
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        value={ProjectDetails?.data && ProjectDetails?.data[0]?.NeedForOrganization }
                         ref={ NeedForOrganizationRef}
                         id="about"
                         name="about"
@@ -147,6 +156,8 @@ export const FirstForm = () => {
             Exigences  du projet
             </label>
             <textarea
+                       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                        value={ProjectDetails?.data && ProjectDetails?.data[0]?.ProjectRequirements }
                         ref={ProjectRequirementsRef}
                         id="about"
                         name="about"
@@ -161,7 +172,8 @@ export const FirstForm = () => {
             Description du produit / des livrables
             </label>
             <textarea
-                      
+                         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                         value={ProjectDetails?.data && ProjectDetails?.data[0]?.ProductDescription }
                         ref={ProductDescriptionRef}
                         id="about"
                         name="about"
@@ -177,6 +189,8 @@ export const FirstForm = () => {
             Le projet n'inclut pas 
             </label>
             <textarea
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                         value={ProjectDetails?.data && ProjectDetails?.data[0]?.ThePojectDoesNotInclude }
                         ref={ThePojectDoesNotIncludeRef}
                         id="about"
                         name="about"
@@ -195,6 +209,8 @@ export const FirstForm = () => {
             Ressources preapprouvees
             </label>
             <textarea
+                        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+                       value={ProjectDetails?.data && ProjectDetails?.data[0]?.PreApprovedResources }
                         ref={PreApprovedResourcesRef}
                         id="about"
                         name="about"
