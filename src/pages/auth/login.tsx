@@ -1,17 +1,44 @@
 import { Button } from "@mui/material";
 import { type NextPage } from "next";
 import Head from "next/head";
-import {  useRef } from "react";
-
+import {  FormEvent, useRef , useState } from "react";
+import { singInWithEmailAndPassword  } from "~/server/util/auth/provider";
+import { toast } from "react-toastify";
 
 
 
 const Page: NextPage = () => {
 
- 
+  const [isLoading , setIsLoading ] = useState<boolean>(false)
+
 
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
+
+  const handleSubmit =  (e : FormEvent) => {
+
+    e.preventDefault()
+
+    if(!emailRef.current?.value || !passwordRef.current?.value) {
+      toast("password and email are required",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       return
+    }
+    setIsLoading(true)
+     singInWithEmailAndPassword (emailRef.current?.value , passwordRef.current?.value)
+     .then(() => window?.location?.reload())
+     .catch(() => {
+      toast("error something wen wrong" ,{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       setIsLoading(false)
+    })
+    
+    setIsLoading(false)
+  }
 
 
 
@@ -32,7 +59,7 @@ const Page: NextPage = () => {
             <p className="text-gray-900 text-2xl ">Log in</p>
           </div>
          
-          <form className={`w-full  flex transition-all h-fit flex-col p-4 `}>
+          <form className={`w-full  flex transition-all h-fit flex-col p-4 `} onSubmit={(e:FormEvent) => handleSubmit(e)}>
             <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
                    email
             </label>
@@ -56,9 +83,10 @@ const Page: NextPage = () => {
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:ring-inset  sm:text-sm sm:leading-6  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
             />
             <Button
+            type="submit"
                className="!inline-flex my-4  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md  !bg-gradient-to-r !from-sky-500 !to-indigo-600 !text-white  !px-4 !py-2 !text-lg    !hover:bg-gray-300 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
             >
-              login
+              {isLoading ? "loging..." : " login"}
             </Button>
           </form>
 

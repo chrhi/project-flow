@@ -20,7 +20,7 @@ export  const Sidebar = () => {
         <Button
         onClick={() => handleClick("/app/myProject" , NAVS.STARTUP)}
         
-        className="relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6">
+        className="!relative !w-full !flex !flex-row  !normal-case  !items-center !text-gray-600 !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 !justify-start">
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
            </svg>
@@ -38,8 +38,8 @@ export  const Sidebar = () => {
         <li>
           <Button
           onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
-          className={`relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50  hover:text-gray-800 border-l-4 border-transparent
-           pr-6 ${current_page == NAVS.STARTUP ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
+          className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
+          ${current_page == NAVS.STARTUP ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
           
             <span className="ml-2 text-sm tracking-wide truncate">Détails du projet</span>
           </Button>
@@ -47,16 +47,16 @@ export  const Sidebar = () => {
         <li>
           <Button
           onClick={() => handleClick("/app/startup/secondForm" , NAVS.SECONDFORM)}
-          className={`relative w-full flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50  hover:text-gray-800 border-l-4 border-transparent
-           pr-6 ${current_page == NAVS.SECONDFORM  ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
+          className={`!relative !w-full !flex  !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
+            ${current_page == NAVS.SECONDFORM  ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide truncate">Considerations relatives au projet</span>
+            <span className="ml-2 text-sm tracking-wide  truncate">Considerations relatives au projet</span>
           </Button>
         </li>
         <li>
           <Button 
           onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
-          className={`relative flex w-full flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6  ${current_page == NAVS.STAKEHOLDER ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' } `}>
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
         
 
             <span className="ml-2 text-sm tracking-wide truncate">stakeholders</span>
@@ -66,7 +66,7 @@ export  const Sidebar = () => {
         <li>
           <Button 
           onClick={() => handleClick("/app/startup/documents" , NAVS.DOCUMENT) }
-          className={`relative flex w-full flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6  ${current_page == NAVS.DOCUMENT ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' } `}>
+          className={` !relative !w-full !flex   !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6   ${current_page == NAVS.DOCUMENT ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
        
             <span className="ml-2 text-sm tracking-wide truncate">documents </span>
           
@@ -75,7 +75,7 @@ export  const Sidebar = () => {
         <li>
         <Button
         onClick={() => handleClick("/app/startup/application" , NAVS.APPLICATION) }
-        className={`relative flex w-full flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent  pr-6  ${current_page == NAVS.APPLICATION ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' } `}>
+        className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.APPLICATION ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
            
             <span className="ml-2 text-sm tracking-wide truncate">application</span>
             <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-white bg-red-600 rounded-full">bad</span>

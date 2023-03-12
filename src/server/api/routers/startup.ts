@@ -2,8 +2,8 @@ import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { UploadProjectDetails } from "~/server/model/projectDetails";
-import { UploadConsiderationsProject } from "~/server/model/ConsiderationsProject";
+import { UploadProjectDetails , gatProjectDetails } from "~/server/model/projectDetails";
+import { UploadConsiderationsProject , gatConsiderationsProject} from "~/server/model/ConsiderationsProject";
 
 
 
@@ -27,6 +27,15 @@ export const startupRouter = createTRPCRouter({
     })
      
     }),
+
+    gatProjectDetails :  publicProcedure.query(async ()=> {
+     const data =  await gatProjectDetails()
+      .catch(error =>{ 
+         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+         throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})
+    })
+     return {data}
+    }),
     UploadConsiderationsProject :  publicProcedure
     .input(z.object({
          HighLevelRisks: z.string(),
@@ -43,4 +52,12 @@ export const startupRouter = createTRPCRouter({
     })
      
     }),
+    gatConsiderationsProject  :  publicProcedure.query(async ()=> {
+      const data =  await gatConsiderationsProject()
+       .catch(error =>{ 
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})
+     })
+      return {data}
+     }),
 });

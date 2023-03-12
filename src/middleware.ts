@@ -59,6 +59,7 @@
 //     return NextResponse.next();
 //   }
 
+
 export default async function middleware() {
-    //todo : do no thing
+  //TODO: do nothing
 }

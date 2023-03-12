@@ -4,6 +4,7 @@ import { api } from "~/utils/api";
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 
+
 type inputsType ={
   title:string , 
   NeedForOrganization:string,
@@ -11,8 +12,6 @@ type inputsType ={
   ProductDescription:string,
   ThePojectDoesNotInclude:string , 
   PreApprovedResources : string
-
-  
 }
 
 //see the docs 
@@ -20,12 +19,8 @@ type inputsType ={
 
 export const FirstForm = () => {
   //defined the hooks
-  
-
   const set_isLoading = loading_Reducer(state => state.set_isLoading)
-
-
-
+  
   const titleRef = useRef<HTMLInputElement>(null)
   const NeedForOrganizationRef = useRef<HTMLTextAreaElement>(null)
   const ProjectRequirementsRef = useRef<HTMLTextAreaElement>(null)
@@ -34,8 +29,26 @@ export const FirstForm = () => {
   const  PreApprovedResourcesRef = useRef<HTMLTextAreaElement>(null)
 
   //trpc hook 
+  const ProjectDetails = api.startup.gatProjectDetails.useQuery()
    // This can either be a tuple ['login'] or string 'login'
-   const mutation = api.startup.uploadProjectDetails.useMutation()
+   const mutation = api.startup.uploadProjectDetails.useMutation({
+    onSuccess() {
+      ProjectDetails.refetch().then(data => console.log(data)).catch(error => console.log(error))
+      toast("changes saved seccusfully",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+    },
+    onError(){
+      toast("some thing went wrong",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+    },
+    
+  })
+
+
   
   const HandleSubmit =  (e : FormEvent) => {
     e.preventDefault()
@@ -65,10 +78,7 @@ export const FirstForm = () => {
     PreApprovedResources: data.PreApprovedResources
    
   })
-  toast("changes saved seccusfully",{
-    className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
-    hideProgressBar: true,
-   })
+ 
  
 
   }
@@ -80,14 +90,12 @@ export const FirstForm = () => {
       set_isLoading(false)
       
     }
-    if(mutation.error){
-      toast("some thing went wrong",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
-        hideProgressBar: true,
-       })
-    }
+   
+    if(ProjectDetails.isFetching){
+      set_isLoading(true)
+    }else{ set_isLoading(false)}
     
-  },[mutation.isLoading , set_isLoading , mutation.error])
+  },[mutation.isLoading , set_isLoading , mutation.error , ProjectDetails.isFetching])
  
 
 

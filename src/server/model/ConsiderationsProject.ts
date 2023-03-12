@@ -19,3 +19,15 @@ export const UploadConsiderationsProject = async (
   } 
   
 }
+
+export const gatConsiderationsProject = async () => {
+  const { data: ConsiderationsProject, error } = await supabase
+.from('ConsiderationsProject')
+.select('*')
+if(error){
+  throw new Error(error.message)
+   
+ } 
+return ConsiderationsProject
+ 
+}
