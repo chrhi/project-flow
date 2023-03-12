@@ -42,19 +42,12 @@ export const SecondForm = () => {
      })
     return
    }
-   const data : inputsType = {
-
-    HighLevelRisks: HighLevelRisksRef.current?.value ,
-    AcceptanceCriteria: AcceptanceCriteriaRef.current?.value , 
-    Hypotheses: HypothesesRef.current?.value , 
-    Constraints: ConstraintsRef.current?.value , 
-
-  }
+ 
   mutation.mutate({
-    HighLevelRisks : data.HighLevelRisks ,
-    AcceptanceCriteria : data.AcceptanceCriteria,
-    Hypotheses : data.Hypotheses ,
-    Constraints : data.Constraints
+    HighLevelRisks :  HighLevelRisksRef.current?.value ,
+    AcceptanceCriteria :AcceptanceCriteriaRef.current?.value,
+    Hypotheses :HypothesesRef.current?.value,
+    Constraints : ConstraintsRef.current?.value
    
   })
  

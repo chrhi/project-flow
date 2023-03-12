@@ -17,9 +17,21 @@ export const UploadProjectDetails = async (
   ])
   if(error){
    throw new Error(error.message)
-    
   } 
-  
+}
+
+
+
+export const updateProjectDetails = async (
+  title:string , 
+  NeedForOrganization:string ,
+  ProjectRequirements: string ,
+  ProductDescription:string,
+  ThePojectDoesNotInclude:string ,
+  PreApprovedResources : string 
+   ) => {
+  const {  error } = await supabase.from('projectDetails').update({ title , NeedForOrganization , ProjectRequirements , ProductDescription , ThePojectDoesNotInclude , PreApprovedResources  }).eq('id', '16')
+  if(error) throw new Error(error.message)
 }
 
 export const gatProjectDetails = async () => {

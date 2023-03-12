@@ -5,23 +5,18 @@ import { useRouter } from 'next/router'
 
 type chainType = {
     path: string , 
-    name :string
+    name :string ,
+    selected? : boolean
 }
-
-
-export const Chain = ({path , name} : chainType) => {
-
-
-    const router = useRouter()
-    //"/app/startup"
-
+export const Chain = ({path , name , selected} : chainType) => {
+  const router = useRouter()
   return (
     
     <div key={path + name}
              
      onClick={() => router.push(path) }
-     className="bg-white shadow transition duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-lg justify-center w-[150px]  h-[150px] items-center">
-        <h3 className='text-gray-900 font-bold  '>{name}</h3>
+     className={`${selected ? "bg-blue-600 " : "bg-white "} shadow transition duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-lg justify-center w-[150px]  h-[150px] items-center`}>
+        <h3 className={`text-gray-900 font-bold ${selected ? "text-white" : "text-gray-900"} `}>{name}</h3>
     </div>
    
   )
