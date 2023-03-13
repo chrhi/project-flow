@@ -3,7 +3,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { UploadProjectDetails , gatProjectDetails , updateProjectDetails } from "~/server/model/projectDetails";
-import { UploadConsiderationsProject , gatConsiderationsProject} from "~/server/model/ConsiderationsProject";
+import { UploadConsiderationsProject , gatConsiderationsProject , updateConsiderationsProject} from "~/server/model/ConsiderationsProject";
 
 
 
@@ -40,6 +40,23 @@ export const startupRouter = createTRPCRouter({
     .mutation( async  ({ input }) => {
      
       await updateProjectDetails(input.title , input.NeedForOrganization , input.PreApprovedResources , input.ProductDescription , input.ProjectRequirements , input.ThePojectDoesNotInclude)
+      .catch(error =>{ 
+         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+         throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})
+    })
+     
+    }),
+    updateConsiderationsProject: publicProcedure
+    .input(z.object({
+     HighLevelRisks: z.string(),
+     AcceptanceCriteria: z.string(),
+     Hypotheses: z.string(),
+     Constraints: z.string(), 
+        
+     }))
+    .mutation( async  ({ input }) => {
+     
+     await updateConsiderationsProject(input.HighLevelRisks , input.AcceptanceCriteria , input.Hypotheses , input.Constraints )
       .catch(error =>{ 
          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
          throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})

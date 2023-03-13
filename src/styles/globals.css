@@ -72,3 +72,12 @@ canvas {
     transform: skew(12deg);
   
 }
+
+.custom-width-8rem{
+    width: calc(100% - 4rem);
+}
+.custopn-page-height{
+    height: fit-content;
+    min-height: calc(100vh - 55px);
+   
+}

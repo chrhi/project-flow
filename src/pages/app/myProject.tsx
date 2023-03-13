@@ -24,7 +24,7 @@ const Page: NextPage = () => {
         <p className="text-gray-300 text-md ml-4 mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod soluta, fuga nostrum </p>
         <div className="w-[80%] xl:w-[1060] mx-auto gap-x-8  rounded-lg min-h-[400px] h-fit flex justify-center items-center my-2">
           <Chain path={`/app/startup`} name="startup" selected  />
-          <Chain path={`/app/startup`} name="planning" />
+          <Chain path={`/app/planning/scope`} name="planning" />
           <Chain path={`/app/startup`} name="controlling" />
           <Chain path={`/app/startup`} name="executing" />
           <Chain path={`/app/startup`} name="close" />
