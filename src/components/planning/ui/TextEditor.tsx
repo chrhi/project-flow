@@ -3,17 +3,17 @@
 import { EditorState  } from "draft-js";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 
-// const Editor = dynamic(
-//   // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-//   () => import("react-draft-wysiwyg").then((module) => module.Editor),
-//   {
-//     ssr: false,
-//   }
-// );
+const Editor = dynamic(
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  () => import("react-draft-wysiwyg").then((module) => module.Editor),
+  {
+    ssr: false,
+  }
+);
 
 
 export  function TextEditor() {
