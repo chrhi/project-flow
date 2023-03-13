@@ -9,6 +9,8 @@ import { Loading } from "~/components/common/Loading";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+
 const MyApp: AppType = ({ Component, pageProps }) => {
 
   supabase.auth.onAuthStateChange((event, session) => {

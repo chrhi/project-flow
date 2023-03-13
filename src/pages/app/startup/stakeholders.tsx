@@ -8,6 +8,7 @@ import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { api } from "~/utils/api";
 import { useEffect } from "react";
+import { Header } from "~/components/common/Header";
 const Page: NextPage = () => {
 
   const stakeholders = api.stakeholder.getStakeholders.useQuery()
@@ -42,7 +43,8 @@ const Page: NextPage = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <main className=" min-h-screen flex w-full bg-gray-50 ">
+      <Header />
+      <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <Sidebar />
        <div className="ml-[16rem] flex flex-col items-center  custom-width h-fit min-h-screen">
 {/*       
@@ -50,7 +52,7 @@ const Page: NextPage = () => {
       
     <div className='w-full h-[50px] flex items-center justify-between  p-8 my-4 '>
          <div>
-              <h1 className='font-bold text-gray-900 text-2xl '>startup/stakeholders </h1>
+              <h1 className='font-bold text-gray-900 text-2xl '>👉startup/stakeholders </h1>
         </div>
               <AddStakeHolder />
     </div>

@@ -136,7 +136,7 @@ export const SecondForm = () => {
   return (
    <div className='ml-[16rem] custom-width min-h-screen h-fit flex flex-col items-center pt-8'>
    <div className="w-full h-[50px] flex items-center justify-start p-4 my-4">
-   <h1 className="text-2xl font-bold text-start text-gray-900">remplir les informations nécessaires du projet</h1>
+   <h1 className="text-2xl font-bold text-start text-gray-900">👉remplir les informations nécessaires du projet</h1>
    </div>
      <form className='bg-white mb-8 w-[95%] md:w-[70%] xl:w-[50%] '  onSubmit={(e) => HandleSubmit(e)}>
     <div className="overflow-hidden shadow  sm:rounded-md">

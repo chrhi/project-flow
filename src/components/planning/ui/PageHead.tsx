@@ -3,9 +3,9 @@ import React from 'react'
 
 export  const PageHead = () => {
   return (
-    <div className='w-full h-[70px] flex items-center justify-between'>
-        <h1 className='text-2xl font-bold '>
-        👉Get Started Here
+    <div className='w-[90%] mx-auto h-[70px] flex items-center justify-between'>
+        <h1 className='text-3xl font-semibold '>
+        👉Get Started Here with project scope
         </h1>
         <div>
         <Button

@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { type NextPage } from "next";
 import Head from "next/head";
+import { Header } from "~/components/common/Header";
 import { Sidebar } from "~/components/ui/Sidebar";
 import { api } from "~/utils/api";
 import { get_publicUrl } from "~/utils/pdf/getPublicUrl";
@@ -33,7 +34,8 @@ const Page: NextPage = () => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
-      <main className=" min-h-screen flex w-full bg-gray-50 ">
+      <Header />
+      <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <Sidebar />
      <div className='ml-[16rem] custom-width min-h-screen h-fit flex flex-col items-center pt-8'>
         <div className="w-full h-[200px] flex justify-center gap-x-8 pt-8">

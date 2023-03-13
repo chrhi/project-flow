@@ -15,7 +15,7 @@ export  const Sidebar = () => {
   return (
    
 
-  <div className="fixed flex flex-col top-0 left-0 w-[16rem] bg-white h-full shadow-lg border-r border-gray-[100px]">
+  <div className="fixed flex flex-col top-0 left-0 w-[16rem] bg-white custopn-page-height mt-[55px] shadow-lg border-r border-gray-[100px]">
     <div className="flex items-center justify-start h-14 pl-4 ">
         <Button
         onClick={() => handleClick("/app/myProject" , NAVS.STARTUP)}

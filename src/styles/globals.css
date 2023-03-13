@@ -76,8 +76,15 @@ canvas {
 .custom-width-8rem{
     width: calc(100% - 4rem);
 }
+.custopn-page-height-width{
+    height: fit-content;
+    min-height: calc(100vh - 55px);
+    width: calc(100% - 7rem);
+
+}
 .custopn-page-height{
     height: fit-content;
     min-height: calc(100vh - 55px);
    
+
 }

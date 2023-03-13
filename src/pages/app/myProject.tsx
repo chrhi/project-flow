@@ -19,7 +19,7 @@ const Page: NextPage = () => {
       </Head>
       <main className=" min-h-screen w-full bg-gray-50 ">
            <Header />
-      <div className="container mx-auto xl:p-4 ">
+      <div className=" mx-auto p-4 ">
         <h1 className="text-gray-800 font-bold text-2xl text-start ml-4 mt-8  " >Contrôlez et configurez votre projet</h1>
         <p className="text-gray-300 text-md ml-4 mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod soluta, fuga nostrum </p>
         <div className="w-[80%] xl:w-[1060] mx-auto gap-x-8  rounded-lg min-h-[400px] h-fit flex justify-center items-center my-2">

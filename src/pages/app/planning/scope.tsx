@@ -25,13 +25,13 @@ const Page: NextPage = () => {
 
       </Head>
       <Header />
-      <div className=" custopn-page-height   w-full  ">
+      <div className="   w-full  ">
      <SideNav />
-     <main className="custom-width-8rem bg-gray-50 h-full  ml-[4rem] p-4 ">
+     <main className="custopn-page-height-width bg-gray-100 h-full  ml-[7rem] p-4 ">
      <PageHead />
       
-      <div className="bg-white h-[70vh] flex justify-center p-4 rounded-lg w-[90%] mx-auto ">
-      
+      <div className="bg-white h-[70%] flex justify-center p-4 rounded-lg w-[90%] mx-auto ">
+      <TextEditor />
       </div>
      </main>
       </div>
