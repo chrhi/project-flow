@@ -1,17 +1,33 @@
 import { Button } from '@mui/material'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
+import { Switch } from '@headlessui/react'
 
-export  const PageHead = () => {
+type pageHeadProps =  {
+  enabled:boolean | undefined , 
+  setEnabled : Dispatch<SetStateAction<boolean | undefined>>,
+}
+
+
+export  const PageHead = ({enabled , setEnabled} : pageHeadProps) => {
   return (
     <div className='w-[90%] mx-auto h-[70px] flex items-center justify-between'>
         <h1 className='text-3xl font-semibold '>
         👉Get Started Here with project scope
         </h1>
-        <div>
-        <Button
-        className=" !px-4 !py-2 !rouned-lg !normal-case !bg-white  !items-center !text-gray-900 ">
-          editor mode
-      </Button>
+    <div>
+        
+    <Switch
+        checked={enabled}
+        onChange={setEnabled}
+        className={`bg-gray-400
+          relative inline-flex h-[25px] w-[55px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+      >
+        <span
+          aria-hidden="true"
+          className={`${enabled ? 'translate-x-7' : 'translate-x-0'}
+            pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+        />
+    </Switch>
         </div>
     </div>
   )

@@ -16,7 +16,11 @@ const Editor = dynamic(
 );
 
 
-export  function TextEditor() {
+type TextEditorType = {
+  enabled :boolean | undefined
+}
+
+export  function TextEditor({enabled} : TextEditorType) {
 
  
 
@@ -31,10 +35,11 @@ export  function TextEditor() {
 
       <Editor
   editorState={editorState}
-  toolbarClassName="toolbarClassName"
-  wrapperClassName="wrapperClassName"
-  editorClassName="editorClassName"
+  toolbarClassName={` !sticky !top-0 !z-50 !justify-center !mx-auto !shadow-lg !rounded-lg ${enabled ? "!flex" : "!hidden"}`}
+  wrapperClassName="bg-white"
+  editorClassName={` ${enabled ? "!mt-2" : "!mt-0"} p-2 bg-white min-h-full  lg:w-[60%] w-full mx-auto mb-4 `}
   onEditorStateChange={onEditorStateChange}
+  readOnly={!enabled}
 />;
     </div>
   );

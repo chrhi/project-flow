@@ -6,12 +6,13 @@ import { TextEditor } from "~/components/planning/ui/TextEditor";
 import { SideNav } from "~/components/common/SideNav";
 import { Header } from "~/components/common/Header";
 import { PageHead } from "~/components/planning/ui/PageHead";
-
+import { useState } from "react";
 
 
 
 const Page: NextPage = () => {
   
+  const [enabled , setEnabled] = useState<boolean | undefined>(false)
 
   return (
     <>
@@ -28,10 +29,10 @@ const Page: NextPage = () => {
       <div className="   w-full  ">
      <SideNav />
      <main className="custopn-page-height-width bg-gray-100 h-full  ml-[7rem] p-4 ">
-     <PageHead />
+     <PageHead enabled ={enabled}  setEnabled={setEnabled}/>
       
       <div className="bg-white h-[70%] flex justify-center p-4 rounded-lg w-[90%] mx-auto ">
-      <TextEditor />
+      <TextEditor enabled ={enabled}/>
       </div>
      </main>
       </div>

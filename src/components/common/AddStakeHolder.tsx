@@ -84,7 +84,7 @@ export default function AddStakeHolder() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-sky-50  bg-opacity-50" />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -98,7 +98,7 @@ export default function AddStakeHolder() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="  w-[800px] min-h-[350px] h-fit transform overflow-hidden rounded-2xl bg-white p-8 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="  w-[800px] min-h-[350px] h-fit transform overflow-hidden rounded-sm bg-white p-8 text-left align-middle shadow-2xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-2xl my-4 font-medium leading-6 text-gray-900"

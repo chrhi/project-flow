@@ -17,7 +17,7 @@ export const Header = () => {
   }
 
   return (
-   <div className = {`w-full !z-[800] h-14 sticky top-0 flex justify-between px-2 py-2 items-center bg-white shadow-sm border-b border-gray-300 `}>
+   <div className = {`w-full !z-[100] h-14 sticky top-0 flex justify-between px-2 py-2 items-center bg-white shadow-sm border-b border-gray-300 `}>
    
     <div 
     className="w-[70%]   h-[60px] gap-x-4 flex items-center justify-start " 
