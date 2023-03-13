@@ -1,4 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+import dynamic from 'next/dynamic';
 import {useState} from 'react'
+
+
+
+
+const Chart = dynamic(
+    
+    () => import("react-apexcharts").then((module) => module),
+    {
+      ssr: false,
+    }
+  );
+
 
 export const ProjectStart = () => {
 
@@ -8,10 +22,27 @@ const handleClick = () => {
     setProjectStarted(prev => prev = !prev)
 }
 
+
+
 if(projectStarted){
     return(
         <div className='w-full h-[120px] flex items-center p-4'>
-            <h1 className='text-gray-900 font-bold text-xl' >prject started</h1>
+         <Chart 
+         options={  {
+            chart: {
+              id: "basic-bar"
+            },
+            xaxis: {
+              categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
+            }
+          }} 
+         series={ [{
+            name: 'XYZ MOTORS',
+            data:[30, 40, 45, 50, 49, 60, 70, 91]
+          }]} 
+          type="line"
+          width="500"
+         />
         </div>
     )
 }
