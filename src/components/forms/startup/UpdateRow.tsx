@@ -3,9 +3,21 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { Button, IconButton } from "@mui/material"
 
-export const UpdateRow = () => {
+type UpdateRowType ={
+    name : string , 
+    title : string ,
+    role : string 
+    id: string 
+}
+
+
+export const UpdateRow = ({name , title , role , id} : UpdateRowType) => {
 
     const [isOpen, setIsOpen] = useState(false)
+
+    const [formData , setFormData] = useState<UpdateRowType>({
+        name , title , role , id 
+    })
 
     function openModal() {
       setIsOpen(true)
@@ -51,15 +63,36 @@ export const UpdateRow = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className=" max-w-md w-[600px] min-h-[600px] transform overflow-hidden  bg-white  text-left align-middle shadow-2xl transition-all">
+                <Dialog.Panel className=" max-w-md w-[600px] min-h-[400px] p-4 transform overflow-hidden  bg-white  text-left align-middle shadow-2xl transition-all">
                   <Dialog.Title as="h3" className="text-lg  font-medium leading-6 text-gray-900">
                   update item
                   </Dialog.Title>
-                    <div className="w-full h-full">
-                       <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
+                    <div className="w-full my-4 h-full">
+                       <label htmlFor="titre" className="block mt-4 text-sm font-medium leading-6 text-gray-900">
                         Nom
                         </label>
-                        <input   />
+                        <input value={formData.name} name="name" type="text" className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />
+                        <label htmlFor="titre" className="block mt-4 text-sm font-medium leading-6 text-gray-900">
+                        titre
+                        </label>
+                        <input value={formData.title} name="title" type="text" className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />
+                        <label htmlFor="titre" className="block mt-4 text-sm font-medium leading-6 text-gray-900">
+                        Role / Responsabilite
+                        </label>
+                        <textarea value={formData.role} name="role" className=" w-full border h-[130px] border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />
+                    </div>
+                    <div className='w-full h-[50px] gap-x-4 flex items-center justify-end pr-4'>
+                    <Button
+                      className="inline-flex justify-center rounded-md bg-gray-300 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    >
+                        cancel
+                    </Button>
+                    <Button
+                     className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    >
+                        submit
+                    </Button>
+                 
                     </div>
                 </Dialog.Panel>
               </Transition.Child>

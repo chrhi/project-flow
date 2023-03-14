@@ -4,22 +4,47 @@ import { Fragment, useState } from 'react'
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { api } from "~/utils/api";
+import { Button } from '@mui/material';
 
 
-
+type UpdateRowType ={
+  name : string , 
+  title : string ,
+  role : string 
+  
+}
 
 
 export default function AddStakeHolder() {
-  const nameRef = useRef<HTMLInputElement>(null)
-  const roleRef = useRef<HTMLTextAreaElement>(null)
-  const titleRef = useRef<HTMLInputElement>(null)
+  const [formData , setFormData] = useState<UpdateRowType>({
+    name:"" ,
+    title:"" ,
+    role:"" 
+})
+const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
-  const mutation = api.stakeholder.uploadStakeHolder.useMutation()
-  const set_isLoading = loading_Reducer(state => state.set_isLoading)
+  const mutation = api.stakeholder.uploadStakeHolder.useMutation({
+    onSuccess() {
+     // refetch().then(data => console.log(data)).catch(error => console.log(error))
+      toast("changes updated  seccusfully",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       set_isLoading(false)
+    },
+    onError(){
+      toast("some thing went wrong",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       set_isLoading(false)
+    },
+  })
 
-  const handleSubmit = (event : FormEvent) => {
-    event.preventDefault()
-    if(!nameRef.current?.value || !roleRef.current?.value || !titleRef.current?.value ){
+  const handleSubmit = () => {
+  
+    set_isLoading(true)
+    if(!formData.name || !formData.title || !formData.role ){
       toast("tous les liens sont requis",{
         className:" !text-white !bg-gradient-to-r !from-sky-300 !to-indigo-600",
         hideProgressBar: true,
@@ -27,34 +52,15 @@ export default function AddStakeHolder() {
       return
     }
     mutation.mutate({
-      name : nameRef.current?.value,
-      title : titleRef.current?.value ,
-      role : roleRef.current?.value
+      name : formData.name,
+      title :formData.title ,
+      role : formData.role
     })
-    toast("changes saved seccusfully",{
-      className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
-      hideProgressBar: true,
-     })
+   
      closeModal()
   }
 
-  useEffect(()=> {
-    if(mutation.isLoading){
-      set_isLoading(true)
-    }else{
-      set_isLoading(false)
-      
-    }
-    if(mutation.error){
-      set_isLoading(false)
-      closeModal()
-      toast("some thing went wrong",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
-        hideProgressBar: true,
-       })
-    }
-    
-  },[mutation.isLoading , set_isLoading , mutation.error])
+
  
 
     const [isOpen, setIsOpen] = useState(false)    
@@ -65,14 +71,16 @@ export default function AddStakeHolder() {
       setIsOpen(false)
     }
   return (
-    <>
-        <button 
-         onClick={openModal}
-         className="flex-none rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-      >
-       add new stakeholder
-       
-        </button>
+
+      <>
+    <Button
+    onClick={openModal}
+     className='py-2 px-4 flex items-center w-[50px]  text-black rounded-lg cursor-pointer font-bold'>  
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+       <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z" />
+       <path strokeLinecap="round" strokeLinejoin="round" d="M4.867 19.125h.008v.008h-.008v-.008z" />
+    </svg>
+    </Button>
     <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
           <Transition.Child
@@ -84,7 +92,7 @@ export default function AddStakeHolder() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-sky-50  bg-opacity-50" />
+            <div className="fixed inset-0 bg-sky-50 bg-opacity-50 " />
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
@@ -98,53 +106,41 @@ export default function AddStakeHolder() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="  w-[800px] min-h-[350px] h-fit transform overflow-hidden rounded-sm bg-white p-8 text-left align-middle shadow-2xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-2xl my-4 font-medium leading-6 text-gray-900"
-                  >
-                   adding a new stakeholder
+                <Dialog.Panel className=" max-w-md w-[600px] min-h-[400px] p-4 transform overflow-hidden  bg-white  text-left align-middle shadow-2xl transition-all">
+                  <Dialog.Title as="h3" className="text-lg  font-medium leading-6 text-gray-900">
+                  update item
                   </Dialog.Title>
-                  <div className="w-full h-fit mt-1 ">
-                    <form className='w-full flex flex-col h-fit min-h-full px-8 ' onSubmit={handleSubmit} >
-                    <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                     Nom
-                     </label>
-                     <input 
-                     ref={nameRef}
-                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     placeholder='add a tag to your file '  />
-                 
-                 <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                     Titre
-                     </label>
-                     <input 
-                     ref={titleRef}
-                     className="mt-2 block w-full p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     placeholder='add a tag to your file '  />
-                 
-
-                     {/* this is the Role / Responsabilite field  */}
-                     <label htmlFor="titre" className="block text-md font-medium leading-6 text-gray-900">
-                   
-                      Role / Responsabilite
-                     </label>
-                     <textarea 
-                     ref={roleRef}
-                     className="mt-2 block w-full h-[200xp] p-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                     placeholder='add a tag to your file ' />
-                    
-
-                   
-                    <div className='w-full flex justify-end p-4 my-4 gap-x-4 '>
-                    <button 
-                    type='submit'
-                  className='py-2 px-4 flex items-center bg-gradient-to-r from-sky-500 to-indigo-600 hover:bg-[#7927f6] text-white rounded-lg cursor-pointer font-bold'>
-                     confirme 
-                   </button>
+                    <div className="w-full my-4 h-full">
+                       <label htmlFor="titre" className="block mt-4 text-sm font-medium leading-6 text-gray-900">
+                        Nom
+                        </label>
+                        <input 
+                        onChange={(e) => setFormData({...formData , name: e.target.value})}
+                        value={formData.name} name="name" type="text" className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />
+                        <label htmlFor="titre" className="block mt-4 text-sm font-medium leading-6 text-gray-900">
+                        titre
+                        </label>
+                        <input    onChange={(e) => setFormData({...formData , title: e.target.value})} value={formData.title} name="title" type="text" className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />
+                        <label htmlFor="titre" className="block mt-4 text-sm font-medium leading-6 text-gray-900">
+                        Role / Responsabilite
+                        </label>
+                        <textarea    onChange={(e) => setFormData({...formData , role: e.target.value})} value={formData.role} name="role" className=" w-full border h-[130px] border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />
                     </div>
-                    </form>
-                  </div>
+                    <div className='w-full h-[50px] gap-x-4 flex items-center justify-end pr-4'>
+                    <Button
+                    onClick={closeModal}
+                      className="inline-flex justify-center rounded-md bg-gray-300 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    >
+                        cancel
+                    </Button>
+                    <Button
+                    onClick={handleSubmit}
+                     className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                    >
+                        submit
+                    </Button>
+                 
+                    </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -152,6 +148,9 @@ export default function AddStakeHolder() {
         </Dialog>
       </Transition>
 
+
       </>
+
+  
   )
 }

@@ -1,14 +1,15 @@
-import { IconButton } from '@mui/material'
+import { UpdateRow } from '../forms/startup/UpdateRow'
 import ConfirmDeleteRow from '../ui/popup/ConfirmDeleteRow'
-import { UpdateRow } from '../forms/startup/updateRow'
+
 
 type RowType = {
   name : string , 
   title : string , 
-  role : string
+  role : string , 
+  id: string 
 }
 
-export  const Row = ({name , title , role} : RowType) => {
+export  const Row = ({name , title , role , id} : RowType) => {
   return (
     <div className='bg-white w-full mx-auto flex items-center justify-evenly p-4 shadow gap-x-4 
     '>
@@ -23,7 +24,7 @@ export  const Row = ({name , title , role} : RowType) => {
             <p className='text-start text-gray-900  font-bold' >{role}</p>
       </div>
         <div className='w-[20%] gap-x-4 flex  '>
-           <UpdateRow  />
+           <UpdateRow  name={name }  title={title} role={role} id={id} />
            <ConfirmDeleteRow />
         </div>
     </div>

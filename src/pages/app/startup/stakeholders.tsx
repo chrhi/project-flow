@@ -63,7 +63,7 @@ const Page: NextPage = () => {
    {stakeholders.data?.data?.length &&
    stakeholders.data?.data?.length > 0  && 
    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-   stakeholders.data?.data.map((item) => <Row   key={item.name } name={item?.name} title={item?.title} role={item?.role}  /> )}
+   stakeholders.data?.data.map((item) => <Row   key={item.name } name={item?.name} title={item?.title} role={item?.role} id={item?.id} /> )}
         {/* this is the end of the page */}
         </Paper>
        </div>
