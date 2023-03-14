@@ -22,7 +22,7 @@
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: rgb(68, 68, 68);
+    background: rgb(115, 115, 115);
     border-radius: 10px;
   }
 

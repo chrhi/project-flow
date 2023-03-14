@@ -29,7 +29,7 @@ export const updateConsiderationsProject = async (
 
 
 const {  error } = await supabase.from('projectDetails')
-.update({ HighLevelRisks , AcceptanceCriteria , Hypotheses ,  Constraints }).eq('id', '16')
+.update({ HighLevelRisks ,AcceptanceCriteria : AcceptanceCriteria , Hypotheses ,  Constraints }).eq('id', '1')
 if(error){
  throw new Error(error.message)
   

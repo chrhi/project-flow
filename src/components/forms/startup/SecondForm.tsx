@@ -1,44 +1,51 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
 import { FormEvent, useRef , useEffect, useState } from "react"
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { api } from "~/utils/api";
 
-
 type inputsType ={
-
   HighLevelRisks:string,
   AcceptanceCriteria:string,
   Hypotheses:string,
   Constraints:string , 
-
-  
 }
-
 //see the docs 
 //https://trpc.io/docs/useMutation
-
 export const SecondForm = () => {
-
-  const mutation = api.startup.UploadConsiderationsProject.useMutation()
-  
+  const mutation = api.startup.UploadConsiderationsProject.useMutation({
+    onSuccess() {
+      refetch().then(data => console.log(data)).catch(error => console.log(error))
+      toast("changes saved seccusfully",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       set_isLoading(false)
+    },
+    onError(){
+      toast("some thing went wrong",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       set_isLoading(false)
+    },
+    
+  })
   const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
 
-  const HighLevelRisksRef = useRef<HTMLTextAreaElement>(null)
-  const AcceptanceCriteriaRef = useRef<HTMLTextAreaElement>(null)
-  const HypothesesRef = useRef<HTMLTextAreaElement>(null)
-  const  ConstraintsRef = useRef<HTMLTextAreaElement>(null)
-
-  //items data 
-  const [items , setItems] = useState<inputsType | undefined>()
-
-
+  const [formData , setFormData] = useState<inputsType>({
+    HighLevelRisks:"",
+    AcceptanceCriteria:"",
+    Hypotheses:"",
+    Constraints:"",
+  })
+  const [didGetData , setDidGetData] = useState<boolean>(false)
   //trpc hook 
- 
   const HandleSubmit =  (e : FormEvent) => {
     e.preventDefault()
-   if( !HighLevelRisksRef.current?.value || !AcceptanceCriteriaRef.current?.value || !HypothesesRef.current?.value || !ConstraintsRef.current?.value){
+   if( !formData.HighLevelRisks || !formData.AcceptanceCriteria || !formData.Hypotheses || !formData.Constraints){
     toast("tous les liens sont requis",{
       className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
       hideProgressBar: true,
@@ -47,11 +54,10 @@ export const SecondForm = () => {
    }
  
   mutation.mutate({
-    HighLevelRisks :  HighLevelRisksRef.current?.value ,
-    AcceptanceCriteria :AcceptanceCriteriaRef.current?.value,
-    Hypotheses :HypothesesRef.current?.value,
-    Constraints : ConstraintsRef.current?.value
-   
+    HighLevelRisks : formData.HighLevelRisks ,
+    AcceptanceCriteria :formData.AcceptanceCriteria,
+    Hypotheses :formData.Hypotheses,
+    Constraints :formData.Constraints
   })
  
   toast("changes saved seccusfully",{
@@ -62,15 +68,24 @@ export const SecondForm = () => {
 
   const {   refetch , isFetching }= api.startup.gatConsiderationsProject.useQuery(undefined , {
     onSuccess(data) {
-      console.log("this is the data")
-      console.log(data)
-      setItems(data?.data[0] as inputsType )
+      if(data?.data[0]?.HighLevelRisks && data?.data[0]?.AcceptanceCriteria &&  data?.data[0]?.Constraints && data?.data[0]?.Hypotheses){
+        setDidGetData(true)
+      }
+      setFormData({
+        HighLevelRisks : data?.data[0]?.HighLevelRisks || "",
+        AcceptanceCriteria : data?.data[0]?.AcceptanceCriteria || "",
+        Constraints : data?.data[0]?.Constraints || "",
+        Hypotheses : data?.data[0]?.Hypotheses || "",
+     
+      })
+      set_isLoading(false)
     },
     onError() {
       toast("some things wents wrong ",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
   })
 
@@ -81,12 +96,14 @@ export const SecondForm = () => {
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
     onError(){
       toast("some thing went wrong",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
     
   })
@@ -94,7 +111,8 @@ export const SecondForm = () => {
  
   const habdleUpdate =  (e : FormEvent) => {
     e.preventDefault()
-   if( !HighLevelRisksRef.current?.value || !AcceptanceCriteriaRef.current?.value || !HypothesesRef.current?.value || !ConstraintsRef.current?.value){
+    set_isLoading(true)
+   if( !formData.HighLevelRisks || !formData.AcceptanceCriteria|| !formData.Hypotheses || !formData.Constraints){
     toast("tous les liens sont requis",{
       className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
       hideProgressBar: true,
@@ -103,29 +121,23 @@ export const SecondForm = () => {
    }
  
    mutationUpdate.mutate({
-    HighLevelRisks :  HighLevelRisksRef.current?.value ,
-    AcceptanceCriteria :AcceptanceCriteriaRef.current?.value,
-    Hypotheses :HypothesesRef.current?.value,
-    Constraints : ConstraintsRef.current?.value
-   
+    HighLevelRisks : formData.HighLevelRisks ,
+    AcceptanceCriteria :formData.AcceptanceCriteria,
+    Hypotheses :formData.Hypotheses,
+    Constraints :formData.Constraints
   })
   }
  
   useEffect(()=> {
-    if(mutation.isLoading || isFetching){
+    if( isFetching){
       set_isLoading(true)
     }else{
       set_isLoading(false)
       
     }
-    if(mutation.error){
-      toast("some thing went wrong",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
-        hideProgressBar: true,
-       })
-    }
+   
     
-  },[mutation.isLoading , set_isLoading , mutation.error , isFetching])
+  },[ set_isLoading , isFetching])
  
 
 
@@ -148,8 +160,9 @@ export const SecondForm = () => {
             Risques de haut niveau
             </label>
             <textarea
-                            value={items && items.HighLevelRisks }
-                        ref={ HighLevelRisksRef}
+                           onChange={(e) => setFormData({...formData , HighLevelRisks: e.target.value})}
+                           value={formData && formData.HighLevelRisks }
+                      
                         id="about"
                         name="about"
                         rows={3}
@@ -163,8 +176,10 @@ export const SecondForm = () => {
            Criteres d,acceptation
             </label>
             <textarea
-                         value={items && items.AcceptanceCriteria }
-                        ref={AcceptanceCriteriaRef}
+                         onChange={(e) => setFormData({...formData , AcceptanceCriteria: e.target.value})}
+                         value={formData && formData.AcceptanceCriteria }
+                      
+                       
                         id="about"
                         name="about"
                         rows={3}
@@ -178,8 +193,10 @@ export const SecondForm = () => {
            Hypotheses
             </label>
             <textarea
-                        value={items && items.Hypotheses }
-                        ref={HypothesesRef}
+                          onChange={(e) => setFormData({...formData , Hypotheses: e.target.value})}
+                          value={formData && formData.Hypotheses }
+                     
+                       
                         id="about"
                         name="about"
                         rows={3}
@@ -194,8 +211,10 @@ export const SecondForm = () => {
            Contraintes 
             </label>
             <textarea
-              value={items && items.Constraints }
-             ref={ConstraintsRef}
+             onChange={(e) => setFormData({...formData , Constraints: e.target.value})}
+             value={formData && formData.Constraints }
+             
+            
              id="about"
              name="about"
              rows={3}
@@ -208,7 +227,7 @@ export const SecondForm = () => {
       </div>
       <div className="bg-white px-4 py-3 text-right sm:px-6">
       {
-          items ?
+          didGetData ?
            <button
            onClick={ (e : FormEvent) => habdleUpdate(e)}
            type="submit"

@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { api } from "~/utils/api";
 import { useEffect } from "react";
 import { Header } from "~/components/common/Header";
+import { Paper } from "~/components/ui/Paper";
 const Page: NextPage = () => {
 
   const stakeholders = api.stakeholder.getStakeholders.useQuery()
@@ -56,7 +57,7 @@ const Page: NextPage = () => {
         </div>
               <AddStakeHolder />
     </div>
-
+       <Paper>
     <TableHeader />
     {/* <Row /> */}
    {stakeholders.data?.data?.length &&
@@ -64,6 +65,7 @@ const Page: NextPage = () => {
    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
    stakeholders.data?.data.map((item) => <Row   key={item.name } name={item?.name} title={item?.title} role={item?.role}  /> )}
         {/* this is the end of the page */}
+        </Paper>
        </div>
      
       </main>

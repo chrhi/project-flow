@@ -249,10 +249,6 @@ export const FirstForm = () => {
                         defaultValue={''}
                       />
           </div>
-
-
-        
-
           <div className="col-span-6">
             <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
             Ressources preapprouvees
@@ -270,10 +266,6 @@ export const FirstForm = () => {
                         defaultValue={''}
                       />
           </div>
-         
-          
-        
-
         </div>
       </div>
       <div className="bg-white px-4 py-3 text-right sm:px-6">

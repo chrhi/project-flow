@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { Button } from '@mui/material'
+import { Button, Fade, Tooltip } from '@mui/material'
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import DescriptionIcon from '@mui/icons-material/Description';
 import RequestPageIcon from '@mui/icons-material/RequestPage';
@@ -34,16 +34,27 @@ export  const  SideNav  = () => {
       <ul className="flex flex-col py-4 space-y-1">
       
         <li>
+        <Tooltip
+          TransitionComponent={Fade}
+          TransitionProps={{ timeout: 600 }}
+          title="scope"
+          
+          >
           <Button
+          
+          title="scope"
           onClick={() => handleClick("/app/planning/scope" , NAVS.SCOPE)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[7rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
           ${current_page == NAVS.SCOPE ? ' !text-blue-860   ' :'!text-gray-600' }`}>
         
           <DescriptionIcon className={`!text-[3rem] `} />
           </Button>
+          </Tooltip>
         </li>
         <li>
           <Button
+          
+          title="communication"
           onClick={() => handleClick("/app/planning/communication" , NAVS.COMUNICATION)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[7rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
           ${current_page == NAVS.COMUNICATION ? ' !text-blue-600  ' :'!text-gray-600' }`}>
@@ -53,6 +64,8 @@ export  const  SideNav  = () => {
         </li>
         <li>
           <Button
+          
+          title="money"
           onClick={() => handleClick("/app/planning/money" , NAVS.MONEY)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[7rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
           ${current_page == NAVS.MONEY ? ' !text-blue-600  ' :'!text-gray-600' }`}>
@@ -62,6 +75,7 @@ export  const  SideNav  = () => {
         </li>
         <li>
           <Button
+            title="communication"
           onClick={() => handleClick("/app/planning/communication" , NAVS.HUMANS)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[7rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
           ${current_page == NAVS.HUMANS ? ' !text-blue-600  ' :'!text-gray-600' }`}>
@@ -72,6 +86,7 @@ export  const  SideNav  = () => {
         </li>
         <li>
           <Button
+            title="communication"
           onClick={() => handleClick("/app/planning/communication" , NAVS.APPLICATION)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[7rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
           ${current_page == NAVS.APPLICATION ? ' !text-blue-600  ' :'!text-gray-600' }`}>

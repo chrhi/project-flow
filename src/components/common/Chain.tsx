@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import React from 'react'
+
 import { useRouter } from 'next/router'
+import { Transition } from '@headlessui/react'
+import { Fragment, useState } from 'react'
+
 
 
 type chainType = {
@@ -10,6 +13,7 @@ type chainType = {
 }
 export const Chain = ({path , name , selected} : chainType) => {
   const router = useRouter()
+
   return (
     
     <div key={path + name}
