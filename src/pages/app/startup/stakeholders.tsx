@@ -7,32 +7,44 @@ import { TableHeader } from "~/components/ui/TableHeader";
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { api } from "~/utils/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "~/components/common/Header";
 import { Paper } from "~/components/ui/Paper";
+
+
+type apiType = {
+  name : string , 
+  title : string , 
+  role : string ,
+  id : string 
+}
+
 const Page: NextPage = () => {
 
-  const stakeholders = api.stakeholder.getStakeholders.useQuery()
+  const [expectedData , setExpectedData] = useState<apiType[] >([])
+
+  const {refetch , isFetching } = api.stakeholder.getStakeholders.useQuery(
+    undefined , {
+      onSuccess(data) {
+        setExpectedData(data.data as apiType[]  )
+        set_isLoading(false)
+      },
+      onError() {
+        toast("some things wents wrong ",{
+          className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+          hideProgressBar: true,
+         })
+         set_isLoading(false)
+      },
+    }
+  )
   const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
   useEffect(()=>{
-    if(!stakeholders.data){
+    if(isFetching){
       set_isLoading(true)
-    }else{
-      set_isLoading(false)
-    }
-    if(stakeholders.error){
-      toast("something went wrong",{
-        className:" !text-white !bg-gradient-to-r !from-sky-300 !to-indigo-600",
-        hideProgressBar: true,
-       })
-       set_isLoading(false)
-
-       
-    }
-
-    
-  },[set_isLoading , stakeholders.data ,stakeholders.error ])
+    }  
+    },[set_isLoading ,isFetching])
 
   return (
     <>
@@ -55,15 +67,15 @@ const Page: NextPage = () => {
          <div>
               <h1 className='font-bold text-gray-900 text-2xl '>👉startup/stakeholders </h1>
         </div>
-              <AddStakeHolder />
+              <AddStakeHolder refetch={refetch}/>
     </div>
        <Paper>
     <TableHeader />
     {/* <Row /> */}
-   {stakeholders.data?.data?.length &&
-   stakeholders.data?.data?.length > 0  && 
-   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-   stakeholders.data?.data.map((item) => <Row   key={item.name } name={item?.name} title={item?.title} role={item?.role} id={item?.id} /> )}
+   {expectedData.length &&
+   expectedData.length > 0  && 
+  
+   expectedData.map((item) => <Row  refetch={refetch} key={item?.name } name={item?.name} title={item?.title} role={item?.role} id={item?.id} /> )}
         {/* this is the end of the page */}
         </Paper>
        </div>

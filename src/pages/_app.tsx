@@ -13,6 +13,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
 
+
+  //TODO ADD handle setting user informations to the application
+
   supabase.auth.onAuthStateChange((event, session) => {
     if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
       // delete cookies on sign out

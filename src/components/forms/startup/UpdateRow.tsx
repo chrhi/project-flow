@@ -1,17 +1,18 @@
-import React, {type FormEvent, useRef} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import { Button, IconButton } from "@mui/material"
+import { Button } from "@mui/material"
+import { type RefetchOptions, type RefetchQueryFilters } from '@tanstack/react-query'
 
 type UpdateRowType ={
     name : string , 
     title : string ,
     role : string 
-    id: string 
+    id: string ,
+    refetch? : <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined)  => any
 }
 
 
-export const UpdateRow = ({name , title , role , id} : UpdateRowType) => {
+export const UpdateRow = ({name , title , role , id , refetch} : UpdateRowType) => {
 
     const [isOpen, setIsOpen] = useState(false)
 

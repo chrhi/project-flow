@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import  { useRef , useEffect, type FormEvent} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
@@ -5,6 +7,7 @@ import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { api } from "~/utils/api";
 import { Button } from '@mui/material';
+import { RefetchOptions, RefetchQueryFilters } from '@tanstack/react-query';
 
 
 type UpdateRowType ={
@@ -14,8 +17,12 @@ type UpdateRowType ={
   
 }
 
+type Props ={
+  refetch :  <TPageData>(options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined)  => any
+}
 
-export default function AddStakeHolder() {
+
+export default function AddStakeHolder({refetch}: Props) {
   const [formData , setFormData] = useState<UpdateRowType>({
     name:"" ,
     title:"" ,
@@ -25,12 +32,20 @@ const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
   const mutation = api.stakeholder.uploadStakeHolder.useMutation({
     onSuccess() {
-     // refetch().then(data => console.log(data)).catch(error => console.log(error))
+     refetch().then(() => {
       toast("changes updated  seccusfully",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
        set_isLoading(false)
+     }).catch(() => {
+      toast("some thing went wrong",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+       set_isLoading(false)
+     })
+     
     },
     onError(){
       toast("some thing went wrong",{
@@ -75,7 +90,7 @@ const set_isLoading = loading_Reducer(state => state.set_isLoading)
       <>
     <Button
     onClick={openModal}
-     className='py-2 px-4 flex items-center w-[50px]  text-black rounded-lg cursor-pointer font-bold'>  
+     className='py-2 px-4 flex items-center w-[30px]  text-black rounded-lg cursor-pointer font-bold'>  
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
        <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75a4.5 4.5 0 01-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 11-3.586-3.586l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 016.336-4.486l-3.276 3.276a3.004 3.004 0 002.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852z" />
        <path strokeLinecap="round" strokeLinejoin="round" d="M4.867 19.125h.008v.008h-.008v-.008z" />

@@ -1,15 +1,10 @@
-import React, {type FormEvent, useRef} from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
-import { Button, IconButton } from "@mui/material"
+import { Button } from "@mui/material"
 
 
 
 export default function ConfirmDeleteRow() {
-  
-  
- 
-
     const [isOpen, setIsOpen] = useState(false)
     function openModal() {
       setIsOpen(true)
@@ -17,10 +12,8 @@ export default function ConfirmDeleteRow() {
     function closeModal(){
       setIsOpen(false)
     }
-
   return (
     <>
-   
    <Button
     onClick={openModal}
      className='py-2 px-4 flex items-center w-[50px]  text-black rounded-lg cursor-pointer font-bold'>
@@ -64,10 +57,7 @@ export default function ConfirmDeleteRow() {
                    are you sure you want to delete this item
                   </Dialog.Title>
                   <div className="w-full  gap-x-4 h-full flex justify-center items-center mt-1 ">
-                   
-
                     <button 
-                   
                   className='py-2 px-4 flex items-center bg-gradient-to-r from-sky-500 to-indigo-600 hover:bg-[#7927f6] text-white rounded-lg cursor-pointer font-bold'>
                      confirme 
                    </button>
@@ -76,9 +66,6 @@ export default function ConfirmDeleteRow() {
                    className='py-2 px-4 flex items-center bg-gray-700 text-white   rounded-lg cursor-pointer font-bold'>
                       cancel
                     </button>
-
-                 
-                
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

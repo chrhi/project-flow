@@ -2,6 +2,8 @@ import { header_page_Reducer , PAGES } from "~/store/app-reducer/headerReducer"
 import { useRouter } from "next/router"
 import {  Button } from '@mui/material'
 import DropDowsMenu from "./DropDownManu"
+import Image from "next/image"
+import logo from "~/assets/logo.png"
 
 
 export const Header = () => {
@@ -22,25 +24,26 @@ export const Header = () => {
     <div 
     className="w-[70%]   h-[60px] gap-x-4 flex items-center justify-start " 
     >
+      <div className="h-full w-[35px] p-1 flex justify-center items-center" title="open flows" >
+      <Image  src={logo} alt="logo" className="w-[35px] " />
+      </div>
     <Button 
     variant="text"
      onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
-     className={`!text-md !normal-case !text-lg  ${current_page === PAGES.HOME ? '!text-gray-900 !font-bold  ' : '!text-gray-400'}  !cursor-pointer `}
+     className={` !normal-case !text-md hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-900 !font-bold  ' : '!text-gray-400'}  !cursor-pointer `}
     >
-        Home
+        Dashboard 
     </Button>
     <Button
      variant="text"
      onClick={ () =>  handleClick("/app/myProject" ,PAGES.MYPROJECT) as unknown} 
-     className={`!text-md !normal-case !text-lg gap-x-2 ${current_page === PAGES.MYPROJECT ? '!text-gray-900 !font-bold  ' : '!text-gray-400'}  !cursor-pointer `}
+     className={`!text-md !normal-case hover:bg-gray-100 gap-x-2 ${current_page === PAGES.MYPROJECT ? '!text-gray-900 !font-bold  ' : '!text-gray-400'}  !cursor-pointer `}
      > Project
-       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-       </svg>
+       
     </Button>
     
     </div>
-    <div className="w-[30%] h-[60px] flex justify-end items-center  ">
+    <div className="w-[30%]  h-[60px] flex justify-end items-center  ">
       <DropDowsMenu />
     </div>
    </div>
