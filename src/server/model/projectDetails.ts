@@ -13,7 +13,7 @@ export const UploadProjectDetails = async (
       const {  error } = await supabase
   .from('projectDetails')
   .insert([
-    { titre : title , NeedForOrganization , ProjectRequirements , ProductDescription , ThePojectDoesNotInclude , PreApprovedResources },
+    { id:'17' , titre : title , NeedForOrganization , ProjectRequirements , ProductDescription , ThePojectDoesNotInclude , PreApprovedResources },
   ])
   if(error){
    throw new Error(error.message)
@@ -30,7 +30,7 @@ export const updateProjectDetails = async (
   ThePojectDoesNotInclude:string ,
   PreApprovedResources : string 
    ) => {
-  const {  error } = await supabase.from('projectDetails').update({ title , NeedForOrganization , ProjectRequirements , ProductDescription , ThePojectDoesNotInclude , PreApprovedResources  }).eq('id', '16')
+  const {  error } = await supabase.from('projectDetails').update({ titre: title , NeedForOrganization , ProjectRequirements , ProductDescription , ThePojectDoesNotInclude , PreApprovedResources  }).eq('id', '17')
   if(error) throw new Error(error.message)
 }
 

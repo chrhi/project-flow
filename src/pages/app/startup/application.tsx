@@ -2,11 +2,12 @@ import { Button } from "@mui/material";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
+import { PdfView } from "~/components/forms/startup/PdfView";
 import { Sidebar } from "~/components/ui/Sidebar";
 import { api } from "~/utils/api";
 import { get_publicUrl } from "~/utils/pdf/getPublicUrl";
-
-
+//add icon
+//import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 const Page: NextPage = () => {
 
   const mutation = api.pdf.createPdfFiles.useMutation({
@@ -37,41 +38,54 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <Sidebar />
-     <div className='ml-[16rem] custom-width min-h-screen h-fit flex flex-col items-center pt-8'>
-        <div className="w-full h-[200px] flex justify-center gap-x-8 pt-8">
-                <div className="w-[400px] h-[400px] flex flex-col items-start justify-center ">
-                        <h1 className="text-xl font-bold my-4 text-start "> ✔️ the project details</h1>
-                        <h1 className="text-xl font-bold my-4 text-start ">✔️ stakeholders related to the project</h1>
-                        <h1 className="text-xl font-bold my-4 text-start ">✔️ the project concidurations</h1>
-                        <h1 className="text-xl font-bold my-4 text-start ">❌ the project malestones</h1>
-                </div>
-                <div className="w-[400px] h-[400px] flex flex-col items-center justify-center bg-white rounded-lg shadow-lg ">
-                   {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
-                  {status?.data  && status?.data.data?.has_pdf_exist === true  ? 
-                  
-                <button
-                onClick={()=> 
-                  window.open(get_publicUrl(), "_blank")
-                  }
-                className="bg-black text-white px-4 py-2 rounded-lg" >
-                  view pdf 
-                </button>
-                : 
-                <Button
-                onClick={() =>  mutation.mutate()}
-                 className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                >
-                  {mutation.isLoading ? "loading ..." : "   generate pdf" }
-                </Button>
-                }
-                    
-                    <h1>{mutation.error && mutation.error.message}</h1>
-                 </div>
+         <div className='ml-[16rem] custom-width min-h-screen h-fit flex flex-col items-center pt-8'>
+         <div className='w-[80%] my-4 mx-auto h-[70px] flex items-center justify-between'>
+        <h1 className='text-3xl font-semibold '>
+        👉Get the project chrter
+        </h1>
+    <div>
+        
+   
         </div>
-     </div>
+    </div>
+        <PdfView   />
+         </div>
       </main>
     </>
   );
 };
 
 export default Page;
+
+
+
+
+// <div className="w-full h-[200px] flex justify-center gap-x-8 pt-8">
+//                 <div className="w-[400px] h-[400px] flex flex-col items-start justify-center ">
+//                         <h1 className="text-xl font-bold my-4 text-start "> ✔️ the project details</h1>
+//                         <h1 className="text-xl font-bold my-4 text-start ">✔️ stakeholders related to the project</h1>
+//                         <h1 className="text-xl font-bold my-4 text-start ">✔️ the project concidurations</h1>
+//                         <h1 className="text-xl font-bold my-4 text-start ">❌ the project malestones</h1>
+//                 </div>
+//                 <div className="w-[400px] h-[400px] flex flex-col items-center justify-center bg-white rounded-lg shadow-lg ">
+//                    {/* eslint-disable-next-line @typescript-eslint/no-unsafe-member-access */}
+//                   {status?.data  && status?.data.data?.has_pdf_exist === true  ? 
+                  
+//                 <button
+//                 onClick={()=> 
+//                   window.open(get_publicUrl(), "_blank")
+//                   }
+//                 className="bg-black text-white px-4 py-2 rounded-lg" >
+//                   view pdf 
+//                 </button>
+//                 : 
+//                 <Button
+//                 onClick={() =>  mutation.mutate()}
+//                  className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+//                 >
+//                   {mutation.isLoading ? "loading ..." : "   generate pdf" }
+//                 </Button>
+//                 }
+                    
+//                     <h1>{mutation.error && mutation.error.message}</h1>
+//                  </div>

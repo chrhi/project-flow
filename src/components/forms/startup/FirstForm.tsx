@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
 import { FormEvent, useRef  , useEffect, useState} from "react"
 import { api } from "~/utils/api";
@@ -6,13 +7,13 @@ import { toast } from "react-toastify";
 
 
 type inputsType ={
-  title:string , 
+  titre:string , 
   NeedForOrganization:string,
   ProjectRequirements:string,
   ProductDescription:string,
   ThePojectDoesNotInclude:string , 
   PreApprovedResources : string,
-  titre?:string
+
 }
 
 //see the docs 
@@ -21,28 +22,43 @@ type inputsType ={
 export const FirstForm = () => {
   //defined the hooks
   const set_isLoading = loading_Reducer(state => state.set_isLoading)
-  
-  const titleRef = useRef<HTMLInputElement>(null)
-  const NeedForOrganizationRef = useRef<HTMLTextAreaElement>(null)
-  const ProjectRequirementsRef = useRef<HTMLTextAreaElement>(null)
-  const ProductDescriptionRef = useRef<HTMLTextAreaElement>(null)
-  const  ThePojectDoesNotIncludeRef = useRef<HTMLTextAreaElement>(null)
-  const  PreApprovedResourcesRef = useRef<HTMLTextAreaElement>(null)
 
-  const [items , setItems] = useState<inputsType | undefined>()
+
+  const [formData , setFormData] = useState<inputsType>({
+    NeedForOrganization:"",
+    PreApprovedResources:"",
+    ProductDescription:"",
+    ProjectRequirements:"",
+    ThePojectDoesNotInclude:"",
+    titre:""
+  })
+
+  
+  const [didGetData , setDidGetData] = useState<boolean>(false)
+
 
   //trpc hook 
   const {   refetch , isFetching }= api.startup.gatProjectDetails.useQuery(undefined , {
     onSuccess(data) {
-      console.log("this is the data")
-      console.log(data)
-      setItems(data?.data[0] as inputsType )
+      if(data?.data[0]?.titre && data?.data[0]?.PreApprovedResources &&  data?.data[0]?.NeedForOrganization && data?.data[0]?.ProductDescription && data?.data[0]?.ProjectRequirements  && data?.data[0]?.ThePojectDoesNotInclude){
+        setDidGetData(true)
+      }
+      setFormData({
+        titre : data?.data[0]?.titre || "",
+        NeedForOrganization : data?.data[0]?.NeedForOrganization || "",
+        PreApprovedResources : data?.data[0]?.PreApprovedResources || "",
+        ProductDescription : data?.data[0]?.ProductDescription || "",
+        ProjectRequirements : data?.data[0]?.ProjectRequirements || "",
+        ThePojectDoesNotInclude : data?.data[0]?.ThePojectDoesNotInclude || "",
+      })
+      set_isLoading(false)
     },
     onError() {
       toast("some things wents wrong ",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
   })
    // This can either be a tuple ['login'] or string 'login'
@@ -53,12 +69,14 @@ export const FirstForm = () => {
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
     onError(){
       toast("some thing went wrong",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
     
   })
@@ -70,12 +88,14 @@ export const FirstForm = () => {
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
     onError(){
       toast("some thing went wrong",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
        })
+       set_isLoading(false)
     },
     
   })
@@ -84,7 +104,8 @@ export const FirstForm = () => {
 
   const HandleSubmit =  (e : FormEvent) => {
     e.preventDefault()
-   if(!titleRef.current?.value || !NeedForOrganizationRef.current?.value || !ProjectRequirementsRef.current?.value || !ProductDescriptionRef.current?.value || !ThePojectDoesNotIncludeRef.current?.value || !PreApprovedResourcesRef.current?.value ){
+    set_isLoading(true)
+   if(!formData.titre || !formData.NeedForOrganization|| !formData.ProjectRequirements || !formData.NeedForOrganization || !formData.ThePojectDoesNotInclude || !formData.PreApprovedResources ){
     toast("tous les liens sont requis",{
       className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
       hideProgressBar: true,
@@ -92,18 +113,21 @@ export const FirstForm = () => {
     return
    }
    mutation.mutate({
-    title:titleRef.current?.value  ,
-    NeedForOrganization:NeedForOrganizationRef.current?.value ,
-    ProjectRequirements:ProjectRequirementsRef.current?.value,
-    ProductDescription:ProductDescriptionRef.current?.value,
-    ThePojectDoesNotInclude: ThePojectDoesNotIncludeRef.current?.value ,
-    PreApprovedResources: PreApprovedResourcesRef.current?.value
+    title:formData.titre ,
+    NeedForOrganization:formData.NeedForOrganization ,
+    ProjectRequirements:formData.ProjectRequirements,
+    ProductDescription:formData.NeedForOrganization,
+    ThePojectDoesNotInclude: formData.ThePojectDoesNotInclude ,
+    PreApprovedResources: formData.PreApprovedResources
   })
+
+  console.log(formData)
   }
 
   const habdleUpdate = (e : FormEvent) => {
+    set_isLoading(true)
     e.preventDefault()
-    if(!titleRef.current?.value || !NeedForOrganizationRef.current?.value || !ProjectRequirementsRef.current?.value || !ProductDescriptionRef.current?.value || !ThePojectDoesNotIncludeRef.current?.value || !PreApprovedResourcesRef.current?.value ){
+    if(!formData.titre || !formData.NeedForOrganization|| !formData.ProjectRequirements || !formData.NeedForOrganization || !formData.ThePojectDoesNotInclude || !formData.PreApprovedResources ){
      toast("tous les liens sont requis",{
        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
        hideProgressBar: true,
@@ -111,28 +135,21 @@ export const FirstForm = () => {
      return
     }
     mutationUpdate.mutate({
-     title:titleRef.current?.value  ,
-     NeedForOrganization:NeedForOrganizationRef.current?.value ,
-     ProjectRequirements:ProjectRequirementsRef.current?.value,
-     ProductDescription:ProductDescriptionRef.current?.value,
-     ThePojectDoesNotInclude: ThePojectDoesNotIncludeRef.current?.value ,
-     PreApprovedResources: PreApprovedResourcesRef.current?.value
-   })
+      title:formData.titre ,
+      NeedForOrganization:formData.NeedForOrganization ,
+      ProjectRequirements:formData.ProjectRequirements,
+      ProductDescription:formData.NeedForOrganization,
+      ThePojectDoesNotInclude: formData.ThePojectDoesNotInclude ,
+      PreApprovedResources: formData.PreApprovedResources
+    })
   }
 
+  
   useEffect(()=> {
-    if(mutation.isLoading){
-      set_isLoading(true)
-    }else{
-      set_isLoading(false)
-      
-    }
-   
     if(isFetching){
       set_isLoading(true)
     }else{ set_isLoading(false)}
-    
-  },[mutation.isLoading , set_isLoading , mutation.error , isFetching])
+  },[ set_isLoading ,  isFetching])
  
 
 
@@ -156,11 +173,12 @@ export const FirstForm = () => {
             titre
             </label>
             <input
-             ref={titleRef}
+            onChange={(e) => setFormData({...formData , titre: e.target.value})}
+           
               type="text"
               name="titre"
               id="titre"
-              value={items && items.titre }
+              value={formData && formData.titre }
               autoComplete="titre"
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
@@ -171,8 +189,9 @@ export const FirstForm = () => {
             Besoin de l'organisation / objectifs du projet
             </label>
             <textarea
-                        value={items &&items.NeedForOrganization }
-                        ref={ NeedForOrganizationRef}
+                         onChange={(e) => setFormData({...formData , NeedForOrganization: e.target.value})}
+                         value={formData && formData.NeedForOrganization }
+                     
                         id="about"
                         name="about"
                         rows={3}
@@ -186,9 +205,9 @@ export const FirstForm = () => {
             Exigences  du projet
             </label>
             <textarea
-
-                        value={items && items.ProjectRequirements }
-                        ref={ProjectRequirementsRef}
+                          onChange={(e) => setFormData({...formData , ProjectRequirements: e.target.value})}
+                          value={formData && formData.ProjectRequirements }
+                      
                         id="about"
                         name="about"
                         rows={3}
@@ -201,9 +220,10 @@ export const FirstForm = () => {
             <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
             Description du produit / des livrables
             </label>
-            <textarea
-                         value={items && items.ProductDescription}
-                        ref={ProductDescriptionRef}
+            <textarea 
+                          onChange={(e) => setFormData({...formData , ProductDescription: e.target.value})}
+                          value={formData && formData.ProductDescription }
+                      
                         id="about"
                         name="about"
                         rows={3}
@@ -218,9 +238,9 @@ export const FirstForm = () => {
             Le projet n'inclut pas 
             </label>
             <textarea
-                       
-                         value={items && items.ThePojectDoesNotInclude }
-                        ref={ThePojectDoesNotIncludeRef}
+                         onChange={(e) => setFormData({...formData , ThePojectDoesNotInclude: e.target.value})}
+                         value={formData && formData.ThePojectDoesNotInclude }
+                   
                         id="about"
                         name="about"
                         rows={3}
@@ -238,9 +258,10 @@ export const FirstForm = () => {
             Ressources preapprouvees
             </label>
             <textarea
+                        onChange={(e) => setFormData({...formData , PreApprovedResources: e.target.value})}
                        
-                       value={items && items?.PreApprovedResources }
-                        ref={PreApprovedResourcesRef}
+                        value={formData && formData.PreApprovedResources }
+                     
                         id="about"
                         name="about"
                         rows={3}
@@ -257,7 +278,7 @@ export const FirstForm = () => {
       </div>
       <div className="bg-white px-4 py-3 text-right sm:px-6">
         {
-          items ?
+          didGetData ?
            <button
            onClick={ (e : FormEvent) => habdleUpdate(e)}
            type="submit"
