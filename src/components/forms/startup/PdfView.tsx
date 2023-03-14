@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Button } from "@mui/material";
-import { EditorState  } from "draft-js";
+import { EditorState , convertToRaw , ContentState   } from "draft-js";
 import dynamic from "next/dynamic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+// import draftToHtml from 'draftjs-to-html';
+
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
@@ -17,6 +19,7 @@ const Editor = dynamic(
 );
 
 
+
 export const PdfView = () => {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const [editorState, setEditorState] = useState<EditorState | undefined>(EditorState.createEmpty());
@@ -25,8 +28,34 @@ export const PdfView = () => {
     setEditorState(editorState);
   };
 
-  const [pdfExixts , setPdfExixts] = useState<boolean>(false)
+ 
 
+
+  useEffect(() => {
+    async function loadData(){
+   
+      if(typeof(window) !== undefined){
+        const htmlToDraft = (await import('html-to-draftjs')).default
+        // Load HTML content into editor
+        const htmlContent = '<p>Hello, world!</p>';
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+        const contentBlock = htmlToDraft(htmlContent);
+        if (contentBlock) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+          const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+          const newEditorState = EditorState.createWithContent(contentState);
+          setEditorState(newEditorState);
+        }
+    }
+  }
+  loadData().then()
+},[])
+
+
+  const [pdfExixts , setPdfExixts] = useState<boolean>(true)
+
+
+  }
   if(!pdfExixts){
     return (
         <div className='h-[70vh] w-[80%] overflow-y-auto bg-white flex justify-center items-center rounded-lg'>

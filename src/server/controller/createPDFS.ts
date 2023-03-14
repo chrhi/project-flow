@@ -3,7 +3,7 @@ import {generatePdf} from "../util/generatePDF"
 import { ParamsType } from "../util/templatesPdf/DetailsTemplates"
 import { PdfTemplates } from "../util/templatesPdf/DetailsTemplates"
 import { get_publicUrl } from "~/utils/pdf/getPublicUrl"
-import { updatePdfStatus } from "../model/application"
+import { saveHtmlFormat, updatePdfStatus } from "../model/application"
 
 export const createPDFS = async  () => {
     const { data: projectDetails, error } = await supabase
@@ -44,7 +44,8 @@ export const createPDFS = async  () => {
     .from("documents")
     .upload("Charte.pdf" , buffer , { contentType: "application/pdf" } )
     if(error1)   throw new Error(error1.message)
-    await updatePdfStatus(true).catch(error => {throw new Error("server error")})
+    await updatePdfStatus(true).catch(() => {throw new Error("server error")})
+    await saveHtmlFormat(PdfAsString).catch(() => {throw new Error("we couldn't save html as string")})
 
 
 }

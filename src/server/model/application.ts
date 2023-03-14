@@ -38,3 +38,13 @@ export const updatePdfStatus = async (value:boolean) => {
     if(error ) throw new Error(error.message) 
 }
 
+export const saveHtmlFormat = async  (html : string ) => {
+
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const charterJson : JSON = JSON.parse(html)
+    const { error } = await supabase
+    .from('app')
+    .update({ charterJson  })
+    .eq('id', '1234567890')
+    if(error ) throw new Error(error.message) 
+}
