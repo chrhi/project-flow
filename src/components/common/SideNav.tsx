@@ -48,6 +48,7 @@ export  const  SideNav  = () => {
           ${current_page == NAVS.SCOPE ? ' !text-blue-400   ' :'!text-gray-600' }`}>
         
           <DescriptionIcon className={`!text-[3rem] `} />
+          scope
           </Button>
           </Tooltip>
         </li>
@@ -60,6 +61,7 @@ export  const  SideNav  = () => {
           ${current_page == NAVS.COMUNICATION ? ' !text-blue-400  ' :'!text-gray-600' }`}>
         
         <AssignmentIcon className={`!text-[3rem] `} />
+          communication
           </Button>
         </li>
         <li>
@@ -71,6 +73,7 @@ export  const  SideNav  = () => {
           ${current_page == NAVS.MONEY ? ' !text-blue-400  ' :'!text-gray-600' }`}>
         
         <RequestPageIcon className="!text-[3rem]"/>
+        finance
           </Button>
         </li>
         <li>
@@ -81,7 +84,7 @@ export  const  SideNav  = () => {
           ${current_page == NAVS.HUMANS ? ' !text-blue-400  ' :'!text-gray-600' }`}>
         
         <GroupsIcon className={`!text-[3rem] `} />
-        
+        tasks
           </Button>
         </li>
         <li>

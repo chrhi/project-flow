@@ -31,7 +31,7 @@ export  function TextEditor({enabled} : TextEditorType) {
     setEditorState(editorState);
   };
   return (
-    <div className="bg-white  min-h-[500px] h-fit w-full">
+    <div className="  min-h-[500px] h-fit w-full">
 
       <Editor
   editorState={editorState}

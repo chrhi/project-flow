@@ -67,7 +67,7 @@ const Page: NextPage = () => {
               className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:ring-inset  sm:text-sm sm:leading-6  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
             />
             <Button
-               className="!inline-flex my-4  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md  !bg-gradient-to-r !from-sky-500 !to-indigo-600 !text-white  !px-4 !py-2 !text-lg    !hover:bg-gray-300 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+               className="!inline-flex !my-4  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md  !bg-gradient-to-r !from-sky-500 !to-indigo-600 !text-white  !px-4 !py-2 !text-lg    !hover:bg-gray-300 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
             >
               sign up
             </Button>
@@ -75,7 +75,7 @@ const Page: NextPage = () => {
 
          
           <Button 
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md bg-gray-900  !px-4 !py-2 !text-lg  !text-white  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-900  !px-4 !py-2 !text-lg  !text-white  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
           >
             signup with github
           </Button>

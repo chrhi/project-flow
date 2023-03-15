@@ -2,11 +2,12 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import DescriptionIcon from "@mui/icons-material/Description";
 import GroupIcon from "@mui/icons-material/Group";
-import { TextEditor } from "~/components/planning/ui/TextEditor";
+import { TextEditor } from "~/components/planning/scope/TextEditor";
 import { SideNav } from "~/components/common/SideNav";
 import { Header } from "~/components/common/Header";
-import { PageHead } from "~/components/planning/ui/PageHead";
+import { PageHead } from "~/components/planning/scope/PageHead";
 import { useState } from "react";
+import { Second } from "~/components/planning/scope/Second";
 
 
 
@@ -28,12 +29,17 @@ const Page: NextPage = () => {
       <Header />
       <div className="   w-full  ">
      <SideNav />
-     <main className="custopn-page-height-width bg-gray-100 h-full  ml-[7rem] p-4 ">
-     <PageHead enabled ={enabled}  setEnabled={setEnabled}/>
+     <main className="custopn-page-height-width flex bg-gray-100 h-full  ml-[7rem]">
+   <div className="w-[50%]  p-4 ">
+   <PageHead enabled ={enabled}  setEnabled={setEnabled}/>
       
       <div className="bg-white h-[70%] flex justify-center p-4 rounded-lg w-[90%] mx-auto ">
       <TextEditor enabled ={enabled}/>
       </div>
+   </div>
+   <div className="w-[50%] bg-white h-full ">
+      <Second />
+   </div>
      </main>
       </div>
     </>
