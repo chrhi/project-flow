@@ -45,7 +45,7 @@ export  const  SideNav  = () => {
           title="scope"
           onClick={() => handleClick("/app/planning/scope" , NAVS.SCOPE)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[6rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
-          ${current_page == NAVS.SCOPE ? ' !text-blue-400   ' :'!text-gray-600' }`}>
+          ${current_page == NAVS.SCOPE ? ' !text-blue-400   ' :'!text-gray-300' }`}>
         
           <DescriptionIcon className={`!text-[3rem] `} />
           scope
@@ -58,7 +58,7 @@ export  const  SideNav  = () => {
           title="communication"
           onClick={() => handleClick("/app/planning/communication" , NAVS.COMUNICATION)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[6rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
-          ${current_page == NAVS.COMUNICATION ? ' !text-blue-400  ' :'!text-gray-600' }`}>
+          ${current_page == NAVS.COMUNICATION ? ' !text-blue-400  ' :'!text-gray-300' }`}>
         
         <AssignmentIcon className={`!text-[3rem] `} />
           communication
@@ -70,7 +70,7 @@ export  const  SideNav  = () => {
           title="money"
           onClick={() => handleClick("/app/planning/money" , NAVS.MONEY)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[6rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
-          ${current_page == NAVS.MONEY ? ' !text-blue-400  ' :'!text-gray-600' }`}>
+          ${current_page == NAVS.MONEY ? ' !text-blue-400  ' :'!text-gray-300' }`}>
         
         <RequestPageIcon className="!text-[3rem]"/>
         finance
@@ -81,7 +81,7 @@ export  const  SideNav  = () => {
             title="communication"
           onClick={() => handleClick("/app/planning/communication" , NAVS.HUMANS)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[6rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
-          ${current_page == NAVS.HUMANS ? ' !text-blue-400  ' :'!text-gray-600' }`}>
+          ${current_page == NAVS.HUMANS ? ' !text-blue-400  ' :'!text-gray-300' }`}>
         
         <GroupsIcon className={`!text-[3rem] `} />
         tasks
@@ -92,7 +92,7 @@ export  const  SideNav  = () => {
             title="communication"
           onClick={() => handleClick("/app/planning/communication" , NAVS.APPLICATION)}
           className={`!relative !w-full !flex !flex-col  !normal-case !h-[6rem]  !items-center !justify-start  !focus:outline-none !hover:bg-gray-50  !hover:bg-sky-100 !p-4
-          ${current_page == NAVS.APPLICATION ? ' !text-blue-600  ' :'!text-gray-600' }`}>
+          ${current_page == NAVS.APPLICATION ? ' !text-blue-600  ' :'!text-gray-300' }`}>
         
         <AssignmentIcon className={`!text-[3rem] `} />
           </Button>

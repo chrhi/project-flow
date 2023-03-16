@@ -12,7 +12,7 @@ export  const PageHead = ({enabled , setEnabled} : pageHeadProps) => {
   return (
     <div className='w-[90%] mx-auto h-[70px] flex items-center justify-between'>
         <h1 className='text-3xl font-semibold '>
-        👉Get Started Here with project scope
+        👉 project scope
         </h1>
     <div>
         
