@@ -5,6 +5,8 @@ import {  FormEvent, useRef , useState } from "react";
 import { singInWithEmailAndPassword  } from "~/server/util/auth/provider";
 import { toast } from "react-toastify";
 import {signInWithFacebook} from "~/server/util/auth/facebook"
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 
 
@@ -41,8 +43,15 @@ const Page: NextPage = () => {
     setIsLoading(false)
   }
 
+  const logInWithFacebook =  () => {
+ signInWithFacebook().catch(() => {
+  toast("error something wen wrong" ,{
+    className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+    hideProgressBar: true,
+   })
+  })
 
-
+}
 
   
 
@@ -85,7 +94,7 @@ const Page: NextPage = () => {
             />
             <Button
             type="submit"
-               className="!inline-flex my-4  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md  !bg-gradient-to-r !from-sky-500 !to-indigo-600 !text-white  !px-4 !py-2 !text-lg    !hover:bg-gray-300 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+               className="!inline-flex !my-4  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md  !bg-gradient-to-r !from-sky-500 !to-indigo-600 !text-white  !px-4 !py-2 !text-lg    !hover:bg-gray-300 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
             >
               {isLoading ? "loging..." : " login"}
             </Button>
@@ -93,11 +102,18 @@ const Page: NextPage = () => {
 
          
           <Button 
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
-          onClick={signInWithFacebook }
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-blue-700  !px-4 !py-2 !text-lg  !text-white  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+          startIcon={<FacebookIcon />}
+          onClick={logInWithFacebook }
+           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
           >
             login with facebook
+          </Button>
+          <Button 
+          startIcon={<GitHubIcon />}
+          onClick={logInWithFacebook }
+           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+          >
+            login with github
           </Button>
          </div>
       </main>

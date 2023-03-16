@@ -2,7 +2,10 @@ import { Button } from "@mui/material";
 import { type NextPage } from "next";
 import Head from "next/head";
 import {  useRef } from "react";
-
+import {signInWithFacebook} from "~/server/util/auth/facebook"
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { toast } from "react-toastify";
 
 
 
@@ -13,7 +16,15 @@ const Page: NextPage = () => {
   const emailRef = useRef<HTMLInputElement>(null)
   const passwordRef = useRef<HTMLInputElement>(null)
 
-
+  const logInWithFacebook =  () => {
+    signInWithFacebook().then(() => window?.location?.reload()).catch(() => {
+     toast("error something wen wrong" ,{
+       className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+       hideProgressBar: true,
+      })
+     })
+   
+   }
 
 
   
@@ -32,7 +43,7 @@ const Page: NextPage = () => {
             <p className="text-gray-900 text-2xl ">signup for free account</p>
           </div>
          
-          <form className={`w-full  flex transition-all h-fit flex-col p-4 `}>
+          <form className={`w-full  flex transition-all h-fit flex-col  `}>
             <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
                    email
             </label>
@@ -75,7 +86,16 @@ const Page: NextPage = () => {
 
          
           <Button 
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-900  !px-4 !py-2 !text-lg  !text-white  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+          startIcon={<FacebookIcon />}
+          onClick={logInWithFacebook }
+           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+          >
+            signup with facebook
+          </Button>
+          <Button 
+          startIcon={<GitHubIcon />}
+          onClick={logInWithFacebook }
+           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
           >
             signup with github
           </Button>

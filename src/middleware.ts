@@ -34,7 +34,7 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.next();
 
       }catch(error){
-        req.nextUrl.pathname = "/auth";
+        req.nextUrl.pathname = "/auth/login";
        
         return NextResponse.redirect(req.nextUrl);
       }     
