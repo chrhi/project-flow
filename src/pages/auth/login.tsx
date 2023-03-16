@@ -44,7 +44,7 @@ const Page: NextPage = () => {
   }
 
   const logInWithFacebook =  () => {
- signInWithFacebook().catch(() => {
+ signInWithFacebook().then(() => window?.location?.reload()).catch(() => {
   toast("error something wen wrong" ,{
     className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
     hideProgressBar: true,

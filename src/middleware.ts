@@ -22,7 +22,7 @@ export default async function middleware(req: NextRequest) {
     if (pathname.startsWith("/app")) {
       //if we don't have the cookie means users didn't sign in yet
       if (auth === undefined) {
-        req.nextUrl.pathname = "/auth";
+        req.nextUrl.pathname = "/auth/login";
        
         return NextResponse.redirect(req.nextUrl);
       }
