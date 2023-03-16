@@ -43,15 +43,7 @@ const Page: NextPage = () => {
     setIsLoading(false)
   }
 
-  const logInWithFacebook =  () => {
- signInWithFacebook().then(() => window?.location?.reload()).catch(() => {
-  toast("error something wen wrong" ,{
-    className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
-    hideProgressBar: true,
-   })
-  })
 
-}
 
   
 
@@ -101,20 +93,15 @@ const Page: NextPage = () => {
           </form>
 
          
-          <Button 
-          startIcon={<FacebookIcon />}
-          onClick={logInWithFacebook }
+          <button
+       
+          onClick={signInWithFacebook as unknown as () => void }
            className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
           >
+            <FacebookIcon />
             login with facebook
-          </Button>
-          <Button 
-          startIcon={<GitHubIcon />}
-          onClick={logInWithFacebook }
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
-          >
-            login with github
-          </Button>
+          </button>
+        
          </div>
       </main>
     </>
