@@ -4,6 +4,7 @@ import Head from "next/head";
 import {  FormEvent, useRef , useState } from "react";
 import { singInWithEmailAndPassword  } from "~/server/util/auth/provider";
 import { toast } from "react-toastify";
+import {signInWithFacebook} from "~/server/util/auth/facebook"
 
 
 
@@ -59,7 +60,7 @@ const Page: NextPage = () => {
             <p className="text-gray-900 text-2xl ">Log in</p>
           </div>
          
-          <form className={`w-full  flex transition-all h-fit flex-col p-4 `} onSubmit={(e:FormEvent) => handleSubmit(e)}>
+          <form className={`w-full  flex transition-all h-fit flex-col  `} onSubmit={(e:FormEvent) => handleSubmit(e)}>
             <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
                    email
             </label>
@@ -92,9 +93,11 @@ const Page: NextPage = () => {
 
          
           <Button 
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md bg-gray-900  !px-4 !py-2 !text-lg  !text-white  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onClick={signInWithFacebook }
+           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-blue-700  !px-4 !py-2 !text-lg  !text-white  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
           >
-            login with git hub
+            login with facebook
           </Button>
          </div>
       </main>
