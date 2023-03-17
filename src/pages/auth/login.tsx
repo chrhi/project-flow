@@ -5,6 +5,7 @@ import {  FormEvent, useRef , useState } from "react";
 import { singInWithEmailAndPassword  } from "~/server/util/auth/provider";
 import { toast } from "react-toastify";
 import {signInWithFacebook} from "~/server/util/auth/facebook"
+import { signInWithGitHub } from "~/server/util/auth/github"; 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
@@ -93,14 +94,20 @@ const Page: NextPage = () => {
           </form>
 
          
-          <button
-       
+        <button
           onClick={signInWithFacebook as unknown as () => void }
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+          className="!inline-flex  !gap-x-2 !normal-case  bg-white border   !w-full !justify-center !rounded-md hover:bg-gray-300 !px-4 !py-2 !text-lg  !text-black   !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
           >
             <FacebookIcon />
             login with facebook
-          </button>
+       </button>
+        <button
+       onClick={signInWithGitHub as unknown as () => void }
+        className="!inline-flex  !gap-x-2 !normal-case  bg-white border   !w-full !justify-center !rounded-md hover:bg-gray-300 !px-4 !py-2 !text-lg  !text-black   !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+       >
+         <GitHubIcon />
+         login with github
+       </button>
         
          </div>
       </main>

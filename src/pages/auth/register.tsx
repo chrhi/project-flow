@@ -6,6 +6,7 @@ import {signInWithFacebook} from "~/server/util/auth/facebook"
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { toast } from "react-toastify";
+import { signInWithGitHub } from "~/server/util/auth/github";
 
 
 
@@ -85,20 +86,21 @@ const Page: NextPage = () => {
           </form>
 
          
-          <Button 
-          startIcon={<FacebookIcon />}
-          onClick={logInWithFacebook }
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+            
+        <button
+          onClick={signInWithFacebook as unknown as () => void }
+          className="!inline-flex  !gap-x-2 !normal-case  bg-white border   !w-full !justify-center !rounded-md hover:bg-gray-300 !px-4 !py-2 !text-lg  !text-black   !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
           >
+            <FacebookIcon />
             signup with facebook
-          </Button>
-          <Button 
-          startIcon={<GitHubIcon />}
-          onClick={logInWithFacebook }
-           className="!inline-flex  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md !bg-gray-300 !px-4 !py-2 !text-lg  !text-black  hover:bg-gray-700 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
-          >
-            signup with github
-          </Button>
+       </button>
+        <button
+       onClick={signInWithGitHub as unknown as () => void }
+        className="!inline-flex  !gap-x-2 !normal-case  bg-white border   !w-full !justify-center !rounded-md hover:bg-gray-300 !px-4 !py-2 !text-lg  !text-black   !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
+       >
+         <GitHubIcon />
+         singup with github
+       </button>
          </div>
       </main>
     </>
