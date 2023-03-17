@@ -72,6 +72,9 @@ canvas {
    
 
 }
+.footer-clip {
+    clip-path: polygon(0 34%, 100% 5%, 100% 100%, 0% 100%);
+}
 .color-burn {
     mix-blend-mode: revert;
 }

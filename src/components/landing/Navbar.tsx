@@ -14,7 +14,7 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 import Link from 'next/link'
 
 const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+  { name: 'git hub', description: 'give us a start on git hub', href: 'https://github.com/chrhi/project-managemnt-app-', icon: ChartPieIcon },
   { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
   { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
   { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
@@ -31,10 +31,10 @@ export  function Navbar() {
 
   return (
     <header className=" h-[70px] z-70">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between p-6  pl-0" aria-label="Global">
         <div className="flex lg:flex-1">
-          <a href="#" className="-m-1.5 p-1.5 text-xl text-white font-bold">
-            Sonatrach
+          <a href="#" className=" p-1.5  text-2xl text-white font-bold">
+            OpenFlows
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -89,19 +89,19 @@ export  function Navbar() {
           </Popover>
 
           <a href="#" className="text-sm font-semibold leading-6 text-white">
-            Features
+           hoom
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-white">
-            Marketplace
+            pricing
           </a>
           <a href="#" className="text-sm font-semibold leading-6 text-white">
-            Company
+            contact us
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         <Link
           href="/auth/login"
-          className="flex-none rounded-full bg-gray-900 py-1 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
+          className="flex-none rounded-full bg-white/10 py-1 px-3.5 text-md font-semibold text-white shadow-sm hover:bg-gray-900 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
         >
           S'inscrire maintenant <span aria-hidden="true">&rarr;</span>
         </Link>
@@ -112,7 +112,7 @@ export  function Navbar() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
           <a href="#" className="-m-1.5 p-1.5 text-xl text-black font-bold">
-          Sonatrach
+         OpenFlows
           </a>
             <button
               type="button"
@@ -155,19 +155,19 @@ export  function Navbar() {
                   href="#"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Features
+                  home
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Marketplace
+                 pricing
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                  contect us
                 </a>
               </div>
               <div className="py-6">
@@ -175,7 +175,7 @@ export  function Navbar() {
                   href="#"
                   className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Log in
+              S'inscrire maintenant
                 </a>
               </div>
             </div>

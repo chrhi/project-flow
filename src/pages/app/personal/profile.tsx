@@ -8,7 +8,7 @@ import { Button } from "@mui/material";
 
 
 const style ={
-    input :"mt-2 block  transition  ease-in-out  w-full rounded-md  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+    input :"mt-2 block  transition  ease-in-out px-4  w-full rounded-md  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 }
 
 
@@ -28,11 +28,16 @@ const Page: NextPage = () => {
       </Head>
       <main className="  min-h-screen w-full bg-gray-50 ">
            <Header />
-            <div className=" w-[100%] flex flex-col items-center mt-3 p-6 xl:p-8  gap-y-4 ">
-            <div className='md:w-[70%] w-full xl:w-[900px] flex flex-col  h-fit bg-white rounded-lg shadow-lg'>
+      <div className=" w-[100%] flex flex-col items-center mt-3 p-6 xl:p-8  gap-y-4 ">
+      <div className="xl:w-[70%] w-full mx-auto h-[70px] flex flex-col jutify-center px-12 xl:px-4 ">
+        <h3 className="text-gray-400">Informations sur le profil</h3>
+        <h1 className="text-gray-900 font-bold text-2xl">Complétez votre profil pour tirer le meilleur parti de la plateforme</h1>
+
+      </div>
+      <div className='md:w-[70%] w-full xl:w-[900px] flex flex-col  h-fit bg-white rounded-lg shadow-lg'>
     <div className='w-full flex flex-col  lg:flex-row min-h-[400px] h-fit '>
         <div className='lg:w-[20%] w-full h-full flex flex-col items-center px-4 gap-y-4 pt-4'>
-            <p className='text-gray-400 text-lg  '>photo profile</p>
+            <p className='text-gray-900 text-lg  '>profil photo</p>
             <Image src={logo} alt='profile'   width={60}
                   height={60}  />
            <button
@@ -42,13 +47,24 @@ const Page: NextPage = () => {
            </button>
         </div>
         <div className='lg:w-[80%] w-full h-full flex flex-col items-start  p-4 sm:px-8'>
-            <label className='text-gray-400 text-lg my-2 ' >first name</label>
+        <label htmlFor="street-address" className="block text-sm font-medium mt-4 leading-6 text-gray-900">
+            first name
+            </label>
             <input className={style.input}  value={"abdullah"} />
-            <label className='text-gray-400 text-lg my-2 ' >last name</label>
+            <label htmlFor="street-address" className="block text-sm font-medium  mt-4 leading-6 text-gray-900">
+            last name
+            </label>
+            
             <input className={style.input}  value={"somwthing"}  />
-            <label className='text-gray-400 text-lg my-2 ' >company name</label>
+            <label htmlFor="street-address" className="block text-sm font-medium  mt-4 leading-6 text-gray-900">
+            company name
+            </label>
+         
             <input className={style.input} value={"how"}  />
-            <label className='text-gray-400 text-lg my-2 ' >phone</label>
+            <label htmlFor="street-address" className="block text-sm font-medium  mt-4 leading-6 text-gray-900">
+           phone
+            </label>
+         
             <input className={style.input}  />
           
         </div>
@@ -56,8 +72,8 @@ const Page: NextPage = () => {
     <div className='bg-white h-[70px] w-full items-center flex sm:justify-end justify-center px-4'>
     <Button 
   
-    variant="contained"  
-    className="rounded  !text-white text-lg  bg-gradient-to-r from-sky-500 to-indigo-600" >
+   
+    className="!inline-flex !normal-case !text-md !justify-center !rounded-md !bg-gradient-to-r !from-sky-500 !to-indigo-600 !py-2 !px-3  !font-semibold !text-white !shadow-sm !hover:bg-indigo-500 !focus-visible:outline !focus-visible:outline-2 !focus-visible:outline-offset-2 !focus-visible:outline-indigo-500">
      edit my profile
     </Button>
     </div>

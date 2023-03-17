@@ -56,15 +56,15 @@ export  function Hero() {
                  <div className="mt-10 flex items-center justify-start gap-x-6">
                     <a
                        href="#"
-                       className="rounded-full  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                       className="rounded-xl  px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm bg-gray-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       >
-                      commencer gratuitement
+                      commencer gratuitement <span aria-hidden="true">&rarr;</span>
                       </a>
                       <a
                        href="#"
-                       className="rounded-full  px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                       className="rounded-xl  px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                        >
-                        learn more
+                        learn more 
                         </a>
              
                   </div>

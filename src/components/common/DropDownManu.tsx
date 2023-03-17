@@ -51,7 +51,7 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={() => router.push("/app/user/settings") as unknown }
+                onClick={() => router.push("/app/personal/profile") as unknown }
                   className={`${
                     active ? ' bg-gray-50 text-gray-900' : 'text-gray-900'
                   } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
