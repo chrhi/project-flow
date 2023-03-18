@@ -5,15 +5,17 @@ import { PdfTemplates } from "../util/templatesPdf/DetailsTemplates"
 import { get_publicUrl } from "~/utils/pdf/getPublicUrl"
 import { saveHtmlFormat, updatePdfStatus } from "../model/application"
 
-export const createPDFS = async  () => {
+export const createPDFS = async  (id : string) => {
     const { data: projectDetails, error } = await supabase
     .from('projectDetails')
     .select('*')
+    .eq('abdullah', id)
     if(error ) throw new Error(error.message)
     if(projectDetails?.length === 0) throw new Error("there is no data")
     const { data: ConsiderationsProject, error:error2 } = await supabase
      .from('ConsiderationsProject')
      .select('*')
+     .eq('abdullah', id)
      if(error2 ) throw new Error(error2.message)
      const { data: stakeholders, error:error3 } = await supabase
      .from('stakeholders')
@@ -42,7 +44,7 @@ export const createPDFS = async  () => {
     const buffer = await generatePdf(PdfAsString )
     const { error : error1} = await supabase.storage
     .from("documents")
-    .upload("Charte.pdf" , buffer , { contentType: "application/pdf" } )
+    .upload(`${id}/Charte.pdf` , buffer , { contentType: "application/pdf" } )
     if(error1)   throw new Error(error1.message)
     await updatePdfStatus(true).catch(() => {throw new Error("server error")})
     await saveHtmlFormat(PdfAsString).catch(() => {throw new Error("we couldn't save html as string")})

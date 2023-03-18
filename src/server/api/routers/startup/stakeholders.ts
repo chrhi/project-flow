@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { gatOneStakeHolder , gatStakeHolders , updateStakeHolderById , uploadStakeHolder , deleteSatakeHolder } from "~/server/model/stakeholders";
+import { gatOneStakeHolder , gatStakeHolders , updateStakeHolderById , uploadStakeHolder , deleteSatakeHolder } from "~/server/model/startup/stakeholders";
 import { createTRPCRouter, publicProcedure  } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
 

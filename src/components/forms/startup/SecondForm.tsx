@@ -4,6 +4,7 @@ import { FormEvent, useRef , useEffect, useState } from "react"
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { api } from "~/utils/api";
+import { userReducer } from "~/store/userReducer";
 
 type inputsType ={
   HighLevelRisks:string,
@@ -14,6 +15,9 @@ type inputsType ={
 //see the docs 
 //https://trpc.io/docs/useMutation
 export const SecondForm = () => {
+
+  const id = userReducer(state => state.id)
+
   const mutation = api.startup.UploadConsiderationsProject.useMutation({
     onSuccess() {
       refetch().then(data => console.log(data)).catch(error => console.log(error))
@@ -54,6 +58,7 @@ export const SecondForm = () => {
    }
  
   mutation.mutate({
+    id ,
     HighLevelRisks : formData.HighLevelRisks ,
     AcceptanceCriteria :formData.AcceptanceCriteria,
     Hypotheses :formData.Hypotheses,
@@ -66,12 +71,13 @@ export const SecondForm = () => {
    })
   }
 
-  const {   refetch , isFetching }= api.startup.gatConsiderationsProject.useQuery(undefined , {
+  const {   refetch , isFetching }= api.startup.gatConsiderationsProject.useQuery({id} , {
     onSuccess(data) {
       if(data?.data[0]?.HighLevelRisks && data?.data[0]?.AcceptanceCriteria &&  data?.data[0]?.Constraints && data?.data[0]?.Hypotheses){
         setDidGetData(true)
       }
       setFormData({
+        
         HighLevelRisks : data?.data[0]?.HighLevelRisks || "",
         AcceptanceCriteria : data?.data[0]?.AcceptanceCriteria || "",
         Constraints : data?.data[0]?.Constraints || "",
@@ -121,6 +127,7 @@ export const SecondForm = () => {
    }
  
    mutationUpdate.mutate({
+    id ,
     HighLevelRisks : formData.HighLevelRisks ,
     AcceptanceCriteria :formData.AcceptanceCriteria,
     Hypotheses :formData.Hypotheses,

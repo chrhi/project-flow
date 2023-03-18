@@ -1,6 +1,4 @@
 import { TRPCError } from "@trpc/server";
-import { z } from "zod";
-
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { pdfStatus } from "~/server/model/application";
 
@@ -15,7 +13,7 @@ export const statusRoute = createTRPCRouter({
         })
 
       return {
-       data
+        has_pdf_exist : data?.has_pdf_exist as boolean
       };
     }),
 });

@@ -4,6 +4,7 @@ import { FormEvent, useRef  , useEffect, useState} from "react"
 import { api } from "~/utils/api";
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
+import { userReducer } from "~/store/userReducer";
 
 
 type inputsType ={
@@ -23,7 +24,7 @@ export const FirstForm = () => {
   //defined the hooks
   const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
-
+  const id = userReducer(state => state.id)
   const [formData , setFormData] = useState<inputsType>({
     NeedForOrganization:"",
     PreApprovedResources:"",
@@ -38,7 +39,7 @@ export const FirstForm = () => {
 
 
   //trpc hook 
-  const {   refetch , isFetching }= api.startup.gatProjectDetails.useQuery(undefined , {
+  const {   refetch , isFetching }= api.startup.gatProjectDetails.useQuery({id } , {
     onSuccess(data) {
       if(data?.data[0]?.titre && data?.data[0]?.PreApprovedResources &&  data?.data[0]?.NeedForOrganization && data?.data[0]?.ProductDescription && data?.data[0]?.ProjectRequirements  && data?.data[0]?.ThePojectDoesNotInclude){
         setDidGetData(true)
@@ -113,6 +114,7 @@ export const FirstForm = () => {
     return
    }
    mutation.mutate({
+    id,
     title:formData.titre ,
     NeedForOrganization:formData.NeedForOrganization ,
     ProjectRequirements:formData.ProjectRequirements,
@@ -135,10 +137,11 @@ export const FirstForm = () => {
      return
     }
     mutationUpdate.mutate({
+      id,
       title:formData.titre ,
       NeedForOrganization:formData.NeedForOrganization ,
       ProjectRequirements:formData.ProjectRequirements,
-      ProductDescription:formData.NeedForOrganization,
+      ProductDescription:formData.ProductDescription,
       ThePojectDoesNotInclude: formData.ThePojectDoesNotInclude ,
       PreApprovedResources: formData.PreApprovedResources
     })

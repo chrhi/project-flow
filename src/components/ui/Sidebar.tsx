@@ -63,15 +63,7 @@ export  const Sidebar = () => {
         
           </Button>
         </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/startup/documents" , NAVS.DOCUMENT) }
-          className={` !relative !w-full !flex   !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6   ${current_page == NAVS.DOCUMENT ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
        
-            <span className="ml-2 text-sm tracking-wide truncate">documents </span>
-          
-          </Button>
-        </li>
         <li>
         <Button
         onClick={() => handleClick("/app/startup/application" , NAVS.APPLICATION) }
