@@ -40,9 +40,9 @@ export const uploadProjectStatus = async (
   
      ) => {
     const {  error } = await supabase.from('app')
-    .update({ abdullah : id  , has_the_project_started : true , has_pdf_exist : false , current_stage : "démarrage"
+    .insert({  has_the_project_started : true , has_pdf_exist : false , current_stage : "démarrage" , abdullah : id 
     })
-    .eq('abdullah', id)
+   
     if(error) throw new Error(error.message)
   }
   

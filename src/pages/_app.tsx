@@ -40,10 +40,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   useEffect(() => {
     async function getInisialRefrences (){
-      set_isLoading(true)
+    
      const {data , error} = await  supabase.auth.getSession()
      if(error) {
-      set_isLoading(false)
+     
       toast("some things wents wrong ",{
         className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
         hideProgressBar: true,
@@ -59,10 +59,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
      console.log(data)
     }
     getInisialRefrences().then(()=>{
-      set_isLoading(false)
+     
       console.log("every thing went good")
     }).catch(() =>{ 
-      set_isLoading(false)
+      
       console.error("there was an error in the _app.tsx file")})
   } , [set_isLoading , set_user])
 

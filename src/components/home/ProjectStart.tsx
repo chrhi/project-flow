@@ -28,11 +28,12 @@ export const ProjectStart = () => {
       onSuccess(data) {
         setProjectStarted(data.has_project_started)
         setCurrentStage(data.current_stage)
+        console.log('this is the project status')
+        console.log(
+          data.has_project_started , data.current_stage
+        )
         set_isLoading(false)
-        toast("we get the project status sccuess",{
-          className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
-          hideProgressBar: true,
-         })
+       
       },
       onError() {
         toast("fialed to fetch project status ",{
@@ -45,11 +46,12 @@ export const ProjectStart = () => {
   
 const mutation = api.status.makeProjectStatus.useMutation({
   onSuccess() {
-    refetch().then(data => console.log(data)).catch(error => console.log(error))
+    
     toast("your project has been started",{
       className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
       hideProgressBar: true,
      })
+     refetch().then(data => console.log(data)).catch(error => console.log(error))
      set_isLoading(false)
   },
   onError(){
@@ -72,6 +74,8 @@ useEffect(()=> {
   if(isFetching){
     set_isLoading(true)
   }else{ set_isLoading(false)}
+  console.log("this is the id : ")
+  console.log(id)
 },[ set_isLoading ,  isFetching])
 
 
@@ -80,24 +84,33 @@ useEffect(()=> {
     <div>
     {
       projectStarted ?
-      <div className='w-full h-[120px] flex items-center p-4'>
+      <div className='w-full h-[350px] flex items-center justify-between gap-y-4 my-4 bg-white p-8'>
+        <div className='w-[50%] flex flex-col p-4 justify-center h-[300px]'>
+        <h1 className='text-3xl font-bold my-4'> ⭐le projet est lancé</h1>
+        <h1 className='text-2xl font-semibold my-2 '>🔮 stade actuel est {currentStage}</h1>
+        <h1 className='text-2xl font-semibold my-2'> vous pouvez voir vos progrès au fil du temps  👉</h1>
+        </div>
+         <div className='w-[50%] h-[300px] flex items-center justify-end p-8'>
         <Chart 
-options={  {
-   chart: {
-     id: "basic-bar"
-   },
-   xaxis: {
+         options={  {
+       chart: {
+        id: "basic-bar"
+      },
+      xaxis: {
      categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998]
-   }
- }} 
-series={ [{
-   name: 'XYZ MOTORS',
-   data:[30, 40, 45, 50, 49, 60, 70, 91]
- }]} 
- type="line"
- width="500"
-/> 
+     }
+      }} 
+    series={ [{
+      name: 'XYZ MOTORS',
+      data:[30, 40, 45, 50, 49, 60, 70, 91]
+      }]} 
+     type="line"
+      width="500"
+     /> 
        </div>
+
+      </div>
+     
      :
      <div className='w-full h-[300px] flex flex-col justify-center gap-y-4 my-4 bg-white p-8'>
      <div className='w-full flex flex-col justify-center gap-y-4  my-4 h-[50px]'>
