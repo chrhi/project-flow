@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { logout } from '~/server/util/auth/provider';
 import { useRouter } from 'next/router'
-
+import {userReducer} from "~/store/userReducer"
 // icons 
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -15,7 +15,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 export default function DropDowsMenu() {
   //initializes hooks
    const router = useRouter()
-
+  const {email  , name} = userReducer()
    const logoutHanlder = async () => {
     await logout() 
     window?.location.reload()
@@ -43,8 +43,8 @@ export default function DropDowsMenu() {
           <Menu.Item>
               {({ active }) => (
                 <div className='w-full h-[90px] flex flex-col justify-center p-4 gap-y-1 '>
-                  <h1 className='text-lg text-gray-900 truncate'>this is name </h1>
-                  <h3 className='truncate text-md text-gray-600 '>mahdi.chahri55@gmail.com</h3>
+                  <h1 className='text-lg text-gray-900 truncate'>{name} </h1>
+                  <h3 className='truncate text-md text-gray-600 '>{email}</h3>
                 </div>
               )}
             </Menu.Item>

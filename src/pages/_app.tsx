@@ -6,14 +6,19 @@ import 'react-clock/dist/Clock.css';
 import "~/styles/globals.css";
 import { supabase } from "~/config/supbase";
 import { Loading } from "~/components/common/Loading";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from "react";
+import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
+import {userReducer} from "~/store/userReducer"
 
 
 
 const MyApp: AppType = ({ Component, pageProps }) => {
 
+  const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
+  const set_user = userReducer(state => state.set_email)
   //TODO ADD handle setting user informations to the application
 
   supabase.auth.onAuthStateChange((event, session) => {
@@ -32,6 +37,34 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       }
     }
   })
+
+  useEffect(() => {
+    async function getInisialRefrences (){
+      set_isLoading(true)
+     const {data , error} = await  supabase.auth.getSession()
+     if(error) {
+      set_isLoading(false)
+      toast("some things wents wrong ",{
+        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        hideProgressBar: true,
+       })
+     }
+     set_user({
+      id : data.session?.user.id as string , 
+      name : data.session?.user.user_metadata?.name as string ,
+      email :data.session?.user.user_metadata?.email as string,
+    
+     })
+     console.log("this is the the data we get from the server : '''''")
+     console.log(data)
+    }
+    getInisialRefrences().then(()=>{
+      set_isLoading(false)
+      console.log("every thing went good")
+    }).catch(() =>{ 
+      set_isLoading(false)
+      console.error("there was an error in the _app.tsx file")})
+  } , [set_isLoading , set_user])
 
   
   return(
