@@ -2,49 +2,47 @@ import { supabase } from "~/config/supbase"
 
 
 
-export const hasProjectStarted = async () => {
-    const { data: app, error } = await supabase
+export const hasProjectStarted = async (id : string ) => {
+    const { data, error } = await supabase
   .from('app')
-  .select('has_the_project_started')
+  .select('*' )
+  .eq("abdullah" , id)
   if(error ) throw new Error(error.message)
-  return app 
+  return data
 }
 
 //id of the project
 
-export const updteProjectStatus = async (value : boolean) => {
-    const { error } = await supabase
-    .from('app')
-    .update({ has_the_project_started: value })
-    .eq('id', 'someValue')
-    if(error ) throw new Error(error.message)
 
-}
 
-export const pdfStatus = async () => {
+export const pdfStatus = async (id : string ) => {
     const { data: app, error } = await supabase
     .from('app')
     .select('has_pdf_exist')
+    .eq("abdullah" , id)
     if(error ) throw new Error(error.message)
     return app[0]
 }
 
 
-export const updatePdfStatus = async (value:boolean) => {
+export const updatePdfStatus = async (value:boolean , id : string) => {
     const { error } = await supabase
     .from('app')
     .update({ has_pdf_exist: value })
-    .eq('id', '1234567890')
+    .eq('abdullah', id)
     if(error ) throw new Error(error.message) 
 }
 
-export const saveHtmlFormat = async  (html : string ) => {
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const charterJson : JSON = JSON.parse(html)
-    const { error } = await supabase
-    .from('app')
-    .update({ charterJson  })
-    .eq('id', '1234567890')
-    if(error ) throw new Error(error.message) 
-}
+//upload or create the project status 
+export const uploadProjectStatus = async (
+    id : string ,
+  
+     ) => {
+    const {  error } = await supabase.from('app')
+    .update({ abdullah : id  , has_the_project_started : true , has_pdf_exist : false , current_stage : "démarrage"
+    })
+    .eq('abdullah', id)
+    if(error) throw new Error(error.message)
+  }
+  

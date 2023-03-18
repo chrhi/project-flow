@@ -31,7 +31,7 @@ const Page: NextPage = () => {
             <div className=" w-[100%] flex flex-col mt-3 p-6 xl:p-8  gap-y-4 ">
                <div className='w-full h-[50px] flex md:justify-start justify-center    items-center'>
     
-                <h1 className='text-3xl font-bold ' >Salut 👋 c'est le tableau de bord et votre espace personnel</h1>
+                <h1 className='text-3xl  font-semibold  ' >Salut 👋 c'est le tableau de bord et votre espace personnel</h1>
                </div>
             <div className="w-full flex items-center  gap-x-8">
               <Reminder />

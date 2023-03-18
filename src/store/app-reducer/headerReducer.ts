@@ -24,7 +24,7 @@ export const header_page_Reducer = create<Reducer ,[["zustand/persist",unknown]]
      
     }),
     {
-      name: 'app-status-storage-HOME-PAGE', 
+      name: 'app-status-storage-HOME-header-openFlows', 
       storage: createJSONStorage(() => sessionStorage)
     }
   )

@@ -29,16 +29,18 @@ export const Header = () => {
       </div>
     <Button 
     variant="text"
+  
      onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
-     className={` !normal-case !text-md hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-900 !font-bold  ' : '!text-gray-400'}  !cursor-pointer `}
+     className={` !normal-case !text-lg hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-blue-800 !font-bold !bg-sky-50 !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
     >
-        Dashboard 
+      tableau de bord
     </Button>
     <Button
+  
      variant="text"
      onClick={ () =>  handleClick("/app/myProject" ,PAGES.MYPROJECT) as unknown} 
-     className={`!text-md !normal-case hover:bg-gray-100 gap-x-2 ${current_page === PAGES.MYPROJECT ? '!text-gray-900 !font-bold  ' : '!text-gray-400'}  !cursor-pointer `}
-     > Project
+     className={`!text-lg !normal-case hover:bg-gray-100 gap-x-2 ${current_page === PAGES.MYPROJECT ? '!text-blue-800 !bg-sky-50 !font-bold !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
+     > Carte
        
     </Button>
     

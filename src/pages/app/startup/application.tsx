@@ -69,7 +69,7 @@ const Page: NextPage = () => {
     },
   })
 
-  const {isFetching :isPdfStatusFetching , refetch:refetchPdfStatus} = api.status.pdfStatus.useQuery(undefined , {
+  const {isFetching :isPdfStatusFetching , refetch:refetchPdfStatus} = api.status.pdfStatus.useQuery({id} , {
 
     onSuccess(data) {
       setPdfExists(data.has_pdf_exist)
