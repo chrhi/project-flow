@@ -59,6 +59,6 @@
 //     return NextResponse.next();
 //   }
 
-export default  function middleware() {
-  console.log("this is . ")
-}
+ export default async function middleware() {
+  //todo handle all that
+ }

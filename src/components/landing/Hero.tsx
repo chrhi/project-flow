@@ -24,7 +24,7 @@ export  function Hero() {
   return (
      <div className='w-full overflow-hidden '>
     <div className="isolate  h-screen relative ">
-    {/* <canvas id="canv" ref={canvasRef} width="32" height="32"></canvas> */}
+    
     <div className='background-hero  relative' >
     <div  className='light1 light  filter blur-xl animate-blob h-[100px] ' />
     <div  className=' light2 light  filter blur-xl animate-blob h-[200px] '   />
@@ -60,12 +60,7 @@ export  function Hero() {
                       >
                       commencer gratuitement <span aria-hidden="true">&rarr;</span>
                       </a>
-                      <a
-                       href="#"
-                       className="rounded-xl  px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                       >
-                        learn more 
-                        </a>
+                     
              
                   </div>
               </div>
