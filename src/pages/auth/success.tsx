@@ -23,6 +23,7 @@ const Page: NextPage = () => {
       <main className=" w-full min-h-screen bg-gray-50 flex justify-center items-center ">
         
         <div className="w-[500px] h-[400px] bg-white shadow-xl">
+          <h1>check your email box to see the confirmation link</h1>
         </div>
     
       </main>
