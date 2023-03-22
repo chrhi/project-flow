@@ -5,6 +5,8 @@ import { api } from "~/utils/api";
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { userReducer } from "~/store/userReducer";
+import { TextField } from "~/components/ui/used/TextField";
+import { Input } from "~/components/ui/used/input";
 
 
 type inputsType ={
@@ -165,110 +167,46 @@ export const FirstForm = () => {
    <div className="w-full h-[50px] flex items-center justify-start p-4 ">
    <h1 className="text-2xl font-bold text-start text-gray-900">👉remplir les informations nécessaires du projet</h1>
    </div>
-     <form className='bg-white mb-8 w-[95%] md:w-[70%] xl:w-[50%] overflow-y-scroll '  onSubmit={(e) => HandleSubmit(e)}>
-    <div className="overflow-hidden shadow  sm:rounded-md">
-      <div className="bg-white px-4 py-5 sm:p-6">
-        <div className="grid grid-cols-6 gap-6">
-         
 
-        <div className="col-span-6 ">
-            <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
-            titre
-            </label>
-            <input
-            onChange={(e) => setFormData({...formData , titre: e.target.value})}
-           
-              type="text"
-              name="titre"
-              id="titre"
-              value={formData && formData.titre }
-              autoComplete="titre"
-              className="mt-2 block  transition  ease-in-out  w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-          <div className="col-span-6 ">
-            <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
-          
-            Besoin de l'organisation / objectifs du projet
-            </label>
-            <textarea
-                         onChange={(e) => setFormData({...formData , NeedForOrganization: e.target.value})}
-                         value={formData && formData.NeedForOrganization }
-                     
-                        id="about"
-                        name="about"
-                        rows={3}
-                        className="mt-1  transition  ease-in-out  block w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
-                        placeholder="you@example.com"
-                        defaultValue={''}
-                      />
-          </div>
-          <div className="col-span-6 ">
-            <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
-            Exigences  du projet
-            </label>
-            <textarea
-                          onChange={(e) => setFormData({...formData , ProjectRequirements: e.target.value})}
-                          value={formData && formData.ProjectRequirements }
-                      
-                        id="about"
-                        name="about"
-                        rows={3}
-                        className="mt-1 block  transition  ease-in-out   w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
-                        placeholder="you@example.com"
-                        defaultValue={''}
-                      />
-          </div>
-          <div className="col-span-6 ">
-            <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
-            Description du produit / des livrables
-            </label>
-            <textarea 
-                          onChange={(e) => setFormData({...formData , ProductDescription: e.target.value})}
-                          value={formData && formData.ProductDescription }
-                      
-                        id="about"
-                        name="about"
-                        rows={3}
-                        className="mt-1 block  transition  ease-in-out  w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
-                        placeholder="you@example.com"
-                        defaultValue={''}
-                      />
-          </div>
-          <div className="col-span-6 ">
-            <label htmlFor="email-address" className="block text-sm font-medium leading-6 text-gray-900">
+        <Form onSubmit={(e) => HandleSubmit(e)}>
+
+    
+        
+          <Input
+            lable="title" 
+            onChange={(e) => setFormData({...formData , titre: e.target.value})} 
+            value={formData && formData.titre }
+          />
+          <TextField 
+          lable=" Besoin de l'organisation / objectifs du projet"
+          onChange={(e) => setFormData({...formData , NeedForOrganization: e.target.value})}
+          value={formData && formData.NeedForOrganization }
+          />
          
-            Le projet n'inclut pas 
-            </label>
-            <textarea
-                         onChange={(e) => setFormData({...formData , ThePojectDoesNotInclude: e.target.value})}
-                         value={formData && formData.ThePojectDoesNotInclude }
-                   
-                        id="about"
-                        name="about"
-                        rows={3}
-                        className="mt-1 block  transition  ease-in-out  w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
-                        placeholder="you@example.com"
-                        defaultValue={''}
-                      />
-          </div>
-          <div className="col-span-6">
-            <label htmlFor="street-address" className="block text-sm font-medium leading-6 text-gray-900">
-            Ressources preapprouvees
-            </label>
-            <textarea
-                        onChange={(e) => setFormData({...formData , PreApprovedResources: e.target.value})}
+          <TextField 
+          lable=" Exigences  du projet"
+          onChange={(e) => setFormData({...formData , ProjectRequirements: e.target.value})}
+          value={formData && formData.ProjectRequirements }
+          />
+        
+          <TextField 
+          lable="   Description du produit / des livrables"
+          onChange={(e) => setFormData({...formData , ProductDescription: e.target.value})}
+          value={formData && formData.ProductDescription }
+          />
+       
+          <TextField 
+          lable=" Le projet n'inclut pas "
+          onChange={(e) => setFormData({...formData , ThePojectDoesNotInclude: e.target.value})}
+          value={formData && formData.ThePojectDoesNotInclude }
+          />
+     
+          <TextField  
+          lable="Ressources preapprouvees"
+          onChange={(e) => setFormData({...formData , PreApprovedResources: e.target.value})}
                        
-                        value={formData && formData.PreApprovedResources }
-                     
-                        id="about"
-                        name="about"
-                        rows={3}
-                        className="mt-1 block  transition  ease-in-out  w-full rounded-md border-0 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:py-1.5 sm:text-sm sm:leading-6"
-                        placeholder="you@example.com"
-                        defaultValue={''}
-                      />
-          </div>
+          value={formData && formData.PreApprovedResources }
+          />
         </div>
       </div>
       <div className="bg-white px-4 py-3 text-right sm:px-6">
@@ -290,10 +228,8 @@ export const FirstForm = () => {
          enregistrer & continuer
         </button>
         }
-       
-      </div>
-    </div>
-  </form>
+       </div>
+      </Form>
    </div>
   )
 }

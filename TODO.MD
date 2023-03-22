@@ -1,3 +1,8 @@
-# as a user i shll be able to create new project and  add info to it 
-# ad a user i shall be bale to stake holder of two types --sponsor --stake holder
+
+# what i need to do 
+create a input component 
+create a item component side bar 
+create all the diffrent pages and routed 
+defined a plan of what should be done 
+
 

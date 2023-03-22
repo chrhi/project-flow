@@ -8,6 +8,7 @@ import {signInWithFacebook} from "~/server/util/auth/facebook"
 import { signInWithGitHub } from "~/server/util/auth/github"; 
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import Link from "next/link";
 
 
 
@@ -57,59 +58,31 @@ const Page: NextPage = () => {
       </Head>
       <main className=" w-full min-h-screen bg-gray-50 flex justify-center items-center ">
         
-         <div className="w-[400px] xl:w-[500px] min-h-[300px] h-fit bg-white rounded-lg shadow flex gap-y-4 flex-col p-4 ">
-          <div className="w-full h-[70px] flex items-center gap-4">
-            <p className="text-gray-900 text-2xl ">Log in</p>
-          </div>
-         
-          <form className={`w-full  flex transition-all h-fit flex-col  `} onSubmit={(e:FormEvent) => handleSubmit(e)}>
-            <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
-                   email
-            </label>
+      <div className="w-full max-w-sm p-4 bg-white border shadow-xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
+    <form className="space-y-6" action="#">
+        <h5 className="text-xl font-medium text-gray-900 ">Sign in </h5>
+        <div>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
             <input
-              ref={emailRef}
-              type="email"
-              name="titre"
-              id="titre"
-              autoComplete="titre"
-              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:ring-inset  sm:text-sm sm:leading-6  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
-            />
-             <label htmlFor="titre" className="block text-sm font-medium leading-6 text-gray-900">
-                   password
-            </label>
-            <input
-               ref={passwordRef}
-              type="password"
-              name="password"
-              id="titre"
-             
-              className="mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400  focus:ring-inset  sm:text-sm sm:leading-6  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
-            />
-            <Button
-            type="submit"
-               className="!inline-flex !my-4  !gap-x-2 !normal-case   !w-full !justify-center !rounded-md  !bg-gradient-to-r !from-sky-500 !to-indigo-600 !text-white  !px-4 !py-2 !text-lg    !hover:bg-gray-300 !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
-            >
-              {isLoading ? "loging..." : " login"}
-            </Button>
-          </form>
+            
+            type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com" required />
+        </div>
+        <div>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
+            <input  
+           
+            type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+        </div>
+      
+        <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+        onClick={handleSubmit}
+        >Login to your account</button>
+        <div className="text-sm font-medium text-gray-500 ">
+            Not registered? <Link href="/public/signup" className="text-blue-700 hover:underline ">Create account</Link>
+        </div>
+    </form>
+</div>
 
-         
-        <button
-          onClick={signInWithFacebook as unknown as () => void }
-          className="!inline-flex  !gap-x-2 !normal-case  bg-white border   !w-full !justify-center !rounded-md hover:bg-gray-300 !px-4 !py-2 !text-lg  !text-black   !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
-          >
-            <FacebookIcon />
-            login with facebook
-       </button>
-        <button
-       onClick={signInWithGitHub as unknown as () => void }
-        className="!inline-flex  !gap-x-2 !normal-case  bg-white border   !w-full !justify-center !rounded-md hover:bg-gray-300 !px-4 !py-2 !text-lg  !text-black   !focus:outline-none !focus:ring-2 !focus:ring-gray-500 !focus:ring-offset-2 !focus:ring-offset-gray-500"
-       >
-         <GitHubIcon />
-         login with github
-       </button>
-        
-         </div>
       </main>
     </>
   );
