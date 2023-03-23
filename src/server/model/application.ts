@@ -14,7 +14,6 @@ export const hasProjectStarted = async (id : string ) => {
 //id of the project
 
 
-
 export const pdfStatus = async (id : string ) => {
     const { data: app, error } = await supabase
     .from('app')

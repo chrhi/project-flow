@@ -2,11 +2,16 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 export enum NAVS {
-    SCOPE,
-    COMUNICATION,
-    MONEY,
-    HUMANS,
-    APPLICATION
+  ONE ,
+  TWO , 
+  THREE ,
+  FOUR,
+  FIVE ,
+  SIX ,
+  SEVEN , 
+  EIGHT ,
+  NIGHT ,
+  TEN
 }
 
 
@@ -19,7 +24,7 @@ export const PlanningSideBarReducer = create<Reducer ,[["zustand/persist",unknow
   persist(
     (set) => ({
       
-      current_page: NAVS.SCOPE,
+      current_page: NAVS.ONE,
       set_current_page:(input :{ payload:NAVS}) => set({current_page : input.payload}),
       
     }),

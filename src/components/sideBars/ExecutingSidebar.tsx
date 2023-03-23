@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { NAVS , sidebar_Reducer  } from '~/store/app-reducer/SideBarReducer'
 import { Button } from '@mui/material'
 
-export  const Sidebar = () => {
+export  const ExecutingSidebar = () => {
   const router = useRouter()
   const current_page = sidebar_Reducer(state => state.current_page)
   const set_current_page = sidebar_Reducer(state => state.set_current_page)
@@ -41,7 +41,7 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
           ${current_page == NAVS.STARTUP ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide truncate">Détails du projet</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Task assignment</span>
           </Button>
         </li>
         <li>
@@ -50,7 +50,7 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex  !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
             ${current_page == NAVS.SECONDFORM  ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide  truncate">Considerations relatives au projet</span>
+            <span className="ml-2 text-sm tracking-wide  truncate">Status tracking</span>
           </Button>
         </li>
         <li>
@@ -59,7 +59,67 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
         
 
-            <span className="ml-2 text-sm tracking-wide truncate">stakeholders</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Time tracking</span>
+        
+          </Button>
+        </li>
+        <li>
+          <Button 
+          onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+        
+
+            <span className="ml-2 text-sm tracking-wide truncate">Resource allocation</span>
+        
+          </Button>
+        </li>
+        <li>
+          <Button 
+          onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+        
+
+            <span className="ml-2 text-sm tracking-wide truncate">Change management</span>
+        
+          </Button>
+        </li>
+        <li>
+          <Button 
+          onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+        
+
+            <span className="ml-2 text-sm tracking-wide truncate">Quality control</span>
+        
+          </Button>
+        </li>
+        <li>
+          <Button 
+          onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+        
+
+            <span className="ml-2 text-sm tracking-wide truncate">Communication</span>
+        
+          </Button>
+        </li>
+        <li>
+          <Button 
+          onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+        
+
+            <span className="ml-2 text-sm tracking-wide truncate">Risk management</span>
+        
+          </Button>
+        </li>
+        <li>
+          <Button 
+          onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+        
+
+            <span className="ml-2 text-sm tracking-wide truncate">Issue tracking</span>
         
           </Button>
         </li>
@@ -79,4 +139,3 @@ export  const Sidebar = () => {
 
   )
 }
-

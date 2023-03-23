@@ -6,7 +6,10 @@ import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import { toast } from "react-toastify";
 import { userReducer } from "~/store/userReducer";
 import { TextField } from "~/components/ui/used/TextField";
-import { Input } from "~/components/ui/used/input";
+import { Input } from "~/components/ui/used/Input";
+import { Form } from "~/components/ui/used/Form";
+import { FormContainer } from "~/components/ui/used/FormContainer";
+import { FormHead } from "~/components/ui/used/FormHead";
 
 
 type inputsType ={
@@ -58,7 +61,7 @@ export const FirstForm = () => {
     },
     onError() {
       toast("some things wents wrong ",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        className:" !text-white !bg-orange-500",
         hideProgressBar: true,
        })
        set_isLoading(false)
@@ -69,14 +72,14 @@ export const FirstForm = () => {
     onSuccess() {
       refetch().then(data => console.log(data)).catch(error => console.log(error))
       toast("changes saved seccusfully",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        className:" !text-white !bg-orange-500",
         hideProgressBar: true,
        })
        set_isLoading(false)
     },
     onError(){
       toast("some thing went wrong",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        className:" !text-white !bg-orange-500",
         hideProgressBar: true,
        })
        set_isLoading(false)
@@ -88,14 +91,14 @@ export const FirstForm = () => {
     onSuccess() {
       refetch().then(data => console.log(data)).catch(error => console.log(error))
       toast("changes updated  seccusfully",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        className:" !text-white !bg-orange-500",
         hideProgressBar: true,
        })
        set_isLoading(false)
     },
     onError(){
       toast("some thing went wrong",{
-        className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+        className:" !text-white !bg-orange-500",
         hideProgressBar: true,
        })
        set_isLoading(false)
@@ -110,7 +113,7 @@ export const FirstForm = () => {
     set_isLoading(true)
    if(!formData.titre || !formData.NeedForOrganization|| !formData.ProjectRequirements || !formData.NeedForOrganization || !formData.ThePojectDoesNotInclude || !formData.PreApprovedResources ){
     toast("tous les liens sont requis",{
-      className:" !text-white !bg-gradient-to-r !from-sky-500 !to-indigo-600",
+      className:" !text-white !bg-orange-500",
       hideProgressBar: true,
      })
     return
@@ -163,16 +166,12 @@ export const FirstForm = () => {
 
 
   return (
-   <div className='ml-[16rem] custopn-page-height custom-width  custom-scroll-bar flex flex-col items-center pt-4'>
-   <div className="w-full h-[50px] flex items-center justify-start p-4 ">
-   <h1 className="text-2xl font-bold text-start text-gray-900">👉remplir les informations nécessaires du projet</h1>
-   </div>
-
-        <Form onSubmit={(e) => HandleSubmit(e)}>
-
-    
-        
-          <Input
+    <FormContainer>
+      <FormHead text="👉remplir les informations nécessaires du projet" />
+      <Form  onSubmit={(e) => HandleSubmit(e)}>
+      <div className="bg-white px-4 py-5 sm:p-6">
+        <div className="grid grid-cols-6 gap-6">
+         <Input
             lable="title" 
             onChange={(e) => setFormData({...formData , titre: e.target.value})} 
             value={formData && formData.titre }
@@ -182,29 +181,24 @@ export const FirstForm = () => {
           onChange={(e) => setFormData({...formData , NeedForOrganization: e.target.value})}
           value={formData && formData.NeedForOrganization }
           />
-         
           <TextField 
           lable=" Exigences  du projet"
           onChange={(e) => setFormData({...formData , ProjectRequirements: e.target.value})}
           value={formData && formData.ProjectRequirements }
           />
-        
           <TextField 
           lable="   Description du produit / des livrables"
           onChange={(e) => setFormData({...formData , ProductDescription: e.target.value})}
           value={formData && formData.ProductDescription }
           />
-       
           <TextField 
           lable=" Le projet n'inclut pas "
           onChange={(e) => setFormData({...formData , ThePojectDoesNotInclude: e.target.value})}
           value={formData && formData.ThePojectDoesNotInclude }
           />
-     
           <TextField  
           lable="Ressources preapprouvees"
-          onChange={(e) => setFormData({...formData , PreApprovedResources: e.target.value})}
-                       
+          onChange={(e) => setFormData({...formData , PreApprovedResources: e.target.value})}           
           value={formData && formData.PreApprovedResources }
           />
         </div>
@@ -215,7 +209,7 @@ export const FirstForm = () => {
            <button
            onClick={ (e : FormEvent) => habdleUpdate(e)}
            type="submit"
-           className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+           className="inline-flex justify-center rounded-md bg-orange-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
            >
             mise à jour
           </button> 
@@ -223,14 +217,14 @@ export const FirstForm = () => {
           <button
           type="submit"
        
-          className="inline-flex justify-center rounded-md bg-gradient-to-r from-sky-500 to-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+          className="inline-flex justify-center rounded-md bg-orange-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
         >
          enregistrer & continuer
         </button>
         }
        </div>
-      </Form>
-   </div>
+       </Form>
+  </FormContainer>
   )
 }
 
