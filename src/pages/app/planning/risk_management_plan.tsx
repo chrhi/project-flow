@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-import { Scope_plan_Form } from "~/components/forms/planning/Scope_plan_Form";
+import { Risk_managment_form } from "~/components/forms/planning/Risk_managment_form";
 
 
 const Page: NextPage = () => {
@@ -20,7 +20,7 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <PlanningSideBar />
-      <h1>risk managment </h1>
+      <Risk_managment_form  />
       </main>
     </>
   );

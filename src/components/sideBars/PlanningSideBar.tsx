@@ -106,7 +106,7 @@ export  const PlanningSideBar = () => {
         </li>
         <li>
           <Button 
-          onClick={() => handleClick("/app/planning/change_managment_plan" , NAVS.NIGHT)}
+          onClick={() => handleClick("/app/planning/risk_management_plan" , NAVS.NIGHT)}
           className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.NIGHT ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
         
 

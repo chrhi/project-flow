@@ -11,7 +11,7 @@ export const ProjectStarter = () => {
         <div className='w-[45%] h-full flex items-center justify-center '>
             <Image  alt='project starter' src={start}  />
         </div>
-        <div className='w-[50%] h-full flex flex-col pt-8 '>
+        <div className='w-[50%] h-full flex flex-col pt-20 '>
             <h1 className='text-3xl font-semibold text-gray-900 text-start'>lance votre projet </h1>
             <p className='text-lg  text-gray-400 text-start'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui at consequuntur illo explicabo laboriosam doloribus eaque assumenda aliquam cum dicta eveniet dolorum placeat, quos, odio, adipisci quaerat sunt sapiente perferendis.</p>
             <div className='w-[70%] h-[300px]  gap-y-4 my-4 flex flex-col '>
