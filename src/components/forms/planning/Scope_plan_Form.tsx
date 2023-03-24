@@ -6,7 +6,7 @@ import { Input } from "~/components/ui/used/Input";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
-
+import {Work_breaddown_tabs} from "~/components/planning/tabs/Work_breaddown_tabs"
 
 
 export const Scope_plan_Form = () => {
@@ -15,6 +15,7 @@ export const Scope_plan_Form = () => {
   return (
     <FormContainer>
       <FormHead text="👉 build the project managment scope" />
+      
       <Form  onSubmit={(e) => console.log(e)}>
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
