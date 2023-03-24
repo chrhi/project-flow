@@ -17,13 +17,13 @@
   /* Track */
   ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
-    border-radius: 5px;
+    
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: rgb(115, 115, 115);
-    border-radius: 10px;
+    
   }
 
 .custom-width{
@@ -42,6 +42,7 @@
 
 .custom-scroll-bar{
     scrollbar-width: 5px;
+    
     scrollbar-color: #777 #555;
 }
 

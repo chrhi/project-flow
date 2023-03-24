@@ -17,7 +17,7 @@ type Props ={
 export const AbdullahTable = ({title , descripton , headers , body}: Props) => {
   return (
     
-<div className="relative overflow-x-auto  sm:rounded-lg p-4 ">
+<div className="relative overflow-x-auto  sm:rounded-lg  ">
     <table className="w-full text-sm text-left text-gray-500 ">
         <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white  ">
            {title}
