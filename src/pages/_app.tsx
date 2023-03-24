@@ -21,23 +21,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   const set_user = userReducer(state => state.set_email)
   //TODO ADD handle setting user informations to the application
 
-  supabase.auth.onAuthStateChange((event, session) => {
-    if (event === 'SIGNED_OUT' || event === 'USER_DELETED') {
-      // delete cookies on sign out
-      const expires = new Date(0).toUTCString()
-      document.cookie = `abdullah-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
-      document.cookie = `abdullah-access-token=; path=/; expires=${expires}; SameSite=Lax; secure`
-      window.location.reload()
-    } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-      const maxAge = 100 * 365 * 24 * 60 * 60 // 100 years, never expires
-      if(session){
-      document.cookie = `abdullah-access-token=${session.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
-      document.cookie = `abdullah-refresh-token=${session.refresh_token}; path=/; max-age=${maxAge}; SameSite=Lax; secure`
-      window.location.reload()
-      }
-    }
-  })
-
   useEffect(() => {
     async function getInisialRefrences (){
     

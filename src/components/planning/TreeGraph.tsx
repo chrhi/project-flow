@@ -50,7 +50,7 @@ export const  TreeGraph = () =>  {
 
       <Tree
        data={orgChart} orientation='vertical'
-       draggable ={true}
+      
         onNodeClick={(node) => console.log(node)}
         rootNodeClassName="node__root"
         branchNodeClassName="node__branch"

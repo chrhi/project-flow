@@ -41,7 +41,7 @@ export  function TimePicker () {
    
     <button 
          onClick={openModal}
-         className="w-full h-[45px] rounded border flex items-center justify-between p-2 px-4 shadow-sm text-gray-400 "
+         className="w-full h-[40px] rounded-lg border flex items-center justify-between p-1 px-4 shadow-sm text-gray-400 "
     >
        from  20/03/2023 to 12/06/2023
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
