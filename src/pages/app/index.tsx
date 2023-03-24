@@ -6,7 +6,7 @@ import { useState } from "react";
 import { ProjectStarter } from "~/components/common/ProjectStarter";
 const Page: NextPage = () => {
 
-  const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
+  const [hasProjectStart , setHasProjectStart] = useState<boolean>(true)
 
   return (
     <>

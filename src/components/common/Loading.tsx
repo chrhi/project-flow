@@ -7,7 +7,7 @@ export   function Loading() {
     
   return (
     <div className={`${is_loading ? "absolute" : "hidden"} z-[30000]  bg-white bg-opacity-60 h-full w-full flex justify-center items-center`}>
-        <CircularProgress className='!text-orange-500' disableShrink />
+        <CircularProgress className='!text-blue-500' disableShrink />
     </div>
   )
 }

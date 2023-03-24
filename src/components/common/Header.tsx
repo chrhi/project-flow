@@ -24,11 +24,11 @@ export const Header = ({notAuth = false}:Props) => {
 
   return (
    <div className = {`w-full !z-[100] h-14 sticky top-0 flex justify-between px-2 py-2 items-center bg-white shadow-sm border-b border-gray-300 `}>
-   <div className="w-[2%] h-full flex justify-start items-center">
-   <Image alt="logo" src={logo} width={30} height={30}  />
+   <div className="w-[3%] h-full flex justify-start items-center">
+   <Image alt="logo" src={logo} width={35} height={35}  />
    </div>
     <div 
-    className="w-[68%]  ml-4  h-[60px] gap-x-4 flex items-center justify-start " 
+    className="w-[67%]  ml-4  h-[60px] gap-x-4 flex items-center justify-start " 
     >
   
  {!notAuth &&
