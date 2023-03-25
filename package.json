@@ -24,6 +24,8 @@
     "@trpc/react-query": "^10.9.0",
     "@trpc/server": "^10.9.0",
     "apexcharts": "^3.37.1",
+    "class-variance-authority": "^0.4.0",
+    "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
@@ -50,6 +52,7 @@
     "react-toastify": "^9.1.1",
     "react-use": "^17.4.0",
     "superjson": "1.9.1",
+    "tailwind-merge": "^1.10.0",
     "yup": "^1.0.2",
     "zod": "^3.20.6",
     "zustand": "^4.3.5"

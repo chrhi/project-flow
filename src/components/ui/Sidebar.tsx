@@ -37,11 +37,29 @@ export  const Sidebar = () => {
         </li>
         <li>
           <Button
+          onClick={() => handleClick("/app/startup/setup" , NAVS.SETUP)}
+          className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
+          ${current_page == NAVS.SETUP ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
+          
+            <span className="ml-2 text-sm tracking-wide truncate">first thing to do</span>
+          </Button>
+        </li>
+        <li>
+          <Button
           onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-          ${current_page == NAVS.STARTUP ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
+          ${current_page == NAVS.STARTUP ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
           
             <span className="ml-2 text-sm tracking-wide truncate">Détails du projet</span>
+          </Button>
+        </li>
+        <li>
+          <Button
+          onClick={() => handleClick("/app/startup/tables" , NAVS.TABLE)}
+          className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
+          ${current_page == NAVS.TABLE ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
+          
+            <span className="ml-2 text-sm tracking-wide truncate">tables </span>
           </Button>
         </li>
         <li>

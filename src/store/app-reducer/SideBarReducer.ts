@@ -6,7 +6,9 @@ export enum NAVS {
     DOCUMENT,
     STAKEHOLDER,
     SECONDFORM,
-    APPLICATION
+    APPLICATION,
+    SETUP,
+    TABLE
 }
 
 

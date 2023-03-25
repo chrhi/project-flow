@@ -12,11 +12,12 @@ type Props ={
     body : Item[] ,
     showHeaders? : boolean,
     Action? : boolean,
+    wrap? : boolean
 
 }
 
 
-export const AbdullahTable = ({title , descripton , headers , body , showHeaders = true , Action = true}: Props) => {
+export const AbdullahTable = ({title , descripton , headers , body , showHeaders = true ,wrap = true, Action = true}: Props) => {
   return (
     
 <div className="relative overflow-x-auto  sm:rounded-lg  ">
@@ -42,7 +43,7 @@ export const AbdullahTable = ({title , descripton , headers , body , showHeaders
 
             <tr key={current.properties[0]  } className="bg-white border-b ">
                 {current.properties.map(item => (
-                <th key={item + `${index}`} scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                <th key={item + `${index}`} scope="row" className={`px-6 py-4 font-medium text-gray-900 ${wrap ? "" : " whitespace-nowrap " }`}>
                    {item}
                 </th>
                 ))}
