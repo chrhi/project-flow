@@ -2,7 +2,6 @@ import { type AppType } from "next/app";
 import NextNProgress from 'nextjs-progressbar'
 import { api } from "~/utils/api";
 import 'react-toastify/dist/ReactToastify.css';
-import 'react-clock/dist/Clock.css';
 import "~/styles/globals.css";
 import { supabase } from "~/config/supbase";
 import { Loading } from "~/components/common/Loading";

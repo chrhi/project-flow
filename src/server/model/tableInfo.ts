@@ -1,6 +1,6 @@
 import { BaseModel } from "./BaseModel";
 
-class Document extends BaseModel {
+class TableInfo extends BaseModel {
     
 
     constructor(){
@@ -9,14 +9,16 @@ class Document extends BaseModel {
 
     // this method will create a new user
     public async create (
-        name : string ,
-        status : boolean ,
-        public_url : string ,
+        objectifs : string , 
+        type : string ,
+        seccessCriteria : string , 
+        approval : string ,
         project_id : string ,
         id : string 
         
         ){
-        const {  error } = await this.provider.from('document').insert([  {id , name , public_url , status , project_id }])
+        const {  error } = await this.provider.from('tableInfo').insert([ 
+             {id , objectifs , type , seccessCriteria , approval ,  project_id }])
   
        if(error){
           throw new Error(error.message)
@@ -25,7 +27,7 @@ class Document extends BaseModel {
 
     // this method will get the document staus and procide that to the caller
     public async get (project_id : string ) {
-        const { data: user, error } = await this.provider.from('document').select('*').eq("project_id" , project_id)
+        const { data: user, error } = await this.provider.from('tableInfo').select('*').eq("project_id" , project_id)
         if(error){
             throw new Error(error.message)
         }
@@ -34,14 +36,20 @@ class Document extends BaseModel {
 
       // this method will update the document status
       public async update (
-        name : string ,
-        status : boolean ,
-        public_url : string ,
-        
+        objectifs : string , 
+        type : string ,
+        seccessCriteria : string , 
+        approval : string ,
+      
         id : string 
+
+        
+      
         
         ){
-        const {  error } = await this.provider.from('document').update([  { name , public_url , status  }]).eq("id" , id)
+        const {  error } = await this.provider.from('tableInfo').update([ 
+            { objectifs , type , seccessCriteria , approval }
+        ]).eq("id" , id)
   
        if(error){
           throw new Error(error.message)
@@ -52,7 +60,7 @@ class Document extends BaseModel {
 
         id : string        
         ){
-        const {  error } = await this.provider.from('document').delete().eq("id" , id)
+        const {  error } = await this.provider.from('tableInfo').delete().eq("id" , id)
   
        if(error){
           throw new Error(error.message)
@@ -60,4 +68,4 @@ class Document extends BaseModel {
     }
 }
 
-export const documentTable = new Document()
+export const tableInfoTable = new TableInfo()

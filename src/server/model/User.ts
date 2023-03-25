@@ -26,3 +26,5 @@ class User extends BaseModel {
     }
 
 }
+
+export const userTable = new User()

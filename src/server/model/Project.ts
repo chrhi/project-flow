@@ -1,6 +1,6 @@
 import { BaseModel } from "./BaseModel";
 
-class Document extends BaseModel {
+class Project extends BaseModel {
     
 
     constructor(){
@@ -9,14 +9,12 @@ class Document extends BaseModel {
 
     // this method will create a new user
     public async create (
-        name : string ,
-        status : boolean ,
-        public_url : string ,
-        project_id : string ,
-        id : string 
+        user_id : string,
+        id : string ,
+        stage : string
         
         ){
-        const {  error } = await this.provider.from('document').insert([  {id , name , public_url , status , project_id }])
+        const {  error } = await this.provider.from('project').insert([  {id , user_id , stage}])
   
        if(error){
           throw new Error(error.message)
@@ -24,8 +22,8 @@ class Document extends BaseModel {
     }
 
     // this method will get the document staus and procide that to the caller
-    public async get (project_id : string ) {
-        const { data: user, error } = await this.provider.from('document').select('*').eq("project_id" , project_id)
+    public async get (user_id : string ) {
+        const { data: user, error } = await this.provider.from('project').select('*').eq("user_id" , user_id)
         if(error){
             throw new Error(error.message)
         }
@@ -34,14 +32,12 @@ class Document extends BaseModel {
 
       // this method will update the document status
       public async update (
-        name : string ,
-        status : boolean ,
-        public_url : string ,
+        stage : string ,
         
         id : string 
         
         ){
-        const {  error } = await this.provider.from('document').update([  { name , public_url , status  }]).eq("id" , id)
+        const {  error } = await this.provider.from('project').update([  { stage }]).eq("id" , id)
   
        if(error){
           throw new Error(error.message)
@@ -52,7 +48,7 @@ class Document extends BaseModel {
 
         id : string        
         ){
-        const {  error } = await this.provider.from('document').delete().eq("id" , id)
+        const {  error } = await this.provider.from('project').delete().eq("id" , id)
   
        if(error){
           throw new Error(error.message)
@@ -60,4 +56,4 @@ class Document extends BaseModel {
     }
 }
 
-export const documentTable = new Document()
+export const projectTable = new Project()
