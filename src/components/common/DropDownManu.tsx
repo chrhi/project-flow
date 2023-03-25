@@ -6,6 +6,7 @@ import {userReducer} from "~/store/userReducer"
 import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TuneIcon from '@mui/icons-material/Tune';
+import Cookies from 'js-cookie';
 
 
 
@@ -16,6 +17,10 @@ export default function DropDowsMenu() {
    const router = useRouter()
   const {email  , name} = userReducer()
  
+  const handleLogout = () => {
+    Cookies.remove("abdullah-access-token")
+    window.location.reload()
+  }
 
   return (
     <div className="fixed text-right z-[100]">
@@ -61,7 +66,7 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <button
-             
+                onClick={handleLogout}
                   className={`${
                     active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'
                   } group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}

@@ -50,7 +50,7 @@ export const Header = ({notAuth = false}:Props) => {
            <Button 
   variant="text"
 
-   onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
+   onClick={ () =>  handleClick("/auth/login" ,PAGES.HOME) as unknown}
    className={` !normal-case !text-lg hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800  !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
   >
    log in
@@ -58,10 +58,10 @@ export const Header = ({notAuth = false}:Props) => {
   <Button 
   variant="text"
 
-   onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
+   onClick={ () =>  handleClick("/auth/register" ,PAGES.HOME) as unknown}
    className={` !normal-case !text-lg hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800 !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
   >
-   log out
+   sign up
   </Button>
        </div>
        :

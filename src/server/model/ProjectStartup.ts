@@ -9,12 +9,23 @@ class ProjectStartup extends BaseModel {
 
     // this method will create a new user
     public async create (
-        user_id : string,
-        id : string ,
-        stage : string
+        project_id : string,
+        
+        title : string,
+        sponsor : string , 
+        projectManager : string , 
+        client : string , 
+        dateToStart : string ,
+        dateToEnd : string , 
+        projectManagerAuthority : string , 
+        staffDecision : string , 
+        conflitManagment : string , 
+        regionalDirector : string , 
+        estimatedBudget : number 
         
         ){
-        const {  error } = await this.provider.from('projectStartup').insert([  {id , user_id , stage}])
+        const {  error } = await this.provider.from('projectStartup').insert([ 
+             {id : project_id , title , sponsor , projectManager , client , dateToStart , dateToEnd , projectManagerAuthority , staffDecision , conflitManagment , regionalDirector , estimatedBudget}])
   
        if(error){
           throw new Error(error.message)
@@ -22,22 +33,31 @@ class ProjectStartup extends BaseModel {
     }
 
     // this method will get the document staus and procide that to the caller
-    public async get (user_id : string ) {
-        const { data: user, error } = await this.provider.from('projectStartup').select('*').eq("user_id" , user_id)
+    public async get (project_id : string ) {
+        const { data, error } = await this.provider.from('projectStartup').select('*').eq("id" , project_id)
         if(error){
             throw new Error(error.message)
         }
-        return user
+        return data
     }
 
       // this method will update the document status
       public async update (
-        stage : string ,
-        
-        id : string 
-        
+        project_id : string,
+        title : string,
+        sponsor : string , 
+        projectManager : string , 
+        client : string , 
+        dateToStart : string ,
+        dateToEnd : string , 
+        projectManagerAuthority : string , 
+        staffDecision : string , 
+        conflitManagment : string , 
+        regionalDirector : string , 
+        estimatedBudget : number 
         ){
-        const {  error } = await this.provider.from('projectStartup').update([  { stage }]).eq("id" , id)
+        const {  error } = await this.provider.from('projectStartup').update([
+              { title ,  sponsor , projectManager , client , dateToStart , dateToEnd , projectManagerAuthority , staffDecision , conflitManagment , regionalDirector , estimatedBudget}]).eq("id" , project_id)
   
        if(error){
           throw new Error(error.message)
@@ -46,9 +66,9 @@ class ProjectStartup extends BaseModel {
      // this method will delete the document status
      public async delete (
 
-        id : string        
+        project_id : string        
         ){
-        const {  error } = await this.provider.from('projectStartup').delete().eq("id" , id)
+        const {  error } = await this.provider.from('projectStartup').delete().eq("id" , project_id)
   
        if(error){
           throw new Error(error.message)
