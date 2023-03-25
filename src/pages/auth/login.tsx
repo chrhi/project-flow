@@ -1,7 +1,5 @@
 import { type NextPage } from "next";
-import Head from "next/head";
 import {  FormEvent, useRef , useState } from "react";
-import { singInWithEmailAndPassword  } from "~/server/util/auth/provider";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { Header } from "~/components/common/Header";
@@ -10,37 +8,8 @@ import { Header } from "~/components/common/Header";
 
 const Page: NextPage = () => {
 
-  const [isLoading , setIsLoading ] = useState<boolean>(false)
 
-
-  const emailRef = useRef<HTMLInputElement>(null)
-  const passwordRef = useRef<HTMLInputElement>(null)
-
-  const handleSubmit =  (e : FormEvent) => {
-
-    e.preventDefault()
-
-    if(!emailRef.current?.value || !passwordRef.current?.value) {
-      toast("password and email are required",{
-        className:" !text-white !bg-blue-500 ",
-        hideProgressBar: true,
-       })
-       return
-    }
-    setIsLoading(true)
-     singInWithEmailAndPassword (emailRef.current?.value , passwordRef.current?.value)
-     .then(() => window?.location?.reload())
-     .catch(() => {
-      toast("error something wen wrong" ,{
-        className:" !text-white !bg-blue-500 ",
-        hideProgressBar: true,
-       })
-       setIsLoading(false)
-    })
-    
-    setIsLoading(false)
-  }
-
+  
 
 
   
@@ -68,7 +37,7 @@ const Page: NextPage = () => {
         </div>
       
         <button type="submit" className="w-full text-white bg-blue-500 hover:bg-orange-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-        onClick={handleSubmit}
+       
         >Login to your account</button>
         <div className="text-sm font-medium text-gray-500 ">
             Not registered? <Link href="/public/signup" className="text-blue-500 hover:underline ">Create account</Link>

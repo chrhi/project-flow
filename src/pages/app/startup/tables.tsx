@@ -22,7 +22,7 @@ const Page: NextPage = () => {
     <>
     
       <Header />
-      <main className="   flex w-full bg-gray-50 ">
+      <main className=" scrollbar-hide  flex w-full bg-gray-50 ">
        <Sidebar />
        <FormContainer>
       <FormHead text="👉 manage your cost" />

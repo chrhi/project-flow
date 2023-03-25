@@ -1,6 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { logout } from '~/server/util/auth/provider';
 import { useRouter } from 'next/router'
 import {userReducer} from "~/store/userReducer"
 // icons 
@@ -16,10 +15,7 @@ export default function DropDowsMenu() {
   //initializes hooks
    const router = useRouter()
   const {email  , name} = userReducer()
-   const logoutHanlder = async () => {
-    await logout() 
-    window?.location.reload()
-   }
+ 
 
   return (
     <div className="fixed text-right z-[100]">
@@ -48,19 +44,7 @@ export default function DropDowsMenu() {
                 </div>
               )}
             </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                onClick={() => router.push("/app/personal/profile") as unknown }
-                  className={`${
-                    active ? ' bg-gray-50 text-gray-900' : 'text-gray-900'
-                  } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
-                >
-                  <TuneIcon  className ="text-gray-400"  />
-                  profile
-                </button>
-              )}
-            </Menu.Item>
+           
            <Menu.Item>
               {({ active }) => (
                 <button
@@ -77,8 +61,7 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <button
-                // eslint-disable-next-line @typescript-eslint/no-misused-promises
-                onClick={ async () => await logoutHanlder() }
+             
                   className={`${
                     active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'
                   } group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
