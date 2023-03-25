@@ -7,11 +7,9 @@ import bcrypt from "bcrypt"
 import {v4 as uuidV4} from "uuid"
 import { userTable } from "~/server/model/User";
 import {sign } from "jsonwebtoken"
-
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { signJwt } from "~/lib/JWT";
-import { KeyLike } from "jose";
+
 
 export const userManagment = createTRPCRouter({
   createUser: publicProcedure
