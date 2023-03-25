@@ -6,6 +6,8 @@ import { Input } from "~/components/ui/used/Input";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
+import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
 
 
 
@@ -73,7 +75,27 @@ export const Change_managment_Form = () => {
           onChange={(e) => console.log("Hi")} 
           value={"" }
           />
-
+          <div className="col-span-6">
+            <AbdullahTable
+              title="Change Control Board:"
+              descripton=""
+              headers={["Name" , "Role" , "Responsibility" , "Authority"]}
+              body={[{
+                callback : () => console.log("hi"),
+                properties : ["abdullah" , "abdullah" , "abdullah" , "abdullah" ]
+              }]}
+            />
+          </div>
+        <div className="bg-white  my-1 col-span-6  text-right ">
+            <AbdullahButton  
+              onClick={() => console.log("hi there")}
+              text='submit change'
+              title='save the changes '
+              className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+             />
+        </div>
+          
+        
          
         </div>
       </div>

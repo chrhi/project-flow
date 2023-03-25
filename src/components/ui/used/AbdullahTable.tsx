@@ -10,11 +10,13 @@ type Props ={
     descripton : string , 
     headers : string[],
     body : Item[] ,
+    showHeaders? : boolean,
+    Action? : boolean,
 
 }
 
 
-export const AbdullahTable = ({title , descripton , headers , body}: Props) => {
+export const AbdullahTable = ({title , descripton , headers , body , showHeaders = true , Action = true}: Props) => {
   return (
     
 <div className="relative overflow-x-auto  sm:rounded-lg  ">
@@ -23,20 +25,20 @@ export const AbdullahTable = ({title , descripton , headers , body}: Props) => {
            {title}
             <p className="mt-1 text-sm font-normal text-gray-500 ">{descripton}</p>
         </caption>
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
-            <tr>
-                {headers.map(item => (
-                       <th key={item} scope="col" className="px-6 py-3">
-                       {item}
-                        </th>
-                ))}
-                <th scope="col" className="px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                </th>
-            </tr>
-        </thead>
+    {showHeaders && <thead className={`text-xs text-gray-700 uppercase bg-gray-50  `}>
+        <tr>
+            {headers?.map(item => (
+                    <th key={item} scope="col" className="px-6 py-3">
+                    {item}
+                    </th>
+            ))}
+            <th scope="col" className="px-6 py-3">
+                <span className="sr-only">Edit</span>
+            </th>
+        </tr>
+    </thead>}
         <tbody>
-            {body.map((current , index) => (
+            {body?.map((current , index) => (
 
             <tr key={current.properties[0]  } className="bg-white border-b ">
                 {current.properties.map(item => (
@@ -44,9 +46,9 @@ export const AbdullahTable = ({title , descripton , headers , body}: Props) => {
                    {item}
                 </th>
                 ))}
-                <td className="px-6 py-4 text-right">
+              {Action &&   <td className={`px-6 py-4 text-right`}>
                     <button onClick={current.callback} className="font-medium text-blue-600 hover:underline">Edit</button>
-                </td>
+                </td>}
             </tr>
             ))}
            

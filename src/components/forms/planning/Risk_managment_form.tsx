@@ -6,6 +6,7 @@ import { Input } from "~/components/ui/used/Input";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 
 
 
@@ -63,7 +64,32 @@ export const Risk_managment_form = () => {
           onChange={(e) => console.log("Hi")} 
           value={"" }
           />
+           <div className="col-span-6 ">
+            <AbdullahTable
+            Action={false}
+              title="Probability and Impact Matrix"
+              descripton="Definitions of Impact by Objective"
+              headers={["" , "Scope" , "Quality" , "Time" , "Cost"]}
+              body={[
+              {callback:() => console.log("hi"),
+              properties : ["Very high" , " " , " " , " " , " "]
+              },
+              {callback:() => console.log("hi"),
+              properties : ["High" , " " , " " , " " , " "]
+              },
+              {callback:() => console.log("hi"),
+              properties : ["Medium" , " " , " " , " " , " "]
+              },
+              {callback:() => console.log("hi"),
+              properties : ["Low" , " " , " " , " " , " "]
+              },
+              {callback:() => console.log("hi"),
+              properties : ["Very low" , " " , " " , " " , " "]
+              },
+            ]}
 
+            />
+          </div>
      
 
 
