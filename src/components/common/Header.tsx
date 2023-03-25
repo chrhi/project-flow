@@ -23,7 +23,7 @@ export const Header = ({notAuth = false}:Props) => {
   }
 
   return (
-   <div className = {`w-full !z-[100] h-14 sticky top-0 flex justify-between px-2 py-2 items-center bg-white shadow-sm border-b border-gray-300 `}>
+   <div className = {`w-full !z-[100] h-14 sticky top-0 flex justify-between px-4  items-center bg-white shadow-sm border-b border-gray-300 `}>
    <div className="w-[3%] h-full flex justify-start items-center">
    <Image alt="logo" src={logo} width={35} height={35}  />
    </div>
@@ -36,7 +36,7 @@ export const Header = ({notAuth = false}:Props) => {
   variant="text"
 
    onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
-   className={` !normal-case !text-lg hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800 !font-bold !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
+   className={` !normal-case !text-md hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800 !font-bold !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
   >
     tableau de bord
   </Button>
@@ -51,7 +51,7 @@ export const Header = ({notAuth = false}:Props) => {
   variant="text"
 
    onClick={ () =>  handleClick("/auth/login" ,PAGES.HOME) as unknown}
-   className={` !normal-case !text-lg hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800  !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
+   className={` !normal-case !text-md !font-semibold hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-700  !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
   >
    log in
   </Button>
@@ -59,7 +59,7 @@ export const Header = ({notAuth = false}:Props) => {
   variant="text"
 
    onClick={ () =>  handleClick("/auth/register" ,PAGES.HOME) as unknown}
-   className={` !normal-case !text-lg hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800 !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
+   className={` !normal-case !text-md !font-semibold hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-700 !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
   >
    sign up
   </Button>

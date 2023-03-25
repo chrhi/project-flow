@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Header } from "~/components/common/Header";
 import { api } from "~/utils/api";
 import Cookies from 'js-cookie'
+import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
 type input = {
   email : string ,
   password : string , 
@@ -56,7 +57,7 @@ const Page: NextPage = () => {
     <>
     
       <Header  notAuth/>
-      <main className=" w-full custom-hieght-navbar bg-gray-50 flex justify-center items-center  ">
+      <main className=" w-full custom-hieght-navbar bg-gray-100 flex justify-center items-center  ">
         
       <div className="w-[50%] max-w-sm p-4 bg-white border shadow-xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form className="space-y-6" action="#">
@@ -74,11 +75,18 @@ const Page: NextPage = () => {
             type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
         </div>
       
-        <button
-        disabled={mutation.isLoading}
-        type="submit" className="w-full text-white bg-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-        onClick={(e) => handleSubmit(e)}
-        >Login to your account</button>
+        <AbdullahButton
+          text="Login to your account"
+          className="w-full text-white bg-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+          loading ={mutation.isLoading}
+          onClick={(e :FormEvent) => handleSubmit(e)}
+
+         />
+        
+      
+       
+       
+        
         <div className="text-sm font-medium text-gray-500 ">
             Not registered? <Link href="/auth/register" className="text-blue-500 hover:underline ">Create account</Link>
         </div>
