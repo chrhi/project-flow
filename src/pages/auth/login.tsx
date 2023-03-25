@@ -76,7 +76,7 @@ const Page: NextPage = () => {
       
         <button
         disabled={mutation.isLoading}
-        type="submit" className="w-full text-white bg-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+        type="submit" className="w-full text-white bg-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
         onClick={(e) => handleSubmit(e)}
         >Login to your account</button>
         <div className="text-sm font-medium text-gray-500 ">
