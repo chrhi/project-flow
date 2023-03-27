@@ -10,7 +10,7 @@ class  ProjectDetails extends BaseModel {
     // this method will create a new user
     public async create (
         projectObjectOpportunity : string ,
-        projectDescription : boolean ,
+        projectDescription : string ,
         highLevelRequirement : string ,
         hightLevelRisks : string,
         project_id : string 
@@ -37,7 +37,7 @@ class  ProjectDetails extends BaseModel {
       // this method will update the document status
       public async update (
         projectObjectOpportunity : string ,
-        projectDescription : boolean ,
+        projectDescription : string ,
         highLevelRequirement : string ,
         hightLevelRisks : string,
         project_id : string 

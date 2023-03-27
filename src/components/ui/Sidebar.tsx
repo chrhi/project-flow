@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router'
 import { NAVS , sidebar_Reducer  } from '~/store/app-reducer/SideBarReducer'
 import { Button } from '@mui/material'
@@ -41,7 +42,7 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
           ${current_page == NAVS.SETUP ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide truncate">first thing to do</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Initiating</span>
           </Button>
         </li>
         <li>
@@ -59,7 +60,7 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
           ${current_page == NAVS.TABLE ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide truncate">tables </span>
+            <span className="ml-2 text-sm tracking-wide truncate">Plus d'informations </span>
           </Button>
         </li>
         <li>
@@ -68,7 +69,7 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex  !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
             ${current_page == NAVS.SECONDFORM  ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide  truncate">Considerations relatives au projet</span>
+            <span className="ml-2 text-sm tracking-wide  truncate">difine my team</span>
           </Button>
         </li>
         <li>

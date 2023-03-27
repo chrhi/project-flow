@@ -18,7 +18,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   const set_isLoading = loading_Reducer(state => state.set_isLoading)
 
-  const set_user = userReducer(state => state.set_email)
+  const set_user = userReducer(state => state.set_user)
   //TODO ADD handle setting user informations to the application
 
   useEffect(() => {
@@ -34,7 +34,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
      }
      set_user({
       id : data.session?.user.id as string , 
-      name : data.session?.user.user_metadata?.name as string ,
+     
       email :data.session?.user.user_metadata?.email as string,
     
      })

@@ -34,11 +34,11 @@ class Team extends BaseModel {
 
     // this method will get the document staus and procide that to the caller
     public async get (project_id : string ) {
-        const { data: user, error } = await this.provider.from('team').select('*').eq("project_id" , project_id)
+        const { data, error } = await this.provider.from('team').select('*').eq("project_id" , project_id)
         if(error){
             throw new Error(error.message)
         }
-        return user
+        return data
     }
 
       // this method will update the document status
@@ -75,6 +75,14 @@ class Team extends BaseModel {
        if(error){
           throw new Error(error.message)
         }
+    }
+    //get only one team mumber 
+    public async getOne ({id } : {id : string }){
+        const { data , error } = await this.provider.from('team').select('*').eq("id" , id)
+        if(error){
+            throw new Error(error.message)
+        }
+        return data
     }
 }
 

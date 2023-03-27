@@ -4,6 +4,7 @@ import {  Button } from '@mui/material'
 import DropDowsMenu from "./DropDownManu"
 import Image from "next/image"
 import logo from "~/assets/logo.png"
+import { AbdullahButton, buttonVariants } from "../ui/buildingBlocks/AbdullahButton"
 
 
 type Props = {
@@ -23,7 +24,7 @@ export const Header = ({notAuth = false}:Props) => {
   }
 
   return (
-   <div className = {`w-full !z-[100] h-14 sticky top-0 flex justify-between px-4  items-center bg-white shadow-sm border-b border-gray-300 `}>
+   <div className = {`w-full !z-[50] h-14 sticky top-0 flex justify-between px-4  items-center bg-white shadow-sm border-b border-gray-300 `}>
    <div className="w-[3%] h-full flex justify-start items-center">
    <Image alt="logo" src={logo} width={35} height={35}  />
    </div>
@@ -32,14 +33,15 @@ export const Header = ({notAuth = false}:Props) => {
     >
   
  {!notAuth &&
-  <Button 
-  variant="text"
 
-   onClick={ () =>  handleClick("/app" ,PAGES.HOME) as unknown}
-   className={` !normal-case !text-md hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800 !font-bold !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
-  >
-    tableau de bord
-  </Button>
+<Button 
+variant="text"
+
+
+ className={` !normal-case !text-lg hover:bg-gray-100  ${current_page === PAGES.HOME ? '!text-gray-800 F !rounded-lg  ' : '!text-gray-400'}  !cursor-pointer `}
+>
+  tableau de bord
+</Button>
 }
    
     
@@ -74,4 +76,3 @@ export const Header = ({notAuth = false}:Props) => {
   )
 }
 
- 

@@ -1,7 +1,9 @@
+import { ReactNode } from "react"
+import { AbdullahButton, ButtonProps, buttonVariants } from "../buildingBlocks/AbdullahButton"
 
 
 type Item = {
-    properties : string[] ,
+    properties : Array<string| ReactNode>
     callback : () => void 
 }
 
@@ -41,20 +43,29 @@ export const AbdullahTable = ({title , descripton , headers , body , showHeaders
         <tbody>
             {body?.map((current , index) => (
 
-            <tr key={current.properties[0]  } className="bg-white border-b ">
+            <tr key={ index + 999 } className="bg-white border-b ">
                 {current.properties.map(item => (
-                <th key={item + `${index}`} scope="row" className={`px-6 py-4 font-medium text-gray-900 ${wrap ? "" : " whitespace-nowrap " }`}>
+                <th key={index + 45679684623} scope="row" className={`px-6 py-4 font-medium text-gray-900 ${wrap ? "" : " whitespace-nowrap " }`}>
                    {item}
                 </th>
                 ))}
               {Action &&   <td className={`px-6 py-4 text-right`}>
-                    <button onClick={current.callback} className="font-medium text-blue-600 hover:underline">Edit</button>
+                    <button onClick={current.callback} className="font-medium text-blue-600 hover:underline">delete</button>
                 </td>}
             </tr>
             ))}
            
         </tbody>
     </table>
+    <div className="bg-white  my-2 col-span-6  text-right ">
+    <AbdullahButton
+           className={buttonVariants({size :'sm' , variant :"outline"})}  
+      >
+        add new item
+    </AbdullahButton>
+         
+        </div>
+
 </div>
 
   )

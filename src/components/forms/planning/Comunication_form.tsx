@@ -16,7 +16,7 @@ export const Comunication_form = () => {
   return (
     <FormContainer>
       <FormHead text="👉 manage your comunications" />
-      <Form  onSubmit={(e) => console.log(e)}>
+      <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
         <div className="col-span-6 ">
@@ -44,7 +44,7 @@ export const Comunication_form = () => {
           <div className="bg-white px-4 my-1 col-span-6  text-right ">
         <AbdullahButton  
             onClick={() => console.log("hi there")}
-            text='book new meeting'
+          
             title='save the changes '
             className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
              />
@@ -71,7 +71,7 @@ export const Comunication_form = () => {
           <div className="bg-white px-4 my-1 col-span-6  text-right ">
         <AbdullahButton  
             onClick={() => console.log("hi there")}
-            text='book new meeting'
+          
             title='save the changes '
             className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
              />

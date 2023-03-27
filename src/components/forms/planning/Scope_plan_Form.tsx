@@ -16,7 +16,7 @@ export const Scope_plan_Form = () => {
     <FormContainer>
       <FormHead text="👉 build the project managment scope" />
       
-      <Form  onSubmit={(e) => console.log(e)}>
+      <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
         

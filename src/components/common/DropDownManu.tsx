@@ -15,7 +15,7 @@ import Cookies from 'js-cookie';
 export default function DropDowsMenu() {
   //initializes hooks
    const router = useRouter()
-  const {email  , name} = userReducer()
+  const {email  } = userReducer()
  
   const handleLogout = () => {
     Cookies.remove("abdullah-access-token")
@@ -43,8 +43,8 @@ export default function DropDowsMenu() {
           <div className="px-1 py-1  z-[100] ">
           <Menu.Item>
               {({ active }) => (
-                <div className='w-full h-[90px] flex flex-col justify-center p-4 gap-y-1 '>
-                  <h1 className='text-lg text-gray-900 truncate'>{name} </h1>
+                <div className='w-full h-[45px] flex flex-col justify-center p-4 gap-y-1 '>
+                 
                   <h3 className='truncate text-md text-gray-600 '>{email}</h3>
                 </div>
               )}

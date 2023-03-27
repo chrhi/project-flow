@@ -26,7 +26,7 @@ const Page: NextPage = () => {
        <Sidebar />
        <FormContainer>
       <FormHead text="👉 manage your cost" />
-      <Form  onSubmit={(e) => console.log(e)}>
+      <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
        <div className="col-span-6">
@@ -65,11 +65,11 @@ const Page: NextPage = () => {
           <div className="bg-white  my-1 col-span-6  flex items-center justify-between  text-right ">
             <h3 className="text-gray-900 text-md ml-4 text-start">add something to this table</h3>
             <AbdullahButton  
-              icon
-              muiIcon={<AddIcon />}
+            
+             
               onClick={() => console.log("hi there")}
-              text='add row'
-              title='save the changes '
+            
+             
               className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
              />
         </div>
@@ -110,11 +110,10 @@ const Page: NextPage = () => {
           <div className="bg-white  my-1 col-span-6  flex items-center justify-between  text-right ">
             <h3 className="text-gray-900 text-md ml-4 text-start">add something to this table</h3>
             <AbdullahButton  
-              icon
-              muiIcon={<AddIcon />}
+              
+              
               onClick={() => console.log("hi there")}
-              text='add row'
-              title='save the changes '
+             
               className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
              />
         </div>
@@ -155,11 +154,10 @@ const Page: NextPage = () => {
           <div className="bg-white  my-1 col-span-6  flex items-center justify-between  text-right ">
             <h3 className="text-gray-900 text-md ml-4 text-start">add something to this table</h3>
             <AbdullahButton  
-              icon
-              muiIcon={<AddIcon />}
+          
+           
               onClick={() => console.log("hi there")}
-              text='add row'
-              title='save the changes '
+             
               className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
              />
         </div>

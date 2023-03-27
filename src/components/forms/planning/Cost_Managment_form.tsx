@@ -15,7 +15,7 @@ export const Cost_Managment_form = () => {
   return (
     <FormContainer>
       <FormHead text="👉 manage your cost" />
-      <Form  onSubmit={(e) => console.log(e)}>
+      <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
         

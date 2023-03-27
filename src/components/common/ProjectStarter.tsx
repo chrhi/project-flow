@@ -1,33 +1,85 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Container } from '../ui/used/Container'
 import Image from 'next/image'
 import React from 'react'
-import start from "~/assets/start.png"
+import start from "~/assets/Time management-amico.png"
 import { Input } from '../ui/used/Input'
-import { AbdullahButton } from '../ui/buildingBlocks/AbdullahButton'
+import { AbdullahButton, buttonVariants } from '../ui/buildingBlocks/AbdullahButton'
+import { Heading } from '../ui/typography/Heading'
+import { useState } from 'react'
+import { api } from '~/utils/api'
+import { toast } from 'react-toastify'
+import { userReducer } from "~/store/userReducer";
+import {v4 as uuidV4} from "uuid"
 
-export const ProjectStarter = () => {
+
+
+type Props ={
+  refetch : () => Promise<any>
+}
+
+export const ProjectStarter = ({refetch} : Props) => {
+
+  const user_current_id = userReducer(state => state.id)
+  const set_project_id = userReducer(state => state.set_project_id)
+
+  const {mutate , isLoading} = api.ProjectRouter.createProject.useMutation({
+    onSuccess : async ({project_id}) => {
+      toast(" the project started successfully ",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+       set_project_id({project_id})
+      await  refetch()
+    },
+    onError : () => {
+      toast(" error starting the project",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+    }
+  })
+
+  const [data , setData ] = useState<string>("")
+
+  const handleClick =  () => {
+
+    const id:string  = uuidV4()
+    mutate({
+      id,
+      user_id : user_current_id
+    })
+  }
+
+
+
+
   return (
     <Container className='flex '>
         <div className='w-[45%] h-full flex items-center justify-center '>
             <Image  alt='project starter' src={start}  />
         </div>
         <div className='w-[50%] h-full flex flex-col pt-20 '>
-            <h1 className='text-3xl font-semibold text-gray-900 text-start'>lance votre projet </h1>
-            <p className='text-lg  text-gray-400 text-start'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui at consequuntur illo explicabo laboriosam doloribus eaque assumenda aliquam cum dicta eveniet dolorum placeat, quos, odio, adipisci quaerat sunt sapiente perferendis.</p>
-            <div className='w-[70%] h-[300px]  gap-y-4 my-4 flex flex-col '>
-                <Input  
-                    lable='titre de projet'
-                    value={""}
-                    onChange={() => console.log("hi")}
-                    lableClassName='text-xl font-bold text-gray-900'
-                />
+            
+            <Heading >lance votre projet </Heading>
+          
+            <div className='w-[70%] h-[300px]  gap-y-4 my-20 flex flex-col '>
+               
+             <Input
+              lable='the title of your project'
+              onChange={(e) =>setData(e.target.value)}
+              value={data}
+             
+
+             />
                <div className=''>
-               <AbdullahButton  
-                    className='!bg-orange-500 !text-white  !rounded-lg  '
-                    onClick={() => console.log("hi")}
-                    text='lance ma projet'
-                    title='click ici pour lance vote projet'
-                 />
+             <AbdullahButton
+             onClick={handleClick}
+             isLoading={isLoading}
+             className={buttonVariants({variant:"default" , size:"lg"})}
+             >
+              start my project
+             </AbdullahButton>
                </div>
             </div>
 

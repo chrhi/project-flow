@@ -1,19 +1,26 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { type NextPage } from "next";
-import {  FormEvent, useRef , useState } from "react";
+import {  FormEvent , useState } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { Header } from "~/components/common/Header";
 import { api } from "~/utils/api";
 import Cookies from 'js-cookie'
-import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
+import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
+import { userReducer } from "~/store/userReducer";
+import { useRouter } from "next/router";
 type input = {
   email : string ,
   password : string , 
 }
 
 const Page: NextPage = () => {
+
+  const set_user = userReducer(state => state.set_user)
+
+  const router = useRouter()
 
   const [formData , setFormData] = useState<input>({
     password : "",
@@ -23,7 +30,8 @@ const Page: NextPage = () => {
     onSuccess(data) {
        console.log(data)
       Cookies?.set("abdullah-access-token" , data.jwt)
-      window.location.reload()
+      set_user({email : data.email , id : data.id})
+      router.push("/app")
      
     },
     onError(){
@@ -76,12 +84,14 @@ const Page: NextPage = () => {
         </div>
       
         <AbdullahButton
-          text="Login to your account"
-          className="w-full text-white bg-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-          loading ={mutation.isLoading}
+           className={buttonVariants({size :'lg' , variant :'rukia'})}
+        
+           isLoading ={mutation.isLoading}
           onClick={(e :FormEvent) => handleSubmit(e)}
-
-         />
+      >
+        login to your account
+      </AbdullahButton>
+         
         
       
        

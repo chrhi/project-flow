@@ -81,6 +81,14 @@ class Stakeholders extends BaseModel {
           throw new Error(error.message)
         }
     }
+    //get only one stakholder 
+    public async getOne ({id }:{id : string }){
+        const { data, error } = await this.provider.from('stakeholders').select('*').eq("id" , id)
+        if(error){
+            throw new Error(error.message)
+        }
+        return data
+    }
 }
 
 export const stakeholdersTable = new Stakeholders()

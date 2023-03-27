@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { Header } from "~/components/common/Header";
 import { api } from "~/utils/api";
+import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
 
 type input = {
   email : string ,
@@ -85,12 +86,15 @@ const Page: NextPage = () => {
             type="password" name="Confirmpassword" id="Confirmpassword" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
         </div>
       
-        <button
-         disabled={mutation.isLoading}
-        onClick={(e) => handleSubmit(e)}
-        type="submit" className="w-full text-white bg-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+      
+          <AbdullahButton
+           className={buttonVariants({size :'lg' , variant :'rukia'})}
         
-        >Login to your account</button>
+           isLoading ={mutation.isLoading}
+          onClick={(e :FormEvent) => handleSubmit(e)}
+      >
+        create my account
+      </AbdullahButton>
         <div className="text-sm font-medium text-gray-500 ">
             You have an account ? <Link href="/auth/login" className="text-blue-500 hover:underline ">log in</Link>
         </div>

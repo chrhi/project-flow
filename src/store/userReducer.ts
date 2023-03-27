@@ -1,17 +1,27 @@
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 type Reducer ={
-   name : string , 
+   
    email : string ,
    id: string ,
-   set_email: (input : {name : string , email: string , id: string}) => void 
+   project_id : string ,
+   set_project_id : (input : { project_id : string }) => void ,
+   set_user: (input : { email: string , id: string}) => void 
 }
 
-export const userReducer = create<Reducer>(
-
+export const userReducer = create<Reducer ,[["zustand/persist",unknown]]>(
+    persist(
     (set) => ({
-        name:"",
+      
         email : "",
         id: "",
-        set_email:(input :{name : string , email: string , id: string}) => set({name : input.name , email : input.email , id: input.id}),
+        project_id : "" ,
+        set_project_id : (input :{ project_id: string}) => set({ project_id: input.project_id}) ,
+        set_user:(input :{ email: string , id: string}) => set({  email : input.email , id: input.id}),
     }),
+    {
+        name: 'app-projext-storage-HOME-user-needed-informations', 
+        storage: createJSONStorage(() => sessionStorage)
+      }
+    )
 )

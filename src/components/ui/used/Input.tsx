@@ -24,7 +24,7 @@ export  const Input = ({lable , value , onChange  , lableClassName, ...PropsType
               id={lable + "id"}
               value={value}
           
-              className="mt-1 block  transition  ease-in-out  w-full rounded-md text-gray-900 shadow-sm ring-1  ring-gray-300 placeholder:text-gray-400   focus:ring-blue-500 sm:py-1.5 sm:text-sm sm:leading-6"
+              className="px-4 py-1.5 rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full"
             />
     </div>
   )

@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import platformImage from "~/images/platform.png"
+
 
 import { Navbar } from './Navbar'
 
@@ -66,12 +66,12 @@ export  function Hero() {
               </div>
 
               <div className="w-[40%] h-full  mt-8  ">
-                 <Image
+                 {/* <Image
 
                    className="w-[48rem]  max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]"
                     src={platformImage}
                    alt="hero-image"
-                  />
+                  /> */}
       </div>
             
           
