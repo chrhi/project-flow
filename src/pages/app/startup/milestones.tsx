@@ -66,7 +66,7 @@ const Page: NextPage = () => {
       <main className="   flex w-full bg-gray-50 ">
        <Sidebar />
        <FormContainer>
-      <FormHead text="⭐ défié toutes vos parties prenantes" />
+      <FormHead text="⭐ défié tous tes pas" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">

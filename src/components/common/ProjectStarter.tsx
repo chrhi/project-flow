@@ -55,15 +55,20 @@ export const ProjectStarter = ({refetch} : Props) => {
 
 
   return (
-    <Container className='flex '>
+    <Container className='flex bg-white '>
         <div className='w-[45%] h-full flex items-center justify-center '>
             <Image  alt='project starter' src={start}  />
         </div>
         <div className='w-[50%] h-full flex flex-col pt-20 '>
             
             <Heading >lance votre projet </Heading>
-          
-            <div className='w-[70%] h-[300px]  gap-y-4 my-20 flex flex-col '>
+            <p className='text-start text-sm text-gray-400 mt-4 mb-2'>
+            Se familiariser avec le Guide PMBOK en français : Le Guide PMBOK est un ensemble de lignes directrices et de meilleures pratiques pour la gestion de projet développé par le Project Management Institute (PMI)
+            </p>
+            <p className='text-start text-sm text-gray-400 mb-4'>
+            Vous pouvez trouver la version française du Guide PMBOK sur le site web du PMI. Familiarisez-vous avec le contenu et la structure du guide pour mieux comprendre le processus de gestion de projet.
+            </p>
+            <div className='w-[70%] h-[300px]  gap-y-4 my-4 flex flex-col '>
                
              <Input
               lable='the title of your project'

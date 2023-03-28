@@ -38,16 +38,16 @@ export  const Sidebar = () => {
         </li>
         <li>
           <Button
-          onClick={() => handleClick("/app/startup/setup" , NAVS.SETUP)}
+          onClick={() => handleClick("/app/startup" , NAVS.SETUP)}
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
           ${current_page == NAVS.SETUP ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide truncate">Initiating</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Initier</span>
           </Button>
         </li>
         <li>
           <Button
-          onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
+          onClick={() => handleClick("/app/startup/setup" , NAVS.STARTUP)}
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
           ${current_page == NAVS.STARTUP ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
           
@@ -60,7 +60,7 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
           ${current_page == NAVS.TABLE ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide truncate">Plus d'informations </span>
+            <span className="ml-2 text-sm tracking-wide truncate">Objets du projet </span>
           </Button>
         </li>
         <li>
@@ -69,7 +69,7 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex  !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
             ${current_page == NAVS.SECONDFORM  ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' }`}>
           
-            <span className="ml-2 text-sm tracking-wide  truncate">difine my team</span>
+            <span className="ml-2 text-sm tracking-wide  truncate">Mon équipe</span>
           </Button>
         </li>
         <li>
@@ -78,7 +78,17 @@ export  const Sidebar = () => {
           className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
         
 
-            <span className="ml-2 text-sm tracking-wide truncate">stakeholders</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Parties prenantes</span>
+        
+          </Button>
+        </li>
+        <li>
+          <Button 
+          onClick={() => handleClick("/app/startup/milestones" , NAVS.MILESTONES)}
+          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.MILESTONES ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+        
+
+            <span className="ml-2 text-sm tracking-wide truncate">Jalons</span>
         
           </Button>
         </li>
@@ -88,7 +98,7 @@ export  const Sidebar = () => {
         onClick={() => handleClick("/app/startup/application" , NAVS.APPLICATION) }
         className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.APPLICATION ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
            
-            <span className="ml-2 text-sm tracking-wide truncate">application</span>
+            <span className="ml-2 text-sm tracking-wide truncate">Application</span>
             <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-white bg-red-600 rounded-full">bad</span>
             </Button>
         </li> 

@@ -1,23 +1,70 @@
 import { type NextPage } from "next";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { Header } from "~/components/common/Header";
 import { useState } from "react";
 import { Sidebar } from "~/components/ui/Sidebar";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
-import AddIcon from '@mui/icons-material/Add';
-import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
-import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
+import { PlusButtonTable } from "~/components/ui/plusTable/startup/PlusButtonTable";
+import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
+import { api } from "~/utils/api";
+import { userReducer } from "~/store/userReducer";
+import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
+import { toast } from "react-toastify";
 
+
+type IpiData = {
+  objectifs : string , 
+  type : string ,
+  seccessCriteria :  string , 
+  approval :  string,
+
+  id :  string
+}
 
 const Page: NextPage = () => {
 
-    const onSubmit = (event : FormEvent) => {
-        console.log("form submited")
-    }
-    const [didGetData , setDidGetData] = useState<boolean>(false)
+  const project_id = userReducer(state => state.project_id)
+  const set_loading = loading_Reducer(state => state.set_isLoading)
 
+  const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
+
+    const {refetch , isFetching } = api.tableInfoRouter.getAllInfo.useQuery({project_id} , {
+      onSuccess(data) {
+        setCommingData(data.data as IpiData[])
+      },
+      onError(){
+        toast("failed to fetch the data",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+      },
+    })
+    useEffect(() => {
+      if(isFetching){
+        set_loading(true)
+      }else{
+        set_loading(false)
+      }
+    }, [ isFetching , set_loading])
+
+    const satisfieTable = (type : string) : ItemTable[] => {
+
+
+      const filteredArray  = commingData.filter(item => item.type === type )
+      const array : ItemTable[] =  filteredArray.map(item => (
+        {
+          type : item.type,
+          callback : () => console.log("hi there"),
+          properties : [item.objectifs , item.seccessCriteria , item.approval]
+        } 
+      ))
+    
+     
+      return array
+    }
+ 
   return (
     <>
     
@@ -35,44 +82,10 @@ const Page: NextPage = () => {
           title="Périmètre"
           descripton=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
-          body={[
-            {callback : () => console.log("hi there"),
-            properties : ["Améliorer la Fiabilité par l’automatisation du système de control et le remplacement de tous les instruments obsolète par d’autres de technologie récente " , `- Minimiser le nombre de pannes de 90%.
-            - control des paramètres de fonctionnement des fours en salle de contrôle en temps réel. 
-            - Maitrise accrue des paramètres de process.
-            - Produit à chauffer On-Spec
-            `, `- Directeur Maintenance
-            - Directeur Exploitation
-            - Chef de division Sécurité
-            - Directeur Régional
-            `  ]
-            },
-            {callback : () => console.log("hi there"),
-            properties : ["Améliorer la Fiabilité par l’automatisation du système de control et le remplacement de tous les instruments obsolète par d’autres de technologie récente " , `- Minimiser le nombre de pannes de 90%.
-            - control des paramètres de fonctionnement des fours en salle de contrôle en temps réel. 
-            - Maitrise accrue des paramètres de process.
-            - Produit à chauffer On-Spec
-            `, `- Directeur Maintenance
-            - Directeur Exploitation
-            - Chef de division Sécurité
-            - Directeur Régional
-            `  ]
-            
-            },
-          
-         ]}
+          body={satisfieTable("Périmètre")}
+         PlusButton ={<PlusButtonTable formType="Périmètre" refetch={refetch}/>}
          />
-          <div className="bg-white  my-1 col-span-6  flex items-center justify-between  text-right ">
-            <h3 className="text-gray-900 text-md ml-4 text-start">add something to this table</h3>
-            <AbdullahButton  
-            
-             
-              onClick={() => console.log("hi there")}
-            
-             
-              className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-             />
-        </div>
+       
 
         {/* this is the second table */}
         <AbdullahTable 
@@ -80,43 +93,10 @@ const Page: NextPage = () => {
           title="Echéancier"
           descripton=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
-          body={[
-            {callback : () => console.log("hi there"),
-            properties : ["Améliorer la Fiabilité par l’automatisation du système de control et le remplacement de tous les instruments obsolète par d’autres de technologie récente " , `- Minimiser le nombre de pannes de 90%.
-            - control des paramètres de fonctionnement des fours en salle de contrôle en temps réel. 
-            - Maitrise accrue des paramètres de process.
-            - Produit à chauffer On-Spec
-            `, `- Directeur Maintenance
-            - Directeur Exploitation
-            - Chef de division Sécurité
-            - Directeur Régional
-            `  ]
-            },
-            {callback : () => console.log("hi there"),
-            properties : ["Améliorer la Fiabilité par l’automatisation du système de control et le remplacement de tous les instruments obsolète par d’autres de technologie récente " , `- Minimiser le nombre de pannes de 90%.
-            - control des paramètres de fonctionnement des fours en salle de contrôle en temps réel. 
-            - Maitrise accrue des paramètres de process.
-            - Produit à chauffer On-Spec
-            `, `- Directeur Maintenance
-            - Directeur Exploitation
-            - Chef de division Sécurité
-            - Directeur Régional
-            `  ]
-            
-            },
-          
-         ]}
+          body={satisfieTable("Echéancier")}
+         PlusButton ={<PlusButtonTable formType="Echéancier" refetch={refetch}/>}
          />
-          <div className="bg-white  my-1 col-span-6  flex items-center justify-between  text-right ">
-            <h3 className="text-gray-900 text-md ml-4 text-start">add something to this table</h3>
-            <AbdullahButton  
-              
-              
-              onClick={() => console.log("hi there")}
-             
-              className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-             />
-        </div>
+        
 
         {/* and this is hte other table */}
         <AbdullahTable 
@@ -124,66 +104,14 @@ const Page: NextPage = () => {
           title="Coût"
           descripton=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
-          body={[
-            {callback : () => console.log("hi there"),
-            properties : ["Améliorer la Fiabilité par l’automatisation du système de control et le remplacement de tous les instruments obsolète par d’autres de technologie récente " , `- Minimiser le nombre de pannes de 90%.
-            - control des paramètres de fonctionnement des fours en salle de contrôle en temps réel. 
-            - Maitrise accrue des paramètres de process.
-            - Produit à chauffer On-Spec
-            `, `- Directeur Maintenance
-            - Directeur Exploitation
-            - Chef de division Sécurité
-            - Directeur Régional
-            `  ]
-            },
-            {callback : () => console.log("hi there"),
-            properties : ["Améliorer la Fiabilité par l’automatisation du système de control et le remplacement de tous les instruments obsolète par d’autres de technologie récente " , `- Minimiser le nombre de pannes de 90%.
-            - control des paramètres de fonctionnement des fours en salle de contrôle en temps réel. 
-            - Maitrise accrue des paramètres de process.
-            - Produit à chauffer On-Spec
-            `, `- Directeur Maintenance
-            - Directeur Exploitation
-            - Chef de division Sécurité
-            - Directeur Régional
-            `  ]
-            
-            },
-          
-         ]}
+          body={satisfieTable("Coût")}
+         PlusButton ={<PlusButtonTable formType="Coût" refetch={refetch}/>}
          />
-          <div className="bg-white  my-1 col-span-6  flex items-center justify-between  text-right ">
-            <h3 className="text-gray-900 text-md ml-4 text-start">add something to this table</h3>
-            <AbdullahButton  
-          
-           
-              onClick={() => console.log("hi there")}
-             
-              className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-             />
-        </div>
+        
        </div>
         </div>
       </div>
-      <div className="bg-white px-4 py-3 text-right sm:px-6">
-        {
-          didGetData ?
-           <button
-        //    onClick={ (e : FormEvent) => habdleUpdate(e)}
-           type="submit"
-           className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-           >
-            mise à jour
-          </button> 
-          :
-          <button
-          type="submit"
-       
-          className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-        >
-         enregistrer & continuer
-        </button>
-        }
-       </div>
+     
        </Form>
   </FormContainer>
       </main>

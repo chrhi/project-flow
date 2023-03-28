@@ -8,7 +8,8 @@ export enum NAVS {
     SECONDFORM,
     APPLICATION,
     SETUP,
-    TABLE
+    TABLE,
+    MILESTONES
 }
 
 
@@ -21,7 +22,7 @@ export const sidebar_Reducer = create<Reducer ,[["zustand/persist",unknown]]>(
   persist(
     (set) => ({
       
-      current_page: NAVS.STARTUP,
+      current_page: NAVS.SETUP,
       set_current_page:(input :{ payload:NAVS}) => set({current_page : input.payload}),
       
     }),

@@ -2,7 +2,7 @@ import { ReactNode } from "react"
 import { AbdullahButton, ButtonProps, buttonVariants } from "../buildingBlocks/AbdullahButton"
 
 
-type Item = {
+export type ItemTable = {
     properties : Array<string| ReactNode>
     callback : () => void 
 }
@@ -11,15 +11,16 @@ type Props ={
     title : string , 
     descripton : string , 
     headers : string[],
-    body : Item[] ,
+    body : ItemTable[] ,
     showHeaders? : boolean,
     Action? : boolean,
-    wrap? : boolean
+    wrap? : boolean ,
+    PlusButton? : ReactNode
 
 }
 
 
-export const AbdullahTable = ({title , descripton , headers , body , showHeaders = true ,wrap = true, Action = true}: Props) => {
+export const AbdullahTable = ({title , descripton , headers , body , showHeaders = true ,wrap = true,PlusButton , Action = true}: Props) => {
   return (
     
 <div className="relative overflow-x-auto  sm:rounded-lg  ">
@@ -58,12 +59,8 @@ export const AbdullahTable = ({title , descripton , headers , body , showHeaders
         </tbody>
     </table>
     <div className="bg-white  my-2 col-span-6  text-right ">
-    <AbdullahButton
-           className={buttonVariants({size :'sm' , variant :"outline"})}  
-      >
-        add new item
-    </AbdullahButton>
-         
+    {PlusButton && PlusButton}
+          
         </div>
 
 </div>

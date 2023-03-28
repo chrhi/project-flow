@@ -26,8 +26,11 @@ class Stakeholders extends BaseModel {
         id : string 
         
         ){
-        const {  error } = await this.provider.from('stakeholders').insert([ 
-             {id , name ,email , phone , role , note , levelOfInvolvement,communicationNeeds , communicationMethod , timing , pendingChanges , relationships , stakeholderEngagementApproach, project_id }])
+            const { error } = await this.provider
+            .from('stakeholders')
+            .insert([
+              { id , name , email , phone , role , note , levelOfInvolvement , communicationMethod : communicationMethod , communicationNeeds , timing ,   pendingChanges : pendingChanges , relationships , stakeholderEngagementApproach , project_id},
+            ])
   
        if(error){
           throw new Error(error.message)
