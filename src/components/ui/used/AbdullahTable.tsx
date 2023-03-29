@@ -1,9 +1,9 @@
 import { ReactNode } from "react"
-import { AbdullahButton, ButtonProps, buttonVariants } from "../buildingBlocks/AbdullahButton"
+
 
 
 export type ItemTable = {
-    properties : Array<string| ReactNode>
+    properties : Array<string | ReactNode | any>
     callback : () => void 
 }
 

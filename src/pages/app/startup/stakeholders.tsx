@@ -9,7 +9,6 @@ import { FormHead } from "~/components/ui/used/FormHead";
 import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
 import { StakeHolder } from "~/components/ui/popup/StakeHolder";
 import { PLusButtonStakHolder } from "~/components/ui/plusTable/startup/PLusButtonStakHolder";
-import { userReducer } from "~/store/userReducer";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
@@ -21,7 +20,7 @@ type IpiData = {
 }
 const Page: NextPage = () => {
 
-  const project_id = userReducer(state => state.project_id)
+
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
@@ -52,7 +51,7 @@ const Page: NextPage = () => {
         {
          
           callback : () => console.log("hi there"),
-          properties : [<StakeHolder  key={"chehri abdullah"} text={item.name} />  , item.role ]
+          properties : [<StakeHolder id ={item.id}  key={"chehri abdullah"} text={item.name} />  , item.role ]
         } 
       ))
     

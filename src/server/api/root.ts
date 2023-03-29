@@ -8,6 +8,7 @@ import { teamRouter } from "./routers/startup/team";
 import { tableInfoRouter } from "./routers/startup/tableInfo";
 import { documentRouter } from "./routers/startup/document";
 import { CreatePdf } from "./routers/startup/createPdf";
+import { MilestonesRouter } from "./routers/startup/milestones";
 
 export const appRouter = createTRPCRouter({
   userRouter : userManagment ,
@@ -18,7 +19,8 @@ export const appRouter = createTRPCRouter({
   teamRouter,
   tableInfoRouter,
   documentRouter,
-  CreatePdf
+  CreatePdf,
+  MilestonesRouter
 
 
 });

@@ -8,8 +8,10 @@ import { TextField } from '../../used/TextField'
 import { AbdullahButton, buttonVariants } from '../../buildingBlocks/AbdullahButton'
 import { toast } from 'react-toastify'
 import {v4 as uuidV4} from "uuid"
+import { userReducer } from '~/store/userReducer'
 import { Input } from '../../used/Input'
 import { getProjectMetaData } from '~/lib/MetaData'
+import { TimePicker } from '../../TimePicker'
 type Props = {
   
   refetch : () => Promise<any>
@@ -17,23 +19,21 @@ type Props = {
 
 type inputs = {
  name : string ,
- role : string
-  
-  id :  string
+
 }
 
 
 
-export  function PLusButtonStakHolder ({ refetch} : Props) {
+export  function MileStonePlusButton ({ refetch} : Props) {
 
 
-
+ 
     const [isOpen, setIsOpen] = useState(false)
-
+    const [start_at, setStart_at] = useState<Date>(new Date())
+    const [end_at, setEnd_at] = useState<Date>(new Date())
     const [formData , setFormData] = useState<inputs>({
       name : "" ,
-      role : "" ,
-      id :  ""
+     
     })
      
     function openModal() {
@@ -43,10 +43,10 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
       setIsOpen(false)
     }
     
-    const mutation = api.stakHolderRouter.createStackholder.useMutation({
+    const mutation = api.MilestonesRouter.createMileStone.useMutation({
       onSuccess: async () => {
         closeModal()
-        toast("new stack holder added ",{
+        toast("new milestone was added ",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
@@ -63,7 +63,7 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
     })
 
     const handleSubmit = () => {
-      if(!formData.name || !formData.role ){
+      if(!formData.name  ){
         toast("all the fields are required",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
@@ -73,19 +73,9 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
       mutation.mutate({
         id ,
         project_id : getProjectMetaData(),
-        
-        communicationNeeds : "how can we",
-        email : "how can we",
-        levelOfInvolvement : "how can we",
-        note : "how can we",
-        pendingChanges : "how can we",
-        phone : 98765,
-        relationships : "how can we",
-        stakeholderEngagementApproach : "how can we",
-        timing : "how can we",
-        name : formData.name ,
-        role : formData.role ,
-        communicationMethod : "how can we",
+        name : formData.name,
+        start_at : start_at ,
+        ends_at :  end_at
         
       })
     }
@@ -159,16 +149,13 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 gap-6">
             <Input
-              lable='Nom'
+              lable='pick a string name'
               value={formData.name}
               onChange={(e) => setFormData({...formData , name : e.target.value})}
             />
-              <TextField
-              lable='ROLE / RESPONSABILITY'
-              value={formData.role}
-              onChange={(e) => setFormData({...formData , role : e.target.value})}
-            />
-             
+         <div className='col-span-6 '>
+         <TimePicker  endDate={end_at} setEndDate={setEnd_at} setStartDate={setStart_at} startDate={start_at} />
+         </div>
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}

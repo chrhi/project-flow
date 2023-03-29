@@ -4,14 +4,42 @@ import { AbdullahButton, buttonVariants } from '../buildingBlocks/AbdullahButton
 import Image from "next/image"
 import logo from "~/assets/logo.png"
 import { IconButton  , Button} from '@mui/material'
-
+import { api } from '~/utils/api'
+import { Loader2 } from 'lucide-react';
 
 interface Props {
-    text : string 
+    text : string ,
+    id : string 
 }
 
-export  function StakeHolder ({text} : Props) {
+interface stakholder {
+  name : string,
+  email :  string  ,
+  phone :  string ,
+  role : string,
+  note :  string  ,
+  levelOfInvolvement : string,
+  communicationNeeds :  string  ,
+  communicationMethod :  string,
+  timing :   string ,
+  pendingChanges  :  string[]  ,
+  relationships :   string[]  ,
+  stakeholderEngagementApproach :  string [],
+}
+
+export  function StakeHolder ({text , id} : Props) {
   const [isOpen, setIsOpen] = useState(false)
+
+  const [stakholder , setStackHolder] = useState<stakholder>({} as stakholder)
+
+  const {refetch , isFetching } = api.stakHolderRouter.getOnlyOneStackHolder.useQuery({id} , {
+    onSuccess(data: stakholder) {
+      setStackHolder(data )
+    },
+    onError(error: any){
+    console.log(error)
+    },
+  })
 
   function closeModal() {
     setIsOpen(false)
@@ -76,7 +104,21 @@ export  function StakeHolder ({text} : Props) {
                    </IconButton>
                 </div>
                  </div>
-
+                 {
+                  isFetching ? 
+                <h1 className='text-xl text-stone-900'>loading...</h1>
+                  :
+                  <div className='container mx-auto h-full flex flex-col pl-4 '>
+                <h1 className='text-3xl font-bold text-slate-900 text-start my-2'>{stakholder.name}</h1>
+                <h2 className='text-2xl font-semibold text-slate-800 my-2'>Role</h2>
+                <p>{stakholder.role}</p>
+                <h2 className='text-2xl font-semibold text-slate-800 my-2'>contact info : </h2>
+                  <p>email : {stakholder.email}</p>
+                  <p> phone :{ stakholder.phone}</p>
+                 
+               </div>
+                 }
+                
 
 
 

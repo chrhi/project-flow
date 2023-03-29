@@ -7,41 +7,45 @@ import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
-import { StakeHolder } from "~/components/ui/popup/StakeHolder";
 import { PLusButtonStakHolder } from "~/components/ui/plusTable/startup/PLusButtonStakHolder";
-import { userReducer } from "~/store/userReducer";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { AlgeriaformatDate } from "~/utils/formate/AlgeriaFormate";
+import { MileStonePlusButton } from "~/components/ui/plusTable/startup/MileStonePlusButton";
 
 type IpiData = {
   name : string , 
-  role : string ,
-  id :  string
+  id :  string,
+  start_at : Date ,
+  ends_at : Date
 }
 const Page: NextPage = () => {
 
-  const project_id = userReducer(state => state.project_id)
+  
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
 
-    const {refetch , isFetching } = api.stakHolderRouter.getAllStackHolders.useQuery({project_id} , {
+    const {refetch , isFetching } = api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()} , {
       onSuccess(data) {
         setCommingData(data as IpiData[])
+        console.log(data)
+        set_loading(false)
+        console.log(getProjectMetaData())
       },
       onError(){
         toast("failed to fetch the data",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
+         set_loading(false)
       },
     })
     useEffect(() => {
       if(isFetching){
         set_loading(true)
-      }else{
-        set_loading(false)
       }
     }, [ isFetching , set_loading])
 
@@ -51,7 +55,7 @@ const Page: NextPage = () => {
         {
          
           callback : () => console.log("hi there"),
-          properties : [<StakeHolder  key={"chehri abdullah"} text={item.name} />  , item.role ]
+          properties : [item.name  ,item.start_at]
         } 
       ))
     
@@ -75,9 +79,9 @@ const Page: NextPage = () => {
         <AbdullahTable
             title="parties prenantes"
             descripton="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
-            headers={["name" , "role / responsability"]}
+            headers={["PRINCIPAUX JALONS " , "DATES"]}
             body={satisfyTable()}
-            PlusButton={<PLusButtonStakHolder refetch={refetch} />}
+            PlusButton={<MileStonePlusButton refetch={refetch} />}
 
          />
             </div>
