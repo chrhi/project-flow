@@ -13,7 +13,7 @@ class Document extends BaseModel {
         status : boolean ,
         public_url : string ,
         project_id : string ,
-        id : string 
+        id : number 
         
         ){
         const {  error } = await this.provider.from('document').insert([  {id , name , public_url , status , project_id }])
@@ -38,7 +38,7 @@ class Document extends BaseModel {
         status : boolean ,
         public_url : string ,
         
-        id : string 
+        id : number 
         
         ){
         const {  error } = await this.provider.from('document').update([  { name , public_url , status  }]).eq("id" , id)
@@ -50,7 +50,7 @@ class Document extends BaseModel {
      // this method will delete the document status
      public async delete (
 
-        id : string        
+        id : number        
         ){
         const {  error } = await this.provider.from('document').delete().eq("id" , id)
   

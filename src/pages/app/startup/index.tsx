@@ -16,6 +16,7 @@ import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
+import { getProjectMetaData } from "~/lib/MetaData";
 
 interface inputSchema {
   
@@ -57,7 +58,7 @@ const Page: NextPage = () => {
     estimatedBudget : 0
   })
   const [didGetData , setDidGetData] = useState<boolean>(false)
-  const {isFetching , refetch} = api.inisiatorRouter.getprojectStartUp.useQuery({project_id} , {
+  const {isFetching , refetch} = api.inisiatorRouter.getprojectStartUp.useQuery({project_id : getProjectMetaData()} , {
     onSuccess(data) {
       if(data.title && data.sponsor && data.projectManager){
         setDidGetData(true)

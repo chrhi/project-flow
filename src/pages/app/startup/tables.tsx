@@ -12,7 +12,7 @@ import { api } from "~/utils/api";
 import { userReducer } from "~/store/userReducer";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { toast } from "react-toastify";
-
+import { getProjectMetaData } from "~/lib/MetaData";
 
 type IpiData = {
   objectifs : string , 
@@ -30,7 +30,7 @@ const Page: NextPage = () => {
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
 
-    const {refetch , isFetching } = api.tableInfoRouter.getAllInfo.useQuery({project_id} , {
+    const {refetch , isFetching } = api.tableInfoRouter.getAllInfo.useQuery({project_id : getProjectMetaData()} , {
       onSuccess(data) {
         setCommingData(data.data as IpiData[])
       },

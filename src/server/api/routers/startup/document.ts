@@ -5,14 +5,14 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { documentTable } from "~/server/model/Document";
 
-export const inisiatorRouter = createTRPCRouter({
+export const documentRouter = createTRPCRouter({
 createNewDocument: publicProcedure
     .input(z.object({ 
         name : z.string() ,
         status : z.boolean(),
         public_url :  z.string() ,
         project_id :  z.string() ,
-        id :  z.string()
+        id :  z.number()
 
      }))
     .mutation(async ({ input }) => {
@@ -33,7 +33,7 @@ createNewDocument: publicProcedure
         status : z.boolean(),
         public_url :  z.string() ,
        
-        id :  z.string()
+        id :  z.number()
         
  
       }))
@@ -54,6 +54,7 @@ getDocuments : publicProcedure .input(z.object({project_id : z.string()}))
      .query(async ({input}) => {
          const data = await documentTable.get(input.project_id).catch(error => { 
             throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
+            console.log(data)
             return {
      
          name : data[0]?.name ,
@@ -64,7 +65,7 @@ getDocuments : publicProcedure .input(z.object({project_id : z.string()}))
             }
 }),
 
-deleteDocument : publicProcedure .input(z.object({id : z.string()}))
+deleteDocument : publicProcedure .input(z.object({id : z.number()}))
 .mutation(async ({input}) => {
    await documentTable.delete(input.id).catch(error => { 
         throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})

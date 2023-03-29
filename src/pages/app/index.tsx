@@ -12,12 +12,13 @@ import planning from "~/assets/Office management-rafiki.png"
 import executing from "~/assets/horse jumping-cuate.png"
 import controlling from "~/assets/Control Panel-rafiki.png"
 import closing from "~/assets/Coronavirus Border Closure-amico.png"
+import { getUserMetadata } from "~/lib/MetaData";
 const Page: NextPage = () => {
 
   const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
-  const user_current_id = userReducer(state => state.id)
+
   const set_isLoading = loading_Reducer(state => state.set_isLoadingFully)
-  const {refetch , isFetching} = api.ProjectRouter.getProjectStatus.useQuery({user_id : user_current_id} , {
+  const {refetch , isFetching} = api.ProjectRouter.getProjectStatus.useQuery({user_id : getUserMetadata() } , {
     onSuccess : (data) => {
         if(data.project_id){
           setHasProjectStart(true)

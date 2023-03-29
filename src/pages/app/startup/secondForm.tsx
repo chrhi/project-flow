@@ -12,7 +12,7 @@ import { userReducer } from "~/store/userReducer";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-
+import { getProjectMetaData } from "~/lib/MetaData";
 
 type IpiData = {
   name : string , 
@@ -26,7 +26,7 @@ const Page: NextPage = () => {
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
 
-    const {refetch , isFetching } = api.teamRouter.getAllTeamMumbers.useQuery({project_id} , {
+    const {refetch , isFetching } = api.teamRouter.getAllTeamMumbers.useQuery({project_id : getProjectMetaData()} , {
       onSuccess(data) {
         setCommingData(data as IpiData[])
       },

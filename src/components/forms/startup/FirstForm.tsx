@@ -10,6 +10,7 @@ import { userReducer } from "~/store/userReducer";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
+import { getProjectMetaData } from "~/lib/MetaData";
 interface inputSchema {
   projectObjectOpportunity : string ,
   projectDescription : string ,
@@ -31,7 +32,7 @@ export const FirstForm = () => {
  
   })
   const [didGetData , setDidGetData] = useState<boolean>(false)
-  const {isFetching , refetch} = api.ProjectDetailsRouter.getProjectDetails.useQuery({project_id} , {
+  const {isFetching , refetch} = api.ProjectDetailsRouter.getProjectDetails.useQuery({project_id : getProjectMetaData()} , {
     onSuccess(data) {
       if(data.projectObjectOpportunity || data.projectDescription || data.highLevelRequirement || data.hightLevelRisks){
         setDidGetData(true)

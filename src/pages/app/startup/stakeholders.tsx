@@ -13,7 +13,7 @@ import { userReducer } from "~/store/userReducer";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
-
+import { getProjectMetaData } from "~/lib/MetaData";
 type IpiData = {
   name : string , 
   role : string ,
@@ -26,7 +26,7 @@ const Page: NextPage = () => {
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
 
-    const {refetch , isFetching } = api.stakHolderRouter.getAllStackHolders.useQuery({project_id} , {
+    const {refetch , isFetching } = api.stakHolderRouter.getAllStackHolders.useQuery({project_id : getProjectMetaData()} , {
       onSuccess(data) {
         setCommingData(data as IpiData[])
       },
@@ -35,6 +35,7 @@ const Page: NextPage = () => {
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
+         set_loading(false)
       },
     })
     useEffect(() => {

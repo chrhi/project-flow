@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { type NextPage } from "next";
 import {  FormEvent, useRef , useState } from "react";
 import { toast } from "react-toastify";
@@ -5,7 +6,7 @@ import Link from "next/link";
 import { Header } from "~/components/common/Header";
 import { api } from "~/utils/api";
 import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
-
+import { useRouter } from "next/router";
 type input = {
   email : string ,
   password : string , 
@@ -13,7 +14,7 @@ type input = {
 }
 
 const Page: NextPage = () => {
-
+  const router = useRouter()
   const [formData , setFormData] = useState<input>({
     password : "",
     email : "",
@@ -26,6 +27,7 @@ const Page: NextPage = () => {
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
        })
+       router.push("/auth/login")
     },
     onError(){
       toast("some thing went wrong",{
@@ -56,13 +58,14 @@ const Page: NextPage = () => {
       email : formData.email ,
       password : formData.password
     })
+
   }
 
   return (
     <>
      
       <Header  notAuth/>
-      <main className=" w-full custom-hieght-navbar bg-gray-100 flex justify-center items-center  ">
+      <main className=" w-full custom-hieght-navbar bg-gray-50 flex justify-center items-center  ">
         
       <div className="w-[50%] max-w-sm p-4 bg-white border shadow-xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form className="space-y-6" action="#">

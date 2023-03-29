@@ -11,6 +11,7 @@ import Cookies from 'js-cookie'
 import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
 import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
+import { storeUserMetadata } from "~/lib/MetaData";
 type input = {
   email : string ,
   password : string , 
@@ -31,6 +32,7 @@ const Page: NextPage = () => {
        console.log(data)
       Cookies?.set("abdullah-access-token" , data.jwt)
       set_user({email : data.email , id : data.id})
+      storeUserMetadata({user_id : data.id})
       router.push("/app")
      
     },
@@ -65,7 +67,7 @@ const Page: NextPage = () => {
     <>
     
       <Header  notAuth/>
-      <main className=" w-full custom-hieght-navbar bg-gray-100 flex justify-center items-center  ">
+      <main className=" w-full custom-hieght-navbar bg-gray-50 flex justify-center items-center  ">
         
       <div className="w-[50%] max-w-sm p-4 bg-white border shadow-xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form className="space-y-6" action="#">

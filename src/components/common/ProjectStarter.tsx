@@ -11,6 +11,7 @@ import { api } from '~/utils/api'
 import { toast } from 'react-toastify'
 import { userReducer } from "~/store/userReducer";
 import {v4 as uuidV4} from "uuid"
+import { setoreProjectMetaData } from '~/lib/MetaData'
 
 
 
@@ -30,6 +31,7 @@ export const ProjectStarter = ({refetch} : Props) => {
         hideProgressBar: true,
        })
        set_project_id({project_id})
+       setoreProjectMetaData({project_id })
       await  refetch()
     },
     onError : () => {
