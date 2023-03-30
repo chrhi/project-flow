@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-import Head from "next/head";
 import { Header } from "~/components/common/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import { Scope_plan_Form } from "~/components/forms/planning/Scope_plan_Form";

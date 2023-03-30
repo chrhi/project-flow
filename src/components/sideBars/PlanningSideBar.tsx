@@ -116,11 +116,11 @@ export  const PlanningSideBar = () => {
         </li>
         <li>
         <Button
-        onClick={() => handleClick("/app/planning/risk_management_plan" , NAVS.TEN) }
+        onClick={() => handleClick("/app/planning/application" , NAVS.TEN) }
         className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.TEN ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
            
             <span className="ml-2 text-sm tracking-wide truncate">application</span>
-            <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-white bg-red-600 rounded-full">bad</span>
+
             </Button>
         </li> 
       </ul>
