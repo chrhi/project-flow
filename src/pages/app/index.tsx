@@ -48,7 +48,7 @@ useEffect(() => {
   return (
     <>
       
-      <main className=" min-h-screen w-full bg-white ">
+      <main className=" min-h-screen w-full bg-gray-50 ">
            <Header />
           {
             
