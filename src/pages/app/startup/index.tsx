@@ -171,7 +171,7 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
        <Sidebar />
-       <FormContainer>
+       <FormContainer className ="ml-[30rem]">
       <FormHead text="👉 manage your cost" />
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">

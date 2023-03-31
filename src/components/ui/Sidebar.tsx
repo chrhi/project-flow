@@ -16,26 +16,20 @@ export  const Sidebar = () => {
   return (
    
 
-  <div className="fixed flex flex-col top-0 left-0 w-[16rem] bg-white custopn-page-height mt-[55px] shadow-lg border-r border-gray-[100px]">
-    <div className="flex items-center justify-start h-14  ">
+  <div className="fixed flex flex-col top-[70px] left-[20px] w-[30rem] bg-gray-50 custopn-page-height mt-[55px] rounded-lg border-gray-[100px]">
+    <div className="flex items-center justify-start h-14 w-[70%] mx-auto bg-white  ">
         <Button
         onClick={() => handleClick("/app" , NAVS.STARTUP)}
         
         className="!relative !w-full !flex !flex-row  !normal-case  !items-center !text-gray-600 !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 !justify-start">
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-               <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-           </svg>
+        
 
-            <span className="ml-2 text-sm tracking-wide truncate">retourner</span>
+            <span className="ml-2 text-sm tracking-wide truncate">all my links</span>
       </Button>
     </div>
-    <div className="overflow-y-auto overflow-x-hidden flex-grow">
+    <div className="overflow-y-auto overflow-x-hidden flex-grow  w-[70%] mx-auto bg-white">
       <ul className="flex flex-col py-4 space-y-1">
-        <li className="px-5">
-          <div className="flex flex-row items-center h-8">
-            <div className="text-sm font-light tracking-wide text-gray-500">Menu</div>
-          </div>
-        </li>
+      
         <li>
           <Button
           onClick={() => handleClick("/app/startup" , NAVS.SETUP)}
