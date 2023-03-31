@@ -13,6 +13,7 @@ import executing from "~/assets/horse jumping-cuate.png"
 import controlling from "~/assets/Control Panel-rafiki.png"
 import closing from "~/assets/Coronavirus Border Closure-amico.png"
 import { getUserMetadata, setoreProjectMetaData } from "~/lib/MetaData";
+import { AbdullahEffectButton } from "~/components/ui/buildingBlocks/AbdullahEffectButton";
 const Page: NextPage = () => {
 
   const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
@@ -71,7 +72,9 @@ useEffect(() => {
         
             
               <Chain  image={closing} path={`/app/close`} name="fermer" />
-           
+            <AbdullahEffectButton>
+              click here to see is 
+            </AbdullahEffectButton>
             </div>
           </div>
             :
