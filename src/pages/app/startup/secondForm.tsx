@@ -8,7 +8,7 @@ import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
 import { PLusButtonTeam } from "~/components/ui/plusTable/startup/PlusButtonTeam";
-import { userReducer } from "~/store/userReducer";
+
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
@@ -21,7 +21,7 @@ type IpiData = {
 }
 const Page: NextPage = () => {
 
-  const project_id = userReducer(state => state.project_id)
+
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])

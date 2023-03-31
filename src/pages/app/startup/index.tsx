@@ -124,7 +124,7 @@ const Page: NextPage = () => {
       //todo handle this later
       event.preventDefault()
      
-      console.log(formData)
+    
       post.mutate({
         client : formData.client ,
         conflitManagment : formData.conflitManagment ,

@@ -39,7 +39,7 @@ export  const ControllingSidebar = () => {
           <Button
           onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
           className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-          ${current_page == NAVS.STARTUP ? ' text-gray-800 bg-gray-50 border-indigo-500 ' :'text-gray-600' }`}>
+          ${current_page == NAVS.STARTUP ? ' !text-gray-800 !bg-gray-50  border-indigo-500 ' :'text-gray-600' }`}>
           
             <span className="ml-2 text-sm tracking-wide truncate">Performance monitoring</span>
           </Button>

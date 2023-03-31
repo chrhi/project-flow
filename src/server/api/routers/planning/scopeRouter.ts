@@ -1,6 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
-
+import {v4 as uuidV4} from "uuid"
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import {  baseModel } from "~/server/model/BaseModel";
 
@@ -17,6 +17,7 @@ export const scopeRouter = createTRPCRouter({
         project_id : z.string()
      }))
     .mutation(async ({ input }) => {
+        const id:string  = uuidV4()
         const {  error } = await baseModel.provider.from('scope').insert([  {
             ScopeStatementDevelopment : input.ScopeStatementDevelopment,
             WBSStructure : input.WBSStructure ,
@@ -25,7 +26,8 @@ export const scopeRouter = createTRPCRouter({
             ScopeChange : input.ScopeChange ,
             DeliverableAcceptance : input.DeliverableAcceptance ,
             ScopeAndRequirementsIntegration : input.ScopeAndRequirementsIntegration ,
-            project_id : input.project_id
+            project_id : input.project_id,
+            id
         }])
   
         if(error){

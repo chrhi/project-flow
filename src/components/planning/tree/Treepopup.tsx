@@ -4,24 +4,50 @@ import { AbdullahButton , buttonVariants } from '~/components/ui/buildingBlocks/
 import { IconButton  , Button} from '@mui/material'
 import { api } from '~/utils/api'
 import { Input } from '~/components/ui/used/Input'
+import { toast } from 'react-toastify'
+import { getProjectMetaData } from '~/lib/MetaData'
 
 
 interface Props {
   
-    id : string ,
+    parent_id : string ,
     isOpen : boolean ,
     setIsOpen : Dispatch<SetStateAction<boolean>>
 
 }
 
 
-export  function Treepopup ({id , isOpen , setIsOpen} : Props) {
+export  function Treepopup ({parent_id , isOpen , setIsOpen} : Props) {
   
     const [input , setInput ] = useState("")
 
+    const post = api.tasksRouter.createTask.useMutation({
+      onSuccess : () => {
+        toast("new task was added",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         setIsOpen(false)
+      },
+      onError(){
+        toast("error something went wrong ",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+      }
+    })
+
    const handleSubmit = () => {
-   console.log(input)
-   console.log(id)
+    post.mutate({
+      parent_id ,
+      name : input ,
+      cost : 0 ,
+     
+      due_date : new Date(),
+      on_going : true ,
+      project_id : getProjectMetaData(),
+      start_at : new Date()
+    })
    }
   return (
     <>
@@ -58,8 +84,11 @@ export  function Treepopup ({id , isOpen , setIsOpen} : Props) {
                 value={input}
                 />
                 <div className='w-fill h-[50px] my-4 flex justify-center items-center gap-x-8'>
-                    <AbdullahButton onClick={handleSubmit} className={buttonVariants({size:"sm"})}>submit</AbdullahButton>
-                    <AbdullahButton className='bg-gray-600 ' onClick={() => setIsOpen(false)}>cancel</AbdullahButton>
+                    <AbdullahButton
+                    isLoading  = {post.isLoading}
+
+                    onClick={handleSubmit} className={buttonVariants({size:"sm"})}>submit</AbdullahButton>
+                    <AbdullahButton className={` ${buttonVariants({size:"sm"})} bg-gray-700`} onClick={() => setIsOpen(false)}>cancel</AbdullahButton>
                 </div>
 
                 </Dialog.Panel>

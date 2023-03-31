@@ -12,7 +12,7 @@ import planning from "~/assets/Office management-rafiki.png"
 import executing from "~/assets/horse jumping-cuate.png"
 import controlling from "~/assets/Control Panel-rafiki.png"
 import closing from "~/assets/Coronavirus Border Closure-amico.png"
-import { getUserMetadata } from "~/lib/MetaData";
+import { getUserMetadata, setoreProjectMetaData } from "~/lib/MetaData";
 const Page: NextPage = () => {
 
   const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
@@ -22,6 +22,7 @@ const Page: NextPage = () => {
     onSuccess : (data) => {
         if(data.project_id){
           setHasProjectStart(true)
+          setoreProjectMetaData({project_id : data.project_id as string} )
           return
         }
         setHasProjectStart(false)
