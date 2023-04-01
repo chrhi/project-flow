@@ -39,7 +39,7 @@ const Page: NextPage = () => {
   const project_id = userReducer(state => state.project_id)
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
- 
+  const [isOpen , setIsOpen] = useState<boolean>(true)
 
   const [startDate , setStartDate] = useState<Date>(new Date())
   const [endDate , setEndDate] = useState<Date>(new Date())
@@ -170,8 +170,9 @@ const Page: NextPage = () => {
     
       <Header />
       <main className="   flex w-full bg-gray-50 ">
-       <Sidebar />
-       <FormContainer className ="ml-[30rem]">
+        
+       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
       <FormHead text="👉 manage your cost" />
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">

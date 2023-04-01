@@ -1,17 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Container } from '../ui/used/Container'
-import Image from 'next/image'
 import React from 'react'
-import start from "~/assets/Time management-amico.png"
 import { Input } from '../ui/used/Input'
 import { AbdullahButton, buttonVariants } from '../ui/buildingBlocks/AbdullahButton'
-import { Heading } from '../ui/typography/Heading'
 import { useState } from 'react'
 import { api } from '~/utils/api'
 import { toast } from 'react-toastify'
-import { userReducer } from "~/store/userReducer";
 import {v4 as uuidV4} from "uuid"
-import { setoreProjectMetaData } from '~/lib/MetaData'
+import { getUserMetadata, setoreProjectMetaData } from '~/lib/MetaData'
 
 
 
@@ -21,8 +17,8 @@ type Props ={
 
 export const ProjectStarter = ({refetch} : Props) => {
 
-  const user_current_id = userReducer(state => state.id)
-  const set_project_id = userReducer(state => state.set_project_id)
+
+  
 
   const {mutate , isLoading} = api.ProjectRouter.createProject.useMutation({
     onSuccess : async ({project_id}) => {
@@ -30,7 +26,7 @@ export const ProjectStarter = ({refetch} : Props) => {
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
        })
-       set_project_id({project_id})
+       
        setoreProjectMetaData({project_id })
       await  refetch()
     },
@@ -49,49 +45,61 @@ export const ProjectStarter = ({refetch} : Props) => {
     const id:string  = uuidV4()
     mutate({
       id,
-      user_id : user_current_id
+      user_id : getUserMetadata()
     })
   }
 
 
 
 
+
+
   return (
-    <Container className='flex bg-white '>
-        <div className='w-[45%] h-full flex items-center justify-center '>
-            <Image  alt='project starter' src={start}  />
+    <Container className='flex flex-col items-center p-8 pt-12 bg-gray-50 '>
+        <div className='w-[700px] h-[70px] flex flex-col justify-center gap-y-4 '>
+            <h1 className='text-xl font-semibold text-gray-900 '>Start your project life sycle now</h1>
+            <p className='text-lg  text-gray-400 '>Let's Get Started</p>
         </div>
-        <div className='w-[50%] h-full flex flex-col pt-20 '>
-            
-            <Heading >lance votre projet </Heading>
-            <p className='text-start text-sm text-gray-400 mt-4 mb-2'>
-            Se familiariser avec le Guide PMBOK en français : Le Guide PMBOK est un ensemble de lignes directrices et de meilleures pratiques pour la gestion de projet développé par le Project Management Institute (PMI)
-            </p>
-            <p className='text-start text-sm text-gray-400 mb-4'>
-            Vous pouvez trouver la version française du Guide PMBOK sur le site web du PMI. Familiarisez-vous avec le contenu et la structure du guide pour mieux comprendre le processus de gestion de projet.
-            </p>
-            <div className='w-[70%] h-[300px]  gap-y-4 my-4 flex flex-col '>
-               
-             <Input
-              lable='the title of your project'
-              onChange={(e) =>setData(e.target.value)}
-              value={data}
-             
+        <div className=' w-[700px] my-4 flex flex-col h-[250px] bg-white p-6 gap-y-4 '>
+        <Input
+        lable='confirme your email'
+        onChange={(e) =>setData(e.target.value)}
+        value={data}
 
-             />
-               <div className=''>
-             <AbdullahButton
-             onClick={handleClick}
-             isLoading={isLoading}
-             className={buttonVariants({variant:"default" , size:"lg"})}
-             >
-              start my project
-             </AbdullahButton>
-               </div>
-            </div>
+        />
+        <Input
+        lable='the title of your project'
+        onChange={(e) =>setData(e.target.value)}
+        value={data}
 
+        />
+        <div className='w-full h-[70px] flex justify-start items-center my-2'>
+      
+       <AbdullahButton
+       onClick={handleClick}
+       isLoading={isLoading}
+       className={`${buttonVariants({variant:"primary" })} `}
+        >
+          start my project
+       </AbdullahButton>
+        </div>
         </div>
     </Container>
   )
 }
 
+{/* <Input
+lable='the title of your project'
+onChange={(e) =>setData(e.target.value)}
+value={data}
+
+
+/>
+ <div className=''>
+<AbdullahButton
+onClick={handleClick}
+isLoading={isLoading}
+className={buttonVariants({variant:"default" , size:"lg"})}
+>
+start my project
+</AbdullahButton> */}

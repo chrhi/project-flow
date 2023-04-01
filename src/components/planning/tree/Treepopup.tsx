@@ -12,22 +12,25 @@ interface Props {
   
     parent_id : string ,
     isOpen : boolean ,
-    setIsOpen : Dispatch<SetStateAction<boolean>>
+    setIsOpen : Dispatch<SetStateAction<boolean>>,
+    refetch : () => Promise<any>
 
 }
 
 
-export  function Treepopup ({parent_id , isOpen , setIsOpen} : Props) {
+export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch} : Props) {
   
     const [input , setInput ] = useState("")
 
     const post = api.tasksRouter.createTask.useMutation({
-      onSuccess : () => {
+      onSuccess :async () => {
         toast("new task was added",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
+         await refetch()
          setIsOpen(false)
+
       },
       onError(){
         toast("error something went wrong ",{
@@ -43,10 +46,10 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen} : Props) {
       name : input ,
       cost : 0 ,
      
-      due_date : new Date(),
+     
       on_going : true ,
       project_id : getProjectMetaData(),
-      start_at : new Date()
+     
     })
    }
   return (

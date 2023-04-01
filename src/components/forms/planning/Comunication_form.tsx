@@ -7,7 +7,7 @@ import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
-
+import { CreateMettingPopup } from "~/components/planning/comunication/CreateMettingPopup";
 
 
 export const Comunication_form = () => {
@@ -38,6 +38,7 @@ export const Comunication_form = () => {
             properties : ["abdullah chehri" , "nothiung" ,"local" , "20/33/444" ,"lozay" ]
             },
     ]}
+    PlusButton={<CreateMettingPopup  />}
           />
           </div>
       

@@ -1,9 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router'
 import { NAVS , sidebar_Reducer  } from '~/store/app-reducer/SideBarReducer'
-import { Button } from '@mui/material'
+import { AbdullahEffectButton, buttonVariantsAbdullah } from './buildingBlocks/AbdullahEffectButton'
+import { Dispatch, SetStateAction } from 'react'
 
-export  const Sidebar = () => {
+
+type Props ={
+  isOpen? : boolean , 
+  setIsOpen?: Dispatch<SetStateAction<boolean>>
+
+}
+
+export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
   const router = useRouter()
   const current_page = sidebar_Reducer(state => state.current_page)
   const set_current_page = sidebar_Reducer(state => state.set_current_page)
@@ -15,90 +23,112 @@ export  const Sidebar = () => {
 
   return (
    
+<>
+<div className={`${isOpen ? "w-[0px]" : "w-[6rem]"} mt-[50px] ml-2 h-11 `}>
 
-  <div className="fixed flex flex-col top-[70px] left-[20px] w-[30rem] bg-gray-50 custopn-page-height mt-[55px] rounded-lg border-gray-[100px]">
-    <div className="flex items-center justify-start h-14 w-[70%] mx-auto bg-white  ">
-        <Button
-        onClick={() => handleClick("/app" , NAVS.STARTUP)}
-        
-        className="!relative !w-full !flex !flex-row  !normal-case  !items-center !text-gray-600 !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 !justify-start">
-        
 
-            <span className="ml-2 text-sm tracking-wide truncate">all my links</span>
-      </Button>
+<AbdullahEffectButton
+  onClick={() => setIsOpen(true)}
+    className={` r${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full bg-blue-500 text-white `}
+
+  >
+    open 
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+</svg>
+
+          </AbdullahEffectButton>
+</div>
+  <div className={`fixed flex flex-col top-[60px] left-[0px] ${isOpen ? "w-[30rem]" : "w-[0px]" }  bg-gray-50 custopn-page-height  rounded-lg border-gray-[100px]`}>
+   
+    <div className={` ${isOpen? "flex" : "hidden" } items-center justify-between  h-12  bg-white  w-[70%] mx-auto border-b mt-[55px] p-4 `}>
+  <div>
+  <span className="ml-2 text-sm tracking-wide truncate">all my links</span>
+  </div>
+  <div>
+  <AbdullahEffectButton
+  onClick={() => setIsOpen(false)}
+    className={` r${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full `}
+
+  >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+
+          </AbdullahEffectButton>
+  </div>
     </div>
-    <div className="overflow-y-auto overflow-x-hidden flex-grow  w-[70%] mx-auto bg-white">
-      <ul className="flex flex-col py-4 space-y-1">
+    <div className={`overflow-y-auto overflow-x-hidden flex-grow  w-[70%] mx-auto bg-white ${isOpen? "" : "hidden" } `}>
+      <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
+          <AbdullahEffectButton
+              onClick={() => handleClick("/app/startup" , NAVS.SETUP)}
+              className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+              ${current_page == NAVS.SETUP ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+          >
+          Initier
+          </AbdullahEffectButton>
       
-        <li>
-          <Button
-          onClick={() => handleClick("/app/startup" , NAVS.SETUP)}
-          className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-          ${current_page == NAVS.SETUP ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
-          
-            <span className="ml-2 text-sm tracking-wide truncate">Initier</span>
-          </Button>
-        </li>
-        <li>
-          <Button
-          onClick={() => handleClick("/app/startup/setup" , NAVS.STARTUP)}
-          className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-          ${current_page == NAVS.STARTUP ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
-          
-            <span className="ml-2 text-sm tracking-wide truncate">Détails du projet</span>
-          </Button>
-        </li>
-        <li>
-          <Button
-          onClick={() => handleClick("/app/startup/tables" , NAVS.TABLE)}
-          className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-          ${current_page == NAVS.TABLE ? ' !text-gray-800 !bg-gray-50  ' :'!text-gray-600' }`}>
-          
-            <span className="ml-2 text-sm tracking-wide truncate">Objets du projet </span>
-          </Button>
-        </li>
-        <li>
-          <Button
-          onClick={() => handleClick("/app/startup/secondForm" , NAVS.SECONDFORM)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-            ${current_page == NAVS.SECONDFORM  ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' }`}>
-          
-            <span className="ml-2 text-sm tracking-wide  truncate">Mon équipe</span>
-          </Button>
-        </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/startup/stakeholders" , NAVS.STAKEHOLDER)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-        
-
-            <span className="ml-2 text-sm tracking-wide truncate">Parties prenantes</span>
-        
-          </Button>
-        </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/startup/milestones" , NAVS.MILESTONES)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.MILESTONES ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-        
-
-            <span className="ml-2 text-sm tracking-wide truncate">Jalons</span>
-        
-          </Button>
-        </li>
        
-        <li>
-        <Button
-        onClick={() => handleClick("/app/startup/application" , NAVS.APPLICATION) }
-        className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.APPLICATION ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-           
-            <span className="ml-2 text-sm tracking-wide truncate">Application</span>
-            <span className="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-white bg-red-600 rounded-full">bad</span>
-            </Button>
-        </li> 
-      </ul>
+        
+        
+        <AbdullahEffectButton
+            onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.STARTUP ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+       Détails du projet
+        </AbdullahEffectButton>
+     
+       
+       
+        
+        <AbdullahEffectButton
+            onClick={() => handleClick("/app/startup" , NAVS.TABLE)}
+            className={` rounded-lg w-[90%] mx-auto p-4  border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.TABLE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+      Objets du projet
+        </AbdullahEffectButton>
+    
+       
+        
+        
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/startup/secondForm" , NAVS.SECONDFORM)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.SECONDFORM ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+     Mon équipe
+        </AbdullahEffectButton>
+   
+      
+       
+        
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/startup/stakeholders"  , NAVS.STAKEHOLDER)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+  Parties prenantes
+        </AbdullahEffectButton>
+   
+      
+      
+        
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/startup/milestones" , NAVS.MILESTONES)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.MILESTONES ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-lg`}
+        >
+Jalons
+        </AbdullahEffectButton>
+   
+       
+      
+      </div>
     </div>
   </div>
+  </>
 
   )
 }

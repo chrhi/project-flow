@@ -9,8 +9,8 @@ export const tasksRouter = createTRPCRouter({
     .input(z.object({ 
        name : z.string(),
        parent_id : z.string(),
-       due_date : z.date(),
-       start_at : z.date(),
+       due_date : z.date().optional(),
+       start_at : z.date().optional(),
        on_going : z.boolean(),
        assign_to : z.string().array().optional(),
        cost : z.number(),
@@ -72,8 +72,8 @@ export const tasksRouter = createTRPCRouter({
         due_date : z.date(),
         start_at : z.date(),
         on_going : z.boolean(),
-        assign_to : z.string().array(),
-        cost : z.number(),
+        assign_to : z.string().array().optional(),
+        cost : z.number().optional(),
         id : z.string()
      }))
     .mutation(async ({ input }) => {

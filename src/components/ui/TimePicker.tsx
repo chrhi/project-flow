@@ -3,7 +3,6 @@ import { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import { DateRangePicker, RangeKeyDict } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { Button } from "@mui/material"
 import { AbdullahButton, buttonVariants } from './buildingBlocks/AbdullahButton';
 import { AlgeriaformatDate } from '~/utils/formate/AlgeriaFormate';
 
@@ -14,12 +13,15 @@ interface TimePickerProps {
   endDate : Date 
   lable? : string 
   setStartDate :  Dispatch<SetStateAction<Date>> ,
-  setEndDate : Dispatch<SetStateAction<Date>>
+  setEndDate : Dispatch<SetStateAction<Date>>,
+  onlyIcon? :boolean,
+  callBack? : (start : Date , end : Date) => void,
+  isLoading? : boolean
 }
 
 
 
-export  function TimePicker ({startDate , endDate , lable = "" , setStartDate , setEndDate }:TimePickerProps) {
+export  function TimePicker ({startDate , endDate , lable = "", isLoading = false ,  callBack , setStartDate , setEndDate , onlyIcon }:TimePickerProps) {
   
     const [isOpen, setIsOpen] = useState(false)
      
@@ -42,24 +44,47 @@ export  function TimePicker ({startDate , endDate , lable = "" , setStartDate , 
       key: 'selection',
     }
   
+    function fireCallBack (){
+      if(callBack){
+        callBack( startDate , endDate)
+      }
+      closeModal()
+    }
 
   return (
     <>
-   <div>
-   <label htmlFor={lable} className={`block text-sm font-medium leading-6 text-gray-900 `}>
-           {lable}
-        </label>
-        <button 
-         onClick={openModal}
-         className="w-full h-[40px] rounded-lg border flex items-center justify-between p-1 px-4 shadow-sm text-gray-400 "
-    >
-       from     {AlgeriaformatDate(startDate)}   to    {AlgeriaformatDate(endDate)}
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-    </svg>
+   
+    {onlyIcon ? 
+     
+   <button 
+    onClick={openModal}
+    className="w-[50px] h-[40px] rounded-lg border flex items-center justify-between p-1 px-4 shadow-sm text-gray-400 "
+>
+ 
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+<path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+</svg>
 
-    </button>
-   </div>
+</button>
+: 
+<div>
+<label htmlFor={lable} className={`block text-sm font-medium leading-6 text-gray-900 `}>
+{lable}
+</label>
+<button 
+onClick={openModal}
+className="w-full h-[40px] rounded-lg border flex items-center justify-between p-1 px-4 shadow-sm text-gray-400 "
+>
+from     {AlgeriaformatDate(startDate)}   to    {AlgeriaformatDate(endDate)}
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+<path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+</svg>
+
+</button>
+</div>
+
+    }
+  
   
     <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
@@ -104,8 +129,9 @@ export  function TimePicker ({startDate , endDate , lable = "" , setStartDate , 
                     />
                     <div className='w-full h-[50px] flex items-center justify-end p-4'>
                       <AbdullahButton
-                      onClick={closeModal}
-                      className={buttonVariants({size:"lg"})}
+                      onClick={fireCallBack}
+                      isLoading={isLoading}
+                      className={buttonVariants({size:"sm", variant:'primary'})}
                       >
                          close and save
                       </AbdullahButton>

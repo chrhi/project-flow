@@ -55,7 +55,7 @@ export const  TreeGraph = () =>  {
        set_loading(false)
        },
   })
-  const {isFetching} =  api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()},{
+  const {isFetching ,refetch : refetchMileStones} =  api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()},{
     onSuccess(data) {
       setMainTasks(data as mileStone[])
       prepareTheArray()
@@ -115,7 +115,7 @@ export const  TreeGraph = () =>  {
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
     <FormContainer>
-      <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} parent_id={id}/>
+      <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={refetchMileStones} parent_id={id}/>
       <FormHead  text='break your project into small pieses 🐱'  />
     <div id="treeWrapper" className='mx-auto ' style={{ width: '100%', height: '100%' }}>
 

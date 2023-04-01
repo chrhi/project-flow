@@ -23,3 +23,10 @@ export const  SupabaseToAlgeria = (inputDate : string) =>  {
     const day = dateParts[2];
     return `${day}/${month}/${year}`;
   }
+export function parseDupaBaseDateString(dateString: string): Date {
+  const [year, month, day] = dateString.split("-").map(Number);
+ if(year && month && day ){
+  return new Date(year, month - 1, day);
+ }
+ return new Date()
+}

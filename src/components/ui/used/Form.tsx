@@ -10,7 +10,7 @@ type FromPropsType ={
 
 export const Form = ({children , className }:FromPropsType) => {
   return (
-    <div className={`bg-white mb-8 w-[90%]  ${className ? className : ""} `} >
+    <div className={`bg-white mb-8 w-[90%] max-w-7xl ${className ? className : ""} `} >
     <div className="overflow-hidden shadow  sm:rounded-md">
       
          {children}
