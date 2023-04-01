@@ -10,30 +10,40 @@ import { toast } from 'react-toastify'
 import {v4 as uuidV4} from "uuid"
 import { Input } from '~/components/ui/used/Input'
 import { getProjectMetaData } from '~/lib/MetaData'
+import { TimePicker } from '~/components/ui/TimePicker'
+import Select from 'react-select';
 type Props = {
   
-  refetch? : () => Promise<any>
+  refetch : () => Promise<any>
 }
 
 type inputs = {
- name : string ,
- role : string
-  
-  id :  string
+stakholders : string[],
+informations : string , 
+
+method : string , 
+sender : string 
 }
 
+type stekholder ={
+  value : string ,
+  label : string
+}
 
 
 export  function CreateMettingPopup ({ refetch} : Props) {
 
 
-
+    const [stakHolders , setStakholders] = useState<stekholder[]>([] as stekholder[])
     const [isOpen, setIsOpen] = useState(false)
+    const [start , setStart] = useState<Date>(new Date())
+    const [end , setEnd] = useState<Date>(new Date())
 
     const [formData , setFormData] = useState<inputs>({
-      name : "" ,
-      role : "" ,
-      id :  ""
+      stakholders : [] ,
+      informations  : "" ,
+      method :  "",
+      sender : ""
     })
      
     function openModal() {
@@ -43,53 +53,54 @@ export  function CreateMettingPopup ({ refetch} : Props) {
       setIsOpen(false)
     }
     
-    const mutation = api.stakHolderRouter.createStackholder.useMutation({
-      onSuccess: async () => {
-        closeModal()
-        toast("new stack holder added ",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         await refetch()
+    const { isFetching } = api.stakHolderRouter.getAllStackHolders.useQuery({project_id : getProjectMetaData()} , {
+      onSuccess(data) {
+        const filtedData = data.map(item => ({
+          label : item.name as string,
+          value : item.id as string
+        }))
 
+        setStakholders(filtedData as stekholder[])
       },
-      onError : () => {
-        closeModal()
-        toast("faild to add new item",{
+      onError(){
+        toast("failed to get the stakholders",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
-      }
+       
+      },
     })
 
-    const handleSubmit = () => {
-      if(!formData.name || !formData.role ){
-        toast("all the fields are required",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
+  const post = api.MettingRouter.createMetting.useMutation({
+    onSuccess : async () =>  {
+    
+      toast("updated successfuly",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+       await refetch()
+       closeModal()
+    },
+    onError(){
+      toast("failed to create metting",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
       }
-      const id:string  = uuidV4()
-      mutation.mutate({
-        id ,
-        project_id : getProjectMetaData(),
-        
-        communicationNeeds : "how can we",
-        email : "how can we",
-        levelOfInvolvement : "how can we",
-        note : "how can we",
-        pendingChanges : "how can we",
-        phone : 98765,
-        relationships : "how can we",
-        stakeholderEngagementApproach : "how can we",
-        timing : "how can we",
-        name : formData.name ,
-        role : formData.role ,
-        communicationMethod : "how can we",
-        
-      })
-    }
-   
+  })
+
+  const handleSubmit = () => {
+   post.mutate({
+    "TIMING OR FREQUENCY" : end ,
+    INFORMATION : formData.informations ,
+    METHOD : formData.method ,
+    project_id : getProjectMetaData(),
+    SENDER : formData.sender ,
+    STAKEHOLDER : formData.stakholders
+   })
+  }
+     
+  
 
   return (
     <>
@@ -140,7 +151,7 @@ export  function CreateMettingPopup ({ refetch} : Props) {
                     as="div"
                     className=" w-full h-[50px] flex justify-between items-center border-b "
                   >
-               <div><p className='text-sm text-gray-500 ml-4'>adding stakholder</p></div>  
+               <div><p className='text-sm text-gray-500 ml-4'>Creating a new metting</p></div>  
                <div>
                 <IconButton>
                     <button
@@ -158,22 +169,43 @@ export  function CreateMettingPopup ({ refetch} : Props) {
                  
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 gap-6">
-            <Input
-              lable='Nom'
-              value={formData.name}
-              onChange={(e) => setFormData({...formData , name : e.target.value})}
+            <div className='col-span-6'>
+            <label  className="block text-sm font-medium leading-6 text-gray-900">
+           select the stakholders involved
+        </label>
+            <Select
+                onChange={(e) => setFormData({...formData, stakholders : e.map(item => item.value)})}
+                isMulti
+                name="stakholders"
+                options={stakHolders}
+                className="basic-multi-select"
+                classNamePrefix="select"
             />
+            </div>
               <TextField
-              lable='ROLE / RESPONSABILITY'
-              value={formData.role}
-              onChange={(e) => setFormData({...formData , role : e.target.value})}
+              lable='some related informations'
+              value={formData.informations}
+              onChange={(e) => setFormData({...formData , informations : e.target.value})}
             />
+              <Input
+              lable='the method been used'
+              value={formData.method}
+              onChange={(e) => setFormData({...formData , method : e.target.value})}
+            />
+              <Input
+              lable='this metting created by'
+              value={formData.sender}
+              onChange={(e) => setFormData({...formData , sender : e.target.value})}
+            />
+            <div className='col-span-6'>
+              <TimePicker lable='select the best timing for this metting' endDate={end} setEndDate={setEnd} setStartDate={setStart} startDate={start} />
+            </div>
              
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={mutation.isLoading}
-            className={buttonVariants({size:'sm'})}
+            isLoading={post.isLoading}
+            className={buttonVariants({size:'sm' , variant:"primary"})}
             >
               submit
             </AbdullahButton>

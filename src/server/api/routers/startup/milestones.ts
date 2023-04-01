@@ -33,6 +33,16 @@ export const MilestonesRouter = createTRPCRouter({
                                 throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
                                 return data
                          })
+                        ,
+deleteMileStones : publicProcedure 
+                        .input(z.object({
+                          id : z.string()
+                         }))
+                         .mutation(async ({input}) => {
+                          const data =  await MilestonesTable.delete(input.id).catch(error => { 
+                                throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
+                                return data
+                         })                       
         
 
 })

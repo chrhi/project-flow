@@ -8,8 +8,8 @@ import { api } from '~/utils/api'
 import { Loader2 } from 'lucide-react';
 
 interface Props {
-    text : string ,
-    id : string 
+    text : string | undefined ,
+    id : string | undefined
 }
 
 interface stakholder {
@@ -32,7 +32,7 @@ export  function StakeHolder ({text , id} : Props) {
 
   const [stakholder , setStackHolder] = useState<stakholder>({} as stakholder)
 
-  const {refetch , isFetching } = api.stakHolderRouter.getOnlyOneStackHolder.useQuery({id} , {
+  const {refetch , isFetching } = api.stakHolderRouter.getOnlyOneStackHolder.useQuery({id : id || ""} , {
     onSuccess(data: stakholder) {
       setStackHolder(data )
     },

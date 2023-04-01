@@ -49,7 +49,7 @@ const Page: NextPage = () => {
 
       const array : ItemTable[] =  commingData.map(item => (
         {
-         
+          id : item.id ,
           callback : () => console.log("hi there"),
           properties : [item.name , item.skills ]
         } 

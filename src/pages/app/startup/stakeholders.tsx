@@ -37,6 +37,25 @@ const Page: NextPage = () => {
          set_loading(false)
       },
     })
+
+    const deleteStakholder = api.stakHolderRouter.deleteStakholder.useMutation({
+      onSuccess : async () => {
+        await refetch()
+        toast("deleted successfully",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         
+         set_loading(false)
+      },
+      onError(){
+        toast("failed to delete ",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         set_loading(false)
+      },
+    })
     useEffect(() => {
       if(isFetching){
         set_loading(true)
@@ -49,8 +68,11 @@ const Page: NextPage = () => {
 
       const array : ItemTable[] =  commingData.map(item => (
         {
-         
-          callback : () => console.log("hi there"),
+          id : item.id ,
+          callback : (id : string ) => {
+            set_loading(true)
+            deleteStakholder.mutate({id})
+          },
           properties : [<StakeHolder id ={item.id}  key={"chehri abdullah"} text={item.name} />  , item.role ]
         } 
       ))

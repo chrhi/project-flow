@@ -71,21 +71,10 @@ export const Risk_managment_form = () => {
               descripton="Definitions of Impact by Objective"
               headers={["" , "Scope" , "Quality" , "Time" , "Cost"]}
               body={[
-              {callback:() => console.log("hi"),
+              { id : "ggge",
+                callback:() => console.log("hi"),
               properties : ["Very high" , " " , " " , " " , " "]
-              },
-              {callback:() => console.log("hi"),
-              properties : ["High" , " " , " " , " " , " "]
-              },
-              {callback:() => console.log("hi"),
-              properties : ["Medium" , " " , " " , " " , " "]
-              },
-              {callback:() => console.log("hi"),
-              properties : ["Low" , " " , " " , " " , " "]
-              },
-              {callback:() => console.log("hi"),
-              properties : ["Very low" , " " , " " , " " , " "]
-              },
+              }
             ]}
 
             />

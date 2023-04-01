@@ -11,6 +11,7 @@ import { CreatePdf } from "./routers/startup/createPdf";
 import { MilestonesRouter } from "./routers/startup/milestones";
 import { scopeRouter } from "./routers/planning/scopeRouter";
 import { tasksRouter } from "./routers/planning/tasksRouter";
+import { MettingRouter } from "./routers/planning/MettingRouter";
 
 export const appRouter = createTRPCRouter({
   userRouter : userManagment ,
@@ -24,7 +25,8 @@ export const appRouter = createTRPCRouter({
   CreatePdf,
   MilestonesRouter,
   scopeRouter,
-  tasksRouter
+  tasksRouter,
+  MettingRouter,
 
 
 });

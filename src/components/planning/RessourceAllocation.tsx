@@ -13,7 +13,7 @@ export const RessourceAllocation = () => {
         title='👉🏻 ressources '
          descripton='this is just a test and we will see abdout it'
          headers={["name" , "avalablility" , "asigned taks"]}
-         body={[{callback: () => console.log("hello there") , properties :["abdullah" , "now" , "there is not"]}]}
+         body={[{id : "gggg" ,callback: () => console.log("hello there") , properties :["abdullah" , "now" , "there is not"]}]}
          />
         </Paper>
     </FormContainer>

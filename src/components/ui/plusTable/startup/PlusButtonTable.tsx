@@ -9,6 +9,7 @@ import { AbdullahButton, buttonVariants } from '../../buildingBlocks/AbdullahBut
 import { toast } from 'react-toastify'
 import {v4 as uuidV4} from "uuid"
 import { userReducer } from '~/store/userReducer'
+import { getProjectMetaData } from '~/lib/MetaData'
 type Props = {
   formType : string ,
   refetch : () => Promise<any>
@@ -28,7 +29,7 @@ type inputs = {
 export  function PlusButtonTable ({formType , refetch} : Props) {
 
 
-    const project_id = userReducer(state => state.project_id)
+  
     const [isOpen, setIsOpen] = useState(false)
 
     const [formData , setFormData] = useState<inputs>({
@@ -76,7 +77,7 @@ export  function PlusButtonTable ({formType , refetch} : Props) {
       const id:string  = uuidV4()
       mutation.mutate({
         id ,
-        project_id,
+        project_id : getProjectMetaData(),
         type : formType ,
         approval : formData.approval ,
         objectifs : formData.objectifs ,

@@ -81,6 +81,7 @@ export const Change_managment_Form = () => {
               descripton=""
               headers={["Name" , "Role" , "Responsibility" , "Authority"]}
               body={[{
+                id : "ggge",
                 callback : () => console.log("hi"),
                 properties : ["abdullah" , "abdullah" , "abdullah" , "abdullah" ]
               }]}

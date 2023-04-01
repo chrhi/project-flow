@@ -25,7 +25,7 @@ type IpiData = {
 
 const Page: NextPage = () => {
 
-  const project_id = userReducer(state => state.project_id)
+ 
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
@@ -39,6 +39,25 @@ const Page: NextPage = () => {
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
+      },
+    })
+
+    const deleteRow = api.tableInfoRouter.deleteOneInfo.useMutation({
+      onSuccess : async () => {
+        await refetch()
+        toast("deleted successfully",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         
+         set_loading(false)
+      },
+      onError(){
+        toast("failed to delete ",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         set_loading(false)
       },
     })
     useEffect(() => {
@@ -55,8 +74,12 @@ const Page: NextPage = () => {
       const filteredArray  = commingData.filter(item => item.type === type )
       const array : ItemTable[] =  filteredArray.map(item => (
         {
+          id : item.id ,
           type : item.type,
-          callback : () => console.log("hi there"),
+          callback : (id : string) =>{
+            set_loading(true)
+            deleteRow.mutate({id})
+          },
           properties : [item.objectifs , item.seccessCriteria , item.approval]
         } 
       ))
@@ -78,7 +101,7 @@ const Page: NextPage = () => {
         <div className="grid grid-cols-6 gap-6">
        <div className="col-span-6">
        <AbdullahTable 
-          Action = {false}
+          Action 
           title="Périmètre"
           descripton=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
@@ -89,7 +112,7 @@ const Page: NextPage = () => {
 
         {/* this is the second table */}
         <AbdullahTable 
-          Action = {false}
+          Action 
           title="Echéancier"
           descripton=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
@@ -100,7 +123,7 @@ const Page: NextPage = () => {
 
         {/* and this is hte other table */}
         <AbdullahTable 
-          Action = {false}
+          Action 
           title="Coût"
           descripton=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}

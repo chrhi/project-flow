@@ -28,7 +28,11 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
 
 
 <AbdullahEffectButton
-  onClick={() => setIsOpen(true)}
+  onClick={() => {
+    if( setIsOpen){
+      setIsOpen(true)
+    }
+  }}
     className={` r${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full bg-blue-500 text-white `}
 
   >
@@ -47,7 +51,11 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
   </div>
   <div>
   <AbdullahEffectButton
-  onClick={() => setIsOpen(false)}
+  onClick={() =>{
+    if( setIsOpen){
+      setIsOpen(false)
+    }
+  }}
     className={` r${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full `}
 
   >
@@ -72,7 +80,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
         
         
         <AbdullahEffectButton
-            onClick={() => handleClick("/app/startup" , NAVS.STARTUP)}
+            onClick={() => handleClick("/app/startup/secondForm" , NAVS.STARTUP)}
             className={` rounded-lg w-[90%] mx-auto p-4 border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.STARTUP ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >
@@ -83,7 +91,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
        
         
         <AbdullahEffectButton
-            onClick={() => handleClick("/app/startup" , NAVS.TABLE)}
+            onClick={() => handleClick("/app/startup/tables" , NAVS.TABLE)}
             className={` rounded-lg w-[90%] mx-auto p-4  border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.TABLE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >

@@ -31,12 +31,31 @@ const Page: NextPage = () => {
     const {refetch , isFetching } = api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()} , {
       onSuccess(data) {
         setCommingData(data as IpiData[])
-        console.log(data)
+       
         set_loading(false)
-        console.log(getProjectMetaData())
+     
       },
       onError(){
         toast("failed to fetch the data",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         set_loading(false)
+      },
+    })
+
+    const deleteMileStone = api.MilestonesRouter.deleteMileStones.useMutation({
+      onSuccess : async () => {
+        await refetch()
+        toast("deleted successfully",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         
+         set_loading(false)
+      },
+      onError(){
+        toast("failed to delete ",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
@@ -53,8 +72,11 @@ const Page: NextPage = () => {
 
       const array : ItemTable[] =  commingData.map(item => (
         {
-         
-          callback : () => console.log("hi there"),
+          id : item.id ,
+          callback : (id : string) => {
+            set_loading(true)
+            deleteMileStone.mutate({id})
+          },
           properties : [item.name  ,item.start_at]
         } 
       ))

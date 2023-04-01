@@ -3,8 +3,9 @@ import { ReactNode } from "react"
 
 
 export type ItemTable = {
+    id : string
     properties : Array<string | ReactNode | any>
-    callback : () => void 
+    callback : (id : string ) => void 
 }
 
 type Props ={
@@ -47,11 +48,11 @@ export const AbdullahTable = ({title , descripton , headers , body , showHeaders
             <tr key={ index + 999 } className="bg-white border-b ">
                 {current.properties.map(item => (
                 <th key={index + 45679684623} scope="row" className={`px-6 py-4 font-medium text-gray-900 ${wrap ? "" : " whitespace-nowrap " }`}>
-                   {item}
+                   {item } 
                 </th>
                 ))}
               {Action &&   <td className={`px-6 py-4 text-right`}>
-                    <button onClick={current.callback} className="font-medium text-blue-600 hover:underline">delete</button>
+                    <button onClick={() => current.callback(current?.id)} className="font-medium text-blue-600 hover:underline">delete</button>
                 </td>}
             </tr>
             ))}
