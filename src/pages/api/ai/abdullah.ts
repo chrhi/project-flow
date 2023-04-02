@@ -29,7 +29,7 @@ Through it all, Emilia never forgets her roots, and remains grateful to Abdullah
 const  Handler = async (req : NextRequest , res : NextResponse)  => {
   
    
-    const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${req.body.input}\n\n`;
+    const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${req?.body?.input}\n\n`;
     const configuration = new Configuration({
         apiKey: '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'
     });
@@ -39,8 +39,8 @@ const  Handler = async (req : NextRequest , res : NextResponse)  => {
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: prompt }],
       }).catch(error => {
-        res.status(400).json({error  })
-        res.status(400).json({message : "some thing went wrong"  })
+        res.status(200).json({error  })
+        res.status(200).json({message : "some thing went wrong"  })
         console.log(error)
       
       })
