@@ -28,6 +28,8 @@ const Page: NextPage = () => {
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
 
+  const [isOpen , setIsOpen] = useState<boolean>(true)
+
     const {refetch , isFetching } = api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()} , {
       onSuccess(data) {
         setCommingData(data as IpiData[])
@@ -90,8 +92,8 @@ const Page: NextPage = () => {
     
       <Header />
       <main className="   flex w-full bg-gray-50 ">
-       <Sidebar />
-       <FormContainer>
+      <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
       <FormHead text="⭐ défié tous tes pas" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">

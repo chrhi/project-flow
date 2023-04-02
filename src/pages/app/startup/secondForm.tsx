@@ -21,7 +21,7 @@ type IpiData = {
 }
 const Page: NextPage = () => {
 
-
+  const [isOpen , setIsOpen] = useState<boolean>(true)
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
@@ -63,8 +63,8 @@ const Page: NextPage = () => {
     
       <Header />
       <main className="   flex w-full bg-gray-50 ">
-       <Sidebar />
-       <FormContainer>
+      <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
       <FormHead text="⭐ défié tous les membres de votre équipe" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">

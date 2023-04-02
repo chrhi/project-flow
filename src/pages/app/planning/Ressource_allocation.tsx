@@ -1,20 +1,31 @@
 import { type NextPage } from "next";
-import Head from "next/head";
 import { Header } from "~/components/common/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-import { Scope_plan_Form } from "~/components/forms/planning/Scope_plan_Form";
-import { RessourceAllocation } from "~/components/planning/RessourceAllocation";
-
+import { Paper } from "~/components/ui/Paper";
+import { FormContainer } from "~/components/ui/used/FormContainer";
+import { FormHead } from "~/components/ui/used/FormHead"; 
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable"; 
+import { useState } from "react";
 
 const Page: NextPage = () => {
-
+  const [isOpen , setIsOpen] = useState<boolean>(true)
   return (
     <>
     
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-       <PlanningSideBar />
-      <RessourceAllocation />
+      <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+        <FormHead  text='👉🏻 in here manage all the ressources' />
+        <Paper>
+        <AbdullahTable 
+        title='👉🏻 ressources '
+         descripton='this is just a test and we will see abdout it'
+         headers={["name" , "avalablility" , "asigned taks"]}
+         body={[{id : "gggg" ,callback: () => console.log("hello there") , properties :["abdullah" , "now" , "there is not"]}]}
+         />
+        </Paper>
+    </FormContainer>
       </main>
     </>
   );

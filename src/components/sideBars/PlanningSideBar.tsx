@@ -1,8 +1,17 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router'
-import { Button } from '@mui/material'
 import { PlanningSideBarReducer , NAVS } from '~/store/app-reducer/PlanningSideBarReducer'
+import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
+import { Dispatch, SetStateAction } from 'react'
 
-export  const PlanningSideBar = () => {
+
+type Props ={
+  isOpen? : boolean , 
+  setIsOpen?: Dispatch<SetStateAction<boolean>>
+
+}
+
+export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
   const router = useRouter()
   const current_page = PlanningSideBarReducer(state => state.current_page)
   const set_current_page = PlanningSideBarReducer(state => state.set_current_page)
@@ -14,118 +23,136 @@ export  const PlanningSideBar = () => {
 
   return (
    
+<>
+<div className={`${isOpen ? "w-[0px]" : "w-[6rem]"} mt-[50px] ml-2 h-11 `}>
 
-  <div className="fixed flex flex-col top-0 left-0 w-[16rem] bg-white custopn-page-height mt-[55px] shadow-lg border-r border-gray-[100px]">
-    <div className="flex items-center justify-start h-14  ">
-        <Button
-        onClick={() => handleClick("/app" , NAVS.ONE)}
-        
-        className="!relative !w-full !flex !flex-row  !normal-case  !items-center !text-gray-600 !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 !justify-start">
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-               <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-           </svg>
 
-            <span className="ml-2 text-sm tracking-wide truncate">retourner</span>
-      </Button>
+<AbdullahEffectButton
+  onClick={() => {
+    if( setIsOpen){
+      setIsOpen(true)
+    }
+  }}
+    className={` r${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full bg-blue-500 text-white `}
+
+  >
+    open 
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+</svg>
+
+          </AbdullahEffectButton>
+</div>
+  <div className={`fixed flex flex-col top-[60px] left-[0px] ${isOpen ? "w-[30rem]" : "w-[0px]" }  bg-gray-50 custopn-page-height  rounded-lg border-gray-[100px]`}>
+   
+    <div className={` ${isOpen? "flex" : "hidden" } items-center justify-between  h-12  bg-white  w-[70%] mx-auto border-b mt-[55px] p-4 `}>
+  <div>
+  <span className="ml-2 text-sm tracking-wide truncate">all my links</span>
+  </div>
+  <div>
+  <AbdullahEffectButton
+  onClick={() =>{
+    if( setIsOpen){
+      setIsOpen(false)
+    }
+  }}
+    className={` r${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full `}
+
+  >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+</svg>
+
+          </AbdullahEffectButton>
+  </div>
     </div>
-    <div className="overflow-y-auto overflow-x-hidden flex-grow">
-      <ul className="flex flex-col py-4 space-y-1">
-        <li className="px-5">
-          <div className="flex flex-row items-center h-8">
-            <div className="text-sm font-light tracking-wide text-gray-500">Menu</div>
-          </div>
-        </li>
-        <li>
-          <Button
-          onClick={() => handleClick("/app/planning" , NAVS.TWO)}
-          className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-          ${current_page == NAVS.TWO ? ' !text-gray-800 !bg-gray-50  ' :'text-gray-600' }`}>
-          
-            <span className="ml-2 text-sm tracking-wide truncate">Project scope statement</span>
-          </Button>
-        </li>
-        <li>
-          <Button
-          onClick={() => handleClick("/app/planning/work_break_done" , NAVS.THREE)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6 
-            ${current_page == NAVS.THREE  ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' }`}>
-          
-            <span className="ml-2 text-sm tracking-wide  truncate">Work breakdown structure </span>
-          </Button>
-        </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/planning/Project_Scheduler" , NAVS.FOUR)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.FOUR ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
+    <div className={`overflow-y-auto overflow-x-hidden flex-grow  w-[70%] mx-auto bg-white ${isOpen? "" : "hidden" } `}>
+      <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
+          <AbdullahEffectButton
+              onClick={() => handleClick("/app/planning" , NAVS.ONE)}
+              className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+              ${current_page == NAVS.ONE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+          >
+          Project scope  
+          </AbdullahEffectButton>
+      
+       
         
+        
+        <AbdullahEffectButton
+            onClick={() => handleClick("/app/planning/work_break_done" , NAVS.TWO)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.TWO ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+       Work breakdown 
+        </AbdullahEffectButton>
+     
+       
+       
+        
+        <AbdullahEffectButton
+            onClick={() => handleClick("/app/planning/Project_Scheduler" , NAVS.THREE)}
+            className={` rounded-lg w-[90%] mx-auto p-4  border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.THREE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+     Project schedule
+        </AbdullahEffectButton>
+    
+       
+        
+        
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/planning/Ressource_allocation" , NAVS.FOUR)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.FOUR ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+     Resource allocation
+        </AbdullahEffectButton>
+   
+      
+       
+        
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/planning/comminucation_plan"  , NAVS.FIVE)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.FIVE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+        >
+  Communications
+        </AbdullahEffectButton>
+   
+      
+      
+        
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/planning/cost_managment_plan" , NAVS.SIX)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.SIX ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-lg`}
+        >
+            Cost management 
+        </AbdullahEffectButton>
 
-            <span className="ml-2 text-sm tracking-wide truncate">Project schedule</span>
-        
-          </Button>
-        </li>
-        
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/planning/Ressource_allocation" , NAVS.FIVE)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.FIVE ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-        
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/planning/change_managment_plan " , NAVS.SEVEN)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.SEVEN ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-lg`}
+        >
+           Change management 
+        </AbdullahEffectButton>
 
-            <span className="ml-2 text-sm tracking-wide truncate">Resource allocation</span>
-        
-          </Button>
-        </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/planning/comminucation_plan" , NAVS.SIX)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.SIX ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-        
-
-            <span className="ml-2 text-sm tracking-wide truncate">Communication plan: </span>
-        
-          </Button>
-        </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/planning/cost_managment_plan" , NAVS.SEVEN)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.SEVEN ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-        
-
-            <span className="ml-2 text-sm tracking-wide truncate">Cost management plan </span>
-        
-          </Button>
-        </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/planning/change_managment_plan" , NAVS.EIGHT)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.EIGHT ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-        
-
-            <span className="ml-2 text-sm tracking-wide truncate">Change management plan </span>
-        
-          </Button>
-        </li>
-        <li>
-          <Button 
-          onClick={() => handleClick("/app/planning/risk_management_plan" , NAVS.NIGHT)}
-          className={`!relative !w-full !flex  !normal-case  !flex-row  !justify-start !items-center !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.NIGHT ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-        
-
-            <span className="ml-2 text-sm tracking-wide truncate">Risk management plan</span>
-        
-          </Button>
-        </li>
-        <li>
-        <Button
-        onClick={() => handleClick("/app/planning/application" , NAVS.TEN) }
-        className={`!relative !w-full !flex !flex-row  !normal-case  !items-center !justify-start !h-11 !focus:outline-none !hover:bg-gray-50  !hover:text-gray-800 !border-l-4 !border-transparent !pr-6  ${current_page == NAVS.TEN ? ' !text-gray-800 !bg-gray-50 !border-indigo-500 ' :'!text-gray-600' } `}>
-           
-            <span className="ml-2 text-sm tracking-wide truncate">application</span>
-
-            </Button>
-        </li> 
-      </ul>
+        <AbdullahEffectButton
+             onClick={() => handleClick("/app/planning/risk_management_plan" , NAVS.EIGHT)}
+            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            ${current_page == NAVS.EIGHT ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-lg`}
+        >
+           Risk management 
+        </AbdullahEffectButton>
+       
+      
+      </div>
     </div>
   </div>
+  </>
 
   )
 }
+

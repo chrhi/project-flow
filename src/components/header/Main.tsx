@@ -9,6 +9,7 @@ import { NotAuth } from "./NotAuth"
 import React from "react"
 import { PagesNav } from "./PagesNav"
 import TopBanner from "../ui/TopBanner"
+import { SearchBar } from "./SearchBar"
 
 type Props = {
   notAuth? : boolean,
@@ -43,7 +44,8 @@ export const Header = ({notAuth = false}:Props) => {
       notAuth ? 
       <NotAuth />
        :
-       <div className="w-[25%]  h-[60px] flex justify-end items-center  ">
+       <div className="w-[40%]  h-[60px] flex justify-end items-center  ">
+        <SearchBar />
        <DropDowsMenu />
      </div>
     }

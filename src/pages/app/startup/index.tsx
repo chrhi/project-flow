@@ -9,7 +9,6 @@ import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 import { Input } from "~/components/ui/used/Input";
 import { TextField } from "~/components/ui/used/TextField";
-import { userReducer } from "~/store/userReducer";
 import { FormButton } from "~/components/ui/used/FormButton";
 import { TimePicker } from "~/components/ui/TimePicker";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
@@ -36,7 +35,7 @@ interface inputSchema {
 const Page: NextPage = () => {
 
   let id_abdullah : any 
-  const project_id = userReducer(state => state.project_id)
+  
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -131,7 +130,7 @@ const Page: NextPage = () => {
         dateToEnd : endDate ,
         dateToStart : startDate ,
         estimatedBudget : formData.estimatedBudget ,
-        project_id ,
+        project_id : getProjectMetaData() ,
         projectManager : formData.projectManager ,
         projectManagerAuthority : formData.projectManagerAuthority || "" ,
         regionalDirector : formData.regionalDirector ,
@@ -151,7 +150,7 @@ const Page: NextPage = () => {
         dateToEnd : endDate ,
         dateToStart : startDate ,
         estimatedBudget : Number(formData.estimatedBudget)  ,
-        project_id ,
+        project_id : getProjectMetaData(),
         projectManager : formData.projectManager ,
         projectManagerAuthority : formData.projectManagerAuthority || "" ,
         regionalDirector : formData.regionalDirector ,

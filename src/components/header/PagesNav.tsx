@@ -2,6 +2,8 @@ import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBloc
 import { useRouter } from 'next/router'
 
 
+
+
 export function PagesNav() {
 
 
@@ -12,38 +14,54 @@ export function PagesNav() {
   }
 
   return (
-    <div className='w-[70%] h-full flex justify-start items-center gap-x-6 '>
+    <div className='w-[65%]  h-full flex justify-start items-center gap-x-6 '>
+       <AbdullahEffectButton 
+    onPromisClick={() => handleRouting("/app")}
+         className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })}`}
+    >
+       
+
+
+     Dashbord
+    </AbdullahEffectButton>
     <AbdullahEffectButton 
     onPromisClick={() => handleRouting("/app/startup")}
          className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })}`}
     >
-        
+       
 
-     start up
+
+     Start up
     </AbdullahEffectButton>
     <AbdullahEffectButton 
    onPromisClick={() => handleRouting("/app/planning")}
     className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm"})}`}
     >
 
+    
 
-    planning
+
+    Planning
    </AbdullahEffectButton>
     <AbdullahEffectButton 
     onPromisClick={() => handleRouting("/app/executing")}
    className={`${buttonVariantsAbdullah({variant :'ghost', size:"sm"})}`}
     >
 
+    
 
 
-   executing
+
+   Executing
    </AbdullahEffectButton>
    <AbdullahEffectButton 
      onPromisClick={() => handleRouting("/app/controlling")}
    className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm"})}`}
    >
+
+
    
-   controlling
+   Controlling
    </AbdullahEffectButton>
    <AbdullahEffectButton 
  
@@ -51,9 +69,17 @@ export function PagesNav() {
    className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm"})}`}
    >
    
+  
 
-   closing
+   Closing
    </AbdullahEffectButton>
+   <AbdullahEffectButton 
+    onPromisClick={() => handleRouting("/app/startup")}
+         className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })}`}
+    >
+  
+    Docs 
+    </AbdullahEffectButton>
 
     </div>
   )

@@ -72,9 +72,7 @@ useEffect(() => {
         
             
               <Chain  image={closing} path={`/app/close`} name="fermer" />
-            <AbdullahEffectButton>
-              click here to see is 
-            </AbdullahEffectButton>
+          
             </div>
           </div>
             :
