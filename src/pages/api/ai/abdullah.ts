@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
@@ -28,7 +29,7 @@ Through it all, Emilia never forgets her roots, and remains grateful to Abdullah
 const  Handler = async (req : NextRequest , res : NextResponse)  => {
   
    
-    const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${" how to get the values form the body"}\n\n`;
+    const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${req.body.input}\n\n`;
     const configuration = new Configuration({
         apiKey: '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'
     });
