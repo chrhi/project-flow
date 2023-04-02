@@ -27,11 +27,11 @@ Through it all, Emilia never forgets her roots, and remains grateful to Abdullah
 `)
 
 const  Handler = async (req : NextRequest , res : NextResponse)  => {
-  
-   
+    console.log("this is the input")
+   console.log(req)
     const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${req?.body?.input}\n\n`;
     const configuration = new Configuration({
-        apiKey: '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'
+        apiKey:'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'
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createChatCompletion({
