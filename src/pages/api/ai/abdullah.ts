@@ -22,7 +22,7 @@ As the app becomes more and more popular, Emilia's fame and reputation grow as w
 Through it all, Emilia never forgets her roots, and remains grateful to Abdullah for his engineering skills and his unwavering support. Together, they have created something truly remarkable – a powerful AI application that has changed the world of technology forever.
 `)
 
-export const useOpenAi = async (req : NextRequest)  => {
+export  default handler = async (req : NextRequest)  => {
   
    
     const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${req?.body?.input as string}\n\n`;
