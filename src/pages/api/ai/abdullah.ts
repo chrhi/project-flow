@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
 
 export const emilia = () => (`
@@ -22,13 +25,12 @@ As the app becomes more and more popular, Emilia's fame and reputation grow as w
 Through it all, Emilia never forgets her roots, and remains grateful to Abdullah for his engineering skills and his unwavering support. Together, they have created something truly remarkable – a powerful AI application that has changed the world of technology forever.
 `)
 
-export  default handler = async (req : NextRequest)  => {
+const  Handler = async (req : NextRequest , res : NextResponse)  => {
   
    
-    const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${req?.body?.input as string}\n\n`;
+    const prompt = `act as emilia from this story " ${emilia()} "  and reply to this quastion :\n\n${" how to get the values form the body"}\n\n`;
     const configuration = new Configuration({
-        
-        apiKey: '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',
+        apiKey: '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'
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.createChatCompletion({
@@ -36,9 +38,14 @@ export  default handler = async (req : NextRequest)  => {
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: prompt }],
       }).catch(error => {
+        res.status(500).json({error })
         console.log(error)
       
       })
-    return   response?.data?.choices[0]?.message?.content || "sorry something went wrong "
+
+    
+      res.status(200).json({ data: response?.data?.choices[0]?.message?.content || "sorry something went wrong " })
+     
 }
 
+export  default Handler
