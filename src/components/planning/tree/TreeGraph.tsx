@@ -46,8 +46,8 @@ export const  TreeGraph = () =>  {
     
       set_loading(false)
     },
-    onError(err) {
-      console.log(err)
+    onError() {
+     
       toast("error fetching the tasks  ",{
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
@@ -55,15 +55,15 @@ export const  TreeGraph = () =>  {
        set_loading(false)
        },
   })
-  const {isFetching ,refetch : refetchMileStones} =  api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()},{
+  const getMileStone =  api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()},{
     onSuccess(data) {
       setMainTasks(data as mileStone[])
       prepareTheArray()
       set_loading(false)
     },
-    onError(err) {
-      console.log(err)
-      toast("something went wrong ",{
+    onError() {
+   
+      toast("no Mailestones ",{
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
        })
@@ -74,7 +74,7 @@ export const  TreeGraph = () =>  {
     if(isFetching || tasksGet.isFetching){
       set_loading(true)
     }
-  }, [ isFetching , set_loading , tasksGet.isFetching])
+  }, [ getMileStone.isFetching , set_loading , tasksGet.isFetching])
 
   function preparetheArrayChildren (id : string)  {
     const array =   tasks?.filter(current => current.parent_id === id)
@@ -86,13 +86,13 @@ export const  TreeGraph = () =>  {
          },
          children:[]}
        })
-       console.log(tasks)
+      
       
        return childrenData
    } 
   function prepareTheArray  ()  {
   const  data = MainTasks.map (item => {
-    console.log(item.id)
+   
     return {
       id : item.id ,
       name: item.name,
@@ -105,7 +105,7 @@ export const  TreeGraph = () =>  {
       name : "project title",
       children: data,
     }
-    console.log(orgChart)
+    
   
     setTreeData(orgChart)
   }
@@ -115,7 +115,7 @@ export const  TreeGraph = () =>  {
   return (
     // `<Tree />` will fill width/height of its container; in this case `#treeWrapper`.
     <FormContainer>
-      <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={refetchMileStones} parent_id={id}/>
+      <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch = {getMileStone.refetch}  refetchMileStones={tasksGet.refetch} parent_id={id}/>
       <FormHead  text='break your project into small pieses 🐱'  />
     <div id="treeWrapper" className='mx-auto ' style={{ width: '100%', height: '100%' }}>
 
@@ -123,6 +123,7 @@ export const  TreeGraph = () =>  {
        data={treeData} orientation='vertical'
       
         onNodeClick={(node) => {
+          if(!node.data?.id) return
           setIsOpen(true)
           
           setId(node.data?.id  as string)

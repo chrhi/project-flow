@@ -13,14 +13,16 @@ interface Props {
     parent_id : string ,
     isOpen : boolean ,
     setIsOpen : Dispatch<SetStateAction<boolean>>,
-    refetch : () => Promise<any>
+    refetch : () => Promise<any>,
+    refetchMileStones : () => Promise<any>
 
 }
 
 
-export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch} : Props) {
+export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchMileStones} : Props) {
   
     const [input , setInput ] = useState("")
+    const [update, setUpdate] = useState(false);
 
     const post = api.tasksRouter.createTask.useMutation({
       onSuccess :async () => {
@@ -29,11 +31,16 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch} : Props) 
           hideProgressBar: true,
          })
          await refetch()
+         setUpdate(update => !update)
+         await refetchMileStones()
+         setUpdate(update => !update)
+       
          setIsOpen(false)
 
       },
-      onError(){
-        toast("error something went wrong ",{
+      onError(error){
+        console.log(error)
+        toast("error adding the task",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
