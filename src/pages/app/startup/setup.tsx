@@ -13,7 +13,6 @@ import { getProjectMetaData } from "~/lib/MetaData";
 
 import { type NextPage } from "next";
 import { Header } from "~/components/common/Header";
-import { FirstForm } from "~/components/forms/startup/FirstForm";
 import { Sidebar } from "~/components/ui/Sidebar";
 
 interface inputSchema {
