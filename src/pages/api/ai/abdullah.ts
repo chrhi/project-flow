@@ -39,7 +39,8 @@ const  Handler = async (req : NextRequest , res : NextResponse)  => {
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: prompt }],
       }).catch(error => {
-        res.status(500).json({error })
+        res.status(400).json({error  })
+        res.status(400).json({message : "some thing went wrong"  })
         console.log(error)
       
       })
