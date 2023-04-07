@@ -1,17 +1,19 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
+
 export enum NAVS {
-  ONE ,
-  TWO , 
-  THREE ,
+  ONE,
+  TWO,
+  THREE,
   FOUR,
-  FIVE ,
-  SIX ,
-  SEVEN , 
-  EIGHT ,
-  NIGHT ,
-  TEN
+  FIVE,
+  SIX,
+  SEVEN,
+  EIGHT,
+  NIGHT,
+  TEN,
+  A
 }
 
 
