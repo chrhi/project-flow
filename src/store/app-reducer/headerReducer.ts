@@ -2,9 +2,13 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 
 export enum PAGES {
-    HOME,
-    MYPROJECT,
-    SETTINGS
+    DASHBORD,
+    STARTUP,
+    PLANNING ,
+    EXECUTING ,
+    CONTROLLING,
+    CLOSING ,
+    DOCS
 }
 
 
@@ -17,7 +21,7 @@ export const header_page_Reducer = create<Reducer ,[["zustand/persist",unknown]]
   persist(
     (set) => ({
       
-      current_page: PAGES.HOME,
+      current_page: PAGES.DASHBORD,
      
       set_current_page:(input :{ payload:PAGES}) => set({current_page : input.payload}),
       
