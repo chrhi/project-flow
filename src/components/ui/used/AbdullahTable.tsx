@@ -16,12 +16,13 @@ type Props ={
     showHeaders? : boolean,
     Action? : boolean,
     wrap? : boolean ,
-    PlusButton? : ReactNode
+    PlusButton? : ReactNode,
+    ActionName? : string
 
 }
 
 
-export const AbdullahTable = ({title , descripton , headers , body , showHeaders = true ,wrap = true,PlusButton , Action = true}: Props) => {
+export const AbdullahTable = ({title , descripton , headers , body , showHeaders = true ,wrap = true,PlusButton , Action = true , ActionName ="Delete"}: Props) => {
   return (
     
 <div className="relative overflow-x-auto  sm:rounded-lg  ">
@@ -52,7 +53,7 @@ export const AbdullahTable = ({title , descripton , headers , body , showHeaders
                 </th>
                 ))}
               {Action &&   <td className={`px-6 py-4 text-right`}>
-                    <button onClick={() => current.callback(current?.id)} className="font-medium text-blue-600 hover:underline">delete</button>
+                    <button onClick={() => current.callback(current?.id)} className="font-medium text-blue-600 hover:underline">{ActionName}</button>
                 </td>}
             </tr>
             ))}
