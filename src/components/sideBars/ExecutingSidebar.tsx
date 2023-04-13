@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router'
-import { PlanningSideBarReducer , NAVS } from '~/store/app-reducer/PlanningSideBarReducer'
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
 import type { Dispatch, SetStateAction } from 'react'
+import { ExecutingSideBar , NAVS } from '~/store/app-reducer/ExecutingSideBar'
 
 type Props ={
   isOpen? : boolean , 
@@ -11,21 +11,21 @@ type Props ={
 }
 
 const List = [
-  {name : " Task assignment" , path : "/" , navs : NAVS.ONE},
-  {name : " Status tracking" , path : "/" , navs : NAVS.ONE},
-  {name : " Time tracking" , path : "/" , navs : NAVS.ONE},
-  {name : "Resource allocation" , path : "/" , navs : NAVS.ONE},
-  {name : "Change management" , path : "/" , navs : NAVS.ONE},
-  {name : "Quality control" , path : "/" , navs : NAVS.ONE},
-  {name : "Communication" , path : "/" , navs : NAVS.ONE},
-  {name : "Risk management" , path : "/" , navs : NAVS.ONE},
-  {name : "Issue tracking" , path : "/" , navs : NAVS.ONE},
+  {name : " Task assignment" , path : "/app/executing" , navs : NAVS.ONE},
+  {name : " Status tracking" , path : "/app/executing/statusTracking" , navs : NAVS.TWO},
+  {name : " Time tracking" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
+  {name : "Resource allocation" , path : "/" , navs : NAVS.FOUR},
+  {name : "Change management" , path : "/" , navs : NAVS.FIVE},
+  {name : "Quality control" , path : "/" , navs : NAVS.SIX},
+  {name : "Communication" , path : "/" , navs : NAVS.SEVEN},
+  {name : "Risk management" , path : "/" , navs : NAVS.EIGHT},
+  {name : "Issue tracking" , path : "/" , navs : NAVS.NIGHT},
 ]
 
 export  const ExecutingSidebar = ({isOpen , setIsOpen} : Props) => {
   const router = useRouter()
-  const current_page = PlanningSideBarReducer(state => state.current_page)
-  const set_current_page = PlanningSideBarReducer(state => state.set_current_page)
+  const current_page = ExecutingSideBar(state => state.current_page)
+  const set_current_page = ExecutingSideBar(state => state.set_current_page)
 
   const handleClick : (path : string , A : NAVS) => void = (path : string , A : NAVS) => {
     router.push(path) as unknown
@@ -35,7 +35,7 @@ export  const ExecutingSidebar = ({isOpen , setIsOpen} : Props) => {
               <AbdullahEffectButton
                  onClick={() => handleClick(path , Nav)}
                  className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-                 ${current_page == NAVS.A ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}>
+                 ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}>
                   {name}
               </AbdullahEffectButton>
 return (
