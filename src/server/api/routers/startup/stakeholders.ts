@@ -113,7 +113,8 @@ createStackholder : publicProcedure
     const data = await stakeholdersTable.get(input.project_id).catch(error => { 
         throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
     return data
- })
+ }),
+
 
 
 })

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Header } from "~/components/common/Header";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
 import { AssignTaskPopUp } from "~/components/ui/plusTable/executing/AssignTaskPopUp";
+import { StakeHolder } from "~/components/ui/popup/StakeHolder";
 import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
@@ -14,15 +15,16 @@ import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { task } from "~/types/type";
 import { api } from "~/utils/api";
 
-//todo 
-//get the tasks data 
-// handle each state 
-// get and display the data 
-// buid the ui for assigning new task 
+type stekholder ={
+  id : string ,
+  name : string
+}
+
+
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
   const [tasks , setTasks ] = useState<task[]>([])
-  const [stakholders , setStakHolders ] = useState<[]>([])
+  const [stakholders , setStakHolders ] = useState<stekholder[]>([])
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   // get all the tasks 
@@ -43,20 +45,49 @@ const Page: NextPage = () => {
        },
   })
 
+  const { isFetching } = api.stakHolderRouter.getAllStackHolders.useQuery({project_id : getProjectMetaData()} , {
+    onSuccess(data) {
+      setStakHolders(data as stekholder[])
+      set_loading(false)
+    },
+    onError(){
+      toast("failed to get the stakholders",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+       set_loading(false)
+     
+    },
+  })
+
+
   useEffect(() => {
-    if( tasksGet.isFetching){
+    if( tasksGet.isFetching || isFetching ){
       set_loading(true)
     }
-  }, [   set_loading , tasksGet.isFetching])
+  }, [   set_loading , tasksGet.isFetching , isFetching])
 
   // prepare the items to be handled by the table
   // AssignTaskPopUp
   const satisfieTable = () : ItemTable[] => {
     const array : ItemTable[] =  tasks.map(item => {
+
+      const involvedStackHolders = item?.assign_to
+
+      const assignedTo : stekholder[] = []
+      involvedStackHolders?.forEach(current => {
+        const up : stekholder[]   = stakholders.filter(stakholder => stakholder.id === current)
+       if( up &&  up.length > 0  )  {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        assignedTo.push(up[0]!)
+       }
+      })
       return  {
         id : item.id ,
         callback : (id : string) => console.log(id),
-        properties : [item.name , "here goes all the stakholders" , <AssignTaskPopUp refetch={tasksGet.refetch} taskName={item.name} key={item.id} />]
+        properties : [item.name , assignedTo.map(pro => (
+          <StakeHolder id ={pro.id}  key={pro.id} text={pro.name} />
+        )) , <AssignTaskPopUp refetch={tasksGet.refetch} taskName={item.name} id={item.id} key={item.id} />]
       } 
     })
     return array

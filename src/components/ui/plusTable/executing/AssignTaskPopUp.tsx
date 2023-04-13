@@ -14,6 +14,7 @@ import { TimePicker } from '~/components/ui/TimePicker'
 import Select from 'react-select';
 type Props = {
   taskName : string ,
+  id : string ,
   refetch : () => Promise<any>
 }
 
@@ -28,7 +29,7 @@ type stekholder ={
 }
 
 
-export  function AssignTaskPopUp ({ refetch , taskName} : Props) {
+export  function AssignTaskPopUp ({ refetch , taskName , id} : Props) {
 
 
     const [stakHolders , setStakholders] = useState<stekholder[]>([] as stekholder[])
@@ -64,11 +65,32 @@ export  function AssignTaskPopUp ({ refetch , taskName} : Props) {
       },
     })
 
- 
-
+    const update = api.tasksRouter.assignStakholders.useMutation({
+      onSuccess: async () => {
+        toast("updated successfully!",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         await refetch()
+         closeModal()
+         setFormData({stakholders : []})
+      },
+      onError(){
+        toast("failed to update",{
+          className:" !text-white !bg-blue-500",
+          hideProgressBar: true,
+         })
+         closeModal()
+      },
+    })
 
   const handleSubmit = () => {
-    //todo
+  
+    update.mutate({
+      id , 
+      assign_to : formData.stakholders 
+    })
+
   }
      
   
@@ -137,7 +159,7 @@ export  function AssignTaskPopUp ({ refetch , taskName} : Props) {
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 gap-6">
             <div className='col-span-6'>
-                <h1>{taskName}</h1>
+                <h1 className='text-xl font-bold text-red-500 '>{taskName}</h1>
             </div>
             <div className='col-span-6'>
             <label  className="block text-sm font-medium leading-6 text-gray-900">
@@ -155,7 +177,7 @@ export  function AssignTaskPopUp ({ refetch , taskName} : Props) {
            <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            // isLoading={post.isLoading}
+            isLoading={update.isLoading}
             className={buttonVariants({size:'sm' , variant:"primary"})}
             >
               submit

@@ -73,7 +73,7 @@ const Page: NextPage = () => {
             set_loading(true)
             deleteStakholder.mutate({id})
           },
-          properties : [<StakeHolder id ={item.id}  key={"chehri abdullah"} text={item.name} />  , item.role ]
+          properties : [<StakeHolder id ={item.id}  key={item.id} text={item.name} />  , item.role ]
         } 
       ))
     
