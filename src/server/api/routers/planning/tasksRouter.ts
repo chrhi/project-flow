@@ -118,6 +118,20 @@ export const tasksRouter = createTRPCRouter({
                         throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error.message,})
                      }
                 }),
-    
+    updateStatus : publicProcedure 
+                 .input(z.object({
+                    id : z.string(),
+                    status : z.string()
+                 }))
+                 .mutation(async ({input}) => {
+                 
+                    const {  error } = await baseModel.provider.from('tasks').update([  {
+                        status : input.status
+                    }]).eq("id" , input.id)
+              
+                    if(error){
+                        throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error.message,})
+                     }
+                 })
 
 });
