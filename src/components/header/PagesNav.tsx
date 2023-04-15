@@ -38,7 +38,7 @@ export function PagesNav() {
       name : "Closing" , path : "/app/close" , page : PAGES.CLOSING
     },
     {
-      name : " Docs " , path : "/app/startup" , page : PAGES.DOCS
+      name : " Docs " , path : "/app/docs" , page : PAGES.DOCS
     },
   ]
 

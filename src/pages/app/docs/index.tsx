@@ -2,9 +2,31 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import {  useState } from "react";
 import { Header } from "~/components/common/Header";
+import { FolderIcon } from "@heroicons/react/20/solid";
 
 
-
+const LISTA = [
+  {
+    name : "start up " , 
+    path : "/app/startup"
+  },
+  {
+    name : "planning " , 
+    path : "/app/startup"
+  },
+  {
+    name : "executing" , 
+    path : "/app/startup"
+  },
+  {
+    name : "controlling" , 
+    path : "/app/startup"
+  },
+  {
+    name : "closing" , 
+    path : "/app/startup"
+  },
+]
 
 
 const Page: NextPage = () => {
@@ -21,9 +43,20 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Header />
-      <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-        <h1>some side bar that allows you to navigate</h1>
-        <h1>in here goes all the documents </h1>
+      <main className=" custopn-page-height  flex w-full justify-center items-center bg-gray-50 ">
+      <div className="w-[80%] h-[80%] rounded-lg flex gap-x-4 bg-white shadow-lg p-4 flex-wrap ">
+
+        {
+          LISTA.map(item => (
+            <div key={item.name} className="w-[100px] h-[100px] hover:bg-blue-100 cursor-pointer rounded-lg flex flex-col items-center p-4">
+            <FolderIcon className="h-24 w-24 text-blue-300  " />
+            <p className="text-sm text-gray-800 font-medium leading-3">{item.name}</p>
+          </div>
+          ))
+        }
+
+
+      </div>
       </main>
     </>
   );
