@@ -16,7 +16,7 @@ import { getUserMetadata, setoreProjectMetaData } from "~/lib/MetaData";
 import { AbdullahEffectButton } from "~/components/ui/buildingBlocks/AbdullahEffectButton";
 const Page: NextPage = () => {
 
-  const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
+  const [hasProjectStart , setHasProjectStart] = useState<boolean>(true)
 
   const set_isLoading = loading_Reducer(state => state.set_isLoadingFully)
   const {refetch , isFetching} = api.ProjectRouter.getProjectStatus.useQuery({user_id : getUserMetadata() } , {
