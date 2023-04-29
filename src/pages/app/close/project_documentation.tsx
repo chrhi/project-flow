@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
-import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
 import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
@@ -22,18 +22,18 @@ const Page: NextPage = () => {
       </Head>
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-       <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+       <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐  Cost control" />
+      <FormHead text="⭐ Project documentation" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6">
 
         <AbdullahTable
-            title=" Cost control"
+            title="Project documentation"
             descripton="
-            Cost control in PMBOK refers to the process of monitoring, reviewing, and managing project expenses to ensure that they align with the approved budget. It involves developing a project budget, monitoring actual costs, comparing actual costs against the budget, identifying variances, and implementing corrective actions to keep the project within budget. Effective cost control helps to ensure that the project is completed within the approved budget and that financial resources are used efficiently.
+            Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion.
             "
             headers={["name" , "role / responsability"]}
             body={[]}

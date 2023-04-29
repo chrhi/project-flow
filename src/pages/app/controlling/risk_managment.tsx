@@ -3,6 +3,10 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
+import { Form } from "~/components/ui/used/Form";
+import { FormContainer } from "~/components/ui/used/FormContainer";
+import { FormHead } from "~/components/ui/used/FormHead";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -19,7 +23,29 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-       <h1>this is the risk managemnt </h1>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+      <FormHead text="⭐ Risk management" />
+      <Form  >
+      <div className="bg-white px-4 py-5 sm:p-6">
+        <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6">
+
+        <AbdullahTable
+            title=" Risk management"
+            descripton="
+            Risk management in PMBOK is the process of identifying, assessing, prioritizing, and responding to project risks. It involves identifying potential risks, assessing their likelihood and impact, developing strategies to mitigate or avoid risks, implementing those strategies, and monitoring the effectiveness of risk management activities. Effective risk management helps to reduce the likelihood and impact of negative events and improve project outcomes.
+            "
+            headers={["name" , "role / responsability"]}
+            body={[]}
+            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
+
+         />
+            </div>
+        </div>
+      </div>
+   
+       </Form>
+  </FormContainer>
       </main>
     </>
   );

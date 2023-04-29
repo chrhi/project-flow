@@ -11,7 +11,8 @@ import { useEffect } from "react";
 import {loading_Reducer} from "~/store/app-reducer/loadingReducer"
 import {userReducer} from "~/store/userReducer"
 import Head from "next/head";
-
+import 'reactflow/dist/style.css';
+import { ReactFlowProvider } from "reactflow";
 
 
 const MyApp: AppType = ({ Component, pageProps }) => {
@@ -63,7 +64,9 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       
       
       </Head>
+     <ReactFlowProvider>
        <Component {...pageProps} />
+     </ReactFlowProvider>
     </div>
     )
 };

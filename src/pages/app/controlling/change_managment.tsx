@@ -3,6 +3,10 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
+import { Form } from "~/components/ui/used/Form";
+import { FormContainer } from "~/components/ui/used/FormContainer";
+import { FormHead } from "~/components/ui/used/FormHead";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -19,7 +23,27 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-       <h1>this is the change managment </h1>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+      <FormHead text="⭐ Change management" />
+      <Form  >
+      <div className="bg-white px-4 py-5 sm:p-6">
+        <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6">
+
+        <AbdullahTable
+            title="Change management"
+            descripton="Change management in PMBOK is a process to plan, implement, and control changes in a project. It involves identifying changes, evaluating their impact, developing a plan, implementing the change, and monitoring the results. Effective change management helps ensure that changes are properly integrated into the project and do not negatively impact its objectives."
+            headers={["name" , "role / responsability"]}
+            body={[]}
+            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
+
+         />
+            </div>
+        </div>
+      </div>
+   
+       </Form>
+  </FormContainer>
       </main>
     </>
   );

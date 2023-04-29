@@ -11,8 +11,8 @@ type Props ={
 }
 
 const List = [
-  {name : " Task assignment" , path : "/app/executing" , navs : NAVS.ONE},
-  {name : " Status tracking" , path : "/app/executing/statusTracking" , navs : NAVS.TWO},
+
+  {name : " Status tracking" , path : "/app/executing" , navs : NAVS.TWO},
   {name : " Time tracking" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
   {name : "Resource allocation" , path : "/" , navs : NAVS.FOUR},
   {name : "Change management" , path : "/" , navs : NAVS.FIVE},

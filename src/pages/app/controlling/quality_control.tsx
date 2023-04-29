@@ -3,6 +3,10 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
+import { Form } from "~/components/ui/used/Form";
+import { FormContainer } from "~/components/ui/used/FormContainer";
+import { FormHead } from "~/components/ui/used/FormHead";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -19,7 +23,29 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-       <h1>this is the quality control</h1>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+      <FormHead text="⭐ Quality control" />
+      <Form  >
+      <div className="bg-white px-4 py-5 sm:p-6">
+        <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6">
+
+        <AbdullahTable
+            title="Quality control"
+            descripton="
+            Quality control in PMBOK refers to the process of monitoring specific project results to determine if they meet relevant quality standards and identifying ways to eliminate causes of unsatisfactory results. It involves establishing quality objectives, developing a quality management plan, performing inspections, testing, and reviews, and implementing corrective actions to address any identified issues. Effective quality control helps to ensure that project deliverables meet customer expectations and requirements.
+            "
+            headers={["name" , "role / responsability"]}
+            body={[]}
+            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
+
+         />
+            </div>
+        </div>
+      </div>
+   
+       </Form>
+  </FormContainer>
       </main>
     </>
   );

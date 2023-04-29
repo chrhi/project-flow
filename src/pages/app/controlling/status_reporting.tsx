@@ -3,6 +3,10 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
+import { Form } from "~/components/ui/used/Form";
+import { FormContainer } from "~/components/ui/used/FormContainer";
+import { FormHead } from "~/components/ui/used/FormHead";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -19,7 +23,29 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-       <h1>this is the statrus reporting </h1>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+      <FormHead text="⭐ Status reporting" />
+      <Form  >
+      <div className="bg-white px-4 py-5 sm:p-6">
+        <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6">
+
+        <AbdullahTable
+            title="Status reporting"
+            descripton="
+            Status reporting in PMBOK refers to the process of regularly communicating project progress and performance to stakeholders, including project sponsors, team members, and other relevant parties. It involves collecting and analyzing project data, developing status reports, and distributing reports to stakeholders. Effective status reporting helps to ensure that stakeholders are informed about project status, progress, and any issues that need attention. This can help to build trust, facilitate collaboration, and ensure that project objectives are met.
+            "
+            headers={["name" , "role / responsability"]}
+            body={[]}
+            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
+
+         />
+            </div>
+        </div>
+      </div>
+   
+       </Form>
+  </FormContainer>
       </main>
     </>
   );

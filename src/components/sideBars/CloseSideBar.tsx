@@ -11,15 +11,15 @@ type Props ={
 }
 
 const List = [
-  {name : "Lessons learned" , path : "/" , navs : NAVS.ONE},
-  {name : "Project documentation" , path : "/" , navs : NAVS.ONE},
-  {name : "Project evaluation" , path : "/" , navs : NAVS.ONE},
-  {name : "Project closure" , path : "/" , navs : NAVS.ONE},
-  {name : "Resource handover" , path : "/" , navs : NAVS.ONE},
-  {name : "Client acceptance" , path : "/" , navs : NAVS.ONE},
-  {name : "Communication" , path : "/" , navs : NAVS.ONE},
-  {name : "Archiving" , path : "/" , navs : NAVS.ONE},
-  {name : "Celebrations" , path : "/" , navs : NAVS.ONE},
+  {name : "Lessons learned" , path : "/app/close" , navs : NAVS.ONE},
+  {name : "Project documentation" , path : "/app/close/project_documentation" , navs : NAVS.ONE},
+  {name : "Project evaluation" , path : "/app/close/project_evaluation" , navs : NAVS.ONE},
+  {name : "Project closure" , path : "/app/close/project_closure" , navs : NAVS.ONE},
+  {name : "Resource handover" , path : "/app/close/resource_handover" , navs : NAVS.ONE},
+  {name : "Client acceptance" , path : "/app/close/client_acceptance" , navs : NAVS.ONE},
+  {name : "Communication" , path : "/app/close/communication" , navs : NAVS.ONE},
+  {name : "Archiving" , path : "/app/close/archive" , navs : NAVS.ONE},
+  {name : "Celebrations" , path : "/app/close/celebration" , navs : NAVS.ONE},
 ]
 
 export  const CloseSideBar = ({isOpen , setIsOpen} : Props) => {

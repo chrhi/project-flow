@@ -3,6 +3,10 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
+import { Form } from "~/components/ui/used/Form";
+import { FormContainer } from "~/components/ui/used/FormContainer";
+import { FormHead } from "~/components/ui/used/FormHead";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -19,7 +23,29 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-       <h1>this is the communication controll </h1>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+      <FormHead text="⭐  Communication management" />
+      <Form  >
+      <div className="bg-white px-4 py-5 sm:p-6">
+        <div className="grid grid-cols-6 gap-6">
+            <div className="col-span-6">
+
+        <AbdullahTable
+            title="Communication management"
+            descripton="
+            Communication management in PMBOK refers to planning, executing, monitoring, and controlling the flow of information within a project to ensure stakeholders receive and understand necessary information. Effective communication management is essential to facilitate collaboration, build trust, and manage expectations throughout the project lifecycle.
+            "
+            headers={["name" , "role / responsability"]}
+            body={[]}
+            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
+
+         />
+            </div>
+        </div>
+      </div>
+   
+       </Form>
+  </FormContainer>
       </main>
     </>
   );

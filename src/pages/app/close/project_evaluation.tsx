@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
-import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
 import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
@@ -22,18 +22,18 @@ const Page: NextPage = () => {
       </Head>
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-       <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+       <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐  Cost control" />
+      <FormHead text="⭐ Project evaluation" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6">
 
         <AbdullahTable
-            title=" Cost control"
+            title="Project evaluation"
             descripton="
-            Cost control in PMBOK refers to the process of monitoring, reviewing, and managing project expenses to ensure that they align with the approved budget. It involves developing a project budget, monitoring actual costs, comparing actual costs against the budget, identifying variances, and implementing corrective actions to keep the project within budget. Effective cost control helps to ensure that the project is completed within the approved budget and that financial resources are used efficiently.
+            Project evaluation refers to the process of assessing the success of a project based on predetermined criteria, such as project objectives, schedule, budget, and stakeholder satisfaction. It involves collecting and analyzing project data, identifying areas of success and improvement, and developing recommendations for future projects. Effective project evaluation helps to improve project management practices, enhance organizational learning, and ensure that project goals are achieved.
             "
             headers={["name" , "role / responsability"]}
             body={[]}

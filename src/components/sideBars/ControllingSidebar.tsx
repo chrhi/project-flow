@@ -11,15 +11,15 @@ type Props ={
 }
 
 const List = [
-  {name : "Performance monitoring" , path : "/" , navs : NAVS.ONE},
-  {name : "Issue management" , path : "/" , navs : NAVS.ONE},
-  {name : "Change management" , path : "/" , navs : NAVS.ONE},
-  {name : "Risk management" , path : "/" , navs : NAVS.ONE},
-  {name : "Quality control" , path : "/" , navs : NAVS.ONE},
-  {name : "Schedule control" , path : "/" , navs : NAVS.ONE},
-  {name : "Cost control" , path : "/" , navs : NAVS.ONE},
-  {name : "Communication management" , path : "/" , navs : NAVS.ONE},
-  {name : "Status reporting" , path : "/" , navs : NAVS.ONE},
+ 
+  {name : "Issue management" , path : "/app/controlling" , navs : NAVS.ONE},
+  {name : "Change management" , path : "/app/controlling/change_managment" , navs : NAVS.ONE},
+  {name : "Risk management" , path : "/app/controlling/risk_managment" , navs : NAVS.ONE},
+  {name : "Quality control" , path : "/app/controlling/quality_control" , navs : NAVS.ONE},
+  {name : "Schedule control" , path : "/app/controlling/schdule_control" , navs : NAVS.ONE},
+  {name : "Cost control" , path : "/app/controlling/cont_controll" , navs : NAVS.ONE},
+  {name : "Communication management" , path : "/app/controlling/communication_control" , navs : NAVS.ONE},
+  {name : "Status reporting" , path : "/app/controlling/status_reporting" , navs : NAVS.ONE},
 ]
 
 export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {
@@ -35,7 +35,7 @@ export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {
               <AbdullahEffectButton
                  onClick={() => handleClick(path , Nav)}
                  className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-                 ${current_page == NAVS.A ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}>
+                 ${current_page == NAVS.A ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md`}>
                   {name}
               </AbdullahEffectButton>
 return (

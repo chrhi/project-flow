@@ -88,7 +88,13 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
         </AbdullahEffectButton>
      
        
-       
+        <AbdullahEffectButton
+              onClick={() => handleClick("/app/planning/task_assigment" , NAVS.ONE)}
+              className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+              ${current_page == NAVS.ONE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+          >
+          Task assignment
+          </AbdullahEffectButton>
         
         <AbdullahEffectButton
             onClick={() => handleClick("/app/planning/Project_Scheduler" , NAVS.THREE)}
