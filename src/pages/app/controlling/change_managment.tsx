@@ -33,7 +33,7 @@ const Page: NextPage = () => {
         <AbdullahTable
             title="Change management"
             descripton="Change management in PMBOK is a process to plan, implement, and control changes in a project. It involves identifying changes, evaluating their impact, developing a plan, implementing the change, and monitoring the results. Effective change management helps ensure that changes are properly integrated into the project and do not negatively impact its objectives."
-            headers={["name" , "role / responsability"]}
+            headers={["change" , "description"]}
             body={[]}
             // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 

@@ -59,14 +59,14 @@ useEffect(() => {
             <h1 className="text-gray-800 font-bold text-2xl text-start ml-4 mt-8  " >Contrôlez et configurez votre projet</h1>
             <p className="text-gray-300 text-md ml-4 mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod soluta, fuga nostrum </p>
             <div className="w-[90%]  mx-auto gap-x-8  rounded-lg min-h-[400px] h-fit flex justify-center items-center my-2">
-              <Chain image={setup} path={`/app/startup`} name="Démarrage" selected />
+              <Chain available image={setup} path={`/app/startup`} name="Démarrage" selected />
              
            
-              <Chain  image={planning} path={`/app/planning`} name="Planification" />
+              <Chain available  image={planning} path={`/app/planning`} name="Planification" />
          
 
            
-              <Chain  image={executing} path={`/app/executing`} name="Exécution" />
+              <Chain available  image={executing} path={`/app/executing`} name="Exécution" />
            
               <Chain  image={controlling} path={`/app/controlling`} name="Contrôler" />
         

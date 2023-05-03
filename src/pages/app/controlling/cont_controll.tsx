@@ -35,7 +35,7 @@ const Page: NextPage = () => {
             descripton="
             Cost control in PMBOK refers to the process of monitoring, reviewing, and managing project expenses to ensure that they align with the approved budget. It involves developing a project budget, monitoring actual costs, comparing actual costs against the budget, identifying variances, and implementing corrective actions to keep the project within budget. Effective cost control helps to ensure that the project is completed within the approved budget and that financial resources are used efficiently.
             "
-            headers={["name" , "role / responsability"]}
+            headers={["task" , "planed cost" , "actual  cost" ]}
             body={[]}
             // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 

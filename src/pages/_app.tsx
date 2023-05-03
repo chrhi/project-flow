@@ -13,6 +13,7 @@ import {userReducer} from "~/store/userReducer"
 import Head from "next/head";
 import 'reactflow/dist/style.css';
 import { ReactFlowProvider } from "reactflow";
+import { AccessPopUp } from "~/components/common/AccessPopUp";
 
 
 const MyApp: AppType = ({ Component, pageProps }) => {
@@ -55,6 +56,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     <div className="w-full h-fit relative">
        <NextNProgress options={{ showSpinner: false }} />
        <Loading />
+       <AccessPopUp />
        <ToastContainer theme="dark" />
        <Head>
         <title>ProjectFlow</title>
@@ -65,6 +67,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       
       </Head>
      <ReactFlowProvider>
+
        <Component {...pageProps} />
      </ReactFlowProvider>
     </div>

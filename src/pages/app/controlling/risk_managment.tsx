@@ -35,7 +35,7 @@ const Page: NextPage = () => {
             descripton="
             Risk management in PMBOK is the process of identifying, assessing, prioritizing, and responding to project risks. It involves identifying potential risks, assessing their likelihood and impact, developing strategies to mitigate or avoid risks, implementing those strategies, and monitoring the effectiveness of risk management activities. Effective risk management helps to reduce the likelihood and impact of negative events and improve project outcomes.
             "
-            headers={["name" , "role / responsability"]}
+            headers={["risk" , "status"]}
             body={[]}
             // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 

@@ -35,7 +35,7 @@ const Page: NextPage = () => {
             descripton="
             Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
             "
-            headers={["name" , "role / responsability"]}
+            headers={["issue" , "status"]}
             body={[]}
             // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 

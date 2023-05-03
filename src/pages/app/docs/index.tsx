@@ -1,39 +1,17 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
-import {  useState } from "react";
 import { Header } from "~/components/common/Header";
-import { FolderIcon } from "@heroicons/react/20/solid";
-import { useRouter } from "next/router";
-
-const LISTA = [
-  {
-    name : "start up " , 
-    path : "/app/startup"
-  },
-  {
-    name : "planning " , 
-    path : "/app/startup"
-  },
-  {
-    name : "executing" , 
-    path : "/app/startup"
-  },
-  {
-    name : "controlling" , 
-    path : "/app/startup"
-  },
-  {
-    name : "closing" , 
-    path : "/app/startup"
-  },
-]
+import DocsSideBar from "~/components/common/DocsSideBar";
+import template from "~/assets/template.png"
+import Image from "next/image";
+import designer from "~/assets/designer.gif"
 
 
 const Page: NextPage = () => {
-  const [isOpen , setIsOpen] = useState<boolean>(true)
-
-  const router = useRouter()
+  
  
   return (
     <>
@@ -47,21 +25,18 @@ const Page: NextPage = () => {
       </Head>
       <Header />
       <main className=" custopn-page-height  flex w-full justify-center items-center bg-gray-50 ">
-      <div className="w-[80%] h-[80%] rounded-lg flex gap-x-4 bg-white shadow-lg p-4 flex-wrap ">
-
-        {
-          LISTA.map(item => (
-            <div key={item.name} 
-            onClick={() => router.push("/app/docs/startUp") }
-            className="w-[100px] h-[100px] hover:bg-blue-100 cursor-pointer rounded-lg flex flex-col items-center p-4">
-            <FolderIcon className="h-24 w-24 text-blue-300  " />
-            <p className="text-sm text-gray-800 font-medium leading-3">{item.name}</p>
-          </div>
-          ))
-        }
-
-
-      </div>
+        <DocsSideBar  />
+       <div
+        className=" ml-[16rem] w-[80%] h-full p-8 "
+       >
+        <h1 className="text-2xl text-blue-500 font-semibold my-4 ">Abdullah pdf generater </h1>
+        <h2 className="text-xl font-semibold text-gray-800  ">Template</h2>
+        <p className="text-md text-gray-400 ">
+        A template can be divided into two parts: a fixed part and a variable part.
+       We call them basePdf and schema. The following image is a good illustration of a template.
+        </p>
+        <Image className="w-[800px] my-4" src={template} alt="template" /> 
+       </div>
       </main>
     </>
   );

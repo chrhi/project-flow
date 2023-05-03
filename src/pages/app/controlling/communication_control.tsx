@@ -35,7 +35,7 @@ const Page: NextPage = () => {
             descripton="
             Communication management in PMBOK refers to planning, executing, monitoring, and controlling the flow of information within a project to ensure stakeholders receive and understand necessary information. Effective communication management is essential to facilitate collaboration, build trust, and manage expectations throughout the project lifecycle.
             "
-            headers={["name" , "role / responsability"]}
+            headers={["mettings" , "status"]}
             body={[]}
             // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 

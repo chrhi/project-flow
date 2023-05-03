@@ -1,8 +1,6 @@
 
 # what i need to do 
-create a input component 
-create a item component side bar 
-create all the diffrent pages and routed 
-defined a plan of what should be done 
 
+create an account table 
+-> name email password phone address photo -> accout type (project manager can have team members accounts and visiter accounts )
 
