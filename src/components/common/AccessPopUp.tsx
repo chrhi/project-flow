@@ -50,7 +50,14 @@ export  function AccessPopUp () {
                     as="div"
                     className=" w-full h-[50px] flex justify-between items-center border-b "
                   >
-               <div><p className='text-sm text-gray-500 ml-4'>error pannel</p></div>  
+               <div>
+                         <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none" viewBox="0 0 24 24"
+                              strokeWidth={1.5} stroke="currentColor" className="w-6 m-2 text-gray-400 h-6">
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                         </svg>
+                </div>  
                <div>
                 <IconButton>
                     <button
@@ -65,19 +72,12 @@ export  function AccessPopUp () {
                    </IconButton>
                 </div> 
                   </Dialog.Title>
-            <div className='  w-[400px] h-[200px] '>
-                <div
-                className='w-full h-[70%] flex justify-center items-center'
-                >
-                        <h1></h1>
-                </div>
-                <div className="bg-white flex flex-col  justify-center p-8  ">
-                 <AbdullahButton
-                  className={buttonVariants({size:'sm'})}
-                  >
-                    ok
-                 </AbdullahButton>
-               </div>
+            <div className='  w-full h-[200px]  flex justify-center  items-center px-8 '>
+                        <h1 className='text-2xl font-bold text-gray-900 text-center'>
+                          you dont have access to this action
+                         
+                           </h1>
+                    
             </div>
 
             

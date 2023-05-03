@@ -3,13 +3,49 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
-import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
+import { AbdullahTable,type ItemTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import PlusButtonIssueManagment from "~/components/plusButtonControlling/PlusButtonIssueManagment";
+import Status from "~/components/ui/status";
+
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
+
+
+  function satisfyTable() :  ItemTable[]{
+     return [{
+       callback : () => {console.log("hwllo my risk")},
+       id : "this is an id" , 
+       properties : [
+        "Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives." , 
+       <Status name="never appeared" color="bg-blue-500" key={1234}/>,
+       <PlusButtonIssueManagment  key={1234} />
+       ]
+   },
+   {
+    callback : () => {console.log("hwllo my risk")},
+    id : "this is an id" , 
+    properties : [
+     "Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives." , 
+    <Status name="on going" color="bg-red-500" key={1234}/>,
+    <PlusButtonIssueManagment  key={1234} />
+    ]
+   },
+   {
+     callback : () => {console.log("hwllo my risk")},
+     id : "this is an id" , 
+     properties : [
+      "Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives." , 
+     <Status name="solved" color="bg-green-500" key={1234}/>,
+     <PlusButtonIssueManagment  key={1234} />
+     ]
+    }
+  
+  ]
+  }
   return (
     <>
       <Head>
@@ -35,10 +71,10 @@ const Page: NextPage = () => {
             descripton="
             Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
             "
-            headers={["issue" , "status"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
+            Action ={false}
+            headers={["issue" , "status" , "action"]}
+            body={satisfyTable()}
+            // PlusButton={<PlusButtonIssueManagment  />}
          />
             </div>
         </div>
