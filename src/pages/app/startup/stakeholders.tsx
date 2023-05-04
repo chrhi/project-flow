@@ -13,6 +13,8 @@ import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
+import Status from "~/components/ui/status";
+
 type IpiData = {
   name : string , 
   role : string ,
@@ -73,7 +75,9 @@ const Page: NextPage = () => {
             set_loading(true)
             deleteStakholder.mutate({id})
           },
-          properties : [<StakeHolder id ={item.id}  key={item.id} text={item.name} />  , item.role ]
+          properties : [<StakeHolder id ={item.id}  key={item.id} text={item.name} />  ,
+           item.role ,
+            <Status key={item.id} name="low" color="bg-green-500" /> ]
         } 
       ))
     
@@ -97,8 +101,49 @@ const Page: NextPage = () => {
         <AbdullahTable
             title="parties prenantes"
             descripton="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
-            headers={["name" , "role / responsability"]}
-            body={satisfyTable()}
+            headers={["name" , "role / responsability" , "impact"]}
+            body={[
+              {
+                id : "hirthf" ,
+                callback : (id : string ) => {
+                  set_loading(true)
+                  deleteStakholder.mutate({id})
+                },
+                properties : [<StakeHolder id ={"123-455-666"} key={"there is no thing called blil"} text={"said achraf"} />  ,
+                 "team leader",
+                  <Status key={"there is no thing called blil"} name="low" color="bg-green-500" /> ]
+              } ,
+              {
+                id : "hirthf" ,
+                callback : (id : string ) => {
+                  set_loading(true)
+                  deleteStakholder.mutate({id})
+                },
+                properties : [<StakeHolder id ={"123-455-666"} key={"there is no thing called blil"} text={"rayan aouf"} />  ,
+                 "team leader",
+                  <Status key={"there is no thing called blil"} name="meduim" color="bg-yellow-500" /> ]
+              } ,
+              {
+                id : "hirthf" ,
+                callback : (id : string ) => {
+                  set_loading(true)
+                  deleteStakholder.mutate({id})
+                },
+                properties : [<StakeHolder id ={"123-455-666"} key={"there is no thing called blil"} text={"salah"} />  ,
+                 "team leader",
+                  <Status key={"there is no thing called blil"} name="height" color="bg-orange-500" /> ]
+              } ,
+              {
+                id : "hirthf" ,
+                callback : (id : string ) => {
+                  set_loading(true)
+                  deleteStakholder.mutate({id})
+                },
+                properties : [<StakeHolder id ={"123-455-666"} key={"there is no thing called blil"} text={"abdullah"} />  ,
+                 "team leader",
+                  <Status key={"there is no thing called blil"} name="very hieght" color="bg-red-500" /> ]
+              } 
+            ]}
             PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 
          />
