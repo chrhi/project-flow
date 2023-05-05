@@ -4,6 +4,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
 import Image from "next/image";
+import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
 
 const Page: NextPage = () => {
   return (
@@ -18,16 +19,16 @@ const Page: NextPage = () => {
       </Head>
       <Header />
 
-      <main className=" custopn-page-height  justify-center items-center pt-12 flex flex-col w-full bg-gray-50 ">
-        <div className="w-full h-[70px] flex justify-center items-start my-8 flex-col px-8">
-          <h1 className="text-xl font-semibold text-gray-900 ">Profile's informations</h1>
+      <main className=" custopn-page-height  items-center pt-8 flex flex-col w-full bg-white ">
+        <div className="w-full h-[70px] flex justify-center items-start  flex-col px-8">
+          <h1 className="text-3xl font-semibold text-gray-900 ">Profile's informations</h1>
           <p className="text-lg  text-gray-700 " >this is a dommy data this is going to be displayed in here </p>
         </div>
-      <div className='md:w-[70%] w-full xl:w-[900px] flex flex-col  h-fit bg-white rounded-lg shadow-lg'>
-    <div className='w-full flex flex-col lg:flex-row min-h-[400px] h-fit '>
-        <div className='lg:w-[20%] w-full h-full flex flex-col items-center px-4 gap-y-4 pt-4'>
+      <div className=' max-w-5xl w-full  h-fit min-h-[300px] flex my-4   bg-white '>
+          
+          <div className='lg:w-[20%] w-full h-full flex flex-col items-center px-4 gap-y-4 pt-4'>
             <p className='text-gray-400 text-lg  '>photo profile</p>
-            <Image src={""} alt='profile'   width={60}
+            <Image src={"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxQTEhUTEg8SFhMWFxcYGRYYFRUXGhcXGBcXFh0aFxcaHSggGBolHRUaITEhJSkrLi4uFyAzODYtNygtLisBCgoKDg0OGxAQGy0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAN8A4gMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAQIEBQYDBwj/xABIEAABBAADAwkCCggEBgMAAAABAAIDEQQSIQUxQQYTIjJRYXGBkVKhByNCYnKSscHR8BQzU3OCorLhQ2ODwhUWJDTS8VSTo//EABsBAQACAwEBAAAAAAAAAAAAAAACBAEFBgMH/8QANREAAgECAwUGBQQBBQAAAAAAAAECAxEEITEFEkFxgSJRYZGx8AYTMqHBFELR4fEjUmJykv/aAAwDAQACEQMRAD8A3aEtIpfMjohEJaRSARCWkUgEXD9Mjz5Odjz+xnbm+rdqLtvGZBHG2Vsb5niNshIAjFFz5DenRaCRemYtHFTcTyQZzIbAI5Ya6pyvzA7ySbDyTqSdSSSt1s3ZH6uDnKW6tFle/wB1l74FSvilTlupHRCyzo5oD8TIW1vhlzPjPcL6cX8JoX1SrLZnKFkjhFI0wzndG8gh/wC6kGkg7tHdoC88bsbE4Vb31R71+Vw9PEnTxMZZPJluhKhaksCISoQCISoQCISoQCISoQCISoQCISoQCISoQCISoQCISoQAhLSKQwIhLSKQCJUUikBkNuPz44j9jh2ZfGaR5cfSBnvUrA46TBFk0bg+J/6yNpBB1NiuEgbRB01IB0VfykaY9oROPUxEBjGn+LC4vFnhbJD6Kxxjf+kFk3nAHGqzGjpbRRsCzdgjcQurwU3ChTlHuXq7/e5rqqTk0+8320tlw4uMPBHSaHMkbxBFg94orzjb+yCwmOdgcw7jwNbi07w4eoW/5BuJ2fBfBrmj6LXua3yygLrtrCte0tcAQulp1HHkVYZ5M8zwG1p8No7PicOPOeMd37dvcad9JavZ20I52CSGQPYeI4HscDq1w7DRVFtHZLojbLLfePxCqOY6fOxSGCc75GgEPrcJWHSQeOo4ELU7Q2BRxHbodmXd+19OHTyuWadeUMnmjeoWbwfKfJTMawRHcJm2YHn6R1iPc/TvK0jTYsag8e1cbicLWw09yrFp+vJ6Pp6l6FSM1eLBCWkUq5MRCWkUgEQlpFIBEJaRSARCWkUgEQlpFIBEJaRSARCWkIBUJUILiISoQXEQlQguUnK/YxxWHLGHLMwiSF3sys1GvYdW+fcqGPb5xscbIY8kubmuYN2yc9YOF/q20XXwY09lLdLEcr9iOgldtPCgZ2sP6RHu52IAEuaeDwGg9+UeB3OycTBTVGq7JvJ9zeq5P7dSpiKb+qPX+T0iDaOGwcEcPOgiJjWADpE5QBZrSzVrP7U5YtdYjiPi4ge4WvNp+W0BAyNmkJAOUNAI8bP2WoUnKiU9XBOA7XPr3Fv3rurU4/UyhFJaG5m27I7g0eRP3qvmlLjZAvuFLIHlNiP/AI8Q/wBQf+SdHyixB3YWM+ErR95UlWpLiiXR+RrWSkabxxB1BHglwWaH/tZeaH7JwzwnwZYMfiwgdxWWHKWVvXwMg+i4u92T710ZyuhupGTRn5zB9xJ9yxUVCvDcnaS7n79DF7O+n2PQMNylaNMTGYT7d54T386B0B+8DfNXsbw4BzSC06ggggjuI3rzbBcooHdTEsBPBxyn0dVqzwzmtOaMuicdc0RoEni5hBY495BXPYv4apzu8NO3g8155tdblmGKl+7M26FQYbbMg67WSjtZ0H91sccp8czfBWuF2nE8hrX087mOBY4+DXUXDvFhc3i9mYrC51YO3es15rJdbFqFeEtGSkJyFQPW41CchBcahOQguNQnIQXGoTkILjUJyEFwQlpFLNjAiEtIpLARCWkIBFifhE5XRQRSYVoEk8jHMc2+jG17at5HyqNhu/iaG/p8IPLD9EbzMBBxLxd7xEw/KI4uPyQfE6aHxshziSS4uJJLiSSSdSSTvJK6HZGyPm2rVvp4Lv8AHlfz6Z0sRiLdmOo9mJfQbzjg0ACgcug+jVrlKLOovvOvvU/C7Jmf1IZHd4a4j1ql3n5OTMFy5Ix2vkY3711l4xfAo2bKau5IWjsU1+HibocS1x7I2vk99Ae9IGNPVikPe9zWD6oBPvUotyyjmZjSlLRXIjNN2nhp9ikx4mXc2SQ+Zd7ja7Nwzv8AKb4NLj6vJ+xciwE0573d10PQUF6SoS1krc/bLEcJWXhzf8CmQ/4jYdfapjv5SD7l0wuLDD8VLLHxtuZzL7wQ0n0KaA1u6Ou/+66NaDuSOHTdoyz8P7LEMFfWV+nv0LvA8p52ddrJmj5TDTh4gD/aFpNm8pocQMhc0k745ALPkbDvK152+IjUcOI4eBXaFgl0eAT27nevHzBWU6sJbrV/UhUwkl9OZ67hcY5v6uZzfmP+MZ6OOYDua5oU87fMYJnhdlGpki6YAHFzNHjwaHry/Y+054HU4maJupa7R7Rfbqa79RpwWn/5mM/xWAw8k05AvM3LHFe4yvOleB1retfitnYCvFzqRUWtWuy+vD/0jwVWdN7qvyPQ4JWva17HBzXAOa4GwWkWCDxBCeqzkvsp2FwkOHfJndG2i7cNXF1DuF0O4K1Xz2pFKTUXdXdn3rgzZRbaVxqE5CjYkNQnISwGoTkJYDUJyVLAEJyEMDUJyEA1CchAYiPk9id78Js2SQm3zSSSuc9x3uLeZ07m3QFAaAKTFyfxlUMTgoP3ODLj5F8n3LXIWwe1MT3ryX+Dx+RHxPL9q7KnfLIx2OxUjIyG9dsQc7K1xOWIDTpVXcTxVNiOTEINuhN+1me4+JJJvzXprsbFhJZjiY7ileyRsmQu15tsT4uiLDrYHtHy8zmjWgYO1peeNYXZ0wN/4hDdO0MbmPkSF1+BrfMoxlHPJXeWvG/UpvdUrNaHl2P2eYhmHSjG/dbfEcR3hVuZq3W0tmvaSJZIY73sAp1H5riT7lRs2FANAJX95zAfY1biGJna0rPmXIYyytLMz0rtNFZYLk6+RueBzZWDfl6zT2PZ1mny9VaN2VCNOZZfe57j6FSG4CIWRBGO8saNO/S1iU3KSk/IfrFvX3fuZvKWOLACXcWgOcfQLoNjSO1bHzf0nACu4CyPClpWuodECvqt9fwC4YzGNjbme+gd28X3NAtzj4Us1KjlqkuR51MVJ6JL18yBBsbTpPzfQbXo5xo+i7QbJiaba2yOOZzvXLlaD5quxW2nOB5toA+fqSOJyXX1i4qDPIZG297neLjX1dw9E7VTjojKhXqvN255GjbPCwkEx+DdXA+EQzfzLefBvhYm4QyRWeelleXkUXEPLB0Tq0DLQB7zxXm2F1hb3BehfBO8nAuB3NxEwHhbXfa4rRfE9J08LHxa9H/noZVD5c073NkhOQuGPcahOQgGoTkIBqE5CAalSpEA+kUlpFIYEpFJaRSASkUlpFIBKRSWkUgOGLwzZGPjfeV7S00aNEVoeB71UbR2gx0RE+NkMzXyNLOlRDZHBpc2PKyyzKdRxV9SrNkbCw74nvkJY9s0wk1G8yuc0nS7cxzHAfOC6H4fn25xbysnbxvr5FTE2ybMI7Fm6hia0dtf7W/io+JgeRcj9Oyw0eFDetXtaSMHLhoD+8lJH1Yxr9all9pwBvSkmtx4AZb+i1utd2oXXRlc8bkHMBo1oB8NfTh/EQlYNddT2b68eAPgL8VL2dsuSUWAI4gLJPRDR2k7mhU22eUbGgw4Emho7E8T2iAcB8869napXbdlqZjFydkhdrbUEbxE0NM1gHN1Yr0uQ7x21v8ABWWycHBlbzgc+aQGOWR9WC7VhYP8MA9HKN5LTwWFjFCvye89pWz5MTMljMcri09Vsoolj97C4HrNdv8ApBxBBOsa8Hu393LPynQcamtjKbSwxhlc3i11ehXNookDcaI8CtLyyDXvbJVc5Gx/q0fgs1JoY/B4+xWYR3GpXyfvQ2NWKjJSWjt9y4wTw2KzuAJPvXqHwa4Mx7OhzCnSXKf9Vxc3+UtXmeyNmnFzRYNt07pSkfJhaRmPidGjvcvc42AAACgAAB2AaABcz8V4yMvl4ePDN+iKk2pT5erFQlpFLjDIiEtIpAIhLSKQCIS0ikAiEtIQCoTqRSyRuNQnUikFxqE6k26WUrmLghKhYM3EVfhdokYqYQ4V8pbGyOQig3OfjGMJ1JpjyTppzg76sgFhsBsXG4uH9KEj2jEVJkZIY9Kyta4McLLW03XXo6rdbDoqVd1G/pXfxeXXJPrZleu7rdLbbGzMZiLuCDDR8SMocPGRx+xoWYc/Z+FNGZ2MxH7LDAym93Sl6rBe/XyVftzky2Ec5jTHGy+vMXOc49jGG3PPgCoTcfAMPJJg8YHcw0OdEWui0vKKaQAQSQOjrZF712CllkyrxtcrOWG28ViXCKVrIIAMww0ZsN10Mr98jjR36dEaBZsWFIlnc97nudcjjbju8gOAG5PBB3hW6VFOOTszbYejuRz14+/A4Z1b8ksdkxLGurLL8Wb3WT0f5tP4iq50AXKRoGrSb4VwI1BU61Ke72mvM9KsG4NGq5U4kZYRWnN6fRzvy+6lmIHB0rQNzRXmSCfcArfbu08PLBAIZHOmbFGxwyOAZlbRLnOrUG9BdqpwDMpH5vvUKMp1FGEtEHJVNyMXdJK7/B678FeBjbh5JgPjZJnNe7jlZo1o7BRvxK2yw3wUzfF4mK9WytfXY18TW/bE5bul872vGUcdVUv9z8uH2Kscrpd79RqE6kUtcSuNQnUikFxqE6kUguNQnUikFxqE6kqC4qEqEIXEQlQguIuUrToRwXZMleApQbvkrhjYpLXRR8ENPNSaUq0FGbSMJ5CLFbShZh8S79GfJGXNzSMbNIIy+V92I7ytfTCdALz+a21LBbRlzYqY9bLKG3WUAcyw6A9brVfGyd2i2uwk3iHnlbPx7r+p51bOxwxcbZTmkbncKbmcMzq00DjrXS8N6rMfshrmluUOberTw0vyP4qeN1ZzmrJmrTMW5s1LoRqSGmw4edhoJ8AD/KuuTseZ53tTYbo7dHmLfZ3uHeK6w/Oqp2vXqWIwjSKHRPRa077DdfszLEcoNlZblYNL6QH9QHDv9e1e0J2LNKu1lIro31v3FccWw9uidG7gU8ajKVsmlUp7t+Xg+4vyzVhsD7bS6MCjMOU+P2j+1KRm0sJRqJrPVZGISus+Bu/gtx2XGOZwmhP1onBwH1Xyei9aK+d+T20v0eeGfhFIHO+gba/+Rzl6R8JPKUAfocL+lI0GZ4+TE4WGA+08an5v0gVxW19m1cTtCCpr61rwVtX0VsuOiNfWqKk5SfP35HTG/CXE2T4uAvgEjWunLw0ZS4NL2NDTmaLuyW2At4vnjaThzYjAoO3j5o/PuK9C5Ccq5nTxYSdwc18REby2n54wDlcRo62Xwu28VLbGwI0KSqYZZRXau834/wA6d5Rw+Lcpbs+Oh6KhKhcmbC4iEqEFxEJUILiISoQXHIS0ikI3EQlpFILiKuxr9aPD8d6sqTXRg7wD4r2oVVTnvNXMSVyrgnym94UpmOBIFEXxK6PwTDwI8CoEUGZ+UagHU9wKvr9PXvJ3Vly9MvIhdxLZedbR6ONnaQ7MXRSC3ZjTo3R5nVo3SE0OALRovRqXn3LdjYcZDI57WtmZIwgb7Y5soe4nhbns7ACK7p7DqKOJ3X+5Nfn8CrwOBaWUKppADRx3kWf5UmW6vNvA1+YXEE+JH2K2ikgkw7SZ2ajrhzbGaQtAAu9BXgAN6o8XiGNLgHZukNQdNzdR4faCusi7kLHYO3akWXaHusaHh2qq2pH1Xaat9nS9bJ9apdMRtFntgXbTqby06so9q3D0XBxknNRxmuJN8NbI4eoXpFZmDFbRwnNPodR2rD3cR5X6EKKHarY7S2exzQ2SRp1sc2HPo6jewOresvtnAPwzgHg5HjMHEFtt3bjrYsKzCrayuW6VdJKMiJI6zQF9IHw0941UmKMkaZj4MJHqAuGzXNLrkvITZoWSOAA9FNlxdSZm2Q0ktBGjRwBBsDQ1QGvcvSE2s0r35kKuJlSSaje/F6IjXRLa1PD7z4KdhIdxcSQK1JsmtNSfBR42lxL39Z2/uA4LviZqbQ4q1BW7TNVisS68lwQsA5yQuO4fYFOY/wCM0JBYAWuBLXNOurXA2DXYoOH0AaOO/wAF1wT7e8+AU1a1nxKb7zbcn+XEsM0ceJl5yB7gwvcBnic7RpLx1mWKOayLu9KXqS8AdTiWkAjcQdew7vNbLkty4MAbFii50I0bNqXRjgJOL2fO3jjY1HI7c2E5f6+Fiv8AlFZdUvVLmX8Lirdmb5M9NQkieHAOa4FpAIINgg6gg8QnUuLNlcRCWkUguIhLSEFx1IpCVDAlIpCEAUikIQDZWkggGjRo9hUHDytijdzrmRhh6T3OAbqLsuNVoeKnyA0cpF0avUXwsdi8Z5QwmdzRiJhnY8se58nQa4OIcbcAGtFmiAOi2u5bHA0FXvTcrK6ztd34Phlz4tE4UZVN5xtkr5m42p8ImEjBMXOYijRMQGUfxuIBHe215rtjbkk+JknZFkEmXovcZCMoy9EjLTaF5aNEu7Vc7D2NGRI2HnMUXxuA5lnxWfqjNO+o6FuujdDQFaGTkjKxocIGVZDoIJAJcpBo/pEoAcby20BgonpGtegoQwOAn2Zdp5Xb/Gi4arqVG5MzuDxsMoDZ9nOzNABkheLuuLJdAe4OvXcp8OwMO/8AV4HFPPe2Ef05lqNjcnJAAXuGHA3RQ8299f5k7mHXjUQYB2u3q4OwYCKe2SQf5s00vue8hRrbaw8JWjd8tPUyot+/6MHPgWwdbCQQ3o0z4i7d2NgY1jpD3NJPcp2G2FPiBq0hnAytMMY3aswrKe8fvCxyZy6xjcA2ODZ2FihnnzOMkUMYLY46LqpurjdcaFnsWRw/wgbRj0M7X/vIYz/QGle9J43GUFVw8YxTv9TbfNK1vM8pVYwe7J+RqeUvJ52FAmMskmH0EgaeZ5pxNNfUWXPEbDSHlxbobIuvLdrRNEjyBoXEfKJq9BZ1K1uN+EbGyRvje3Blj2uY4GGTVrgQR+t7CsS0OBsjM7tJr/0ths3D4uEWsVa/B3v6d2h6wx1OEGlG74Zer192Egw5O/Tu4/2XaNt/RG7v7/z+CTnS7TcONce6/tTw70W2hCMVZGuqVZ1HeTOme9OCYTbvcktEWi9G7nkSy8NHfu8zojDSAF54X/ZRM9uHdr+fzwSc50T4uPvTeFi0wjrc89pr00/BSrtVWz5Kab/P5AU3DyWAe37ypReRCRvvgm23RkwEjv1YMsF/sieky/muOg7HHsXpNL53xOIdEOeje5ksYJY9ri1wNdo3g8QdCvoPBlxjYX9fI3N9LKL96+f/ABHgI0MR82Lynd27nx89fM2uEq78bPgdaRSckXPWLYlJUISwFpFJ1IpCI2kUnUikA2kUnUikA2lCn2PA9/OPw0LpNOm6NjnabtSO9T6RSym1ozA0NS0lpFLBkSkUlpVe3dvQYRrXTvLQ85W01ziSBZ0aDw4lTp051JKEE23olm/5MNpK7M18K20o4sMxuUnEPfcDmktdE5gsyhw1FA1Q35qOlrCYDlLBMMm0MOwn9uxuV38Ybv8AH3FLy15a/peIY6ADmMOTkzM/WOcMry5p+SRbcvieOnB2CwWIbzkeJGHf8qJ4c4A/MeN7fHVd9sjBvDYRKompN35dytwy4eeZr6096bsX7uTWD5l8kNzdElvSvWtBTaP3rz/F4oG2tiY3tcM9gebiLT8YOZdUWIDuGZmcV6gXfcn4PYcr253DLGNS5+g8fnHwW3jdau54OxCw8Jdu0aN97q7T+dU6ZwvTcPU95V7icCI4i4gtYOqDo57j8p3Z2gLOjpFTUrkRzddexDTxXbF00Bg4au8ezy+9RXHhw4rO8LD2Pqz2/YuROgH5/No3+H2/2Tbs+H2qLZknQ9UDtXQzUWtH54fiokUnuC4uxNZnnhuUnKxi1ydiMTmljjaGmnB7gdWkNN5XdxIpfRewdpDE4eLEBpaJWB2Um6veL468V8z7LvU/KfqT2N4AL1j4KdvyGX9Bcc0TYnSR31ow1zG5AeLDnJF7q7NBzfxDhXWw6rrWGb/6u2VtNbMtYae5LcPT6RSdSSlw5sLiUhLSEuLjkiWkUhgRCWkUgEQlpFIBEJaRSARCWkUgEXk/Lt82NxLxBE2WDBkxENdZMj2se8mjdig0UDRa/toenbVge+GVkUmSRzHNY/2XFpAPkV43hsPidmEzRNLoJKD2m97SRkko3HK05m5gd4+UNF0fw7Qi6sqt1vRyS56v1XmVsRLK3ArcDsvAv6D5MRhn3uc0SNv6Qqte1oVlJyDg3t2o1wO7K1rneTW2VZ4Par8Tbo4cPisupZK1oxDR4ihI0e0LvSwDopEcjpdHbEIr55jF/UAXV/MkvDqv6K26vdyvwHJbCwAySvkpmvS6B7iWi3NvgCQT2LljtuQt6T9SOpC2jl+dId2f1rxtS+U8URYyPETQYaNhLhDGTI8mq1AG/frXErPwuYTlwWDc4/tZhZHfl6rfErKd1dt/x1MNWyOGLbiMYQSzLGNQNw8bOriq6cshOVnSf7XBvh2nvV7iXsa0tfi7mdo99OdQ9llaDvpUMmMY01Awud7bhf1Whe0WebIOJaW9brHhx81waPz+KsG7KkOrrLjrr/uPDwQ50cW8h7+wbh4lT3kCN1WqMzclllL3WeJ3JzmJcwMe/RRmjO6vkt95SYh5JyDzPYujGgChuXm3vO3D3kTWSJ8c1aN07z9w4lWewsacPPFiA0uMbw/LdF41BBPDQnu7eIVGyWtwUzDyl3h+dylKMaicZaPLoyOjuj6X2VtGPEQsmhdmjeLB49hBHBwIII4EFSl5d8CmKeXYuG/iWGN4HsyPDg6vEMBI7RfFepUvmuPwv6bESpXulpyeaNpTnvRTEQlpCpkxyEIQiCEIQAhCEAIQhACEIQCBeXbH2/mllMrmc1isRM2IkDKS15jEUg4hzYwWu7bBsUD6LtzHjD4eac7oo3v+q0kDzIpfP2Dw1YeNshLrj3Hc1ryX0B2kmyd5Ndgrotg0ruc+S/L/AAQnbT3qjc7W5GNL+cwjzBMOkGEkCxxjeNRv38L1y7lQ7YGPyg4zGc0zgMzWlw7o4gC8+PqrHkrywZJlweNf09OamJLc3ABzx1ZRuDtL8d/LlPs2bOeewz8RHwlbTJWj5xZbXV85oK6eM5X3ZffXpf8AJVlFJZGZ2TtDCxSguY5zRqXOa17ndwYTkaPHMe9W+29vnFgRYSKeuLei1td4aCa8TQUNmK2ZE3XD4l7/AGXU3+krjNyulc3msHhmwtPsguefOt/lfevbV3SfU81pa5ExGxxF/wB1OGn9mzpO8+DfMlcXbbjj0ghA+c7Vx/PmEsXJbFynM6N+utvOX7TaljkXKN7ox5n8FJzj+5mN18EUuM2pLLoXU3sGg8+J8z5KLEyzvHif7BaX/lkM6T5GUN9g0PPMFCnxMLdIYRKfaAIZ9Y3fkinHhmLMjYdkY1Jc4jsaa96j4vHc4ahjs8XV966c1NJ147HBoBaweIHW8yieV7RTpGsHssofZdeqy22YsiOzAFg6RAveSQL+9cXPA3BGazoPM6lKWV1t6kgI08Tr3LtFKd/oO1R3PtTtgbKnxkwgwseZxrM/XKxvtPd8kfkWVGdWNOLlJ2SFm8kes/Aa53NYq2DLzrDzna7JRZ4NAaf9Qr05VHJPYDMFhY8Ow3lFufxe92rnHxO7uAVwvnOPrxr4mdSOjf4Sv1sbGnHdikCEJVTJAhCEFwQhCC4IQhBcEIQguCEIQXMZ8L05bsucNNGQxR/WlbfuBXmu3GZHZeAaAPAafcvQvhmP/Qxj2sVAP6j9yxnLjC5HtPa0+4/3XV7Dyoc5P0R5vj0/J59tXe09xH2fiVbcneU2KieyOPEy5CaDCWPaNAAGiTdr8kFt2NQqrafVb9L7j+Chxuo32a/+l0G7dNMJb0eR6m3EnFg/E4HFPA1YecwmIHi12b1DqVJNiI8M4/8AT7Rwrjva10bx5dJuYd6ibVGZodIKkbQLmkgtfQNtcNReh81CbyqxcYMT5GTs4NnYJPPNo4nxK84xdstPfT7GKlBrOOZbjbWBOsr8bIf8wHT6rvvUmLbsTtMPzMQ3Z53gH+GMOJPm4LLP2/m62z8N/CZW/wC9R/8AijDu2fD/APZL/wCanu8/seDUlqvU1OPZh6zS4tkz+GdwcwfRhYa9b8VTYjbchOWM2OFRhvoLKqztcfJwcA8TKf8Aemf8Yfww+HH8BP8AU4qUbLVehFxb0J8rcQ/ruyN+cQz3afYo7oYo+u8vPYNB6nf5KP8A8QnddOYwfNY1voQL96r3BztS8nxJJUt59w+XItnzuI6DAxvaSG+871Dc5oNA53dg3ev4WuUMALhmJIsX5q55hrXBrGjTU9pvgSfAFSW9oPl2dmP5KbE/S8dh8NOXNZKXWGEZgGsc/fqNctL6S2JsWDCRCLDwtjYOA3uPa5x1ce8rwr4NmZts4X5rZnf/AJSBfQq5H4iqz+eqd3a17eN3n9ixTikCEIXOntcEIQguf//Z"} alt='profile'   width={60}
                   height={60}  />
            <button
            className="inline-block bg-white rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
@@ -35,30 +36,64 @@ const Page: NextPage = () => {
             change
            </button>
         </div>
-        <div className='lg:w-[80%] w-full h-full flex flex-col items-start  p-4 sm:px-8'>
-            <label className='text-gray-400 text-lg my-2 ' >first name</label>
-            <input className={"w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"}  />
-            <label className='text-gray-400 text-lg my-2 ' >last name</label>
-            <input className={" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"}    />
-            <label className='text-gray-400 text-lg my-2 ' >company name</label>
-            <input className={" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"}  />
-            <label className='text-gray-400 text-lg my-2 ' >phone</label>
-            <input className={" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"}  />
-            <label className='text-gray-400 text-lg my-2 ' >city</label>
-            <input className={" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"}  />
-            <label className='text-gray-400 text-lg my-2 ' >borth day</label>
-            <input className={" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"}  />
-        </div>
-    </div>
-    <div className='bg-white h-[70px] w-full items-center flex sm:justify-end justify-center px-4'>
-    <Button 
-  
-    variant="contained"  
-    className="rounded  !text-white text-lg  bg-gradient-to-r from-sky-500 to-indigo-600" >
-     edit my profile
-    </Button>
-    </div>
-    </div>
+       
+          <div className="w-[80%] h-full flex gap-y-4 flex-col p-4 ">
+            {/* this is the second div */}
+          <div className="w-full h-[50px] flex gap-x-4  items-center justify-between ">
+          <div className="flex w-[50%] justify-between  items-center gap-x-2">
+                <p>User name :</p>
+                <input  className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
+            </div>
+            <div className="flex  w-[50%] justify-between items-center gap-x-2">
+                <p>last name :</p>
+                <input  className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
+            </div>
+          </div>
+          {/* this is the second div */}
+           <div className="w-full flex h-[50px] gap-x-4 items-center justify-between ">
+              <div className="flex  w-[50%] justify-between  items-center gap-x-2">
+                   <p>phone:</p>
+                   <input  className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
+              </div>
+              <div className="flex  w-[50%] justify-between items-center gap-x-2">
+                  <p>email :</p>
+                  <input  className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500  transition ease-in shadow-lg w-full" />
+               </div>
+           </div>
+           {/* this is the divided section */}
+           <div className="w-full flex  items-center  h-[40px] justify-between ">
+            <p className="font-semibold ">OTHER INFORMATION</p>
+            <div className="w-[70%]  border-b h-[5px]" />
+           </div>
+           {/* this is the rest of the Profile */}
+           <div className="w-full  flex flex-col gap-y-4 ">
+               <div className="flex  w-full justify-between  items-center gap-x-2">
+                   <p>city :</p>
+                   <input  className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-[80%]" />
+                </div>
+                <div className="flex   w-full justify-between  items-center gap-x-2">
+                   <p>job title :</p>
+                   <input  className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in w-[80%]" />
+                </div>
+                <div className="flex  w-full justify-between  items-center gap-x-2">
+                   <p>zip code :</p>
+                   <input  className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-[80%]" />
+                </div>
+                <div className="flex  w-full justify-between  items-center gap-x-2">
+                   <p>date of birth :</p>
+                   <input  className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-[80%]" />
+                 </div>
+                
+           </div>
+           <div className="w-full h-[50px] items-center justify-start flex ">
+             <AbdullahButton
+               className={buttonVariants({size:"sm", variant:'primary'})}
+               >
+                        save changes
+              </AbdullahButton>
+           </div>
+          </div>
+       </div>
       </main>
     </>
   );

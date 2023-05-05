@@ -8,7 +8,12 @@ export enum PAGES {
     EXECUTING ,
     CONTROLLING,
     CLOSING ,
-    DOCS
+    DOCS,
+    PROFILE ,
+    PASSWORD ,
+    TEAM,
+    INVATE ,
+    SETTINGS
 }
 
 

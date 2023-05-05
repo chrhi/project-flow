@@ -9,7 +9,7 @@ type Reducer ={
 
 export const ErrorNoteReducer = create<Reducer >(
     (set) => ({
-        isOpen: true,
+        isOpen: false,
         setIsOpen:(input :{ payload:boolean}) => set({isOpen : input.payload}),
     })
 )

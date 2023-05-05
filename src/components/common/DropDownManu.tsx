@@ -7,8 +7,8 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import LogoutIcon from '@mui/icons-material/Logout';
 import TuneIcon from '@mui/icons-material/Tune';
 import Cookies from 'js-cookie';
-
-
+import Image from 'next/image';
+import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
 
 
 
@@ -16,6 +16,8 @@ export default function DropDowsMenu() {
   //initializes hooks
    const router = useRouter()
   const {email  } = userReducer()
+  const current_page = header_page_Reducer(state => state.current_page)
+  const set_current_page = header_page_Reducer(state => state.set_current_page)
  
   const handleLogout = () => {
     Cookies.remove("abdullah-access-token")
@@ -43,18 +45,24 @@ export default function DropDowsMenu() {
           <div className="px-1 py-1  z-[100] ">
           <Menu.Item>
               {({ active }) => (
-                <div className='w-full min-h-[45px] h-fit border-b  flex flex-col justify-center p-4 gap-y-1 '>
+                <div className='w-full min-h-[45px] h-fit border-b  flex overflow-x-hidden items-center gap-x-1'>
+                  <div className='rounded-[50%] w-[50px] h-[50px] bg-blue-500 '>
+                  <img  className='rounded-[50%] w-[50px] h-[50px] ' src={"https://aniyuki.com/wp-content/uploads/2022/06/aniyuki-schwarz-weis-katzen-anime-37.jpg"} alt="profile pic" />
+                  </div>
+                  <div className='w-[80%] min-h-[45px] h-fit   flex flex-col justify-center p-4 gap-y-1 '>
                   <h3 className='truncate text-md text-gray-600 '>{email || "mahdi.test1@gmail.com"}</h3>
                   <h3 className='truncate text-md text-gray-600 '>{ "abdullah jsk"}</h3>
+                </div>
                 </div>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <div className='w-full min-h-[45px] h-fit  flex flex-col justify-center p-4 gap-y-1 '>
+                <div className='w-full min-h-[45px] h-fit border-b flex flex-col justify-center p-4 gap-y-1 '>
                    <h3 className='truncate text-lg font-bold  text-gray-800 '>{ "project : "}</h3>
                   <h3 className='truncate text-md text-gray-600 '>{ "create the pfe web site"}</h3>
-                 
+                  <h3 className='truncate text-md font-semibold  text-gray-800 '>{ "current stage : "}</h3>
+                  <h3 className='truncate text-md text-gray-600 '>{ "starting up"}</h3>
                 </div>
               )}
             </Menu.Item>
@@ -62,8 +70,10 @@ export default function DropDowsMenu() {
               {({ active }) => (
                 <button
                 onClick={() => router.push("/app/user/profile") as unknown }
-                  className={`${
-                    active ? ' bg-gray-50 text-gray-900' : 'text-gray-900'
+                  className={`
+                  ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                  ${
+                    current_page === PAGES.PROFILE ? 'bg-blue-300 text-gray-900' : ' '  
                   } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -74,13 +84,34 @@ export default function DropDowsMenu() {
                 </button>
               )}
             </Menu.Item>
+            <Menu.Item>
+              {({ active }) => (
+                <button
+                onClick={() => router.push("/app/user/profile") as unknown }
+                  className={`
+                  ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                  ${
+                    current_page === PAGES.PASSWORD ? 'bg-blue-300 text-gray-900' : ''  
+                  } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
+                >
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z" />
+                </svg>
+
+              
+                  Password Settings
+                </button>
+              )}
+            </Menu.Item>
 
             <Menu.Item>
               {({ active }) => (
                 <button
                 onClick={() => router.push("/app/user/accounts") as unknown }
-                  className={`${
-                    active ? ' bg-gray-50 text-gray-900' : 'text-gray-900'
+                  className={`
+                  ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                  ${
+                    current_page === PAGES.TEAM ? 'bg-blue-300 text-gray-900' : ''  
                   } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -95,8 +126,10 @@ export default function DropDowsMenu() {
               {({ active }) => (
                 <button
                 onClick={() => router.push("/app/user/invite_member") as unknown }
-                  className={`${
-                    active ? ' bg-gray-50 text-gray-900' : 'text-gray-900'
+                  className={`
+                  ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                  ${
+                    current_page === PAGES.INVATE ? 'bg-blue-300 text-gray-900' : ''  
                   } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -112,9 +145,12 @@ export default function DropDowsMenu() {
               {({ active }) => (
                 <button
                 onClick={() => router.push("/app/user/settings") as unknown }
-                  className={`${
-                    active ? ' bg-gray-50 text-gray-900' : 'text-gray-900'
-                  } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
+                  className={
+                 `   ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                    ${
+                    current_page === PAGES.SETTINGS ? 'bg-blue-300 text-gray-900' : ''  
+                  }  group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`
+                }
                 >
                   <TuneIcon  className ="text-gray-400"  />
                   settings

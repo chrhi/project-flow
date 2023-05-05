@@ -9,7 +9,7 @@ class User extends BaseModel {
 
     // this method will create a new user
     public async create (id : string ,email : string , password : string ){
-        const {  error } = await this.provider.from('user').insert([  {id , email , password }])
+        const {  error } = await this.provider.from('user').insert([  {id , email , password , role : "PROJECT_MANAGER" }])
   
        if(error){
           throw new Error(error.message)
