@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
@@ -91,7 +91,7 @@ const Page: NextPage = () => {
  useEffect(() => {
   if(window !== undefined){
     const domContainer = window?.document?.getElementById('container1') as HTMLElement;
-    
+    //@ts-ignore
     new Designer({ domContainer, template });
    }
  },[])
