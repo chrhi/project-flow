@@ -36,7 +36,8 @@ export const ProjectRouter = createTRPCRouter({
                           const data =  await projectTable.get(input.user_id).catch(error => { 
                                 throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
                                 return {
-                                    project_id : data[0]?.id
+                                    project_id : data[0]?.id,
+                                    current_phase :  data[0]?.stage
                                 }
                          })
         

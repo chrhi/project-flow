@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { NAVS , sidebar_Reducer  } from '~/store/app-reducer/SideBarReducer'
 import { AbdullahEffectButton, buttonVariantsAbdullah } from './buildingBlocks/AbdullahEffectButton'
 import { Dispatch, SetStateAction } from 'react'
+import NextSwitch from '../common/NextSwitch'
 
 
 type Props ={
@@ -73,14 +74,14 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
               className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
               ${current_page == NAVS.SETUP ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
           >
-          Initier
+          Initialisation
           </AbdullahEffectButton>
       
        
         
         
         <AbdullahEffectButton
-            onClick={() => handleClick("/app/startup/secondForm" , NAVS.STARTUP)}
+            onClick={() => handleClick("/app/startup/setup" , NAVS.STARTUP)}
             className={` rounded-lg w-[90%] mx-auto p-4 border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.STARTUP ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >
@@ -117,7 +118,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
             className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >
-  Parties prenantes
+       Parties prenantes
         </AbdullahEffectButton>
    
       
@@ -128,10 +129,10 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
             className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.MILESTONES ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-lg`}
         >
-Jalons
+       Jalons
         </AbdullahEffectButton>
    
-       
+       <NextSwitch />
       
       </div>
     </div>

@@ -172,7 +172,7 @@ const Page: NextPage = () => {
         
        <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
-      <FormHead text="👉 manage your cost" />
+      <FormHead text="👉 entrer les informations de base pour la charte du projet de construction" />
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">

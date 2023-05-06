@@ -44,7 +44,7 @@ export const Header = ({notAuth = false}:Props) => {
       notAuth ? 
       <NotAuth />
        :
-       <div className="w-[40%]  h-[60px] flex justify-end items-center  ">
+       <div className="w-[25%]  h-[60px] flex justify-end items-center  ">
         <SearchBar />
        <DropDowsMenu />
      </div>

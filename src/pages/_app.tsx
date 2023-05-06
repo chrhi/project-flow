@@ -14,7 +14,7 @@ import Head from "next/head";
 import 'reactflow/dist/style.css';
 import { ReactFlowProvider } from "reactflow";
 import { AccessPopUp } from "~/components/common/AccessPopUp";
-import { getUserMetadata } from "~/lib/MetaData";
+import { RemoveProjectManager, SetAsProjectManager, getUserMetadata } from "~/lib/MetaData";
 
 
 const MyApp: AppType = ({ Component, pageProps }) => {
@@ -39,10 +39,18 @@ const MyApp: AppType = ({ Component, pageProps }) => {
     
     }
     getInisialRefrences().then((user_info)=>{
-     
-      user_info ?   
-      console.log(user_info)
-      : console.log(" yess there is no user")
+      //this is the first check
+      if(!user_info){
+        console.log("we coudn't get the user informations at app /")
+        return
+      }
+     // check if this is a team member
+      if(user_info[0]?.role === "TEAM_MEMBER" ){
+        RemoveProjectManager()
+        return
+      }
+      SetAsProjectManager()
+      
     }).catch(() =>{ 
       
       console.error("there was an error in the _app.tsx file")})

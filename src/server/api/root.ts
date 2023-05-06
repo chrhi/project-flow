@@ -12,6 +12,9 @@ import { MilestonesRouter } from "./routers/startup/milestones";
 import { scopeRouter } from "./routers/planning/scopeRouter";
 import { tasksRouter } from "./routers/planning/tasksRouter";
 import { MettingRouter } from "./routers/planning/MettingRouter";
+import { UserRouter_info } from "./routers/user/user_info";
+import { InvitationRouter } from "./routers/user/invitation_user";
+
 
 export const appRouter = createTRPCRouter({
   userRouter : userManagment ,
@@ -27,8 +30,8 @@ export const appRouter = createTRPCRouter({
   scopeRouter,
   tasksRouter,
   MettingRouter,
-
-
+  UserRouter_info,
+  InvitationRouter,
 });
 
 // export type definition of API

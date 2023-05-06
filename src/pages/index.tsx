@@ -12,6 +12,7 @@ import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/A
 import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
 import { storeUserMetadata } from "~/lib/MetaData";
+
 type input = {
   email : string ,
   password : string , 
@@ -20,6 +21,8 @@ type input = {
 const Page: NextPage = () => {
 
   const set_user = userReducer(state => state.set_user)
+ 
+
 
   const router = useRouter()
 

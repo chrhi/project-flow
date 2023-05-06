@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 import { AbdullahEffectButton } from '../ui/buildingBlocks/AbdullahEffectButton'
 import { useRouter } from 'next/router'
@@ -20,7 +21,7 @@ export const NotAuth = () => {
   onClick={ () =>  handleClick("/auth/login" ) as unknown}
 
 >
-log in
+connexion
 </AbdullahEffectButton>
 <AbdullahEffectButton 
 
@@ -28,7 +29,7 @@ className={`${buttonVariantsAbdullah({variant :'ghost'})}`}
 onClick={ () =>  handleClick("/auth/register" ) as unknown}
 
 >
-sign up
+s'inscrire
 </AbdullahEffectButton>
 </div> 
   )

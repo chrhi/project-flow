@@ -12,11 +12,15 @@ import planning from "~/assets/Office management-rafiki.png"
 import executing from "~/assets/horse jumping-cuate.png"
 import controlling from "~/assets/Control Panel-rafiki.png"
 import closing from "~/assets/Coronavirus Border Closure-amico.png"
-import { getUserMetadata, setoreProjectMetaData } from "~/lib/MetaData";
-import { AbdullahEffectButton } from "~/components/ui/buildingBlocks/AbdullahEffectButton";
+import { getUserMetadata, setoreProjectMetaData, storeProjectCurrentPhaseAbdullah ,getProjectCurrentPhaseAbdullah } from "~/lib/MetaData";
+import {  PAGES } from '~/store/app-reducer/headerReducer'
+import { IsPhaseLocked } from "~/utils/access/IsPhaseLocked";
+
 const Page: NextPage = () => {
 
   const [hasProjectStart , setHasProjectStart] = useState<boolean>(true)
+
+  
 
   const set_isLoading = loading_Reducer(state => state.set_isLoadingFully)
   const {refetch , isFetching} = api.ProjectRouter.getProjectStatus.useQuery({user_id : getUserMetadata() } , {
@@ -24,6 +28,7 @@ const Page: NextPage = () => {
         if(data.project_id){
           setHasProjectStart(true)
           setoreProjectMetaData({project_id : data.project_id as string} )
+          storeProjectCurrentPhaseAbdullah(data.current_phase as string)
           return
         }
         setHasProjectStart(false)
@@ -59,19 +64,49 @@ useEffect(() => {
             <h1 className="text-gray-800 font-bold text-2xl text-start ml-4 mt-8  " >Contrôlez et configurez votre projet</h1>
             <p className="text-gray-300 text-md ml-4 mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod soluta, fuga nostrum </p>
             <div className="w-[90%]  mx-auto gap-x-8  rounded-lg min-h-[400px] h-fit flex justify-center items-center my-2">
-              <Chain available image={setup} path={`/app/startup`} name="Démarrage" selected />
+              <Chain
+               PAGE ={PAGES.STARTUP}
+               available = {IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : 0})}
+               image={setup}
+               path={`/app/startup`}
+               name="Pre-démarrage" 
+               selected />
              
            
-              <Chain available  image={planning} path={`/app/planning`} name="Planification" />
+              <Chain
+                available = {IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : 1})}
+                PAGE ={PAGES.PLANNING}
+                 
+                image={planning}
+                path={`/app/planning`} 
+                name="Planification" 
+              />
          
 
            
-              <Chain available  image={executing} path={`/app/executing`} name="Exécution" />
+              <Chain 
+                available = {IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : 2})}
+                PAGE ={PAGES.EXECUTING}
+                  
+                image={executing} 
+                path={`/app/executing`}
+                name="Exécution" 
+               />
            
-              <Chain  image={controlling} path={`/app/controlling`} name="Contrôler" />
+              <Chain 
+                 available = {IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : 3})}
+                 PAGE ={PAGES.CONTROLLING}
+                 image={controlling} 
+                 path={`/app/controlling`}
+                 name="Contrôler" />
         
             
-              <Chain  image={closing} path={`/app/close`} name="fermer" />
+              <Chain 
+                 available = {IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : 4})} 
+                PAGE ={PAGES.CLOSING}
+                image={closing} 
+                path={`/app/close`} 
+                name="Clôturer" />
           
             </div>
           </div>

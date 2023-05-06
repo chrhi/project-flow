@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
 import { useRouter } from 'next/router'
@@ -9,6 +10,7 @@ import TuneIcon from '@mui/icons-material/Tune';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
+import { RemoveProjectManager } from '~/lib/MetaData';
 
 
 
@@ -21,6 +23,7 @@ export default function DropDowsMenu() {
  
   const handleLogout = () => {
     Cookies.remove("abdullah-access-token")
+    RemoveProjectManager()
     window.location.reload()
   }
 
@@ -59,9 +62,9 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <div className='w-full min-h-[45px] h-fit border-b flex flex-col justify-center p-4 gap-y-1 '>
-                   <h3 className='truncate text-lg font-bold  text-gray-800 '>{ "project : "}</h3>
+                   <h3 className='truncate text-lg font-bold  text-gray-800 '>{ "projet : "}</h3>
                   <h3 className='truncate text-md text-gray-600 '>{ "create the pfe web site"}</h3>
-                  <h3 className='truncate text-md font-semibold  text-gray-800 '>{ "current stage : "}</h3>
+                  <h3 className='truncate text-md font-semibold  text-gray-800 '>{ "stade actuel : "}</h3>
                   <h3 className='truncate text-md text-gray-600 '>{ "starting up"}</h3>
                 </div>
               )}
@@ -69,7 +72,10 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={() => router.push("/app/user/profile") as unknown }
+                onClick={() => {
+                  router.push("/app/user/profile")
+                  set_current_page({payload:PAGES.PROFILE})
+                }  }
                   className={`
                   ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
                   ${
@@ -80,14 +86,16 @@ export default function DropDowsMenu() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
               </svg>
               
-                  My profile
+                 Mon profil
                 </button>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={() => router.push("/app/user/profile") as unknown }
+                onClick={() =>{
+                  set_current_page({payload:PAGES.PASSWORD})
+                  router.push("/app/user/profile")  }}
                   className={`
                   ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
                   ${
@@ -99,7 +107,7 @@ export default function DropDowsMenu() {
                 </svg>
 
               
-                  Password Settings
+                Paramètres de mot de passe
                 </button>
               )}
             </Menu.Item>
@@ -107,7 +115,9 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={() => router.push("/app/user/accounts") as unknown }
+                onClick={() =>{
+                  set_current_page({payload:PAGES.TEAM})
+                  router.push("/app/user/accounts") }}
                   className={`
                   ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
                   ${
@@ -118,14 +128,16 @@ export default function DropDowsMenu() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
                  </svg>
 
-                  my team
+                 Mon équipe
                 </button>
               )}
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={() => router.push("/app/user/invite_member") as unknown }
+                onClick={() =>{
+                  set_current_page({payload:PAGES.INVATE})
+                  router.push("/app/user/invite_member") } }
                   className={`
                   ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
                   ${
@@ -136,7 +148,7 @@ export default function DropDowsMenu() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
                 </svg>
 
-                 invite new one
+                inviter une nouvelle personne
                 </button>
               )}
             </Menu.Item>
@@ -144,7 +156,9 @@ export default function DropDowsMenu() {
            <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={() => router.push("/app/user/settings") as unknown }
+                onClick={() => {
+                  set_current_page({payload:PAGES.SETTINGS})
+                  router.push("/app/user/settings") } }
                   className={
                  `   ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
                     ${
@@ -153,7 +167,7 @@ export default function DropDowsMenu() {
                 }
                 >
                   <TuneIcon  className ="text-gray-400"  />
-                  settings
+                  Paramètres
                 </button>
               )}
             </Menu.Item>
@@ -166,7 +180,7 @@ export default function DropDowsMenu() {
                   } group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                   <LogoutIcon  className ="text-gray-600 "  />
-                 log out
+                  Se déconnecter
                 </button>
               )}
             </Menu.Item>

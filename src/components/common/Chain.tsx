@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { useRouter } from 'next/router'
 import Image, { StaticImageData } from 'next/image'
 import { useState } from 'react'
-
-
+import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
+import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
 
 
 type chainType = {
@@ -12,20 +13,34 @@ type chainType = {
     name :string ,
     selected? : boolean ,
     image : string | StaticImageData,
-    available?: boolean
+    available?: boolean,
+    PAGE : PAGES
   
 }
-export const Chain = ({path , name , selected ,available, image } : chainType) => {
+export const Chain = ({path , name , selected ,available, image , PAGE } : chainType) => {
   const router = useRouter()
 
   const [isHover , setIsHover] = useState<boolean>(false)
+  const set_current_page = header_page_Reducer(state => state.set_current_page)
+
+  const set_access_error = ErrorNoteReducer(state => state.setIsOpen)
+
+  const handleClick = () => {
+
+    if(!available){
+      set_access_error({payload : true})
+      return
+    }
+    set_current_page({payload : PAGE})
+    router.push(path)
+  }
 
   return (
     
     <div key={path + name}
      onMouseEnter={() => setIsHover(true)} 
      onMouseLeave={() => setIsHover(false)}
-     onClick={() => router.push(path) }
+     onClick={handleClick}
      className={` relative shadow border-1 transition bg-white duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-lg justify-center w-[250px] flex-col p-2   h-[250px] items-center`}
      >
       <div className={`${available ? "hidden" : "absolute"} inset-0 flex justify-center items-center bg-white `}>

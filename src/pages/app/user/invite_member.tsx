@@ -1,11 +1,32 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable react/no-unescaped-entities */
 import Button from "@mui/material/Button";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
-
+import { getUserMetadata } from "~/lib/MetaData";
+import { toast } from "react-toastify";
 
 const Page: NextPage = () => {
+
+  const handleCopy = async  () => {
+     await navigator.clipboard.writeText(getUserMetadata())
+     .then(() => {
+      toast("copied successfully  ",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+     })
+     .catch(error => {
+      toast("failed to delete ",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+     })
+
+  }
+
+
   return (
     <>
       <Head>
@@ -21,7 +42,17 @@ const Page: NextPage = () => {
       <div className='md:w-[70%]  w-full xl:w-[900px] min-h-[500px] flex flex-col  h-fit bg-white rounded-lg shadow-lg'>
       <div className='w-full h-[50px] flex-col flex my-4 justify-center items-start p-4 '>
         <h1 className='text-gray-400 text-md'>add a new team member</h1>
-        <p className='text-gray-700 text-lg'>write a string message and sed it to the member that you want him to access the application  </p>
+        <p className='text-gray-700 text-lg'>copy your token code and send it to who you want him to join your team </p>
+      </div>
+      <div className="w-[90%] mx-auto h-[40px] flex gap-x-4  ">
+      <input
+      value={getUserMetadata()}
+      className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />       
+        <Button 
+        onClick={handleCopy}
+       className="!inline-flex !text-white !font-bold    !justify-center !rounded-md !border !border-gray-300 !bg-gradient-to-r !from-sky-500 !to-indigo-600 !px-4 !py-2 !text-sm   !shadow-sm !hover:bg-gray-50 !focus:outline-none !focus:ring-2 !focus:ring-indigo-500 focus:ring-offset-2 !focus:ring-offset-gray-100">
+          copy 
+       </Button>
       </div>
      
       <div className='w-full h-fit flex gap-x-2 p-4 my-2 flex-col'>
@@ -40,16 +71,12 @@ const Page: NextPage = () => {
         </div>
         <input  className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />       
         </div>
-
-
-
     <div className='w-full h-[100px] gap-x-4 bg-white flex items-center justify-end px-6'>
     <Button 
           className="!inline-flex   !font-bold   !justify-center !rounded-md border !border-gray-300 !bg-white !px-4 py-2 !text-sm  !text-gray-700 !shadow-sm !hover:bg-gray-50 !focus:outline-none !focus:ring-2 !focus:ring-indigo-500 !focus:ring-offset-2 !focus:ring-offset-gray-100">
            cancel
         </Button>
         <Button 
-       
         className="!inline-flex !text-white !font-bold    !justify-center !rounded-md !border !border-gray-300 !bg-gradient-to-r !from-sky-500 !to-indigo-600 !px-4 !py-2 !text-sm   !shadow-sm !hover:bg-gray-50 !focus:outline-none !focus:ring-2 !focus:ring-indigo-500 focus:ring-offset-2 !focus:ring-offset-gray-100">
            invite 
         </Button>
