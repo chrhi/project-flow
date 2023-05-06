@@ -9,7 +9,6 @@ import { Header } from "~/components/common/Header";
 import { api } from "~/utils/api";
 import Cookies from 'js-cookie'
 import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
-import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
 import { storeUserMetadata } from "~/lib/MetaData";
 type input = {
@@ -19,7 +18,7 @@ type input = {
 
 const Page: NextPage = () => {
 
-  const set_user = userReducer(state => state.set_user)
+  
 
   const router = useRouter()
 
@@ -31,7 +30,7 @@ const Page: NextPage = () => {
     onSuccess(data) {
        console.log(data)
       Cookies?.set("abdullah-access-token" , data.jwt)
-      set_user({email : data.email , id : data.id})
+      
       storeUserMetadata({user_id : data.id})
       router.push("/app")
      
