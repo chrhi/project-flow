@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { getProjectCurrentPhaseAbdullah, getProjectMetaData, storeProjectCurrentPhaseAbdullah } from "~/lib/MetaData";
 import { IsPhaseLocked, PHASES } from "~/utils/access/IsPhaseLocked";
 import { api } from "~/utils/api";
+import { runFireworks } from "~/utils/runFireworks";
 
 type Props = {
     indexThisPhase : number 
@@ -16,12 +17,14 @@ function NextSwitch({indexThisPhase} : Props) {
 
     const mutation = api.ProjectRouter.updateproject.useMutation({
         onSuccess(){
+            
             toast("Mise à jour effectuée avec succès.",{
                 className:" !text-white !bg-blue-500",
                 hideProgressBar: true,
                })
             setChecked(true);
             storeProjectCurrentPhaseAbdullah( PHASES[indexThisPhase + 1] as string)
+            runFireworks()
         },
         onError(){
             toast("Échec de la mise à jour.",{

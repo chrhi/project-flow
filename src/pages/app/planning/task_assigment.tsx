@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Header } from "~/components/common/Header";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
+import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import { AssignTaskPopUp } from "~/components/ui/plusTable/executing/AssignTaskPopUp";
 import { StakeHolder } from "~/components/ui/popup/StakeHolder";
 import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
@@ -104,7 +105,7 @@ const Page: NextPage = () => {
       </Head>
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-       <ExecutingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
       <FormHead text="👉 assign each task to stakholder" />
       <Form >

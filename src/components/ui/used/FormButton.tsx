@@ -14,10 +14,11 @@ export  function FormButton({create , update , state ,isLoading ,  ...props } : 
     <div className="bg-white py-3 col-span-6 text-right ">
     {
       state ? 
+      
       <AbdullahButton
       type="submit"
       onClick={(e) => update(e)}
-      className={buttonVariants({size:"lg"})}
+      className={buttonVariants({size:"sm", variant:'primary'})}
       isLoading ={isLoading}
       {...props}
       >
@@ -27,7 +28,7 @@ export  function FormButton({create , update , state ,isLoading ,  ...props } : 
       <AbdullahButton
       type="submit"
       onClick={(e) => create(e)}
-      className={buttonVariants({size:"lg"})}
+      className={buttonVariants({size:"sm", variant:'primary'})}
       isLoading ={isLoading}
       {...props}
       >

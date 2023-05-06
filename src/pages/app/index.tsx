@@ -62,7 +62,7 @@ useEffect(() => {
             hasProjectStart ?
             <div className=" mx-auto p-4 ">
             <h1 className="text-gray-800 font-bold text-2xl text-start ml-4 mt-8  " >Contrôlez et configurez votre projet</h1>
-            <p className="text-gray-300 text-md ml-4 mt-4 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod soluta, fuga nostrum </p>
+            <p className="text-gray-300 text-md ml-4 mt-4 ">surveillez régulièrement la progression du projet, <br /> soyez prêt à apporter les ajustements nécessaires et communiquez efficacement avec <br /> les parties prenantes pour garantir le succès du projet </p>
             <div className="w-[90%]  mx-auto gap-x-8  rounded-lg min-h-[400px] h-fit flex justify-center items-center my-2">
               <Chain
                PAGE ={PAGES.STARTUP}

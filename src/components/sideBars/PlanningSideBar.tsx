@@ -57,7 +57,7 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
       setIsOpen(false)
     }
   }}
-    className={` r${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full `}
+    className={` ${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full `}
 
   >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -90,9 +90,9 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
      
        
         <AbdullahEffectButton
-              onClick={() => handleClick("/app/planning/task_assigment" , NAVS.ONE)}
+              onClick={() => handleClick("/app/planning/task_assigment" , NAVS.A)}
               className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-              ${current_page == NAVS.ONE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
+              ${current_page == NAVS.A ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
           >
           Task assignment
           </AbdullahEffectButton>
