@@ -132,7 +132,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
        Jalons
         </AbdullahEffectButton>
    
-       <NextSwitch />
+       <NextSwitch indexThisPhase={0} />
       
       </div>
     </div>

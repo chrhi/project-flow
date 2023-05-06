@@ -1,16 +1,67 @@
-import  { useState } from "react";
+/* eslint-disable react/no-unescaped-entities */
+import  { useEffect, useState } from "react";
 import Switch from "react-switch";
+import { toast } from "react-toastify";
+import { getProjectCurrentPhaseAbdullah, getProjectMetaData, storeProjectCurrentPhaseAbdullah } from "~/lib/MetaData";
+import { IsPhaseLocked, PHASES } from "~/utils/access/IsPhaseLocked";
+import { api } from "~/utils/api";
 
-function NextSwitch() {
+type Props = {
+    indexThisPhase : number 
+}
+
+function NextSwitch({indexThisPhase} : Props) {
+
     const [checked, setChecked] = useState(false);
 
-    const handleChange = (checked : boolean) => {
-        setChecked(checked);
+    const mutation = api.ProjectRouter.updateproject.useMutation({
+        onSuccess(){
+            toast("Mise à jour effectuée avec succès.",{
+                className:" !text-white !bg-blue-500",
+                hideProgressBar: true,
+               })
+            setChecked(true);
+            storeProjectCurrentPhaseAbdullah( PHASES[indexThisPhase + 1] as string)
+        },
+        onError(){
+            toast("Échec de la mise à jour.",{
+                className:" !text-white !bg-blue-500",
+                hideProgressBar: true,
+               })
+        }
+    })
+    
+  
+
+    useEffect(() => {
+        const isThisPhaseAvailable = IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : indexThisPhase})
+        const isTheNextPhaseAvailable = IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : indexThisPhase + 1})
+        if(isThisPhaseAvailable === isTheNextPhaseAvailable ) {
+            setChecked(true)
+        }else{
+            setChecked(false)
+        }
+    } , [])
+
+    const handleChange = (checkedParam : boolean) => {
+        if(checked === true) return
+       console.log(getProjectMetaData())
+        //set this phase as completed then set the n + 1 phase 
+        mutation.mutate({
+            id : getProjectMetaData(),
+            stage : PHASES[indexThisPhase + 1] as string
+
+        })
+
       };
 
   return (
-    <div className='w-[90%] h-[200px] m-p border  flex flex-col justify-center items-center gap-y-8'>
-        <p className="text-center text-gray-400 text-md ">if you have finisshed the work with this phase make sure to switch the betton below so you ca have access to the next phase</p>
+    <div className='w-[90%] h-[200px] p-4 rounded-lg border  flex flex-col justify-center items-center gap-y-8'>
+        <p className="text-center text-gray-400 text-md ">
+        Si vous avez terminé le travail pour cette phase, assurez-vous de basculer le bouton ci-dessous afin d'avoir accès à la phase suivante
+        </p>
+        <div className="w-full h-[50px] flex items-center justify-between px-2">
+            <p>Phase terminée</p>
         <Switch
          checked={checked} 
         onChange={handleChange}
@@ -26,6 +77,7 @@ function NextSwitch() {
         className="react-switch"
         id="material-switch"
         />
+        </div>
     </div>
   )
 }

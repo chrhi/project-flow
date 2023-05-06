@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
 import type { Dispatch, SetStateAction } from 'react'
 import { ExecutingSideBar , NAVS } from '~/store/app-reducer/ExecutingSideBar'
+import NextSwitch from '../common/NextSwitch'
 
 type Props ={
   isOpen? : boolean , 
@@ -68,6 +69,7 @@ return (
          {List.map(item => (
           Link(current_page , item.navs ,item.path  , item.name)
          ))}
+         <NextSwitch  indexThisPhase={2} />
       </div>
     </div>
   </div>

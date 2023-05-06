@@ -19,6 +19,31 @@ export const UserRouter_info = createTRPCRouter({
             city : data[0]?.city  as string,
             phone : data[0]?.phone  as string ,
             role : data[0]?.role  as string ,
+            photo : data[0]?.photo  as string ,
          }
+    }),
+    update_user_info: publicProcedure
+    .input(z.object({ 
+      id: z.string() ,
+      name : z.string() ,
+      last_name : z.string() ,
+      city : z.string(),
+      phone : z.string(),
+      photo : z.string()
+
+      }))
+    .mutation( async ({ input }) => {
+        const { data ,  error } = await supabase.from('user').update([{
+      
+          user_name : input.name ,
+          user_last_name : input.last_name ,
+          city :  input.city ,
+          phone : input.phone,
+          photo : input.photo
+        }]).eq("id" , input.id)
+        if(error){
+            throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error.message,})
+         }
+         
     }),
 });

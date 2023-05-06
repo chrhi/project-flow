@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { type AppType } from "next/app";
 import NextNProgress from 'nextjs-progressbar'
 import { api } from "~/utils/api";
@@ -44,6 +45,12 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         console.log("we coudn't get the user informations at app /")
         return
       }
+      set_user({
+        email : user_info[0]?.email ,
+        photo : user_info[0]?.photo , 
+        first_name : user_info[0]?.user_name ,
+        last_name : user_info[0]?.user_last_name ,
+      })
      // check if this is a team member
       if(user_info[0]?.role === "TEAM_MEMBER" ){
         RemoveProjectManager()

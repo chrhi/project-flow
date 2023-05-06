@@ -25,7 +25,7 @@ export const ProjectRouter = createTRPCRouter({
                             id : z.string()
                         }))
                         .mutation(async ({input}) => {
-                            await projectTable.update( input.id , input.stage).catch(error => { 
+                            await projectTable.update( input.stage ,  input.id ).catch(error => { 
                                 throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
                         }),
         getProjectStatus : publicProcedure 

@@ -10,10 +10,12 @@ import {  getUserMetadata } from "~/lib/MetaData";
 import Status from "~/components/ui/status";
 
 type IpiData = {
-  name : string , 
+  user_name : string , 
   role : string ,
-  id :  string
-  email : string
+  id :  string,
+  email : string,
+  photo : string
+
 }
 
 const Page: NextPage = () => {
@@ -25,7 +27,7 @@ const Page: NextPage = () => {
     const {refetch , isFetching } = api.InvitationRouter.getTeamMbers.useQuery({id : getUserMetadata()} , {
       onSuccess(data: IpiData[]) {
         setCommingData(data as [])
-        console.log(data)
+        console.log(commingData)
       },
       onError(){
         toast("failed to fetch the data",{
@@ -88,7 +90,7 @@ const Page: NextPage = () => {
       <div className="w-full max-w-7xl my-4 bg-white rounded-lg h-fit min-h-[300px] ">
           {/* this is the header of the table */}
           <div className="w-full h-[50px] flex justify-start p-4 items-start">
-          <h3 className="text-xl text-gray-900 " >Team Members (1)</h3>
+          <h3 className="text-xl text-gray-900 " >Team Members ({commingData.length})</h3>
           </div>
           <div className="w-full h-[40px] flex items-center ">
               <div className="w-[40%] pl-8">
@@ -105,22 +107,26 @@ const Page: NextPage = () => {
               </div>
           </div>
           {
-            commingData.map((item , index) => (
-              <div className="w-full h-[40px] flex items-center ">
-              <div className="w-[40%] pl-8">
-               <p className="text-md text-gray-900"> {item.name || "unknown"}</p>
-              </div>
-              <div className="w-[40%]">            
-                <p className="text-md text-gray-900" > {item.email }</p>
-              </div>
-              <div className="w-[10%] pr-4 flex justify-start">            
-               <Status color="bg-green-500" name ="Active" key={index + 234} />
-              </div>
-              <div className="w-[10%]">                
-                
-              </div>
-          </div>
-            ))
+            commingData.map((item , index) => {
+              console.log(item)
+              return (
+                <div className="w-full h-[40px] flex items-center ">
+                <div className="w-[40%] pl-8 flex items-center gap-x-4">
+                  <img src={item?.photo} alt="picture of user " className="w-[40px] h-[40px] rounded-[50%]" />
+                 <p className="text-md text-gray-900"> {item.user_name }</p>
+                </div>
+                <div className="w-[40%]">            
+                  <p className="text-md text-gray-900" > {item.email }</p>
+                </div>
+                <div className="w-[10%] pr-4 flex justify-start">            
+                 <Status color="bg-green-500" name ="Active" key={index + 234} />
+                </div>
+                <div className="w-[10%]">                
+                  
+                </div>
+            </div>
+              )
+            })
           }
       </div>
       </main>

@@ -17,7 +17,7 @@ import { RemoveProjectManager } from '~/lib/MetaData';
 export default function DropDowsMenu() {
   //initializes hooks
    const router = useRouter()
-  const {email  } = userReducer()
+  const {email , first_name , last_name , photo   } = userReducer()
   const current_page = header_page_Reducer(state => state.current_page)
   const set_current_page = header_page_Reducer(state => state.set_current_page)
  
@@ -48,13 +48,17 @@ export default function DropDowsMenu() {
           <div className="px-1 py-1  z-[100] ">
           <Menu.Item>
               {({ active }) => (
-                <div className='w-full min-h-[45px] h-fit border-b  flex overflow-x-hidden items-center gap-x-1'>
+                <div
+                 className={`
+                ${ active ? 'bg-gray-50 ' : ""}
+                w-full min-h-[45px] h-fit border-b cursor-pointer flex overflow-x-hidden items-center gap-x-1`}
+                >
                   <div className='rounded-[50%] w-[50px] h-[50px] bg-blue-500 '>
-                  <img  className='rounded-[50%] w-[50px] h-[50px] ' src={"https://aniyuki.com/wp-content/uploads/2022/06/aniyuki-schwarz-weis-katzen-anime-37.jpg"} alt="profile pic" />
+                  <img  className='rounded-[50%] w-[50px] h-[50px] ' src={photo} alt="profile pic" />
                   </div>
                   <div className='w-[80%] min-h-[45px] h-fit   flex flex-col justify-center p-4 gap-y-1 '>
-                  <h3 className='truncate text-md text-gray-600 '>{email || "mahdi.test1@gmail.com"}</h3>
-                  <h3 className='truncate text-md text-gray-600 '>{ "abdullah jsk"}</h3>
+                  <h3 className='truncate text-md text-gray-600 '>{email }</h3>
+                  <h3 className='truncate text-md text-gray-600 '>{ first_name + " " + first_name || "unknown"}</h3>
                 </div>
                 </div>
               )}

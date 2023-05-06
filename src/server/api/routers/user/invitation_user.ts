@@ -43,7 +43,7 @@ export const InvitationRouter = createTRPCRouter({
    if(error1){
     throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error1.message,})
    }
-   console.log(data)
+ 
    return data
    }),
 });

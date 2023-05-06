@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { PlanningSideBarReducer , NAVS } from '~/store/app-reducer/PlanningSideBarReducer'
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
 import { Dispatch, SetStateAction } from 'react'
+import NextSwitch from '../common/NextSwitch'
 
 
 type Props ={
@@ -153,6 +154,7 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
            Risk management 
         </AbdullahEffectButton>
        
+       <NextSwitch  indexThisPhase={1} />
       
       </div>
     </div>

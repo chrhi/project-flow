@@ -8,6 +8,8 @@ import { api } from "~/utils/api";
 import { useEffect , useState } from "react";
 import { getUserMetadata } from "~/lib/MetaData";
 import { toast } from "react-toastify";
+import { ImagePickUp } from "~/components/common/ImagePickUp";
+
 
 const Page: NextPage = () => {
 
@@ -17,6 +19,8 @@ const Page: NextPage = () => {
     phone : "",
     email : ""
   })
+  const [photo , setPhoto ] = useState("")
+
 
   const {refetch } = api.UserRouter_info.get_user_info.useQuery({id : getUserMetadata()}, {
     onSuccess(data) {
@@ -26,9 +30,10 @@ const Page: NextPage = () => {
         phone : data.phone ,
         email : data.email
       })
+      setPhoto(data.photo)
     },
     onError() {
-      toast("some thing went wrong",{
+      toast("Quelque chose s'est mal passé",{
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
        })
@@ -36,7 +41,33 @@ const Page: NextPage = () => {
     },
   })
 
+  const mutation = api.UserRouter_info.update_user_info.useMutation( {
+    onSuccess : async  () => {
+      toast("Mise à jour effectuée avec succès",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+       await refetch()
+    },
+    onError() {
+      toast("Quelque chose s'est mal passé",{
+        className:" !text-white !bg-blue-500",
+        hideProgressBar: true,
+       })
+      
+    },
+  })
 
+  const handleSubmit = () => {
+    mutation.mutate({
+      id : getUserMetadata() ,
+      name : inputs.name ,
+      last_name : inputs.lastName ,
+      city : "" ,
+      phone : inputs.phone , 
+      photo  
+    })
+  }
 
 
   return (
@@ -60,12 +91,8 @@ const Page: NextPage = () => {
           
           <div className='lg:w-[20%] w-full h-full flex flex-col items-center px-4 gap-y-4 pt-4'>
             <p className='text-gray-400 text-lg  '>photo profile</p>
-            {/* this is the place of an image */}
-           <button
-           className="inline-block bg-white rounded-lg px-4 py-1.5 text-base font-semibold leading-7 text-gray-900 ring-1 ring-gray-900/10 hover:ring-gray-900/20"
-           >
-            change
-           </button>
+            <img  src={photo} alt="picture photo" className="w-[80px] h-[80px] rounded-[50%] "/>
+          <ImagePickUp setPhoto={setPhoto} />
         </div>
        
           <div className="w-[80%] h-full flex gap-y-4 flex-col p-4 ">
@@ -73,22 +100,28 @@ const Page: NextPage = () => {
           <div className="w-full h-[50px] flex gap-x-4  items-center justify-between ">
           <div className="flex w-[50%] justify-between  items-center gap-x-2">
                 <p>User name :</p>
-                <input value={inputs.name || "abdullah"} className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
+                <input value={inputs.name } onChange={({target}) => setInputs({...inputs , name : target.value })} className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
             </div>
             <div className="flex  w-[50%] justify-between items-center gap-x-2">
                 <p>last name :</p>
-                <input value={inputs.lastName || "shahry"} className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
+                <input value={inputs.lastName } 
+                 onChange={({target}) => setInputs({...inputs , lastName : target.value })}
+                className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
             </div>
           </div>
           {/* this is the second div */}
            <div className="w-full flex h-[50px] gap-x-4 items-center justify-between ">
               <div className="flex  w-[50%] justify-between  items-center gap-x-2">
                    <p>phone:</p>
-                   <input value={inputs.phone || "+213..."}  className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
+                   <input value={inputs.phone} 
+                    onChange={({target}) => setInputs({...inputs , phone : target.value })}
+                   className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-lg transition ease-in  w-full" />
               </div>
               <div className="flex  w-[50%] justify-between items-center gap-x-2">
                   <p>email :</p>
-                  <input value={inputs.email} className="px-4 py-1.5 text-gray-700  h-[40px] max-w-[70%] rounded-lg outline-none border   transition ease-in shadow-lg w-full" />
+                  <input value={inputs.email} 
+                  
+                  className="px-4 py-1.5 text-gray-700  h-[40px] max-w-[70%] rounded-lg outline-none border   transition ease-in shadow-lg w-full" />
                </div>
            </div>
            {/* this is the divided section */}
@@ -118,6 +151,8 @@ const Page: NextPage = () => {
            </div>
            <div className="w-full h-[50px] items-center justify-start flex ">
              <AbdullahButton
+             onClick={handleSubmit}
+             isLoading={mutation.isLoading}
                className={buttonVariants({size:"sm", variant:'primary'})}
                >
                         save changes
