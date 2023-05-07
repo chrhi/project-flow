@@ -63,8 +63,8 @@ createStackholder : publicProcedure
     relationships :  z.string()  ,
     stakeholderEngagementApproach :  z.string()  ,
     id : z.string() , 
-    project_id : z.string()
-    
+    project_id : z.string(),
+    impact : z.string()
 })).mutation(async ({input}) => {
    await  stakeholdersTable.create(
         input.name  ,
@@ -80,7 +80,8 @@ createStackholder : publicProcedure
         input.relationships  ,
         input.stakeholderEngagementApproach  ,
         input.project_id ,
-        input.id
+        input.id,
+        input.impact
     ).catch(error => { 
         throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
 }),

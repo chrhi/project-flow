@@ -34,8 +34,8 @@ const Page: NextPage = () => {
     onSuccess(data) {
        console.log(data)
       Cookies?.set("abdullah-access-token" , data.jwt)
-   
       storeUserMetadata({user_id : data.id})
+      set_user({email : data.email , first_name : data.name , last_name : data.last_name , photo : data.photo})
       router.push("/app")
      
     },

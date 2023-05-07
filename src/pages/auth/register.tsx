@@ -100,7 +100,7 @@ const Page: NextPage = () => {
         créer mon compte
       </AbdullahButton>
         <div className="text-sm font-medium text-gray-500 ">
-        Vous avez un compte ? <Link href="/auth/login" className="text-blue-500 hover:underline ">connexion</Link>
+        Vous avez un compte ? <Link href="/" className="text-blue-500 hover:underline ">connexion</Link>
         </div>
     </form>
 </div>

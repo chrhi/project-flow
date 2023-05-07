@@ -14,10 +14,13 @@ import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 import Status from "~/components/ui/status";
+import { getColor } from "~/utils/formate/getColor";
+
 
 type IpiData = {
   name : string , 
   role : string ,
+  impact : string
   id :  string
 }
 const Page: NextPage = () => {
@@ -77,7 +80,7 @@ const Page: NextPage = () => {
           },
           properties : [<StakeHolder id ={item.id}  key={item.id} text={item.name} />  ,
            item.role ,
-            <Status key={item.id} name="low" color="bg-green-500" /> ]
+            <Status key={item.id} name={item.impact} color={getColor({text : item.impact})} /> ]
         } 
       ))
     

@@ -51,7 +51,14 @@ export const userManagment = createTRPCRouter({
     email :  result[0]?.email ,
 
    }, process.env.JWT_SECRET_KEY_SUPABASE!)
-    return {id : result[0]?.id as string   ,email : result[0]?.email as string  , jwt  }
+    return {
+      id : result[0]?.id as string   ,
+      email : result[0]?.email as string  ,
+      photo : result[0]?.photo as string   ,
+      name : result[0]?.user_name as string  ,
+      last_name : result[0]?.user_last_name as string  ,
+       jwt,
+        }
    })
 
    

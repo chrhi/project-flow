@@ -10,6 +10,9 @@ import { toast } from 'react-toastify'
 import {v4 as uuidV4} from "uuid"
 import { Input } from '../../used/Input'
 import { getProjectMetaData } from '~/lib/MetaData'
+import Select from 'react-select';
+
+
 type Props = {
   
   refetch : () => Promise<any>
@@ -18,10 +21,29 @@ type Props = {
 type inputs = {
  name : string ,
  role : string
-  
+ impact : string ,
   id :  string
 }
 
+const OPTIONS =[
+  {
+    label : "low",
+    value : "low"
+  },
+  {
+    label : "medium",
+    value : "medium"
+  },
+  {
+    label : "heigh",
+    value : "heigh"
+  },
+  {
+    label : "very height",
+    value : "very height"
+  },
+
+]
 
 
 export  function PLusButtonStakHolder ({ refetch} : Props) {
@@ -33,7 +55,8 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
     const [formData , setFormData] = useState<inputs>({
       name : "" ,
       role : "" ,
-      id :  ""
+      id :  "",
+      impact : ""
     })
      
     function openModal() {
@@ -86,6 +109,7 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
         name : formData.name ,
         role : formData.role ,
         communicationMethod : "how can we",
+        impact : formData.impact ,
         
       })
     }
@@ -163,17 +187,30 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
               value={formData.name}
               onChange={(e) => setFormData({...formData , name : e.target.value})}
             />
+            <div className='col-span-6'>
+            <label  className="block text-sm font-medium leading-6 text-gray-900">
+           impact of this stakholder
+        </label>
+            <Select
+                onChange={(e) => setFormData({...formData , impact : e?.value || ""})}
+                
+                name="stakholders"
+                options={OPTIONS}
+                className="basic-multi-select"
+                classNamePrefix="select"
+            />
+            </div>
               <TextField
               lable='ROLE / RESPONSABILITY'
               value={formData.role}
               onChange={(e) => setFormData({...formData , role : e.target.value})}
             />
-             
+               
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
             isLoading={mutation.isLoading}
-            className={buttonVariants({size:'sm'})}
+            className={buttonVariants({size:'sm' , variant: 'primary'})}
             >
               submit
             </AbdullahButton>
