@@ -20,7 +20,7 @@ export default async function middleware(req: NextRequest) {
     if (pathname.startsWith("/app")) {
       //if we don't have the cookie means users didn't sign in yet
       if (auth === undefined) {
-        req.nextUrl.pathname = "/auth/login";
+        req.nextUrl.pathname = "/";
        
         return NextResponse.redirect(req.nextUrl);
       }
@@ -32,7 +32,7 @@ export default async function middleware(req: NextRequest) {
         return NextResponse.next();
 
       }catch(error){
-        req.nextUrl.pathname = "/auth/login";
+        req.nextUrl.pathname = "/";
        
         return NextResponse.redirect(req.nextUrl);
       }     
