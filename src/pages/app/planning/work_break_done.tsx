@@ -14,6 +14,7 @@ import { Treepopup } from '~/components/planning/tree/Treepopup';
 import { type NextPage } from "next";
 import { Header } from "~/components/common/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
+
 import ReactFlow , {
   MiniMap,
   Controls,
@@ -24,10 +25,10 @@ import ReactFlow , {
   useNodesState,
   useEdgesState,
 } from 'reactflow';
+import { AbdullahButton  , buttonVariants} from '~/components/ui/buildingBlocks/AbdullahButton';
 
 const initialNodes = [
-  { id: '1', data: { label: 'Node 1' }, position: { x: 100, y: 100 } },
-  { id: '2', data: { label: 'Node 2' }, position: { x: 100, y: 200 } },
+
 ];
 
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
@@ -39,6 +40,9 @@ const Page: NextPage = () => {
   
   const [isOpen , setIsOpen] = useState<boolean>(false)
   const [isOpenAlert , setIsOpenAlert] = useState<boolean>(true)
+  const [isPopUpOpen , setIsPopUpOpen ] = useState<boolean>(false)
+
+ 
   // const set_loading = loading_Reducer(state => state.set_isLoading)
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -69,13 +73,19 @@ const Page: NextPage = () => {
     restoreFlow();
   }, [setNodes, setViewport]);
 
-  const onAdd = useCallback(() => {
+  const onAdd = useCallback(({title , text , shape } : {title: string , text: string , shape : string }) => {
+    //in here we have to make a pop up
     const newNode = {
       id: getNodeId(),
-      data: { label: 'Added node' },
+      data: {
+         label: title,
+
+
+         },
+
       position: {
-        x: Math.random() * window.innerWidth - 100,
-        y: Math.random() * window.innerHeight,
+        x: 10,
+        y: 10,
       },
     };
     setNodes((nds) => nds.concat(newNode));
@@ -94,21 +104,34 @@ const Page: NextPage = () => {
       <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/>
       <FormHead  text='Divide your project into smaller components. 🐱'  />
       <div className='w-full h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
-      <button
-      className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-      onClick={onSave}>save</button>
-        <button
-        className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-        onClick={onRestore}>restore</button>
+     
+        {/* first button */}
+   <AbdullahButton 
+      onClick={onSave}
+      className={buttonVariants({variant:"secondary"})}>
+       save
+      </AbdullahButton>
+        {/* second button */}
+      <AbdullahButton 
+      onClick={onRestore}
+      className={buttonVariants({variant:"secondary"})}>
+        restore
+      </AbdullahButton>
 
-        <button
-        className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-        onClick={onAdd}>add node</button>
+      <AbdullahButton 
+      onClick={() => setIsPopUpOpen(true)}
+      className={buttonVariants({variant:"primary"})}>
+        create new task
+      </AbdullahButton>
       </div>
     <div id="treeWrapper" className='mx-auto bg-white ' style={{ width: '100%', height: '100%' }}>
 
     
-        
+    <Treepopup
+      isOpen = {isPopUpOpen}
+      setIsOpen={setIsPopUpOpen} 
+      onAdd={onAdd}
+      />
     <ReactFlow
       nodes={nodes}
       edges={edges}

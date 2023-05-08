@@ -148,6 +148,10 @@ body{
    
   }
 
+  .test {
+    background-color: #dbe0e3;
+  }
+
   span.ripple {
     position: absolute;
     border-radius: 50%;

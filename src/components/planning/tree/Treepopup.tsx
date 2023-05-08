@@ -14,12 +14,13 @@ interface Props {
     isOpen : boolean ,
     setIsOpen : Dispatch<SetStateAction<boolean>>,
     refetch : () => Promise<any>,
-    refetchMileStones : () => Promise<any>
+    refetchMileStones : () => Promise<any>,
+    onAdd?: ({title , text , shape } : {title: string , text: string , shape : string }) => void
 
 }
 
 
-export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchMileStones} : Props) {
+export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchMileStones , onAdd} : Props) {
   
     const [input , setInput ] = useState("")
     const [update, setUpdate] = useState(false);
@@ -48,17 +49,27 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
     })
 
    const handleSubmit = () => {
-    post.mutate({
-      parent_id ,
-      name : input ,
-      cost : 0 ,
+
+    
+
+    // post.mutate({
+    //   parent_id ,
+    //   name : input ,
+    //   cost : 0 ,
      
      
-      on_going : true ,
-      project_id : getProjectMetaData(),
+    //   on_going : true ,
+    //   project_id : getProjectMetaData(),
      
-    })
-   }
+    // })
+    if(onAdd === undefined) return
+    onAdd({text : "" , title : input , shape : "" })
+    // setIsOpen(false)
+    }
+ 
+
+   
+
   return (
     <>
      
