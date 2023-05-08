@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/jsx-key */
@@ -18,8 +19,7 @@ export  function AccessPopUp () {
 
   
   return (
-    <>
-  
+       
     <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={() => set_isOpen({payload: false})}>
           <Transition.Child
@@ -31,10 +31,11 @@ export  function AccessPopUp () {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0  bg-black bg-opacity-25" />
           </Transition.Child>
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+
+          <div className="fixed inset-0  overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -44,49 +45,22 @@ export  function AccessPopUp () {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-              
-                <Dialog.Panel className="  w-[500px] h-fit  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
-                <Dialog.Title
-                    as="div"
-                    className=" w-full h-[50px] flex justify-between items-center border-b "
-                  >
-               <div>
-                         <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none" viewBox="0 0 24 24"
-                              strokeWidth={1.5} stroke="currentColor" className="w-6 m-2 text-gray-400 h-6">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-                         </svg>
-                </div>  
-               <div>
-                <IconButton>
-                    <button
+                <Dialog.Panel className="w-[600px] h-[350px] flex flex-col items-center p-8 gap-8  z-[100]  transform overflow-hidden  bg-white  text-left align-middle shadow-xl transition-all">
+                <h1 className='text-2xl  font-bold text-gray-900 text-center '>Locked Out: Understanding and Overcoming Action Access Restrictions</h1>
+                   <p className='text-lg leading-8  text-center text-gray-700'>
+                   Proper communication with project authorities is key to resolving access issues, enabling one to contribute to the project's success by following the correct protocols.
+                   </p>
+                   <AbdullahButton
                     onClick={() => set_isOpen({payload: false})}
-                   className='!text-xl !font-semibold !text-slate-900 !p-0  '
-                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-
-                    </button>
-                   </IconButton>
-                </div> 
-                  </Dialog.Title>
-            <div className='  w-full h-[200px]  flex justify-center  items-center px-8 '>
-                        <h1 className='text-2xl font-bold text-gray-900 text-center'>
-                          you dont have access to this action
-                         
-                           </h1>
-                    
-            </div>
-
-            
-            </Dialog.Panel>
+                      className={`${buttonVariants({size:"lg", variant:'primary'})} font-bold`}
+                    >
+                       accept and close 
+                  </AbdullahButton>
+                </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
         </Dialog>
       </Transition>
-      </>
   )
 }
