@@ -106,7 +106,18 @@ const Page: NextPage = () => {
             descripton="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
             headers={["name" , "role / responsability" , "impact"]}
             body={
-              satisfyTable()
+            [
+              {
+                id : "123" ,
+                callback : (id : string ) => {
+                  set_loading(true)
+                  deleteStakholder.mutate({id})
+                },
+                properties : [<StakeHolder id ={"123"}  key={"123"} text={"abdullah"} />  ,
+                 "responsable" ,
+                  <Status key={"123and"} name={"low"} color={getColor({text : "low"})} /> ]
+              } 
+            ]
              }
             PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 

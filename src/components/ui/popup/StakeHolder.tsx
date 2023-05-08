@@ -85,7 +85,7 @@ export  function StakeHolder ({text , id} : Props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full h-screen   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full h-screen   z-[100]  transform overflow-x-hidden overflow-y-auto   bg-white p-6 text-left align-middle shadow-xl transition-all">
                  <div className='container h-[50px] mx-auto flex justify-between items-center'>
                  <div className="w-[3%] h-full flex justify-start items-center">
                <Image alt="logo" src={logo} width={35} height={35}  />
@@ -105,23 +105,87 @@ export  function StakeHolder ({text , id} : Props) {
                 </div>
                  </div>
                  {
-                  isFetching ? 
+                  // isFetching ? 
+                  false ?
                 <h1 className='text-xl text-stone-900'>loading...</h1>
                   :
-                  <div className='container mx-auto h-full flex flex-col pl-4 '>
-                <h1 className='text-3xl font-bold text-slate-900 text-start my-2'>{stakholder.name}</h1>
-                <h2 className='text-2xl font-semibold text-slate-800 my-2'>Role</h2>
-                <p>{stakholder.role}</p>
-                <h2 className='text-2xl font-semibold text-slate-800 my-2'>contact info : </h2>
-                  <p>email : {stakholder.email}</p>
-                  <p> phone :{ stakholder.phone}</p>
-                 
-               </div>
+                  <div className='container mx-auto h-full flex  pl-4 '>
+                    {/* this is the first div */}
+                      <div className='w-[50%] h-full p-4 '>
+                      <div className='w-full h-[100px] flex items-center gap-x-4'>
+                        <div className='w-[70px] h-[70px] bg-black rounded-lg '>
+
+                        </div>
+                      <input 
+                          value={"Abdellah chehri"} 
+                          className='text-2xl font-bold my-4  text-gray-900  border-none focus:outline-none '   
+                        />
+                      </div>
+                        <h3 className='text-xl mt-4 font-semibold  text-gray-800'>role & responsability :  </h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                        <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Note </h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-lg  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                        {/* this is the second input  */}
+                        <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Contact info :  </h3>
+                        <div className='w-full flex flex-col my-4 '>
+                        <input 
+                              value={"email :  mahdi.chahri55@gmail.com"} 
+                              className='text-md  text-gray-700  border-none focus:outline-none '   
+                          />
+                           <input 
+                              value={"telephone number :  05397643"} 
+                              className='text-md  text-gray-700  border-none focus:outline-none '   
+                           />
+                        </div>
+                        {/* this is another input  */}
+                        <h3 className='text-xl mt-4 font-semibold   text-gray-800'>Level of involvment  </h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                         {/* this is another input  */}
+                         <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Communication Needs  </h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                         {/* this is another input  */}
+                         <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Communication Needs  </h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                      </div>
+                       {/* this is the second div */}
+                       <div className='w-[50%] h-full  '>
+                       <input 
+                              value={"available at  :  12/21/2017"} 
+                              className='text-lg  text-gray-700  border-none focus:outline-none '   
+                          />
+                        <h3 className='text-xl mt-4 font-semibold  text-gray-800' >Pending Changes :</h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                        <h3 className='text-xl mt-4 font-semibold  text-gray-800' >relationships</h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                        <h3 className='text-xl mt-4 font-semibold  text-gray-800' >stakeholder Engagement Approach</h3>
+                        <textarea 
+                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
+                          className='text-md text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
+                        />
+                      </div>
+                  </div>
                  }
-                
-
-
-
                 </Dialog.Panel>
               </Transition.Child>
             </div>

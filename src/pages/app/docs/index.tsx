@@ -1,13 +1,8 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
 import DocsSideBar from "~/components/common/DocsSideBar";
-import template from "~/assets/template.png"
-import Image from "next/image";
-import designer from "~/assets/designer.gif"
+import { DocumentBuilder } from "~/components/docsComponents/DocumentBuilder";
 
 
 const Page: NextPage = () => {
@@ -27,15 +22,11 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full justify-center items-center bg-gray-50 ">
         <DocsSideBar  />
        <div
-        className=" ml-[16rem] w-[80%] h-full p-8 "
+        className=" ml-[20rem] w-[80%] h-full p-8 "
        >
-        <h1 className="text-2xl text-blue-500 font-semibold my-4 ">Abdullah pdf generater </h1>
-        <h2 className="text-xl font-semibold text-gray-800  ">Template</h2>
-        <p className="text-md text-gray-400 ">
-        A template can be divided into two parts: a fixed part and a variable part.
-       We call them basePdf and schema. The following image is a good illustration of a template.
-        </p>
-        <Image className="w-[800px] my-4" src={template} alt="template" /> 
+       {/* build the pdf builder component */}
+       <DocumentBuilder title="Project charter " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+       <DocumentBuilder title="Srakholders" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
        </div>
       </main>
     </>

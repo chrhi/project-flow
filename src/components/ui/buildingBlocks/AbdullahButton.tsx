@@ -23,7 +23,7 @@ const buttonVariants = cva(
         link: 'bg-transparent  underline-offset-4 hover:underline text-slate-900 hover:text-blue-500 hover:bg-transparent ',
         rukia: 'w-full bg-blue-500 text-white hover:bg-blue-800 ',
         primary : " bg-gradient-to-r from-blue-500 to-sky-400 rounded-lg",
-        secondary : "rounded-lg border flex items-center justify-between p-1 px-4 shadow-sm text-gray-400"
+        secondary : "rounded-lg border bg-white  flex items-center justify-between p-1 px-4 shadow-sm hover:bg-gray-100 hover:text-gray-800 text-gray-500"
       },
       size: {
         default: 'h-10 py-2 px-4',
