@@ -3,7 +3,7 @@ import {useState} from 'react'
 export const SearchBar = () => {
     const [input , setInput ] = useState("")
   return (
-    <div className='w-[60%] mr-[15%] h-8  items-center   bg-white flex justify-between border border-gray-300 px-1 rounded-lg'>
+    <div className='w-[60%] mr-[5%] h-8  items-center   bg-white flex justify-between border border-gray-300 px-1 rounded-lg'>
         <input
          value={input}
          placeholder='search ...'

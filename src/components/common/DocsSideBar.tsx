@@ -1,28 +1,33 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { FC } from 'react'
 import { DocsReducerSideBar , NAVS } from '~/store/app-reducer/DocsReducerSideBar'
+import { useRouter } from 'next/router'
 
 const LISTA = [
-    { name : "Integrations" , page : NAVS.ONE } , 
-    { name : "Stakholders" , page : NAVS.TWO } , 
-    { name : "Perimeter" , page : NAVS.THREE } ,
-    { name : "TimeTable" , page : NAVS.FOUR } ,
-    { name : "Costs" , page : NAVS.FIVE } ,
-    { name : "Quality" , page : NAVS.SIX } ,
-    {name : "Resources" , page : NAVS.SEVEN } , 
-    {name : "Integration" , page : NAVS.EIGHT },
-    {name : "Supplies" , page : NAVS.NIGHT } , 
-    {name : "Risks" , page : NAVS.TEN } , 
-    {name : "Communications" , page : NAVS.ELEVEN}
+    { name : "Integrations" , page : NAVS.ONE  , path : "/app/docs/"} , 
+    { name : "Stakholders" , page : NAVS.TWO , path : "/app/docs/stakholders" } , 
+    { name : "Perimeter" , page : NAVS.THREE , path : "/app/docs/perimeter" } ,
+    { name : "TimeTable" , page : NAVS.FOUR , path : "/app/docs/timeTable"  } ,
+    { name : "Costs" , page : NAVS.FIVE , path : "/app/docs/costs" } ,
+    { name : "Quality" , page : NAVS.SIX , path : "/app/docs/quality" } ,
+    {name : "Resources" , page : NAVS.SEVEN , path : "/app/docs/resources"} , 
+    {name : "Integration" , page : NAVS.EIGHT   , path : "/app/docs/integration"},
+    {name : "Supplies" , page : NAVS.NIGHT  , path : "/app/docs/supplies" } , 
+    {name : "Risks" , page : NAVS.TEN  , path : "/app/docs/risks" } , 
+    {name : "Communications" , page : NAVS.ELEVEN , path : "/app/docs/communications" }
 ]
 
 const DocsSideBar: FC = ({}) => {
+
+    const router = useRouter()
 
     const set_current_page = DocsReducerSideBar(state => state.set_current_page)
 
     const current_page =  DocsReducerSideBar(state => state.current_page)
 
-    const Navigate = (page : NAVS) => {
+    const Navigate = async  (page : NAVS , path : string ) => {
         set_current_page({payload : page})
+        await router.push(path)
     }
 
 
@@ -35,7 +40,7 @@ const DocsSideBar: FC = ({}) => {
       
         {LISTA.map(item => (
              <button
-                onClick={() => Navigate(item.page)}
+                onClick={() =>  Navigate(item.page , item.path)}
                 key={item.name}
                 className={`w-[80%] rounded-lg  h-[45px]   pl-4  flex justify-start items-center ${current_page === item.page ? "bg-blue-500 text-white" : ""   }`}>
              {item.name}

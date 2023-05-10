@@ -47,7 +47,7 @@ const buttonVariantsAbdullah = cva(
         subtle:
           'bg-blue-100 text-slate-900 hover:bg-blue-200  ',
         ghost:
-          'bg-transparent text-slate-400  hover:bg-gray-50  data-[state=open]:bg-transparent',
+          'bg-transparent text-slate-400 text-sm hover:bg-gray-50  data-[state=open]:bg-transparent',
         link: 'bg-transparent  underline-offset-4 hover:underline text-slate-900 hover:text-blue-500 hover:bg-transparent ',
         rukia: 'w-full bg-blue-500 text-white hover:bg-blue-800 ',
         
@@ -81,7 +81,6 @@ export interface ButtonProps
 
     async function handleClick (e : React.MouseEvent<HTMLButtonElement, MouseEvent>){
         rippleEffect(e)
-
        if(onPromisClick){
         await onPromisClick()
        }
@@ -103,7 +102,4 @@ export interface ButtonProps
       </button>
     )
   }
-
-
-
 export { AbdullahEffectButton, buttonVariantsAbdullah }

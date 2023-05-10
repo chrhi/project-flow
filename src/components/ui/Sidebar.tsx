@@ -71,7 +71,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
       <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
           <AbdullahEffectButton
               onClick={() => handleClick("/app/startup" , NAVS.SETUP)}
-              className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+              className={` rounded-lg w-[90%] mx-auto p-4 shadow-sm  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
               ${current_page == NAVS.SETUP ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
           >
           Initialisation
@@ -82,7 +82,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
         
         <AbdullahEffectButton
             onClick={() => handleClick("/app/startup/setup" , NAVS.STARTUP)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            className={` rounded-lg w-[90%] mx-auto p-4 border  shadow-sm ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.STARTUP ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >
        Détails du projet
@@ -93,7 +93,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
         
         <AbdullahEffectButton
             onClick={() => handleClick("/app/startup/tables" , NAVS.TABLE)}
-            className={` rounded-lg w-[90%] mx-auto p-4  border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            className={` rounded-lg w-[90%] mx-auto p-4  border shadow-sm  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.TABLE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >
       Objets du projet
@@ -104,7 +104,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
         
         <AbdullahEffectButton
              onClick={() => handleClick("/app/startup/secondForm" , NAVS.SECONDFORM)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            className={` rounded-lg w-[90%] mx-auto p-4 border shadow-sm ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.SECONDFORM ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >
      Mon équipe
@@ -115,7 +115,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
         
         <AbdullahEffectButton
              onClick={() => handleClick("/app/startup/stakeholders"  , NAVS.STAKEHOLDER)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            className={` rounded-lg w-[90%] mx-auto p-4 border shadow-sm ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.STAKEHOLDER ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}
         >
        Parties prenantes
@@ -126,7 +126,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
         
         <AbdullahEffectButton
              onClick={() => handleClick("/app/startup/milestones" , NAVS.MILESTONES)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+            className={` rounded-lg w-[90%] mx-auto p-4 border shadow-sm ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
             ${current_page == NAVS.MILESTONES ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-lg`}
         >
        Jalons

@@ -6,6 +6,7 @@ import React from "react"
 import { PagesNav } from "../header/PagesNav" 
 import TopBanner from "../ui/TopBanner"
 import { SearchBar } from "../header/SearchBar"
+import Notifictions from "./Notifictions"
 
 type Props = {
   notAuth? : boolean,
@@ -28,9 +29,11 @@ export const Header = ({notAuth = false}:Props) => {
       notAuth ? 
       <NotAuth />
        :
-       <div className="w-[25%]  h-[60px] flex justify-end items-center  ">
+       <div className="w-[25%]  h-[60px] gap-x-2 flex justify-end items-center  ">
         <SearchBar />
+        <Notifictions />
        <DropDowsMenu />
+
      </div>
     }
    </div>
