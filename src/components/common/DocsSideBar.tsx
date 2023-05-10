@@ -11,7 +11,7 @@ const LISTA = [
     { name : "Costs" , page : NAVS.FIVE , path : "/app/docs/costs" } ,
     { name : "Quality" , page : NAVS.SIX , path : "/app/docs/quality" } ,
     {name : "Resources" , page : NAVS.SEVEN , path : "/app/docs/resources"} , 
-    {name : "Integration" , page : NAVS.EIGHT   , path : "/app/docs/integration"},
+   
     {name : "Supplies" , page : NAVS.NIGHT  , path : "/app/docs/supplies" } , 
     {name : "Risks" , page : NAVS.TEN  , path : "/app/docs/risks" } , 
     {name : "Communications" , page : NAVS.ELEVEN , path : "/app/docs/communications" }
@@ -33,7 +33,7 @@ const DocsSideBar: FC = ({}) => {
 
   return <div 
   className='w-[20rem] h-full fixed left-0  top-[50px] flex flex-col  items-end pt-12 bottom-0 p-4 '>
-        <div className='w-fit h-[70px] mb-4 flex flex-col  '>
+        <div className='w-[80%]  h-[70px] mb-4 flex  pl-4  flex-col items-start '>
             <h1 className='text-2xl  text-gray-900 '>My documents </h1>
             <p className='text-lg  text-gray-700 ' >generate and create pdfs </p>
         </div>

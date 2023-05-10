@@ -62,7 +62,7 @@ export function PagesNav() {
            <AbdullahEffectButton 
            key={item.name}
            onPromisClick={() => handleRouting(item.path , item.page , index - 1)}
-                className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? 'bg-blue-100 text-slate-900' : null}  font-poppins `}
+                className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? 'bg-blue-100 text-slate-900' : null}  font-poppins font-semibold `}
            >
            {item.name}
            </AbdullahEffectButton>

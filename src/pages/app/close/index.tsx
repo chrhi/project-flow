@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
+import { TestSidebar } from "~/components/sideBars/TestSideBar";
 import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
@@ -22,8 +23,8 @@ const Page: NextPage = () => {
       </Head>
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-       <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+       <TestSidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
       <FormHead text="⭐ Lessons learned " />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
