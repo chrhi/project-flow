@@ -41,9 +41,9 @@ export const Chain = ({path , name , selected ,available, image , PAGE } : chain
      onMouseEnter={() => setIsHover(true)} 
      onMouseLeave={() => setIsHover(false)}
      onClick={handleClick}
-     className={` relative shadow border-1 transition bg-white duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-lg justify-center w-[250px] flex-col p-2   h-[250px] items-center`}
+     className={` relative shadow border-1 transition bg-white duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-2xl justify-center w-[250px] flex-col p-2   h-[250px] items-center`}
      >
-      <div className={`${available ? "hidden" : "absolute"} inset-0 flex justify-center items-center bg-white `}>
+      <div className={`${available ? "hidden" : "absolute"} inset-0 rounded-2xl flex justify-center items-center bg-white `}>
       <svg
        xmlns="http://www.w3.org/2000/svg"
         fill="none" viewBox="0 0 24 24"

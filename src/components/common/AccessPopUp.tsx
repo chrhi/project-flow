@@ -14,10 +14,7 @@ export  function AccessPopUp () {
     const isOpen = ErrorNoteReducer(state => state.isOpen)
 
     const set_isOpen = ErrorNoteReducer(state => state.setIsOpen)
-  
- 
 
-  
   return (
        
     <Transition appear show={isOpen} as={Fragment}>
@@ -31,7 +28,7 @@ export  function AccessPopUp () {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0  bg-black bg-opacity-25" />
+            <div className="fixed inset-0  bg-sky-100 bg-opacity-25" />
           </Transition.Child>
 
           <div className="fixed inset-0  overflow-y-auto">

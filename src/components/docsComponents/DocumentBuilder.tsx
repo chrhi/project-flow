@@ -1,6 +1,7 @@
 import React from 'react'
 import { AbdullahButton , buttonVariants} from '../ui/buildingBlocks/AbdullahButton'
 import { useState } from 'react'
+import { ConfirmePopUp } from '../ui/popup/ConfirmePopUp'
 
 
 type DocumentBuilderProps = {
@@ -30,9 +31,7 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
               </div>
               : 
               <div className='w-full h-[70px] flex justify-end gap-x-4 items-center'>  
-                 <AbdullahButton className={buttonVariants({variant : "secondary"})} >
-                      distroy
-                  </AbdullahButton>  
+                 <ConfirmePopUp />
                   <AbdullahButton className={buttonVariants({variant : "primary"})} >
                       view on web
                   </AbdullahButton>  

@@ -8,6 +8,7 @@ import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import {  getUserMetadata } from "~/lib/MetaData";
 import Status from "~/components/ui/status";
+import { AccessGivePopUp } from "~/components/ui/popup/AccessGivePopUp";
 
 type IpiData = {
   user_name : string , 
@@ -106,6 +107,21 @@ const Page: NextPage = () => {
                 <p className="text-md text-gray-400" >  Action</p>
               </div>
           </div>
+          <div className="w-full h-[40px] flex items-center ">
+                <div className="w-[40%] pl-8 flex items-center gap-x-4">
+                  <img src={""} alt="picture of user " className="w-[40px] h-[40px] rounded-[50%]" />
+                 <p className="text-md text-gray-900"> test</p>
+                </div>
+                <div className="w-[40%]">            
+                  <p className="text-md text-gray-900" > test</p>
+                </div>
+                <div className="w-[10%] pr-4 flex justify-start">            
+                 <Status color="bg-green-500" name ="Active"  />
+                </div>
+                <div className="w-[10%]">                
+                   <AccessGivePopUp />
+                </div>
+            </div>
           {
             commingData.map((item , index) => {
               console.log(item)
