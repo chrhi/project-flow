@@ -2,6 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import BoardContainer from "~/components/board/BoardContainer";
 import { Header } from "~/components/common/Header";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
 import { AssignTaskPopUp } from "~/components/ui/plusTable/executing/AssignTaskPopUp";
@@ -38,11 +39,11 @@ const Page: NextPage = () => {
        set_loading(false)
        },
   })
-  useEffect(() => {
-    if( tasksGet.isFetching  ){
-      set_loading(true)
-    }
-  }, [   set_loading , tasksGet.isFetching ])
+  // useEffect(() => {
+  //   if( tasksGet.isFetching  ){
+  //     set_loading(true)
+  //   }
+  // }, [   set_loading , tasksGet.isFetching ])
 
   // prepare the items to be handled by the table
   // AssignTaskPopUp
@@ -69,25 +70,12 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ExecutingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
-      <FormHead text="👉status tracking" />
-      <Form >
-      <div className="bg-white px-4 py-5 sm:p-6">
-        <div className="grid grid-cols-6 gap-6">
-          <div className="col-span-6 ">
-             <AbdullahTable 
-                Action={false}
-                ActionName="change"
-                title=" progress of individual tasks"
-                 descripton="This is the process of tracking the progress of individual tasks "
-                 headers={["task" , "status " , "Actions "]}
-                 body={satisfieTable()}
-                 />
-           </div> 
-          </div>  
-     </div>
-       </Form>
-  </FormContainer>
+      <div className={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}  h-fit min-h-[400px]`}>
+        <div className="w-full h-[70px] flex items-center justify-start">
+            <h1 className="text-xl text-gray-900 "> 👾 Status Tracking Board</h1>
+        </div>
+        <BoardContainer />
+      </div>
       </main>
     </>
   );

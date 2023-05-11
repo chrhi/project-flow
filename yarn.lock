@@ -1264,6 +1264,13 @@
   dependencies:
     puppeteer "*"
 
+"@types/react-beautiful-dnd@^13.1.4":
+  version "13.1.4"
+  resolved "https://registry.yarnpkg.com/@types/react-beautiful-dnd/-/react-beautiful-dnd-13.1.4.tgz#bcec72da719c18c0d8b4a7cb00e7fb443211d6d7"
+  integrity sha512-4bIBdzOr0aavN+88q3C7Pgz+xkb7tz3whORYrmSj77wfVEMfiWiooIwVWFR7KM2e+uGTe5BVrXqSfb0aHeflJA==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-clock@^3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@types/react-clock/-/react-clock-3.0.1.tgz#4d8f8736e1ca95d697f2120b5261bd6e45482d48"

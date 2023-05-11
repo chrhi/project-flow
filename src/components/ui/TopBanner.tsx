@@ -19,24 +19,12 @@ export default function TopBanner() {
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="text-sm leading-6 text-white">
        
-          <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
-            <circle cx={1} cy={1} r={1} />
-          </svg>
-          this web site is all build with adbullah chehri
+         
+          Abdullah is presently engrossed in the development of the website, kindly refrain from clicking any buttons at this time.
         </p>
-        <a
-          href="#"
-          className="flex-none rounded-full bg-white px-3.5 py-1 text-sm font-semibold text-black shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-        >
-         i agree <span aria-hidden="true">&rarr;</span>
-        </a>
+       
       </div>
-      <div className="flex flex-1 justify-end">
-        <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
-          <span className="sr-only">Dismiss</span>
-    
-        </button>
-      </div>
+   
     </div>
   )
 }
