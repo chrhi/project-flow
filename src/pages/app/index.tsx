@@ -17,6 +17,8 @@ import {  PAGES } from '~/store/app-reducer/headerReducer'
 import { IsPhaseLocked } from "~/utils/access/IsPhaseLocked";
 import Head from "next/head";
 import BedgetStatus from "~/components/dashboard/BedgetStatus";
+import Reminder from "~/components/dashboard/Reminder";
+import Timer from "~/components/dashboard/Timer";
 
 const Page: NextPage = () => {
 
@@ -71,15 +73,13 @@ const Page: NextPage = () => {
             
             hasProjectStart ?
             <div className=" mx-auto w-[85%]   p-4 ">
-            <h1 className="text-gray-800  text-3xl text-start  my-4  " >this is the dash bord and your personal space</h1>
+            <h1 className="text-gray-800  text-3xl text-start  my-4  " >Hi 👋 this is the dashboard and your personal space</h1>
             {/* this is the first row */}
             <div className="w-full  mx-auto gap-x-8  rounded-lg  h-[200px] flex justify-center items-center my-4">
-              <div className="w-[50%]  bg-white rounded-lg h-[200px]">
-                <h1>this is the first section</h1>
-              </div>
-              <div className="w-[50%]  bg-white rounded-lg h-[200px]">
-              <h1>this is the second section</h1>
-              </div>
+             <Reminder />
+            
+             
+              <Timer />
             </div>
             {/* this is the second row */}
             <div className="w-full  mx-auto gap-x-8  rounded-lg  h-[400px] flex justify-center items-center my-4">

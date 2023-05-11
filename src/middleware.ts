@@ -1,62 +1,58 @@
 // middleware.ts
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { jwtVerify, type JWTPayload} from 'jose';
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+import { jwtVerify, type JWTPayload } from 'jose';
 
+// Function to verify the JWT token
 async function verify(token: string, secret: string): Promise<JWTPayload> {
-  const {payload} = await jwtVerify(token, new TextEncoder().encode(secret));
-  // run some checks on the returned payload, perhaps you expect some specific values
+  const { payload } = await jwtVerify(token, new TextEncoder().encode(secret));
+  // Run some checks on the returned payload, perhaps you expect some specific values
 
-  // if its all good, return it, or perhaps just return a boolean
+  // If it's all good, return it, or perhaps just return a boolean
   return payload;
 }
 
 // This function can be marked `async` if using `await` inside
 export default async function middleware(req: NextRequest) {
-    const  auth = req.cookies.get('abdullah-access-token')?.value
+  const auth = req.cookies.get('abdullah-access-token')?.value;
 
-    const {pathname} = req.nextUrl;
-  //protect the app route
-    if (pathname.startsWith("/app")) {
-      //if we don't have the cookie means users didn't sign in yet
-      if (auth === undefined) {
-        req.nextUrl.pathname = "/";
-       
-        return NextResponse.redirect(req.nextUrl);
-      }
-      //if the token is valid then lett him go if not this will throw an error so it will be handled in the catch block
-      try{
-        await verify(auth, process.env.JWT_SECRET_KEY_SUPABASE!);
+  const { pathname } = req.nextUrl;
+
+  // Protect the app route
+  if (pathname.startsWith('/app')) {
+    // If we don't have the cookie, it means the user didn't sign in yet
+    if (auth === undefined) {
+      req.nextUrl.pathname = '/';
+      return NextResponse.redirect(req.nextUrl);
+    }
+
+    // If the token is valid, let them go. If not, this will throw an error, which will be handled in the catch block
+    try {
+      await verify(auth, process.env.JWT_SECRET_KEY_SUPABASE!);
       
-        console.log("the token is working")
+      console.log('The token is working');
+      return NextResponse.next();
+    } catch (error) {
+      req.nextUrl.pathname = '/';
+      return NextResponse.redirect(req.nextUrl);
+    }
+  }
+
+  // Redirect user if they are authenticated
+  if (pathname.startsWith('/auth') || pathname.endsWith('/')) {
+    if (auth) {
+      // If the token is valid, redirect them to the app. If not, continue
+      try {
+        await verify(auth, process.env.JWT_SECRET_KEY_SUPABASE!);
+        req.nextUrl.pathname = '/app';
+        return NextResponse.redirect(req.nextUrl);
+      } catch (error) {
         return NextResponse.next();
-
-      }catch(error){
-        req.nextUrl.pathname = "/";
-       
-        return NextResponse.redirect(req.nextUrl);
-      }     
-    }
-    // redirect user if they are authenticated
-    if (pathname.startsWith("/auth") || pathname.endsWith("/") ) {
-      if (auth) {
-    //if the token is valid then lett him go if not this will throw an error so it will be handled in the catch block
-      try{
-        await verify(auth, process.env.JWT_SECRET_KEY_SUPABASE!);
-      
-        req.nextUrl.pathname = "/app";
-       
-        return NextResponse.redirect(req.nextUrl);
-      }catch(error){
-        return NextResponse.next();   
       }
-        }
-           return NextResponse.next();   
     }
-  // if none of the conditions are matte then just continue
     return NextResponse.next();
   }
 
-//  export default async function middleware() {
-//   //to do 
-//  }
+  // If none of the conditions are met, just continue
+  return NextResponse.next();
+}
