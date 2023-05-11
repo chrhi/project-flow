@@ -1,4 +1,4 @@
-import { XMarkIcon } from '@heroicons/react/20/solid'
+
 
 export default function TopBanner() {
   return (
@@ -22,7 +22,7 @@ export default function TopBanner() {
           <svg viewBox="0 0 2 2" className="mx-2 inline h-0.5 w-0.5 fill-current" aria-hidden="true">
             <circle cx={1} cy={1} r={1} />
           </svg>
-          this web site uses cookies to better your experience
+          this web site is all build with adbullah chehri
         </p>
         <a
           href="#"
@@ -34,7 +34,7 @@ export default function TopBanner() {
       <div className="flex flex-1 justify-end">
         <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
           <span className="sr-only">Dismiss</span>
-          <XMarkIcon className="h-5 w-5 text-white" aria-hidden="true" />
+    
         </button>
       </div>
     </div>

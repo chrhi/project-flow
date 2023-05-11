@@ -7,6 +7,38 @@ import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { Card, Title, BarChart, Subtitle } from "@tremor/react";
+
+const chartdata = [
+  {
+    name: "Amphibians",
+    "Number of threatened species": 2488,
+  },
+  {
+    name: "Birds",
+    "Number of threatened species": 1445,
+  },
+  {
+    name: "Crustaceans",
+    "Number of threatened species": 743,
+  },
+  {
+    name: "abdullah",
+    "Number of threatened species": 2488,
+  },
+  {
+    name: "chehri",
+    "Number of threatened species": 1445,
+  },
+  {
+    name: "123mahdi",
+    "Number of threatened species": 743,
+  },
+];
+
+const dataFormatter = (number: number) => {
+  return "$ " + Intl.NumberFormat("us").format(number).toString();
+};
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -30,16 +62,15 @@ const Page: NextPage = () => {
         <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6">
 
-        <AbdullahTable
-            title=" Risk management"
-            descripton="
-            Risk management in PMBOK is the process of identifying, assessing, prioritizing, and responding to project risks. It involves identifying potential risks, assessing their likelihood and impact, developing strategies to mitigate or avoid risks, implementing those strategies, and monitoring the effectiveness of risk management activities. Effective risk management helps to reduce the likelihood and impact of negative events and improve project outcomes.
-            "
-            headers={["risk" , "status"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
+            <BarChart
+                 className="mt-6"
+                 data={chartdata}
+                 index="name"
+                 categories={["Number of threatened species"]}
+                 colors={["blue"]}
+                 valueFormatter={dataFormatter}
+                  yAxisWidth={48}
+             />
             </div>
         </div>
       </div>

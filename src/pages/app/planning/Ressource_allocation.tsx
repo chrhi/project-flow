@@ -15,7 +15,7 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
         <FormHead  text='👉🏻 in here manage all the ressources' />
         <Paper>
         <AbdullahTable 

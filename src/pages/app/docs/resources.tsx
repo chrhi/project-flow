@@ -22,11 +22,54 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full justify-center items-center bg-gray-50 ">
         <DocsSideBar  />
        <div
-        className=" ml-[20rem] w-[80%] h-full p-8 "
+        className=" ml-[20rem] w-[80%] h-full p-8 overflow-y-auto "
        >
        {/* build the pdf builder component */}
-       <DocumentBuilder title="Project charter " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-       <DocumentBuilder title="Srakholders" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+       <DocumentBuilder title="plan de gestion des resources  " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="charte d'equipe   " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="mises a jour des documents du projet  " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Boseion en resources " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Base des estimations   " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Organigramme des ressources    " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des documents du projet  " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Affectations des ressources materielles   " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Affectations des membres de l'equipe projet" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="calendriers des ressources " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Demandes de changement " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour du plan demanagment de projet " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des documents du projet " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des facteurs envionnementaux de l'organisation " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des actifs organisationels " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Evaluations des performances de l'equipe " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Demandes de changement " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mises a jour du plan de management du projet " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des documents du projet " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des facteurs  envionnementaux de l'organisation " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Demandes de changement " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Information sur la performance d'execution " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+      
        </div>
       </main>
     </>

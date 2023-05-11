@@ -7,6 +7,45 @@ import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { AreaChart } from "@tremor/react";
+
+const chartdata = [
+  {
+    date: "Jan 22",
+    SemiAnalysis: 2890,
+    "The Pragmatic Engineer": 2338,
+  },
+  {
+    date: "Feb 22",
+    SemiAnalysis: 2756,
+    "The Pragmatic Engineer": 2103,
+  },
+  {
+    date: "Mar 22",
+    SemiAnalysis: 3322,
+    "The Pragmatic Engineer": 2194,
+  },
+  {
+    date: "Apr 22",
+    SemiAnalysis: 3470,
+    "The Pragmatic Engineer": 2108,
+  },
+  {
+    date: "May 22",
+    SemiAnalysis: 3475,
+    "The Pragmatic Engineer": 1812,
+  },
+  {
+    date: "Jun 22",
+    SemiAnalysis: 3129,
+    "The Pragmatic Engineer": 1726,
+  },
+];
+
+const dataFormatter = (number: number) => {
+  return "$ " + Intl.NumberFormat("us").format(number).toString();
+};
+
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -29,17 +68,14 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6">
-
-        <AbdullahTable
-            title=" Cost control"
-            descripton="
-            Cost control in PMBOK refers to the process of monitoring, reviewing, and managing project expenses to ensure that they align with the approved budget. It involves developing a project budget, monitoring actual costs, comparing actual costs against the budget, identifying variances, and implementing corrective actions to keep the project within budget. Effective cost control helps to ensure that the project is completed within the approved budget and that financial resources are used efficiently.
-            "
-            headers={["task" , "planed cost" , "actual  cost" ]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
+            <AreaChart
+               className="h-72 mt-4"
+               data={chartdata}
+               index="date"
+               categories={["SemiAnalysis", "The Pragmatic Engineer"]}
+               colors={["indigo", "cyan"]}
+               valueFormatter={dataFormatter}
+             />
             </div>
         </div>
       </div>

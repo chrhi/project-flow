@@ -16,7 +16,7 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
     <div className='w-full h-[50px] mb-4  flex justify-between'>
     <div className="w-[70%] h-[50px] flex items-center justify-start p-4 ">
     <h1 className="text-2xl font-bold text-start text-gray-900"> in here goes some tasks </h1>

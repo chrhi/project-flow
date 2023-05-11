@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 const config = {
-  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@tremor/**/*.{js,ts,jsx,tsx}", // Tremor module
+  ],
   mode: "jit",
   theme: {
     extend: {

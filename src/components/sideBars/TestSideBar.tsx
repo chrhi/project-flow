@@ -36,7 +36,7 @@ export  const TestSidebar = ({isOpen , setIsOpen} : Props) => {
               <AbdullahEffectButton
                  onClick={() => handleClick(path , Nav)}
                  className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-                 ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-lg`}>
+                 ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm`}>
                   {name}
               </AbdullahEffectButton>
 return (

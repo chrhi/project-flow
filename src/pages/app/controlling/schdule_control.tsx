@@ -7,6 +7,37 @@ import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { Card, Title, DonutChart } from "@tremor/react";
+
+const cities = [
+  {
+    name: "New York",
+    sales: 9800,
+  },
+  {
+    name: "London",
+    sales: 4567,
+  },
+  {
+    name: "Hong Kong",
+    sales: 3908,
+  },
+  {
+    name: "San Francisco",
+    sales: 2400,
+  },
+  {
+    name: "Singapore",
+    sales: 1908,
+  },
+  {
+    name: "Zurich",
+    sales: 1398,
+  },
+];
+
+const valueFormatter = (number: number) =>
+  `$ ${Intl.NumberFormat("us").format(number).toString()}`;
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -24,22 +55,20 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐ Schedule control" />
+      <FormHead text="⭐ Schedule Performance Index (SPI) Chart" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 gap-6">
             <div className="col-span-6">
+            <DonutChart
+                 className="mt-6 w-[300px]"
+                 data={cities}
+                 category="sales"
+                 index="name"
+                 valueFormatter={valueFormatter}
+                 colors={["slate", "violet", "indigo", "rose", "cyan", "amber"]}
+              />
 
-        <AbdullahTable
-            title="Schedule control"
-            descripton="
-            Schedule control in PMBOK refers to the process of monitoring the status of the project to update project progress and manage changes to the project schedule. It involves establishing a baseline schedule, tracking progress, comparing actual progress against the baseline schedule, identifying deviations, determining their causes, and implementing corrective actions to keep the project on track. Effective schedule control helps to ensure that the project is completed on time and within budget.
-            "
-            headers={["name" , "role / responsability"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
             </div>
         </div>
       </div>

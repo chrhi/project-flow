@@ -22,7 +22,7 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
       <FormHead text="👉 manage your risks " />
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">

@@ -22,11 +22,25 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full justify-center items-center bg-gray-50 ">
         <DocsSideBar  />
        <div
-        className=" ml-[20rem] w-[80%] h-full p-8 "
+        className=" ml-[20rem] w-[80%] h-full p-8 overflow-y-auto "
        >
        {/* build the pdf builder component */}
-       <DocumentBuilder title="Project charter " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-       <DocumentBuilder title="Srakholders" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+       <DocumentBuilder title="Plan de getion de risques " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+       <DocumentBuilder title="Mises a jour des documents du projet" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Registre des risque" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Demandes de changement" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des documents du projet  " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour du Plan de getion de risques  " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Information sur la performance d'execution " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour des acrifs organisationnel " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+
+       <DocumentBuilder title="Mise a jour du des document du projet  " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
        </div>
       </main>
     </>
