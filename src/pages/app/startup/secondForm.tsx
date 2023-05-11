@@ -64,7 +64,7 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
       <FormHead text="⭐ défié tous les membres de votre équipe" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">

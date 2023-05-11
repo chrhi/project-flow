@@ -71,7 +71,7 @@ const Page: NextPage = () => {
             
             hasProjectStart ?
             <div className=" mx-auto w-[85%]   p-4 ">
-            <h1 className="text-gray-800  text-2xl text-start ml-8 mt-2  " >this is the dash bord and your personal space</h1>
+            <h1 className="text-gray-800  text-3xl text-start  my-4  " >this is the dash bord and your personal space</h1>
             {/* this is the first row */}
             <div className="w-full  mx-auto gap-x-8  rounded-lg  h-[200px] flex justify-center items-center my-4">
               <div className="w-[50%]  bg-white rounded-lg h-[200px]">
@@ -89,7 +89,9 @@ const Page: NextPage = () => {
               </div>
             </div>
             {/* this is the thierd row */}
-            <h1 className="text-gray-800  text-xl text-start ml-12 mt-2  " >Contrôlez et configurez votre projet</h1>
+            <div className="my-4 w-full h-[70px] flex justify-start items-center ">
+            <h1 className="text-gray-800  text-2xl text-start my-4  " >Contrôlez et configurez votre projet</h1>
+            </div>
             <div className="w-full   mx-auto gap-x-8  rounded-lg min-h-[300px] h-fit flex justify-center items-center my-4">
               <Chain
                PAGE ={PAGES.STARTUP}

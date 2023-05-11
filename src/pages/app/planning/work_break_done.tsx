@@ -98,17 +98,18 @@ const Page: NextPage = () => {
  <>
     
       <Header />
-      <main className=" custopn-page-height  flex w-full bg-gray-50 ">
+      <main className={` custopn-page-height  flex w-full   ${isOpenAlert ? "bg-gray-50" : "bg-white"}`} >
        <PlanningSideBar setIsOpen ={setIsOpenAlert} isOpen = {isOpenAlert} />
-       <FormContainer className ={` ${isOpenAlert ? "ml-[30rem]" : "ml-[1]"}`}>
+       <FormContainer className ={` ${isOpenAlert ? "ml-[30rem]" : "m-[0]"}`}>
       <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/>
-      <FormHead  text='Divide your project into smaller components. 🐱'  />
+      {isOpenAlert &&  <FormHead  text='Divide your project into smaller components. 🐱'  /> }
+   
       <div className='w-full h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
      
         {/* first button */}
-   <AbdullahButton 
-      onClick={onSave}
-      className={buttonVariants({variant:"secondary"})}>
+    <AbdullahButton 
+       onClick={onSave}
+       className={buttonVariants({variant:"secondary"})}>
        save
       </AbdullahButton>
         {/* second button */}

@@ -21,6 +21,9 @@ const Page: NextPage = () => {
 
   const [isBuild  , setIsBuild] = useState<boolean>(false)
   const [pdfUrl  , setPdfUrl] = useState<string>("")
+
+  const [isOpen , setIsOpen] = useState<boolean>(true)
+  
   const set_loading = loading_Reducer(state => state.set_isLoading)
   const {isFetching , refetch } = api.documentRouter.getDocuments.useQuery({project_id : getProjectMetaData()} , {
     onSuccess(data) {
@@ -81,7 +84,7 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
        <Sidebar />
-       <FormContainer >
+       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`} >
       <FormHead text="⭐c'est le panneau de contrôle pour cette application" />
       <Form  >
       <div className="  px-4 py-5 sm:p-6">

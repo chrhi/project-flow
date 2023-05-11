@@ -94,7 +94,7 @@ const Page: NextPage = () => {
       <Header />
       <main className=" scrollbar-hide  flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-      <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+      <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
       <FormHead text="👉 manage your cost" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
@@ -107,6 +107,7 @@ const Page: NextPage = () => {
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
           body={satisfieTable("Périmètre")}
          PlusButton ={<PlusButtonTable formType="Périmètre" refetch={refetch}/>}
+         
          />
        
 
