@@ -36,11 +36,11 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
   </AbdullahEffectButton>
 </div>
 
-  <div className={`fixed flex flex-col top-[60px] left-[0px] ${isOpen ? "w-[30rem]" : "w-[0px]" }  bg-gray-50 custopn-page-height  rounded-lg border-gray-[100px]`}>
+  <div className={`fixed flex flex-col m-4 mt-0  top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0px]" }  bg-gray-50  custopn-page-height  rounded-lg border-gray-[100px]`}>
    
-    <div className={` ${isOpen? "flex" : "hidden" } items-center justify-between  h-12  bg-white  w-[70%] mx-auto border-b mt-[55px] p-4 `}>
+    <div className={` ${isOpen? "flex" : "hidden" } items-center justify-between  h-12  bg-white  w-full mx-auto border-b mt-[55px] p-4 pr-0 `}>
   <div>
-  <span className="ml-2 text-sm tracking-wide truncate">all my links</span>
+  <span className="ml-2 text-sm tracking-wide truncate">Start up navigater</span>
   </div>
   <div>
   <AbdullahEffectButton
@@ -59,7 +59,7 @@ export  const Sidebar = ({isOpen , setIsOpen} : Props) => {
           </AbdullahEffectButton>
   </div>
     </div>
-    <div className={`overflow-y-auto overflow-x-hidden flex-grow  w-[70%] mx-auto bg-white ${isOpen? "" : "hidden" } `}>
+    <div className={`overflow-y-auto overflow-x-hidden flex-grow  w-full mx-auto bg-white ${isOpen? "" : "hidden" } `}>
       <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
           <AbdullahEffectButton
               onClick={() => handleClick("/app/startup" , NAVS.SETUP)}

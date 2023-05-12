@@ -84,11 +84,11 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
        <Sidebar />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`} >
+       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`} >
       <FormHead text="⭐c'est le panneau de contrôle pour cette application" />
       <Form  >
       <div className="  px-4 py-5 sm:p-6">
-        <div className="grid grid-cols-6 p-2 gap-6">
+        <div className="grid grid-cols-6  lg:grid-cols-12 p-2 gap-6">
             <div className="col-span-6 p-4 h-[150px] flex items-center justify-between border-2 rounded-lg">
                     <div className="w-[50%] h-[100%] flex flex-col justify-center items-start" >
                         <h1 className="text-black  text-center lg:text-left text-3xl font-extrabold leading-tight tracking-tighter">application / démarage</h1>

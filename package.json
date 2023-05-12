@@ -60,6 +60,7 @@
     "reactflow": "^11.7.0",
     "resend": "^0.14.0",
     "sharp": "^0.32.0",
+    "smart-webcomponents-react": "^15.2.0",
     "superjson": "1.9.1",
     "tailwind-merge": "^1.10.0",
     "uuid": "^9.0.0",

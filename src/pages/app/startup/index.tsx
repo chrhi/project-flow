@@ -171,11 +171,11 @@ const Page: NextPage = () => {
       <main className="   flex w-full bg-gray-50 ">
         
        <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
+       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
       <FormHead text="👉 entrer les informations de base " />
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
-        <div className="grid grid-cols-6 gap-6">
+        <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <TextField
                 lable="Intitulé de projet "
                 onChange={(e) => {

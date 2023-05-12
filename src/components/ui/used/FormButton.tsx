@@ -11,7 +11,7 @@ interface FromButtonprops extends  React.HTMLAttributes<HTMLButtonElement>{
 
 export  function FormButton({create , update , state ,isLoading ,  ...props } : FromButtonprops) {
   return (
-    <div className="bg-white py-3 col-span-6 text-right ">
+    <div className="bg-white py-3 col-span-6 lg:col-span-12 text-right ">
     {
       state ? 
       

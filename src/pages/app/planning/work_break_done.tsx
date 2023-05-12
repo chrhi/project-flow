@@ -100,11 +100,11 @@ const Page: NextPage = () => {
       <Header />
       <main className={` custopn-page-height  flex w-full   ${isOpenAlert ? "bg-gray-50" : "bg-white"}`} >
        <PlanningSideBar setIsOpen ={setIsOpenAlert} isOpen = {isOpenAlert} />
-       <FormContainer className ={` ${isOpenAlert ? "ml-[30rem]" : "m-[0]"}`}>
+       <FormContainer className ={` ${isOpenAlert ? "ml-[20rem]" : "m-[0]"}`}>
       <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/>
       {isOpenAlert &&  <FormHead  text='Divide your project into smaller components. 🐱'  /> }
    
-      <div className='w-full h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
+      <div className='w-[95%] mx-auto h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
      
         {/* first button */}
     <AbdullahButton 
@@ -125,7 +125,7 @@ const Page: NextPage = () => {
         create new task
       </AbdullahButton>
       </div>
-    <div id="treeWrapper" className='mx-auto bg-white ' style={{ width: '100%', height: '100%' }}>
+    <div id="treeWrapper" className='mx-auto bg-white ' style={{ width: '95%', height: '100%' }}>
 
     
     <Treepopup

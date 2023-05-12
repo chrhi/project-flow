@@ -94,12 +94,12 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-      <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[0]"}`}>
+      <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
       <FormHead text="⭐ défié toutes vos parties prenantes" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
-        <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-6">
+        <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
+            <div className="col-span-6 lg:col-span-12">
 
         <AbdullahTable
             title="parties prenantes"

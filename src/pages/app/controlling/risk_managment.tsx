@@ -55,11 +55,11 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
-       <FormContainer className ={` ${isOpen ? "ml-[30rem]" : "ml-[5rem]"}`}>
+       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
       <FormHead text="⭐ Risk management" />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
-        <div className="grid grid-cols-6 gap-6">
+      <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <div className="col-span-6">
 
             <BarChart
