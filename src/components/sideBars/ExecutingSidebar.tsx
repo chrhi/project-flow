@@ -52,8 +52,8 @@ return (
     </svg>
   </AbdullahEffectButton>
 </div>
-<div className={`fixed flex flex-col m-4 mt-0  top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0px]" }  bg-gray-50  custopn-page-height  rounded-lg border-gray-[100px]`}>
-  <div className={` ${isOpen? "flex" : "hidden" } items-center justify-between  h-12  bg-white  w-full mx-auto border-b mt-[55px] p-4 `}>
+<div className={`fixed flex flex-col m-4 mt-0  top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0px]" }  bg-gray-50  custopn-page-height   border-gray-[100px]`}>
+  <div className={` ${isOpen? "flex" : "hidden" } items-center justify-between rounded-xl h-12  bg-white  w-full mx-auto border-b mt-[55px] p-4 `}>
   <div><span className="ml-2 text-sm tracking-wide truncate">all my links</span></div>
   <div>
   <AbdullahEffectButton
@@ -65,7 +65,7 @@ return (
   </AbdullahEffectButton>
   </div>
   </div>
-    <div className={`overflow-y-auto overflow-x-hidden flex-grow  w-full mx-auto bg-white ${isOpen? "" : "hidden" } `}>
+    <div className={`overflow-y-auto rounded-xl overflow-x-hidden flex-grow  w-full mx-auto bg-white ${isOpen? "" : "hidden" } `}>
       <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
          {List.map(item => (
           Link(current_page , item.navs ,item.path  , item.name)

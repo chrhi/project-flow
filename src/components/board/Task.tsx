@@ -18,7 +18,8 @@ type PropsType =  {
   title : string , 
   discription? : string , 
   imgUrl? : string,
-  priority?: string
+  priority?: string,
+  status : string
 }
 
 

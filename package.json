@@ -52,6 +52,7 @@
     "react-date-range": "^1.4.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.4",
+    "react-loading-skeleton": "^3.3.1",
     "react-pdf": "^6.2.2",
     "react-select": "^5.7.2",
     "react-simple-typewriter": "^5.0.1",

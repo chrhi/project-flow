@@ -1,8 +1,10 @@
+
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import BoardContainer from "~/components/board/BoardContainer";
+import { TaskType } from "~/components/board/Task";
 import { Header } from "~/components/common/Header";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
 import { AssignTaskPopUp } from "~/components/ui/plusTable/executing/AssignTaskPopUp";
@@ -16,6 +18,37 @@ import { getProjectMetaData } from "~/lib/MetaData";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { task } from "~/types/type";
 import { api } from "~/utils/api";
+
+const tasksTyped : TaskType[] =[
+  {
+    id : "12343",
+    title : "Pipeline and Transportation" , 
+    discription : "Sonatrach can manage the transportation of oil and gas through pipelines and other means. This includes constructing and maintaining pipelines, monitoring transportation operations, and ensuring safe and efficient delivery of resources " , 
+    priority : "decrease",
+    status : "TODO"
+  },
+  {
+    id : "1234566" , 
+    title : "make me happy ",
+    priority : "increase",
+    status : "DONE"
+  } , 
+  {
+  id : "9776",
+  title : "Pipeline and Transportation" , 
+  discription : "Sonatrach can manage the transportation of oil and gas through pipelines and other means. This includes constructing and maintaining pipelines, monitoring transportation operations, and ensuring safe and efficient delivery of resources " , 
+  priority : "decrease",
+  status : "DOING"
+ },
+ {
+  id : "67" , 
+  title : "this is the calnel ",
+  priority : "increase",
+  status : "CANCEL"
+} , 
+ 
+
+]
 
 
 const Page: NextPage = () => {
@@ -47,16 +80,16 @@ const Page: NextPage = () => {
 
   // prepare the items to be handled by the table
   // AssignTaskPopUp
-  const satisfieTable = () : ItemTable[] => {
-    const array : ItemTable[] =  tasks.map(item => {
-      return  {
-        id : item.id ,
-        callback : (id : string) => console.log(id),
-        properties : [item.name , item.status, <ChangeStatusPopUp refetch={tasksGet.refetch} taskName={item.name} id={item.id} key={item.id} />]
-      } 
-    })
-    return array
-  }
+  // const satisfieTable = () : ItemTable[] => {
+  //   const array : ItemTable[] =  tasks.map(item => {
+  //     return  {
+  //       id : item.id ,
+  //       callback : (id : string) => console.log(id),
+  //       properties : [item.name , item.status, <ChangeStatusPopUp refetch={tasksGet.refetch} taskName={item.name} id={item.id} key={item.id} />]
+  //     } 
+  //   })
+  //   return array
+  // }
   return (
     <>
       <Head>
@@ -74,7 +107,7 @@ const Page: NextPage = () => {
         <div className="w-full h-[50px] flex items-center pl-4 justify-start">
             <h1 className="text-xl font-bold text-gray-900 "> 👾 Tasks Tracking Board</h1>
         </div>
-        <BoardContainer />
+        <BoardContainer   tasks={tasksTyped}/>
       </div>
       </main>
     </>

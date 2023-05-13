@@ -1,49 +1,86 @@
 import  { useState, useEffect } from "react";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import Column from "./Column";
 import { TaskType } from "./Task";
 
 
-const tasks : TaskType[] =[
-  {
-    id : "12343",
-    title : "Pipeline and Transportation" , 
-    discription : "Sonatrach can manage the transportation of oil and gas through pipelines and other means. This includes constructing and maintaining pipelines, monitoring transportation operations, and ensuring safe and efficient delivery of resources " , 
-    priority : "decrease"
-  },
-  {
-    id : "1234" , 
-    title : "add the colors tages ",
-    priority : "increase"
-  } , 
- 
 
-]
 
-function BoardContainer() {
+type Props = {
+  tasks : TaskType[],
+
+}
+
+function BoardContainer({tasks} : Props ) {
+
+  const [todo , setTodo ] = useState<TaskType[]>([])
+  const [Doing , setDoing ] = useState<TaskType[]>([])
+  const [Done , setDone ] = useState<TaskType[]>([])
+  const [Canceled , setCanceled ] = useState<TaskType[]>([])
+
+  useEffect(() => {
+    setTodo(tasks?.filter(item => item.status === "TODO"))
+    setDoing(tasks?.filter(item => item.status === "DOING"))
+    setDone(tasks?.filter(item => item.status === "DONE"))
+    setCanceled(tasks?.filter(item => item.status === "CANCEL"))
+  },[tasks])
+
+  const handleDragEnd = (result : DropResult) => {
+    const { destination, source, draggableId } = result;
+
+    if (source.droppableId == destination?.droppableId) return;
+
+    //REMOVE FROM SOURCE ARRAY
+
+    // if (source.droppableId == 2) {
+    //   setDoing(removeItemById(draggableId, completed));
+    // } else {
+    //   setDone(removeItemById(draggableId, incomplete));
+    // }
+
+    // // GET ITEM
+
+    // const task = findItemById(draggableId, [...incomplete, ...completed]);
+
+    // //ADD ITEM
+    // if (destination?.droppableId == 2) {
+    //   setCompleted([{ ...task, completed: !task.completed }, ...completed]);
+    // } else {
+    //   setIncomplete([{ ...task, completed: !task.completed }, ...incomplete]);
+    // }
+  };
+
+  function findItemById(id : string, array : TaskType[]) {
+    return array?.find((item) => item.id == id);
+  }
+
+  function removeItemById(id : string, array : TaskType[]) {
+    return array?.filter((item) => item.id != id);
+  }
+
   return (
     <DragDropContext 
     
-    onDragEnd = {() => console.log("this is working")}>
+    onDragEnd = {(result) => handleDragEnd(result)}>
     <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex justify-between ">
       <Column 
        title="a Fair"
-       tasks={tasks} 
-       id="1234"
+       tasks={todo} 
+       id="todo"
        />
         <Column 
       title="En cour"
-       tasks={[]} 
-       id="124564"
+       tasks={Doing} 
+       id="doing"
        />
         <Column 
       title="Fait"
-       tasks={[]} 
-       id="1235664"
+       tasks={Done} 
+       id="done"
        />
         <Column 
-      title="Annel"
-       tasks={[]} 
+      title="cancel"
+       tasks={Canceled} 
        id="1245976564"
        />
     </div>
