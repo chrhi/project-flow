@@ -1,17 +1,16 @@
 
-
 export const getColor = ({text } : {text : string}) => {
     if(text === "low"){
-        return "bg-green-500"
+        return "green"
     }
     if(text === "medium"){
-        return "bg-yellow-500"
+        return "yellow"
     }
     if(text === "heigh"){
-        return "bg-red-400"
+        return "orange"
     }
     if(text === "very height"){
-        return "bg-red-600"
+        return "red"
     }
-    return "bg-black"
+    return "blue"
 }

@@ -2,7 +2,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
 import { Dispatch, Fragment, SetStateAction, useState } from 'react'
-import { IconButton  } from '@mui/material'
+
 import { api } from '~/utils/api'
 import { TextField } from '../../used/TextField'
 import { AbdullahButton, buttonVariants } from '../../buildingBlocks/AbdullahButton'
@@ -137,7 +137,7 @@ export  function PlusButtonTable ({formType , refetch} : Props) {
                   >
                <div><p className='text-sm text-gray-500 ml-4'>{formType}</p></div>  
                <div>
-                <IconButton>
+                
                     <button
                     onClick={closeModal}
                    className='!text-xl !font-semibold !text-slate-900 !p-0  '
@@ -147,7 +147,7 @@ export  function PlusButtonTable ({formType , refetch} : Props) {
                 </svg>
 
                     </button>
-                   </IconButton>
+                   
                 </div> 
                   </Dialog.Title>
                  

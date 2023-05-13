@@ -3,7 +3,6 @@ import { Fragment, useState } from 'react'
 import { AbdullahButton, buttonVariants } from '../buildingBlocks/AbdullahButton'
 import Image from "next/image"
 import logo from "~/assets/logo.png"
-import { IconButton  , Button} from '@mui/material'
 import { api } from '~/utils/api'
 import { Loader2 } from 'lucide-react';
 
@@ -91,7 +90,7 @@ export  function StakeHolder ({text , id} : Props) {
                <Image alt="logo" src={logo} width={35} height={35}  />
                 </div>
                 <div>
-                <IconButton>
+               
                     <button
                     onClick={closeModal}
                    className='!text-xl !font-semibold !text-slate-900 !p-0  '
@@ -101,7 +100,7 @@ export  function StakeHolder ({text , id} : Props) {
                 </svg>
 
                     </button>
-                   </IconButton>
+                  
                 </div>
                  </div>
                  {

@@ -15,7 +15,9 @@ import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 import Status from "~/components/ui/status";
 import { getColor } from "~/utils/formate/getColor";
-
+import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
+import { AnimatePresence } from "framer-motion";
+import { Badge } from "@tremor/react";
 
 type IpiData = {
   name : string , 
@@ -61,13 +63,7 @@ const Page: NextPage = () => {
          set_loading(false)
       },
     })
-    useEffect(() => {
-      if(isFetching){
-        set_loading(true)
-      }else{
-        set_loading(false)
-      }
-    }, [ isFetching , set_loading])
+   
 
     const satisfyTable = () : ItemTable[] => {
 
@@ -80,7 +76,8 @@ const Page: NextPage = () => {
           },
           properties : [<StakeHolder id ={item.id}  key={item.id} text={item.name} />  ,
            item.role ,
-            <Status key={item.id} name={item.impact} color={getColor({text : item.impact})} /> ]
+            <Badge key={item.id}  color={getColor({text : item.impact})} >{item.impact}</Badge>
+          ]
         } 
       ))
     
@@ -94,6 +91,7 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
+      <AnimatePresence>
       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
       <FormHead text="⭐ défié toutes vos parties prenantes" />
       <Form  >
@@ -101,24 +99,12 @@ const Page: NextPage = () => {
         <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
 
-        <AbdullahTable
+        <NewAbdullahTable
+            isLoading={isFetching}
             title="parties prenantes"
             descripton="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
             headers={["name" , "role / responsability" , "impact"]}
-            body={
-            [
-              {
-                id : "123" ,
-                callback : (id : string ) => {
-                  set_loading(true)
-                  deleteStakholder.mutate({id})
-                },
-                properties : [<StakeHolder id ={"123"}  key={"123"} text={"abdullah"} />  ,
-                 "responsable" ,
-                  <Status key={"123and"} name={"low"} color={getColor({text : "low"})} /> ]
-              } 
-            ]
-             }
+            body={ satisfyTable() }
             PlusButton={<PLusButtonStakHolder refetch={refetch} />}
 
          />
@@ -128,6 +114,7 @@ const Page: NextPage = () => {
    
        </Form>
   </FormContainer>
+  </AnimatePresence>
       </main>
     </>
   );

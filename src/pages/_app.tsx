@@ -14,9 +14,11 @@ import { userReducer } from '~/store/userReducer';
 import Head from 'next/head';
 import 'reactflow/dist/style.css';
 import 'react-clock/dist/Clock.css';
+import 'react-loading-skeleton/dist/skeleton.css'
 import { ReactFlowProvider } from 'reactflow';
 import { AccessPopUp } from '~/components/common/AccessPopUp';
 import { RemoveProjectManager, SetAsProjectManager, getUserMetadata } from '~/lib/MetaData';
+
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   const set_isLoading = loading_Reducer(state => state.set_isLoading);
