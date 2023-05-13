@@ -4,6 +4,13 @@ import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBloc
 import type { Dispatch, SetStateAction } from 'react'
 import { ExecutingSideBar , NAVS } from '~/store/app-reducer/ExecutingSideBar'
 import NextSwitch from '../common/NextSwitch'
+import { motion , AnimatePresence } from 'framer-motion';
+
+const sidebarVariants = {
+  open: { x: 0 },
+  closed: { x: '-100%' },
+  exit: { x: '100%', transition: { duration: 0.3 } },
+};
 
 type Props ={
   isOpen? : boolean , 
