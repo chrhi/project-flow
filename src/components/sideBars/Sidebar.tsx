@@ -18,12 +18,12 @@ type Props = {
 };
 
 const List = [
-  { name: 'Initialisation', path: '/app/startup/setup', navs: NAVS.SETUP },
-  { name: 'Détails du projet', path: '/app/startup', navs: NAVS.STARTUP },
-  { name: 'Objets du projet', path: '/app/startup/tables', navs: NAVS.TABLE },
-  { name: 'Mon équipe', path: '/app/startup/secondForm', navs: NAVS.SECONDFORM },
+  { name: 'Initialisation', path:'/app/startup', navs: NAVS.SETUP },
   { name: 'Parties prenantes', path: '/app/startup/stakeholders', navs: NAVS.STAKEHOLDER },
+  { name: 'Objets du projet', path: '/app/startup/tables', navs: NAVS.TABLE },
+  { name: 'Détails du projet', path:'/app/startup/setup', navs: NAVS.STARTUP },
   { name: 'Jalons', path: '/app/startup/milestones', navs: NAVS.MILESTONES },
+  { name: 'risks', path: '/app/startup/secondForm', navs: NAVS.SECONDFORM },
 ];
 
 export const Sidebar = ({ isOpen, setIsOpen }: Props) => {

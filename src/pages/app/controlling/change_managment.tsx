@@ -7,6 +7,7 @@ import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { Input } from "~/components/ui/used/Input";
 
 
 const Page: NextPage = () => {
@@ -29,21 +30,34 @@ const Page: NextPage = () => {
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-      <div className="col-span-6 lg:col-span-12 ">
+      
 
-<AbdullahTable
-    isLoading={false}
-   
-    title="Issue management"
-    description="
-    Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
-    "
-    Action ={false}
-    headers={["issue" , "status" , "action"]}
-    body={[]}
-    // PlusButton={<PlusButtonIssueManagment  />}
-    />
-    </div>
+      <Input
+                isLoading={false}
+                lable="Title"
+                onChange={(e) => console.log(e)}
+                value={""}
+       />
+      <Input
+                isLoading={false}
+                lable="Date prepared"
+                onChange={(e) => console.log(e)}
+                value={""}
+       />
+      <Input
+                isLoading={false}
+                lable="Person requsting change"
+                onChange={(e) => console.log(e)}
+                value={""}
+       />
+       <Input
+                isLoading={false}
+                lable="Change number"
+                onChange={(e) => console.log(e)}
+                value={""}
+        />
+
+    
         </div>
       </div>
    

@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { type NextPage } from "next";
-import { FormEvent, useEffect } from "react";
+import type { FormEvent } from "react";
 import { Header } from "~/components/common/Header";
 import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/Sidebar";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
 import { Input } from "~/components/ui/used/Input";
 import { TextField } from "~/components/ui/used/TextField";
 import { FormButton } from "~/components/ui/used/FormButton";

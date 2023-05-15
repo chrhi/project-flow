@@ -121,7 +121,7 @@ const Page: NextPage = () => {
 
       <AbdullahButton 
       onClick={() => setIsPopUpOpen(true)}
-      className={buttonVariants({variant:"primary"})}>
+      className={buttonVariants({variant:"primary" })}>
         create new task
       </AbdullahButton>
       </div>

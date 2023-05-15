@@ -5,12 +5,11 @@ import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/Sidebar";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
-import {  AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
+import {  AbdullahTable, type ItemTable } from "~/components/ui/used/AbdullahTable";
 import { PLusButtonTeam } from "~/components/ui/plusTable/startup/PlusButtonTeam";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
-import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
+
 
 type IpiData = {
   name : string , 
@@ -66,9 +65,9 @@ const Page: NextPage = () => {
         <AbdullahTable
            
             isLoading={isFetching}
-            title="les membres de mon équipe"
+            title="les risk"
             description="En PMBOK, les membres de l'équipe font partie des ressources du projet et peuvent inclure toute personne affectée au projet, y compris les membres permanents, temporaires, internes ou externes, et les spécialistes en sous-traitance."
-            headers={["name" , "skills "]}
+            headers={["risk" , "solutions" , "occurs rate"]}
             body={satisfyTable()}
             PlusButton={<PLusButtonTeam refetch={refetch}  />}
 

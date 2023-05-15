@@ -7,10 +7,11 @@ type PropsType = {
     lable : string ,
     value : string | number | readonly string[] | undefined ,
     onChange : React.ChangeEventHandler<HTMLTextAreaElement> | undefined,
-    isLoading? : boolean
+    isLoading? : boolean, 
+    className? : string
 }
 
-export  const TextField = ({lable , value , onChange , isLoading}:PropsType) => {
+export  const TextField = ({lable , value , onChange , isLoading , className}:PropsType) => {
   return (
   <>
   {
@@ -21,7 +22,7 @@ export  const TextField = ({lable , value , onChange , isLoading}:PropsType) => 
         <Skeleton count={2}  />
     </div>
     : 
-    <div className="col-span-6 ">
+    <div className={`col-span-6 ${className ? className : ""} `}>
     <label htmlFor={lable} className="block text-sm font-medium leading-6 text-gray-900">
         {lable}
      </label>

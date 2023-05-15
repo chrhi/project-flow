@@ -10,10 +10,10 @@ import {v4 as uuidV4} from "uuid"
 import { Input } from '../../used/Input'
 import { getProjectMetaData } from '~/lib/MetaData'
 import Select from 'react-select';
+import { STAKHOLDER_TYPES , OPTIONS} from '~/types/static/STATICDATA'
 
 
 type Props = {
-  
   refetch : () => Promise<any>
 }
 
@@ -24,25 +24,7 @@ type inputs = {
   id :  string
 }
 
-const OPTIONS =[
-  {
-    label : "low",
-    value : "low"
-  },
-  {
-    label : "medium",
-    value : "medium"
-  },
-  {
-    label : "heigh",
-    value : "heigh"
-  },
-  {
-    label : "very height",
-    value : "very height"
-  },
 
-]
 
 
 export  function PLusButtonStakHolder ({ refetch} : Props) {
@@ -158,57 +140,86 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
                 leaveTo="opacity-0 scale-95"
                
               >
-                <Dialog.Panel className="  w-[500px] h-fit  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="  w-[900px] h-[600px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
-                    className=" w-full h-[50px] flex justify-between items-center border-b "
+                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
                   >
-               <div><p className='text-sm text-gray-500 ml-4'>adding stakholder</p></div>  
+               <div><p className='text-md text-gray-900 font-semibold  ml-4'>Add a stakholder</p></div>  
                <div>
-               
                     <button
                           onClick={closeModal}
                           className='!text-xl !font-semibold !text-slate-900 !p-0  '>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-
                     </button>
-                  
                 </div> 
                   </Dialog.Title>
                  
            <div className="bg-white p-4  w-full  ">
-            <div className="grid grid-cols-6 gap-6">
+            <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+            <div className='col-span-6 '>
+                  <label  className="block text-sm font-medium leading-6 text-gray-900">
+                         type of  stakholder
+                  </label>
+                  <Select
+                        onChange={(e) => setFormData({...formData , impact : e?.value || ""})}
+                        name="stakholders_types"
+                        options={STAKHOLDER_TYPES}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                    />
+            </div> 
             <Input
               lable='Nom'
               value={formData.name}
               onChange={(e) => setFormData({...formData , name : e.target.value})}
             />
-            <div className='col-span-6'>
-            <label  className="block text-sm font-medium leading-6 text-gray-900">
-           impact of this stakholder
-        </label>
-            <Select
-                onChange={(e) => setFormData({...formData , impact : e?.value || ""})}
-                
-                name="stakholders"
-                options={OPTIONS}
-                className="basic-multi-select"
-                classNamePrefix="select"
+             <Input
+              lable='position'
+              value={formData.name}
+              onChange={(e) => setFormData({...formData , name : e.target.value})}
             />
+             <Input
+              lable='contact informations'
+              value={formData.name}
+              onChange={(e) => setFormData({...formData , name : e.target.value})}
+            />
+
+            <div className='col-span-6 '>
+                <label  className="block text-sm font-medium leading-6 text-gray-900">
+                   impact of this stakholder
+                </label>
+                <Select
+                     onChange={(e) => setFormData({...formData , impact : e?.value || ""})}  
+                     name="stakholders"
+                     options={OPTIONS}
+                     className="basic-multi-select"
+                    classNamePrefix="select"
+                   />
             </div>
               <TextField
               lable='ROLE / RESPONSABILITY'
               value={formData.role}
               onChange={(e) => setFormData({...formData , role : e.target.value})}
             />
-               
-             <div className="bg-white py-3 col-span-6 text-right ">
+             <TextField
+              lable='Expectations'
+              value={formData.role}
+              onChange={(e) => setFormData({...formData , role : e.target.value})}
+            />
+            <TextField
+              lable='REQUIREMENTS'
+              value={formData.role}
+              onChange={(e) => setFormData({...formData , role : e.target.value})}
+            />
+                
+             <div className="bg-white flex justify-end items-end p-4 col-span-12 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
             isLoading={mutation.isLoading}
-            className={buttonVariants({size:'sm' , variant: 'primary'})}
+            className={`${buttonVariants({size:'lg'})} text-lg `}
             >
               submit
             </AbdullahButton>
