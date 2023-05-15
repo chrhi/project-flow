@@ -21,16 +21,18 @@ type Props ={
 }
 
 export const List = [
-  {name : " Project scope " , path : "/app/planning" , navs : NAVS.ONE},
+  {name : " Project scope plan" , path : "/app/planning" , navs : NAVS.ONE},
   {name : " Work breakdown  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
-  {name : " Task assignment " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
-  {name : "  Project schedule " , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
-  {name : "   Resource allocation " , path : "/app/planning/Ressource_allocation" , navs : NAVS.FIVE},
-  {name : "  Communications  " , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},
-  {name : " Cost management  " , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
-  {name : "   Change management " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
-  {name : " Risk management  " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
+  {name : " Project management plan " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
+  {name : "  Project schedule plan" , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
  
+  {name : "  Communications management plan " , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},
+  {name : " Cost management plan  " , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
+  {name : "   Change management plan " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
+  {name : " Risk management  plan " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
+  {name : "   Process Improvment plan " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
+  {name : " Stakholder management  plan " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
+  {name : " Requiremts management  plan " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
 ] 
 
 

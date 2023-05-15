@@ -9,6 +9,8 @@ import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 import PlusButtonIssueManagment from "~/components/plusButtonControlling/PlusButtonIssueManagment";
 import Status from "~/components/ui/status";
+import { Input } from "~/components/ui/used/Input";
+import { TextField } from "~/components/ui/used/TextField";
 
 
 
@@ -61,25 +63,106 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-    
+       {/* TEAM MEMBER STATUS REPORT */}
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6 lg:col-span-12 ">
-
-        <AbdullahTable
-            isLoading={false}
-            
-            title="Issue management"
-            description="
-            Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
-            "
-            Action ={false}
-            headers={["issue" , "status" , "action"]}
-            body={satisfyTable()}
-            // PlusButton={<PlusButtonIssueManagment  />}
-         />
-            </div>
+            <Input
+                  isLoading={false}
+                  lable="Team Member"
+                  onChange={(e) => console.log(e)}
+                  value={""}
+            />
+             <Input
+                  isLoading={false}
+                  lable="Role"
+                  onChange={(e) => console.log(e)}
+                  value={""}
+            />
+            <TextField
+                isLoading={false}
+                lable="Activities Planned for This Reporting Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+            <TextField
+                isLoading={false}
+                lable="Activities Accomplished This Reporting Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+            <TextField
+                isLoading={false}
+                lable="Activities Planned but Not Accomplished This Reporting Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+              <TextField
+                isLoading={false}
+                lable="Root Cause of Variancess"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Funds Spent This Reporting Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+               <TextField
+                isLoading={false}
+                lable="Funds Planned to Be Spent This Reporting Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="Root Cause of Variances"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="Quality Variances Identified This Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="Planned Corrective or Preventive Action"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="Activities Planned for Next Reporting Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="Costs Planned for Next Reporting Period"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="New Risks Identified"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="Issues"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
+                <TextField
+                isLoading={false}
+                lable="Comments"
+                onChange={(e) => console.log(e)}
+                value={""}
+               />
         </div>
       </div>
    

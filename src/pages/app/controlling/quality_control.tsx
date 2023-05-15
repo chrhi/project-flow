@@ -1,12 +1,15 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import Select from "react-select";
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
 import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { TextField } from "~/components/ui/used/TextField";
+import { STAKHOLDER_TYPES } from "~/types/static/STATICDATA";
 
 
 const Page: NextPage = () => {
@@ -29,21 +32,53 @@ const Page: NextPage = () => {
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-      <div className="col-span-6 lg:col-span-12 ">
+     
+      <div className='col-span-6 '>
+                  <label  className="block text-sm font-medium leading-6 text-gray-900">
+                       Area Audited
+                  </label>
+                  <Select
+                        onChange={(e) => console.log(e)}
+                        name="stakholders_types"
+                        options={STAKHOLDER_TYPES}
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                    />
+      </div> 
+      <TextField
+        lable="Good Practices to Share"
+        onChange={(e) => console.log(e)}
+        isLoading={false}
+        value={""}
+      />
+      <TextField
+        lable="Areas for Improvement"
+        onChange={(e) => console.log(e)}
+        isLoading={false}
+        value={""}
+      />
 
-       <AbdullahTable
+       
+         <TextField
+        lable="Comments"
+        onChange={(e) => console.log(e)}
+        isLoading={false}
+        value={""}
+      />
+       <div className="col-span-6 lg:col-span-12">
+        <AbdullahTable
         isLoading={false}
         
-        title="Issue management"
+        title="Deficiencies or Defects"
         description="
-          Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
+         
          "
         Action ={false}
-        headers={["issue" , "status" , "action"]}
+        headers={["ID" , "Defect" , "Action" , "Responsible Party" , "Due Date"]}
         body={[]}
     // PlusButton={<PlusButtonIssueManagment  />}
         />
-    </div>
+        </div>
         </div>
       </div>
    

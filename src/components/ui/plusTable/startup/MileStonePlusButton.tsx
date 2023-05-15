@@ -9,6 +9,7 @@ import {v4 as uuidV4} from "uuid"
 import { Input } from '../../used/Input'
 import { getProjectMetaData } from '~/lib/MetaData'
 import { TimePicker } from '../../TimePicker'
+import { TextField } from '../../used/TextField'
 type Props = {
   
   refetch : () => Promise<any>
@@ -127,7 +128,7 @@ export  function MileStonePlusButton ({ refetch} : Props) {
                     as="div"
                     className=" w-full h-[50px] flex justify-between items-center border-b "
                   >
-               <div><p className='text-sm text-gray-500 ml-4'>adding stakholder</p></div>  
+               <div><p className='text-sm text-gray-500 ml-4'>Add a mailstone</p></div>  
                <div>
                 
                     <button
@@ -146,7 +147,17 @@ export  function MileStonePlusButton ({ refetch} : Props) {
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 gap-6">
             <Input
-              lable='pick a string name'
+              lable='title'
+              value={formData.name}
+              onChange={(e) => setFormData({...formData , name : e.target.value})}
+            />
+             <Input
+              lable='type'
+              value={formData.name}
+              onChange={(e) => setFormData({...formData , name : e.target.value})}
+            />
+            <TextField
+              lable='Milestone Description'
               value={formData.name}
               onChange={(e) => setFormData({...formData , name : e.target.value})}
             />

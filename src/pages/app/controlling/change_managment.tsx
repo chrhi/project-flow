@@ -1,14 +1,14 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import Select from 'react-select';
 import { Header } from "~/components/common/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
-import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
 import { Input } from "~/components/ui/used/Input";
-
+import { TextField } from "~/components/ui/used/TextField";
+import { OPTIONS } from "~/types/static/STATICDATA";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -28,8 +28,8 @@ const Page: NextPage = () => {
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
       
       <Form  >
-      <div className="bg-white px-4 py-5 sm:p-6">
-      <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+  <div className="bg-white px-4 py-5 sm:p-6">
+     <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
       
 
       <Input
@@ -56,10 +56,154 @@ const Page: NextPage = () => {
                 onChange={(e) => console.log(e)}
                 value={""}
         />
+      <TextField
+                isLoading={false}
+                lable="Detailed Description of Proposed change"
+                onChange={(e) => console.log(e)}
+                value={""}
 
-    
-        </div>
+       />
+        <TextField
+                isLoading={false}
+                lable="Justification for Proposed change"
+                onChange={(e) => console.log(e)}
+                value={""}
+
+       />
+       
+            <div className="col-span-12 ">
+                 <h2>impacts of change </h2>
+            </div>
+            <div className='col-span-6 flex justify-center flex-col items-start '>
+                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                     Scope
+                   </label>
+                  <Select
+                       
+                          onChange={(e) => console.log(e)}  
+                          name="scope"
+                          options={OPTIONS}
+                          className="basic-multi-select w-full"
+                          classNamePrefix="select"/>
+             </div>
+             <TextField
+                          isLoading={false}
+                          lable="Description on impact of scope "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+             />
+
+             <div className='col-span-6 flex justify-center flex-col items-start '>
+                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                     grade
+                   </label>
+                  <Select
+                       
+                          onChange={(e) => console.log(e)}  
+                          name="scope"
+                          options={OPTIONS}
+                          className="basic-multi-select w-full"
+                          classNamePrefix="select"/>
+              </div>
+             <TextField
+                          isLoading={false}
+                          lable="Description on impact of grade "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+              />
+               <div className='col-span-6 flex justify-center flex-col items-start '>
+                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                    Requiriremts
+                   </label>
+                  <Select
+                       
+                          onChange={(e) => console.log(e)}  
+                          name="scope"
+                          options={OPTIONS}
+                          className="basic-multi-select w-full"
+                          classNamePrefix="select"/>
+               </div>
+              <TextField
+                          isLoading={false}
+                          lable="Description on impact of Requiriremts "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+               />
+
+             <div className='col-span-6 flex justify-center flex-col items-start '>
+                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                    Cost
+                   </label>
+                  <Select
+                       
+                          onChange={(e) => console.log(e)}  
+                          name="scope"
+                          options={OPTIONS}
+                          className="basic-multi-select w-full"
+                          classNamePrefix="select"/>
+             </div>
+              <TextField
+                          isLoading={false}
+                          lable="Description on impact of Cost "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+               />
+             <div className='col-span-6 flex justify-center flex-col items-start '>
+                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                    Schedule
+                   </label>
+                  <Select
+                       
+                          onChange={(e) => console.log(e)}  
+                          name="scope"
+                          options={OPTIONS}
+                          className="basic-multi-select w-full"
+                          classNamePrefix="select"/>
+             </div>
+              <TextField
+                          isLoading={false}
+                          lable="Description on impact of Schedule "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+               />
+               <div className='col-span-6 flex justify-center flex-col items-start '>
+                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                    Stakholder Impact
+                   </label>
+                  <Select
+                       
+                          onChange={(e) => console.log(e)}  
+                          name="scope"
+                          options={OPTIONS}
+                          className="basic-multi-select w-full"
+                          classNamePrefix="select"/>
+             </div>
+              <TextField
+                          isLoading={false}
+                          lable="Description  "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+               />
+              <TextField
+                          isLoading={false}
+                          lable="Comments "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+                       
+              />    
+               <TextField
+                          isLoading={false}
+                          lable="Justification "
+                          onChange={(e) => console.log(e)}
+                          value={""}
+                          
+              />       
+           
+   
+
+
       </div>
+  </div>
    
        </Form>
   </FormContainer>
