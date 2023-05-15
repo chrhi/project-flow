@@ -102,7 +102,7 @@ const Page: NextPage = () => {
        <PlanningSideBar setIsOpen ={setIsOpenAlert} isOpen = {isOpenAlert} />
        <FormContainer className ={` ${isOpenAlert ? "ml-[20rem]" : "m-[0]"}`}>
       <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/>
-      {isOpenAlert &&  <FormHead  text='Divide your project into smaller components. 🐱'  /> }
+     
    
       <div className='w-[95%] mx-auto h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
      

@@ -2,7 +2,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
 import {  Fragment, SetStateAction, useState } from 'react'
-import { IconButton  } from '@mui/material'
+
 import { api } from '~/utils/api'
 import { AbdullahButton, buttonVariants} from "~/components/ui/buildingBlocks/AbdullahButton"
 import { toast } from 'react-toastify'
@@ -138,7 +138,7 @@ export  function AssignTaskPopUp ({ refetch , taskName , id} : Props) {
                   >
                <div><p className='text-sm text-gray-500 ml-4'>Assign new task </p></div>  
                <div>
-                <IconButton>
+             
                     <button
                     onClick={closeModal}
                    className='!text-xl !font-semibold !text-slate-900 !p-0  '
@@ -148,7 +148,7 @@ export  function AssignTaskPopUp ({ refetch , taskName , id} : Props) {
                 </svg>
 
                     </button>
-                   </IconButton>
+                 
                 </div> 
                   </Dialog.Title>
                  

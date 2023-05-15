@@ -1,23 +1,20 @@
 import { type NextPage } from "next";
-import { FormEvent, useEffect } from "react";
 import { Header } from "~/components/common/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/ui/Sidebar";
+import { Sidebar } from "~/components/sideBars/Sidebar";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
-import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
+import {  AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
 import { StakeHolder } from "~/components/ui/popup/StakeHolder";
-import { PLusButtonStakHolder } from "~/components/ui/plusTable/startup/PLusButtonStakHolder";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
-import Status from "~/components/ui/status";
 import { getColor } from "~/utils/formate/getColor";
-import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
-import { AnimatePresence } from "framer-motion";
+import { PLusButtonStakHolder } from "~/components/ui/plusTable/startup/PLusButtonStakHolder";
 import { Badge } from "@tremor/react";
+
 
 type IpiData = {
   name : string , 
@@ -76,7 +73,7 @@ const Page: NextPage = () => {
           },
           properties : [<StakeHolder id ={item.id}  key={item.id} text={item.name} />  ,
            item.role ,
-            <Badge key={item.id}  color={getColor({text : item.impact})} >{item.impact}</Badge>
+           <Badge key={item.id}  color={getColor({text : item.impact})} >{item.impact}</Badge>
           ]
         } 
       ))
@@ -87,35 +84,28 @@ const Page: NextPage = () => {
 
   return (
     <>
-    
       <Header />
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-      <AnimatePresence>
       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ défié toutes vos parties prenantes" />
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
-
-        <NewAbdullahTable
-            itemsPerPage={5}
+        <AbdullahTable
             isLoading={isFetching}
             title="parties prenantes"
             description="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
             headers={["name" , "role / responsability" , "impact"]}
             body={ satisfyTable() }
             PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
+            />
             </div>
         </div>
       </div>
-   
        </Form>
   </FormContainer>
-  </AnimatePresence>
       </main>
     </>
   );

@@ -7,6 +7,7 @@ import { FormHead } from "~/components/ui/used/FormHead";
 import { AbdullahTable } from "~/components/ui/used/AbdullahTable"; 
 import { useState } from "react";
 
+
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
   return (
@@ -16,11 +17,13 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-        <FormHead  text='👉🏻 in here manage all the ressources' />
+    
         <Paper>
         <AbdullahTable 
-        title='👉🏻 ressources '
-         descripton='this is just a test and we will see abdout it'
+       
+          isLoading={false}
+         title='👉🏻 ressources '
+         description='this is just a test and we will see abdout it'
          headers={["name" , "avalablility" , "asigned taks"]}
          body={[{id : "gggg" ,callback: () => console.log("hello there") , properties :["abdullah" , "now" , "there is not"]}]}
          />

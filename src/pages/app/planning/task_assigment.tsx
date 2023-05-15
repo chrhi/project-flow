@@ -1,19 +1,18 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { toast } from "react-toastify";
 import { Header } from "~/components/common/Header";
-import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import { AssignTaskPopUp } from "~/components/ui/plusTable/executing/AssignTaskPopUp";
 import { StakeHolder } from "~/components/ui/popup/StakeHolder";
-import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
+import { AbdullahTable, type ItemTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
-import { task } from "~/types/type";
+import type { task } from "~/types/type";
 import { api } from "~/utils/api";
 
 type stekholder ={
@@ -62,11 +61,7 @@ const Page: NextPage = () => {
   })
 
 
-  useEffect(() => {
-    if( tasksGet.isFetching || isFetching ){
-      set_loading(true)
-    }
-  }, [   set_loading , tasksGet.isFetching , isFetching])
+ 
 
   // prepare the items to be handled by the table
   // AssignTaskPopUp
@@ -107,16 +102,18 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="👉 assign each task to stakholder" />
+     
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-          <div className="col-span-6 ">
-             <AbdullahTable 
+          <div className="col-span-6 lg:col-span-12 ">
+             <AbdullahTable
+            
+               isLoading={ tasksGet.isFetching || isFetching}
                 Action={false}
                 ActionName="Assign"
                 title="manage tskas assignment "
-                 descripton="lorem this is just a log text that has to be very good"
+                 description="lorem this is just a log text that has to be very good"
                  headers={["task" , "assigned to " , "Actions "]}
                  body={satisfieTable()}
                  />

@@ -1,19 +1,13 @@
 /* eslint-disable react/jsx-key */
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
-import { Dispatch, Fragment, SetStateAction, useState } from 'react'
-import { IconButton  } from '@mui/material'
-import { api } from '~/utils/api'
-import { TextField } from '../ui/used/TextField'
+import {  Fragment, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '../ui/buildingBlocks/AbdullahButton'
-import { toast } from 'react-toastify'
-import {v4 as uuidV4} from "uuid"
-import { userReducer } from '~/store/userReducer'
 import { Input } from '../ui/used/Input'
-import { getProjectMetaData } from '~/lib/MetaData'
 import { TimePicker} from  "~/components/ui/TimePicker"
+
+
 type Props = {
-  
   refetch? : () => Promise<any>
 }
 
@@ -24,7 +18,7 @@ type inputs = {
 
 
 
-  function PlusButtonIssueManagment ({ } : Props) {
+  function PlusButtonIssueManagment ({refetch } : Props) {
 
 
  
@@ -95,7 +89,7 @@ type inputs = {
                   >
                <div><p className='text-sm text-gray-500 ml-4'>updtate an issue </p></div>  
                <div>
-                <IconButton>
+               
                     <button
                     onClick={closeModal}
                    className='!text-xl !font-semibold !text-slate-900 !p-0  '
@@ -105,7 +99,7 @@ type inputs = {
                 </svg>
 
                     </button>
-                   </IconButton>
+                  
                 </div> 
                   </Dialog.Title>
                  

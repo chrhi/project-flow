@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
-import { FormEvent, useRef  , useEffect, useState} from "react"
+import { useState} from "react"
 import { TextField } from "~/components/ui/used/TextField";
-import { Input } from "~/components/ui/used/Input";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
@@ -23,7 +22,7 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="👉 manage your risks " />
+    
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
@@ -76,7 +75,7 @@ const Page: NextPage = () => {
             <AbdullahTable
             Action={false}
               title="Probability and Impact Matrix"
-              descripton="Definitions of Impact by Objective"
+              description="Definitions of Impact by Objective"
               headers={["" , "Scope" , "Quality" , "Time" , "Cost"]}
               body={[
               { id : "ggge",

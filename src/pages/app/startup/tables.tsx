@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import { FormEvent, useEffect } from "react";
 import { Header } from "~/components/common/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/ui/Sidebar";
+import { Sidebar } from "~/components/sideBars/Sidebar";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
@@ -10,9 +10,9 @@ import { PlusButtonTable } from "~/components/ui/plusTable/startup/PlusButtonTab
 import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
 import { api } from "~/utils/api";
 import { userReducer } from "~/store/userReducer";
-import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
+import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
 
 type IpiData = {
   objectifs : string , 
@@ -26,7 +26,7 @@ type IpiData = {
 const Page: NextPage = () => {
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
-  const set_loading = loading_Reducer(state => state.set_isLoading)
+
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
 
@@ -50,23 +50,17 @@ const Page: NextPage = () => {
           hideProgressBar: true,
          })
          
-         set_loading(false)
+        
       },
       onError(){
         toast("failed to delete ",{
           className:" !text-white !bg-blue-500",
           hideProgressBar: true,
          })
-         set_loading(false)
+       
       },
     })
-    useEffect(() => {
-      if(isFetching){
-        set_loading(true)
-      }else{
-        set_loading(false)
-      }
-    }, [ isFetching , set_loading])
+   
 
     const satisfieTable = (type : string) : ItemTable[] => {
 
@@ -77,7 +71,7 @@ const Page: NextPage = () => {
           id : item.id ,
           type : item.type,
           callback : (id : string) =>{
-            set_loading(true)
+          
             deleteRow.mutate({id})
           },
           properties : [item.objectifs , item.seccessCriteria , item.approval]
@@ -95,15 +89,17 @@ const Page: NextPage = () => {
       <main className=" scrollbar-hide  flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="👉 manage your cost" />
+    
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
        <div className="col-span-6 lg:col-span-12 ">
-       <AbdullahTable 
+       <AbdullahTable
+        
+          isLoading={isFetching}
           Action 
           title="Périmètre"
-          descripton=""
+          description=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
           body={satisfieTable("Périmètre")}
          PlusButton ={<PlusButtonTable formType="Périmètre" refetch={refetch}/>}
@@ -112,10 +108,12 @@ const Page: NextPage = () => {
        
 
         {/* this is the second table */}
-        <AbdullahTable 
+        <AbdullahTable
+         
+          isLoading={isFetching}
           Action 
           title="Echéancier"
-          descripton=""
+          description=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
           body={satisfieTable("Echéancier")}
          PlusButton ={<PlusButtonTable formType="Echéancier" refetch={refetch}/>}
@@ -123,10 +121,12 @@ const Page: NextPage = () => {
         
 
         {/* and this is hte other table */}
-        <AbdullahTable 
+        <AbdullahTable
+         
+          isLoading={isFetching}
           Action 
           title="Coût"
-          descripton=""
+         description=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
           body={satisfieTable("Coût")}
          PlusButton ={<PlusButtonTable formType="Coût" refetch={refetch}/>}

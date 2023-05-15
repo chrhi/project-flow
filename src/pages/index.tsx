@@ -12,6 +12,7 @@ import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/A
 import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
 import { storeUserMetadata } from "~/lib/MetaData";
+import { NotAuthHeader } from "~/components/header/NotAuthHeader";
 
 type input = {
   email : string ,
@@ -68,7 +69,7 @@ const Page: NextPage = () => {
 
   return (
     <>
-     <Header  notAuth/>
+     <NotAuthHeader  />
       <main className=" w-full custom-hieght-navbar bg-gray-50 flex justify-center items-center  ">
         
       <div className="w-[50%] max-w-sm p-4 bg-white border shadow-xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">

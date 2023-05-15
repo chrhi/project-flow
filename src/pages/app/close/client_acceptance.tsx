@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ Client acceptance" />
+    
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
             title="Client acceptance"
-            descripton="
+            description="
             Client acceptance refers to the process of obtaining formal approval or sign-off from the client or customer that the project deliverables meet the agreed-upon requirements and are acceptable for use. It involves verifying that all project objectives have been achieved, and all deliverables have been completed and tested according to the project requirements. Effective client acceptance helps to ensure that project goals are met, customer satisfaction is achieved, and the project is formally closed. It also provides an opportunity to resolve any outstanding issues and to capture lessons learned for future projects.
             "
             headers={["name" , "role / responsability"]}

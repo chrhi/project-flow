@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router';
 import { NAVS, sidebar_Reducer } from '~/store/app-reducer/SideBarReducer';
-import { AbdullahEffectButton, buttonVariantsAbdullah } from './buildingBlocks/AbdullahEffectButton';
+import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton';
 import type { Dispatch, SetStateAction } from 'react';
 import NextSwitch from '../common/NextSwitch';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const sidebarVariants = {
   open: { x: 0 },
@@ -61,7 +61,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
           </svg>
         </AbdullahEffectButton>
       </div>
-      <AnimatePresence>
+     
         <motion.div
           variants={sidebarVariants}
           initial={isOpen ? "open" : "closed"}
@@ -88,7 +88,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
             </div>
           </div>
         </motion.div>
-      </AnimatePresence>
+      
     </>
   )
  }

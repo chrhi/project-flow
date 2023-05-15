@@ -61,11 +61,11 @@ const Page: NextPage = () => {
   })
 
 
-  useEffect(() => {
-    if( tasksGet.isFetching || isFetching ){
-      set_loading(true)
-    }
-  }, [   set_loading , tasksGet.isFetching , isFetching])
+  // useEffect(() => {
+  //   if( tasksGet.isFetching || isFetching ){
+  //     set_loading(true)
+  //   }
+  // }, [   set_loading , tasksGet.isFetching , isFetching])
 
   // prepare the items to be handled by the table
   // AssignTaskPopUp
@@ -106,21 +106,21 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ExecutingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="👉 assign each task to stakholder" />
+    
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
           <div className="col-span-6 ">
              <AbdullahTable 
+              isLoading={ tasksGet.isFetching || isFetching}
                 Action={false}
                 ActionName="Assign"
                 title="manage tskas assignment "
-                 descripton="lorem this is just a log text that has to be very good"
+                 description="lorem this is just a log text that has to be very good"
                  headers={["task" , "assigned to " , "Actions "]}
                  body={satisfieTable()}
                  />
            </div>
-         
           </div>  
      </div>
        </Form>

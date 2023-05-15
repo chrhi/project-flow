@@ -6,14 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import '~/styles/globals.css';
 import { supabase } from '~/config/supbase';
 import { Loading } from '~/components/common/Loading';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 import { loading_Reducer } from '~/store/app-reducer/loadingReducer';
 import { userReducer } from '~/store/userReducer';
 import Head from 'next/head';
 import 'reactflow/dist/style.css';
-import 'react-clock/dist/Clock.css';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { ReactFlowProvider } from 'reactflow';
 import { AccessPopUp } from '~/components/common/AccessPopUp';

@@ -3,7 +3,7 @@ import { type NextPage } from "next";
 import { FormEvent, useEffect } from "react";
 import { Header } from "~/components/common/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/ui/Sidebar";
+import { Sidebar } from "~/components/sideBars/Sidebar";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
@@ -11,11 +11,11 @@ import { Input } from "~/components/ui/used/Input";
 import { TextField } from "~/components/ui/used/TextField";
 import { FormButton } from "~/components/ui/used/FormButton";
 import { TimePicker } from "~/components/ui/TimePicker";
-import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
-
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
+
+
 
 interface inputSchema {
   
@@ -36,7 +36,7 @@ const Page: NextPage = () => {
 
   let id_abdullah : any 
   
-  const set_loading = loading_Reducer(state => state.set_isLoading)
+  
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
@@ -77,11 +77,11 @@ const Page: NextPage = () => {
         regionalDirector : data.regionalDirector as string || "" , 
         estimatedBudget : data.estimatedBudget as number || 0
       })
-      set_loading(false)
+   
     },
     onError(err) {
       console.log(err.message)
-      set_loading(false)
+    
     },
   })
 
@@ -89,11 +89,11 @@ const Page: NextPage = () => {
     onSuccess : async () => {
       toast.update(id_abdullah, { render: "All is good", type: "success", isLoading: false });
       await refetch()
-      set_loading(false)
+   
     },
     onError(){
       toast.update(id_abdullah, { render: "fiald to load", type: "error", isLoading: false });
-      set_loading(false)
+     
     }
   })
 
@@ -102,21 +102,15 @@ const Page: NextPage = () => {
 
       toast.update(id_abdullah, { render: "All is good", type: "success", isLoading: false });
       await refetch()
-      set_loading(false)
+     
     },
     onError(){
       toast.update(id_abdullah, { render: "fiald to load", type: "error", isLoading: false });
-      set_loading(false)
+    
     }
   })
 
-  useEffect(() => {
-    if(isFetching){
-      set_loading(true)
-    }else{
-      set_loading(false)
-    }
-  }, [ isFetching , set_loading])
+
   
 
     const handleCreate = (event : FormEvent) => {
@@ -170,13 +164,19 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
         
-       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
+       <Sidebar 
+           setIsOpen ={setIsOpen} 
+         
+           isOpen = {isOpen}
+          
+        />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="👉 entrer les informations de base " />
+  
       <Form >
-      <div className="bg-white px-4 py-5 sm:p-6">
+      <div className="bg-white px-4 py-5 sm:p-6 ">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <TextField
+                isLoading={isFetching}
                 lable="Intitulé de projet "
                 onChange={(e) => {
                   setFormData({...formData , title : e.target.value})
@@ -191,25 +191,28 @@ const Page: NextPage = () => {
             setStartDate ={setStartDate}
             endDate={endDate}
             setEndDate={setEndDate}
-
             />
            </div>
             <Input
+                isLoading={isFetching}
                 lable="chef de projet"
                 onChange={(e) => setFormData({...formData , projectManager : e.target.value})}
                 value={formData.projectManager}
             />
              <Input
+                isLoading={isFetching}
                 lable="Sponsor de projet "
                 onChange={(e) => setFormData({...formData , sponsor : e.target.value})}
                 value={formData.sponsor}
             />
              <Input
+                isLoading={isFetching}
                 lable="Client"
                 onChange={(e) => setFormData({...formData , client : e.target.value})}
                 value={formData.client}
             />
              <Input
+                isLoading={isFetching}
                 lable="Nom du directeur Régional"
                 onChange={(e) => setFormData({...formData , regionalDirector : e.target.value})}
                 value={formData.regionalDirector}

@@ -8,6 +8,7 @@ import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 
+
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
   return (
@@ -24,23 +25,25 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐ Status reporting" />
+      
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+      <div className="col-span-6 lg:col-span-12 ">
 
-        <AbdullahTable
-            title="Status reporting"
-            descripton="
-            Status reporting in PMBOK refers to the process of regularly communicating project progress and performance to stakeholders, including project sponsors, team members, and other relevant parties. It involves collecting and analyzing project data, developing status reports, and distributing reports to stakeholders. Effective status reporting helps to ensure that stakeholders are informed about project status, progress, and any issues that need attention. This can help to build trust, facilitate collaboration, and ensure that project objectives are met.
-            "
-            headers={["name" , "role / responsability"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
-            </div>
+<AbdullahTable
+    isLoading={false}
+  
+    title="Issue management"
+    description="
+    Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
+    "
+    Action ={false}
+    headers={["issue" , "status" , "action"]}
+    body={[]}
+    // PlusButton={<PlusButtonIssueManagment  />}
+    />
+    </div>
         </div>
       </div>
    

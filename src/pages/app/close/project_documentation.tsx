@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐ Project documentation" />
+      
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
             title="Project documentation"
-            descripton="
+            description="
             Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion.
             "
             headers={["name" , "role / responsability"]}

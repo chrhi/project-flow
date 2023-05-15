@@ -6,14 +6,12 @@ import { FormButton } from "~/components/ui/used/FormButton";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 import { TextField } from "~/components/ui/used/TextField";
-import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
-
 import { type NextPage } from "next";
 import { Header } from "~/components/common/Header";
-import { Sidebar } from "~/components/ui/Sidebar";
+import { Sidebar } from "~/components/sideBars/Sidebar";
 
 interface inputSchema {
   projectObjectOpportunity : string ,
@@ -27,7 +25,7 @@ interface inputSchema {
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
-  const set_loading = loading_Reducer(state => state.set_isLoading)
+
 
   const [formData , setFormData] = useState<inputSchema>({
     projectObjectOpportunity : "",
@@ -50,14 +48,14 @@ const Page: NextPage = () => {
         highLevelRequirement : data.highLevelRequirement as string  || "",
         hightLevelRisks : data.hightLevelRisks as string || "" , 
       })
-      set_loading(false)
+     
     },
     onError() {
       toast("some thing went wrong",{
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
        })
-      set_loading(false)
+     
     },
   })
 
@@ -65,14 +63,14 @@ const Page: NextPage = () => {
     onSuccess : async () => {
      
       await refetch()
-      set_loading(false)
+
     },
     onError(){
       toast("some thing went wrong",{
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
        })
-      set_loading(false)
+     
     }
   })
 
@@ -81,7 +79,7 @@ const Page: NextPage = () => {
 
      
       await refetch()
-      set_loading(false)
+     
     },
     onError(err){
       console.log(err)
@@ -89,17 +87,10 @@ const Page: NextPage = () => {
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,
        })
-      set_loading(false)
+     
     }
   })
-  useEffect(() => {
-    if(isFetching){
-      set_loading(true)
-    }else{
-      set_loading(false)
-    }
-  }, [ isFetching , set_loading])
- 
+  
   const handleCreate = (event : FormEvent) => {
     //todo handle this later
     event.preventDefault()
@@ -134,37 +125,41 @@ const Page: NextPage = () => {
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="👉remplir les informations nécessaires du projet" />
+     
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
           <TextField
+            isLoading={isFetching}
             lable="Objectif et opportunité de projet :  "
             onChange={(e) => setFormData({...formData ,projectObjectOpportunity : e.target.value})}
             value={formData.projectObjectOpportunity}
           />
           <TextField
+            isLoading={isFetching}
             lable="Description de projet :   "
             onChange={(e) => setFormData({...formData ,projectDescription : e.target.value})}
             value={formData.projectDescription}
           />
           <TextField
+            isLoading={isFetching}
             lable="Exigences à haut niveau :  "
             onChange={(e) => setFormData({...formData ,highLevelRequirement : e.target.value})}
             value={formData.highLevelRequirement}
           />
           <TextField
+            isLoading={isFetching}
             lable="Risques à haut niveau :  "
             onChange={(e) => setFormData({...formData ,hightLevelRisks : e.target.value})}
             value={formData.hightLevelRisks}
           />
 
-<FormButton
-        isLoading={post.isLoading || update.isLoading}
-        state={didGetData}
-        create={handleCreate}
-        update={handleUpdate}
-             />
+        <FormButton
+           isLoading={post.isLoading || update.isLoading}
+           state={didGetData}
+           create={handleCreate}
+           update={handleUpdate}
+         />
         </div>
       </div>
     

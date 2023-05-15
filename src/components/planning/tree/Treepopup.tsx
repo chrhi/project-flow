@@ -1,7 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/ui/buildingBlocks/AbdullahButton'
-import { IconButton  , Button} from '@mui/material'
 import { api } from '~/utils/api'
 import { Input } from '~/components/ui/used/Input'
 import { toast } from 'react-toastify'
@@ -64,7 +63,7 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
     // })
     if(onAdd === undefined) return
     onAdd({text : "" , title : input , shape : "" })
-    // setIsOpen(false)
+    setIsOpen(false)
     }
  
 
@@ -86,7 +85,6 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
           >
             <div className="fixed inset-0  bg-black bg-opacity-25" />
           </Transition.Child>
-
           <div className="fixed inset-0  overflow-y-auto">
             <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
@@ -107,11 +105,9 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
                 <div className='w-fill h-[50px] my-4 flex justify-center items-center gap-x-8'>
                     <AbdullahButton
                     isLoading  = {post.isLoading}
-
                     onClick={handleSubmit} className={buttonVariants({size:"sm"})}>submit</AbdullahButton>
                     <AbdullahButton className={` ${buttonVariants({size:"sm"})} bg-gray-700`} onClick={() => setIsOpen(false)}>cancel</AbdullahButton>
                 </div>
-
                 </Dialog.Panel>
               </Transition.Child>
             </div>

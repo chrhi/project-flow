@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
-import {  useEffect, useState} from "react"
+import {   useState} from "react"
 import { TextField } from "~/components/ui/used/TextField";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
-import { AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
+import {  AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
 import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
 import { CreateMettingPopup } from "~/components/planning/comunication/CreateMettingPopup";
 import { api } from "~/utils/api";
@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { StakeHolder } from "~/components/ui/popup/StakeHolder";
-
+import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
 import { type NextPage } from "next";
 import { Header } from "~/components/common/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
@@ -35,9 +35,9 @@ type stakholder = {
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
-  const [didGetData , setDidGetData] = useState<boolean>(false)
+ 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
-  const set_loading = loading_Reducer(state => state.set_isLoading)
+ 
   const [stakholders , setStakholders] = useState<stakholder[]>([] as stakholder[])
 
 const get = api.MettingRouter.getAllMettings.useQuery({project_id : getProjectMetaData()},{
@@ -87,13 +87,7 @@ const getStakholders = api.stakHolderRouter.getAllStackHolders.useQuery({project
   },
 })
 
-useEffect(() => {
-  if(get.isFetching || getStakholders.isFetching){
-    set_loading(true)
-  }else{
-    set_loading(false)
-  }
-}, [ get.isFetching , set_loading , getStakholders.isFetching])
+
 
 const satisfieTable = () : ItemTable[] => {
 
@@ -124,14 +118,16 @@ const satisfieTable = () : ItemTable[] => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="👉 manage your comunications" />
+  
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-        <div className="col-span-6 ">
-          <AbdullahTable 
+        <div className="col-span-6 6 lg:col-span-12 ">
+          <AbdullahTable
+           isLoading={get.isFetching || getStakholders.isFetching}
+        
           title="manage all your meetings"
-          descripton="lorem this is just a log text that has to be very good"
+          description="lorem this is just a log text that has to be very good"
           headers={["stakeholder" , "Information" , "Method" , "Timing or Frequency" , "Sender"]}
           body={satisfieTable()}
           PlusButton={<CreateMettingPopup refetch={get.refetch} />}
@@ -143,10 +139,12 @@ const satisfieTable = () : ItemTable[] => {
           </div>
 
           {/* this is the second form */}
-          <div className="col-span-6 ">
-          <AbdullahTable 
+          <div className="col-span-6 lg:col-span-12">
+          <AbdullahTable
+           isLoading={get.isFetching || getStakholders.isFetching}
+        
           title="manage malor"
-          descripton="lorem this is just a log text that has to be very good"
+          description="lorem this is just a log text that has to be very good"
           headers={["Assumptions" , "Constraints" ]}
           body={[
             {id : "jdbnss",
@@ -172,6 +170,7 @@ const satisfieTable = () : ItemTable[] => {
         </div>
           
           <TextField 
+          isLoading={get.isFetching || getStakholders.isFetching}
           lable="Glossary of Terms or Acronyms"
           onChange={(e) => console.log("Hi")} 
           value={"" }

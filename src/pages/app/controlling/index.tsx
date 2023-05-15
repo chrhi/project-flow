@@ -11,6 +11,7 @@ import PlusButtonIssueManagment from "~/components/plusButtonControlling/PlusBut
 import Status from "~/components/ui/status";
 
 
+
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
@@ -60,15 +61,17 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐ Issue management" />
+    
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
+            isLoading={false}
+            
             title="Issue management"
-            descripton="
+            description="
             Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
             "
             Action ={false}

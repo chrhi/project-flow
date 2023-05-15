@@ -1,31 +1,14 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { useRouter } from 'next/router'
-import {userReducer} from "~/store/userReducer"
-// icons 
-import SettingsIcon from '@mui/icons-material/Settings';
-import LogoutIcon from '@mui/icons-material/Logout';
-import TuneIcon from '@mui/icons-material/Tune';
-import Cookies from 'js-cookie';
-import Image from 'next/image';
-import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
-import { RemoveProjectManager } from '~/lib/MetaData';
+
 
 
 
 export default function Notifictions() {
   //initializes hooks
-   const router = useRouter()
-  const {email , first_name , last_name , photo   } = userReducer()
-  const current_page = header_page_Reducer(state => state.current_page)
-  const set_current_page = header_page_Reducer(state => state.set_current_page)
  
-  const handleLogout = () => {
-    Cookies.remove("abdullah-access-token")
-    RemoveProjectManager()
-    window.location.reload()
-  }
+
 
   return (
     <div className="mr-12 text-right z-[100]">

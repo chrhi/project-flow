@@ -4,6 +4,14 @@ import { PlanningSideBarReducer , NAVS } from '~/store/app-reducer/PlanningSideB
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
 import { Dispatch, SetStateAction } from 'react'
 import NextSwitch from '../common/NextSwitch'
+import { motion } from 'framer-motion';
+
+const sidebarVariants = {
+  open: { x: 0 },
+  closed: { x: '-100%' },
+  exit: { x: '100%', transition: { duration: 0.3 } },
+};
+
 
 
 type Props ={
@@ -11,6 +19,21 @@ type Props ={
   setIsOpen?: Dispatch<SetStateAction<boolean>>
 
 }
+
+export const List = [
+  {name : " Project scope " , path : "/app/planning" , navs : NAVS.ONE},
+  {name : " Work breakdown  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
+  {name : " Task assignment " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
+  {name : "  Project schedule " , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
+  {name : "   Resource allocation " , path : "/app/planning/Ressource_allocation" , navs : NAVS.FIVE},
+  {name : "  Communications  " , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},
+  {name : " Cost management  " , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
+  {name : "   Change management " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
+  {name : " Risk management  " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
+ 
+] 
+
+
 
 export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
   const router = useRouter()
@@ -22,137 +45,60 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
     set_current_page({payload: selected})
   }
 
-  return (
-   
-<>
-<div className={`${isOpen ? "hidden" : ""} z-[9999] absolute top-[40%] left-[-30px] rounded-[50%] mt-[50px]    `}>
-<AbdullahEffectButton
-    onClick={() => {if( setIsOpen) setIsOpen(true)}}
-    className={`   w-[70px] h-[70px]  rounded-full bg-blue-500 flex items-center justify-end p-4 text-white `}>
+  const Link = (current_page: NAVS, Nav: NAVS, path: string, name: string) => (
+    <AbdullahEffectButton
+      onClick={() => handleClick(path, Nav)}
+      className={`rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 justify-start
+        ${current_page === Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' : '!text-gray-600'} text-md shadow-sm`}
+    >
+      {name}
+    </AbdullahEffectButton>
+  );
+
+
  
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 text-white h-6">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
-    </svg>
-  </AbdullahEffectButton>
-</div>
-
-<div className={`fixed flex flex-col m-4 mt-0  top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0px]" }  bg-gray-50  custopn-page-height  rounded-lg border-gray-[100px]`}>
-   
-    <div className={` ${isOpen? "flex" : "hidden" } items-center justify-between  h-12  bg-white  w-full mx-auto border-b mt-[55px] p-4 `}>
-  <div>
-  <span className="ml-2 text-sm tracking-wide truncate">all my links</span>
-  </div>
-  <div>
-  <AbdullahEffectButton
-  onClick={() =>{
-    if( setIsOpen){
-      setIsOpen(false)
-    }
-  }}
-    className={` ${buttonVariantsAbdullah({variant:'ghost' , size:'sm'})} rounded-full `}
-
-  >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-  <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>
-
-          </AbdullahEffectButton>
-  </div>
-    </div>
-    <div className={`overflow-y-auto overflow-x-hidden flex-grow  w-full mx-auto bg-white ${isOpen? "" : "hidden" } `}>
-      <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
-          <AbdullahEffectButton
-              onClick={() => handleClick("/app/planning" , NAVS.ONE)}
-              className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-              ${current_page == NAVS.ONE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm`}
-          >
-          Project scope  
-          </AbdullahEffectButton>
-      
-       
-        
-        
+  return (
+    <>
+      <div className={`${isOpen ? "hidden" : ""} z-[9999] absolute top-[40%] left-[-30px] rounded-[50%] mt-[50px]`}>
         <AbdullahEffectButton
-            onClick={() => handleClick("/app/planning/work_break_done" , NAVS.TWO)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-            ${current_page == NAVS.TWO ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm `}
+          onClick={() => {
+            if (setIsOpen) setIsOpen(true);
+          }}
+          className={`w-[70px] h-[70px] rounded-full bg-blue-500 flex items-center justify-end p-4 text-white`}
         >
-       Work breakdown 
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 text-white h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
+          </svg>
         </AbdullahEffectButton>
-     
-       
-        <AbdullahEffectButton
-              onClick={() => handleClick("/app/planning/task_assigment" , NAVS.A)}
-              className={` rounded-lg w-[90%] mx-auto p-4  border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-              ${current_page == NAVS.A ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm`}
-          >
-          Task assignment
-          </AbdullahEffectButton>
-        
-        <AbdullahEffectButton
-            onClick={() => handleClick("/app/planning/Project_Scheduler" , NAVS.THREE)}
-            className={` rounded-lg w-[90%] mx-auto p-4  border  ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-            ${current_page == NAVS.THREE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm `}
-        >
-     Project schedule
-        </AbdullahEffectButton>
-    
-       
-        
-        
-        <AbdullahEffectButton
-             onClick={() => handleClick("/app/planning/Ressource_allocation" , NAVS.FOUR)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-            ${current_page == NAVS.FOUR ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm `}
-        >
-     Resource allocation
-        </AbdullahEffectButton>
-   
-      
-       
-        
-        <AbdullahEffectButton
-             onClick={() => handleClick("/app/planning/comminucation_plan"  , NAVS.FIVE)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-            ${current_page == NAVS.FIVE ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm`}
-        >
-  Communications
-        </AbdullahEffectButton>
-   
-      
-      
-        
-        <AbdullahEffectButton
-             onClick={() => handleClick("/app/planning/cost_managment_plan" , NAVS.SIX)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-            ${current_page == NAVS.SIX ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-md shadow-sm `}
-        >
-            Cost management 
-        </AbdullahEffectButton>
-
-        <AbdullahEffectButton
-             onClick={() => handleClick("/app/planning/change_managment_plan " , NAVS.SEVEN)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-            ${current_page == NAVS.SEVEN ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-md shadow-sm `}
-        >
-           Change management 
-        </AbdullahEffectButton>
-
-        <AbdullahEffectButton
-             onClick={() => handleClick("/app/planning/risk_management_plan" , NAVS.EIGHT)}
-            className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-            ${current_page == NAVS.EIGHT ? ' !text-gray-800 font-bold bg-sky-50 border  ' :'!text-gray-600' } text-md shadow-sm `}
-        >
-           Risk management 
-        </AbdullahEffectButton>
-       
-       <NextSwitch  indexThisPhase={1} />
-      
       </div>
-    </div>
-  </div>
-  </>
-
+     
+        <motion.div
+          variants={sidebarVariants}
+          initial={isOpen ? "open" : "closed"}
+          animate={isOpen ? "open" : "closed"}
+          exit="exit"
+          className={`fixed flex flex-col m-4 mt-0 top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0]"} bg-gray-50 custopn-page-height rounded-lg border-gray-[100px]`}
+        >
+          <div className={`${isOpen ? "flex" : "hidden"} items-center justify-end h-12 bg-white w-full mx-auto mt-[55px] p-4 pr-0`}>
+            <AbdullahEffectButton
+              onClick={() => {
+                if (setIsOpen) setIsOpen(false);
+              }}
+              className={`${buttonVariantsAbdullah({ variant: "ghost", size: "sm" })} rounded-full`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </AbdullahEffectButton>
+          </div>
+          <div className={`overflow-y-auto overflow-x-hidden flex-grow w-full mx-auto bg-white ${isOpen ? "" : "hidden"}`}>
+            <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
+              {List.map((item) => Link(current_page, item.navs, item.path, item.name))}
+              <NextSwitch indexThisPhase={0} />
+            </div>
+          </div>
+        </motion.div>
+     
+    </>
   )
-}
-
+ }

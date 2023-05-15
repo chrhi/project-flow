@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ Communication" />
+      
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
             title="Communication"
-            descripton="
+            description="
             Communication in the closing phase of a project refers to the process of effectively communicating project status, completion, and results to all stakeholders. It involves documenting and disseminating the final project status report, highlighting project successes, challenges, and lessons learned, and thanking stakeholders for their contributions. Effective communication in the closing phase helps to ensure that all stakeholders are informed of project outcomes, promotes transparency, and provides closure for the project. It also sets the stage for future project collaborations and builds goodwill for future engagements.
             "
             headers={["name" , "role / responsability"]}

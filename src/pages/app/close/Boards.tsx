@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ Archiving" />
+      
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
             title="Archiving"
-            descripton="Archiving in project management refers to the process of preserving and storing project-related information, documents, and artifacts for future reference or use. It involves organizing and cataloging project materials, determining retention periods for each item, and securing the information in a centralized repository or archive. Effective archiving helps to ensure that project information is available for future use, facilitates organizational learning, and supports compliance with legal or regulatory requirements. It also provides a basis for benchmarking, best practices, and historical analysis for future projects."
+            description="Archiving in project management refers to the process of preserving and storing project-related information, documents, and artifacts for future reference or use. It involves organizing and cataloging project materials, determining retention periods for each item, and securing the information in a centralized repository or archive. Effective archiving helps to ensure that project information is available for future use, facilitates organizational learning, and supports compliance with legal or regulatory requirements. It also provides a basis for benchmarking, best practices, and historical analysis for future projects."
             headers={["name" , "role / responsability"]}
             body={[]}
             // PlusButton={<PLusButtonStakHolder refetch={refetch} />}

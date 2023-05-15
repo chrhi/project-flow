@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ Resource handover " />
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
             title="Resource handover "
-            descripton="
+            description="
             Resource handover refers to the process of transferring project resources, such as personnel, equipment, and materials, from one project to another or from a project to an operational unit. It involves documenting the transfer of ownership, providing training and support to the new users, and ensuring that the resources are fully operational in their new environment. Effective resource handover helps to ensure that resources are used efficiently, reduces the risk of project delays or failures, and facilitates knowledge transfer between projects or operational units.
             "
             headers={["name" , "role / responsability"]}

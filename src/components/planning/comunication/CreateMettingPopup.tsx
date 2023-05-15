@@ -2,7 +2,6 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
 import { Dispatch, Fragment, SetStateAction, useState } from 'react'
-import { IconButton  } from '@mui/material'
 import { api } from '~/utils/api'
 import { TextField } from '~/components/ui/used/TextField'
 import { AbdullahButton, buttonVariants} from "~/components/ui/buildingBlocks/AbdullahButton"
@@ -153,7 +152,7 @@ export  function CreateMettingPopup ({ refetch} : Props) {
                   >
                <div><p className='text-sm text-gray-500 ml-4'>Creating a new metting</p></div>  
                <div>
-                <IconButton>
+                
                     <button
                     onClick={closeModal}
                    className='!text-xl !font-semibold !text-slate-900 !p-0  '
@@ -163,7 +162,7 @@ export  function CreateMettingPopup ({ refetch} : Props) {
                 </svg>
 
                     </button>
-                   </IconButton>
+                   
                 </div> 
                   </Dialog.Title>
                  

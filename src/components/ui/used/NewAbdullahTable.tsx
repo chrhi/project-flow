@@ -1,6 +1,5 @@
 import { ReactNode, useState } from "react";
 import Skeleton from 'react-loading-skeleton';
-import { Table, TableHead, TableRow, TableHeaderCell, TableBody, TableCell } from "@tremor/react";
 import { ChevronLeftIcon , ChevronRightIcon } from "lucide-react";
 
 type Props = {
@@ -60,63 +59,67 @@ export const NewAbdullahTable = ({
 
   return (
     <div className="relative overflow-x-auto sm:rounded-lg">
-      <Table className="mt-5">
-        <TableHead>
-          <TableRow className={`text-xs text-gray-700 uppercase bg-gray-50`}>
+        <table className="w-full text-sm text-left text-gray-500 ">
+        <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white  ">
+           {title}
+            <p className="mt-1 text-sm font-normal text-gray-500 ">{description}</p>
+        </caption>
+        <thead className={`text-xs text-gray-700 uppercase bg-gray-50  `}>
+           <tr className={`text-xs text-white uppercase bg-blue-100`}>
             {headers?.map((item) => (
-              <TableHeaderCell key={item}>
+              <th key={item}>
                 {isLoading ? <Skeleton /> : item}
-              </TableHeaderCell>
+              </th>
             ))}
-          </TableRow>
-        </TableHead>
+          </tr>
+        </thead>
         {isLoading && (
-          <TableBody>
+          <tbody>
             {["one", "two", "tree", "four", "five"].map((item) => (
-              <TableRow key={item}>
+              <tr key={item}>
                 {headers.map((item) => (
-                  <TableCell
+                  <td
                     key={item}
                     scope="row"
                     className={`px-6 py-4 font-medium text-gray-900`}
                   >
                     <Skeleton style={{ width: "50%" }} count={2} />
-                  </TableCell>
+                  </td>
                 ))}
-              </TableRow>
+              </tr>
             ))}
-          </TableBody>
+          </tbody>
         )}
         {!isLoading && (
-          <TableBody>
+          <tbody>
             {paginatedBody?.map((current, index) => (
-              <TableRow
+              <tr
                 key={index + 999}
                 className="hover:bg-gray-200 transition-all duration-75"
               >
                 {current.properties.map((item) => (
-                  <TableCell
+                  <td
                     key={index + 45679684623}
                     className={`px-6 py-4 font-medium text-gray-900 !whitespace-normal`}
                   >
                     {isLoading ? <Skeleton /> : item}
-                  </TableCell>
+                  </td>
                 ))}
                 {Action && (
-                  <TableCell className={`px-6 py-4 text-right`}>
+                  <td className={`px-6 py-4 text-right`}>
                     <button
                       onClick={() => current.callback(current?.id)}
                       className="font-medium text-blue-600 hover:underline"
                     >
                       {ActionName}
                     </button>
-                  </TableCell>
+                  </td>
                 )}
-              </TableRow>
+              </tr>
             ))}
-          </TableBody>
+          </tbody>
         )}
-      </Table>
+    </table >
       <div className="bg-white my-2 col-span-6 h-10 flex w-full justify-end gap-x-4 text-right">
       <button
           onClick={handlePrevPage}

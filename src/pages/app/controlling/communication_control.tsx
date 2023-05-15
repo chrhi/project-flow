@@ -8,6 +8,7 @@ import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 
+
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
   return (
@@ -24,23 +25,25 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐  Communication management" />
+ 
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+      <div className="col-span-6 lg:col-span-12 ">
 
-        <AbdullahTable
-            title="Communication management"
-            descripton="
-            Communication management in PMBOK refers to planning, executing, monitoring, and controlling the flow of information within a project to ensure stakeholders receive and understand necessary information. Effective communication management is essential to facilitate collaboration, build trust, and manage expectations throughout the project lifecycle.
-            "
-            headers={["mettings" , "status"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
-            </div>
+<AbdullahTable
+    isLoading={false}
+   
+    title="Issue management"
+    description="
+    Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
+    "
+    Action ={false}
+    headers={["issue" , "status" , "action"]}
+    body={[]}
+    // PlusButton={<PlusButtonIssueManagment  />}
+    />
+    </div>
         </div>
       </div>
    

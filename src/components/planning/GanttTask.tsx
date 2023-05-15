@@ -1,10 +1,7 @@
 import {
    Gantt, 
-   Task,
-   EventOption,
-   StylingOption,
+   type Task,
    ViewMode, 
-   DisplayOption
    } from 'gantt-task-react';
 import "gantt-task-react/dist/index.css";
 
@@ -66,7 +63,7 @@ export const GanttTask = () => {
         fontFamily='poppines'
         tasks={tasks} 
         // listCellWidth={showTaskList ? undefined : ''}
-        listCellWidth={''}
+        // listCellWidth={''}
         columnWidth={100}
         headerHeight={100}
         fontSize='15'

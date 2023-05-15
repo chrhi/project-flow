@@ -3,11 +3,12 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/common/Header";
 import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
-import { TestSidebar } from "~/components/sideBars/TestSideBar";
 import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
+
+
+
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -23,21 +24,35 @@ const Page: NextPage = () => {
       </Head>
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-       <TestSidebar isOpen={isOpen} setIsOpen={setIsOpen}/>
+       <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ Lessons learned " />
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
-
-        <AbdullahTable
-            title="Lessons learned "
-            descripton="Lessons learned refer to the process of capturing, documenting, and analyzing project experiences to promote learning and knowledge sharing. They are used to improve project management practices, enhance organizational learning, and promote innovation. By sharing knowledge and experiences, project teams can save time and resources, reduce risks, and increase the likelihood of project success."
-            headers={["name" , "role / responsability"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
+            <div className="col-span-6 lg:col-span-12">
+            <AbdullahTable
+                 title="LESSONS LEARNED"
+                 description="Lessons learned refer to the process of capturing, documenting, and analyzing project experiences to promote learning and knowledge sharing. They are used to improve project management practices, enhance organizational learning, and promote innovation. By sharing knowledge and experiences, project teams can save time and resources, reduce risks, and increase the likelihood of project success."
+                 headers={["What Worked Well"  , "What Can Be Improved"]}
+                 body={[
+                  {
+                    id : "12334" , 
+                    callback:(id ) => console.log(id) ,
+                    properties:["Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion." , "Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion."]
+                  },
+                  {
+                    id : "52334" , 
+                    callback:(id ) => console.log(id) ,
+                    properties:["Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion." , "Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion."]
+                  },
+                  {
+                    id : "12884" , 
+                    callback:(id ) => console.log(id) ,
+                    properties:["Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion." , "Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion."]
+                  },
+                 ]}
+              // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
          />
             </div>
         </div>

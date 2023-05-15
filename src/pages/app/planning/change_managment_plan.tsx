@@ -26,7 +26,7 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="👉 manage your changes effectivlly" />
+     
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
@@ -85,10 +85,10 @@ const Page: NextPage = () => {
           onChange={(e) => console.log("Hi")} 
           value={"" }
           />
-          <div className="col-span-6">
+          <div className="col-span-6 lg:col-span-12">
             <AbdullahTable
               title="Change Control Board:"
-              descripton=""
+              description=""
               headers={["Name" , "Role" , "Responsibility" , "Authority"]}
               body={[{
                 id : "ggge",

@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ Celebration" />
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
             title="Celebration"
-            descripton="
+            description="
             Celebration in project management refers to the process of acknowledging and recognizing the achievements of the project team and stakeholders. It involves planning and hosting events, such as project completion parties, award ceremonies, or team-building activities, to recognize the efforts and accomplishments of the project team. Effective celebration helps to boost team morale, promote team cohesion, and increase motivation and engagement for future projects. It also provides an opportunity to reflect on the project's successes and challenges and to celebrate the hard work and dedication of the project team.
             "
             headers={["name" , "role / responsability"]}

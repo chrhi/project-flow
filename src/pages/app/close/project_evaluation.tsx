@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="⭐ Project evaluation" />
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
             title="Project evaluation"
-            descripton="
+            description="
             Project evaluation refers to the process of assessing the success of a project based on predetermined criteria, such as project objectives, schedule, budget, and stakeholder satisfaction. It involves collecting and analyzing project data, identifying areas of success and improvement, and developing recommendations for future projects. Effective project evaluation helps to improve project management practices, enhance organizational learning, and ensure that project goals are achieved.
             "
             headers={["name" , "role / responsability"]}

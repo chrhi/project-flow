@@ -8,6 +8,7 @@ import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
 
+
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
   return (
@@ -24,23 +25,25 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐ Quality control" />
+ 
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+      <div className="col-span-6 lg:col-span-12 ">
 
-        <AbdullahTable
-            title="Quality control"
-            descripton="
-            Quality control in PMBOK refers to the process of monitoring specific project results to determine if they meet relevant quality standards and identifying ways to eliminate causes of unsatisfactory results. It involves establishing quality objectives, developing a quality management plan, performing inspections, testing, and reviews, and implementing corrective actions to address any identified issues. Effective quality control helps to ensure that project deliverables meet customer expectations and requirements.
-            "
-            headers={["name" , "role / responsability"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
-            </div>
+       <AbdullahTable
+        isLoading={false}
+        
+        title="Issue management"
+        description="
+          Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
+         "
+        Action ={false}
+        headers={["issue" , "status" , "action"]}
+        body={[]}
+    // PlusButton={<PlusButtonIssueManagment  />}
+        />
+    </div>
         </div>
       </div>
    

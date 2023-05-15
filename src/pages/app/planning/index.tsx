@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
-import { FormEvent, useRef  , useEffect, useState} from "react"
+import {  useState} from "react"
 import { TextField } from "~/components/ui/used/TextField";
-import { Input } from "~/components/ui/used/Input";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
@@ -93,12 +92,7 @@ const Page: NextPage = () => {
        set_loading(false)
     }
   })
-  useEffect(() => {
-    if(get.isFetching){
-      set_loading(true)
-    }
-  }, [ get.isFetching , set_loading])
-
+ 
   const handleUpdate = () => {
     set_loading(true)
     update.mutate({
@@ -133,46 +127,53 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      <FormHead text="👉 build the project managment scope" />
+    
       
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
         
           <TextField 
+           isLoading={get.isFetching }
           lable=" Scope Statement Development"
           onChange={({target}) => setFormData({...formData , ScopeStatementDevelopment : target.value})} 
           value={formData.ScopeStatementDevelopment}
           />
           <TextField 
+          isLoading={get.isFetching }
           lable=" WBS Structure"
           onChange={({target}) => setFormData({...formData , WBSStructure : target.value})} 
           value={formData.WBSStructure}
           />
           <TextField 
+          isLoading={get.isFetching }
           lable=" WBS Dictionary"
           onChange={({target}) => setFormData({...formData , WBSDictionary : target.value})} 
           value={formData.WBSDictionary}
           />
           <TextField 
+          isLoading={get.isFetching }
           lable=" Scope Baseline Maintenance"
           onChange={({target}) => setFormData({...formData , ScopeBaselineMaintenance : target.value})} 
           value={formData.ScopeBaselineMaintenance}
           />
 
           <TextField 
+          isLoading={get.isFetching }
           lable=" Scope Change"
           onChange={({target}) => setFormData({...formData , ScopeChange : target.value})} 
           value={formData.ScopeChange}
           />
 
           <TextField 
+          isLoading={get.isFetching }
           lable=" Deliverable Acceptance"
           onChange={({target}) => setFormData({...formData , DeliverableAcceptance : target.value})} 
           value={formData.DeliverableAcceptance}
           />
 
         <TextField 
+          isLoading={get.isFetching }
           lable=" Scope and Requirements Integration"
           onChange={({target}) => setFormData({...formData , ScopeAndRequirementsIntegration : target.value})} 
           value={formData.ScopeAndRequirementsIntegration}

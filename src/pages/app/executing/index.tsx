@@ -1,7 +1,7 @@
 
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import { toast } from "react-toastify";
 import BoardContainer from "~/components/board/BoardContainer";
 import { TaskType } from "~/components/board/Task";

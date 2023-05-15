@@ -24,15 +24,15 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-      <FormHead text="⭐ Project closure" />
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6">
+            <div className="col-span-6 lg:col-span-12">
 
         <AbdullahTable
             title="Project closure"
-            descripton="
+            description="
             Project closure refers to the process of finalizing all project activities and formally closing the project. It involves verifying that all project deliverables have been completed, obtaining final approvals and sign-offs, and releasing project resources. Effective project closure ensures that all project goals have been achieved, and all resources are released for use on other projects. It also provides an opportunity to capture lessons learned and improve project management practices for future projects.
             "
             headers={["name" , "role / responsability"]}

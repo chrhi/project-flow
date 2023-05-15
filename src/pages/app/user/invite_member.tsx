@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable react/no-unescaped-entities */
-import Button from "@mui/material/Button";
+
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/common/Header";
 import { getUserMetadata } from "~/lib/MetaData";
 import { toast } from "react-toastify";
+import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
 
 const Page: NextPage = () => {
 
@@ -48,11 +49,11 @@ const Page: NextPage = () => {
       <input
       value={getUserMetadata()}
       className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />       
-        <Button 
+        <AbdullahButton 
         onClick={handleCopy}
        className="!inline-flex !text-white !font-bold    !justify-center !rounded-md !border !border-gray-300 !bg-gradient-to-r !from-sky-500 !to-indigo-600 !px-4 !py-2 !text-sm   !shadow-sm !hover:bg-gray-50 !focus:outline-none !focus:ring-2 !focus:ring-indigo-500 focus:ring-offset-2 !focus:ring-offset-gray-100">
           copy 
-       </Button>
+       </AbdullahButton>
       </div>
      
       <div className='w-full h-fit flex gap-x-2 p-4 my-2 flex-col'>
@@ -72,14 +73,14 @@ const Page: NextPage = () => {
         <input  className=" w-full border border-gray-300 px-3 py-1.5 text-base text-gray-700  bg-white bg-clip-padding font-normal rounded-lg shadow-sm  transition  ease-in-out focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500"  />       
         </div>
     <div className='w-full h-[100px] gap-x-4 bg-white flex items-center justify-end px-6'>
-    <Button 
+    <AbdullahButton 
           className="!inline-flex   !font-bold   !justify-center !rounded-md border !border-gray-300 !bg-white !px-4 py-2 !text-sm  !text-gray-700 !shadow-sm !hover:bg-gray-50 !focus:outline-none !focus:ring-2 !focus:ring-indigo-500 !focus:ring-offset-2 !focus:ring-offset-gray-100">
            cancel
-        </Button>
-        <Button 
+        </AbdullahButton>
+        <AbdullahButton 
         className="!inline-flex !text-white !font-bold    !justify-center !rounded-md !border !border-gray-300 !bg-gradient-to-r !from-sky-500 !to-indigo-600 !px-4 !py-2 !text-sm   !shadow-sm !hover:bg-gray-50 !focus:outline-none !focus:ring-2 !focus:ring-indigo-500 focus:ring-offset-2 !focus:ring-offset-gray-100">
            invite 
-        </Button>
+        </AbdullahButton>
         
     </div>
     </div>
