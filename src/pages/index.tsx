@@ -2,10 +2,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { type NextPage } from "next";
-import {  FormEvent , useState } from "react";
+import { type  FormEvent , useState } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { Header } from "~/components/common/Header";
 import { api } from "~/utils/api";
 import Cookies from 'js-cookie'
 import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";

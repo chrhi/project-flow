@@ -1,7 +1,7 @@
 /* eslint-disable  */
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
-import { Badge, BadgeDelta  } from "@tremor/react";
+import {  Badge, BadgeDelta  } from "@tremor/react";
 
 type PropsType =  {
   index : number ,

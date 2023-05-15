@@ -1,12 +1,10 @@
 import { type NextPage } from "next";
 import { Chain } from "~/components/common/Chain";
 import { Header } from "~/components/common/Header";
-import { useState , useEffect } from "react";
+import { useState , } from "react";
 import { ProjectStarter } from "~/components/common/ProjectStarter";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
-import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
-import { userReducer } from "~/store/userReducer";
 import setup from "~/assets/Starting a business project-rafiki.png"
 import planning from "~/assets/Office management-rafiki.png"
 import executing from "~/assets/horse jumping-cuate.png"
@@ -99,7 +97,7 @@ const Page: NextPage = () => {
                image={setup}
                path={`/app/startup`}
                name="Pre-démarrage" 
-               selected />
+                />
              
            
               <Chain

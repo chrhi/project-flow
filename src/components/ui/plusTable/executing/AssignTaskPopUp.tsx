@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
-import {  Fragment, SetStateAction, useState } from 'react'
+import {  Fragment, type  SetStateAction, useState } from 'react'
 
 import { api } from '~/utils/api'
 import { AbdullahButton, buttonVariants} from "~/components/ui/buildingBlocks/AbdullahButton"

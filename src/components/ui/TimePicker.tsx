@@ -1,6 +1,6 @@
 import { Dialog, Transition } from '@headlessui/react'
-import { Dispatch, Fragment, SetStateAction, useState } from 'react'
-import { DateRangePicker, RangeKeyDict } from 'react-date-range';
+import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
+import {  DateRangePicker, type RangeKeyDict } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { AbdullahButton, buttonVariants } from './buildingBlocks/AbdullahButton';

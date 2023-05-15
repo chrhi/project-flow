@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react'
-import { useTypewriter , Cursor } from 'react-simple-typewriter'
+import { useTypewriter  } from 'react-simple-typewriter'
 
 function Reminder() {
 

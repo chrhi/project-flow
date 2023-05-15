@@ -1,6 +1,6 @@
 import React from "react";
 import { StrictModeDroppable as Droppable } from "~/utils/FixBugs/StrictModeDroppable";
-import Task, { TaskType } from "./Task";
+import Task, { type TaskType } from "./Task";
 import { AbdullahButton  , buttonVariants} from "../ui/buildingBlocks/AbdullahButton";
 
 type PropsType ={

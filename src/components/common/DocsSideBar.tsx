@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { FC } from 'react'
+import type { FC } from 'react'
 import { DocsReducerSideBar , NAVS } from '~/store/app-reducer/DocsReducerSideBar'
 import { useRouter } from 'next/router'
 
@@ -11,7 +11,6 @@ const LISTA = [
     { name : "Costs" , page : NAVS.FIVE , path : "/app/docs/costs" } ,
     { name : "Quality" , page : NAVS.SIX , path : "/app/docs/quality" } ,
     {name : "Resources" , page : NAVS.SEVEN , path : "/app/docs/resources"} , 
-   
     {name : "Supplies" , page : NAVS.NIGHT  , path : "/app/docs/supplies" } , 
     {name : "Risks" , page : NAVS.TEN  , path : "/app/docs/risks" } , 
     {name : "Communications" , page : NAVS.ELEVEN , path : "/app/docs/communications" }

@@ -1,4 +1,4 @@
-import { FC , useState} from 'react'
+import { type FC , useState} from 'react'
 
 interface fileAbdullahProps {
     text : string ,

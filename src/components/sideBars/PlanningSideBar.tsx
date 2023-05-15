@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router'
 import { PlanningSideBarReducer , NAVS } from '~/store/app-reducer/PlanningSideBarReducer'
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
-import { Dispatch, SetStateAction } from 'react'
+import type { Dispatch, SetStateAction } from 'react'
 import NextSwitch from '../common/NextSwitch'
 import { motion } from 'framer-motion';
 

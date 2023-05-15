@@ -2,22 +2,22 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 
 import { useRouter } from 'next/router'
-import Image, { StaticImageData } from 'next/image'
+import Image, { type StaticImageData } from 'next/image'
 import { useState } from 'react'
-import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
+import { header_page_Reducer ,type  PAGES } from '~/store/app-reducer/headerReducer'
 import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
 
 
 type chainType = {
     path: string , 
     name :string ,
-    selected? : boolean ,
+  
     image : string | StaticImageData,
     available?: boolean,
     PAGE : PAGES
   
 }
-export const Chain = ({path , name , selected ,available, image , PAGE } : chainType) => {
+export const Chain = ({path , name  ,available, image , PAGE } : chainType) => {
   const router = useRouter()
 
   const [isHover , setIsHover] = useState<boolean>(false)

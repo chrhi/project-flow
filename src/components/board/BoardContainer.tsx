@@ -1,7 +1,7 @@
 import  { useState, useEffect } from "react";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, type DropResult } from "react-beautiful-dnd";
 import Column from "./Column";
-import { TaskType } from "./Task";
+import {type  TaskType } from "./Task";
 
 
 
