@@ -19,6 +19,7 @@ const Page: NextPage = () => {
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
     
         <Paper>
+          
         <AbdullahTable 
        
           isLoading={false}

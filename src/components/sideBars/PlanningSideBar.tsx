@@ -29,9 +29,9 @@ export const List = [
   {name : " Cost management plan  " , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
   {name : "   Change management plan " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
   {name : " Risk management  plan " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
-  {name : "   Process Improvment plan " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
-  {name : " Stakholder management  plan " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
-  {name : " Requiremts management  plan " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
+  {name : "   Process Improvment plan " , path : "/app/planning/Process_involving_plan" , navs : NAVS.TEN},
+  {name : " Stakholder management  plan " , path : "/app/planning/stakholder_managment_plan" , navs : NAVS.A},
+  {name : " Requiremts management  plan " , path : "/app/planning/requirement_managment_plan" , navs : NAVS.ELEVEN},
 ] 
 
 
@@ -81,16 +81,16 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
           className={`fixed flex flex-col m-4 mt-0 top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0]"} bg-gray-50 custopn-page-height rounded-lg border-gray-[100px]`}
         >
           <div className={`${isOpen ? "flex" : "hidden"} items-center justify-end h-12 bg-white w-full mx-auto mt-[55px] p-4 pr-0`}>
-            <AbdullahEffectButton
+          <button
               onClick={() => {
                 if (setIsOpen) setIsOpen(false);
               }}
-              className={`${buttonVariantsAbdullah({ variant: "ghost", size: "sm" })} rounded-full`}
+              className={` hover:bg-gray-50 p-2 rounded-full`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
-            </AbdullahEffectButton>
+            </button>
           </div>
           <div className={`overflow-y-auto overflow-x-hidden flex-grow w-full mx-auto bg-white ${isOpen ? "" : "hidden"}`}>
             <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">

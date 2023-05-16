@@ -9,8 +9,8 @@ export type ItemTable = {
 }
 
 type Props ={
-    title : string , 
-    description : string , 
+    title? : string , 
+    description? : string , 
     headers : string[],
     body : ItemTable[] ,
     showHeaders? : boolean,
@@ -29,8 +29,8 @@ export const AbdullahTable = ({title , description , headers , isLoading  , body
 <div className="relative overflow-x-auto  sm:rounded-lg  ">
     <table className="w-full text-sm text-left text-gray-500 ">
         <caption className="p-5 text-lg font-semibold text-left text-gray-900 bg-white  ">
-           {title}
-            <p className="mt-1 text-sm font-normal text-gray-500 ">{description}</p>
+           {title || ""}
+            <p className="mt-1 text-sm font-normal text-gray-500 ">{description || ""}</p>
         </caption>
     {showHeaders && <thead className={`text-xs text-gray-700 uppercase bg-gray-50  `}>
         <tr>

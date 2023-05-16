@@ -7,6 +7,8 @@ import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { RowGridText } from "~/components/ui/used/RowGridText";
+import { TextField } from "~/components/ui/used/TextField";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -28,19 +30,86 @@ const Page: NextPage = () => {
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6 lg:col-span-12">
-
-        <AbdullahTable
-            title="Project closure"
-            description="
-            Project closure refers to the process of finalizing all project activities and formally closing the project. It involves verifying that all project deliverables have been completed, obtaining final approvals and sign-offs, and releasing project resources. Effective project closure ensures that all project goals have been achieved, and all resources are released for use on other projects. It also provides an opportunity to capture lessons learned and improve project management practices for future projects.
-            "
-            headers={["name" , "role / responsability"]}
-            body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
-         />
-            </div>
+         
+          
+            <RowGridText text="Performance Summary" />
+            {/* this is a row */}
+            <TextField
+                isLoading={false}
+                lable="Scope Project Objectives"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Scope Completion Criteria"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Scope How Met"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+            {/* this is another row  */}
+            <TextField
+                isLoading={false}
+                lable="Quality Project Objectives"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Quality Completion Criteria"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Quality How Met"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+              {/* this is another row  */}
+              <TextField
+                isLoading={false}
+                lable="Time Project Objectives"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Time Completion Criteria"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Time How Met"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+              {/* this is another row  */}
+              <TextField
+                isLoading={false}
+                lable="Cost Project Objectives"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Cost Completion Criteria"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Cost How Met"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+          
         </div>
       </div>
    

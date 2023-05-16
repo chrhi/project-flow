@@ -69,16 +69,16 @@ return (
         className={`fixed flex flex-col m-4 mt-0 top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0]"} bg-gray-50 custopn-page-height rounded-lg border-gray-[100px]`}
       >
         <div className={`${isOpen ? "flex" : "hidden"} items-center justify-end h-12 bg-white w-full mx-auto mt-[55px] p-4 pr-0`}>
-          <AbdullahEffectButton
-            onClick={() => {
-              if (setIsOpen) setIsOpen(false);
-            }}
-            className={`${buttonVariantsAbdullah({ variant: "ghost", size: "sm" })} rounded-full`}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </AbdullahEffectButton>
+           <button
+              onClick={() => {
+                if (setIsOpen) setIsOpen(false);
+              }}
+              className={` hover:bg-gray-50 p-2 rounded-full`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
         </div>
         <div className={`overflow-y-auto overflow-x-hidden flex-grow w-full mx-auto bg-white ${isOpen ? "" : "hidden"}`}>
           <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">

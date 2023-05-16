@@ -20,10 +20,20 @@ export const Header = () => {
           <Image alt="logo" src={logo} width={35} height={35}  />
        </div>
        <PagesNav />
-       <div className="w-[25%]  h-[60px] gap-x-2 flex justify-end items-center  ">
-            <SearchBar />
-            <Notifictions />
-            <DropDowsMenu />
+       <div className="w-[25%]  h-[60px] gap-x-1  flex justify-end items-center  ">     
+            <div className="w-[10%] h-full" >
+                <Notifictions />  
+            </div>
+           <div className="w-[10%] h-full" >
+                 <DropDowsMenu />
+           </div>
+           <div className="w-[10%] h-full" >
+                <Notifictions />  
+            </div>
+           <div className="w-[10%] h-full" >
+                 <DropDowsMenu />
+           </div>
+       
        </div>
    </div>
   

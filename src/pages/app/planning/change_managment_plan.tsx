@@ -12,6 +12,7 @@ import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
 import { type NextPage } from "next";
 import { Header } from "~/components/common/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
+import { RowGridText } from "~/components/ui/used/RowGridText";
 
 
 
@@ -30,15 +31,19 @@ const Page: NextPage = () => {
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+
+      <RowGridText text="Change  management plan " />
+          <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+         
         
           <TextField 
+          className="!col-span-12"
           lable=" Change Management Approach:"
           onChange={(e) => console.log("Hi")} 
           value={"" }
           />
-           <div className="col-span-6 ">
-          <h1 className="text-xl  text-gray-900 ">Definitions of Change:</h1>
-          </div>
+           <RowGridText text="Definitions of Change" />
+         
           <TextField 
           lable="Schedule change:"
           onChange={(e) => console.log("Hi")} 
@@ -60,10 +65,7 @@ const Page: NextPage = () => {
           onChange={(e) => console.log("Hi")} 
           value={"" }
           />
-          <div className="col-span-6 ">
-          <h1 className="text-xl  text-gray-900 ">Change Control Process:</h1>
-          </div>
-
+          <RowGridText text="Change Control Process" />
           <TextField 
           lable="Change request submittal "
           onChange={(e) => console.log("Hi")} 

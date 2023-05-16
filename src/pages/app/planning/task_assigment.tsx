@@ -108,16 +108,17 @@ const Page: NextPage = () => {
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+           <RowGridText text="Project management plan " />
+           <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+         
           <div className="col-span-6 lg:col-span-12 ">
              <AbdullahTable
-               isLoading={ false}
-                Action={false}
-                ActionName="Assign"
-                title="Devalop the  Project managemnt plan "
-                 description="lorem this is just a log text that has to be very good"
-                 headers={["Phase" , "Key Deliverables" ]}
-                 body={satisfieTable()}
-                 />
+                    isLoading={ false}
+                    Action={false}
+                    ActionName="Assign"
+                    headers={["Phase" , "Key Deliverables" ]}
+                    body={satisfieTable()}
+              />
            </div>
            <RowGridText text="Project Management Processes and Tailoring Decisions"/>
            {/* this is a row */}

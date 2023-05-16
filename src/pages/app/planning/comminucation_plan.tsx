@@ -17,6 +17,7 @@ import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
 import { type NextPage } from "next";
 import { Header } from "~/components/common/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
+import { RowGridText } from "~/components/ui/used/RowGridText";
 
 type IpiData = {
   STAKEHOLDER : string[],
@@ -122,6 +123,9 @@ const satisfieTable = () : ItemTable[] => {
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+          <RowGridText text="Comunication  management plan " />
+          <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+         
         <div className="col-span-6 6 lg:col-span-12 ">
           <AbdullahTable
            isLoading={get.isFetching || getStakholders.isFetching}

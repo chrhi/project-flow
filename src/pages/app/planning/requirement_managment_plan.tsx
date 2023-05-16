@@ -8,7 +8,7 @@ import { TextField } from "~/components/ui/used/TextField";
 import { RowGridText } from "~/components/ui/used/RowGridText";
 
 const Page: NextPage = () => {
-  const [inTasks , setInTasks] = useState<boolean>(true)
+ 
   const [isOpen , setIsOpen] = useState<boolean>(true)
   return (
     <>
@@ -21,7 +21,7 @@ const Page: NextPage = () => {
        <Form >
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <RowGridText text="Project scheduel management plan " />
+              <RowGridText text="Requirements management plan " />
               <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
          
               <TextField

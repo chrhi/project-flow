@@ -13,7 +13,8 @@ export enum NAVS {
   EIGHT,
   NIGHT,
   TEN,
-  A
+  A,
+  ELEVEN
 }
 
 
