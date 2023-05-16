@@ -13,6 +13,7 @@ import { TimePicker } from "~/components/ui/TimePicker";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
+import { RowGridText } from "~/components/ui/used/RowGridText";
 
 
 
@@ -174,6 +175,9 @@ const Page: NextPage = () => {
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6 ">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+            <RowGridText text="Starting up the project " />
+            <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+         
             <TextField
                 isLoading={isFetching}
                 lable="Intitulé de projet "
@@ -192,30 +196,31 @@ const Page: NextPage = () => {
             setEndDate={setEndDate}
             />
            </div>
-            <Input
-                isLoading={isFetching}
-                lable="chef de projet"
-                onChange={(e) => setFormData({...formData , projectManager : e.target.value})}
-                value={formData.projectManager}
-            />
-             <Input
-                isLoading={isFetching}
-                lable="Sponsor de projet "
-                onChange={(e) => setFormData({...formData , sponsor : e.target.value})}
-                value={formData.sponsor}
-            />
-             <Input
-                isLoading={isFetching}
-                lable="Client"
-                onChange={(e) => setFormData({...formData , client : e.target.value})}
-                value={formData.client}
-            />
-             <Input
-                isLoading={isFetching}
-                lable="Nom du directeur Régional"
-                onChange={(e) => setFormData({...formData , regionalDirector : e.target.value})}
-                value={formData.regionalDirector}
-            />
+           
+             <TextField
+            isLoading={isFetching}
+            lable="Objectif et opportunité de projet :  "
+            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
+            value={formData.regionalDirector}
+          />
+          <TextField
+            isLoading={isFetching}
+            lable="Description de projet :   "
+            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
+            value={formData.regionalDirector}
+          />
+          <TextField
+            isLoading={isFetching}
+            lable="Exigences à haut niveau :  "
+            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
+            value={formData.regionalDirector}
+          />
+          <TextField
+            isLoading={isFetching}
+            lable="Risques à haut niveau :  "
+            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
+            value={formData.regionalDirector}
+          />
           
              <FormButton
         isLoading={post.isLoading || update.isLoading}

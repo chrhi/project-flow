@@ -20,15 +20,15 @@ type Props ={
 }
 
 const List = [
-  {name : "Lessons learned" , path : "/app/close" , navs : NAVS.ONE},
-  {name : "Project documentation" , path : "/app/close/project_documentation" , navs : NAVS.TWO},
-  {name : "Project evaluation" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
+  // {name : "Lessons learned" , path : "/app/close" , navs : NAVS.ONE},
+  {name : "Transfer of product," , path : "/app/close/project_documentation" , navs : NAVS.TWO},
+  {name : "Final report" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
   {name : "Project closure" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
-  {name : "Resource handover" , path : "/app/close/resource_handover" , navs : NAVS.FIVE},
-  {name : "Client acceptance" , path : "/app/close/client_acceptance" , navs : NAVS.SIX},
-  {name : "Communication" , path : "/app/close/communication" , navs : NAVS.SEVEN},
-  {name : "Archiving" , path : "/app/close/archive" , navs : NAVS.EIGHT},
-  {name : "Celebrations" , path : "/app/close/celebration" , navs : NAVS.TEN},
+  {name : "Organizational asset updates" , path : "/app/close/resource_handover" , navs : NAVS.FIVE},
+  // {name : "Client acceptance" , path : "/app/close/client_acceptance" , navs : NAVS.SIX},
+  // {name : "Communication" , path : "/app/close/communication" , navs : NAVS.SEVEN},
+  // {name : "Archiving" , path : "/app/close/archive" , navs : NAVS.EIGHT},
+  // {name : "Celebrations" , path : "/app/close/celebration" , navs : NAVS.TEN},
 ]
 
 export  const CloseSideBar = ({isOpen , setIsOpen} : Props) => {

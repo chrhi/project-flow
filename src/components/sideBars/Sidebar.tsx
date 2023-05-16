@@ -21,7 +21,7 @@ const List = [
   { name: 'Initialisation', path:'/app/startup', navs: NAVS.SETUP },
   { name: 'Parties prenantes', path: '/app/startup/stakeholders', navs: NAVS.STAKEHOLDER },
   { name: 'Objets du projet', path: '/app/startup/tables', navs: NAVS.TABLE },
-  { name: 'Détails du projet', path:'/app/startup/setup', navs: NAVS.STARTUP },
+  { name: 'Ressource declaration', path:'/app/startup/setup', navs: NAVS.STARTUP },
   { name: 'Jalons', path: '/app/startup/milestones', navs: NAVS.MILESTONES },
   { name: 'risks', path: '/app/startup/secondForm', navs: NAVS.SECONDFORM },
 ];

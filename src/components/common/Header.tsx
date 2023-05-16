@@ -3,7 +3,7 @@ import Image from "next/image"
 import logo from "~/assets/logo.png"
 import React from "react"
 import { PagesNav } from "../header/PagesNav" 
-import { SearchBar } from "../header/SearchBar"
+import {  SreachBar } from "../header/SearchBar"
 import Notifictions from "./Notifictions"
 
 
@@ -25,7 +25,7 @@ export const Header = () => {
                 <Notifictions />  
             </div>
            <div className="w-[10%] h-full" >
-                 <DropDowsMenu />
+                 <SreachBar />
            </div>
            <div className="w-[10%] h-full" >
                 <Notifictions />  

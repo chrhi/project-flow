@@ -32,7 +32,7 @@ const Page: NextPage = () => {
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
             <AbdullahTable
-                 title="LESSONS LEARNED"
+                 title="Transfer of product,"
                  description="Lessons learned refer to the process of capturing, documenting, and analyzing project experiences to promote learning and knowledge sharing. They are used to improve project management practices, enhance organizational learning, and promote innovation. By sharing knowledge and experiences, project teams can save time and resources, reduce risks, and increase the likelihood of project success."
                  headers={["What Worked Well"  , "What Can Be Improved"]}
                  body={[
