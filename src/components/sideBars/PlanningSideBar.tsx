@@ -25,7 +25,6 @@ export const List = [
   {name : " Work breakdown  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
   {name : " Project management plan " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
   {name : "  Project schedule plan" , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
- 
   {name : "  Communications management plan " , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},
   {name : " Cost management plan  " , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
   {name : "   Change management plan " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},

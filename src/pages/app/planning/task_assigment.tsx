@@ -10,6 +10,8 @@ import { AbdullahTable, type ItemTable } from "~/components/ui/used/AbdullahTabl
 import { Form } from "~/components/ui/used/Form";
 import { FormContainer } from "~/components/ui/used/FormContainer";
 import { FormHead } from "~/components/ui/used/FormHead";
+import { RowGridText } from "~/components/ui/used/RowGridText";
+import { TextField } from "~/components/ui/used/TextField";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import type { task } from "~/types/type";
@@ -105,22 +107,76 @@ const Page: NextPage = () => {
      
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
-      <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
           <div className="col-span-6 lg:col-span-12 ">
              <AbdullahTable
-            
-               isLoading={ tasksGet.isFetching || isFetching}
+               isLoading={ false}
                 Action={false}
                 ActionName="Assign"
-                title="manage tskas assignment "
+                title="Devalop the  Project managemnt plan "
                  description="lorem this is just a log text that has to be very good"
-                 headers={["task" , "assigned to " , "Actions "]}
+                 headers={["Phase" , "Key Deliverables" ]}
                  body={satisfieTable()}
                  />
            </div>
-         
-          </div>  
-     </div>
+           <RowGridText text="Project Management Processes and Tailoring Decisions"/>
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Integration Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Integration Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Scope Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Scope Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Time Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Time Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Cost Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Cost Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Quality Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Quality Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Human Resources Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Human Resources Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Communication Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Communication Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Risk Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Risk Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Procurement Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Procurement Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Stakeholders Processes" onChange={(e) => console.log(e)} value={""} />
+           <TextField isLoading={false} lable="Stakeholders Tailoring Decisions" onChange={(e) => console.log(e)}  value={""} />
+
+           <RowGridText text="Project Management Processes and Tailoring Decisions"/>
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Integration Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Scope Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Time Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Cost Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Quality Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Human Resources Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Communication Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Risk Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Procurement Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           {/* this is a row */}
+           <TextField isLoading={false} lable="Stakeholders Tools and Techniques" onChange={(e) => console.log(e)} value={""} />
+           
+           {/* get out of the sequance  */}
+           <TextField isLoading={false} lable="Project Reviews" className="!col-span-12" onChange={(e) => console.log(e)} value={""} />
+       </div>
+    </div>
        </Form>
   </FormContainer>
       </main>
