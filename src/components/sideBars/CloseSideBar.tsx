@@ -21,7 +21,7 @@ type Props ={
 
 const List = [
   // {name : "Lessons learned" , path : "/app/close" , navs : NAVS.ONE},
-  {name : "Transfer of product," , path : "/app/close/project_documentation" , navs : NAVS.TWO},
+  {name : "Lessens learned" , path : "/app/close/project_documentation" , navs : NAVS.TWO},
   {name : "Final report" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
   {name : "Project closure" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
   {name : "Organizational asset updates" , path : "/app/close/resource_handover" , navs : NAVS.FIVE},
