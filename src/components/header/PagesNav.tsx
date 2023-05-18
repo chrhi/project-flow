@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { Title } from '@tremor/react'
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
 import { useRouter } from 'next/router'
 import { getProjectCurrentPhaseAbdullah } from '~/lib/MetaData'
@@ -62,9 +63,10 @@ export function PagesNav() {
            <AbdullahEffectButton 
            key={item.name}
            onPromisClick={() => handleRouting(item.path , item.page , index - 1)}
-                className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? 'bg-blue-100 text-slate-900' : null}  font-poppins font-semibold `}
+                className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? 'bg-blue-100 text-slate-900' : null}  font-poppins text-sm font-semibold `}
            >
-           {item.name}
+               <Title className='text-sm'>       {item.name} </Title>
+     
            </AbdullahEffectButton>
       ))}
     </div>
