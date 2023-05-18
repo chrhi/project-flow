@@ -1,5 +1,5 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { supabase } from "~/config/supbase";
+import { supabase } from "~/lib/supbase";
 export   class BaseModel {
     public provider : SupabaseClient<any, "public", any>
 

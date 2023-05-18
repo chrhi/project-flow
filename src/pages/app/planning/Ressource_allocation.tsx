@@ -1,10 +1,10 @@
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-import { Paper } from "~/components/ui/Paper";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead"; 
-import { AbdullahTable } from "~/components/ui/used/AbdullahTable"; 
+import { Paper } from "~/components/used/Paper";
+import { FormContainer } from "~/components/used/FormContainer";
+import { FormHead } from "~/components/used/FormHead"; 
+import { AbdullahTable } from "~/components/used/AbdullahTable"; 
 import { useState } from "react";
 
 

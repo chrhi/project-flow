@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Container } from '../ui/used/Container'
+import { Container } from '../used/Container'
 import React from 'react'
-import { Input } from '../ui/used/Input'
-import { AbdullahButton, buttonVariants } from '../ui/buildingBlocks/AbdullahButton'
+import { Input } from '../used/Input'
+import { AbdullahButton, buttonVariants } from '../used/AbdullahButton'
 import { useState } from 'react'
 import { api } from '~/utils/api'
 import { toast } from 'react-toastify'

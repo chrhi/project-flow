@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import Image from "next/image";
-import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
+import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { api } from "~/utils/api";
 import { useEffect , useState } from "react";
 import { getUserMetadata } from "~/lib/MetaData";

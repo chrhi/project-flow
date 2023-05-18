@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Header } from "~/components/common/Header";
-import DocsSideBar from "~/components/common/DocsSideBar";
+import { Header } from "~/components/header/Header";
+import DocsSideBar from "~/components/docsComponents/DocsSideBar";
 import { DocumentBuilder } from "~/components/docsComponents/DocumentBuilder";
 
 

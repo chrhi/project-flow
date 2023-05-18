@@ -1,17 +1,17 @@
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/Sidebar";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import {  AbdullahTable, type ItemTable } from "~/components/ui/used/AbdullahTable";
-import { StakeHolder } from "~/components/ui/popup/StakeHolder";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import {  AbdullahTable, type ItemTable } from "~/components/used/AbdullahTable";
+import { StakeHolder } from "~/components/popup/StakeHolder";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { getColor } from "~/utils/formate/getColor";
-import { PLusButtonStakHolder } from "~/components/ui/plusTable/startup/PLusButtonStakHolder";
+import { PLusButtonStakHolder } from "~/components/popup/PLusButtonStakHolder";
 import { Badge } from "@tremor/react";
 
 

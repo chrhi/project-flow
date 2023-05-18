@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
-import { Chain } from "~/components/common/Chain";
-import { Header } from "~/components/common/Header";
+import { Chain } from "~/components/dashboard/Chain";
+import { Header } from "~/components/header/Header";
 import { useState , } from "react";
 import { ProjectStarter } from "~/components/common/ProjectStarter";
 import { api } from "~/utils/api";
@@ -15,7 +15,7 @@ import {  PAGES } from '~/store/app-reducer/headerReducer'
 import { IsPhaseLocked } from "~/utils/access/IsPhaseLocked";
 import Head from "next/head";
 import BedgetStatus from "~/components/dashboard/BedgetStatus";
-import Reminder from "~/components/dashboard/Reminder";
+import Reminder from "~/components/dashboard/Reminder/ReminderPanel";
 import Timer from "~/components/dashboard/Timer";
 
 const Page: NextPage = () => {
@@ -33,7 +33,7 @@ const Page: NextPage = () => {
           storeProjectCurrentPhaseAbdullah(data.current_phase as string)
           return
         }
-        setHasProjectStart(false)
+        // setHasProjectStart(false)
         // set_isLoading({is_loading: false , fullWight:false})
       },
       onError : () => {
@@ -71,7 +71,7 @@ const Page: NextPage = () => {
             
             hasProjectStart ?
             <div className=" mx-auto w-[85%]   p-4 ">
-            <h1 className="text-gray-800  text-3xl text-start  my-4  " >Hi  abdullah 👋 this is the dashboard and your personal space</h1>
+            <h1 className="text-gray-800  text-3xl text-start  my-4  " >Hi 👋 this is the dashboard and your personal space</h1>
             {/* this is the first row */}
             <div className="w-full  mx-auto gap-x-8  rounded-lg  h-[200px] flex justify-center items-center my-4">
              <Reminder />

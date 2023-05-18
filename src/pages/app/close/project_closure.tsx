@@ -1,14 +1,14 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
-import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
-import { RowGridText } from "~/components/ui/used/RowGridText";
-import { TextField } from "~/components/ui/used/TextField";
+import { AbdullahTable } from "~/components/used/AbdullahTable";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import { FormHead } from "~/components/used/FormHead";
+import { RowGridText } from "~/components/typography/RowGridText";
+import { TextField } from "~/components/used/TextField";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)

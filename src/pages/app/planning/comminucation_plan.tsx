@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
 import {   useState} from "react"
-import { TextField } from "~/components/ui/used/TextField";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
-import {  AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
-import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
-import { CreateMettingPopup } from "~/components/planning/comunication/CreateMettingPopup";
+import { TextField } from "~/components/used/TextField";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import { FormHead } from "~/components/used/FormHead";
+import {  AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
+import { AbdullahButton } from "~/components/used/AbdullahButton";
+import { CreateMettingPopup } from "~/components/popup/CreateMettingPopup";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { getProjectMetaData } from "~/lib/MetaData";
-import { StakeHolder } from "~/components/ui/popup/StakeHolder";
-import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
+import { StakeHolder } from "~/components/popup/StakeHolder";
+import { NewAbdullahTable } from "~/components/used/NewAbdullahTable";
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-import { RowGridText } from "~/components/ui/used/RowGridText";
+import { RowGridText } from "~/components/typography/RowGridText";
 
 type IpiData = {
   STAKEHOLDER : string[],

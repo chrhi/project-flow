@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { supabase } from "~/config/supbase";
+import { supabase } from "~/lib/supbase";
 import { TRPCError } from "@trpc/server";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 

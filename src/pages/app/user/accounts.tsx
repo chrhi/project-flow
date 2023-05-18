@@ -1,14 +1,14 @@
 /* eslint-disable */
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { useEffect, useState } from "react";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import {  getUserMetadata } from "~/lib/MetaData";
 import Status from "~/components/ui/status";
-import { AccessGivePopUp } from "~/components/ui/popup/AccessGivePopUp";
+import { AccessGivePopUp } from "~/components/popup/AccessGivePopUp";
 
 type IpiData = {
   user_name : string , 

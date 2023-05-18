@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router'
 import { ControllingSideBar , NAVS } from '~/store/app-reducer/ControllingSideBar'
-import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
+import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
 import type { Dispatch, SetStateAction } from 'react'
 import NextSwitch from '../common/NextSwitch'
 import { motion  } from 'framer-motion';

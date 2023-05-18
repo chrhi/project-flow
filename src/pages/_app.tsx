@@ -4,7 +4,7 @@ import NextNProgress from 'nextjs-progressbar';
 import { api } from '~/utils/api';
 import 'react-toastify/dist/ReactToastify.css';
 import '~/styles/globals.css';
-import { supabase } from '~/config/supbase';
+import { supabase } from '~/lib/supbase';
 import { Loading } from '~/components/common/Loading';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

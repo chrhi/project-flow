@@ -1,16 +1,15 @@
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/Sidebar";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
-import {  AbdullahTable, ItemTable } from "~/components/ui/used/AbdullahTable";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import {  AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
-import { MileStonePlusButton } from "~/components/ui/plusTable/startup/MileStonePlusButton";
-import { NewAbdullahTable } from "~/components/ui/used/NewAbdullahTable";
+import { MileStonePlusButton } from "~/components/popup/MileStonePlusButton";
+import { NewAbdullahTable } from "~/components/used/NewAbdullahTable";
 
 type IpiData = {
   name : string , 

@@ -5,7 +5,7 @@ import { type   FormEvent, useRef , useState } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import { api } from "~/utils/api";
-import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
+import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { useRouter } from "next/router";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
 type input = {

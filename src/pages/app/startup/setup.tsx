@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
 import { FormEvent, useEffect, useState } from "react";
-import { Form } from "~/components/ui/used/Form";
-import { FormButton } from "~/components/ui/used/FormButton";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
-import { TextField } from "~/components/ui/used/TextField";
+import { Form } from "~/components/used/Form";
+import { FormButton } from "~/components/used/FormButton";
+import { FormContainer } from "~/components/used/FormContainer";
+import { TextField } from "~/components/used/TextField";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { Sidebar } from "~/components/sideBars/Sidebar";
 
 interface inputSchema {

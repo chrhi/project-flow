@@ -5,7 +5,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
 import {  Fragment  } from 'react'
-import { AbdullahButton , buttonVariants } from '../ui/buildingBlocks/AbdullahButton'
+import { AbdullahButton , buttonVariants } from '../used/AbdullahButton'
 import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
 
 

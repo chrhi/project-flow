@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
 import { FormEvent, useRef  , useEffect, useState} from "react"
-import { TextField } from "~/components/ui/used/TextField";
-import { Input } from "~/components/ui/used/Input";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
+import { TextField } from "~/components/used/TextField";
+import { Input } from "~/components/used/Input";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import { FormHead } from "~/components/used/FormHead";
 
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-import { RowGridText } from "~/components/ui/used/RowGridText";
+import { RowGridText } from "~/components/typography/RowGridText";
 
 
 

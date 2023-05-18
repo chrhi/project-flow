@@ -5,7 +5,7 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import bcrypt from "bcrypt"
 import {v4 as uuidV4} from "uuid"
 import { userTable } from "~/server/model/User";
-import { supabase } from "~/config/supbase";
+import { supabase } from "~/lib/supbase";
 
 
 export const InvitationRouter = createTRPCRouter({

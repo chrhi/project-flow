@@ -1,12 +1,11 @@
 import { type NextPage } from "next";
 import { api } from "~/utils/api";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/Sidebar";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import {  AbdullahTable, type ItemTable } from "~/components/ui/used/AbdullahTable";
-import { PLusButtonTeam } from "~/components/ui/plusTable/startup/PlusButtonTeam";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import {  AbdullahTable, type ItemTable } from "~/components/used/AbdullahTable";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 
@@ -63,14 +62,11 @@ const Page: NextPage = () => {
             <div className="col-span-6 lg:col-span-12">
 
         <AbdullahTable
-           
             isLoading={isFetching}
             title="les risk"
             description="En PMBOK, les membres de l'équipe font partie des ressources du projet et peuvent inclure toute personne affectée au projet, y compris les membres permanents, temporaires, internes ou externes, et les spécialistes en sous-traitance."
             headers={["risk" , "solutions" , "occurs rate"]}
             body={satisfyTable()}
-            PlusButton={<PLusButtonTeam refetch={refetch}  />}
-
          />
             </div>
         </div>

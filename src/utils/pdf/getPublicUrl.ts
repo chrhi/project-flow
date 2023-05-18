@@ -1,4 +1,4 @@
-import { supabase } from "~/config/supbase"
+import { supabase } from "~/lib/supbase"
 
 
 

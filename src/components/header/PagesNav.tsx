@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { AbdullahEffectButton, buttonVariantsAbdullah } from '../ui/buildingBlocks/AbdullahEffectButton'
+import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
 import { useRouter } from 'next/router'
 import { getProjectCurrentPhaseAbdullah } from '~/lib/MetaData'
 import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
@@ -57,7 +57,7 @@ export function PagesNav() {
   ]
 
   return (
-    <div className='w-[70%]  h-full flex justify-start items-center gap-x-6 '>
+    <div className='w-[70%]  h-full hidden md:flex  justify-start items-center gap-x-6 '>
       {LIST.map((item , index ) => (
            <AbdullahEffectButton 
            key={item.name}

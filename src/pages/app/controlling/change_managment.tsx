@@ -2,12 +2,12 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import Select from 'react-select';
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { Input } from "~/components/ui/used/Input";
-import { TextField } from "~/components/ui/used/TextField";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import { Input } from "~/components/used/Input";
+import { TextField } from "~/components/used/TextField";
 import { OPTIONS } from "~/types/static/STATICDATA";
 
 const Page: NextPage = () => {

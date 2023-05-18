@@ -3,10 +3,10 @@
 
 import { type NextPage } from "next";
 import Head from "next/head";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { getUserMetadata } from "~/lib/MetaData";
 import { toast } from "react-toastify";
-import { AbdullahButton } from "~/components/ui/buildingBlocks/AbdullahButton";
+import { AbdullahButton } from "~/components/used/AbdullahButton";
 
 const Page: NextPage = () => {
 
@@ -18,7 +18,7 @@ const Page: NextPage = () => {
         hideProgressBar: true,
        })
      })
-     .catch(error => {
+     .catch(() => {
       toast("failed to delete ",{
         className:" !text-white !bg-blue-500",
         hideProgressBar: true,

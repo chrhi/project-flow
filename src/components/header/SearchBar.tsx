@@ -5,12 +5,9 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { useState } from 'react'
 import {  Fragment  } from 'react'
-import { AbdullahButton , buttonVariants } from '../ui/buildingBlocks/AbdullahButton'
-
-
+import { AbdullahButton , buttonVariants } from '../used/AbdullahButton'
 
 export  function SreachBar () {
-
     const [open , setOpen] = useState<boolean>(false)
 
   return (

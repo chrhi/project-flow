@@ -8,11 +8,11 @@
 // @ts-nocheck
 
 import React, { useEffect, useState , useCallback } from 'react';
-import { FormContainer } from '~/components/ui/used/FormContainer';
-import { FormHead } from '~/components/ui/used/FormHead';
-import { Treepopup } from '~/components/planning/tree/Treepopup';
+import { FormContainer } from '~/components/used/FormContainer';
+import { FormHead } from '~/components/used/FormHead';
+import { Treepopup } from '~/components/popup/Treepopup';
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 
 import ReactFlow , {
@@ -25,7 +25,7 @@ import ReactFlow , {
   useNodesState,
   useEdgesState,
 } from 'reactflow';
-import { AbdullahButton  , buttonVariants} from '~/components/ui/buildingBlocks/AbdullahButton';
+import { AbdullahButton  , buttonVariants} from '~/components/used/AbdullahButton';
 
 const initialNodes = [
 

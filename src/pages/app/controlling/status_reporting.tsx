@@ -1,12 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
-import { AbdullahTable } from "~/components/ui/used/AbdullahTable";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { FormHead } from "~/components/ui/used/FormHead";
+import { AbdullahTable } from "~/components/used/AbdullahTable";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import { FormHead } from "~/components/used/FormHead";
 
 
 const Page: NextPage = () => {

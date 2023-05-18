@@ -1,10 +1,10 @@
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import {useState} from 'react'
-import { FormContainer } from "~/components/ui/used/FormContainer"; 
+import { FormContainer } from "~/components/used/FormContainer"; 
 import PlanningTabs from "~/components/planning/tabs/PlanningTabs";
 import { Tasks } from "~/components/planning/ui/Tasks"; 
-import { GanttTask } from "~/components/planning/GanttTask"; 
+import { GanttTask } from "~/components/common/GanttTask"; 
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
 
 const Page: NextPage = () => {

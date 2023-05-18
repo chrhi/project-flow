@@ -1,7 +1,7 @@
 import React from 'react'
-import { AbdullahButton , buttonVariants} from '../ui/buildingBlocks/AbdullahButton'
+import { AbdullahButton , buttonVariants} from '../used/AbdullahButton'
 import { useState } from 'react'
-import { ConfirmePopUp } from '../ui/popup/ConfirmePopUp'
+import { ConfirmePopUp } from '../popup/ConfirmePopUp'
 
 
 type DocumentBuilderProps = {

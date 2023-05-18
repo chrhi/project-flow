@@ -1,11 +1,11 @@
 import { type NextPage } from "next";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import {useState} from 'react'
-import { FormContainer } from "~/components/ui/used/FormContainer"; 
-import { Form } from "~/components/ui/used/Form";
-import { TextField } from "~/components/ui/used/TextField";
-import { RowGridText } from "~/components/ui/used/RowGridText";
+import { FormContainer } from "~/components/used/FormContainer"; 
+import { Form } from "~/components/used/Form";
+import { TextField } from "~/components/used/TextField";
+import { RowGridText } from "~/components/typography/RowGridText";
 
 const Page: NextPage = () => {
   const [inTasks , setInTasks] = useState<boolean>(true)

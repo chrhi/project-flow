@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import Cookies from 'js-cookie'
-import { AbdullahButton, buttonVariants } from "~/components/ui/buildingBlocks/AbdullahButton";
+import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
 import { storeUserMetadata } from "~/lib/MetaData";

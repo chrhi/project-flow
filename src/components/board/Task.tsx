@@ -38,14 +38,14 @@ function Task({index , id , title , discription , imgUrl , priority }  : PropsTy
                        className='w-[97%] mx-auto my-1 rounded-lg '   /> : null
                   }
                 <div className='w-full h-fit '>
-                <h3 className='text-md  font-semibold text-start '>{title}</h3>
+                <h3 className='text-sm font-semibold text-start '>{title}</h3>
                   <p className='text-sm text-gray-700  text-start '>
                     {discription}
                   </p>
                   <div className='w-full h-[40px] flex justify-end px-2'>
                   <BadgeDelta
                   size='xs'
-                  className='!text-xs'
+                  className='!text-sm'
                   //@ts-ignore
                   deltaType={priority || "increase"}> {priority === "increase" ? "low " : "hight "}</BadgeDelta>
                   </div>

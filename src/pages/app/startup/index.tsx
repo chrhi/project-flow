@@ -1,19 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { type NextPage } from "next";
 import type { FormEvent } from "react";
-import { Header } from "~/components/common/Header";
+import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/Sidebar";
-import { Form } from "~/components/ui/used/Form";
-import { FormContainer } from "~/components/ui/used/FormContainer";
-import { Input } from "~/components/ui/used/Input";
-import { TextField } from "~/components/ui/used/TextField";
-import { FormButton } from "~/components/ui/used/FormButton";
-import { TimePicker } from "~/components/ui/TimePicker";
+import { Form } from "~/components/used/Form";
+import { FormContainer } from "~/components/used/FormContainer";
+import { Input } from "~/components/used/Input";
+import { TextField } from "~/components/used/TextField";
+import { FormButton } from "~/components/used/FormButton";
+import { TimePicker } from "~/components/used/TimePicker";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
-import { RowGridText } from "~/components/ui/used/RowGridText";
+import { RowGridText } from "~/components/typography/RowGridText";
+import NewTimePicker from "~/components/used/NewTimePicker";
 
 
 
@@ -188,13 +189,8 @@ const Page: NextPage = () => {
                 value={formData.title}
              />
               <div className="col-span-6">
-           <TimePicker 
-            lable="sélectionner une heure à laquelle ce projet doit commencer et se terminer"
-            startDate ={startDate}
-            setStartDate ={setStartDate}
-            endDate={endDate}
-            setEndDate={setEndDate}
-            />
+          
+            <NewTimePicker  isLoading={isFetching} text="sélectionner une heure à laquelle ce projet doit commencer et se terminer"/>
            </div>
            
              <TextField
