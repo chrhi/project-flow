@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router'
-import { ClosingSideBar  , NAVS} from '~/store/app-reducer/ClosingSideBar' 
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
 import type { Dispatch, SetStateAction } from 'react'
 import NextSwitch from '../common/NextSwitch'
 import { motion } from 'framer-motion';
+import {closingSideBarReducer as ClosingSideBar , NAVS_CLOSING as NAVS } from '~/store/app-reducer/side-bar-store';
+
 
 const sidebarVariants = {
   open: { x: 0 },

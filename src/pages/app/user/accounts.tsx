@@ -7,7 +7,6 @@ import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import {  getUserMetadata } from "~/lib/MetaData";
-import Status from "~/components/ui/status";
 import { AccessGivePopUp } from "~/components/popup/AccessGivePopUp";
 
 type IpiData = {
@@ -116,7 +115,7 @@ const Page: NextPage = () => {
                   <p className="text-md text-gray-900" > test</p>
                 </div>
                 <div className="w-[10%] pr-4 flex justify-start">            
-                 <Status color="bg-green-500" name ="Active"  />
+                 {/* <Status color="bg-green-500" name ="Active"  /> */}
                 </div>
                 <div className="w-[10%]">                
                    <AccessGivePopUp />
@@ -135,7 +134,7 @@ const Page: NextPage = () => {
                   <p className="text-md text-gray-900" > {item.email }</p>
                 </div>
                 <div className="w-[10%] pr-4 flex justify-start">            
-                 <Status color="bg-green-500" name ="Active" key={index + 234} />
+                 {/* <Status color="bg-green-500" name ="Active" key={index + 234} /> */}
                 </div>
                 <div className="w-[10%]">                
                   

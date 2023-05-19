@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router';
-import { NAVS, sidebar_Reducer } from '~/store/app-reducer/SideBarReducer';
+import { startupSideBarReducer ,NAVS_STARTUP } from '~/store/app-reducer/side-bar-store';
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton';
 import type { Dispatch, SetStateAction } from 'react';
 import NextSwitch from '../common/NextSwitch';
@@ -18,25 +18,25 @@ type Props = {
 };
 
 const List = [
-  { name: 'Initialisation', path:'/app/startup', navs: NAVS.SETUP },
-  { name: 'Parties prenantes', path: '/app/startup/stakeholders', navs: NAVS.STAKEHOLDER },
-  { name: 'Objets du projet', path: '/app/startup/tables', navs: NAVS.TABLE },
-  { name: 'Ressource declaration', path:'/app/startup/setup', navs: NAVS.STARTUP },
-  { name: 'Jalons', path: '/app/startup/milestones', navs: NAVS.MILESTONES },
-  { name: 'risks', path: '/app/startup/secondForm', navs: NAVS.SECONDFORM },
+  { name: 'Initialisation', path:'/app/startup', navs: NAVS_STARTUP.SETUP },
+  { name: 'Parties prenantes', path: '/app/startup/stakeholders', navs: NAVS_STARTUP.STAKEHOLDER },
+  { name: 'Objets du projet', path: '/app/startup/tables', navs: NAVS_STARTUP.TABLE },
+  { name: 'Ressource declaration', path:'/app/startup/setup', navs: NAVS_STARTUP.STARTUP },
+  { name: 'Jalons', path: '/app/startup/milestones', navs: NAVS_STARTUP.MILESTONES },
+  { name: 'risks', path: '/app/startup/secondForm', navs: NAVS_STARTUP.SECONDFORM },
 ];
 
 export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
   const router = useRouter();
-  const current_page = sidebar_Reducer((state) => state.current_page);
-  const set_current_page = sidebar_Reducer((state) => state.set_current_page);
+  const current_page = startupSideBarReducer((state) => state.current_page);
+  const set_current_page = startupSideBarReducer((state) => state.set_current_page);
 
-  const handleClick = (path: string, selected: NAVS) => {
+  const handleClick = (path: string, selected: NAVS_STARTUP) => {
     router.push(path) as unknown;
     set_current_page({ payload: selected });
   };
 
-  const Link = (current_page: NAVS, Nav: NAVS, path: string, name: string) => (
+  const Link = (current_page: NAVS_STARTUP, Nav: NAVS_STARTUP, path: string, name: string) => (
     <AbdullahEffectButton
     onClick={() => handleClick(path, Nav)}
     className={`rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 justify-start
