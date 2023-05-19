@@ -9,7 +9,7 @@ import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { MileStonePlusButton } from "~/components/popup/MileStonePlusButton";
-import { NewAbdullahTable } from "~/components/used/NewAbdullahTable";
+
 
 type IpiData = {
   name : string , 

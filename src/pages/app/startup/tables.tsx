@@ -12,7 +12,7 @@ import { api } from "~/utils/api";
 import { userReducer } from "~/store/userReducer";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
-import { NewAbdullahTable } from "~/components/used/NewAbdullahTable";
+
 
 type IpiData = {
   objectifs : string , 
