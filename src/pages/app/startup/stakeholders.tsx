@@ -129,6 +129,7 @@ const Page: NextPage = () => {
                             description="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
                             columns={columns}
                             data={satisfyTable()}
+                            addButton={<PLusButtonStakHolder refetch={refetch} />}
             />
             </div>
         </div>

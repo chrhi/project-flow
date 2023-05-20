@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
@@ -31,82 +32,79 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
 
 
 
-    const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
-    const [formData , setFormData] = useState<inputs>({
-      name : "" ,
-      role : "" ,
-      id :  "",
-      impact : ""
-    })
-     
-    function openModal() {
-      setIsOpen(true)
+  const [formData, setFormData] = useState({
+    name: "",
+    role: "",
+    id: "",
+    impact: "",
+    type : "",
+    Expectations : "",
+    REQUIREMENTS: "",
+    position : "",
+    contact : "",
+    Investment : ""
+  });
+  
+  function openModal() {
+    setIsOpen(true);
+  }
+  
+  function closeModal() {
+    setIsOpen(false);
+  }
+  
+  const mutation = api.stakHolderRouter.createStackholder.useMutation({
+    onSuccess: async () => {
+      closeModal();
+      toast("new stack holder added", {
+        className: "!text-white !bg-blue-500",
+        hideProgressBar: true,
+      });
+      await refetch();
+    },
+    onError: () => {
+      closeModal();
+      toast("failed to add new item", {
+        className: "!text-white !bg-blue-500",
+        hideProgressBar: true,
+      });
     }
-    function closeModal(){
-      setIsOpen(false)
-    }
-    
-    const mutation = api.stakHolderRouter.createStackholder.useMutation({
-      onSuccess: async () => {
-        closeModal()
-        toast("new stack holder added ",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         await refetch()
+  });
+  
+  const handleSubmit = () => {
+    if (!formData.name || !formData.role || !formData.type || !formData.impact  || !formData.REQUIREMENTS || !formData.Investment || !formData.contact || !formData.Expectations) {
+      closeModal();
+      toast(" impossible de créer tous les champs sont obligatoires", {
+        className: "!text-white !bg-blue-500",
+        hideProgressBar: true,
+      });
 
-      },
-      onError : () => {
-        closeModal()
-        toast("faild to add new item",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      }
-    })
-
-    const handleSubmit = () => {
-      if(!formData.name || !formData.role ){
-        toast("all the fields are required",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      }
-      const id:string  = uuidV4()
-      mutation.mutate({
-        id ,
-        project_id : getProjectMetaData(),
-        
-        communicationNeeds : "how can we",
-        email : "how can we",
-        levelOfInvolvement : "how can we",
-        note : "how can we",
-        pendingChanges : "how can we",
-        phone : 98765,
-        relationships : "how can we",
-        stakeholderEngagementApproach : "how can we",
-        timing : "how can we",
-        name : formData.name ,
-        role : formData.role ,
-        communicationMethod : "how can we",
-        impact : formData.impact ,
-        
-      })
     }
-   
+    const id = uuidV4();
+    mutation.mutate({
+      id,
+      project_id: getProjectMetaData(),
+      contact: formData.contact,
+      name: formData.name,
+      role: formData.role,
+      impact: formData.impact,
+      Investment : formData.Investment , 
+      type : formData.type,
+      expectations : formData.Expectations, 
+      requirements : formData.REQUIREMENTS
+    });
+  };
 
   return (
     <>
    <div className='w-full  h-10 flex justify-between px-4 items-center'>
-    <p>ajouter un élément à ce tableau</p>
- 
- 
       <button
          onClick={openModal}
         className='!text-xl !font-semibold !text-slate-900 !p-0  '
          >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-gray-700 hover:bg-gray-100 rounded-full font-bold ">
            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
 
@@ -145,7 +143,7 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
                   >
-               <div><p className='text-md text-gray-900 font-semibold  ml-4'>Add a stakholder</p></div>  
+               <div><p className='text-md text-gray-700   ml-1'>Enrichir l'écosystème des parties prenantes</p></div>  
                <div>
                     <button
                           onClick={closeModal}
@@ -161,10 +159,10 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <div className='col-span-6 '>
                   <label  className="block text-sm font-medium leading-6 text-gray-900">
-                         type of  stakholder
+                  type de partie prenante
                   </label>
                   <Select
-                        onChange={(e) => setFormData({...formData , impact : e?.value || ""})}
+                        onChange={(e) => setFormData({...formData , type : e?.value || ""})}
                         name="stakholders_types"
                         options={STAKHOLDER_TYPES}
                         className="basic-multi-select"
@@ -178,18 +176,18 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
             />
              <Input
               lable='position'
-              value={formData.name}
-              onChange={(e) => setFormData({...formData , name : e.target.value})}
+              value={formData.position}
+              onChange={(e) => setFormData({...formData , position : e.target.value})}
             />
              <Input
-              lable='contact informations'
-              value={formData.name}
-              onChange={(e) => setFormData({...formData , name : e.target.value})}
+              lable='coordonnées'
+              value={formData.contact}
+              onChange={(e) => setFormData({...formData , contact : e.target.value})}
             />
 
             <div className='col-span-6 '>
                 <label  className="block text-sm font-medium leading-6 text-gray-900">
-                   impact of this stakholder
+                l'impact de cette partie prenante
                 </label>
                 <Select
                      onChange={(e) => setFormData({...formData , impact : e?.value || ""})}  
@@ -199,29 +197,34 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
                     classNamePrefix="select"
                    />
             </div>
+            <Input
+              lable='Investment amount'
+              value={formData.Investment}
+              onChange={(e) => setFormData({...formData , Investment : e.target.value})}
+            />
               <TextField
               lable='ROLE / RESPONSABILITY'
               value={formData.role}
               onChange={(e) => setFormData({...formData , role : e.target.value})}
             />
              <TextField
-              lable='Expectations'
-              value={formData.role}
-              onChange={(e) => setFormData({...formData , role : e.target.value})}
+              lable='Attentes'
+              value={formData.Expectations}
+              onChange={(e) => setFormData({...formData , Expectations : e.target.value})}
             />
             <TextField
-              lable='REQUIREMENTS'
-              value={formData.role}
-              onChange={(e) => setFormData({...formData , role : e.target.value})}
+              lable='EXIGENCES'
+              value={formData.REQUIREMENTS}
+              onChange={(e) => setFormData({...formData , REQUIREMENTS : e.target.value})}
             />
                 
-             <div className="bg-white flex justify-end items-end p-4 col-span-12 text-right ">
+             <div className="bg-white flex justify-end items-end p-4 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
             isLoading={mutation.isLoading}
-            className={`${buttonVariants({size:'lg'})} text-lg `}
+            className={`${buttonVariants({size:'sm'  , variant:"primary"})}  `}
             >
-              submit
+           sauvegarder
             </AbdullahButton>
               </div>
           </div>

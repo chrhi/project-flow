@@ -16,12 +16,12 @@ export const userManagment = createTRPCRouter({
     .input(z.object({ email: z.string() , password : z.string() }))
     .mutation( async ({ input }) => {
 
-        //check if the user exist
-        const result = await userTable.get(input.email).catch(error => { 
-            throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
-        if(result.length < 0){
-            throw new TRPCError({code: 'BAD_REQUEST', message :"user exists"})
-        }
+        // //check if the user exist
+        // const result = await userTable.get(input.email).catch(error => { 
+        //     throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})})
+        // if(result.length < 0){
+        //     throw new TRPCError({code: 'BAD_REQUEST', message :"user exists"})
+        // }
          //hash password
        const hashedPassword  : string = await bcrypt?.hash(input.password, 10); // salt round
        // create a user id 

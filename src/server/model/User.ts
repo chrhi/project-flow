@@ -9,7 +9,7 @@ class User extends BaseModel {
 
     // this method will create a new user
     public async create (id : string ,email : string , password : string ){
-        const {  error } = await this.provider.from('user').insert([  {id , email , password , role : "PROJECT_MANAGER" }])
+        const {  error } = await this.provider.from('user').insert([  {id  ,  password , role : "PROJECT_MANAGER" }])
   
        if(error){
           throw new Error(error.message)
@@ -32,7 +32,8 @@ class User extends BaseModel {
 
     // this method will get the user (email) and its hased password
     public async get (email : string ) {
-        const { data: user, error } = await this.provider.from('user').select('*').eq("email" , email)
+        const { data: user, error } = await this.provider.from('user').select('*').eq("Gmail " , email)
+        console.log(error?.message)
         if(error){
             throw new Error(error.message)
         }

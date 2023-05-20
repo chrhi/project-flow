@@ -6,6 +6,7 @@ import { PagesNav } from "./PagesNav"
 import {  SreachBar } from "./SearchBar"
 import Notifictions from "./dropDown/Notifictions"
 import Invitation from "./dropDown/Invitation"
+import MobilSideBar from "../common/mobil-sideBar"
 
 
 export const Header = () => {
@@ -16,7 +17,7 @@ export const Header = () => {
           <Image alt="logo" src={logo} width={35} height={35}  />
        </div>
        <PagesNav />
-       <div className="w-[25%]  h-[60px] gap-x-4 md:gap-x-1   flex justify-end items-center mr-2   ">     
+       <div className="w-[25%]  h-[60px] gap-x-4 md:gap-x-1  hidden lg:flex justify-end items-center mr-2   ">     
             <div className="w-[10%] h-full" >
                 <Notifictions />  
             </div>
@@ -30,6 +31,7 @@ export const Header = () => {
                  <DropDowsMenu />
            </div> 
        </div>
+       {/* <MobilSideBar /> */}
    </div>
   
  
