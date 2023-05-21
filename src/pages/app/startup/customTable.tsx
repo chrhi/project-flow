@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/sideBars/Sidebar";
+import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import { StakeHolder } from "~/components/popup/StakeHolder";

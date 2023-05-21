@@ -4,7 +4,7 @@ import { type NextPage } from "next";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Header } from "~/components/header/Header";
-import { Sidebar } from "~/components/sideBars/Sidebar";
+import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { AbdullahButton } from "~/components/used/AbdullahButton";
 import { Paragraph } from "~/components/typography/Paragraph";
 import { Form } from "~/components/used/Form";

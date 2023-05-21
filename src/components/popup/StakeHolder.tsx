@@ -3,8 +3,7 @@ import { Fragment, useState } from 'react'
 import { AbdullahButton, buttonVariants } from '../used/AbdullahButton'
 import Image from "next/image"
 import logo from "~/assets/logo.png"
-import { api } from '~/utils/api'
-import { Loader2 } from 'lucide-react';
+
 
 interface Props {
     text : string | undefined ,
@@ -31,14 +30,7 @@ export  function StakeHolder ({text , id} : Props) {
 
   const [stakholder , setStackHolder] = useState<stakholder>({} as stakholder)
 
-  const {refetch , isFetching } = api.stakHolderRouter.getOnlyOneStackHolder.useQuery({id : id || ""} , {
-    onSuccess(data: stakholder) {
-      setStackHolder(data )
-    },
-    onError(error: any){
-    console.log(error)
-    },
-  })
+ 
 
   function closeModal() {
     setIsOpen(false)

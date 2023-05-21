@@ -2,42 +2,19 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
 import {  Fragment, useState } from 'react'
-import { api } from '~/utils/api'
 import { TextField } from '../used/TextField'
 import { AbdullahButton, buttonVariants } from '../used/AbdullahButton'
-import { toast } from 'react-toastify'
-import {v4 as uuidV4} from "uuid"
-import { getProjectMetaData } from '~/lib/MetaData'
-type Props = {
-  formType : string ,
-  refetch : () => Promise<any>
-}
-
-type inputs = {
-  objectifs : string , 
-  type : string ,
-  seccessCriteria :  string , 
-  approval :  string ,
-  
-  id :  string
-}
 
 
 
-export  function PlusButtonTable ({formType , refetch} : Props) {
+
+export  function PlusButtonTable () {
 
 
   
     const [isOpen, setIsOpen] = useState(false)
 
-    const [formData , setFormData] = useState<inputs>({
-      objectifs : "" , 
-      type : "" ,
-      seccessCriteria :  "" , 
-      approval :  "" ,
-      
-      id :  ""
-    })
+
      
     function openModal() {
       setIsOpen(true)
@@ -46,41 +23,10 @@ export  function PlusButtonTable ({formType , refetch} : Props) {
       setIsOpen(false)
     }
     
-    const mutation = api.tableInfoRouter.postNewInfo.useMutation({
-      onSuccess: async () => {
-        closeModal()
-        toast("new item was added ",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         await refetch()
-
-      },
-      onError : () => {
-        closeModal()
-        toast("faild to add new item",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      }
-    })
+  
 
     const handleSubmit = () => {
-      if(!formData.approval || !formData.objectifs || !formData.seccessCriteria){
-        toast("all the fields are required",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      }
-      const id:string  = uuidV4()
-      mutation.mutate({
-        id ,
-        project_id : getProjectMetaData(),
-        type : formType ,
-        approval : formData.approval ,
-        objectifs : formData.objectifs ,
-        seccessCriteria : formData.seccessCriteria
-      })
+    //todo
     }
    
 
@@ -133,7 +79,7 @@ export  function PlusButtonTable ({formType , refetch} : Props) {
                     as="div"
                     className=" w-full h-[50px] flex justify-between items-center border-b "
                   >
-               <div><p className='text-sm text-gray-500 ml-4'>{formType}</p></div>  
+               <div><p className='text-sm text-gray-500 ml-4'>hellow there</p></div>  
                <div>
                 
                     <button
@@ -153,23 +99,23 @@ export  function PlusButtonTable ({formType , refetch} : Props) {
             <div className="grid grid-cols-6 gap-6">
             <TextField
               lable='objectifs du projet'
-              value={formData.objectifs}
-              onChange={(e) => setFormData({...formData , objectifs : e.target.value})}
+              value={false}
+              onChange={(e) => console.log(e)}
             />
               <TextField
               lable='criteres de succes'
-              value={formData.seccessCriteria}
-              onChange={(e) => setFormData({...formData , seccessCriteria : e.target.value})}
+              value={false}
+              onChange={(e) => console.log(e)}
             />
               <TextField
               lable='approbation'
-              value={formData.approval}
-              onChange={(e) => setFormData({...formData , approval : e.target.value})}
+              value={false}
+              onChange={(e) => console.log(e)}
             />
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={mutation.isLoading}
+            isLoading={false}
             className={buttonVariants({size:'sm'})}
             >
               submit

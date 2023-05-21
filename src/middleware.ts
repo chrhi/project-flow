@@ -1,16 +1,10 @@
 // middleware.ts
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { jwtVerify, type JWTPayload } from 'jose';
+import { verify } from './lib/JWT';
 
-// Function to verify the JWT token
-async function verify(token: string, secret: string): Promise<JWTPayload> {
-  const { payload } = await jwtVerify(token, new TextEncoder().encode(secret));
-  // Run some checks on the returned payload, perhaps you expect some specific values
 
-  // If it's all good, return it, or perhaps just return a boolean
-  return payload;
-}
+
 
 // This function can be marked `async` if using `await` inside
 export default async function middleware(req: NextRequest) {

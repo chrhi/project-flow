@@ -4,11 +4,6 @@ import {  useState} from "react"
 import { TextField } from "~/components/used/TextField";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { FormHead } from "~/components/used/FormHead";
-import { api } from "~/utils/api";
-import { toast } from "react-toastify";
-import { getProjectMetaData } from "~/lib/MetaData";
-import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { FormButton } from "~/components/used/FormButton";
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
@@ -19,107 +14,14 @@ import { RowGridText } from "~/components/typography/RowGridText";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
-  const [formData , setFormData] = useState({
-    ScopeStatementDevelopment :"",
-    WBSStructure :"",
-    WBSDictionary :"",
-    ScopeBaselineMaintenance :"",
-    ScopeChange :"",
-    DeliverableAcceptance :"" ,
-    ScopeAndRequirementsIntegration : "",
-   
-  })
-  const set_loading = loading_Reducer(state => state.set_isLoading)
-
-  const [isData , setIsData] = useState<boolean>(false)
-
-  const post = api.scopeRouter.createProjectScope.useMutation({
-    onSuccess:  async () => {
-      toast("data has been updated",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-       await  get.refetch()
-    },
-    onError : () => {
-      toast("something went wrong ",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-    }
-  })
-  
-  const update = api.scopeRouter.updateProjectScope.useMutation({
-    onSuccess: async () => {
-      toast("data has been updated",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-      await  get.refetch()
-    },
-    onError : () => {
-      toast("something went wrong ",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-    }
-  })
-  const get = api.scopeRouter.getProjectScope.useQuery({project_id : getProjectMetaData()} , {
-    onSuccess:  (data: { DeliverableAcceptance: any; ScopeAndRequirementsIntegration: any; ScopeBaselineMaintenance: any; ScopeChange: any; ScopeStatementDevelopment: any; WBSDictionary: any; WBSStructure: any; }) => {
-      if(data.DeliverableAcceptance || data.ScopeAndRequirementsIntegration || data.WBSDictionary || data.WBSStructure){
-        setIsData(true)
-      }
-      setFormData({
-        DeliverableAcceptance : data.DeliverableAcceptance || "" ,
-        ScopeAndRequirementsIntegration : data.ScopeAndRequirementsIntegration || "" ,
-        ScopeBaselineMaintenance : data.ScopeBaselineMaintenance  || "", 
-        ScopeChange : data.ScopeChange || "" ,
-        ScopeStatementDevelopment : data.ScopeStatementDevelopment || "" ,
-        WBSDictionary : data.WBSDictionary || "" ,
-        WBSStructure : data.WBSStructure || ""
-      })
-     
-      set_loading(false)
-    },
-    onError : () => {
-      toast("something went wrong ",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-    }
-  })
+ 
  
   const handleUpdate = () => {
-    set_loading(true)
-    update.mutate({
-      project_id : getProjectMetaData(),
-      DeliverableAcceptance : formData.DeliverableAcceptance ,
-      ScopeAndRequirementsIntegration : formData.ScopeAndRequirementsIntegration ,
-      ScopeBaselineMaintenance : formData.ScopeBaselineMaintenance ,
-      ScopeChange : formData.ScopeChange ,
-      ScopeStatementDevelopment : formData.ScopeStatementDevelopment ,
-      WBSDictionary : formData.WBSDictionary ,
-      WBSStructure : formData.WBSStructure 
-    })
+    //todo
   }
   
   const handleSubmit = () => {
-    set_loading(true)
-    post.mutate({
-      project_id : getProjectMetaData(),
-      DeliverableAcceptance : formData.DeliverableAcceptance ,
-      ScopeAndRequirementsIntegration : formData.ScopeAndRequirementsIntegration ,
-      ScopeBaselineMaintenance : formData.ScopeBaselineMaintenance ,
-      ScopeChange : formData.ScopeChange ,
-      ScopeStatementDevelopment : formData.ScopeStatementDevelopment ,
-      WBSDictionary : formData.WBSDictionary ,
-      WBSStructure : formData.WBSStructure 
-    })
+    //todo
   }
   return (
     <>
@@ -137,49 +39,49 @@ const Page: NextPage = () => {
           <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
          
           <TextField 
-           isLoading={get.isFetching }
+           isLoading={false }
           lable=" Scope Statement Development"
-          onChange={({target}) => setFormData({...formData , ScopeStatementDevelopment : target.value})} 
-          value={formData.ScopeStatementDevelopment}
+          onChange={({target}) => console.log("")} 
+          value={""}
           />
           <TextField 
-          isLoading={get.isFetching }
+          isLoading={false }
           lable=" WBS Structure"
-          onChange={({target}) => setFormData({...formData , WBSStructure : target.value})} 
-          value={formData.WBSStructure}
+          onChange={({target}) => console.log("")} 
+          value={""}
           />
           <TextField 
-          isLoading={get.isFetching }
+         isLoading={false }
           lable=" WBS Dictionary"
-          onChange={({target}) => setFormData({...formData , WBSDictionary : target.value})} 
-          value={formData.WBSDictionary}
+          onChange={({target}) => console.log("")} 
+          value={""}
           />
           <TextField 
-          isLoading={get.isFetching }
+          isLoading={false }
           lable=" Scope Baseline Maintenance"
-          onChange={({target}) => setFormData({...formData , ScopeBaselineMaintenance : target.value})} 
-          value={formData.ScopeBaselineMaintenance}
+          onChange={({target}) => console.log("")} 
+          value={""}
           />
 
           <TextField 
-          isLoading={get.isFetching }
+               isLoading={false }
           lable=" Scope Change"
-          onChange={({target}) => setFormData({...formData , ScopeChange : target.value})} 
-          value={formData.ScopeChange}
+          onChange={({target}) => console.log("")} 
+          value={""}
           />
 
           <TextField 
-          isLoading={get.isFetching }
+               isLoading={false }
           lable=" Deliverable Acceptance"
-          onChange={({target}) => setFormData({...formData , DeliverableAcceptance : target.value})} 
-          value={formData.DeliverableAcceptance}
+          onChange={({target}) => console.log("")} 
+          value={""}
           />
 
         <TextField 
-          isLoading={get.isFetching }
+          isLoading={false }
           lable=" Scope and Requirements Integration"
-          onChange={({target}) => setFormData({...formData , ScopeAndRequirementsIntegration : target.value})} 
-          value={formData.ScopeAndRequirementsIntegration}
+          onChange={({target}) => console.log("")} 
+          value={""}
           />
 
 
@@ -187,8 +89,8 @@ const Page: NextPage = () => {
         </div>
       </div>
     <FormButton
-    state ={isData}
-    isLoading ={post.isLoading || update.isLoading}
+    state ={true}
+    isLoading ={true}
     create={handleSubmit}
     update={handleUpdate}
 

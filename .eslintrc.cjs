@@ -5,6 +5,18 @@ const config = {
       extends: [
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
       ],
+      rules:{
+        "@typescript-eslint/no-unsafe-assignment" : "off",
+        "react/no-unescaped-entities" :  "off",
+        "react/jsx-key" : "off",
+        "@typescript-eslint/no-unsafe-call" : "off",
+        "react/display-name" : "off",
+        "@typescript-eslint/no-misused-promises" : "off",
+        "@typescript-eslint/restrict-plus-operands" : "off",
+        "@typescript-eslint/no-unsafe-member-access" : "off",
+        "@typescript-eslint/no-unsafe-argument" : "off",
+       
+      },
       files: ["*.ts", "*.tsx"],
       parserOptions: {
         project: "tsconfig.json",

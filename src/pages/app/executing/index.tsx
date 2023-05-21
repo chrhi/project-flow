@@ -2,22 +2,13 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import {  useState } from "react";
-import { toast } from "react-toastify";
 import BoardContainer from "~/components/board/BoardContainer";
 import { TaskType } from "~/components/board/Task";
 import { Header } from "~/components/header/Header";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
-import { AssignTaskPopUp } from "~/components/popup/AssignTaskPopUp";
-import { ChangeStatusPopUp } from "~/components/popup/ChangeStatusPopUp";
-import { StakeHolder } from "~/components/popup/StakeHolder";
-import { AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
-import { Form } from "~/components/used/Form";
-import { FormContainer } from "~/components/used/FormContainer";
-import { FormHead } from "~/components/used/FormHead";
-import { getProjectMetaData } from "~/lib/MetaData";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { task } from "~/types/type";
-import { api } from "~/utils/api";
+
 
 const tasksTyped : TaskType[] =[
   {
@@ -58,20 +49,7 @@ const Page: NextPage = () => {
   const set_loading = loading_Reducer(state => state.set_isLoading)
 
   // get all the tasks 
-  const tasksGet = api.tasksRouter.getAllTasks.useQuery({project_id : getProjectMetaData()},{
-    onSuccess(data) {
-      setTasks(data as task[])
-      set_loading(false)
-    },
-    onError(err) {
-      console.log(err)
-      toast("error fetching the tasks  ",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-       },
-  })
+ 
   // useEffect(() => {
   //   if( tasksGet.isFetching  ){
   //     set_loading(true)

@@ -41,41 +41,10 @@ export  function MileStonePlusButton ({ refetch} : Props) {
       setIsOpen(false)
     }
     
-    const mutation = api.MilestonesRouter.createMileStone.useMutation({
-      onSuccess: async () => {
-        closeModal()
-        toast("new milestone was added ",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         await refetch()
-
-      },
-      onError : () => {
-        closeModal()
-        toast("faild to add new item",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      }
-    })
+  
 
     const handleSubmit = () => {
-      if(!formData.name  ){
-        toast("all the fields are required",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      }
-      const id:string  = uuidV4()
-      mutation.mutate({
-        id ,
-        project_id : getProjectMetaData(),
-        name : formData.name,
-        start_at : start_at ,
-        ends_at :  end_at
-        
-      })
+     //todo
     }
    
 
@@ -167,7 +136,7 @@ export  function MileStonePlusButton ({ refetch} : Props) {
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={mutation.isLoading}
+            isLoading={false}
             className={buttonVariants({size:'sm'})}
             >
               submit

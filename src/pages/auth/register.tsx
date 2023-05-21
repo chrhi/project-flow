@@ -1,64 +1,28 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import { type NextPage } from "next";
 import { type   FormEvent, useRef , useState } from "react";
-import { toast } from "react-toastify";
 import Link from "next/link";
-import { api } from "~/utils/api";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
-import { useRouter } from "next/router";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
-type input = {
-  email : string ,
-  password : string , 
-  confirmPassword : string 
-}
 
 const Page: NextPage = () => {
-  const router = useRouter()
-  const [formData , setFormData] = useState<input>({
+  
+  const [formData , setFormData] = useState({
     password : "",
     email : "",
     confirmPassword : ""
   })
 
-  const mutation = api.userRouter.createUser.useMutation({
-    onSuccess() {
-      toast("user has been created  seccusfully",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       router.push("/auth/login")
-    },
-    onError(){
-      toast("some thing went wrong",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-    },
-    
-  })
+ 
 
   const handleSubmit = (e : FormEvent) => {
     e.preventDefault()
     if(formData.email === "" ||formData.password === "" ){
-      toast("all faileds are required",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
        return
     }
     if(formData.password !== formData.confirmPassword){
-      toast("passwords should match",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
        return
     }
-    mutation.mutate({
-      email : formData.email ,
-      password : formData.password
-    })
+  
 
   }
 
@@ -93,8 +57,7 @@ const Page: NextPage = () => {
       
           <AbdullahButton
            className={buttonVariants({size :'lg' , variant :'rukia'})}
-        
-           isLoading ={mutation.isLoading}
+           isLoading ={false}
           onClick={(e :FormEvent) => handleSubmit(e)}
       >
         créer mon compte

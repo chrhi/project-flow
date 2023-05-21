@@ -52,51 +52,11 @@ export  function CreateMettingPopup ({ refetch} : Props) {
       setIsOpen(false)
     }
     
-    const { isFetching } = api.stakHolderRouter.getAllStackHolders.useQuery({project_id : getProjectMetaData()} , {
-      onSuccess(data) {
-        const filtedData = data.map(item => ({
-          label : item.name as string,
-          value : item.id as string
-        }))
+  
 
-        setStakholders(filtedData as stekholder[])
-      },
-      onError(){
-        toast("failed to get the stakholders",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-       
-      },
-    })
-
-  const post = api.MettingRouter.createMetting.useMutation({
-    onSuccess : async () =>  {
-    
-      toast("updated successfuly",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       await refetch()
-       closeModal()
-    },
-    onError(){
-      toast("failed to create metting",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-      }
-  })
 
   const handleSubmit = () => {
-   post.mutate({
-    "TIMING OR FREQUENCY" : end ,
-    INFORMATION : formData.informations ,
-    METHOD : formData.method ,
-    project_id : getProjectMetaData(),
-    SENDER : formData.sender ,
-    STAKEHOLDER : formData.stakholders
-   })
+    //doto 
   }
      
   
@@ -203,7 +163,7 @@ export  function CreateMettingPopup ({ refetch} : Props) {
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={post.isLoading}
+            isLoading={false}
             className={buttonVariants({size:'sm' , variant:"primary"})}
             >
               submit

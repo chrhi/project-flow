@@ -6,47 +6,16 @@ import {  Fragment, useState } from 'react'
 import { api } from '~/utils/api'
 import { TextField } from '../used/TextField'
 import { AbdullahButton, buttonVariants} from '../used/AbdullahButton'
-import { toast } from 'react-toastify'
-import {v4 as uuidV4} from "uuid"
 import { Input } from '../used/Input'
-import { getProjectMetaData } from '~/lib/MetaData'
 import Select from 'react-select';
 import { STAKHOLDER_TYPES , OPTIONS} from '~/types/static/STATICDATA'
 
 
-type Props = {
-  refetch : () => Promise<any>
-}
-
-type inputs = {
- name : string ,
- role : string
- impact : string ,
-  id :  string
-}
 
 
-
-
-export  function PLusButtonStakHolder ({ refetch} : Props) {
-
-
-
+export  function PLusButtonStakHolder () {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: "",
-    role: "",
-    id: "",
-    impact: "",
-    type : "",
-    Expectations : "",
-    REQUIREMENTS: "",
-    position : "",
-    contact : "",
-    Investment : ""
-  });
-  
   function openModal() {
     setIsOpen(true);
   }
@@ -55,46 +24,10 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
     setIsOpen(false);
   }
   
-  const mutation = api.stakHolderRouter.createStackholder.useMutation({
-    onSuccess: async () => {
-      closeModal();
-      toast("new stack holder added", {
-        className: "!text-white !bg-blue-500",
-        hideProgressBar: true,
-      });
-      await refetch();
-    },
-    onError: () => {
-      closeModal();
-      toast("failed to add new item", {
-        className: "!text-white !bg-blue-500",
-        hideProgressBar: true,
-      });
-    }
-  });
+ 
   
   const handleSubmit = () => {
-    if (!formData.name || !formData.role || !formData.type || !formData.impact  || !formData.REQUIREMENTS || !formData.Investment || !formData.contact || !formData.Expectations) {
-      closeModal();
-      toast(" impossible de créer tous les champs sont obligatoires", {
-        className: "!text-white !bg-blue-500",
-        hideProgressBar: true,
-      });
-
-    }
-    const id = uuidV4();
-    mutation.mutate({
-      id,
-      project_id: getProjectMetaData(),
-      contact: formData.contact,
-      name: formData.name,
-      role: formData.role,
-      impact: formData.impact,
-      Investment : formData.Investment , 
-      type : formData.type,
-      expectations : formData.Expectations, 
-      requirements : formData.REQUIREMENTS
-    });
+  //todo
   };
 
   return (
@@ -162,7 +95,7 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
                   type de partie prenante
                   </label>
                   <Select
-                        onChange={(e) => setFormData({...formData , type : e?.value || ""})}
+                        onChange={(e) => console.log(e)}
                         name="stakholders_types"
                         options={STAKHOLDER_TYPES}
                         className="basic-multi-select"
@@ -171,18 +104,18 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
             </div> 
             <Input
               lable='Nom'
-              value={formData.name}
-              onChange={(e) => setFormData({...formData , name : e.target.value})}
+              value={""}
+              onChange={(e) => console.log(e)}
             />
              <Input
               lable='position'
-              value={formData.position}
-              onChange={(e) => setFormData({...formData , position : e.target.value})}
+              value={""}
+              onChange={(e) => console.log(e)}
             />
              <Input
               lable='coordonnées'
-              value={formData.contact}
-              onChange={(e) => setFormData({...formData , contact : e.target.value})}
+              value={""}
+              onChange={(e) => console.log(e)}
             />
 
             <div className='col-span-6 '>
@@ -190,7 +123,7 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
                 l'impact de cette partie prenante
                 </label>
                 <Select
-                     onChange={(e) => setFormData({...formData , impact : e?.value || ""})}  
+                     onChange={(e) => console.log(e)} 
                      name="stakholders"
                      options={OPTIONS}
                      className="basic-multi-select"
@@ -199,29 +132,29 @@ export  function PLusButtonStakHolder ({ refetch} : Props) {
             </div>
             <Input
               lable='Investment amount'
-              value={formData.Investment}
-              onChange={(e) => setFormData({...formData , Investment : e.target.value})}
+              value={""}
+              onChange={(e) => console.log(e)}
             />
               <TextField
               lable='ROLE / RESPONSABILITY'
-              value={formData.role}
-              onChange={(e) => setFormData({...formData , role : e.target.value})}
+              value={""}
+              onChange={(e) => console.log(e)}
             />
              <TextField
               lable='Attentes'
-              value={formData.Expectations}
-              onChange={(e) => setFormData({...formData , Expectations : e.target.value})}
+              value={""}
+              onChange={(e) => console.log(e)}
             />
             <TextField
               lable='EXIGENCES'
-              value={formData.REQUIREMENTS}
-              onChange={(e) => setFormData({...formData , REQUIREMENTS : e.target.value})}
+              value={""}
+              onChange={(e) => console.log(e)}
             />
                 
              <div className="bg-white flex justify-end items-end p-4 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={mutation.isLoading}
+            isLoading={false}
             className={`${buttonVariants({size:'sm'  , variant:"primary"})}  `}
             >
            sauvegarder

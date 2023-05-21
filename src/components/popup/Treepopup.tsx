@@ -27,28 +27,7 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
     const [input , setInput ] = useState("")
     const [update, setUpdate] = useState(false);
 
-    const post = api.tasksRouter.createTask.useMutation({
-      onSuccess :async () => {
-        toast("new task was added",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         await refetch()
-         setUpdate(update => !update)
-         await refetchMileStones()
-         setUpdate(update => !update)
-       
-         setIsOpen(false)
 
-      },
-      onError(error){
-        console.log(error)
-        toast("error adding the task",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      }
-    })
 
    const handleSubmit = () => {
 
@@ -202,7 +181,7 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
                             <AbdullahButton className={` ${buttonVariants({ variant:"secondary"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>cancel</AbdullahButton>
-                            <AbdullahButton isLoading  = {post.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Create Task</AbdullahButton>
+                            <AbdullahButton isLoading  = {false} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Create Task</AbdullahButton>
                         </div>
                  </div> 
                 </Dialog.Panel>

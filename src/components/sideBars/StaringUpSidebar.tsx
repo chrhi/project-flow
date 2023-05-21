@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import { useRouter } from 'next/router';
 import { startupSideBarReducer ,NAVS_STARTUP } from '~/store/app-reducer/side-bar-store';
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton';

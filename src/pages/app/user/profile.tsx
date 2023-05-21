@@ -22,51 +22,8 @@ const Page: NextPage = () => {
   const [photo , setPhoto ] = useState("")
 
 
-  const {refetch } = api.UserRouter_info.get_user_info.useQuery({id : getUserMetadata()}, {
-    onSuccess(data) {
-      setInputs({
-        name : data.name,
-        lastName : data.last_name,
-        phone : data.phone ,
-        email : data.email
-      })
-      setPhoto(data.photo)
-    },
-    onError() {
-      toast("Quelque chose s'est mal passé",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-      
-    },
-  })
-
-  const mutation = api.UserRouter_info.update_user_info.useMutation( {
-    onSuccess : async  () => {
-      toast("Mise à jour effectuée avec succès",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       await refetch()
-    },
-    onError() {
-      toast("Quelque chose s'est mal passé",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-      
-    },
-  })
-
   const handleSubmit = () => {
-    mutation.mutate({
-      id : getUserMetadata() ,
-      name : inputs.name ,
-      last_name : inputs.lastName ,
-      city : "" ,
-      phone : inputs.phone , 
-      photo  
-    })
+   //todo
   }
 
 
@@ -152,7 +109,7 @@ const Page: NextPage = () => {
            <div className="w-full h-[50px] items-center justify-start flex ">
              <AbdullahButton
              onClick={handleSubmit}
-             isLoading={mutation.isLoading}
+             isLoading={false}
                className={buttonVariants({size:"sm", variant:'primary'})}
                >
                         save changes

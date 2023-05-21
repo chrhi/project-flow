@@ -24,49 +24,6 @@ const Page: NextPage = () => {
 
   const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
 
-    const {refetch , isFetching } = api.InvitationRouter.getTeamMbers.useQuery({id : getUserMetadata()} , {
-      onSuccess(data: IpiData[]) {
-        setCommingData(data as [])
-        console.log(commingData)
-      },
-      onError(){
-        toast("failed to fetch the data",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         set_loading(false)
-      },
-    })
-
-    const deleteStakholder = api.stakHolderRouter.deleteStakholder.useMutation({
-      onSuccess : async () => {
-        await refetch()
-        toast("deleted successfully",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         
-         set_loading(false)
-      },
-      onError(){
-        toast("failed to delete ",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         set_loading(false)
-      },
-    })
-    useEffect(() => {
-      if(isFetching){
-        set_loading(true)
-      }else{
-        set_loading(false)
-      }
-    }, [ isFetching , set_loading])
- 
-
-
-
  
   return (
     <>

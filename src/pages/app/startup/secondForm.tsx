@@ -1,53 +1,19 @@
 import { type NextPage } from "next";
-import { api } from "~/utils/api";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/sideBars/Sidebar";
+import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import {  AbdullahTable, type ItemTable } from "~/components/used/AbdullahTable";
-import { toast } from "react-toastify";
-import { getProjectMetaData } from "~/lib/MetaData";
 
 
-type IpiData = {
-  name : string , 
-  skills : string ,
-  id :  string
-}
 const Page: NextPage = () => {
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
 
-  const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
-
-    const {refetch , isFetching } = api.teamRouter.getAllTeamMumbers.useQuery({project_id : getProjectMetaData()} , {
-      onSuccess(data) {
-        setCommingData(data as IpiData[])
-      },
-      onError(){
-        toast("failed to fetch the data",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-      },
-    })
   
 
-    const satisfyTable = () : ItemTable[] => {
-
-      const array : ItemTable[] =  commingData.map(item => (
-        {
-          id : item.id ,
-          callback : () => console.log("hi there"),
-          properties : [item.name , item.skills ]
-        } 
-      ))
-    
-     
-      return array
-    }
+   
   return (
     <>
     
@@ -61,13 +27,7 @@ const Page: NextPage = () => {
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
             <div className="col-span-6 lg:col-span-12">
 
-        <AbdullahTable
-            isLoading={isFetching}
-            title="les risk"
-            description="En PMBOK, les membres de l'équipe font partie des ressources du projet et peuvent inclure toute personne affectée au projet, y compris les membres permanents, temporaires, internes ou externes, et les spécialistes en sous-traitance."
-            headers={["risk" , "solutions" , "occurs rate"]}
-            body={satisfyTable()}
-         />
+       
             </div>
         </div>
       </div>

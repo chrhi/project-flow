@@ -8,7 +8,7 @@ import { TextField } from "~/components/used/TextField";
 import { RowGridText } from "~/components/typography/RowGridText";
 
 const Page: NextPage = () => {
-  const [inTasks , setInTasks] = useState<boolean>(true)
+ 
   const [isOpen , setIsOpen] = useState<boolean>(true)
   return (
     <>

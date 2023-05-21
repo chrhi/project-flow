@@ -1,14 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable react/no-unescaped-entities */
-import { FormEvent, useRef  , useEffect, useState} from "react"
+import {  useState} from "react"
 import { TextField } from "~/components/used/TextField";
-import { Input } from "~/components/used/Input";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { FormHead } from "~/components/used/FormHead";
 import { AbdullahTable } from "~/components/used/AbdullahTable";
-import { AbdullahButton } from "~/components/used/AbdullahButton";
-
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";

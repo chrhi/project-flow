@@ -3,7 +3,6 @@ import { Chain } from "~/components/dashboard/Chain";
 import { Header } from "~/components/header/Header";
 import { useState , } from "react";
 import { ProjectStarter } from "~/components/common/ProjectStarter";
-import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import setup from "~/assets/Starting a business project-rafiki.png"
 import planning from "~/assets/Office management-rafiki.png"
@@ -24,35 +23,7 @@ const Page: NextPage = () => {
 
   
 
-  // const set_isLoading = loading_Reducer(state => state.set_isLoadingFully)
-  const {refetch , isFetching} = api.ProjectRouter.getProjectStatus.useQuery({user_id : getUserMetadata() } , {
-    onSuccess : (data) => {
-        if(data.project_id){
-          setHasProjectStart(true)
-          setoreProjectMetaData({project_id : data.project_id as string} )
-          storeProjectCurrentPhaseAbdullah(data.current_phase as string)
-          return
-        }
-        // setHasProjectStart(false)
-        // set_isLoading({is_loading: false , fullWight:false})
-      },
-      onError : () => {
-        toast("failed to get project status",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-        //  set_isLoading({is_loading: false , fullWight:false})
-      },
 
-})
-
-// useEffect(() => {
-//   if(isFetching){
-//     set_isLoading({is_loading: true , fullWight:true})
-//   }else{
-//     set_isLoading({is_loading: false , fullWight:false})
-//   }
-// } , [isFetching , set_isLoading])
 
   return (
     <>
@@ -138,7 +109,7 @@ const Page: NextPage = () => {
             </div>
           </div>
             :
-            <ProjectStarter refetch = {refetch} />
+            // <ProjectStarter refetch = {refetch} />
           }
      
       </main>

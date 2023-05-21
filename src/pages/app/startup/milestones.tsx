@@ -1,14 +1,11 @@
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/sideBars/Sidebar";
+import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import {  AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
-import { api } from "~/utils/api";
-import { toast } from "react-toastify";
-import { getProjectMetaData } from "~/lib/MetaData";
-import { MileStonePlusButton } from "~/components/popup/MileStonePlusButton";
+
 
 
 type IpiData = {
@@ -25,40 +22,9 @@ const Page: NextPage = () => {
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
-    const {refetch , isFetching } = api.MilestonesRouter.getMileStones.useQuery({project_id : getProjectMetaData()} , {
-      onSuccess(data) {
-        setCommingData(data as IpiData[])
-       
-        
-     
-      },
-      onError(){
-        toast("failed to fetch the data",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-        
-      },
-    })
+ 
 
-    const deleteMileStone = api.MilestonesRouter.deleteMileStones.useMutation({
-      onSuccess : async () => {
-        await refetch()
-        toast("deleted successfully",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-         
-        
-      },
-      onError(){
-        toast("failed to delete ",{
-          className:" !text-white !bg-blue-500",
-          hideProgressBar: true,
-         })
-        
-      },
-    })
+ 
     
 
     const satisfyTable = () : ItemTable[] => {
@@ -67,7 +33,7 @@ const Page: NextPage = () => {
         {
           id : item.id ,
           callback : (id : string) => {
-            deleteMileStone.mutate({id})
+           //todo
           },
           properties : [item.name  ,item.start_at]
         } 
@@ -89,13 +55,13 @@ const Page: NextPage = () => {
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
             <div className="col-span-6 lg:col-span-12 ">
         <AbdullahTable
-            isLoading={isFetching}
+            isLoading={false}
           
             title="parties prenantes"
             description="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
             headers={["PRINCIPAUX JALONS " , "DATES" , "Milestone Description" , "type"]}
             body={satisfyTable()}
-            PlusButton={<MileStonePlusButton refetch={refetch} />}
+           
          />
             </div>
         </div>

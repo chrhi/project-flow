@@ -1,95 +1,24 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import {  useState } from "react";
-import { toast } from "react-toastify";
 import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-import { AssignTaskPopUp } from "~/components/popup/AssignTaskPopUp";
-import { StakeHolder } from "~/components/popup/StakeHolder";
 import { AbdullahTable, type ItemTable } from "~/components/used/AbdullahTable";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { FormHead } from "~/components/used/FormHead";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { TextField } from "~/components/used/TextField";
-import { getProjectMetaData } from "~/lib/MetaData";
-import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
-import type { task } from "~/types/type";
-import { api } from "~/utils/api";
 
-type stekholder ={
-  id : string ,
-  name : string
-}
+
+
+
 
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
-  const [tasks , setTasks ] = useState<task[]>([])
-  const [stakholders , setStakHolders ] = useState<stekholder[]>([])
-  const set_loading = loading_Reducer(state => state.set_isLoading)
-
-  // get all the tasks 
-  const tasksGet = api.tasksRouter.getAllTasks.useQuery({project_id : getProjectMetaData()},{
-    onSuccess(data) {
-      setTasks(data as task[])
-    
-    
-      set_loading(false)
-    },
-    onError(err) {
-      console.log(err)
-      toast("error fetching the tasks  ",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-       },
-  })
-
-  const { isFetching } = api.stakHolderRouter.getAllStackHolders.useQuery({project_id : getProjectMetaData()} , {
-    onSuccess(data) {
-      setStakHolders(data as stekholder[])
-      set_loading(false)
-    },
-    onError(){
-      toast("failed to get the stakholders",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       set_loading(false)
-     
-    },
-  })
-
-
  
 
-  // prepare the items to be handled by the table
-  // AssignTaskPopUp
-  const satisfieTable = () : ItemTable[] => {
-    const array : ItemTable[] =  tasks.map(item => {
-
-      const involvedStackHolders = item?.assign_to
-
-      const assignedTo : stekholder[] = []
-      involvedStackHolders?.forEach(current => {
-        const up : stekholder[]   = stakholders.filter(stakholder => stakholder.id === current)
-       if( up &&  up.length > 0  )  {
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        assignedTo.push(up[0]!)
-       }
-      })
-      return  {
-        id : item.id ,
-        callback : (id : string) => console.log(id),
-        properties : [item.name , assignedTo.map(pro => (
-          <StakeHolder id ={pro.id}  key={pro.id} text={pro.name} />
-        )) , <AssignTaskPopUp refetch={tasksGet.refetch} taskName={item.name} id={item.id} key={item.id} />]
-      } 
-    })
-    return array
-  }
+ 
   return (
     <>
       <Head>
@@ -117,7 +46,7 @@ const Page: NextPage = () => {
                     Action={false}
                     ActionName="Assign"
                     headers={["Phase" , "Key Deliverables" ]}
-                    body={satisfieTable()}
+                    body={[]}
               />
            </div>
            <RowGridText text="Project Management Processes and Tailoring Decisions"/>
