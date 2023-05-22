@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import  { useEffect, useState } from "react";
 import Switch from "react-switch";
 import { getProjectCurrentPhaseAbdullah, getProjectMetaData, storeProjectCurrentPhaseAbdullah } from "~/lib/MetaData";

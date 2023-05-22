@@ -68,53 +68,8 @@ body{
 
 
 
-.background-hero{
-    width: 100%;
-    height: 60vh;
-    position: absolute;
-    inset: 0;
-    clip-path: polygon(0 0, 100% 0, 100% 44%, 0% 100%);
-    z-index: -10;
-    background: linear-gradient(150deg,#53f 15% , #05d5ff 70% , #a6ffcb 94%);
-   
 
-}
-.footer-clip {
-    clip-path: polygon(0 34%, 100% 5%, 100% 100%, 0% 100%);
-}
-.color-burn {
-    mix-blend-mode: revert;
-}
 
-.light{
-    
-    position: absolute;
-}
-
-.light1{
-    z-index: -10;
-    width: calc(100% / 3);
-    left: calc(calc(calc(100% / 3) / 2) + calc(100% / 3));
-    bottom: auto;
-  
-    background:#1fa2ff ;
-}
-.light2{
-    z-index: -10;
-    width: calc(100% / 3);
-    left: calc(calc(calc(100% / 3) / 2) / 2);
-    bottom: auto;
-    clip-path: polygon(0 0, 100% 0, 100% 44%, 0% 100%);
-    background: #25a3fc;
-}
-.light3{
-    z-index: -10;
-    width: calc(100% / 3);
-    bottom: 0;
-    background: #1fa2ff;
-    transform: skew(12deg);
-  
-}
 
 .custom-width-8rem{
     width: calc(100% - 4rem);
@@ -132,37 +87,9 @@ body{
 
 }
 
-.node__root > circle {
-    fill: rgb(7, 67, 247);
-    r: 30;
-  }
-  
-  .node__branch > circle {
-    fill: rgb(0, 153, 255);
-    r: 20;
-  }
-  
-  .node__leaf > circle {
-    fill: rgb(0, 153, 255);
-   
-   
-  }
+
 
   .test {
     background-color: #dbe0e3;
-  }
-
-  span.ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 600ms linear;
-    background-color: rgba(108, 148, 222, 0.7);
-  }
-  @keyframes ripple {
-    to {
-      transform: scale(4);
-      opacity: 0;
-    }
   }
 

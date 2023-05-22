@@ -17,3 +17,7 @@
 //     prisma = global.prisma;
 // }
 // export default prisma;
+
+export function ahh (){
+    console.log("there us no thing")
+}

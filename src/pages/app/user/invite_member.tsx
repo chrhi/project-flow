@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable react/no-unescaped-entities */
-
 import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/header/Header";

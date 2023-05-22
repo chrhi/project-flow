@@ -13,8 +13,8 @@ export default function Timer() {
 
   return (
 
-    <div className="w-[50%]  bg-white flex items-center gap-x-4 rounded-2xl h-[200px]">
-       <Card className="w-full h-full">
+    <div className="w-[50%] p-8 bg-white flex items-center gap-x-4 rounded-2xl h-[200px]">
+       <div className="w-full h-full !border-none">
       <Flex alignItems="start">
         <div>
           <Text>how much reminds </Text>
@@ -27,7 +27,7 @@ export default function Timer() {
         <Text> full project bedget $ 220,500 </Text>
       </Flex>
       <ProgressBar percentageValue={15.9} className="mt-2" />
-    </Card>
+    </div>
     </div>
   )
 }

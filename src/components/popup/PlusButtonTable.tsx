@@ -99,17 +99,17 @@ export  function PlusButtonTable () {
             <div className="grid grid-cols-6 gap-6">
             <TextField
               lable='objectifs du projet'
-              value={false}
+              value={""}
               onChange={(e) => console.log(e)}
             />
               <TextField
               lable='criteres de succes'
-              value={false}
+              value={""}
               onChange={(e) => console.log(e)}
             />
               <TextField
               lable='approbation'
-              value={false}
+              value={""}
               onChange={(e) => console.log(e)}
             />
              <div className="bg-white py-3 col-span-6 text-right ">

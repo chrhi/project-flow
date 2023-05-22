@@ -1,60 +1,23 @@
 import { type NextPage } from "next";
-import { type  FormEvent } from "react";
-import Link from "next/link";
-import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
-import { NotAuthHeader } from "~/components/header/NotAuthHeader";
+import Background from "~/components/common/background";
+import Hero from "~/components/landing-page/Hero";
+import Nav from "~/components/landing-page/Nav";
+
+
 
 
 
 
 const Page: NextPage = () => {
 
-  const handleSubmit = (e : FormEvent) => {
-    e.preventDefault()
-  }
-
+ 
   return (
     <>
-     <NotAuthHeader  />
-
-      <main className=" w-full custom-hieght-navbar bg-gray-50 flex justify-center items-center  ">
-        
-      <div className="w-[50%] max-w-sm p-4 z-[999] bg-white border shadow-xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
-    <form className="space-y-6" action="#">
-        <h5 className="text-xl font-medium text-gray-900 ">Connexion </h5>
-        <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Votre e-mail</label>
-            <input
-            
-            type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com" required />
-        </div>
-        <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Votre mot de passe</label>
-            <input  
-          
-            type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
-        </div>
-      
-        <AbdullahButton
-           className={buttonVariants({size :'lg' , variant :'rukia'})}
-        
-           isLoading ={false}
-          onClick={(e :FormEvent) => handleSubmit(e)}
-      >
-        Connectez-vous à votre compte
-      </AbdullahButton>
-
-        <div className="text-sm font-medium text-gray-500 ">
-        Non enregistré? <Link href="/auth/register" className="text-blue-500 hover:underline ">Créer un compte</Link>
-        </div>
-        <div className="text-sm font-medium text-gray-500 ">
-        ou si vous avez une invitation? <Link href="/auth/invitation" className="text-blue-500 hover:underline ">utiliser mon invitation</Link>
-        </div>
-
-    </form>
-</div>
-
-      </main>
+       <div className="z-10">
+        <Nav />
+        <Hero  />
+       </div>
+       <Background />
     </>
   );
 };

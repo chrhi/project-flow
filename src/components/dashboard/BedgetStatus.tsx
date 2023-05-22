@@ -93,8 +93,8 @@ function BedgetStatus() {
 
     
   return (
-   <div className='w-[60%] bg-white rounded-2xl h-fit '>
-      <Card>
+   <div className='w-[60%]  bg-white rounded-2xl h-fit '>
+      <div className=" p-8 !border-none">
       <div className="md:flex justify-between">
         <div>
           <Flex
@@ -133,7 +133,7 @@ function BedgetStatus() {
         yAxisWidth={56}
         className="h-64 mt-6"
       />
-    </Card>
+    </div>
    </div>
   )
 }

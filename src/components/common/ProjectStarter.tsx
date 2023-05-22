@@ -1,13 +1,10 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Container } from '../used/Container'
 import React from 'react'
 import { Input } from '../used/Input'
 import { AbdullahButton, buttonVariants } from '../used/AbdullahButton'
 import { useState } from 'react'
-import { api } from '~/utils/api'
-import { toast } from 'react-toastify'
-import {v4 as uuidV4} from "uuid"
-import { getUserMetadata, setoreProjectMetaData } from '~/lib/MetaData'
+
+
 
 
 
@@ -20,33 +17,11 @@ export const ProjectStarter = ({refetch} : Props) => {
 
   
 
-  const {mutate , isLoading} = api.ProjectRouter.createProject.useMutation({
-    onSuccess : async ({project_id}) => {
-      toast(" the project started successfully ",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-       
-       setoreProjectMetaData({project_id })
-      await  refetch()
-    },
-    onError : () => {
-      toast(" error starting the project",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
-    }
-  })
 
   const [data , setData ] = useState<string>("")
 
   const handleClick =  () => {
-
-    const id:string  = uuidV4()
-    mutate({
-      id,
-      user_id : getUserMetadata()
-    })
+   //todo
   }
 
 
@@ -76,8 +51,8 @@ export const ProjectStarter = ({refetch} : Props) => {
         <div className='w-full h-[70px] flex justify-start items-center my-2'>
       
        <AbdullahButton
-       onClick={handleClick}
-       isLoading={isLoading}
+      
+       isLoading={true}
        className={`${buttonVariants({variant:"primary" })} `}
         >
           start my project
@@ -88,18 +63,3 @@ export const ProjectStarter = ({refetch} : Props) => {
   )
 }
 
-{/* <Input
-lable='the title of your project'
-onChange={(e) =>setData(e.target.value)}
-value={data}
-
-
-/>
- <div className=''>
-<AbdullahButton
-onClick={handleClick}
-isLoading={isLoading}
-className={buttonVariants({variant:"default" , size:"lg"})}
->
-start my project
-</AbdullahButton> */}
