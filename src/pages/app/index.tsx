@@ -1,9 +1,7 @@
 import { type NextPage } from "next";
 import { Chain } from "~/components/dashboard/Chain";
-import { Header } from "~/components/header/Header";
 import { useState , } from "react";
 import { ProjectStarter } from "~/components/common/ProjectStarter";
-import { toast } from "react-toastify";
 import setup from "~/assets/Starting a business project-rafiki.png"
 import planning from "~/assets/Office management-rafiki.png"
 import executing from "~/assets/horse jumping-cuate.png"
@@ -12,14 +10,14 @@ import closing from "~/assets/Coronavirus Border Closure-amico.png"
 import { getUserMetadata, setoreProjectMetaData, storeProjectCurrentPhaseAbdullah ,getProjectCurrentPhaseAbdullah } from "~/lib/MetaData";
 import {  PAGES } from '~/store/app-reducer/headerReducer'
 import { IsPhaseLocked } from "~/utils/access/IsPhaseLocked";
-import Head from "~/components/common/Head";
 import BedgetStatus from "~/components/dashboard/BedgetStatus";
 import Reminder from "~/components/dashboard/Reminder/ReminderPanel";
 import Timer from "~/components/dashboard/Timer";
+import AppLayout from "~/components/layout/AppLayout";
 
 const Page: NextPage = () => {
 
-  const [hasProjectStart , setHasProjectStart] = useState<boolean>(true)
+  const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
 
   
 
@@ -27,10 +25,8 @@ const Page: NextPage = () => {
 
   return (
     <>
-      <Head />
-      <Header />
-      <main className=" custopn-page-height  flex flex-col overflow-x-hidden   w-full  items-center bg-gray-50 ">
-         
+     <AppLayout>
+    
           {
             
             hasProjectStart ?
@@ -101,16 +97,16 @@ const Page: NextPage = () => {
           
             </div>
           </div>
-            :
-            // <ProjectStarter refetch = {refetch} />
-            <div>
-              <h1>hi there</h1>
-            </div>
+             :
+             <ProjectStarter  />
+           
           }
      
-      </main>
+      
+      </AppLayout>
     </>
   );
+
 };
 
 export default Page;

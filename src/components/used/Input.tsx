@@ -21,7 +21,7 @@ export  const Input = ({lable , value , onChange  , lableClassName , isLoading ,
           <Skeleton  />
        </div> 
           : 
-        <div  className='col-span-6'>
+        <div  className='col-span-6 my-4'>
            <label htmlFor={lable} className={`block text-sm font-medium leading-6 text-gray-900 ${lableClassName ? lableClassName : ""}`}>
              {lable}
            </label>
