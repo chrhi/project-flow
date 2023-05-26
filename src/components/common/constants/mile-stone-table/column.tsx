@@ -1,6 +1,6 @@
-import type { ColumnDef } from "@tanstack/react-table"
+import type  { ColumnDef } from "@tanstack/react-table"
 import { Button } from "~/components/ui/button"
-import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import {  MoreHorizontal } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,7 +12,7 @@ import {
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Stakholder = {
+export type MileStone = {
   id: string
   name: string
   email: string
@@ -20,28 +20,22 @@ export type Stakholder = {
   type : string
 }
 
-export const columns: ColumnDef<Stakholder>[] = [
+export const columns: ColumnDef<MileStone>[] = [
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: "OBJECTIFS_DU_PROJET",
+    header: "OBJECTIFS DU PROJET",
   },
   {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    accessorKey: "APPROBATION",
+    header: "APPROBATION"
   },
   {
-    accessorKey: "impact",
-    header: "Impact",
+    accessorKey: "CRITÈRES_DU_SUCCÈS",
+    header: "CRITÈRES DU SUCCÈS",
+  },
+  {
+    accessorKey: "type",
+    header: "Type",
   },
   {
     accessorKey: "type",
@@ -49,10 +43,7 @@ export const columns: ColumnDef<Stakholder>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }) => {
-      const payment = row.original
-      
- 
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -63,14 +54,10 @@ export const columns: ColumnDef<Stakholder>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
+           
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Delete </DropdownMenuItem>
+         
           </DropdownMenuContent>
         </DropdownMenu>
       )

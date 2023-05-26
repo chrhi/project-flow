@@ -12,7 +12,7 @@ import { TimePicker } from '../used/TimePicker'
 import { TextField } from '../used/TextField'
 type Props = {
   
-  refetch : () => Promise<any>
+  // refetch : () => Promise<any>
 }
 
 type inputs = {
@@ -22,7 +22,7 @@ type inputs = {
 
 
 
-export  function MileStonePlusButton ({ refetch} : Props) {
+export  function MileStoneAdd ({ } : Props) {
 
 
  

@@ -15,7 +15,7 @@ enum PHASES {
 
 datasource db {
   provider     = "mysql"
-  url          = "mysql://c0vv31euez8y28lsjmcz:pscale_pw_zujEktksXZYsC0WINtadDkn9lpDda79FsjKcRu6zMv8@aws.connect.psdb.cloud/projectflow?sslaccept=strict"
+  url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
@@ -27,41 +27,52 @@ model User {
   password  String?
   createdAt DateTime  @default(now())
   Project   Project[]
-  sessions  Session[]
+  
 
   @@index([id])
 }
 
-model Session {
+model MileStones {
   id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projectId String
+  name      String?
+  description String?
+  dueDate     DateTime?
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([id])
+  @@index([projectId])
 }
 
 model Project {
   id            String          @id @default(uuid())
   title         String?
-  startAt       String?
-  endsAt        String?
+  startAt       DateTime?
+  endsAt        DateTime?
   currentPhase  String?
   userId        String
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
-  StakHolder    StakHolder[]
+  StakHolder    StakeHolder[]
   Risk          Risk[]
-  Resource      Resource[]
+  Resource      Resources[]
   Comunications Comunications[]
+  MileStones    MileStones[]
 
   @@index([id])
   @@index([userId])
 }
 
-model StakHolder {
+model StakeHolder {
   id        String  @id @default(uuid())
   projectId String
   name      String?
-
+  type      String
+  position  String?
+  impact    String?
+  role      String?
+  Requirements String?
+  contact     String?
+  InvestmentAmount String?
+  Expectations    String?  
   project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   @@index([id])
@@ -72,18 +83,21 @@ model Risk {
   id        String  @id @default(uuid())
   projectId String
   name      String?
-
+  description String?
+  levelOfDanger String?
+  solutions  String?
   project Project @relation(fields: [projectId], references: [id])
-
   @@index([id])
   @@index([projectId])
 }
 
-model Resource {
+model Resources {
   id        String  @id @default(uuid())
   projectId String
   name      String?
-
+  description String?
+  cost   Float?
+  quality String?
   project Project @relation(fields: [projectId], references: [id])
 
   @@index([id])

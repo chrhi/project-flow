@@ -11,7 +11,7 @@ import { Button } from '../ui/button'
 
 
 
-export  function PLusButtonStakHolder () {
+export  function ResourceAdd () {
   const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -37,7 +37,7 @@ export  function PLusButtonStakHolder () {
           onClick={openModal}
     
         >
-         Create stakeholder
+         Add new Resource
         </Button>
    
   
@@ -74,7 +74,7 @@ export  function PLusButtonStakHolder () {
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
                   >
-               <div><p className='text-md text-gray-700   ml-1'>Enrichir l'écosystème des parties prenantes</p></div>  
+               <div><p className='text-md text-gray-700   ml-1'>Ajouter un nouvel outil au tableau</p></div>  
                <div>
                     <button
                           onClick={closeModal}
@@ -90,7 +90,7 @@ export  function PLusButtonStakHolder () {
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <div className='col-span-6 '>
                   <label  className="block text-sm font-medium leading-6 text-gray-900">
-                  type de partie prenante
+                  Quanlity
                   </label>
                   <Select
                         onChange={(e) => console.log(e)}
@@ -105,49 +105,20 @@ export  function PLusButtonStakHolder () {
               value={""}
               onChange={(e) => console.log(e)}
             />
-             <Input
-              lable='position'
+            
+            
+             <TextField
+              lable='description'
               value={""}
               onChange={(e) => console.log(e)}
             />
              <Input
-              lable='coordonnées'
+              lable='cost'
               value={""}
               onChange={(e) => console.log(e)}
             />
 
-            <div className='col-span-6 '>
-                <label  className="block text-sm font-medium leading-6 text-gray-900">
-                l'impact de cette partie prenante
-                </label>
-                <Select
-                     onChange={(e) => console.log(e)} 
-                     name="stakholders"
-                     options={OPTIONS}
-                     className="basic-multi-select"
-                    classNamePrefix="select"
-                   />
-            </div>
-            <Input
-              lable='Investment amount'
-              value={""}
-              onChange={(e) => console.log(e)}
-            />
-              <TextField
-              lable='ROLE / RESPONSABILITY'
-              value={""}
-              onChange={(e) => console.log(e)}
-            />
-             <TextField
-              lable='Attentes'
-              value={""}
-              onChange={(e) => console.log(e)}
-            />
-            <TextField
-              lable='EXIGENCES'
-              value={""}
-              onChange={(e) => console.log(e)}
-            />
+           
                 
              <div className="bg-white flex justify-end items-end p-4 col-span-6 text-right ">
             <AbdullahButton

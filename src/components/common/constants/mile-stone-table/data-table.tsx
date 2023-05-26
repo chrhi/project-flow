@@ -1,16 +1,16 @@
 import {
-  type  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-  getPaginationRowModel,
-  type  SortingState,
-  getSortedRowModel,
-  type  VisibilityState,
-} from "@tanstack/react-table"
+    type  ColumnDef,
+    flexRender,
+    getCoreRowModel,
+    useReactTable,
+    getPaginationRowModel,
+    type  SortingState,
+    getSortedRowModel,
+    type  VisibilityState,
+  } from "@tanstack/react-table"
   import { useState } from "react"
   import { Button } from "~/components/ui/button"
-  import { ResourceAdd } from "~/components/popup/resource-add"
+ 
   import {
     Table,
     TableBody,
@@ -26,6 +26,7 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
   } from "~/components/ui/dropdown-menu"
+import { MileStoneAdd } from "~/components/popup/mile-stone-add"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -150,7 +151,7 @@ import {
           >
             Next
           </Button>
-          <ResourceAdd />
+          <MileStoneAdd />
         </div>
       </>
   

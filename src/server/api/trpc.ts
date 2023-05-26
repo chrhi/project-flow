@@ -6,7 +6,10 @@ type CreateContextOptions = Record<string, never>;
 
 
 const createInnerTRPCContext = (_opts: CreateContextOptions) => {
+  const {req , res } = _opts
   return {
+    req , 
+    res ,
     prisma
   };
 };

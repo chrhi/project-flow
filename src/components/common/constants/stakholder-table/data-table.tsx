@@ -1,16 +1,16 @@
 import {
-  ColumnDef,
+  type  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
   getPaginationRowModel,
-  SortingState,
+  type  SortingState,
   getSortedRowModel,
-  VisibilityState,
+  type  VisibilityState,
 } from "@tanstack/react-table"
 import { useState } from "react"
 import { Button } from "~/components/ui/button"
-
+import { PLusButtonStakHolder } from "~/components/popup/PLusButtonStakHolder";
 import {
   Table,
   TableBody,
@@ -150,6 +150,7 @@ export function DataTable<TData, TValue>({
         >
           Next
         </Button>
+        <PLusButtonStakHolder />
       </div>
     </>
 

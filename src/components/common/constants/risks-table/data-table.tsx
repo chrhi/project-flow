@@ -1,16 +1,16 @@
 import {
-    ColumnDef,
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-    getPaginationRowModel,
-    SortingState,
-    getSortedRowModel,
-    VisibilityState,
-  } from "@tanstack/react-table"
+  type  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  getPaginationRowModel,
+  type  SortingState,
+  getSortedRowModel,
+  type  VisibilityState,
+} from "@tanstack/react-table"
   import { useState } from "react"
   import { Button } from "~/components/ui/button"
-  
+  import { RiskAdd } from "~/components/popup/risk-add"
   import {
     Table,
     TableBody,
@@ -150,6 +150,7 @@ import {
           >
             Next
           </Button>
+          <RiskAdd />
         </div>
       </>
   

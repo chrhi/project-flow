@@ -9,7 +9,7 @@ import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { getColor } from "~/utils/formate/getColor";
-import { PLusButtonStakHolder } from "~/components/popup/PLusButtonStakHolder";
+
 import { Badge } from "@tremor/react";
 import { DataTable } from "~/components/common/constants/stakholder-table/data-table";
 import { Stakholder , columns } from "~/components/common/constants/stakholder-table/column";

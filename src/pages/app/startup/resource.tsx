@@ -2,12 +2,12 @@ import { FormEvent,  useState } from "react";
 import { Form } from "~/components/used/Form";
 import { FormButton } from "~/components/used/FormButton";
 import { FormContainer } from "~/components/used/FormContainer";
-import { TextField } from "~/components/used/TextField";
+
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
-import { DataTable } from "~/components/common/constants/stakholder-table/data-table";
-import { Stakholder , columns } from "~/components/common/constants/stakholder-table/column";
+import { DataTable } from "~/components/common/constants/resource-table/data-table";
+import { Stakholder , columns } from "~/components/common/constants/resource-table/column";
 
 
 interface inputSchema {
