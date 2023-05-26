@@ -20,9 +20,9 @@ const List = [
   { name: 'Initialisation', path:'/app/startup', navs: NAVS_STARTUP.SETUP },
   { name: 'Parties prenantes', path: '/app/startup/stakeholders', navs: NAVS_STARTUP.STAKEHOLDER },
   { name: 'Objets du projet', path: '/app/startup/tables', navs: NAVS_STARTUP.TABLE },
-  { name: 'Ressource declaration', path:'/app/startup/setup', navs: NAVS_STARTUP.STARTUP },
+  { name: 'Ressource declaration', path:'/app/startup/resource', navs: NAVS_STARTUP.STARTUP },
   { name: 'Jalons', path: '/app/startup/milestones', navs: NAVS_STARTUP.MILESTONES },
-  { name: 'risks', path: '/app/startup/secondForm', navs: NAVS_STARTUP.SECONDFORM },
+  { name: 'risks', path: '/app/startup/risks', navs: NAVS_STARTUP.SECONDFORM },
 ];
 
 export const Sidebar = ({ isOpen, setIsOpen }: Props) => {

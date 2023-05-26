@@ -1,27 +1,37 @@
 import { TRPCError } from "@trpc/server"
-import { prisma } from "../db"
 import bcrypt from "bcrypt"
+import {sign } from "jsonwebtoken"
+import { z } from "zod";
+import { publicProcedure } from "../api/trpc";
 
 
 
 
-export const verifieUser =  async ({email , password} :{email : string , password : string}) => {
-  //get the user from prisma
+export const verifyUser = publicProcedure
+.input(z.object({ email: z.string() , password : z.string() }) )
+.mutation(async ({ input  , ctx}) => {
+   //get the user from prisma
 
-  const user = await prisma.user.findFirstOrThrow({
+   const user = await ctx.prisma.user.findFirstOrThrow({
     where:{
-      email 
+      email : input.email
     }
   }).catch(error => {
     throw new Error(error)
   })
   if(!user.password) throw new Error("user dont have password")
   // see if user password is currect
-  bcrypt.compare(password, user?.password, (err:Error | undefined , data:any) => {
+  bcrypt.compare(input.password, user?.password, (err:Error | undefined , data:any) => {
     //if error than throw error
     if (err)  {throw new TRPCError({code: 'UNAUTHORIZED',message: "password is not currect",})}    
   })
+  const jwt = sign({
+    id : user?.id  , 
+    email :  user?.email ,
+   }, process.env.JWT_SECRET_KEY_SUPABASE!)
 
-  return user 
+  return {...user , jwt} 
+ 
+})
 
-}
+

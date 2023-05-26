@@ -9,7 +9,7 @@ type Reducer ={
    first_name : string ,
    last_name : string 
    set_project_id : (input : { project_id : string }) => void ,
-   set_user: (input : { email: string , photo: string , first_name : string , last_name : string}) => void 
+   set_user: (input : { email: string , photo: string , name : string}) => void 
 }
 
 export const userReducer = create<Reducer ,[["zustand/persist",unknown]]>(
@@ -23,8 +23,8 @@ export const userReducer = create<Reducer ,[["zustand/persist",unknown]]>(
         id: "",
         project_id : "" ,
         set_project_id : (input :{ project_id: string}) => set({ project_id: input.project_id}) ,
-        set_user:(input :{ email: string , photo: string , first_name : string , last_name : string}) => set({ 
-             email : input.email , photo: input.photo , first_name : input.first_name , last_name : input.last_name
+        set_user:(input :{ email: string , photo: string , name : string }) => set({ 
+             email : input.email , photo: input.photo , first_name : input.name , last_name : ""
             }),
     }),
     {

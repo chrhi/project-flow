@@ -11,43 +11,34 @@ import { getProjectMetaData } from "~/lib/MetaData";
 import { getColor } from "~/utils/formate/getColor";
 import { PLusButtonStakHolder } from "~/components/popup/PLusButtonStakHolder";
 import { Badge } from "@tremor/react";
-import { NewAbdullahTable } from "~/components/common/NewAbdullahTable";
+import { DataTable } from "~/components/common/constants/stakholder-table/data-table";
+import { Stakholder , columns } from "~/components/common/constants/stakholder-table/column";
 
 
-type IpiData = {
-  name : string , 
-  role : string ,
-  impact : string
-  id :  string
-}
 
-const columns = [
+
+const data : Stakholder[] =  [
   {
-      name: 'name',
-      selector: (row: { name: any; }) : any => row.name,
-      sortable: true,
-      
+    id: "728ed52f",
+    name : "abdullah",
+    email: "salah.bvb44@gmail.com",
+    impact: "m@example.com",
+    type : "active"
   },
   {
-    name: 'impact',
-    selector: (row: { impact: any; }) : any => row.impact,
-    sortable: true,
-},
-{
-  name: 'type',
-  selector: (row: { type: any; }) : any => row.type,
-  sortable: true,
-},
-{
-  name: 'contact',
-  selector: (row: { contact: any; }) : any => row.contact,
-  sortable: true,
-  
-},
+    id: "728ed545f",
+    name : "chcheri",
+    email: "mahdi.chahri55@gmail.com",
+    impact: "low",
+    type : "active"
+  },
+]
 
 
 
-];
+
+
+
 
 const Page: NextPage = () => {
 
@@ -68,13 +59,7 @@ const Page: NextPage = () => {
         <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
       
-            <NewAbdullahTable 
-                            title="parties prenantes"
-                            description="Les parties prenantes (ou stakeholders en anglais) sont des individus ou des groupes ayant un intérêt ou une participation dans un projet."
-                            columns={columns}
-                            data={[]}
-                            addButton={<PLusButtonStakHolder  />}
-            />
+            <DataTable columns={columns} data={data} /> 
             </div>
         </div>
       </div>

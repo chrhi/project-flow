@@ -7,7 +7,8 @@ import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
 import { storeUserMetadata } from "~/lib/MetaData";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
-
+import { api } from "~/utils/api";
+import Cookies from "js-cookie";
 
 
 type input = {
@@ -28,16 +29,31 @@ const Page: NextPage = () => {
     email : "",
   })
 
-
+  const mutation = api.userRouter.verifyUser.useMutation({
+    onSuccess : async  (data) =>  {
+     
+      Cookies?.set("abdullah-access-token" , data.jwt)
+      storeUserMetadata({user_id : data.id})
+      set_user({email : data.email as string , name : data.name as string   , photo : data.image as string})
+      await router.push("/app")
+      console.log(data)
+    },
+    onError(error){
+      toast.error("something went wrong")
+      console.log(error)
+    }
+  })
   const handleSubmit = (e : FormEvent) => {
     e.preventDefault()
     if(formData.email === "" ||formData.password === "" ){
-      toast("all faileds are required",{
-        className:" !text-white !bg-blue-500",
-        hideProgressBar: true,
-       })
+     
+       toast.error("all faileds are required")
        return
     }
+    mutation.mutate({
+      email : formData.email ,
+      password : formData.password
+    })
   
   
   }
@@ -69,7 +85,7 @@ const Page: NextPage = () => {
         <AbdullahButton
            className={buttonVariants({size :'lg' , variant :'rukia'})}
         
-           isLoading ={false}
+           isLoading ={mutation.isLoading}
           onClick={(e :FormEvent) => handleSubmit(e)}
       >
         Connectez-vous à votre compte

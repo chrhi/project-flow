@@ -1,14 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable react/no-unescaped-entities */
 import { FormEvent,  useState } from "react";
 import { Form } from "~/components/used/Form";
 import { FormButton } from "~/components/used/FormButton";
 import { FormContainer } from "~/components/used/FormContainer";
 import { TextField } from "~/components/used/TextField";
-
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
+import { DataTable } from "~/components/common/constants/stakholder-table/data-table";
+import { Stakholder , columns } from "~/components/common/constants/stakholder-table/column";
+
 
 interface inputSchema {
   projectObjectOpportunity : string ,
@@ -32,7 +32,22 @@ const Page: NextPage = () => {
  
   })
 
- 
+  const data : Stakholder[] =  [
+    {
+      id: "728ed52f",
+      name : "abdullah",
+      email: "salah.bvb44@gmail.com",
+      impact: "m@example.com",
+      type : "active"
+    },
+    {
+      id: "728ed545f",
+      name : "chcheri",
+      email: "mahdi.chahri55@gmail.com",
+      impact: "low",
+      type : "active"
+    },
+  ]
   
   const handleCreate = (event : FormEvent) => {
     //todo handle this later
@@ -59,37 +74,10 @@ const Page: NextPage = () => {
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
-          <TextField
-            isLoading={false}
-            lable="Objectif et opportunité de projet :  "
-            onChange={(e) => setFormData({...formData ,projectObjectOpportunity : e.target.value})}
-            value={formData.projectObjectOpportunity}
-          />
-          <TextField
-            isLoading={false}
-            lable="Description de projet :   "
-            onChange={(e) => setFormData({...formData ,projectDescription : e.target.value})}
-            value={formData.projectDescription}
-          />
-          <TextField
-            isLoading={false}
-            lable="Exigences à haut niveau :  "
-            onChange={(e) => setFormData({...formData ,highLevelRequirement : e.target.value})}
-            value={formData.highLevelRequirement}
-          />
-          <TextField
-            isLoading={false}
-            lable="Risques à haut niveau :  "
-            onChange={(e) => setFormData({...formData ,hightLevelRisks : e.target.value})}
-            value={formData.hightLevelRisks}
-          />
-
-        <FormButton
-           isLoading={false}
-           state={false}
-           create={handleCreate}
-           update={handleUpdate}
-         />
+        <div className="col-span-6 lg:col-span-12">
+        <DataTable columns={columns} data={data} /> 
+        </div>
+    
         </div>
       </div>
     
