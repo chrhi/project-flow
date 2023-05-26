@@ -1,8 +1,9 @@
 import { type NextPage } from "next";
-import { type   FormEvent, useRef , useState } from "react";
+import { type   FormEvent,  useState } from "react";
 import Link from "next/link";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
+import toast from 'react-hot-toast';
 
 const Page: NextPage = () => {
   
@@ -17,9 +18,11 @@ const Page: NextPage = () => {
   const handleSubmit = (e : FormEvent) => {
     e.preventDefault()
     if(formData.email === "" ||formData.password === "" ){
+      toast.error("both email and password are required")
        return
     }
     if(formData.password !== formData.confirmPassword){
+      toast.error("passwords should match")
        return
     }
   

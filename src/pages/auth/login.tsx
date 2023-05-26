@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { type NextPage } from "next";
 import { type  FormEvent , useState } from "react";
 import { toast } from "react-toastify";
@@ -10,6 +7,7 @@ import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
 import { storeUserMetadata } from "~/lib/MetaData";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
+
 
 
 type input = {

@@ -4,9 +4,99 @@
 generator client {
   provider = "prisma-client-js"
 }
+
+enum PHASES {
+  STARTUP
+  PLANNING
+  EXECUTING
+  CONTROLLING
+  CLOSING
+}
+
 datasource db {
-  provider = "mysql"
-  url = env("DATABASE_URL")
+  provider     = "mysql"
+  url          = "mysql://c0vv31euez8y28lsjmcz:pscale_pw_zujEktksXZYsC0WINtadDkn9lpDda79FsjKcRu6zMv8@aws.connect.psdb.cloud/projectflow?sslaccept=strict"
   relationMode = "prisma"
 }
 
+model User {
+  id        String    @id @default(uuid())
+  name      String?
+  email     String?   @unique
+  image     String?
+  password  String?
+  createdAt DateTime  @default(now())
+  Project   Project[]
+  sessions  Session[]
+
+  @@index([id])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Project {
+  id            String          @id @default(uuid())
+  title         String?
+  startAt       String?
+  endsAt        String?
+  currentPhase  String?
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  StakHolder    StakHolder[]
+  Risk          Risk[]
+  Resource      Resource[]
+  Comunications Comunications[]
+
+  @@index([id])
+  @@index([userId])
+}
+
+model StakHolder {
+  id        String  @id @default(uuid())
+  projectId String
+  name      String?
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([id])
+  @@index([projectId])
+}
+
+model Risk {
+  id        String  @id @default(uuid())
+  projectId String
+  name      String?
+
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@index([id])
+  @@index([projectId])
+}
+
+model Resource {
+  id        String  @id @default(uuid())
+  projectId String
+  name      String?
+
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@index([id])
+  @@index([projectId])
+}
+
+model Comunications {
+  id        String  @id @default(uuid())
+  projectId String
+  name      String?
+
+  project Project @relation(fields: [projectId], references: [id])
+
+  @@index([id])
+  @@index([projectId])
+}

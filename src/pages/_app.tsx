@@ -9,7 +9,7 @@ import 'reactflow/dist/style.css';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { ReactFlowProvider } from 'reactflow';
 import { AccessPopUp } from '~/components/common/AccessPopUp';
-
+import  { Toaster } from 'react-hot-toast';
 
 
 const MyApp: AppType = ({ Component, pageProps }) => {
@@ -20,7 +20,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       <NextNProgress options={{ showSpinner: false }} />
       <Loading />
       <AccessPopUp />
-     
+      <Toaster
+       position="top-right"
+       reverseOrder={false}
+      /> 
     
       <ReactFlowProvider>
         <Component {...pageProps} />
