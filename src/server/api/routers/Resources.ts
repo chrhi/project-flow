@@ -25,14 +25,14 @@ export const resourcesRouter = createTRPCRouter({
     }),
     getResources : publicProcedure
     .input(z.object({ 
-      project_id: z.string().uuid(),
+      projectId: z.string().uuid(),
      
      }))
     .query( async({ input  , ctx }) => {
 
       const resources =  await ctx.prisma.resources.findMany({
         where:{
-            projectId : input.project_id,  
+            projectId : input.projectId,  
         }
       })
     return resources

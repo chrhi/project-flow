@@ -2,66 +2,50 @@ import { FormEvent,  useState } from "react";
 import { Form } from "~/components/used/Form";
 import { FormButton } from "~/components/used/FormButton";
 import { FormContainer } from "~/components/used/FormContainer";
-
+import { api } from "~/utils/api";
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { DataTable } from "~/components/common/constants/resource-table/data-table";
-import { Stakholder , columns } from "~/components/common/constants/resource-table/column";
+import { Resource , columns } from "~/components/common/constants/resource-table/column";
+import toast from "react-hot-toast";
+import { getProjectMetaData } from "~/lib/MetaData";
 
 
-interface inputSchema {
-  projectObjectOpportunity : string ,
-  projectDescription : string ,
-  highLevelRequirement : string ,
- hightLevelRisks : string,
 
-}
+
 
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [resource , setresource] = useState<Resource[]>([] as Resource[])
 
 
-
-  const [formData , setFormData] = useState<inputSchema>({
-    projectObjectOpportunity : "",
-    projectDescription : "",
-    highLevelRequirement : "",
-    hightLevelRisks : "",
- 
+  const {isLoading , refetch} = api.resourcesRouter.getResources.useQuery({projectId : getProjectMetaData()}, {
+    onSuccess(data) {
+      const AbdullahData  = data.map(item =>{
+        return {
+          id : item.id,
+          name : item.name,
+          description :  item.description,
+          cost:  item.cost,
+          quality : item.quality,
+        }
+      })
+      setresource( AbdullahData as Resource[] )
+    },
+    onError(){
+      toast.error("error fetching the data")
+    },
+    retryOnMount : false 
   })
 
-  const data : Stakholder[] =  [
-    {
-      id: "728ed52f",
-      name : "abdullah",
-      email: "salah.bvb44@gmail.com",
-      impact: "m@example.com",
-      type : "active"
-    },
-    {
-      id: "728ed545f",
-      name : "chcheri",
-      email: "mahdi.chahri55@gmail.com",
-      impact: "low",
-      type : "active"
-    },
-  ]
   
-  const handleCreate = (event : FormEvent) => {
-    //todo handle this later
-    event.preventDefault()
-   
-   
+
+
+
   
-  }
-  const handleUpdate = (event : FormEvent) => {
-    //todo handle later
-    event.preventDefault()
-  
- 
-  }
+
 
   return (
     <>
@@ -75,7 +59,7 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
         <div className="col-span-6 lg:col-span-12">
-        <DataTable columns={columns} data={data} /> 
+        <DataTable refetch={refetch} columns={columns} data={resource} /> 
         </div>
     
         </div>

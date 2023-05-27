@@ -8,11 +8,22 @@ import { Input } from '../used/Input'
 import Select from 'react-select';
 import { STAKHOLDER_TYPES , OPTIONS} from '~/types/static/STATICDATA'
 import { Button } from '../ui/button'
+import toast from 'react-hot-toast'
+import { getProjectMetaData } from '~/lib/MetaData'
 
+type Props = {
+  refetch : () => Promise<void>
+}
 
-
-export  function ResourceAdd () {
+export  function ResourceAdd ({refetch} : Props ) {
   const [isOpen, setIsOpen] = useState(false);
+  const [data , setData ] = useState({
+    name : "" ,
+    description: "",
+    cost : 0,
+    quality : ""
+
+  })
 
   function openModal() {
     setIsOpen(true);
@@ -22,10 +33,29 @@ export  function ResourceAdd () {
     setIsOpen(false);
   }
   
- 
+ const mutation = api.resourcesRouter.add_resource.useMutation({
+  onSuccess : async () => {
+    closeModal()
+    toast.success("un nouvel outil est ajouté")
+    await refetch()
+  },
+  onError (){
+    toast.error("n'a pas réussi à créer une partie prenante")
+  }
+ })
   
   const handleSubmit = () => {
-  //todo
+    if(!data.name || !data.description || !data.cost || !data.quality ){
+      toast.error("tous les champs sont obligatoires")
+      return 
+    }
+    mutation.mutate({
+      project_id : getProjectMetaData(),
+      name : data.name ,
+      cost : data.cost , 
+      description : data.description ,
+      quality : data.quality 
+    })
   };
 
   return (
@@ -90,10 +120,10 @@ export  function ResourceAdd () {
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <div className='col-span-6 '>
                   <label  className="block text-sm font-medium leading-6 text-gray-900">
-                  Quanlity
+                  quality
                   </label>
                   <Select
-                        onChange={(e) => console.log(e)}
+                        onChange={(e) => setData({...data , quality : e?.value || ""})}
                         name="stakholders_types"
                         options={STAKHOLDER_TYPES}
                         className="basic-multi-select"
@@ -102,20 +132,21 @@ export  function ResourceAdd () {
             </div> 
             <Input
               lable='Nom'
-              value={""}
-              onChange={(e) => console.log(e)}
+              value={data.name}
+              onChange={(e) => setData({...data , name : e.target.value})}
             />
             
             
              <TextField
               lable='description'
-              value={""}
-              onChange={(e) => console.log(e)}
+              value={data.description}
+              onChange={(e) => setData({...data , description : e.target.value})}
             />
              <Input
               lable='cost'
-              value={""}
-              onChange={(e) => console.log(e)}
+              value={data.cost}
+
+              onChange={(e) => setData({...data , cost : Number(e.target.value)})}
             />
 
            
@@ -123,7 +154,7 @@ export  function ResourceAdd () {
              <div className="bg-white flex justify-end items-end p-4 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={false}
+            isLoading={mutation.isLoading}
             className={`${buttonVariants({size:'sm'  , variant:"primary"})}  `}
             >
            sauvegarder

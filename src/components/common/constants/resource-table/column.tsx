@@ -12,40 +12,30 @@ import {
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Stakholder = {
+export type Resource = {
   id: string
   name: string
-  email: string
-  impact : string 
-  type : string
+  description: string
+  cost : number 
+  quality : string
 }
 
-export const columns: ColumnDef<Stakholder>[] = [
+export const columns: ColumnDef<Resource>[] = [
   {
     accessorKey: "name",
     header: "Name",
   },
   {
-    accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    accessorKey: "description",
+    header: "Description"
   },
   {
-    accessorKey: "impact",
-    header: "Impact",
+    accessorKey: "cost",
+    header: "Cost",
   },
   {
-    accessorKey: "type",
-    header: "Type",
+    accessorKey: "quality",
+    header: "Quality",
   },
   {
     id: "actions",
