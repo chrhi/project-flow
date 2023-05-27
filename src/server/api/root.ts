@@ -1,9 +1,13 @@
 import { createTRPCRouter } from "~/server/api/trpc";
 import { userRouter } from "../auth";
+import { StakeHolderRouter } from "./routers/stakeholders";
+import { projectRouter } from "./routers/project";
 
 
 export const appRouter = createTRPCRouter({
-    userRouter
+    userRouter,
+    StakeHolderRouter,
+    projectRouter
 });
 
 // export type definition of API

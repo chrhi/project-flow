@@ -1,3 +1,4 @@
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
@@ -9,8 +10,8 @@ export const projectRouter = createTRPCRouter({
     .input(z.object({
       user_id: z.string(),
       title: z.string(),
-      startAt: z.string(),
-      endsAt: z.string()
+      startAt: z.date(),
+      endsAt: z.date()
     }))
     .mutation(async ({ input, ctx }) => {
       // Create a new project using Prisma
@@ -18,10 +19,11 @@ export const projectRouter = createTRPCRouter({
         data: {
           userId: input.user_id,
           title: input.title,
-          startAt: input.startAt,
-          endsAt: input.endsAt
+          startAt: input.startAt.toString(),
+          endsAt: input.endsAt.toString()
         }
-      });
+      }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
+      
     }),
 
   // Define get_project procedure

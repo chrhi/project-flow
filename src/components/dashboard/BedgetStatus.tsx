@@ -93,7 +93,7 @@ function BedgetStatus() {
 
     
   return (
-   <div className='w-[60%]  bg-white rounded-2xl h-fit '>
+   <div className='w-full duration-500 transform hover:-translate-y-1 hover:shadow-2xl  bg-white rounded-2xl h-fit '>
       <div className=" p-8 !border-none">
       <div className="md:flex justify-between">
         <div>

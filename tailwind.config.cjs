@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable */
+//@ts-ignore
 const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
@@ -78,7 +80,12 @@ module.exports = {
   },
   
   plugins: [
-   
     require("@tailwindcss/forms"),
+    // @ts-ignore
+    require("tailwind-scrollbar-hide"),
+    // @ts-ignore
+    require("tailwindcss-radix")(),
+    // @ts-ignore
+    require("tailwindcss-animate"),
 ],
 }

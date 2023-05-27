@@ -11,7 +11,7 @@ const AppLayout: FC<AppLayoutAbdullahProps> = ({children}) => {
     <>
     <Head />
     <Header />
-    <main className=" custopn-page-height  flex flex-col overflow-x-hidden  justify-center w-full  items-center bg-stone-50 ">
+    <main className=" custopn-page-height  flex flex-col overflow-x-hidden scrollbar-hide  justify-center container  items-center bg-stone-50 ">
     {children}
     </main>
     </>

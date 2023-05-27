@@ -1,43 +1,24 @@
-import { type FC , useState } from 'react'
-import { DateRangePicker, type DateRangePickerValue } from "@tremor/react";
-import { fr } from "date-fns/locale";
-import Skeleton from 'react-loading-skeleton';
+import type { FC, Dispatch, SetStateAction } from 'react'; // Importing necessary types from 'react'
+import { DateRangePicker, type DateRangePickerValue } from "@tremor/react"; // Importing DateRangePicker and DateRangePickerValue from "@tremor/react"
+import { fr } from "date-fns/locale"; // Importing the 'fr' locale from date-fns library
 
-
+// Defining the interface for NewTimePickerAbdullahProps
 interface NewTimePickerAbdullahProps {
-  text : string, 
-  isLoading : boolean
+  text: string; // A string prop called 'text'
+  value: DateRangePickerValue; // A prop of type DateRangePickerValue called 'value'
+  setValue: Dispatch<SetStateAction<DateRangePickerValue>>; // A prop of type Dispatch<SetStateAction<DateRangePickerValue>> called 'setValue'
 }
 
-const NewTimePicker: FC<NewTimePickerAbdullahProps> = ({text , isLoading}) => {
-    const [value, setValue] = useState<DateRangePickerValue>([
-        new Date(2022, 1, 1),
-        new Date(),
-      ])
-      
+// Defining the NewTimePicker component
+const NewTimePicker: FC<NewTimePickerAbdullahProps> = ({ text, value, setValue }) => {
   return (
-     <>
-      {
-        isLoading ? 
-       
-        <div className='col-span-6 flex flex-col items-start h-full gap-y-4 justify-center'>
-          <Skeleton style={{width:"50%"}} />  
-          <Skeleton  /> 
-       </div>
-       :
-      
-                <div className='col-span-6 flex flex-col items-start h-full gap-y-4 justify-center'>
-                    <div className='w-full h-[20px] flex justify-start items-center'>
-                    <p className="block text-sm font-medium leading-6 !font-poppins text-gray-700 truncate" >{text}</p>
-                    </div>
-                <DateRangePicker className="w-full h-[30px] mx-auto"  value={value}  onValueChange={setValue} locale={fr} dropdownPlaceholder="Seleccionar" />
-               </div>
-      }
-        
-   
-    </>
-  )
-  
-}
+    <div className='col-span-6 flex flex-col items-start h-full gap-y-4 justify-center'>
+      <div className='w-full h-[20px] flex justify-start items-center'>
+        <p className="block text-sm font-medium leading-6 !font-poppins text-gray-700 truncate">{text}</p>
+      </div>
+      <DateRangePicker className="w-full h-[30px] mx-auto" value={value} onValueChange={setValue} locale={fr} dropdownPlaceholder="Seleccionar" />
+    </div>
+  );
+};
 
-export default NewTimePicker
+export default NewTimePicker; // Exporting the NewTimePicker component
