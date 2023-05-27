@@ -36,8 +36,8 @@ model User {
 model MileStones {
   id           String   @id @default(cuid())
   projectId String
-  name      String?
-  description String?  @db.VarChar(1000)
+  name      String?    
+  description String?  @db.LongText
   dueDate     DateTime?
   project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   @@index([id])
@@ -69,11 +69,11 @@ model StakeHolder {
   type      String
   position  String?
   impact    String?
-  role      String?   @db.VarChar(1000)
-  Requirements String?   @db.VarChar(1000)
+  role      String?    @db.LongText
+  Requirements String?  @db.LongText
   contact     String? 
-  InvestmentAmount String?   @db.VarChar(1000)
-  Expectations    String?    @db.VarChar(1000)
+  InvestmentAmount String?  
+  Expectations    String?   @db.LongText
   project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   @@index([id])
@@ -84,9 +84,9 @@ model Risk {
   id        String  @id @default(uuid())
   projectId String
   name      String?
-  description String?  @db.VarChar(1000)
+  description String?  @db.LongText
   levelOfDanger String?
-  solutions  String?   @db.VarChar(1000)
+  solutions  String?    @db.LongText
   project Project @relation(fields: [projectId], references: [id])
   @@index([id])
   @@index([projectId])
@@ -96,7 +96,7 @@ model Resources {
   id        String  @id @default(uuid())
   projectId String
   name      String?
-  description String?  @db.Text
+  description String?  @db.LongText
   cost   Float?
   quality String?
   project Project @relation(fields: [projectId], references: [id])
