@@ -4,10 +4,37 @@ import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const resourcesRouter = createTRPCRouter({
   add_resource : publicProcedure
-    .input(z.object({ text: z.string() }))
-    .query(({ input }) => {
-      return {
-        greeting: `Hello ${input.text}`,
-      };
+    .input(z.object({ 
+      project_id: z.string().uuid(),
+      name : z.string(),
+      description : z.string(),
+      cost : z.number(),
+      quality : z.string()
+     }))
+    .mutation( async({ input  , ctx }) => {
+
+      await ctx.prisma.resources.create({
+        data:{
+            projectId : input.project_id,
+            name : input.name , 
+            description : input.description,
+            cost : input.cost ,
+            quality : input.quality
+        }
+      })
+    }),
+    getResources : publicProcedure
+    .input(z.object({ 
+      project_id: z.string().uuid(),
+     
+     }))
+    .query( async({ input  , ctx }) => {
+
+      const resources =  await ctx.prisma.resources.findMany({
+        where:{
+            projectId : input.project_id,  
+        }
+      })
+    return resources
     }),
 });
