@@ -6,12 +6,14 @@ interface PropsType  extends React.HtmlHTMLAttributes<HTMLInputElement>  {
     value : string | number | readonly string[] | undefined ,
     onChange : React.ChangeEventHandler<HTMLInputElement> | undefined,
     lableClassName? : string ,
-    isLoading? : boolean
+    isLoading? : boolean,
+    inputClassName? : string ,
+    className? : string
 }
 
 
 
-export  const Input = ({lable , value , onChange  , lableClassName , isLoading , ...PropsType}:PropsType) => {
+export  const Input = ({lable , value , onChange  , lableClassName , isLoading, inputClassName ,className  , ...PropsType}:PropsType) => {
   return (
    <>
       {
@@ -21,12 +23,12 @@ export  const Input = ({lable , value , onChange  , lableClassName , isLoading ,
           <Skeleton  />
        </div> 
           : 
-        <div  className='col-span-6 my-4'>
+        <div  className={`col-span-6  ${className ? className : ""}`}>
            <label htmlFor={lable} className={`block text-sm font-medium leading-6 text-gray-900 ${lableClassName ? lableClassName : ""}`}>
              {lable}
            </label>
            <input {...PropsType} onChange={onChange} type={lable}  name={lable} id={lable + "id"} value={value}
-             className="px-4 py-1.5 rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full"
+             className={`px-4 py-1.5 rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full ${inputClassName ? inputClassName : ""}`}
            />
         </div>
       }

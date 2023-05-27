@@ -61,7 +61,8 @@ const Page: NextPage = () => {
     },
     onError(){
       toast.error("error fetching the data")
-    }
+    },
+    retryOnMount : false 
   })
     
 
