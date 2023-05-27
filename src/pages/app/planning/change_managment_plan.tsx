@@ -1,4 +1,4 @@
-import {  useState} from "react"
+import {  FormEvent, useState} from "react"
 import { TextField } from "~/components/used/TextField";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
@@ -7,12 +7,112 @@ import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import { RowGridText } from "~/components/typography/RowGridText";
-
+import { api } from "~/utils/api";
+import  toast  from "react-hot-toast";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { FormButton } from "~/components/used/FormButton";
 
 
 const Page: NextPage = () => {
-  const [didGetData , setDidGetData] = useState<boolean>(false)
   const [isOpen , setIsOpen] = useState<boolean>(true)
+
+  const [formData , setFormData] = useState({
+    id : "",
+    ChangeManagementApproach : "",
+    ScheduleChange :  "",
+    BudgetChange :"",
+    ScopeChange : "",
+    ProjectDocumentChanges :"",
+    ChangeRequestSubmittal : "",
+    ChangeRequestTracking : "",
+    ChangeRequestReview :"",
+    ChangeRequestDisposition : "",
+  })
+  const [didGetData , setDidGetData] = useState<boolean>(false)
+
+  const {isFetching , refetch} = api.changePlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
+    retryOnMount : false ,
+    onSuccess(data) {
+      if(data?.id ){
+        setDidGetData(true)
+      }
+      setFormData({
+        id : data?.id || "",
+        ChangeManagementApproach : data?.ChangeManagementApproach || "",
+        ScheduleChange : data?.ScheduleChange || "",
+        BudgetChange : data?.BudgetChange || "",
+        ScopeChange : data?.ScopeChange || "",
+        ProjectDocumentChanges : data?.ProjectDocumentChanges || "",
+        ChangeRequestSubmittal : data?.ChangeRequestSubmittal || "",
+        ChangeRequestTracking : data?.ChangeRequestTracking || "",
+        ChangeRequestReview : data?.ChangeRequestReview || "",
+        ChangeRequestDisposition : data?.ChangeRequestDisposition || "",
+      })
+    },
+    onError(err) {
+      console.log(err)
+      toast.error("something went wrong")
+    },
+  })
+ const  post = api.changePlanningRouter.dataAdd.useMutation( {
+    onSuccess : async () =>  {
+      toast.success("mise à jour réussie")
+      await refetch()
+    },
+    onError(err) {
+      console.log(err)
+      toast.error("quelque chose s'est mal passé")
+    },
+  })
+  const  update = api.changePlanningRouter.dataUpdate.useMutation( {
+    onSuccess : async () =>  {
+      toast.success("mise à jour réussie")
+      await refetch()
+    },
+    onError(err) {
+      console.log(err)
+      toast.error("quelque chose s'est mal passé")
+    },
+  })
+
+    const handleCreate = (event : FormEvent) => {
+      //todo handle this later
+      event.preventDefault()
+      if(!formData.id || !formData.ChangeManagementApproach || !formData.ScheduleChange || !formData.BudgetChange || !formData.ScopeChange || !formData.ProjectDocumentChanges || !formData.ChangeRequestSubmittal ){
+        toast("certains champs sont videssome fields are empty ")
+      }
+      post.mutate({
+        projectId : getProjectMetaData() ,
+        ChangeManagementApproach : formData.ChangeManagementApproach ,
+        ScheduleChange : formData.ScheduleChange,
+        BudgetChange : formData.BudgetChange ,
+        ScopeChange : formData.ScopeChange ,
+        ProjectDocumentChanges : formData.ProjectDocumentChanges ,
+        ChangeRequestSubmittal : formData.ChangeRequestSubmittal ,
+        ChangeRequestTracking : formData.ChangeRequestTracking ,
+        ChangeRequestReview : formData.ChangeRequestReview ,
+        ChangeRequestDisposition : formData.ChangeRequestDisposition ,
+      })
+    }
+    const handleUpdate = (event : FormEvent) => {
+      //todo handle later
+      event.preventDefault()
+      if(!formData.id || !formData.ChangeManagementApproach || !formData.ScheduleChange || !formData.BudgetChange || !formData.ScopeChange || !formData.ProjectDocumentChanges || !formData.ChangeRequestSubmittal ){
+        toast("certains champs sont videssome fields are empty ")
+      }
+      update.mutate({
+        id : formData.id ,
+        ChangeManagementApproach : formData.ChangeManagementApproach ,
+        ScheduleChange : formData.ScheduleChange,
+        BudgetChange : formData.BudgetChange ,
+        ScopeChange : formData.ScopeChange ,
+        ProjectDocumentChanges : formData.ProjectDocumentChanges ,
+        ChangeRequestSubmittal : formData.ChangeRequestSubmittal ,
+        ChangeRequestTracking : formData.ChangeRequestTracking ,
+        ChangeRequestReview : formData.ChangeRequestReview ,
+        ChangeRequestDisposition : formData.ChangeRequestDisposition , 
+      })
+    }
   return (
     <>
       
@@ -32,93 +132,75 @@ const Page: NextPage = () => {
         
           <TextField 
           className="!col-span-12"
+          isLoading={isFetching}
           lable=" Change Management Approach:"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , ChangeManagementApproach : e.target.value})} 
+          value={formData.ChangeManagementApproach }
           />
            <RowGridText text="Definitions of Change" />
          
           <TextField 
+
+          isLoading={isFetching}
           lable="Schedule change:"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+           onChange={(e) =>setFormData({...formData , ScheduleChange : e.target.value})} 
+          value={formData.ScheduleChange }
           />
           <TextField 
+          isLoading={isFetching}
           lable=" Budget change"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , BudgetChange : e.target.value})} 
+          value={formData.BudgetChange}
           />
           <TextField 
+          isLoading={isFetching}
           lable=" Scope change"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , ScopeChange : e.target.value})} 
+          value={formData.ScopeChange}
           />
 
           <TextField 
+          isLoading={isFetching}
           lable="Project document changes"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , ProjectDocumentChanges : e.target.value})} 
+          value={formData.ProjectDocumentChanges}
           />
           <RowGridText text="Change Control Process" />
           <TextField 
+          isLoading={isFetching}
           lable="Change request submittal "
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , ChangeRequestSubmittal : e.target.value})}  
+          value={formData.ChangeRequestSubmittal}
           />
 
         <TextField 
+        isLoading={isFetching}
           lable="Change request tracking"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , ChangeRequestTracking : e.target.value})} 
+          value={formData.ChangeRequestTracking }
           />
           <TextField 
+          isLoading={isFetching}
           lable="Change request review"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , ChangeRequestReview : e.target.value})} 
+          value={formData.ChangeRequestReview }
           />
-             <TextField 
+             <TextField
+             isLoading={isFetching} 
           lable="Change request disposition"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) =>setFormData({...formData , ChangeRequestDisposition : e.target.value})} 
+          value={formData.ChangeRequestDisposition}
           />
-          <div className="col-span-6 lg:col-span-12">
-            <AbdullahTable
-              title="Change Control Board:"
-              description=""
-              headers={["Name" , "Role" , "Responsibility" , "Authority"]}
-              body={[{
-                id : "ggge",
-                callback : () => console.log("hi"),
-                properties : ["abdullah" , "abdullah" , "abdullah" , "abdullah" ]
-              }]}
-            />
-          </div>
-       
-          
-        
          
         </div>
       </div>
-      <div className="bg-white px-4 py-3  text-right sm:px-6">
-        {
-          didGetData ?
-           <button
-        //    onClick={ (e : FormEvent) => habdleUpdate(e)}
-           type="submit"
-           className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-           >
-            mise à jour
-          </button> 
-          :
-          <button
-          type="submit"
-       
-          className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-        >
-         enregistrer & continuer
-        </button>
-        }
-       </div>
+      <FormButton
+    state ={didGetData}
+    isLoading ={post.isLoading || update.isLoading}
+    create={handleCreate}
+    update={handleUpdate}
+
+    />
        </Form>
   </FormContainer>
       </main>
