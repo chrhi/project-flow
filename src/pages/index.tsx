@@ -3,11 +3,6 @@ import Background from "~/components/common/background";
 import Hero from "~/components/landing-page/Hero";
 import Nav from "~/components/landing-page/Nav";
 
-
-
-
-
-
 const Page: NextPage = () => {
 
  

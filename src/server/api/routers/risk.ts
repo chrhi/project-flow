@@ -2,35 +2,35 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
-export const mileStoneRouter = createTRPCRouter({
-  milestoneAdd : publicProcedure
+export const riskRouter = createTRPCRouter({
+  riskAdd : publicProcedure
     .input(z.object({ 
       project_id: z.string().uuid(),
       name : z.string(),
       description : z.string(),
-      dueDate : z.date(),
-     
+      solutions : z.string(),
+      levelOfDanger : z.string()
      }))
     .mutation( async({ input  , ctx }) => {
 
-      await ctx.prisma.mileStones.create({
+      await ctx.prisma.risk.create({
         data:{
             projectId : input.project_id,
             name : input.name , 
             description : input.description,
-            dueDate : input.dueDate ,
-            
+            solutions : input.solutions ,
+            levelOfDanger : input.levelOfDanger
         }
       })
     }),
-    getMilestones : publicProcedure
+    getRisks : publicProcedure
     .input(z.object({ 
       projectId: z.string().uuid(),
      
      }))
     .query( async({ input  , ctx }) => {
 
-      const resources =  await ctx.prisma.mileStones.findMany({
+      const resources =  await ctx.prisma.risk.findMany({
         where:{
             projectId : input.projectId,  
         }

@@ -10,8 +10,9 @@ import { FormButton } from "~/components/used/FormButton";
 import { RowGridText } from "~/components/typography/RowGridText";
 import NewTimePicker from "~/components/used/NewTimePicker";
 import { DateRangePickerValue } from "@tremor/react";
-
-
+import { api } from "~/utils/api";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { toast } from "react-hot-toast";
 
 
 
@@ -24,29 +25,103 @@ const Page: NextPage = () => {
     new Date()
   ])
   const [formData , setFormData] = useState({
-    
-    title : "",
-    sponsor : "" , 
-    projectManager : "" , 
-    client : "" , 
-    dateToStart : "" ,
-    dateToEnd : "" , 
-    projectManagerAuthority : "" , 
-    staffDecision : "" , 
-    conflitManagment : "" , 
-    regionalDirector : "" , 
-    estimatedBudget : 0
+    id : "",
+    Title :"",
+    ProjectObjectiveAndOpportunity :"",
+    ProjectDescription : "",
+    HighLevelRequirements : "",
+    HighLevelRisks : ""
   })
   const [didGetData , setDidGetData] = useState<boolean>(false)
+
+  const {isLoading , refetch} = api.startupRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
+    retryOnMount : false ,
+    onSuccess(data) {
+      if(data?.id ){
+        setDidGetData(true)
+      }
+      setFormData({
+        id : data?.id || "",
+        Title : data?.HighLevelRequirements  || "", 
+        HighLevelRequirements : data?.HighLevelRequirements  || "", 
+        HighLevelRisks : data?.HighLevelRisks || "" , 
+        ProjectDescription : data?.ProjectDescription || "" , 
+        ProjectObjectiveAndOpportunity : data?.ProjectObjectiveAndOpportunity || ""
+      })
+    },
+    onError(err) {
+      console.log(err)
+      toast.error("something went wrong")
+    },
+  })
+ const  post = api.startupRouter.dataAdd.useMutation( {
+    onSuccess : async (data) =>  {
+      setFormData({
+        id : data?.id || "",
+        Title : data?.HighLevelRequirements  || "", 
+        HighLevelRequirements : data?.HighLevelRequirements  || "", 
+        HighLevelRisks : data?.HighLevelRisks || "" , 
+        ProjectDescription : data?.ProjectDescription || "" , 
+        ProjectObjectiveAndOpportunity : data?.ProjectObjectiveAndOpportunity || ""
+      })
+      toast.success("mise à jour réussie")
+      await refetch()
+    },
+    onError(err) {
+      console.log(err)
+      toast.error("quelque chose s'est mal passé")
+    },
+  })
+  const  update = api.startupRouter.dataUpdate.useMutation( {
+    onSuccess : async (data) =>  {
+      setFormData({
+        id : data?.id || "",
+        Title : data?.HighLevelRequirements  || "", 
+        HighLevelRequirements : data?.HighLevelRequirements  || "", 
+        HighLevelRisks : data?.HighLevelRisks || "" , 
+        ProjectDescription : data?.ProjectDescription || "" , 
+        ProjectObjectiveAndOpportunity : data?.ProjectObjectiveAndOpportunity || ""
+      })
+      toast.success("mise à jour réussie")
+      await refetch()
+    },
+    onError(err) {
+      console.log(err)
+      toast.error("quelque chose s'est mal passé")
+    },
+  })
 
   
 
     const handleCreate = (event : FormEvent) => {
       //todo handle this later
       event.preventDefault()
+      if(!formData.id || !formData.HighLevelRequirements || !formData.HighLevelRisks || !formData.ProjectDescription || !formData.ProjectObjectiveAndOpportunity || !formData.ProjectObjectiveAndOpportunity || !formData.Title ){
+        toast("certains champs sont videssome fields are empty ")
+      }
+      post.mutate({
+        projectId : getProjectMetaData() ,
+        HighLevelRequirements : formData.HighLevelRequirements,
+        HighLevelRisks : formData.HighLevelRisks , 
+        ProjectDescription : formData.ProjectDescription , 
+        ProjectObjectiveAndOpportunity : formData.ProjectObjectiveAndOpportunity,
+        Title : formData.Title
+      })
     }
     const handleUpdate = (event : FormEvent) => {
       //todo handle later
+      event.preventDefault()
+      if(!formData.id || !formData.HighLevelRequirements || !formData.HighLevelRisks || !formData.ProjectDescription || !formData.ProjectObjectiveAndOpportunity || !formData.ProjectObjectiveAndOpportunity || !formData.Title ){
+        toast("certains champs sont videssome fields are empty ")
+      }
+      update.mutate({
+        id : formData.id ,
+        HighLevelRequirements : formData.HighLevelRequirements,
+        HighLevelRisks : formData.HighLevelRisks , 
+        ProjectDescription : formData.ProjectDescription , 
+        ProjectObjectiveAndOpportunity : formData.ProjectObjectiveAndOpportunity,
+        Title : formData.Title
+      })
     }
     
 
@@ -73,13 +148,13 @@ const Page: NextPage = () => {
             <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
          
             <TextField
-                isLoading={false}
+                isLoading={isLoading}
                 lable="Intitulé de projet "
                 onChange={(e) => {
-                  setFormData({...formData , title : e.target.value})
+                  setFormData({...formData , Title : e.target.value})
                   
                 }}
-                value={formData.title}
+                value={formData.Title}
              />
               <div className="col-span-6">
           
@@ -87,32 +162,32 @@ const Page: NextPage = () => {
            </div>
            
              <TextField
-            isLoading={false}
+            isLoading={isLoading}
             lable="Objectif et opportunité de projet :  "
-            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
-            value={formData.regionalDirector}
+            onChange={(e) => setFormData({...formData ,ProjectObjectiveAndOpportunity : e.target.value})}
+            value={formData.ProjectObjectiveAndOpportunity}
           />
           <TextField
-            isLoading={false}
+            isLoading={isLoading}
             lable="Description de projet :   "
-            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
-            value={formData.regionalDirector}
+            onChange={(e) => setFormData({...formData ,ProjectDescription : e.target.value})}
+            value={formData.ProjectDescription}
           />
           <TextField
-            isLoading={false}
+            isLoading={isLoading}
             lable="Exigences à haut niveau :  "
-            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
-            value={formData.regionalDirector}
+            onChange={(e) => setFormData({...formData ,HighLevelRequirements : e.target.value})}
+            value={formData.HighLevelRequirements}
           />
           <TextField
-            isLoading={false}
+            isLoading={isLoading}
             lable="Risques à haut niveau :  "
-            onChange={(e) => setFormData({...formData ,regionalDirector : e.target.value})}
-            value={formData.regionalDirector}
+            onChange={(e) => setFormData({...formData ,HighLevelRisks : e.target.value})}
+            value={formData.HighLevelRisks}
           />
           
              <FormButton
-        isLoading={false}
+        isLoading={update.isLoading || post.isLoading}
         state={didGetData}
         create={handleCreate}
         update={handleUpdate}

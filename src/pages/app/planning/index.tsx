@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable react/no-unescaped-entities */
 import {  useState} from "react"
 import { TextField } from "~/components/used/TextField";
 import { Form } from "~/components/used/Form";

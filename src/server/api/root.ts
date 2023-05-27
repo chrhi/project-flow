@@ -3,12 +3,27 @@ import { userRouter } from "../auth";
 import { StakeHolderRouter } from "./routers/stakeholders";
 import { projectRouter } from "./routers/project";
 import { resourcesRouter } from "./routers/Resources";
+import { riskRouter } from "./routers/risk";
+import { startupRouter } from "./inputs/startup";
+import { projectManagmentPlanRouter } from "./inputs/management-plan/projectManagmentPlan";
+import { scopePlanningRouter } from "./inputs/management-plan/scope";
+import { riskPlanningRouter } from "./inputs/management-plan/risk-managment-plan";
+import { changePlanningRouter } from "./inputs/management-plan/change-managment";
+import { scheduelPlanningRouter } from "./inputs/management-plan/scheduel-management";
+
 
 export const appRouter = createTRPCRouter({
     userRouter,
     StakeHolderRouter,
     projectRouter,
-    resourcesRouter
+    resourcesRouter,
+    riskRouter,
+    startupRouter, 
+    projectManagmentPlanRouter,
+    scopePlanningRouter,
+    riskPlanningRouter,
+    changePlanningRouter,
+    scheduelPlanningRouter
 });
 
 // export type definition of API
