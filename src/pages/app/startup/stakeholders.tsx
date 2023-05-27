@@ -43,8 +43,26 @@ const data : Stakholder[] =  [
 const Page: NextPage = () => {
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [stakeholders , setStakeHolders] = useState<Stakholder[]>([] as Stakholder[])
 
 
+  const {isLoading , refetch} = api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()}, {
+    onSuccess(data) {
+      const AbdullahData  = data.map(item =>{
+        return {
+          id : item.id,
+          name : item.name,
+          email:  item.contact,
+          impact:  item.impact,
+          type : item.type,
+        }
+      })
+    setStakeHolders( AbdullahData as Stakholder[] )
+    },
+    onError(){
+      toast.error("error fetching the data")
+    }
+  })
     
 
   return (
@@ -59,7 +77,7 @@ const Page: NextPage = () => {
         <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
       
-            <DataTable columns={columns} data={data} /> 
+            <DataTable refetch={refetch} columns={columns} data={stakeholders} /> 
             </div>
         </div>
       </div>

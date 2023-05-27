@@ -19,8 +19,8 @@ export const projectRouter = createTRPCRouter({
         data: {
           userId: input.user_id,
           title: input.title,
-          startAt: input.startAt.toString(),
-          endsAt: input.endsAt.toString()
+          startAt: input.startAt,
+          endsAt: input.endsAt
         }
       }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
       

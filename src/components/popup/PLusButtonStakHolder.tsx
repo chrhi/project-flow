@@ -9,9 +9,11 @@ import Select from 'react-select';
 import { STAKHOLDER_TYPES , OPTIONS} from '~/types/static/STATICDATA'
 import { Button } from '../ui/button'
 
+type Props = {
+  refetch : () => Promise<void>
+}
 
-
-export  function PLusButtonStakHolder () {
+export  function PLusButtonStakHolder ({refetch} : Props) {
   const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
