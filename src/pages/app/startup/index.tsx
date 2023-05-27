@@ -9,6 +9,7 @@ import { TextField } from "~/components/used/TextField";
 import { FormButton } from "~/components/used/FormButton";
 import { RowGridText } from "~/components/typography/RowGridText";
 import NewTimePicker from "~/components/used/NewTimePicker";
+import { DateRangePickerValue } from "@tremor/react";
 
 
 
@@ -18,6 +19,10 @@ const Page: NextPage = () => {
 
   let id_abdullah : any 
   const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [value , setValue] = useState<DateRangePickerValue>([
+    new Date(),
+    new Date()
+  ])
   const [formData , setFormData] = useState({
     
     title : "",
@@ -78,7 +83,7 @@ const Page: NextPage = () => {
              />
               <div className="col-span-6">
           
-            <NewTimePicker  isLoading={false} text="sélectionner une heure à laquelle ce projet doit commencer et se terminer"/>
+            <NewTimePicker value={value} setValue={setValue} text="sélectionner une heure à laquelle ce projet doit commencer et se terminer"/>
            </div>
            
              <TextField

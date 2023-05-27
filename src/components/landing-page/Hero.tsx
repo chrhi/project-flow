@@ -1,10 +1,11 @@
+import Link from 'next/link'
 import React from 'react'
 
 function Hero() {
   return (
     <div className="mx-auto mb-10 mt-20 max-w-md px-2.5 text-center sm:max-w-lg sm:px-0">
     <a
-      href="https://dub.sh/launch"
+      href="https://twitter.com/KING_IN_JUNGLE"
       target="_blank"
       rel="noreferrer"
       className="mx-auto flex max-w-fit items-center justify-center space-x-2 overflow-hidden rounded-full bg-blue-100 px-7 py-2 transition-all hover:bg-blue-200"
@@ -27,15 +28,15 @@ function Hero() {
     </h2>
 
     <div className="mx-auto mt-10 flex max-w-fit space-x-4">
-      <a
-        href="https://app.dub.sh/register"
+      <Link
+        href="/auth/register"
         className="rounded-full border border-black bg-black px-5 py-2 text-sm text-white shadow-lg transition-all hover:bg-white hover:text-black"
       >
         Start For Free
-      </a>
+      </Link>
       <a
         className="flex items-center justify-center space-x-2 rounded-full border border-gray-300 bg-white px-5 py-2 shadow-lg transition-all hover:border-gray-800"
-        href="https://dub.sh/github"
+        href="https://github.com/chrhi/project-managemnt-app-"
         target="_blank"
         rel="noreferrer"
       >
