@@ -6,7 +6,7 @@ import { publicProcedure } from "../api/trpc";
 
 export const deleteUser = publicProcedure
 .input(z.object({ text: z.string() }) )
-.query(({ input }) => {
+.mutation(({ input }) => {
   return {
     greeting: `Hello ${input.text}`,
   };

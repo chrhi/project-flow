@@ -84,7 +84,7 @@ return (
         <ScrollArea className={`flex-grow w-full mx-auto bg-white ${isOpen ? "" : "hidden"}`}>
           <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
             {List.map((item) => Link(current_page, item.navs, item.path, item.name))}
-            <NextSwitch indexThisPhase={0} />
+            <NextSwitch indexThisPhase={3} />
           </div>
         </ScrollArea>
       </motion.div>

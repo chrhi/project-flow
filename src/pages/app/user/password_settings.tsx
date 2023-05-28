@@ -1,97 +1,94 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-floating-promises */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
+import { type NextPage } from "next";
+import Head from "~/components/common/Head";
+import { Header } from "~/components/header/Header";
+import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
+import { api } from "~/utils/api";
+import { useEffect , useState } from "react";
+import { getUserMetadata } from "~/lib/MetaData";
+import  toast  from "react-hot-toast";
 
-import React, { useState } from 'react';
-import ReactFlow, { MiniMap, Controls } from 'reactflow';
 
-const WorkBreakdown = () => {
-  const [elements, setElements] = useState([
-    {
-      id: 'root',
-      type: 'default',
-      data: { text: 'Root Node', color: '#ffffff' },
-      position: { x: 0, y: 0 },
+const Page: NextPage = () => {
+
+  const [inputs , setInputs ] = useState({
+    password : "",
+    newPassword : "",
+    confirmNewPassword : ""
+  })
+  
+  const mutation = api.userRouter.updateUserPassword.useMutation({
+    onSuccess(data) {
+      toast.success("your password has been updated successfully")
     },
-  ]);
+    onError(){
+      toast.error("failed to update password")
+    }
+  })
 
-  const onElementsRemove = (elementsToRemove) => {
-    setElements((prevElements) =>
-      prevElements.filter((element) => !elementsToRemove.includes(element))
-    );
-  };
+  const handleSubmit = () => {
+    if(inputs.newPassword !== inputs.confirmNewPassword){
+      toast.error("passwords should match")
+    }
+    mutation.mutate({
+      userId : getUserMetadata(),
+      password : inputs.password , 
+      newPassword : inputs.newPassword
+    })
+  }
 
-  const onConnect = (params) => {
-    const { source, target } = params;
-    const newEdge = {
-      id: `e${source}-${target}`,
-      source,
-      target,
-    };
-    setElements((prevElements) => [...prevElements, newEdge]);
-  };
 
-  const onNodeClick = (event, node) => {
-    // Handle click event for a node
-    console.log('Clicked on node:', node);
-  };
-
-  const onAddNode = (sourceNodeId) => {
-    const newNodeId = `n${elements.length + 1}`;
-    const newNode = {
-      id: newNodeId,
-      type: 'default',
-      data: { text: 'New Node', color: '#ffffff' },
-      position: { x: 0, y: 0 },
-    };
-    const newEdge = {
-      id: `e${sourceNodeId}-${newNodeId}`,
-      source: sourceNodeId,
-      target: newNodeId,
-    };
-    setElements((prevElements) => [...prevElements, newNode, newEdge]);
-  };
-
-  const CustomNode = ({ data }) => {
-    return (
-      <div
-        style={{
-          border: '1px solid #ddd',
-          borderRadius: '4px',
-          background: data.color,
-          padding: '8px',
-          cursor: 'pointer',
-        }}
-        onClick={(event) => onNodeClick(event, data)}
-      >
-        {data.text}
-      </div>
-    );
-  };
-
-  const nodeTypes = {
-    default: CustomNode,
-  };
 
   return (
-    <div style={{ height: '600px' }}>
-      <ReactFlow
-        elements={elements}
-        onConnect={onConnect}
-        onElementsRemove={onElementsRemove}
-        nodeTypes={nodeTypes}
-      >
-        <MiniMap />
-        <Controls />
-      </ReactFlow>
-    </div>
+    <>
+      <Head />
+    
+      <Header />
+
+      <main className=" custopn-page-height max-w-7xl  items-center pt-8 flex flex-col w-full bg-gray-100 ">
+        <div className="w-full h-[70px] flex justify-center items-start  flex-col px-8">
+          <h1 className="text-3xl font-semibold text-gray-900 ">Password Settings</h1>
+          <p className="text-lg  text-gray-700 " >By changing your password, all of your active sessions will be logged out. </p>
+        </div>
+
+        <div className='  w-full max-w-5xl  p-4 mx-auto rounded-lg   h-fit min-h-[300px] flex flex-col  my-4   bg-white '>
+        
+        <div className="flex  w-full flex-col  gap-y-2  items-start gap-x-2">
+                   <p>Current Password</p>
+                   <input value={inputs.password} type="text"
+                    onChange={({target}) => setInputs({...inputs , password : target.value })}
+                   className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
+         </div>
+         <div className="flex gap-x-8 w-full h-[60px] items-center">
+
+              <div className="flex  w-[50%] flex-col gap-y-2  items-start gap-x-2">
+                   <p>New Password</p>
+                   <input value={inputs.newPassword} type="text"
+                    onChange={({target}) => setInputs({...inputs , newPassword : target.value })}
+                   className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
+              </div>
+
+               <div className="flex  w-[50%] flex-col gap-y-2  items-start gap-x-2">
+                   <p>Confirm New Password</p>
+                   <input value={inputs.confirmNewPassword} type="text"
+                    onChange={({target}) => setInputs({...inputs , confirmNewPassword : target.value })}
+                   className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
+               </div>
+
+
+         </div>
+         
+             <div className="w-full h-[50px] items-center justify-start flex ">
+                 <AbdullahButton 
+                 onClick={handleSubmit}
+                 isLoading={mutation.isLoading}
+                 className={`${buttonVariants({size:"sm", variant:'primary'})} font-semibold`}>
+                        save changes
+                 </AbdullahButton>
+             </div>
+        </div>
+      </main>
+    </>
   );
 };
 
-export default WorkBreakdown;
+export default Page;

@@ -21,9 +21,12 @@ export const verifyUser = publicProcedure
   })
   if(!user.password) throw new Error("user dont have password")
   // see if user password is currect
-  bcrypt.compare(input.password, user?.password, (err:Error | undefined , data:any) => {
+  bcrypt.compare(input.password, user?.password, (err:Error | undefined , res:any) => {
     //if error than throw error
-    if (err)  {throw new TRPCError({code: 'UNAUTHORIZED',message: "password is not currect",})}    
+    if (res)  {
+      throw new TRPCError({code: 'UNAUTHORIZED',message: "password is not currect",})
+      return 
+    }    
   })
   const jwt = sign({
     id : user?.id  , 

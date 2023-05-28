@@ -34,7 +34,7 @@ const Page: NextPage = () => {
      
       Cookies?.set("abdullah-access-token" , data.jwt)
       storeUserMetadata({user_id : data.id})
-      set_user({email : data.email as string , name : data.name as string   , photo : data.image as string})
+      set_user({email : data.email as string , name : data.name as string   , photo : data.photo as string , lastName : data.lastName || "" })
       await router.push("/app")
       console.log(data)
     },
@@ -64,19 +64,19 @@ const Page: NextPage = () => {
     <>
      <NotAuthHeader  />
 
-      <main className=" w-full custom-hieght-navbar bg-white flex justify-start pl-16  items-center  ">
+      <main className=" w-full custom-hieght-navbar bg-white flex justify-center pl-16  items-center  ">
         
-      <div className="w-[50%] max-w-sm p-4 z-[999] bg-white border shadow-xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
+      <div className="w-[50%] max-w-md p-4 z-[999] bg-white border shadow-2xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form className="space-y-6" action="#">
-        <h5 className="text-xl font-medium text-gray-900 ">Connexion </h5>
+        <h5 className="text-xl font-semibold text-gray-900 ">Login </h5>
         <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Votre e-mail</label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your rmail</label>
             <input
              onChange={(e) => setFormData({...formData , email : e.target.value})}
             type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com" required />
         </div>
         <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Votre mot de passe</label>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
             <input  
             onChange={(e) => setFormData({...formData , password : e.target.value})}
             type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
@@ -88,14 +88,14 @@ const Page: NextPage = () => {
            isLoading ={mutation.isLoading}
           onClick={(e :FormEvent) => handleSubmit(e)}
       >
-        Connectez-vous à votre compte
+        Sign into your account
       </AbdullahButton>
 
         <div className="text-sm font-medium text-gray-500 ">
-        Non enregistré? <Link href="/auth/register" className="text-blue-500 hover:underline ">Créer un compte</Link>
+        Not registered? <Link href="/auth/register" className="text-blue-500 hover:underline ">Create an account</Link>
         </div>
         <div className="text-sm font-medium text-gray-500 ">
-        ou si vous avez une invitation? <Link href="/auth/invitation" className="text-blue-500 hover:underline ">utiliser mon invitation</Link>
+        or if you have an invitation? <Link href="/auth/invitation" className="text-blue-500 hover:underline ">use my invite</Link>
         </div>
 
     </form>

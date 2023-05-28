@@ -20,10 +20,42 @@ export const projectRouter = createTRPCRouter({
           userId: input.user_id,
           title: input.title,
           startAt: input.startAt,
-          endsAt: input.endsAt
+          endsAt: input.endsAt,
+          currentPhase : "STARTUP",
+        }
+      }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
+      //to get the project is 
+      const project = await ctx.prisma.project.findFirst({
+        where: {
+          userId: input.user_id,
+        }
+      });
+
+      if(!project || !project.id) throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: "there is no project id abdullah"}) 
+
+      await ctx.prisma.planning.create({
+        data: {
+          projectId: project?.id,
         }
       }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
       
+      await ctx.prisma.executing.create({
+        data: {
+          projectId: project?.id,
+        }
+      }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
+
+        await ctx.prisma.controlling.create({
+        data: {
+          projectId: project?.id,
+        }
+      }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
+
+        await ctx.prisma.closing.create({
+        data: {
+          projectId: project?.id,
+        }
+      }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
     }),
 
   // Define get_project procedure
@@ -51,7 +83,8 @@ export const projectRouter = createTRPCRouter({
       await ctx.prisma.project.delete({
         where: {
           id: input.project_id,
-        }
+        },
+        include: { Closing : true ,  Comunications : true , Controlling : true , Executing : true , MileStones : true , StakHolder : true , Planning : true , Resource : true , Risk : true , Startup : true  }, // Include the 'children' relation
       });
     }),
 
@@ -75,5 +108,23 @@ export const projectRouter = createTRPCRouter({
           id: input.project_id
         }
       });
+    }),
+    geoNextPhase: publicProcedure
+    .input(z.object({
+      project_id: z.string(),
+      Phase : z.string()
+    }))
+    .mutation(async ({ input, ctx }) => {
+      // Update a project with the given project ID using Prisma
+     const project =   await ctx.prisma.project.update({
+        data: {
+          currentPhase: input.Phase,
+        },
+        where: {
+          id: input.project_id
+        }
+      });
+
+      return project
     }),
 });

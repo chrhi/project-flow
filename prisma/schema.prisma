@@ -24,8 +24,14 @@ model User {
   id        String    @id @default(uuid())
   name      String?
   email     String?   @unique
-  image     String?
+  photo     String?   @default("https://cdn.myportfolio.com/17be4dd08c5417027a544816a909fcf8/01b4cc12-6d30-46e1-b8d0-ab3ca15d0fad_rw_1200.png?h=078dbf9c704d63a54cb6942823239e32")
   password  String?
+  status    String?
+  lastName  String?
+  phone     String?
+  zipCode   String?
+  location  String?
+  type      String?
   createdAt DateTime  @default(now())
   Project   Project[]
   
@@ -39,7 +45,7 @@ model MileStones {
   name      String?     @db.LongText
   description String?  @db.LongText
   dueDate     DateTime?
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
   @@index([id])
   @@index([projectId])
 }
@@ -51,7 +57,7 @@ model Project {
   endsAt        DateTime?
   currentPhase  String?  @db.LongText
   userId        String
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user          User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   StakHolder    StakeHolder[]
   Risk          Risk[]
   Resource      Resources[]
@@ -59,6 +65,9 @@ model Project {
   MileStones    MileStones[]
   Startup       Startup[]
   Planning      Planning[]
+  Executing     Executing[]
+  Controlling   Controlling[]
+  Closing       Closing[]
 
   @@index([id])
   @@index([userId])
@@ -66,7 +75,7 @@ model Project {
 
 model StakeHolder {
   id        String  @id @default(uuid())
-  projectId String
+  projectId String?
   name      String? 
   type      String 
   position  String? 
@@ -76,7 +85,7 @@ model StakeHolder {
   contact     String?  
   InvestmentAmount String?   
   Expectations    String?   @db.LongText
-  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
   @@index([id])
   @@index([projectId])
@@ -84,24 +93,24 @@ model StakeHolder {
 
 model Risk {
   id        String  @id @default(uuid())
-  projectId String
+  projectId String?
   name      String? 
   description String?  @db.LongText
   levelOfDanger String? 
   solutions  String?    @db.LongText
-  project Project @relation(fields: [projectId], references: [id])
+  project Project? @relation(fields: [projectId], references: [id])
   @@index([id])
   @@index([projectId])
 }
 
 model Resources {
   id        String  @id @default(uuid())
-  projectId String
+  projectId String?
   name      String? 
   description String?  @db.LongText
   cost   Float? 
   quality String? 
-  project Project @relation(fields: [projectId], references: [id])
+  project Project?  @relation(fields: [projectId], references: [id])
 
   @@index([id])
   @@index([projectId])
@@ -109,10 +118,10 @@ model Resources {
 
 model Comunications {
   id        String  @id @default(uuid())
-  projectId String
+  projectId String?
   name      String?
 
-  project Project @relation(fields: [projectId], references: [id])
+  project Project?  @relation(fields: [projectId], references: [id])
 
   @@index([id])
   @@index([projectId])
@@ -120,14 +129,14 @@ model Comunications {
 
 model Startup {
   id        String  @id @default(uuid())
-  projectId String
+  projectId String?
   Title      String? @db.LongText
   ProjectObjectiveAndOpportunity String? @db.LongText
   ProjectDescription String? @db.LongText
   HighLevelRequirements String? @db.LongText
   HighLevelRisks String? @db.LongText
   
-  project Project @relation(fields: [projectId], references: [id])
+  project Project?  @relation(fields: [projectId], references: [id])
 
   @@index([id])
   @@index([projectId])
@@ -135,8 +144,8 @@ model Startup {
 
 model Planning {
   id        String  @id @default(uuid())
-  projectId String
-  project Project @relation(fields: [projectId], references: [id])
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id])
   scope Scope[]
   ManagementPlan ManagementPlan[]
   scheduelManagementPlan scheduelManagementPlan[]
@@ -147,9 +156,36 @@ model Planning {
   @@index([projectId])
 }
 
+model Executing  {
+  id        String  @id @default(uuid())
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id])
+  
+  @@index([id])
+  @@index([projectId])
+}
+
+model Controlling  {
+  id        String  @id @default(uuid())
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id])
+  
+  @@index([id])
+  @@index([projectId])
+}
+
+model Closing  {
+  id        String  @id @default(uuid())
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id])
+  
+  @@index([id])
+  @@index([projectId])
+}
+
 model scheduelManagementPlan {
   id        String  @id @default(uuid())
-  PlanningId String
+  PlanningId String?
   ScheduleMethodology      String? @db.LongText
   ScheduleTools String? @db.LongText
   LevelOfAccuracy String? @db.LongText
@@ -161,14 +197,14 @@ model scheduelManagementPlan {
   ProcessManagementEstimatingEffortAndDuration String? @db.LongText
   ProcessManagementUpdatingMonitoringAndControlling String? @db.LongText
  ProcessManagementActivityidentification String? @db.LongText
-  planning Planning @relation(fields: [PlanningId], references: [id])
+  planning Planning?  @relation(fields: [PlanningId], references: [id])
 
   @@index([id])
   @@index([PlanningId])
 }
 model costlManagementPlan {
   id        String  @id @default(uuid())
-  PlanningId String
+  PlanningId String?
   LevelOfAccuracy      String? @db.LongText
   UnitsOfMeasure String? @db.LongText
   ControlThresholds String? @db.LongText
@@ -178,14 +214,14 @@ model costlManagementPlan {
  DevelopingTheBudget String? @db.LongText
   UpdatingMonitoringAndControlling String? @db.LongText
  
-  planning Planning @relation(fields: [PlanningId], references: [id])
+  planning Planning?  @relation(fields: [PlanningId], references: [id])
 
   @@index([id])
   @@index([PlanningId])
 }
 model ChangelManagementPlan {
   id        String  @id @default(uuid())
-  PlanningId String
+  PlanningId String?
   ChangeManagementApproach      String? @db.LongText
   ScheduleChange String? @db.LongText
   BudgetChange String? @db.LongText
@@ -195,14 +231,14 @@ model ChangelManagementPlan {
  ChangeRequestTracking String? @db.LongText
   ChangeRequestReview String? @db.LongText
    ChangeRequestDisposition String? @db.LongText
-  planning Planning @relation(fields: [PlanningId], references: [id])
+  planning Planning? @relation(fields: [PlanningId], references: [id])
 
   @@index([id])
   @@index([PlanningId])
 }
 model RisklManagementPlan {
   id        String  @id @default(uuid())
-  PlanningId String
+  PlanningId String?
   Methodology      String? @db.LongText
   RolesAndResponsibilities String? @db.LongText
   RiskCategories String? @db.LongText
@@ -211,7 +247,7 @@ model RisklManagementPlan {
  FrequencyAndTiming String? @db.LongText
  StakeholderRiskTolerances String? @db.LongText
   TrackingAndAudit String? @db.LongText
-  planning Planning @relation(fields: [PlanningId], references: [id])
+  planning Planning?  @relation(fields: [PlanningId], references: [id])
 
   @@index([id])
   @@index([PlanningId])
@@ -219,7 +255,7 @@ model RisklManagementPlan {
 
 model Scope {
   id        String  @id @default(uuid())
-  PlanningId String
+  PlanningId String?
   ScopeStatementDevelopment      String? @db.LongText
   WBSStructure String? @db.LongText
   WBSDictionary String? @db.LongText
@@ -227,7 +263,7 @@ model Scope {
   ScopeChange String? @db.LongText
  DeliverableAcceptance String? @db.LongText
  ScopeandRequirementsIntegration String? @db.LongText
-  planning Planning @relation(fields: [PlanningId], references: [id])
+  planning Planning?  @relation(fields: [PlanningId], references: [id])
 
   @@index([id])
   @@index([PlanningId])
@@ -235,7 +271,7 @@ model Scope {
 
 model ManagementPlan {
   id        String  @id @default(uuid())
-  PlanningId String
+  PlanningId String?
   IntegrationProcesses      String? @db.LongText
   IntegrationTailoringDecisions String? @db.LongText
   ScopeProcesses String? @db.LongText
@@ -268,7 +304,7 @@ model ManagementPlan {
  StakeholdersToolsAndTechniques String? @db.LongText
  ProjectReviews String? @db.LongText
 
-  planning Planning @relation(fields: [PlanningId], references: [id])
+  planning Planning? @relation(fields: [PlanningId], references: [id])
 
   @@index([id])
   @@index([PlanningId])

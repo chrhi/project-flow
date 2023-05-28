@@ -7,7 +7,8 @@ import { verifyUser } from "./verifie-user";
 import {
   createTRPCRouter,
 } from "~/server/api/trpc";
+import { updateUserPassword } from "./update-password";
 
 export const userRouter = createTRPCRouter({
-  createUser , updateUser , deleteUser , getAllUser , getUser , verifyUser
+  createUser , updateUser , deleteUser , getAllUser , getUser , verifyUser , updateUserPassword
 });

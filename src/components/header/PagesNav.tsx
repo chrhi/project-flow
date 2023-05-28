@@ -7,6 +7,7 @@ import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
 import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
 import { IsPhaseLocked } from '~/utils/access/IsPhaseLocked'
 import { Button } from '../ui/button'
+import { Ban } from 'lucide-react'
 
 
 export function PagesNav() {
@@ -19,15 +20,15 @@ export function PagesNav() {
 
  async function handleRouting (path : string , page : PAGES , INDEX : number) {
    const available = IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : INDEX})
-  //  if(page === PAGES.DOCS){
-  //   set_current_page({payload : page})
-  //   await router.push(path)
-  //   return 
-  //  }
-  //  if(!available){
-  //   set_access_error({payload : true})
-  //   return 
-  //  }
+   if(page === PAGES.DOCS){
+    set_current_page({payload : page})
+    await router.push(path)
+    return 
+   }
+   if(!available){
+    set_access_error({payload : true})
+    return 
+   }
    set_current_page({payload : page})
    await router.push(path)
 
@@ -35,25 +36,25 @@ export function PagesNav() {
 
   const LIST = [
     {
-      name : "Tableau de bord" , path : "/app" , page : PAGES.DASHBORD
+      name : "Overview" , path : "/app" , page : PAGES.DASHBORD
     },
     {
-      name : "Pre-démarrage" , path : "/app/startup", page : PAGES.STARTUP
+      name : "Startup" , path : "/app/startup", page : PAGES.STARTUP
     },
     {
-      name : "Planification" , path : "/app/planning" , page : PAGES.PLANNING
+      name : "Planning" , path : "/app/planning" , page : PAGES.PLANNING
     },
     {
-      name : "Exécution" , path : "/app/executing" , page : PAGES.EXECUTING
+      name : "Executing" , path : "/app/executing" , page : PAGES.EXECUTING
     },
     {
-      name : "Contrôler" , path : "/app/controlling" , page : PAGES.CONTROLLING
+      name : "Controlling" , path : "/app/controlling" , page : PAGES.CONTROLLING
     },
     {
-      name : "Clôturer " , path : "/app/close" , page : PAGES.CLOSING
+      name : "Closing " , path : "/app/close" , page : PAGES.CLOSING
     },
     {
-      name : "Les documents " , path : "/app/docs" , page : PAGES.DOCS
+      name : "Docs " , path : "/app/docs" , page : PAGES.DOCS
     },
   ]
 
@@ -61,12 +62,16 @@ export function PagesNav() {
     <div className='w-[70%]  h-full hidden md:flex  justify-start items-center gap-x-6 '>
       {LIST.map((item , index ) => (
            <Button 
+           
            variant="ghost"
            key={item.name}
-            onClick={() => handleRouting(item.path , item.page , index - 1)}
-                className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? ' text-slate-900' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200  `}
-           >
-                 {item.name}
+            onClick={() => handleRouting(item.path , item.page , index - 1 )}
+                className={`
+
+                ${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? ' text-slate-900' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200  
+                ${IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index - 1})? "" : "text-gray-200"}
+                `}
+           >   {item.name}
      
            </Button>
       ))}

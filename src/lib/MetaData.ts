@@ -46,3 +46,15 @@ export const getProjectCurrentPhaseAbdullah = ()  => {
     const PHASE : string | undefined =   Cookies.get('abdullah-project-cuurent-phase') // => 'value'
     return PHASE || ""
 }
+
+export const deteProjectMetaData = () => {
+    Cookies?.remove('abdullah-project-cuurent-phase')
+    Cookies?.remove('abdullah-project-id')
+}
+
+export const removeAll = () => {
+    Cookies?.remove('abdullah-project-cuurent-phase')
+    Cookies?.remove('abdullah-project-id')
+    Cookies?.remove("abdullah-project-Manager")
+    Cookies?.remove("abdullah-user-id")
+}
