@@ -1,9 +1,7 @@
 import Image from "next/image"
 import logo from "~/assets/logo.png"
 import React from "react"
-import MaxWidthWrapper from "~/components/layout/MaxWidthWrapper"
 import { DropDownAdmin } from "./DropDownAdmin"
-import { Button } from "~/components/ui/button"
 import AdminNavTabs from "./admin-header-nav"
 
 

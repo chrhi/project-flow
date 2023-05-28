@@ -1,3 +1,4 @@
+ /* eslint-disable */
 import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 import { useMemo } from "react";
@@ -9,12 +10,12 @@ const tabs = [
 ]
 
 export default function AdminNavTabs() {
-  // const router = useRouter();
+  const router = useRouter();
  
 
   return (
     <div className="-mb-0.5 flex h-12 items-center justify-start space-x-2">
-      {/* {tabs.map(({ name, href }) => (
+      {tabs.map(({ name, href }) => (
         <Link
           key={href}
           href={href}
@@ -30,7 +31,7 @@ export default function AdminNavTabs() {
             <p className="text-sm">{name}</p>
           </div>
         </Link>
-      ))} */}
+      ))}
     </div>
   );
 }
