@@ -17,23 +17,24 @@ export const verifyUser = publicProcedure
       email : input.email
     }
   }).catch(error => {
-    throw new Error(error)
+    console.log(error)
+    throw new Error("password or email are not currect")
   })
   if(!user.password) throw new Error("user dont have password")
   // see if user password is currect
-  bcrypt.compare(input.password, user?.password, (err:Error | undefined , res:any) => {
-    //if error than throw error
-    if (res)  {
-      throw new TRPCError({code: 'UNAUTHORIZED',message: "password is not currect",})
-      return 
-    }    
-  })
-  const jwt = sign({
-    id : user?.id  , 
-    email :  user?.email ,
-   }, process.env.JWT_SECRET_KEY_SUPABASE!)
-
-  return {...user , jwt} 
+  
+  const response = await bcrypt.compare(input.password, user?.password)
+  if(response){
+    const jwt = sign({
+      id : user?.id  , 
+      email :  user?.email ,
+     }, process.env.JWT_SECRET_KEY_SUPABASE!)
+  
+    return {...user , jwt} 
+  }else{
+    throw new TRPCError({code:"BAD_REQUEST" , message : "password or email are not currect"})
+  }
+  
  
 })
 
