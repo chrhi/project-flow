@@ -5,9 +5,8 @@ import { publicProcedure } from "../api/trpc";
 
 
 export const getAllUser = publicProcedure
-.input(z.object({ text: z.string() }) )
-.query(({ input }) => {
-  return {
-    greeting: `Hello ${input.text}`,
-  };
+
+.query(({ ctx }) => {
+ const users = ctx.prisma.user.findMany()
+ return users
 })

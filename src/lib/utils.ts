@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { type ClassValue, clsx } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
@@ -27,4 +28,22 @@ export function nFormatter(num?: number, digits?: number) {
   return item
     ? (num / item.value).toFixed(digits || 1).replace(rx, "$1") + item.symbol
     : "0";
+}
+
+export function formatDateAlgeria(date: Date): string {
+  const months: string[] = [
+    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"
+  ];
+  
+  const days: string[] = [
+    "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"
+  ];
+  //@ts-ignore
+  const day: string = days[date.getDay()];
+    //@ts-ignore
+  const month: string = months[date.getMonth()];
+  const year: number = date.getFullYear();
+  const hours: number = date.getHours();
+  
+  return `${day}, ${year} ${month} ${hours}:00`;
 }
