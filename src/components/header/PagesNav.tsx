@@ -6,7 +6,7 @@ import { getProjectCurrentPhaseAbdullah } from '~/lib/MetaData'
 import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
 import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
 import { IsPhaseLocked } from '~/utils/access/IsPhaseLocked'
-
+import { Button } from '../ui/button'
 
 
 export function PagesNav() {
@@ -60,14 +60,15 @@ export function PagesNav() {
   return (
     <div className='w-[70%]  h-full hidden md:flex  justify-start items-center gap-x-6 '>
       {LIST.map((item , index ) => (
-           <AbdullahEffectButton 
+           <Button 
+           variant="ghost"
            key={item.name}
-           onPromisClick={() => handleRouting(item.path , item.page , index - 1)}
-                className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? ' text-slate-900' : null}  font-poppins text-sm font-semibold `}
+            onClick={() => handleRouting(item.path , item.page , index - 1)}
+                className={`${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? ' text-slate-900' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200  `}
            >
                  {item.name}
      
-           </AbdullahEffectButton>
+           </Button>
       ))}
     </div>
   )

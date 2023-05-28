@@ -1,15 +1,35 @@
 import Skeleton from 'react-loading-skeleton';
 
-
-const HomePageLoader = ({}) => {
-  return <div className='w-full h-[600px] flex  justify-center gap-4'>
-        <div className='w-[70%] h-full  flex flex-col justify-centerrounded-lg'>
-           <Skeleton style={{width : "50%"}} />
-           <Skeleton style={{width : "100%"}} />
-           <Skeleton style={{width : "100%" , height:"400px"}} />
-        </div>
+  export default function HomePageLoader() {
+  
+    return (
+  
+      <div className="w-full max-w-7xl min-h-[600px] mt-[50px] h-fit sm:px-8 my-8 gap-y-4  flex flex-col  items-center">
        
-  </div>
-}
+       <div className="w-full h-[50px] flex items-center justify-start ">
+            <Skeleton style={{width : "100%"}} />
+       </div>
 
-export default HomePageLoader
+       <div className="w-full h-[600px]  gap-x-4 justify-start   flex ">
+                <div className="w-[65%] h-[80%] ">
+                <Skeleton style={{width : "100%" , height:"400px"}} />
+                </div>
+                <div className="w-[25%] h-full duration-500 flex flex-col p-4 transform hover:-translate-y-1 hover:shadow-2xl  rounded-lg">
+                <Skeleton style={{width : "100%" , height:"400px"}} />
+                </div>
+       </div>
+       <div className="w-full h-[50px] flex items-center justify-start ">
+           <Skeleton style={{width : "100%"}} />
+       </div>
+       <div className="w-full flex  gap-x-4 h-60 mb-4 items-center justify-start">
+            
+              {[1,2,3,4,5].map(() => {
+                return (
+                  <Skeleton style={{width : "192px" , height:"224px"}} />
+                )
+              })}
+       </div>
+      </div>
+    )
+  }
+  

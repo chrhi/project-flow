@@ -41,7 +41,7 @@ export const Chain = ({path , name  ,available, image , PAGE } : chainType) => {
      onMouseEnter={() => setIsHover(true)} 
      onMouseLeave={() => setIsHover(false)}
      onClick={handleClick}
-     className={` relative shadow border-1 transition bg-white duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-2xl justify-center w-60 flex-col p-2   h-60 items-center`}
+     className={` relative shadow border-1 transition bg-white duration-500 transform hover:-translate-y-1 hover:shadow-2xl  flex cursor-pointer rounded-2xl justify-center w-48 flex-col p-2   h-56 items-center`}
      >
       <div className={`${available ? "hidden" : "absolute"} inset-0 rounded-2xl flex justify-center items-center bg-white `}>
       <svg
@@ -52,12 +52,12 @@ export const Chain = ({path , name  ,available, image , PAGE } : chainType) => {
 </svg>
 
       </div>
-      <div className='w-full h-[80%] my-4 rounded-lg'>
+      <div className='w-[80%]   rounded-lg'>
         <Image alt={name} src={image}  />
       </div>
 
     
-        <h3 className={` text-lf  text-gray-900 font-bold  `}>{name}</h3>
+        <h3 className={` text-lf  text-gray-900 mt-4 font-bold  `}>{name}</h3>
     </div>
    
   )

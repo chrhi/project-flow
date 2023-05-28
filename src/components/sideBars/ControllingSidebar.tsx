@@ -4,6 +4,8 @@ import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEf
 import type { Dispatch, SetStateAction } from 'react'
 import NextSwitch from '../common/NextSwitch'
 import { motion  } from 'framer-motion';
+import { Button } from '../ui/button';
+import { ScrollArea } from '../ui/scroll-area';
 
 const sidebarVariants = {
   open: { x: 0 },
@@ -39,12 +41,12 @@ export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {
     set_current_page({payload: A})
   }
   const Link = (current_page : NAVS ,Nav : NAVS ,path : string, name : string ) => 
-              <AbdullahEffectButton
+              <Button
                  onClick={() => handleClick(path , Nav)}
                  className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
                  ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm`}>
                   {name}
-              </AbdullahEffectButton>
+              </Button>
 return (
   <>
     <div className={`${isOpen ? "hidden" : ""} z-[9999] absolute top-[40%] left-[-30px] rounded-[50%] mt-[50px]`}>
@@ -79,12 +81,12 @@ return (
               </svg>
             </button>
         </div>
-        <div className={`overflow-y-auto overflow-x-hidden flex-grow w-full mx-auto bg-white ${isOpen ? "" : "hidden"}`}>
+        <ScrollArea className={`flex-grow w-full mx-auto bg-white ${isOpen ? "" : "hidden"}`}>
           <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
             {List.map((item) => Link(current_page, item.navs, item.path, item.name))}
             <NextSwitch indexThisPhase={0} />
           </div>
-        </div>
+        </ScrollArea>
       </motion.div>
    
   </>

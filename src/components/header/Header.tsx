@@ -18,15 +18,7 @@ export const Header = () => {
        </div>
        <PagesNav />
        <div className="w-[25%]  h-[60px] gap-x-4 md:gap-x-1  hidden lg:flex justify-end items-center mr-2   ">     
-            <div className="w-[10%] h-full" >
-                <Notifictions />  
-            </div>
-           <div className="w-[10%] h-full" >
-                 <SreachBar />
-           </div>
-           <div className="w-[10%] h-full" >
-                <Invitation />  
-            </div>
+           
            <div className="w-[10%] h-full" >
                  <DropDowsMenu />
            </div> 
