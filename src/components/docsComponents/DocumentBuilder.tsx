@@ -2,7 +2,11 @@ import React from 'react'
 import { AbdullahButton , buttonVariants} from '../used/AbdullahButton'
 import { useState } from 'react'
 import { ConfirmePopUp } from '../popup/ConfirmePopUp'
-
+import { api } from '~/utils/api'
+import toast from 'react-hot-toast'
+import { openNewTap } from '~/utils/pdf/openNewTap'
+import { getProjectMetaData } from '~/lib/MetaData'
+import { saveAs } from 'file-saver';
 
 type DocumentBuilderProps = {
     title : string ,
@@ -12,9 +16,27 @@ type DocumentBuilderProps = {
 
 
 
+
 export function DocumentBuilder({title , description }  : DocumentBuilderProps) {
 
-    const [isBuilded , setIsBuiled] = useState<boolean>(false)
+    const [isBuilded , setIsBuiled] = useState<boolean>(true)
+
+    const mutation = api.integrationsRouter.ProjectCharter.useMutation({
+        onSuccess(data){
+          toast.success("we have the project charter")
+//         //   console.log(JSON.parse(data))
+         
+//         //   const buffer = JSON.parse(data)
+        
+//         const blob = new Blob([data], { type: 'application/pdf' });
+//         saveAs(blob , "abdullah.pdf")
+// //   const url = URL.createObjectURL(blob);
+// //   openNewTap(url);
+        },
+        onError(){
+          toast.error("there is an error")
+        }
+      })
 
   return (
     <div className='w-[90%] mb-4 mx-auto max-w-4xl bg-white rounded-lg h-[250px] p-8 flex flex-col gap-y-8'>
@@ -25,7 +47,12 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
         {
               isBuilded ? 
               <div className='w-full h-[70px] flex justify-end gap-x-4 items-center'>  
-                  <AbdullahButton className={`bg-black`} >
+                  <AbdullahButton 
+                  onClick={() => mutation.mutate({
+                    projectId : getProjectMetaData()
+                  })}
+                  isLoading={mutation.isLoading}
+                  className={`bg-black`} >
                       create
                   </AbdullahButton>  
               </div>

@@ -3,10 +3,12 @@ import Head from "next/head";
 import { Header } from "~/components/header/Header";
 import DocsSideBar from "~/components/docsComponents/DocsSideBar";
 import { DocumentBuilder } from "~/components/docsComponents/DocumentBuilder";
-
+import { api } from "~/utils/api";
+import { toast } from "react-hot-toast";
 
 const Page: NextPage = () => {
   
+ 
  
   return (
     <>

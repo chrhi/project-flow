@@ -8,14 +8,16 @@ import closing from "~/assets/Coronavirus Border Closure-amico.png"
 import {  PAGES } from '~/store/app-reducer/headerReducer'
 import { Title } from "@tremor/react";
 import { ScrollArea } from "../ui/scroll-area";
+import { IsPhaseLocked } from "~/utils/access/IsPhaseLocked";
+import { getProjectCurrentPhaseAbdullah } from "~/lib/MetaData";
   
 
 const LISTA = [
-    {name : "Pre-démarrage" , path : "/" , image : setup , page : PAGES.STARTUP},
-    {name : "Planification" , path : "/" , image : planning , page : PAGES.PLANNING},
-    {name : "Exécution" , path : "/" , image : executing , page : PAGES.EXECUTING},
-    {name : "Contrôler" , path : "/" , image : controlling , page : PAGES.CONTROLLING},
-    {name : "Clôturer" , path : "/" , image : closing , page : PAGES.CLOSING}
+    {name : "Pre-démarrage" , path : "/app/startup" , image : setup , page : PAGES.STARTUP},
+    {name : "Planification" , path : "/app/planning" , image : planning , page : PAGES.PLANNING},
+    {name : "Exécution" , path : "/app/executing" , image : executing , page : PAGES.EXECUTING},
+    {name : "Contrôler" , path : "/app/controlling" , image : controlling , page : PAGES.CONTROLLING},
+    {name : "Clôturer" , path : "/app/close" , image : closing , page : PAGES.CLOSING}
 ]
   export default function HomePage() {
   
@@ -33,7 +35,7 @@ const LISTA = [
                 <div className="w-[65%] h-[80%] ">
                         <BedgetStatus />
                 </div>
-                <div className="w-[25%] h-full duration-500 flex flex-col p-4 transform hover:-translate-y-1 hover:shadow-2xl bg-white rounded-lg">
+                <div className="w-[25%] h-full duration-500 flex flex-col p-4   bg-white rounded-lg">
                 <Title> Dangers stakeholders </Title>
                 <ScrollArea className="mt-4 ">
                     <div className="w-full h-[40px] flex justify-start gap-x-4 px-4">
@@ -56,11 +58,11 @@ const LISTA = [
        </div>
        <div className="w-full flex  gap-x-4 h-60 mb-4 items-center justify-start">
             
-              {LISTA.map(item => {
+              {LISTA.map((item , index) => {
                 return (
                   <Chain
                     PAGE={item.page}
-                    available={true}
+                    available={IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index})}
                     image={item.image}
                     name={item.name}
                     path={item.path}

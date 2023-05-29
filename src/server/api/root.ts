@@ -10,7 +10,7 @@ import { scopePlanningRouter } from "./inputs/management-plan/scope";
 import { riskPlanningRouter } from "./inputs/management-plan/risk-managment-plan";
 import { changePlanningRouter } from "./inputs/management-plan/change-managment";
 import { scheduelPlanningRouter } from "./inputs/management-plan/scheduel-management";
-
+import { integrationsRouter } from "./pdf-generater/integrations";
 
 export const appRouter = createTRPCRouter({
     userRouter,
@@ -23,7 +23,8 @@ export const appRouter = createTRPCRouter({
     scopePlanningRouter,
     riskPlanningRouter,
     changePlanningRouter,
-    scheduelPlanningRouter
+    scheduelPlanningRouter,
+    integrationsRouter
 });
 
 // export type definition of API

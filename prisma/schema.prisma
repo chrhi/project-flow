@@ -97,6 +97,8 @@ model Tasks {
     @@index([projectId])
 }
 
+
+
 model StakeHolder {
   id        String  @id @default(uuid())
   projectId String?

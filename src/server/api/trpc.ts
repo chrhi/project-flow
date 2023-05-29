@@ -1,6 +1,7 @@
 
 import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { prisma } from "~/lib/prisma";
+import { supabase } from "~/lib/supabase";
 
 type CreateContextOptions = Record<string, never>;
 
@@ -10,7 +11,8 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
   return {
     req , 
     res ,
-    prisma
+    prisma , 
+    supabase
   };
 };
 
