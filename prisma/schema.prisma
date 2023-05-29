@@ -57,6 +57,7 @@ model Project {
   endsAt        DateTime?
   currentPhase  String?  @db.LongText
   userId        String
+  WorkBreakDownStorage Json?
   user          User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   StakHolder    StakeHolder[]
   Risk          Risk[]
@@ -68,9 +69,32 @@ model Project {
   Executing     Executing[]
   Controlling   Controlling[]
   Closing       Closing[]
+  Tasks        Tasks[]
 
   @@index([id])
   @@index([userId])
+}
+
+model Tasks {
+    id        String  @id @default(uuid())
+    projectId String?
+    title     String?
+    description String?
+    Priority    String?
+    Color       String?
+    StartAt    DateTime?
+    EndsAt     DateTime?
+    EndedAt    DateTime?
+    cost       Float?
+    RealCost   Float?
+    Shape       String?
+    Status      String?
+    AssignedTo  Json?
+    AlocatedRessources Json?
+    project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+    @@index([id])
+    @@index([projectId])
 }
 
 model StakeHolder {

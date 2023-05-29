@@ -3,25 +3,25 @@ import { Fragment, useState } from 'react'
 import { AbdullahButton, buttonVariants } from '../used/AbdullahButton'
 import Image from "next/image"
 import logo from "~/assets/logo.png"
+import { ScrollArea } from '../ui/scroll-area'
+import { Input } from '../used/Input'
+import { TextField } from '../used/TextField'
+import { OpenStakeHolderOpoUpShowCase } from '~/store/open-models'
 
 
 
 
 
 export  function StakeHolder () {
-  const [isOpen, setIsOpen] = useState(false)
 
-  const [stakholder , setStackHolder] = useState<stakholder>({} as stakholder)
-
+  const isShowing = OpenStakeHolderOpoUpShowCase(state => state.showModel)
  
+  const setIsShowing = OpenStakeHolderOpoUpShowCase(state => state.setShowModel)
 
   function closeModal() {
-    setIsOpen(false)
+    setIsShowing(false)
   }
 
-  function openModal() {
-    setIsOpen(true)
-  }
 
   return (
     <>
@@ -29,7 +29,7 @@ export  function StakeHolder () {
       
      
 
-      <Transition appear show={true} as={Fragment}>
+      <Transition appear show={isShowing} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -56,104 +56,73 @@ export  function StakeHolder () {
               >
                 <Dialog.Panel className="w-full h-screen   z-[100]  transform overflow-x-hidden overflow-y-auto   bg-white p-6 text-left align-middle shadow-xl transition-all">
                  <div className='container h-[50px] mx-auto flex justify-between items-center'>
-                 <div className="w-[3%] h-full flex justify-start items-center">
-               <Image alt="logo" src={logo} width={35} height={35}  />
-                </div>
-                <div>
+                    <div className="w-[3%] h-full flex justify-start items-center">
+                     <Image alt="logo" src={logo} width={35} height={35}  />
+                    </div>
+                
                
                     <button
-                    onClick={closeModal}
-                   className='!text-xl !font-semibold !text-slate-900 !p-0  '
-                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                 <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-
+                         onClick={closeModal}
+                         className='!text-xl !font-semibold !text-slate-900 !p-0  '
+                     >
+                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                       </svg>
                     </button>
-                  
                 </div>
-                 </div>
+                 
                  {
                   // isFetching ? 
                   false ?
                 <h1 className='text-xl text-stone-900'>loading...</h1>
                   :
-                  <div className='container mx-auto h-full flex  pl-4 '>
-                    {/* this is the first div */}
-                      <div className='w-[50%] h-full p-4 '>
-                      <div className='w-full h-[100px] flex items-center gap-x-4'>
-                        <div className='w-[70px] h-[70px] bg-black rounded-lg '>
-
-                        </div>
-                      <input 
-                          value={"Abdellah chehri"} 
-                          className='text-2xl font-bold my-4  text-gray-900  border-none focus:outline-none '   
-                        />
-                      </div>
-                        <h3 className='text-xl mt-4 font-semibold  text-gray-800'>role & responsability :  </h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                        <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Note </h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-lg  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                        {/* this is the second input  */}
-                        <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Contact info :  </h3>
-                        <div className='w-full flex flex-col my-4 '>
-                        <input 
-                              value={"email :  mahdi.chahri55@gmail.com"} 
-                              className='text-md  text-gray-700  border-none focus:outline-none '   
-                          />
-                           <input 
-                              value={"telephone number :  05397643"} 
-                              className='text-md  text-gray-700  border-none focus:outline-none '   
-                           />
-                        </div>
-                        {/* this is another input  */}
-                        <h3 className='text-xl mt-4 font-semibold   text-gray-800'>Level of involvment  </h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                         {/* this is another input  */}
-                         <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Communication Needs  </h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                         {/* this is another input  */}
-                         <h3 className='text-xl mt-4 font-semibold  text-gray-800'>Communication Needs  </h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                      </div>
-                       {/* this is the second div */}
-                       <div className='w-[50%] h-full  '>
-                       <input 
-                              value={"available at  :  12/21/2017"} 
-                              className='text-lg  text-gray-700  border-none focus:outline-none '   
-                          />
-                        <h3 className='text-xl mt-4 font-semibold  text-gray-800' >Pending Changes :</h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                        <h3 className='text-xl mt-4 font-semibold  text-gray-800' >relationships</h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-md  text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                        <h3 className='text-xl mt-4 font-semibold  text-gray-800' >stakeholder Engagement Approach</h3>
-                        <textarea 
-                          value={"you didnt wrote any note to this stakholder so it is going to be true"} 
-                          className='text-md text-gray-500 w-full h-fit border-none  focus:outline-none focus:ring-0 '   
-                        />
-                      </div>
-                  </div>
+                  <ScrollArea className='px-8 py-4 mx-auto   h-fit min-h-full  grid grid-cols-1 w-[70%]   '>
+                  <Input 
+                        
+                        lable="name "
+                        value="abdullah jsk"
+                        onChange={() => console.log("")}
+                  />
+                   <Input 
+                       
+                        lable="email "
+                        value="mahdi.chahri55@gmail.com"
+                        onChange={() => console.log("")}
+                  />
+                     <Input 
+                       
+                       lable="type "
+                       value="type"
+                       onChange={() => console.log("")}
+                  />
+                    <Input 
+                       
+                       lable="Position "
+                       value="type"
+                       onChange={() => console.log("")}
+                  />
+                   <Input 
+                       
+                       lable="Impact "
+                       value="type"
+                       onChange={() => console.log("")}
+                  />
+                  <TextField
+                        lable="Requiremnts "
+                        value="type"
+                        onChange={() => console.log("")}
+                  />
+                  <TextField
+                        lable="Expectations "
+                        value="type"
+                        onChange={() => console.log("")}
+                  />
+                    <TextField
+                        lable="Expectations "
+                        value="type"
+                        onChange={() => console.log("")}
+                  />
+                  </ScrollArea>
                  }
                 </Dialog.Panel>
               </Transition.Child>

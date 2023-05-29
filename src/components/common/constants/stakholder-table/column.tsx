@@ -12,6 +12,7 @@ import {
 import { confirmDeleteStakeholder } from "~/store/app-reducer/confirm-actions"
 import { getColor } from "~/utils/formate/getColor"
 import { Badge } from "@tremor/react"
+import { OpenStakeHolderOpoUpShowCase } from "~/store/open-models"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -62,10 +63,19 @@ export const columns: ColumnDef<Stakholder>[] = [
       const setIsShowing = confirmDeleteStakeholder(state => state.setShowModel)
       const setStakeHolderId = confirmDeleteStakeholder(state => state.setId)
 
+       
+      const setIsShowingPopUpShowCase = OpenStakeHolderOpoUpShowCase(state => state.setShowModel)
+      const setShowCaseId = OpenStakeHolderOpoUpShowCase(state => state.setId)
+
       const handleDelete = () => {
         setStakeHolderId(row.original.id)
         setIsShowing(true)
 
+      }
+
+      const handleShowCase = () => {
+        setShowCaseId(row.original.id)
+        setIsShowingPopUpShowCase(true)
       }
  
       return (
@@ -84,7 +94,7 @@ export const columns: ColumnDef<Stakholder>[] = [
               Copy Email 
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleShowCase}>View details</DropdownMenuItem>
             <DropdownMenuItem onClick={handleDelete}>Delete </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

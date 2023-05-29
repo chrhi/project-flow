@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { Title } from '@tremor/react'
+import { Badge, Title } from '@tremor/react'
 import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
 import { useRouter } from 'next/router'
 import { getProjectCurrentPhaseAbdullah } from '~/lib/MetaData'
@@ -75,6 +75,19 @@ export function PagesNav() {
      
            </Button>
       ))}
+         <Button 
+           
+           variant="ghost"
+        
+            onClick={() => handleRouting("/admin" , PAGES.DASHBORD , 0 )}
+                className={`
+
+                ${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500   font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200  
+              
+                `}
+           >   Admin access <Badge color='red'>test only</Badge>
+     
+           </Button>
     </div>
   )
 }
