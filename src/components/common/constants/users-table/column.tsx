@@ -1,7 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table"
 import { Button } from "~/components/ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-
+import { confirmDeleteUser } from '~/store/app-reducer/confirm-actions'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -90,9 +90,15 @@ export const columns: ColumnDef<User>[] = [
   },
   {
     id: "actions",
-    cell: ({ row ,  table}) => {
-      const payment = row.original
-      
+    cell: ({ row }) => {
+     
+      const setShowModel = confirmDeleteUser(state =>  state.setShowModel)
+      const setUserId = confirmDeleteUser(state =>  state.setId)
+
+      const handleDeleteUser = () => {
+        setUserId(row.original.id)
+        setShowModel(true)
+      }
     
  
       return (
@@ -107,7 +113,7 @@ export const columns: ColumnDef<User>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
             className="cursor-pointer"
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(row.original.id)}
             >
               Copy User ID
             </DropdownMenuItem>
@@ -115,7 +121,7 @@ export const columns: ColumnDef<User>[] = [
             <DropdownMenuItem className="cursor-pointer">Update User</DropdownMenuItem>
             <DropdownMenuItem 
         
-            className="cursor-pointer !hover:bg-red-300" >Delete</DropdownMenuItem>
+            className="cursor-pointer !hover:bg-red-300" onClick={handleDeleteUser}>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

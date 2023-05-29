@@ -9,34 +9,12 @@ import { api } from "~/utils/api";
 import { toast } from "react-toastify";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { getColor } from "~/utils/formate/getColor";
-
+import { ConfirmePopUpDeleteStakeHolder } from "~/components/popup/table-confirm/delete-stakeholder-con";
 import { Badge } from "@tremor/react";
 import { DataTable } from "~/components/common/constants/stakholder-table/data-table";
 import { Stakholder , columns } from "~/components/common/constants/stakholder-table/column";
-
-
-
-
-const data : Stakholder[] =  [
-  {
-    id: "728ed52f",
-    name : "abdullah",
-    email: "salah.bvb44@gmail.com",
-    impact: "m@example.com",
-    type : "active"
-  },
-  {
-    id: "728ed545f",
-    name : "chcheri",
-    email: "mahdi.chahri55@gmail.com",
-    impact: "low",
-    type : "active"
-  },
-]
-
-
-
-
+import { PlaceHolderTbale } from "~/components/common/table-place-holder";
+import { StakeHolder } from "~/components/popup/StakeHolder";
 
 
 
@@ -46,14 +24,14 @@ const Page: NextPage = () => {
   const [stakeholders , setStakeHolders] = useState<Stakholder[]>([] as Stakholder[])
 
 
-  const {isLoading , refetch} = api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()}, {
+  const {isFetching , refetch} = api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()}, {
     onSuccess(data) {
       const AbdullahData  = data.map(item =>{
         return {
           id : item.id,
           name : item.name,
           email:  item.contact,
-          impact:  item.impact,
+          impact:  item.impact?.toLowerCase(),
           type : item.type,
         }
       })
@@ -72,13 +50,14 @@ const Page: NextPage = () => {
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-     
+        <StakeHolder />
+      <ConfirmePopUpDeleteStakeHolder refetch={refetch} />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
-      
-            <DataTable refetch={refetch} columns={columns} data={stakeholders} /> 
+            {isFetching ? <PlaceHolderTbale /> :    <DataTable refetch={refetch} columns={columns} data={stakeholders} />  }
+         
             </div>
         </div>
       </div>

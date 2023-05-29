@@ -5,27 +5,10 @@ import Image from "next/image"
 import logo from "~/assets/logo.png"
 
 
-interface Props {
-    text : string | undefined ,
-    id : string | undefined
-}
 
-interface stakholder {
-  name : string,
-  email :  string  ,
-  phone :  string ,
-  role : string,
-  note :  string  ,
-  levelOfInvolvement : string,
-  communicationNeeds :  string  ,
-  communicationMethod :  string,
-  timing :   string ,
-  pendingChanges  :  string[]  ,
-  relationships :   string[]  ,
-  stakeholderEngagementApproach :  string [],
-}
 
-export  function StakeHolder ({text , id} : Props) {
+
+export  function StakeHolder () {
   const [isOpen, setIsOpen] = useState(false)
 
   const [stakholder , setStackHolder] = useState<stakholder>({} as stakholder)
@@ -43,15 +26,10 @@ export  function StakeHolder ({text , id} : Props) {
   return (
     <>
      
-      <AbdullahButton 
-      type='button'
-      onClick={openModal}
-       className={buttonVariants({size :'none' , variant :'link'})}
-       > {text}
-       </AbdullahButton>
+      
      
 
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={true} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
           <Transition.Child
             as={Fragment}

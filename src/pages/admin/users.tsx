@@ -10,7 +10,7 @@ import { Badge } from "lucide-react";
 import { formatDateAlgeria } from "~/lib/utils";
 import { PlaceHolderTbale } from "~/components/common/table-place-holder";
 import { Card } from "@tremor/react";
-
+import { ConfirmePopUpDeleteUser } from "~/components/popup/table-confirm/delete-user-pop-up";
 
 
 const Page: NextPage = () => {
@@ -45,7 +45,9 @@ const Page: NextPage = () => {
     <>
     <HeaderAdmin />
       <main className=" w-full custom-hieght-navbar bg-stone-50   ">
+       
         <MaxWidthWrapper className="flex flex-col  p-8">
+        <ConfirmePopUpDeleteUser refetch={refetch} />
           <Card>
           {isFetching ? <PlaceHolderTbale /> :  <DataTable columns={columns} data={users} refetch={refetch}/> }
           </Card>

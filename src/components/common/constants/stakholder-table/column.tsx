@@ -9,6 +9,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
+import { confirmDeleteStakeholder } from "~/store/app-reducer/confirm-actions"
+import { getColor } from "~/utils/formate/getColor"
+import { Badge } from "@tremor/react"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -42,16 +45,28 @@ export const columns: ColumnDef<Stakholder>[] = [
   {
     accessorKey: "impact",
     header: "Impact",
+    cell: ({ row }) => {
+
+      return <Badge color={getColor({text : row.original.impact})}>{row.original.impact}</Badge>
+    }
   },
   {
     accessorKey: "type",
     header: "Type",
   },
   {
+    header: "Actions",
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
-      
+     
+      const setIsShowing = confirmDeleteStakeholder(state => state.setShowModel)
+      const setStakeHolderId = confirmDeleteStakeholder(state => state.setId)
+
+      const handleDelete = () => {
+        setStakeHolderId(row.original.id)
+        setIsShowing(true)
+
+      }
  
       return (
         <DropdownMenu>
@@ -64,13 +79,13 @@ export const columns: ColumnDef<Stakholder>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(row.original.email)}
             >
-              Copy payment ID
+              Copy Email 
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )
