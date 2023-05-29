@@ -47,3 +47,11 @@ export function formatDateAlgeria(date: Date): string {
   
   return `${day}, ${year} ${month} ${hours}:00`;
 }
+
+export function downloadImage(dataUrl : any) {
+  const a = document.createElement('a');
+
+  a.setAttribute('download', 'reactflow.png');
+  a.setAttribute('href', dataUrl);
+  a.click();
+}

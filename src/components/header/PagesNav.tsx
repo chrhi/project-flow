@@ -69,7 +69,7 @@ export function PagesNav() {
                 className={`
 
                 ${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? ' text-slate-900' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200  
-                ${IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index - 1})? "" : "text-gray-200"}
+                ${IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index - 1}) || item.page === PAGES.DOCS? "" : "text-gray-200"}
                 `}
            >   {item.name}
      

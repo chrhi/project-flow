@@ -43,6 +43,7 @@
     "framer-motion": "^10.12.10",
     "gantt-task-react": "^0.3.9",
     "handlebars": "^4.7.7",
+    "html-to-image": "^1.11.11",
     "jose": "^4.13.1",
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^9.0.0",

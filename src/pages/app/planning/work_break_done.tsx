@@ -14,7 +14,8 @@ import { Treepopup } from '~/components/popup/Treepopup';
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-
+import { downloadImage } from '~/lib/utils';
+import DownloadButton from '~/components/react-flow/download-btn';
 import ReactFlow , {
   MiniMap,
   Controls,
@@ -28,15 +29,35 @@ import ReactFlow , {
 import { AbdullahButton  , buttonVariants} from '~/components/used/AbdullahButton';
 
 const initialNodes = [
-
+  {
+    id: 'interaction-1',
+    type: 'input',
+    data: { label: 'Node 1' },
+    position: { x: 250, y: 5 },
+  },
+  {
+    id: 'interaction-2',
+    data: { label: 'Node 2' },
+    position: { x: 100, y: 100 },
+  },
+  {
+    id: 'interaction-3',
+    data: { label: 'Node 3' },
+    position: { x: 400, y: 100 },
+  }
 ];
 
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
 const flowKey = 'example-flow';
 const getNodeId = () => `randomnode_${+new Date()}`;
 
+const defaultEdgeOptions = {
+  animated: true,
+  type: 'smoothstep',
+};
 
 const Page: NextPage = () => {
+
   
   const [isOpen , setIsOpen] = useState<boolean>(false)
   const [isOpenAlert , setIsOpenAlert] = useState<boolean>(true)
@@ -140,6 +161,7 @@ const Page: NextPage = () => {
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
       onInit={setRfInstance}
+      defaultEdgeOptions={defaultEdgeOptions}
     >
 
       <div className="save__controls">
@@ -148,6 +170,7 @@ const Page: NextPage = () => {
       <MiniMap  zoomable pannable />
       <Controls />
       <Background color="#aaa" gap={16} />
+       <DownloadButton />
     </ReactFlow>
    
     </div>
