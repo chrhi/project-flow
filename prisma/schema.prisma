@@ -97,7 +97,15 @@ model Tasks {
     @@index([projectId])
 }
 
-
+model Document {
+   id        String  @id @default(uuid())
+   name      String?
+   url       String?
+   path      String?
+   createdAt DateTime  @default(now())
+   status    String?
+   
+}
 
 model StakeHolder {
   id        String  @id @default(uuid())

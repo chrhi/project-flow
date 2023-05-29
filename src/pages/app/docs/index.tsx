@@ -5,10 +5,27 @@ import DocsSideBar from "~/components/docsComponents/DocsSideBar";
 import { DocumentBuilder } from "~/components/docsComponents/DocumentBuilder";
 import { api } from "~/utils/api";
 import { toast } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { getProjectMetaData, getUserMetadata } from "~/lib/MetaData";
+import { redis } from "~/lib/upstash";
 
 const Page: NextPage = () => {
   
- 
+  const [isProject , setIsProject] = useState("loading")
+  useEffect( () => {
+    const verifieProject = async  () => {
+      const project =  await redis.get(getProjectMetaData());
+      return project
+    }
+    verifieProject().then(res => {
+      if(res){
+        setIsProject("project")
+        return
+      }
+      setIsProject("vide")
+    }).catch(err => console.log(err))
+
+  },[])
  
   return (
     <>

@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 import { api } from '~/utils/api';
 import type { DateRangePickerValue } from '@tremor/react';
 import { getUserMetadata } from '~/lib/MetaData';
+import { redis } from '~/lib/upstash';
 
 type Props = {
   refetch: () => Promise<any>;
@@ -24,7 +25,9 @@ export const ProjectStarter = ({ refetch }: Props) => {
   });
 
   const mutation = api.projectRouter.create_project.useMutation({
-    onSuccess: async () => {
+    onSuccess: async (data) => {
+      
+      await redis.set(data.id, JSON.stringify({currentPhase : data.currentPhase}));
       await refetch();
       toast('Good Job!', {
         icon: '👏',

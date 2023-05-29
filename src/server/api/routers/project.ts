@@ -15,7 +15,7 @@ export const projectRouter = createTRPCRouter({
     }))
     .mutation(async ({ input, ctx }) => {
       // Create a new project using Prisma
-      await ctx.prisma.project.create({
+     await ctx.prisma.project.create({
         data: {
           userId: input.user_id,
           title: input.title,
@@ -56,6 +56,8 @@ export const projectRouter = createTRPCRouter({
           projectId: project?.id,
         }
       }).catch(err => { throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: err,}) })
+
+      return project
     }),
 
   // Define get_project procedure
