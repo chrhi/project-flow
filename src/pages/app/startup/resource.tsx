@@ -10,6 +10,7 @@ import { DataTable } from "~/components/common/constants/resource-table/data-tab
 import { Resource , columns } from "~/components/common/constants/resource-table/column";
 import toast from "react-hot-toast";
 import { getProjectMetaData } from "~/lib/MetaData";
+import { RowGridText } from "~/components/typography/RowGridText";
 
 
 
@@ -59,6 +60,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
         <div className="col-span-6 lg:col-span-12">
+            <RowGridText text=" Resources management" />
+            <RowGridText small text="Effectively manage material resources by accurately identifying, procuring, tracking, and optimizing their utilization throughout the project, ensuring timely availability and cost-effective management" />
         <DataTable refetch={refetch} columns={columns} data={resource} /> 
         </div>
     

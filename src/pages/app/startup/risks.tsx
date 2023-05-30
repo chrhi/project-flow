@@ -6,6 +6,10 @@ import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import { DataTable } from "~/components/common/constants/risks-table/data-table"
 import { RiskType , columns } from "~/components/common/constants/risks-table/column";
+import { RowGridText } from "~/components/typography/RowGridText";
+
+
+
 
 const data : RiskType[] =  [
   {
@@ -109,6 +113,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
             <div className="col-span-6 lg:col-span-12">
+            <RowGridText text=" Risks Management" />
+            <RowGridText small text=" Proactively manage project risks by identifying, assessing, and prioritizing potential risks, developing mitigation strategies, and regularly monitoring and controlling risks throughout the project lifecycle to minimize their impact on project objectives" />
             <DataTable columns={columns} data={data} /> 
        
             </div>

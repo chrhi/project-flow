@@ -22,7 +22,7 @@ const Page: NextPage = () => {
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
               <RowGridText text="Requirements management plan " />
-              <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+              <RowGridText small text=" Develop a comprehensive requirements management plan that includes processes for eliciting, documenting, validating, and managing project requirements, ensuring a clear understanding of stakeholder needs, effective communication, and successful delivery of the project's required functionalities and features." />
          
               <TextField
                       lable="Schedule Methodology"

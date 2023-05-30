@@ -117,9 +117,9 @@ function BedgetStatus() {
             defaultValue={selectedKpi}
             onValueChange={(value) => setSelectedKpi(value)}
           >
-            <ToggleItem value="Sales" text="Sales" />
-            <ToggleItem value="Profit" text="Profit" />
-            <ToggleItem value="Customers" text="Customers" />
+            <ToggleItem value="Sales" text="Budget spand" />
+            <ToggleItem value="Profit" text="Document generated" />
+         
           </Toggle>
         </div>
       </div>

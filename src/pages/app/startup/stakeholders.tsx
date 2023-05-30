@@ -15,7 +15,7 @@ import { DataTable } from "~/components/common/constants/stakholder-table/data-t
 import { Stakholder , columns } from "~/components/common/constants/stakholder-table/column";
 import { PlaceHolderTbale } from "~/components/common/table-place-holder";
 import { StakeHolder } from "~/components/popup/StakeHolder";
-
+import { RowGridText } from "~/components/typography/RowGridText";
 
 
 const Page: NextPage = () => {
@@ -56,6 +56,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
+            <RowGridText text=" Stakeholders management " />
+            <RowGridText small text="Effectively manage stakeholders by identifying their needs, expectations, and potential impacts on the project, and engage them throughout the project lifecycle" />
             {isFetching ? <PlaceHolderTbale /> :    <DataTable refetch={refetch} columns={columns} data={stakeholders} />  }
          
             </div>

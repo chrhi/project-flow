@@ -5,7 +5,7 @@ import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import { AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
-
+import { RowGridText } from "~/components/typography/RowGridText";
 
 
 
@@ -30,6 +30,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
        <div className="col-span-6 lg:col-span-12 ">
+       <RowGridText text="set   the project objectives " />
+            <RowGridText small text=" Define specific, measurable, achievable, relevant, and time-bound (SMART) project objectives that clearly state the desired outcomes and deliverables, providing a clear direction and focus for the project" />
        <AbdullahTable
         
           isLoading={false}
@@ -38,8 +40,6 @@ const Page: NextPage = () => {
           description=""
           headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
           body={[]}
-      
-         
          />
        
 

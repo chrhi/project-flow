@@ -22,7 +22,7 @@ const Page: NextPage = () => {
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <RowGridText text="Stakholder  management plan " />
-              <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+              <RowGridText small text=" Develop a stakeholder management plan that identifies key stakeholders, assesses their interests, expectations, and potential impact on the project, defines strategies for effective communication, engagement, and relationship building, to ensure stakeholder satisfaction, involvement, and alignment with project goals" />
          
               <TextField
                       lable="Schedule Methodology"

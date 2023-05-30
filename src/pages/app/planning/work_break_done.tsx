@@ -32,18 +32,34 @@ const initialNodes = [
   {
     id: 'interaction-1',
     type: 'input',
-    data: { label: 'Node 1' },
+    data: { label: 'task 1' },
     position: { x: 250, y: 5 },
   },
   {
     id: 'interaction-2',
-    data: { label: 'Node 2' },
+    data: { label: 'task 2' },
     position: { x: 100, y: 100 },
   },
   {
     id: 'interaction-3',
-    data: { label: 'Node 3' },
+    data: { label: 'task 3' },
     position: { x: 400, y: 100 },
+  },
+  {
+    id: 'interaction-4',
+    type: 'input',
+    data: { label: 'task 4' },
+    position: { x: 350, y: 50 },
+  },
+  {
+    id: 'interaction-5',
+    data: { label: 'task 5' },
+    position: { x: 500, y: 100 },
+  },
+  {
+    id: 'interaction-6',
+    data: { label: 'task 6' },
+    position: { x: 450, y: 100 },
   }
 ];
 

@@ -14,7 +14,7 @@ import Skeleton from 'react-loading-skeleton';
                 <div className="w-[65%] h-[80%] ">
                 <Skeleton style={{width : "100%" , height:"400px"}} />
                 </div>
-                <div className="w-[25%] h-full duration-500 flex flex-col p-4 transform hover:-translate-y-1 hover:shadow-2xl  rounded-lg">
+                <div className="w-[25%]  h-[80%] duration-500 flex flex-col p-4  rounded-lg">
                 <Skeleton style={{width : "100%" , height:"400px"}} />
                 </div>
        </div>

@@ -28,7 +28,7 @@ const LISTA = [
       <div className="w-full max-w-7xl min-h-[600px] mt-[50px] h-fit sm:px-8 my-8 gap-y-4  flex flex-col  items-center">
        
        <div className="w-full h-[50px] flex items-center justify-start ">
-          <p className="text-2xl font-semibold ">Hi 👋 this is the dashboard and your personal space </p>
+          <p className="text-2xl font-semibold ">Hi  this is the dashboard and your personal space </p>
        </div>
 
        <div className="w-full h-[600px]  gap-x-4 justify-start   flex ">
@@ -36,20 +36,21 @@ const LISTA = [
                         <BedgetStatus />
                 </div>
                 <div className="w-[25%] h-full duration-500 flex flex-col p-4   bg-white rounded-lg">
-                <Title> Dangers stakeholders </Title>
+                <Title className="font-semibold"> Recent stakeholders </Title>
                 <ScrollArea className="mt-4 ">
-                    <div className="w-full h-[40px] flex justify-start gap-x-4 px-4">
-                          <div className="rounded-[50%] bg-green-500 w-12 h-12 " />
-                          <p className="text-lg font-semibold ">Abdullah jsk</p>
+                    <div className="w-full h-[40px] flex justify-start cursor-pointer hover:bg-gray-50  px-4">
+                          <p className="text-sm text-gray-400 font-semibold  "> 👋 KHITER Mohamed Seghir</p>
                     </div>
-                    <div className="w-full h-[40px] flex justify-start gap-x-4 px-4">
-                          <div className="rounded-[50%] bg-yellow-500 w-12 h-12 " />
-                          <p className="text-lg font-semibold ">Saidi achraf</p>
+                    <div className="w-full h-[40px] flex justify-start cursor-pointer hover:bg-gray-50   px-4">
+                          <p className="text-sm text-gray-400 font-semibold "> 👋 Direction Exploitation</p>
                     </div>
-                    <div className="w-full h-[40px] flex justify-start gap-x-4 px-4">
-                          <div className="rounded-[50%] bg-blue-500 w-12 h-12 " />
-                          <p className="text-lg font-semibold ">Blil salah eddin</p>
+                    <div className="w-full h-[40px] flex justify-start cursor-pointer hover:bg-gray-50   px-4">
+                          <p className="text-sm text-gray-400 font-semibold "> 👋 Abdullah chehri </p>
                     </div>
+                    <div className="w-full h-[40px] flex justify-start cursor-pointer hover:bg-gray-50   px-4">
+                          <p className="text-sm text-gray-400 font-semibold "> 👋 rayan aouf</p>
+                    </div>
+                 
                 </ScrollArea>
                 </div>
        </div>

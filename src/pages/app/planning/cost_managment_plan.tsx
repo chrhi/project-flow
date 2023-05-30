@@ -30,7 +30,7 @@ const Page: NextPage = () => {
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
 
           <RowGridText text="Cost  management plan" />
-          <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+          <RowGridText small text="Develop a comprehensive cost management plan that includes accurate estimation of project costs, establishing a budget, monitoring and controlling expenses, tracking variances, and implementing cost-effective measures to ensure the project is completed within the allocated budget" />
          
 
           <TextField 

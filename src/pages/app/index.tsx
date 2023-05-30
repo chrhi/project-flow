@@ -12,7 +12,7 @@ import { ProjectReduer } from "~/store/project-reducer";
 
 const Page: NextPage = () => {
 
-  const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
+  const [hasProjectStart , setHasProjectStart] = useState<boolean>(true)
 
   const setProject = ProjectReduer(state => state.set_project)
 

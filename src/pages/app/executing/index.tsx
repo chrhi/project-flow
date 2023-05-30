@@ -20,20 +20,22 @@ const tasksTyped : TaskType[] =[
   },
   {
     id : "1234566" , 
-    title : "make me happy ",
+    title : "Conduct Reservoir Assessment ",
     priority : "increase",
+    discription:" Perform a detailed assessment of a designated oil or gas reservoir, analyzing geological data, reservoir properties, and production potential to inform future exploration and production strategies",
     status : "DONE"
   } , 
   {
   id : "9776",
-  title : "Pipeline and Transportation" , 
-  discription : "Sonatrach can manage the transportation of oil and gas through pipelines and other means. This includes constructing and maintaining pipelines, monitoring transportation operations, and ensuring safe and efficient delivery of resources " , 
+  title : "Prepare Upstream Feasibility Report" , 
+  discription : "Develop a comprehensive feasibility report for an upstream oil or gas project, evaluating technical aspects, cost estimation, risk analysis, and potential returns to determine project viability" , 
   priority : "decrease",
   status : "DOING"
  },
  {
   id : "67" , 
-  title : "this is the calnel ",
+  title : " Optimize Downstream Supply Chain ",
+
   priority : "increase",
   status : "CANCEL"
 } , 

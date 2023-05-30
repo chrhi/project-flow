@@ -7,6 +7,8 @@ import toast from 'react-hot-toast'
 import { openNewTap } from '~/utils/pdf/openNewTap'
 import { getProjectMetaData } from '~/lib/MetaData'
 import { saveAs } from 'file-saver';
+import { motion, useAnimation, useMotionValue } from "framer-motion";
+import { FRAMER_MOTION_LIST_ITEM_VARIANTS } from '~/lib/constants'
 
 type DocumentBuilderProps = {
     title : string ,
@@ -20,6 +22,12 @@ type DocumentBuilderProps = {
 export function DocumentBuilder({title , description }  : DocumentBuilderProps) {
 
     const [isBuilded , setIsBuiled] = useState<boolean>(true)
+
+    const x = useMotionValue(0);
+    const controls = useAnimation();
+    const [constrained, setConstrained] = useState(true);
+
+    const [velocity, setVelocity] = useState<number>(0);
 
     const mutation = api.integrationsRouter.ProjectCharter.useMutation({
         onSuccess(data){
@@ -39,8 +47,19 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
       })
 
   return (
-    <div className='w-[90%] mb-4 mx-auto max-w-4xl bg-white rounded-lg h-[250px] p-8 flex flex-col gap-y-8'>
-        <h3 className='text-2xl font-bold text-gray-800 '>👉 {title} </h3>
+    <motion.div 
+    animate={controls}
+    drag="x"
+    dragConstraints={constrained && { left: 0, right: 0 }}
+    dragElastic={1}
+   
+    style={{ x }}
+    onDrag={() => setVelocity(x.getVelocity())}
+
+    whileTap={{ scale: 1.05 }}
+    className="flex w-[90%] gap-y-4 my-4 items-start  rounded-md border flex-col  border-gray-200 bg-white p-3 shadow-lg transition-[border-color] hover:border-black "
+   >
+        <h3 className='text-xl font-bold text-gray-800 '>📙 {title} </h3>
         <p className='text-md text-gray-500 '>
         {description}
         </p>
@@ -52,8 +71,8 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
                     projectId : getProjectMetaData()
                   })}
                   isLoading={mutation.isLoading}
-                  className={`bg-black`} >
-                      create
+                  className={buttonVariants({variant : "primary"})} >
+                      Build document
                   </AbdullahButton>  
               </div>
               : 
@@ -66,7 +85,7 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
               </div>
         }
     
-    </div>
+    </motion.div>
   )
 }
 

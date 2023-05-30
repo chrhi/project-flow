@@ -22,14 +22,9 @@ type Props ={
 
 const List = [
 
-  {name : " Status tracking" , path : "/app/executing" , navs : NAVS.TWO},
+  {name : " Tasks tracking" , path : "/app/executing" , navs : NAVS.TWO},
   {name : " Time tracking" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
-  {name : "Resource allocation" , path : "/" , navs : NAVS.FOUR},
-  {name : "Change management" , path : "/" , navs : NAVS.FIVE},
-  {name : "Quality control" , path : "/" , navs : NAVS.SIX},
-  {name : "Communication" , path : "/" , navs : NAVS.SEVEN},
-  {name : "Risk management" , path : "/" , navs : NAVS.EIGHT},
-  {name : "Issue tracking" , path : "/" , navs : NAVS.NIGHT},
+
 ]
 
 export  const ExecutingSidebar = ({isOpen , setIsOpen} : Props) => {

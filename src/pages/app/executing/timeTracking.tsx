@@ -1,6 +1,7 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { GanttTask } from "~/components/common/GanttTask";
 import { Header } from "~/components/header/Header";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
 import { AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
@@ -31,16 +32,8 @@ const Page: NextPage = () => {
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-          <div className="col-span-6 ">
-             <AbdullahTable 
-              isLoading={false}
-                Action={false}
-                ActionName="Assign"
-                title="manage tskas assignment "
-                 description="lorem this is just a log text that has to be very good"
-                 headers={["task" , "assigned to " , "Actions "]}
-                 body={[]}
-                 />
+          <div className="col-span-12 ">
+            <GanttTask />
            </div>
           </div>  
      </div>

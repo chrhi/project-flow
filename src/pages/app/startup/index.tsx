@@ -145,7 +145,7 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6 ">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <RowGridText text="Starting up the project " />
-            <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+            <RowGridText small text=" During the project startup phase, it is important to define clear objectives, analyze stakeholders, establish governance, develop a project charter, and identify potential risks" />
          
             <TextField
                 isLoading={isLoading}

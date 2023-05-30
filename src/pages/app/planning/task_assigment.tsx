@@ -223,7 +223,7 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
            <RowGridText text="Project management plan " />
-           <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+           <RowGridText small text=" Create a comprehensive project management plan that integrates various management aspects, including scope, schedule, cost, quality, resources, communication, risks, and procurement, providing a roadmap for the successful execution, monitoring, and control of the project from initiation to closure." />
          
           <div className="col-span-6 lg:col-span-12 ">
              <AbdullahTable

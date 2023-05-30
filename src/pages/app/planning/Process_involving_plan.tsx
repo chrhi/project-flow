@@ -22,7 +22,7 @@ const Page: NextPage = () => {
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
               <RowGridText text="Process involment management plan " />
-              <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+              <RowGridText small text=" Develop a robust process involvement management plan that outlines the procedures and strategies for engaging stakeholders throughout the project, fostering effective communication, facilitating their participation in decision-making processes, and ensuring their continuous involvement and satisfaction." />
          
               <TextField
                       lable="Schedule Methodology"

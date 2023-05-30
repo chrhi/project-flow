@@ -28,7 +28,7 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
          <RowGridText text="Risk  management plan " />
-         <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+         <RowGridText small text="Create a robust risk management plan that encompasses the identification, assessment, prioritization, mitigation, and monitoring of project risks, providing a structured approach to proactively address and minimize potential threats and capitalize on opportunities to ensure project success" />
          
           <TextField 
           lable="Methodology"

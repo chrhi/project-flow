@@ -25,10 +25,7 @@ const List = [
   {name : "Change request" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
   {name : "Risk management" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
   {name : "Quality audit " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
-  {name : "Schedule control" , path : "/app/controlling/schdule_control" , navs : NAVS.FIVE},
-  {name : "Cost control" , path : "/app/controlling/cont_controll" , navs : NAVS.SIX},
-  {name : "Communication management" , path : "/app/controlling/communication_control" , navs : NAVS.SEVEN},
-  {name : "Status reporting" , path : "/app/controlling/status_reporting" , navs : NAVS.EIGHT},
+
 ]
 
 export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {

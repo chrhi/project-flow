@@ -55,7 +55,7 @@ const tasks: Task[] = [
 
 export const GanttTask = () => {
   return (
-    <div className='w-full h-screen flex py-8 justify-center bg-white overflow-x-auto overflow-y-auto items-center '>
+    <div className='w-full h-full flex py-8 justify-center bg-white overflow-x-auto overflow-y-auto items-center '>
         <Gantt
         viewMode={ViewMode.Month}
         ganttHeight={500}
@@ -63,10 +63,10 @@ export const GanttTask = () => {
         fontFamily='poppines'
         tasks={tasks} 
         // listCellWidth={showTaskList ? undefined : ''}
-        // listCellWidth={''}
+        listCellWidth={''}
         columnWidth={100}
         headerHeight={100}
-        fontSize='15'
+        fontSize='10'
         
        
 />
