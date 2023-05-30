@@ -94,10 +94,7 @@ const Page: NextPage = () => {
         <div className="text-sm font-medium text-gray-500 ">
         Not registered? <Link href="/auth/register" className="text-blue-500 hover:underline ">Create an account</Link>
         </div>
-        <div className="text-sm font-medium text-gray-500 ">
-        or if you have an invitation? <Link href="/auth/invitation" className="text-blue-500 hover:underline ">use my invite</Link>
-        </div>
-
+       
     </form>
 </div>
 
