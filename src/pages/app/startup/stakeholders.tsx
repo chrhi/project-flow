@@ -58,7 +58,7 @@ const Page: NextPage = () => {
             <div className="col-span-6 lg:col-span-12">
             <RowGridText text=" Stakeholders management " />
             <RowGridText small text="Effectively manage stakeholders by identifying their needs, expectations, and potential impacts on the project, and engage them throughout the project lifecycle" />
-            {isFetching ? <PlaceHolderTbale /> :    <DataTable refetch={refetch} columns={columns} data={stakeholders} />  }
+            {false ? <PlaceHolderTbale /> :    <DataTable refetch={refetch} columns={columns} data={stakeholders} />  }
          
             </div>
         </div>
