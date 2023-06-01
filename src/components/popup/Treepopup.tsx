@@ -1,14 +1,16 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
-import { api } from '~/utils/api'
 import { Input } from '~/components/used/Input'
 import { toast } from 'react-toastify'
 import Select from 'react-select';
 import { TextField } from '~/components/used/TextField';
 import { OPTIONS} from '~/types/static/STATICDATA'
+import { api } from '~/utils/api'
+import { getProjectMetaData } from '~/lib/MetaData'
 
-
+import NewTimePicker from '../used/NewTimePicker'
+import type { DateRangePickerValue } from '@tremor/react'
 
 interface Props {
   
@@ -16,18 +18,65 @@ interface Props {
     isOpen : boolean ,
     setIsOpen : Dispatch<SetStateAction<boolean>>,
     refetch : () => Promise<any>,
-    refetchMileStones : () => Promise<any>,
     onAdd?: ({title , text , shape } : {title: string , text: string , shape : string }) => void
-
 }
 
 
-export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchMileStones , onAdd} : Props) {
+export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch  , onAdd} : Props) {
   
-    const [input , setInput ] = useState("")
+    const [inputs , setInput ] = useState({
+      title : "" ,
+      Priority : "",
+      cost : "",
+      description : "",
+      AssignTo : [] as any[],
+      AlocatedRessources : [] as any[]
+    })
     const [update, setUpdate] = useState(false);
+    const [value , setValue] = useState<DateRangePickerValue>([
+      new Date(),
+      new Date()
+    ])
+    const [FechedStakeHolders, setFechedStakeHolders] = useState<{label: string  , value : string}[]>([]);
+    const [FechedResources, setFechedResources] = useState<{label: string  , value : string}[]>([]);
 
+  api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
+    onSuccess:(data) => {
+      const prepare = data.map(item => {
+        return {
+          label : item.name || "", 
+          value : item.id || ""
+        }
+      })
+      setFechedStakeHolders(prepare)
+    }, 
+    onError : () => {
+      toast.error("failed to fetch stakeholders")
+    }
+  })
+ api.resourcesRouter.getResources.useQuery({projectId : getProjectMetaData()},{
+    onSuccess:(data) => {
+      const prepare = data.map(item => {
+        return {
+          label : item.name || "", 
+          value : item.id || ""
+        }
+      })
+      setFechedResources(prepare)
+    }, 
+    onError : () => {
+      toast.error("failed to fetch stakeholders")
+    }
+  })
 
+  const taskMutation = api.tasksRouter.createTask.useMutation({
+    onSuccess:() => {
+      toast.success("new task added ")
+    }, 
+    onError : () => {
+      toast.error("failed to create new task check your internet connection")
+    }
+  })
 
    const handleSubmit = () => {
 
@@ -44,7 +93,7 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
      
     // })
     if(onAdd === undefined) return
-    onAdd({text : "" , title : input , shape : "" })
+    // onAdd({text : "" , title : input , shape : "" })
     setIsOpen(false)
     }
  
@@ -78,7 +127,7 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[900px] h-[650px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-[900px] h-[580px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
@@ -98,42 +147,36 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
                       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
                           <Input
                                lable='Title'
-                               value={""}
-                               onChange={(e) => {console.log(e)}}
+                               value={inputs.title}
+                               onChange={(e) => setInput({...inputs , title : e.target.value})}
                            />
-                           
-                            <div className='col-span-6 '>
-                                   <label  className="block text-sm font-medium leading-6 text-gray-900">
-                                       Color
-                                  </label>
-                                  <Select
-                                           onChange={(e) => console.log(e)}  
-                                           name="stakholders"
-                                           options={OPTIONS}
-                                           className="basic-multi-select"
-                                           classNamePrefix="select"
-                                   />
-                            </div>
                             <div className='col-span-6 '>
                                    <label  className="block text-sm font-medium leading-6 text-gray-900">
                                        Assign to
                                   </label>
                                   <Select
-                                           onChange={(e) => console.log(e)}  
+                                      
+                                           onChange={(e) => setInput({...inputs , AssignTo : e.map(item => item.value) })}  
                                            name="stakholders"
-                                           options={OPTIONS}
+                                           options={FechedStakeHolders}
                                            className="basic-multi-select"
                                            classNamePrefix="select"
+                                           isMulti
                                    />
                             </div>
+                            <div className="col-span-6">
+                                 <NewTimePicker value={value} setValue={setValue} text="Due Date"/>
+                              </div>
+                          
                             <div className='col-span-6 '>
                                    <label  className="block text-sm font-medium leading-6 text-gray-900">
                                       Alocated ressources
                                   </label>
                                   <Select
-                                           onChange={(e) => console.log(e)}  
-                                           name="stakholders"
-                                           options={OPTIONS}
+                                           isMulti 
+                                           onChange={(e) => setInput({...inputs , AlocatedRessources : e.map(item => item.value) })}  
+                                           name="Ressources"
+                                           options={FechedResources}
                                            className="basic-multi-select"
                                            classNamePrefix="select"
                                    />
@@ -143,40 +186,27 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch , refetchM
                                        Priority
                                   </label>
                                   <Select
-                                           onChange={(e) => console.log(e)}  
-                                           name="stakholders"
+                                          onChange={(e) => setInput({...inputs , Priority : e?.value  || ""})}  
+                                          
+                                           name="Priority"
                                            options={OPTIONS}
                                            className="basic-multi-select"
                                            classNamePrefix="select"
                                    />
                             </div>
-                            <div className='col-span-6 '>
-                                   <label  className="block text-sm font-medium leading-6 text-gray-900">
-                                       Shape
-                                  </label>
-                                  <Select
-                                           onChange={(e) => console.log(e)}  
-                                           name="stakholders"
-                                           options={OPTIONS}
-                                           className="basic-multi-select"
-                                           classNamePrefix="select"
-                                   />
-                            </div>
+                         
                             <Input
+                               onChange={(e) => setInput({...inputs , cost : e?.target.value  || ""})}  
                                lable='cost'
-                               value={""}
-                               onChange={(e) => {console.log(e)}}
+                               value={inputs.cost}
+                              
                              />
-                              <Input
-                               lable='schedual'
-                               value={""}
-                               onChange={(e) => {console.log(e)}}
-                              />
+                             
                              <TextField
                                className='lg:col-span-12'
                                lable='description'
-                               value={""}
-                               onChange={(e) => console.log(e)}
+                               value={inputs.description}
+                               onChange={(e) => setInput({...inputs , description : e?.target.value  || ""})}  
                              />
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
