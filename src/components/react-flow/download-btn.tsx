@@ -2,6 +2,9 @@
 import React from 'react';
 import { Panel, useReactFlow, getRectOfNodes, getTransformForBounds } from 'reactflow';
 import { toPng } from 'html-to-image';
+import { Button } from '@tremor/react';
+import { Camera } from 'lucide-react';
+import { AbdullahButton , buttonVariants } from '../used/AbdullahButton';
 
 function downloadImage(dataUrl : any) {
   const a = document.createElement('a');
@@ -25,7 +28,7 @@ function DownloadButton() {
     const transform = getTransformForBounds(nodesBounds, imageWidth, imageHeight);
     //@ts-ignore
     toPng(document.querySelector('.react-flow__viewport'), {
-      backgroundColor: '#1a365d',
+      backgroundColor: '#fffff',
       width: imageWidth,
       height: imageHeight,
       style: {
@@ -38,9 +41,9 @@ function DownloadButton() {
 
   return (
     <Panel position="top-right">
-      <button className="download-btn" onClick={onClick}>
-        Download Image
-      </button>
+      <AbdullahButton className={`${buttonVariants({variant : "primary"})}`} onClick={onClick}>
+        <Camera className='text-white font-bold w-6 h-6' />
+      </AbdullahButton>
     </Panel>
   );
 }

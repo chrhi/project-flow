@@ -54,6 +54,7 @@ export const tasksRouter = createTRPCRouter({
                 projectId : input.projectId
             }
         })
+        return tasks
     }),
 
     updateTask: publicProcedure

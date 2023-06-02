@@ -64,24 +64,24 @@ function BoardContainer({tasks} : Props ) {
     onDragEnd = {(result) => handleDragEnd(result)}>
     <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex justify-between ">
       <Column 
-       title="a Fair"
+       title="To do"
        tasks={todo} 
        id="todo"
        />
         <Column 
-      title="En cour"
+      title="In progress"
        tasks={Doing} 
        id="doing"
        />
         <Column 
-      title="Fait"
+      title="Done"
        tasks={Done} 
        id="done"
        />
         <Column 
-      title="cancel"
+      title="Canceled"
        tasks={Canceled} 
-       id="1245976564"
+       id="Canceled"
        />
     </div>
     </DragDropContext>

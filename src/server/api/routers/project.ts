@@ -86,7 +86,7 @@ export const projectRouter = createTRPCRouter({
         where: {
           id: input.project_id,
         },
-        include: { Closing : true ,  Comunications : true , Controlling : true , Executing : true , MileStones : true , StakHolder : true , Planning : true , Resource : true , Risk : true , Startup : true  }, // Include the 'children' relation
+        include: { Closing : true ,  Comunications : true , Controlling : true , Executing : true , MileStones : true , StakHolder : true , Planning : true , Resource : true , Risk : true , Startup : true , Tasks : true }, // Include the 'children' relation
       });
     }),
 
@@ -129,4 +129,23 @@ export const projectRouter = createTRPCRouter({
 
       return project
     }),
+    setProjectBreakDown : publicProcedure
+    .input(z.object({
+      project_id: z.string(),
+      projectWorkBreakDown : z.any()
+    }))
+    .mutation(async ({ input, ctx }) => {
+      // Update a project with the given project ID using Prisma
+     const project =   await ctx.prisma.project.update({
+        data: {
+         WorkBreakDownStorage : JSON.stringify(input.projectWorkBreakDown)
+        },
+        where: {
+          id: input.project_id
+        }
+      });
+
+      return project
+    }),
+
 });

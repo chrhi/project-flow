@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
 import { Input } from '~/components/used/Input'
-import { toast } from 'react-toastify'
+import  toast  from 'react-hot-toast';
 import Select from 'react-select';
 import { TextField } from '~/components/used/TextField';
 import { OPTIONS} from '~/types/static/STATICDATA'
@@ -18,7 +18,7 @@ interface Props {
     isOpen : boolean ,
     setIsOpen : Dispatch<SetStateAction<boolean>>,
     refetch : () => Promise<any>,
-    onAdd?: ({title , text , shape } : {title: string , text: string , shape : string }) => void
+    onAdd?: ({title } : {title: string }) => void
 }
 
 
@@ -72,6 +72,10 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch  , onAdd} 
   const taskMutation = api.tasksRouter.createTask.useMutation({
     onSuccess:() => {
       toast.success("new task added ")
+      if(onAdd === undefined) return
+      onAdd({title : inputs.title})
+      setIsOpen(false)
+    
     }, 
     onError : () => {
       toast.error("failed to create new task check your internet connection")
@@ -80,21 +84,23 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch  , onAdd} 
 
    const handleSubmit = () => {
 
+      if(!inputs.title ){
+        toast.error("task title is required")
+        return
+      }
     
+      taskMutation.mutate({
+        title : inputs.title ,
+        description : inputs.description,
+        AlocatedRessources : inputs.AlocatedRessources , 
+        AssignTo : inputs.AssignTo , 
+        cost : Number(inputs.cost) , 
+        endsAt : value[1] as Date , 
+        startAt : value[0] as Date  ,
+        projectId : getProjectMetaData(),
+      })
+  
 
-    // post.mutate({
-    //   parent_id ,
-    //   name : input ,
-    //   cost : 0 ,
-     
-     
-    //   on_going : true ,
-    //   project_id : getProjectMetaData(),
-     
-    // })
-    if(onAdd === undefined) return
-    // onAdd({text : "" , title : input , shape : "" })
-    setIsOpen(false)
     }
  
 
@@ -196,6 +202,7 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch  , onAdd} 
                             </div>
                          
                             <Input
+                               type ="number"
                                onChange={(e) => setInput({...inputs , cost : e?.target.value  || ""})}  
                                lable='cost'
                                value={inputs.cost}
@@ -211,7 +218,7 @@ export  function Treepopup ({parent_id , isOpen , setIsOpen , refetch  , onAdd} 
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
                             <AbdullahButton className={` ${buttonVariants({ variant:"secondary"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>cancel</AbdullahButton>
-                            <AbdullahButton isLoading  = {false} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Create Task</AbdullahButton>
+                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Create Task</AbdullahButton>
                         </div>
                  </div> 
                 </Dialog.Panel>

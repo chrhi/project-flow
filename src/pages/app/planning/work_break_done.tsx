@@ -7,14 +7,13 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 
-import React, { useEffect, useState , useCallback } from 'react';
+import React, { useEffect, useState ,useRef ,  useCallback } from 'react';
 import { FormContainer } from '~/components/used/FormContainer';
 import { FormHead } from '~/components/used/FormHead';
 import { Treepopup } from '~/components/popup/Treepopup';
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
-import { downloadImage } from '~/lib/utils';
 import DownloadButton from '~/components/react-flow/download-btn';
 import ReactFlow , {
   MiniMap,
@@ -27,73 +26,108 @@ import ReactFlow , {
   useEdgesState,
 } from 'reactflow';
 import { AbdullahButton  , buttonVariants} from '~/components/used/AbdullahButton';
+import { api } from '~/utils/api';
+import { getProjectMetaData, getUserMetadata } from '~/lib/MetaData';
+import toast  from 'react-hot-toast';
 
 const initialNodes = [
-  {
-    id: 'interaction-1',
-    type: 'input',
-    data: { label: 'task 1' },
-    position: { x: 250, y: 5 },
-  },
-  {
-    id: 'interaction-2',
-    data: { label: 'task 2' },
-    position: { x: 100, y: 100 },
-  },
-  {
-    id: 'interaction-3',
-    data: { label: 'task 3' },
-    position: { x: 400, y: 100 },
-  },
-  {
-    id: 'interaction-4',
-    type: 'input',
-    data: { label: 'task 4' },
-    position: { x: 350, y: 50 },
-  },
-  {
-    id: 'interaction-5',
-    data: { label: 'task 5' },
-    position: { x: 500, y: 100 },
-  },
-  {
-    id: 'interaction-6',
-    data: { label: 'task 6' },
-    position: { x: 450, y: 100 },
-  }
+  // {
+  //   id: 'interaction-1',
+  //   type: 'input',
+  //   data: { label: 'task 1' },
+  //   position: { x: 250, y: 5 },
+  // },
+  // {
+  //   id: 'interaction-2',
+  //   data: { label: 'task 2' },
+  //   position: { x: 100, y: 100 },
+  // },
+  // {
+  //   id: 'interaction-3',
+  //   data: { label: 'task 3' },
+  //   position: { x: 400, y: 100 },
+  // },
+  // {
+  //   id: 'interaction-4',
+  //   type: 'input',
+  //   data: { label: 'task 4' },
+  //   position: { x: 350, y: 50 },
+  // },
+  // {
+  //   id: 'interaction-5',
+  //   data: { label: 'task 5' },
+  //   position: { x: 500, y: 100 },
+  // },
+  // {
+  //   id: 'interaction-6',
+  //   data: { label: 'task 6' },
+  //   position: { x: 450, y: 100 },
+  // }
 ];
 
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
 const flowKey = 'example-flow';
 const getNodeId = () => `randomnode_${+new Date()}`;
 
-const defaultEdgeOptions = {
-  animated: true,
-  type: 'smoothstep',
-};
+
 
 const Page: NextPage = () => {
 
-  
+  const edgeUpdateSuccessful = useRef(true);
   const [isOpen , setIsOpen] = useState<boolean>(false)
   const [isOpenAlert , setIsOpenAlert] = useState<boolean>(true)
   const [isPopUpOpen , setIsPopUpOpen ] = useState<boolean>(false)
-
- 
-  // const set_loading = loading_Reducer(state => state.set_isLoading)
-
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+  const [edgeOptions , setEdgeOption] = useState( {
+    animated: true,
+    type: 'smoothstep',
+  })
   const [rfInstance, setRfInstance] = useState(null);
   const { setViewport } = useReactFlow();
+  
+  const {isFetching , refetch} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata()},{
+    onSuccess : (data) => {
+      const flow = JSON.parse(data?.WorkBreakDownStorage);
+      if (flow) {
+        const { x = 0, y = 0, zoom = 1 } = flow.viewport;
+        setNodes(flow.nodes || []);
+        setEdges(flow.edges || []);
+        setViewport({ x, y, zoom });
+      }
+   
+    }, 
+  
+    onError : () => {
+      toast.error("failed to fetch the data")
+    }
+  })
+
+  const SaveToDataBase = api.projectRouter.setProjectBreakDown.useMutation({
+    onSuccess : (data) => {
+      toast.success("changes saved successfully")
+    }, 
+  
+    onError : () => {
+      toast.error("failed to fetch the data")
+    }
+  })
+
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
   const onSave = useCallback(() => {
+    // if (rfInstance) {
+    //   const flow = rfInstance.toObject();
+    //   localStorage.setItem(flowKey, JSON.stringify(flow));
+    // }
     if (rfInstance) {
-      const flow = rfInstance.toObject();
-      localStorage.setItem(flowKey, JSON.stringify(flow));
-    }
-  }, [rfInstance]);
+    const flow = rfInstance.toObject();
+    SaveToDataBase.mutate({
+      project_id : getProjectMetaData(),
+      projectWorkBreakDown : flow
+    })
+  }
+  }, [rfInstance , SaveToDataBase]);
 
   const onRestore = useCallback(() => {
     const restoreFlow =  () => {
@@ -110,14 +144,13 @@ const Page: NextPage = () => {
     restoreFlow();
   }, [setNodes, setViewport]);
 
-  const onAdd = useCallback(({title , text , shape } : {title: string , text: string , shape : string }) => {
+
+  const onAdd = useCallback(({title  } : {title: string  }) => {
     //in here we have to make a pop up
     const newNode = {
       id: getNodeId(),
       data: {
          label: title,
-
-
          },
 
       position: {
@@ -128,7 +161,22 @@ const Page: NextPage = () => {
     setNodes((nds) => nds.concat(newNode));
   }, [setNodes]);
    
- 
+  const onEdgeUpdateStart = useCallback(() => {
+    edgeUpdateSuccessful.current = false;
+  }, []);
+
+  const onEdgeUpdate = useCallback((oldEdge, newConnection) => {
+    edgeUpdateSuccessful.current = true;
+    setEdges((els) => updateEdge(oldEdge, newConnection, els));
+  }, []);
+
+  const onEdgeUpdateEnd = useCallback((_, edge) => {
+    if (!edgeUpdateSuccessful.current) {
+      setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+    }
+
+    edgeUpdateSuccessful.current = true;
+  }, []);
 //   className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
 
   return (
@@ -146,16 +194,18 @@ const Page: NextPage = () => {
         {/* first button */}
     <AbdullahButton 
        onClick={onSave}
+       isLoading={SaveToDataBase.isLoading}
        className={buttonVariants({variant:"secondary"})}>
-       save
+      save
       </AbdullahButton>
         {/* second button */}
       <AbdullahButton 
+      isLoading={isFetching}
       onClick={onRestore}
       className={buttonVariants({variant:"secondary"})}>
-        restore
+        re load
       </AbdullahButton>
-
+    
       <AbdullahButton 
       onClick={() => setIsPopUpOpen(true)}
       className={buttonVariants({variant:"primary" })}>
@@ -177,7 +227,11 @@ const Page: NextPage = () => {
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
       onInit={setRfInstance}
-      defaultEdgeOptions={defaultEdgeOptions}
+      defaultEdgeOptions={edgeOptions}
+      snapToGrid
+      onEdgeUpdate={onEdgeUpdate}
+      onEdgeUpdateStart={onEdgeUpdateStart}
+      onEdgeUpdateEnd={onEdgeUpdateEnd}
     >
 
       <div className="save__controls">
