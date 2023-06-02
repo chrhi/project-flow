@@ -6,8 +6,8 @@ import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import { AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
 import { RowGridText } from "~/components/typography/RowGridText";
-
-
+import { DataTable } from "~/components/common/constants/project-objectives-table/data-table";
+import { columns } from "~/components/common/constants/project-objectives-table/column";
 
 
 const Page: NextPage = () => {
@@ -32,41 +32,14 @@ const Page: NextPage = () => {
        <div className="col-span-6 lg:col-span-12 ">
        <RowGridText text="set   the project objectives " />
             <RowGridText small text=" Define specific, measurable, achievable, relevant, and time-bound (SMART) project objectives that clearly state the desired outcomes and deliverables, providing a clear direction and focus for the project" />
-       <AbdullahTable
+     
+      <div   className="col-span-6 lg:col-span-12 ">
+        <DataTable  columns={columns} data={[]}  />
+        </div>
         
-          isLoading={false}
-          Action 
-          title="Périmètre"
-          description=""
-          headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
-          body={[]}
-         />
-       
-
-        {/* this is the second table */}
-        <AbdullahTable
-         
-          isLoading={false}
-          Action 
-          title="Echéancier"
-          description=""
-          headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
-          body={[]}
-       
-         />
         
 
-        {/* and this is hte other table */}
-        <AbdullahTable
-         
-          isLoading={false}
-          Action 
-          title="Coût"
-         description=""
-          headers={["Objectifs du Projet" , "Critères du succès " , "Approbation " ]}
-          body={[]}
-        
-         />
+    
         
        </div>
         </div>

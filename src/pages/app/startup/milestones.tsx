@@ -6,8 +6,9 @@ import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import {  AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
 import { RowGridText } from "~/components/typography/RowGridText";
+import { DataTable } from "~/components/common/constants/mile-stone-table/data-table";
 
-
+import { columns } from "~/components/common/constants/mile-stone-table/column";
 
 type IpiData = {
   name : string , 
@@ -57,15 +58,10 @@ const Page: NextPage = () => {
             <div className="col-span-6 lg:col-span-12 ">
             <RowGridText text="Manage stakeholder " />
             <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
-        <AbdullahTable
-            isLoading={false}
-          
-            title="Define clear and measurable milestones"
-            description="Define clear and measurable milestones at key stages of the project to track progress, provide checkpoints for evaluation, and ensure that the project is progressing according to schedule and meeting its objectives"
-            headers={["PRINCIPAUX JALONS " , "DATES" , "Milestone Description" , "type"]}
-            body={satisfyTable()}
-           
-         />
+
+            </div>
+            <div  className="col-span-6 lg:col-span-12  ">
+            <DataTable columns={columns} data={[]}  />
             </div>
         </div>
       </div>

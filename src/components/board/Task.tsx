@@ -28,29 +28,23 @@ function Task({index , id , title , discription , imgUrl , priority }  : PropsTy
     <Draggable  draggableId={id} index={index}>
         {(provided , snapshot) => (
             <article 
-            className={`w-[97%] flex flex-col items-start gap-y-2 shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 p-4
+            className={`w-[97%] flex flex-col items-start gap-y-2   shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 
              ${snapshot.isDragging ? "shadow-xl " : "" }`}
             {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                {
-                    imgUrl ?
+                    true ?
                      <img 
                        alt={title}
-                       src={imgUrl}
-                       className='w-[97%] mx-auto my-1 rounded-lg '   /> : null
+                       src={imgUrl || "https://media.tenor.com/-NkL2pGJTQsAAAAC/uw-u-oshi-no-ko.gif"}
+                       className='w-[100%]   '   /> : null
                   }
-                <div className='w-full h-fit '>
+                <div className='w-full h-fit p-4 '>
                 <h3 className='text-sm font-semibold text-start '>{title}</h3>
                   <p className='text-sm text-gray-700  text-start '>
                     {discription}
                   </p>
-                  <div className='w-full h-[40px] flex justify-end px-2'>
-                  <Badge
-                  size='xs'
-                  className='!text-sm'
-                  //@ts-ignore>
-                  >
-                    {priority}
-                  </Badge>
+                  <div className='w-full h-[20px] flex justify-end px-2'>
+                  <Badge color={"pink"}>7 days left</Badge>
                   </div>
                 </div>
                  

@@ -8,6 +8,7 @@ import { Label } from '../ui/label';
 import { Switch } from '../ui/switch';
 import { Title } from '@tremor/react';
 import { AbdullahButton , buttonVariants } from '../used/AbdullahButton';
+import { RowGridText } from '../typography/RowGridText';
 
 
 const tasksStatic: Task[] = [
@@ -27,6 +28,14 @@ const tasksStatic: Task[] = [
 
 export const GanttTask = () => {
   const [tasks, setTasks] = useState<Task[]>(tasksStatic);
+
+  const [view, setView] = useState<ViewMode>(ViewMode.Day);
+
+  const [showTaskList, setShowTaskList] = useState<boolean>(true);
+
+  const handleChange = () => {
+    setShowTaskList(!showTaskList)
+  }
 
   api.tasksRouter.getTasks.useQuery(
     { projectId: getProjectMetaData() },
@@ -54,53 +63,45 @@ export const GanttTask = () => {
   );
 
   return (
-    <div className="w-full h-full flex py-8  flex-col  relative bg-white overflow-x-auto overflow-y-auto items-start">
-      <div className="w-full h-[100px] flex flex-col items-start">
+    <div className="w-full h-full flex pb-8 pt-4 flex-col  relative bg-white overflow-x-auto overflow-y-auto items-start">
+      <div className="w-full h-[100px] flex mb-4 flex-col items-start">
         <Title>Gantt  chart view </Title>
-        <div className="w-full h-[50px] gap-x-4 flex items-center justify-end px-4">
-        <AbdullahButton className={buttonVariants({variant : "secondary"})}>
-            Hour
-        </AbdullahButton>
-
-        <AbdullahButton className={buttonVariants({variant : "secondary"})} >
-              Quarter Day
-        </AbdullahButton>
+       
+        <div className="w-full h-[65px] gap-x-4 flex items-center justify-end px-4">
+          {
+            [
+              {name : " Hour" , value : ViewMode.Hour},
+              {name : "   Quarter Day" , value : ViewMode.QuarterDay},
+              {name : "  Haft of day" , value : ViewMode.HalfDay},
+              {name : "    Week" , value : ViewMode.Week},
+              {name : "    Month" , value : ViewMode.Month},
+              {name : "   Year" , value : ViewMode.Year},
+             
+            ].map(item => (
+              <AbdullahButton
+              onClick={() => setView(item.value)}
+              className={`${buttonVariants({variant : "secondary"})} ${view === item.value ? "bg-blue-500 text-white" : ""}`} >
+                {item.name}
+              </AbdullahButton>
+            ))
+          }
         
-        <AbdullahButton className={buttonVariants({variant : "secondary"})} >
-          Haft of day
-        </AbdullahButton>
-        
-        <AbdullahButton className={buttonVariants({variant : "secondary"})} >
-            Day
-        </AbdullahButton>
-        
-        <AbdullahButton className={buttonVariants({variant : "secondary"})} >
-            Week
-        </AbdullahButton>
-
-        <AbdullahButton className={buttonVariants({variant : "secondary"})} >
-            Month
-        </AbdullahButton>
-        
-        <AbdullahButton className={buttonVariants({variant : "secondary"})} >
-            Year
-        </AbdullahButton>
         <div className="flex items-center ml-4 space-x-2">
-           <Switch id="tasklist-show" />
+           <Switch checked={showTaskList} onCheckedChange={handleChange} id="tasklist-show" />
            <Label htmlFor="tasklist-show">Show task list</Label>
         </div>
         </div>
       </div>
       <Gantt
-        viewMode={ViewMode.Month}
-        // ganttHeight={500}
-        // barFill={70}
+        viewMode={view || ViewMode.Week}
+        
         fontFamily="poppines"
         tasks={tasks }
-        // listCellWidth={showTaskList ? undefined : ''}
-        // listCellWidth={''}
-        // columnWidth={100}
-        // headerHeight={100}
+        listCellWidth={showTaskList ? undefined : ''}
+        onDateChange ={(event) => console.log(event) }
+        onProgressChange={(event => console.log(event ))}
+        onExpanderClick = {(event => console.log(event ))}
+        onDelete ={(event) => console.log(event)}
         fontSize="10"
       />
     </div>

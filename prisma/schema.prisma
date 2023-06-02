@@ -58,6 +58,7 @@ model Project {
   currentPhase  String?  @db.LongText
   userId        String
   WorkBreakDownStorage Json?
+  Budget        Float?
   user          User?            @relation(fields: [userId], references: [id], onDelete: Cascade)
   StakHolder    StakeHolder[]
   Risk          Risk[]

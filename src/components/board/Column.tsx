@@ -15,7 +15,7 @@ export default function Column({ title, tasks, id } : PropsType ) {
    <div className="w-[300px]  h-fit  overflow-x-hidden bg-gray-50  ">
        {/* this is the column header */}
      <div className="w-[300px]  flex justify-between px-4 items-center h-[35px]  my-2  ">
-     <p className="text-xl font-semibold  text-gray-900 ">   {title}({tasks.length})</p>
+     <p className="text-md font-semibold  text-gray-900 ">   {title}({tasks.length})</p>
     </div>
     {/* this the draggable area */}
     <Droppable droppableId={id}>

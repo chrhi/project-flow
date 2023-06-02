@@ -14,24 +14,24 @@ import {
 // You can use a Zod schema here if you want.
 export type MileStone = {
   id: string
-  mileStone: string
-  date: string
-  description : string 
+  THE_PROJECTS_OBJECTIVES: string
+  SUCCESS_CRITERIA: string
+  APPROVAL : string 
   type : string
 }
 
 export const columns: ColumnDef<MileStone>[] = [
   {
-    accessorKey: "MileStone",
-    header: "MileStone",
+    accessorKey: "THE_PROJECTS_OBJECTIVES",
+    header: "THE PROJECTS OBJECTIVES",
   },
   {
-    accessorKey: "date",
-    header: "Date"
+    accessorKey: "SUCCESS_CRITERIA",
+    header: "SUCCESS CRITERIA"
   },
   {
-    accessorKey: "description",
-    header: "description",
+    accessorKey: "APPROVAL",
+    header: "APPROVAL",
   },
   {
     accessorKey: "type",

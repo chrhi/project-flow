@@ -28,7 +28,7 @@ export  const Input = ({lable , value , onChange , type  , lableClassName , isLo
            <label htmlFor={lable} className={`block text-sm font-medium leading-6 text-gray-900 ${lableClassName ? lableClassName : ""}`}>
              {lable}
            </label>
-           <input {...PropsType} onChange={onChange}  type={type ? type : "text"}  name={lable} id={lable + "id"} value={value}
+           <input {...PropsType} onChange={onChange}    name={lable} id={lable + "id"} value={value}
              className={`px-4 py-1.5 rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full ${inputClassName ? inputClassName : ""}`}
            />
         </div>
