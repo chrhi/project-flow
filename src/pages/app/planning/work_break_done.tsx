@@ -62,8 +62,8 @@ const Page: NextPage = () => {
   const setIdOfOpemModel = openTasksShowUp(state => state.setId)
 
   const handleNodeClicked = ({target}) => {
-    // opemModelShowCase(true)
-    console.log(target.dataset.id)
+    setIdOfOpemModel(target.dataset.id)
+    opemModelShowCase(true)
   }
   
   const {isFetching , refetch} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata()},{

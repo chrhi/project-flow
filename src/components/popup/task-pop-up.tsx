@@ -14,16 +14,22 @@ import type { DateRangePickerValue } from '@tremor/react'
 import { openTasksShowUp } from '~/store/open-models';
 
 
-export  function TaskPopUpShowCase () {
+type Props = {
+  refetch : () => Promise<any>,
+
+}
+
+
+export  function TaskPopUpShowCase ({refetch} : Props ) {
 
     const isOpen = openTasksShowUp(state => state.showModel)
     const setIsOpen  = openTasksShowUp(state => state.setShowModel)
-
+    const id  = openTasksShowUp(state => state.id)
 
     const [inputs , setInput ] = useState({
       title : "" ,
       Priority : "",
-      cost : "",
+      cost : 0,
       description : "",
       AssignTo : [] as any[],
       AlocatedRessources : [] as any[]
@@ -75,6 +81,36 @@ export  function TaskPopUpShowCase () {
     }
   })
 
+  api.tasksRouter.getTask.useQuery({id  },{
+    onSuccess : (data) => {
+      setInput({
+        title : data?.title || "",
+        cost : Number(data?.cost ) || 0 , 
+        description : data?.description || "" , 
+        Priority : data?.Priority  || "", 
+        AlocatedRessources :  [JSON.stringify(data?.AlocatedRessources)] ,
+        AssignTo : [JSON.stringify(data?.AssignedTo)] ,
+
+      })
+      setValue([data?.StartAt , data?.EndsAt])
+    },
+    onError : () => {
+      toast.error("failed to fetch the task")
+    }
+  })
+
+ const deleteTask =  api.tasksRouter.deleteTask.useMutation ({
+    onSuccess: async() => {
+      toast.success(" task deleted")
+      setIsOpen(false)
+      await refetch()
+    }, 
+    onError : () => {
+      toast.error("failed to delete the task check your internet connection may be ?")
+      
+    }
+  })
+
    const handleSubmit = () => {
 
       if(!inputs.title ){
@@ -95,7 +131,8 @@ export  function TaskPopUpShowCase () {
   
 
     }
- 
+    
+    const handleDelete = () =>  deleteTask.mutate({ id }) 
 
    
 
@@ -131,7 +168,7 @@ export  function TaskPopUpShowCase () {
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
                   >
-               <div><p className='text-md text-gray-900 font-semibold  ml-4'>Create a new task</p></div>  
+               <div><p className='text-md text-gray-900 font-semibold  ml-4'>{inputs.title}</p></div>  
                <div>
                     <button
                           onClick={() => setIsOpen(false)}
@@ -154,7 +191,7 @@ export  function TaskPopUpShowCase () {
                                        Assign to
                                   </label>
                                   <Select
-                                      
+                                          
                                            onChange={(e) => setInput({...inputs , AssignTo : e.map(item => item.value) })}  
                                            name="stakholders"
                                            options={FechedStakeHolders}
@@ -196,7 +233,7 @@ export  function TaskPopUpShowCase () {
                          
                             <Input
                                type ="number"
-                               onChange={(e) => setInput({...inputs , cost : e?.target.value  || ""})}  
+                               onChange={(e) => setInput({...inputs , cost : Number(e?.target.value ) || 0})}  
                                lable='cost'
                                value={inputs.cost}
                               
@@ -210,8 +247,8 @@ export  function TaskPopUpShowCase () {
                              />
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
-                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>cancel</AbdullahButton>
-                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Create Task</AbdullahButton>
+                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary"}) } bg-red-500 text-white`} onClick={handleDelete}>delete task</AbdullahButton>
+                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>update task</AbdullahButton>
                         </div>
                  </div> 
                 </Dialog.Panel>

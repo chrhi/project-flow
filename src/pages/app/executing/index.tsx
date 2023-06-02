@@ -45,7 +45,7 @@ const tasksTyped : TaskType[] =[
 
 
 const Page: NextPage = () => {
-  const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [isOpen , setIsOpen] = useState<boolean>(false)
   const [tasks , setTasks ] = useState<task[]>([])
  
   const set_loading = loading_Reducer(state => state.set_isLoading)

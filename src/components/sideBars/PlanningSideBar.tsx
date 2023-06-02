@@ -6,6 +6,7 @@ import NextSwitch from '../common/NextSwitch'
 import { motion } from 'framer-motion';
 import { Button } from '../ui/button';
 import { ScrollArea } from '../ui/scroll-area';
+import { ArrowRightIcon } from 'lucide-react';
 
 const sidebarVariants = {
   open: { x: 0 },
@@ -62,16 +63,14 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
   return (
     <>
       <div className={`${isOpen ? "hidden" : ""} z-[9999] absolute top-[40%] left-[-30px] rounded-[50%] mt-[50px]`}>
-        <AbdullahEffectButton
+        <button
           onClick={() => {
             if (setIsOpen) setIsOpen(true);
           }}
-          className={`w-[70px] h-[70px] rounded-full bg-blue-500 flex items-center justify-end p-4 text-white`}
+          className={`w-[70px] h-[70px]  transition duration-500 transform hover:translate-x-1 rounded-full bg-white shadow-xl flex items-center justify-end p-4 text-white`}
         >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 text-white h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
-          </svg>
-        </AbdullahEffectButton>
+         <ArrowRightIcon className='text-gray-900 w-5 h-5 ' />
+        </button>
       </div>
      
         <motion.div
