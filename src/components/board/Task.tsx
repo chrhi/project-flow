@@ -26,9 +26,10 @@ type PropsType =  {
 function Task({index , id , title , discription , imgUrl , priority }  : PropsType) {
   return (
     <Draggable  draggableId={id} index={index}>
-        {(provided) => (
+        {(provided , snapshot) => (
             <article 
-            className='w-[97%] flex flex-col items-start gap-y-2 h-fit min-h-[50px] rounded-lg bg-white my-4 p-4'
+            className={`w-[97%] flex flex-col items-start gap-y-2 shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 p-4
+             ${snapshot.isDragging ? "shadow-xl " : "" }`}
             {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                {
                     imgUrl ?
@@ -43,11 +44,13 @@ function Task({index , id , title , discription , imgUrl , priority }  : PropsTy
                     {discription}
                   </p>
                   <div className='w-full h-[40px] flex justify-end px-2'>
-                  <BadgeDelta
+                  <Badge
                   size='xs'
                   className='!text-sm'
-                  //@ts-ignore
-                  deltaType={priority || "increase"}> {priority === "increase" ? "low " : "hight "}</BadgeDelta>
+                  //@ts-ignore>
+                  >
+                    {priority}
+                  </Badge>
                   </div>
                 </div>
                  

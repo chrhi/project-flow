@@ -31,7 +31,7 @@ export const tasksRouter = createTRPCRouter({
         const AssignToJson = JSON.stringify(input.AssignTo)
         const AlocatedRessourcesJson = JSON.stringify(input.AssignTo)
 
-        await ctx.prisma.tasks.create({
+        const task = await ctx.prisma.tasks.create({
             data :{
                 projectId : input.projectId , 
                 title : input.title , 
@@ -44,6 +44,7 @@ export const tasksRouter = createTRPCRouter({
                 Status : "TODO"
             }
         })
+        return task
     }),
 
     getTasks: publicProcedure

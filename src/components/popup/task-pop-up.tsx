@@ -11,19 +11,15 @@ import { getProjectMetaData } from '~/lib/MetaData'
 
 import NewTimePicker from '../used/NewTimePicker'
 import type { DateRangePickerValue } from '@tremor/react'
-
-interface Props {
-  
- 
-    isOpen : boolean ,
-    setIsOpen : Dispatch<SetStateAction<boolean>>,
-    refetch : () => Promise<any>,
-    onAdd?: ({title , id  } : {title: string , id : string }) => void
-}
+import { openTasksShowUp } from '~/store/open-models';
 
 
-export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
-  
+export  function TaskPopUpShowCase () {
+
+    const isOpen = openTasksShowUp(state => state.showModel)
+    const setIsOpen  = openTasksShowUp(state => state.setShowModel)
+
+
     const [inputs , setInput ] = useState({
       title : "" ,
       Priority : "",
@@ -70,12 +66,9 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
   })
 
   const taskMutation = api.tasksRouter.createTask.useMutation({
-    onSuccess:(data) => {
+    onSuccess:() => {
       toast.success("new task added ")
-      if(onAdd === undefined || !data.id) return
-      onAdd({title : inputs.title ,id :  data.id })
       setIsOpen(false)
-    
     }, 
     onError : () => {
       toast.error("failed to create new task check your internet connection")

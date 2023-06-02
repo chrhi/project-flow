@@ -2,6 +2,7 @@ import React from "react";
 import { StrictModeDroppable as Droppable } from "~/utils/FixBugs/StrictModeDroppable";
 import Task, { type TaskType } from "./Task";
 import { AbdullahButton  , buttonVariants} from "../used/AbdullahButton";
+import { ScrollArea } from "../ui/scroll-area";
 
 type PropsType ={
   title : string , 
@@ -18,9 +19,11 @@ export default function Column({ title, tasks, id } : PropsType ) {
     </div>
     {/* this the draggable area */}
     <Droppable droppableId={id}>
+    
         {(provided, snapshot) => (
+            <ScrollArea className="h-full w-full">
           <div
-          className="w-full h-fit overflow-y-auto overflow-x-hidden min-h-[300px]  "
+          className="w-full h-fit min-h-[300px]  "
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
@@ -29,8 +32,12 @@ export default function Column({ title, tasks, id } : PropsType ) {
             ))}
             {provided.placeholder}
           </div>
+          </ScrollArea>
         )}
+
+ 
       </Droppable>
+     
      
    </div>
      );

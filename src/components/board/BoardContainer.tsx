@@ -2,7 +2,9 @@ import  { useState, useEffect } from "react";
 import { DragDropContext, type DropResult } from "react-beautiful-dnd";
 import Column from "./Column";
 import {type  TaskType } from "./Task";
-
+import { api } from "~/utils/api";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { toast } from "react-hot-toast";
 
 
 
@@ -18,36 +20,75 @@ function BoardContainer({tasks} : Props ) {
   const [Done , setDone ] = useState<TaskType[]>([])
   const [Canceled , setCanceled ] = useState<TaskType[]>([])
 
-  useEffect(() => {
-    setTodo(tasks?.filter(item => item.status === "TODO"))
-    setDoing(tasks?.filter(item => item.status === "DOING"))
-    setDone(tasks?.filter(item => item.status === "DONE"))
-    setCanceled(tasks?.filter(item => item.status === "CANCEL"))
-  },[tasks])
+  api.tasksRouter.getTasks.useQuery({projectId : getProjectMetaData()},{
+    onSuccess : (data) => {
+      const prepare = data.map((item ) : TaskType => {
+        return {
+          id : item.id , 
+          status : item.Status || "" , 
+          title : item.title || "", 
+          discription : item.description || "" , 
+          imgUrl : "",
+          priority : item.Priority || "",
+        }
+      })
+      setTodo(prepare.filter(item => item.status === "TODO"))
+      setDoing(prepare.filter(item => item.status === "DOING"))
+      setDone(prepare.filter(item => item.status === "DONE"))
+      setCanceled(prepare.filter(item => item.status === "CANCELED"))
+    },
+    onError : () => {
+      toast.error("something went wrong may be your internet connection ?")
+    }
+  })
+
+
+
+
 
   const handleDragEnd = (result : DropResult) => {
     const { destination, source, draggableId } = result;
 
     if (source.droppableId == destination?.droppableId) return;
+   // REMOVE FROM SOURCE ARRAY
+    if (source.droppableId === "todo") {
+      setTodo(removeItemById(draggableId, todo))
+    }
 
-    //REMOVE FROM SOURCE ARRAY
+    if (source.droppableId === "doing") {
+      setDoing(removeItemById(draggableId, Doing));
+    }
 
-    // if (source.droppableId == 2) {
-    //   setDoing(removeItemById(draggableId, completed));
-    // } else {
-    //   setDone(removeItemById(draggableId, incomplete));
-    // }
+    if (source.droppableId === "done") {
+      setDone(removeItemById(draggableId, Done));
+    }
+    if (source.droppableId == "Canceled") {
+      setCanceled(removeItemById(draggableId, Canceled));
+    }
+    // GET ITEM
 
-    // // GET ITEM
+    const task = findItemById(draggableId, [...todo, ...Doing , ...Done , ...Canceled]);
 
-    // const task = findItemById(draggableId, [...incomplete, ...completed]);
+    if(!task) return 
 
-    // //ADD ITEM
-    // if (destination?.droppableId == 2) {
-    //   setCompleted([{ ...task, completed: !task.completed }, ...completed]);
-    // } else {
-    //   setIncomplete([{ ...task, completed: !task.completed }, ...incomplete]);
-    // }
+    if (destination?.droppableId === "todo") {
+      setTodo([{ ...task, status: "TODO" }, ...todo]);
+    }
+
+    if (destination?.droppableId === "doing") {
+    
+      setDoing([{ ...task, status: "DOING" }, ...Doing]);
+    }
+
+    if (destination?.droppableId === "done") {
+  
+      setDone([{ ...task, status: "DONE" }, ...Done]);
+    }
+    if (destination?.droppableId== "Canceled") {
+      setCanceled([{ ...task, status: "CANCELED" }, ...Canceled]);
+    }
+
+  
   };
 
   function findItemById(id : string, array : TaskType[]) {

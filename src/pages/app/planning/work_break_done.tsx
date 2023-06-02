@@ -29,40 +29,11 @@ import { AbdullahButton  , buttonVariants} from '~/components/used/AbdullahButto
 import { api } from '~/utils/api';
 import { getProjectMetaData, getUserMetadata } from '~/lib/MetaData';
 import toast  from 'react-hot-toast';
+import { TaskPopUpShowCase } from '~/components/popup/task-pop-up';
+import { openTasksShowUp } from '~/store/open-models';
 
 const initialNodes = [
-  // {
-  //   id: 'interaction-1',
-  //   type: 'input',
-  //   data: { label: 'task 1' },
-  //   position: { x: 250, y: 5 },
-  // },
-  // {
-  //   id: 'interaction-2',
-  //   data: { label: 'task 2' },
-  //   position: { x: 100, y: 100 },
-  // },
-  // {
-  //   id: 'interaction-3',
-  //   data: { label: 'task 3' },
-  //   position: { x: 400, y: 100 },
-  // },
-  // {
-  //   id: 'interaction-4',
-  //   type: 'input',
-  //   data: { label: 'task 4' },
-  //   position: { x: 350, y: 50 },
-  // },
-  // {
-  //   id: 'interaction-5',
-  //   data: { label: 'task 5' },
-  //   position: { x: 500, y: 100 },
-  // },
-  // {
-  //   id: 'interaction-6',
-  //   data: { label: 'task 6' },
-  //   position: { x: 450, y: 100 },
-  // }
+ 
 ];
 
 const initialEdges = [{ id: 'e1-2', source: '1', target: '2' }];
@@ -72,6 +43,7 @@ const getNodeId = () => `randomnode_${+new Date()}`;
 
 
 const Page: NextPage = () => {
+
 
   const edgeUpdateSuccessful = useRef(true);
   const [isOpen , setIsOpen] = useState<boolean>(false)
@@ -85,6 +57,14 @@ const Page: NextPage = () => {
   })
   const [rfInstance, setRfInstance] = useState(null);
   const { setViewport } = useReactFlow();
+
+  const opemModelShowCase = openTasksShowUp(state => state.setShowModel)
+  const setIdOfOpemModel = openTasksShowUp(state => state.setId)
+
+  const handleNodeClicked = ({target}) => {
+    // opemModelShowCase(true)
+    console.log(target.dataset.id)
+  }
   
   const {isFetching , refetch} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata()},{
     onSuccess : (data) => {
@@ -145,12 +125,13 @@ const Page: NextPage = () => {
   }, [setNodes, setViewport]);
 
 
-  const onAdd = useCallback(({title  } : {title: string  }) => {
+  const onAdd = useCallback(({title , id   } : {title: string  }) => {
     //in here we have to make a pop up
     const newNode = {
-      id: getNodeId(),
+      id: id,
       data: {
          label: title,
+         value : id,
          },
 
       position: {
@@ -184,6 +165,7 @@ const Page: NextPage = () => {
     
       <Header />
       <main className={` custopn-page-height  flex w-full   ${isOpenAlert ? "bg-gray-50" : "bg-white"}`} >
+        <TaskPopUpShowCase />
        <PlanningSideBar setIsOpen ={setIsOpenAlert} isOpen = {isOpenAlert} />
        <FormContainer className ={` ${isOpenAlert ? "ml-[20rem]" : "m-[0]"}`}>
       <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/>
@@ -228,6 +210,7 @@ const Page: NextPage = () => {
       onConnect={onConnect}
       onInit={setRfInstance}
       defaultEdgeOptions={edgeOptions}
+      onNodeClick={(node) => handleNodeClicked(node)}
       snapToGrid
       onEdgeUpdate={onEdgeUpdate}
       onEdgeUpdateStart={onEdgeUpdateStart}
