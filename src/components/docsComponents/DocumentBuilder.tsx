@@ -21,8 +21,9 @@ type DocumentBuilderProps = {
 
 export function DocumentBuilder({title , description }  : DocumentBuilderProps) {
 
-    const [isBuilded , setIsBuiled] = useState<boolean>(true)
+    const [isBuilded , setIsBuiled] = useState<boolean>(false)
 
+    const [publicUrl , setPublicUrl ] = useState<string>("")
     const x = useMotionValue(0);
     const controls = useAnimation();
     const [constrained, setConstrained] = useState(true);
@@ -32,14 +33,8 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
     const mutation = api.integrationsRouter.ProjectCharter.useMutation({
         onSuccess(data){
           toast.success("we have the project charter")
-//         //   console.log(JSON.parse(data))
-         
-//         //   const buffer = JSON.parse(data)
-        
-//         const blob = new Blob([data], { type: 'application/pdf' });
-//         saveAs(blob , "abdullah.pdf")
-// //   const url = URL.createObjectURL(blob);
-// //   openNewTap(url);
+          setIsBuiled(true)
+          setPublicUrl(data.url || "")
         },
         onError(){
           toast.error("there is an error")
@@ -65,23 +60,29 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
         </p>
         {
               isBuilded ? 
+              
+              
+              <div className='w-full h-[70px] flex justify-end gap-x-4 items-center'>  
+                 <ConfirmePopUp />
+                  <AbdullahButton
+                  onClick={() => openNewTap(publicUrl)}
+                  className={buttonVariants({variant : "primary"})} >
+                      view the document
+                  </AbdullahButton>  
+                  
+              </div>
+              :
               <div className='w-full h-[70px] flex justify-end gap-x-4 items-center'>  
                   <AbdullahButton 
                   onClick={() => mutation.mutate({
                     projectId : getProjectMetaData()
                   })}
                   isLoading={mutation.isLoading}
+                
+              
                   className={buttonVariants({variant : "primary"})} >
                       Build document
                   </AbdullahButton>  
-              </div>
-              : 
-              <div className='w-full h-[70px] flex justify-end gap-x-4 items-center'>  
-                 <ConfirmePopUp />
-                  <AbdullahButton className={buttonVariants({variant : "primary"})} >
-                      view on web
-                  </AbdullahButton>  
-                  
               </div>
         }
     

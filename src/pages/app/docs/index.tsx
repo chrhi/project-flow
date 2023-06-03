@@ -12,20 +12,7 @@ import Head from "~/components/common/Head";
 const Page: NextPage = () => {
   
   const [isProject , setIsProject] = useState("loading")
-  useEffect( () => {
-    const verifieProject = async  () => {
-      const project =  await redis.get(getProjectMetaData());
-      return project
-    }
-    verifieProject().then(res => {
-      if(res){
-        setIsProject("project")
-        return
-      }
-      setIsProject("vide")
-    }).catch(err => console.log(err))
-
-  },[])
+  
  
   return (
     <>
