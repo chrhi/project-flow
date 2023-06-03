@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { prisma } from "~/lib/prisma"
 import { formatDate } from "~/utils/current-day"
-import { getPdfHeader } from "../commun/get-header"
+
 
 
 export const getProjectCharter = async  ({projectId  } : {projectId : string }) => {
