@@ -31,12 +31,14 @@ import { ObjectiveAdd } from "~/components/popup/project-objectibe-add,"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
-    data: TData[]
+    data: TData[],
+    refetch : () => Promise<any>
   }
   
   export function DataTable<TData, TValue>({
     columns,
     data,
+    refetch
   }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnVisibility, setColumnVisibility] =
@@ -152,7 +154,7 @@ import { ObjectiveAdd } from "~/components/popup/project-objectibe-add,"
           >
             Next
           </Button>
-          <ObjectiveAdd />
+          <ObjectiveAdd refetch ={refetch}/>
         </div>
       </>
   

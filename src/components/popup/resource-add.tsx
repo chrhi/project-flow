@@ -6,7 +6,7 @@ import { TextField } from '../used/TextField'
 import { AbdullahButton, buttonVariants} from '../used/AbdullahButton'
 import { Input } from '../used/Input'
 import Select from 'react-select';
-import { STAKHOLDER_TYPES , OPTIONS} from '~/types/static/STATICDATA'
+import { STAKHOLDER_TYPES , OPTIONS, RESOURCE_QUALITY} from '~/types/static/STATICDATA'
 import { Button } from '../ui/button'
 import toast from 'react-hot-toast'
 import { getProjectMetaData } from '~/lib/MetaData'
@@ -99,12 +99,12 @@ export  function ResourceAdd ({refetch} : Props ) {
                 leaveTo="opacity-0 scale-95"
                
               >
-                <Dialog.Panel className="  w-[900px] h-[600px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="  w-[600px] h-[570px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
-                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
+                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4  "
                   >
-               <div><p className='text-md text-gray-700   ml-1'>Ajouter un nouvel outil au tableau</p></div>  
+               <div><p className='text-lg  text-gray-700   ml-1'>Ajouter un nouvel outil au tableau</p></div>  
                <div>
                     <button
                           onClick={closeModal}
@@ -118,19 +118,20 @@ export  function ResourceAdd ({refetch} : Props ) {
                  
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className='col-span-6 '>
+            <div className='col-span-6  lg:col-span-12'>
                   <label  className="block text-sm font-medium leading-6 text-gray-900">
                   quality
                   </label>
                   <Select
                         onChange={(e) => setData({...data , quality : e?.value || ""})}
                         name="stakholders_types"
-                        options={STAKHOLDER_TYPES}
+                        options={RESOURCE_QUALITY}
                         className="basic-multi-select"
                         classNamePrefix="select"
                     />
             </div> 
             <Input
+              className="col-span-6  lg:col-span-12"
               lable='Nom'
               value={data.name}
               onChange={(e) => setData({...data , name : e.target.value})}
@@ -138,11 +139,13 @@ export  function ResourceAdd ({refetch} : Props ) {
             
             
              <TextField
+              className="col-span-6  lg:col-span-12"
               lable='description'
               value={data.description}
               onChange={(e) => setData({...data , description : e.target.value})}
             />
              <Input
+              className="col-span-6  lg:col-span-12"
               lable='cost'
               value={data.cost}
 
@@ -151,13 +154,13 @@ export  function ResourceAdd ({refetch} : Props ) {
 
            
                 
-             <div className="bg-white flex justify-end items-end p-4 col-span-6 text-right ">
+             <div className="bg-white flex justify-end items-end p-4 col-span-6  lg:col-span-12 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
             isLoading={mutation.isLoading}
             className={`${buttonVariants({size:'sm'  , variant:"primary"})}  `}
             >
-           sauvegarder
+           submit
             </AbdullahButton>
               </div>
           </div>

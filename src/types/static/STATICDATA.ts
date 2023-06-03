@@ -17,8 +17,17 @@ export const OPTIONS =[
   ]
 
   export const OJECTIVES_TYPES =[
-    { label : "type 1", value : "VERY_LOW"},
-    { label : "type 2", value : "LOW"},
-    { label : "type 3",value : "MEDIUM"},
+    { label : "Perimeter", value : "Perimeter"},
+    { label : "Schedule", value : "Schedule"},
+    { label : "cost",value : "cost"},
+   
+  ]
+
+  export const RESOURCE_QUALITY =[
+    { label : "very low quality", value : "VERY_LOW"},
+    { label : "low quality", value : "LOW"},
+    { label : "medium quality ",value : "MEDIUM"},
+    {label : "heigh quality ",value : "HEIGH"},
+    {label : "very height quality ",value : "VERY_HEIGH"},
    
   ]

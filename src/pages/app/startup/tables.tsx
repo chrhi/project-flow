@@ -53,7 +53,7 @@ const Page: NextPage = () => {
             <RowGridText small text=" Define specific, measurable, achievable, relevant, and time-bound (SMART) project objectives that clearly state the desired outcomes and deliverables, providing a clear direction and focus for the project" />
      
       <div   className="col-span-6 lg:col-span-12 ">
-        <DataTable  columns={columns} data={[]}  />
+        <DataTable  columns={columns} data={data} refetch={refetch}  />
         </div>
         
         

@@ -18,14 +18,14 @@ import { OJECTIVES_TYPES } from '~/types/static/STATICDATA'
 
 type Props = {
   
-  // refetch : () => Promise<any>
+  refetch : () => Promise<any>
 }
 
 
 
 
 
-export  function ObjectiveAdd ({ } : Props) {
+export  function ObjectiveAdd ({refetch } : Props) {
 
 
  
@@ -49,10 +49,25 @@ export  function ObjectiveAdd ({ } : Props) {
       setIsOpen(false)
     }
     
-  
+    const mutation = api.ProjectObjectivesRouter.objectiveAdd.useMutation({
+      onSuccess : async () => {
+        await refetch()
+        closeModal()
+      },
+      onError : () => {
+        toast.error("failed to add new project goal")
+      }
+
+    })
 
     const handleSubmit = () => {
-     //todo
+      mutation.mutate({
+        APPROVAL : formData.APPROVAL , 
+        project_id : getProjectMetaData() , 
+        SUCCESS_CRITERIA : formData.SUCCESS_CRITERIA , 
+        THE_PROJECTS_OBJECTIVES : formData.THE_PROJECTS_OBJECTIVES , 
+        type : formData.Type
+      })
     }
    
 
@@ -161,7 +176,7 @@ export  function ObjectiveAdd ({ } : Props) {
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={false}
+            isLoading={mutation.isLoading}
             className={buttonVariants({size:'sm' , variant : "primary"})}
             >
               submit
