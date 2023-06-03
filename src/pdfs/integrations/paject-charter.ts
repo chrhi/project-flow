@@ -24,11 +24,47 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
     // const objectives_Schedule = objectives.filter(item => item.Type === "Schedule")
     // const objectives_cost = objectives.filter(item => item.Type === "cost")
 
+   
+
     return (
         `
-     ${getPdfHeader()}
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+          
+            <title>Document</title>
+        </head>
+        
+        <body>
+            <style>
+                @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+                * {
+                   font-family: "Poppins", "sans-serif" !important ;
+                 }
+                 @media print {
+                     body {
+                       font-size: 16px;
+                        color: lightgrey;
+                     }
+        
+                      .no-break-inside {
+                          /* apply this class to every component that shouldn't be cut off between two pages of your PDF */
+                          break-inside: avoid;
+                     }
+        
+                    .break-before {
+                    /* apply this class to every component that should always display on the next page */
+                    break-before: always;
+          }
+        }
+              
+        
     </style>
-    <main class="w-[800px] mx-auto flex flex-col items-start  p-[20px] ">
+    <main class="w-[800px] mx-auto  p-[20px] ">
      
         <!-- introdection  -->
         <div class="w-full min-h-[70px] h-fit pt-1 mb-4 flex justify-between  border-b ">
@@ -63,12 +99,12 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
         </div>
         
        
-        <div class="w-full  min-h-[20px] my-2  pt-1 flex justify-start items-start px-4  no-break-inside ">
+        <div class="w-full  min-h-[20px] my-2  pt-1 flex justify-start items-start px-4   ">
             <h2 class="  font-bold  leading-6 text-lg text-gray-900 text-start">Project objectives</h2>
         </div>
         
- <div class="relative w-[97%] mx-auto  no-break-inside ">
-    <table class="w-full text-sm text-left  text-gray-400">
+ <div class="relative w-[97%] mx-auto   ">
+    <table class="w-full text-sm text-left  text-gray-400 ">
         <thead class="text-xs  uppercase  bg-gray-700 text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
@@ -90,7 +126,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
         ${
             objectives.map(item => {
                 return `
-                <tr class=" border-b bg-gray-800 border-gray-700">
+                <tr class=" border-b bg-gray-800 border-gray-700 no-break-inside ">
                 <th scope="row" class="px-6 py-4 font-medium  text-white">
                     ${item.Type}
                 </th>
@@ -116,7 +152,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
     <h2 class="  font-bold  leading-6 text-lg text-gray-900 text-start">Project Mile stones</h2>
 </div>
 
-<div class="relative w-[97%] mx-auto  no-break-inside ">
+<div class="relative w-[97%] mx-auto  ">
     <table class="w-full text-sm text-left  text-gray-400">
         <thead class="text-xs  uppercase  bg-gray-700 text-gray-400">
             <tr>   
@@ -132,7 +168,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
             ${
                 milestone.map(item => {
                     return`
-                    <tr class=" border-b bg-gray-800 border-gray-700">
+                    <tr class=" border-b bg-gray-800 border-gray-700 no-break-inside ">
                     <th scope="row" class="px-6 py-4 font-medium  text-white">
                        ${item.name}
                     </th>
@@ -176,7 +212,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
             ${
                 stakeholders.map(item => {
                     const row =   `
-                        <tr class=" border-b bg-gray-800 border-gray-700">
+                        <tr class=" border-b bg-gray-800 border-gray-700 no-break-inside ">
                         <th scope="row" class="px-6 py-4 font-medium  text-white">
                             ${item.name || ""}
                         </th>
@@ -195,6 +231,8 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
 
     </main>
 </body>
+<script src="https://cdn.tailwindcss.com" ></script>
+
 </html>
         `
     )
