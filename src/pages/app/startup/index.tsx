@@ -9,7 +9,7 @@ import { TextField } from "~/components/used/TextField";
 import { FormButton } from "~/components/used/FormButton";
 import { RowGridText } from "~/components/typography/RowGridText";
 import NewTimePicker from "~/components/used/NewTimePicker";
-import { DateRangePickerValue } from "@tremor/react";
+import type { DateRangePickerValue } from "@tremor/react";
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";

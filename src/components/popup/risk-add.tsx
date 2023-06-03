@@ -69,7 +69,7 @@ export  function RiskAdd () {
                 leaveTo="opacity-0 scale-95"
                
               >
-                <Dialog.Panel className="  w-[900px] h-[600px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="  w-[450px] h-[600px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
@@ -87,7 +87,7 @@ export  function RiskAdd () {
                   </Dialog.Title>
                  
            <div className="bg-white p-4  w-full  ">
-            <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+            <div className="grid grid-cols-6  gap-6">
             <div className='col-span-6 '>
                   <label  className="block text-sm font-medium leading-6 text-gray-900">
                   Level of danger
@@ -120,7 +120,7 @@ export  function RiskAdd () {
 
            
                 
-             <div className="bg-white flex justify-end items-end p-4 col-span-6 text-right ">
+             <div className="bg-white flex justify-end items-end  col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
             isLoading={false}

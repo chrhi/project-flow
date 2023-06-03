@@ -50,6 +50,18 @@ model MileStones {
   @@index([projectId])
 }
 
+model ProjectObjectives {
+  id           String   @id @default(cuid())
+  projectId String    
+  THE_PROJECTS_OBJECTIVES      String?     @db.LongText
+  SUCCESS_CRITERIA String?  @db.LongText
+  APPROVAL     String?     @db.LongText
+  Type          String?     @db.LongText
+  project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  @@index([id])
+  @@index([projectId])
+}
+
 model Project {
   id            String          @id @default(uuid())
   title         String?
@@ -71,6 +83,7 @@ model Project {
   Controlling   Controlling[]
   Closing       Closing[]
   Tasks        Tasks[]
+  ProjectObjectives ProjectObjectives[]
 
   @@index([id])
   @@index([userId])

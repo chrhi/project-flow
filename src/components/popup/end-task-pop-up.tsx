@@ -5,27 +5,29 @@ import { Fragment,  useState } from 'react'
 import { api } from '~/utils/api'
 import { AbdullahButton, buttonVariants } from '../used/AbdullahButton'
 import { toast } from 'react-toastify'
-import {v4 as uuidV4} from "uuid"
+import { openTasksDonePanle } from '~/store/open-models'
 import { Input } from '../used/Input'
 import { getProjectMetaData } from '~/lib/MetaData'
 import { TimePicker } from '../used/TimePicker'
 import { TextField } from '../used/TextField'
 import type { DateRangePickerValue } from '@tremor/react'
 import NewTimePicker from '../used/NewTimePicker'
+import { RowGridText } from '../typography/RowGridText'
 type Props = {
   
-  refetch : () => Promise<any>
+  // refetch : () => Promise<any>
 }
 
 
 
 
 
-export  function MileStoneAdd ({ refetch} : Props) {
+export  function TaskEndDone ({ } : Props) {
 
 
- 
-    const [isOpen, setIsOpen] = useState(false)
+    const isOpen = openTasksDonePanle(state => state.showModel)
+    const setIsOpen = openTasksDonePanle(state => state.setShowModel)
+    
     const [value , setValue] = useState<DateRangePickerValue>([
       new Date(),
       new Date()
@@ -44,44 +46,16 @@ export  function MileStoneAdd ({ refetch} : Props) {
       setIsOpen(false)
     }
     
-    const mutation = api.mileStoneRouter.milestoneAdd.useMutation({
-      onSuccess : async  () => {
-          await refetch()
-          closeModal()
-      },
-      onError : () => {
-        toast.error("failed to add new milestone of the project")
-      }
-    })
   
 
     const handleSubmit = () => {
-      mutation.mutate({
-        description : formData.description ,
-        dueDate : value[1] || new Date(), 
-        name : formData.name , 
-        project_id : getProjectMetaData()
-      })
+     //todo
     }
    
 
   return (
     <>
-   <div className='w-full h-6 flex justify-between px-4 items-center'>
-    <p>  Add new Milestones to the table</p>
  
- 
-      <button
-         onClick={openModal}
-        className='!text-xl !font-semibold !text-slate-900 !p-0  '
-         >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-           <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-
-       </button>
-  
-   </div>
   
     <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
@@ -112,9 +86,9 @@ export  function MileStoneAdd ({ refetch} : Props) {
                 <Dialog.Panel className="  w-[500px] h-fit  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
-                    className=" w-full h-[50px] px-4 flex justify-between items-center border-b "
+                    className=" w-full h-[40px] px-4 flex justify-between items-center  "
                   >
-               <div><p className='text-sm text-gray-500'>Add  Mailstone</p></div>  
+               <div><p className='text-sm text-gray-500'>Tracking task tine and cost</p></div>  
                <div>
                 
                     <button
@@ -132,26 +106,42 @@ export  function MileStoneAdd ({ refetch} : Props) {
                  
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-6">
-                      <NewTimePicker value={value} setValue={setValue} text="only the end date will be taken"/>
-              </div>
-            <Input
-              lable='Title'
+          
+            <RowGridText text='Planed time and cost to do this task' />
+              <div className="  col-span-6 lg:col-span-12 ">
+                 <NewTimePicker value={value} setValue={setValue} text="Planed time "/>
+             </div>
+             <Input
+             className='col-span-6 lg:col-span-12'
+              lable='Planed cost'
               value={formData.name}
               onChange={(e) => setFormData({...formData , name : e.target.value})}
             />
-             
-            
-            <TextField
-              lable='Milestone Description'
-              value={formData.description}
-              onChange={(e) => setFormData({...formData , description : e.target.value})}
+
+           <RowGridText text='Real time and cost to end this task' />
+
+           <div   className='col-span-6 lg:col-span-12'>
+                 <NewTimePicker value={value} setValue={setValue} text="Ended at "/>
+             </div>
+             <Input
+               className='col-span-6 lg:col-span-12'
+              lable='Real  cost'
+              value={formData.name}
+              onChange={(e) => setFormData({...formData , name : e.target.value})}
             />
-        
-             <div className="bg-white py-3 col-span-6 text-right ">
+           
+             <div className="bg-white py-3 col-span-6 flex items-center justify-end gap-x-4 lg:col-span-12 text-right ">
+             <AbdullahButton
+            onClick={handleSubmit}
+            isLoading={false}
+            className={buttonVariants({size:'sm' , variant : "secondary"})}
+            >
+              skip
+            </AbdullahButton>
+
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={mutation.isLoading}
+            isLoading={false}
             className={buttonVariants({size:'sm' , variant : "primary"})}
             >
               submit

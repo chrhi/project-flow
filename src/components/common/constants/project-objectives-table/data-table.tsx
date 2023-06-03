@@ -26,7 +26,8 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
   } from "~/components/ui/dropdown-menu"
-import { MileStoneAdd } from "~/components/popup/mile-stone-add"
+
+import { ObjectiveAdd } from "~/components/popup/project-objectibe-add,"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -151,7 +152,7 @@ import { MileStoneAdd } from "~/components/popup/mile-stone-add"
           >
             Next
           </Button>
-          <MileStoneAdd />
+          <ObjectiveAdd />
         </div>
       </>
   

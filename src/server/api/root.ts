@@ -12,6 +12,8 @@ import { changePlanningRouter } from "./inputs/management-plan/change-managment"
 import { scheduelPlanningRouter } from "./inputs/management-plan/scheduel-management";
 import { integrationsRouter } from "./pdf-generater/integrations";
 import { tasksRouter } from "./routers/tasks-route";
+import { mileStoneRouter } from "./routers/mileStones";
+import { ProjectObjectivesRouter } from "./routers/project-objectives";
 
 export const appRouter = createTRPCRouter({
     userRouter,
@@ -26,7 +28,9 @@ export const appRouter = createTRPCRouter({
     changePlanningRouter,
     scheduelPlanningRouter,
     integrationsRouter,
-    tasksRouter
+    tasksRouter,
+    mileStoneRouter,
+    ProjectObjectivesRouter
 });
 
 // export type definition of API

@@ -15,3 +15,10 @@ export const OPTIONS =[
     {label : "heigh",value : "HEIGH"},
     {label : "very height",value : "VERY_HEIGH"},
   ]
+
+  export const OJECTIVES_TYPES =[
+    { label : "type 1", value : "VERY_LOW"},
+    { label : "type 2", value : "LOW"},
+    { label : "type 3",value : "MEDIUM"},
+   
+  ]

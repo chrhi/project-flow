@@ -9,34 +9,38 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
+import { AlgeriaformatDate } from "~/utils/formate/AlgeriaFormate"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
 export type MileStone = {
   id: string
   mileStone: string
-  date: string
+  date: Date
   description : string 
-  type : string
+
 }
 
 export const columns: ColumnDef<MileStone>[] = [
   {
-    accessorKey: "MileStone",
+    accessorKey: "mileStone",
     header: "MileStone",
   },
   {
     accessorKey: "date",
-    header: "Date"
+    header: "Date",
+    cell: ({row}) => {
+      return (
+        AlgeriaformatDate(row.original.date)
+      )
+    },
+
   },
   {
     accessorKey: "description",
     header: "description",
   },
-  {
-    accessorKey: "type",
-    header: "Type",
-  },
+ 
  
   {
     id: "actions",

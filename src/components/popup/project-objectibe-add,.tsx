@@ -12,16 +12,20 @@ import { TimePicker } from '../used/TimePicker'
 import { TextField } from '../used/TextField'
 import type { DateRangePickerValue } from '@tremor/react'
 import NewTimePicker from '../used/NewTimePicker'
+import Select from 'react-select'
+import { OJECTIVES_TYPES } from '~/types/static/STATICDATA'
+
+
 type Props = {
   
-  refetch : () => Promise<any>
+  // refetch : () => Promise<any>
 }
 
 
 
 
 
-export  function MileStoneAdd ({ refetch} : Props) {
+export  function ObjectiveAdd ({ } : Props) {
 
 
  
@@ -32,9 +36,10 @@ export  function MileStoneAdd ({ refetch} : Props) {
     ])
   
     const [formData , setFormData] = useState({
-      name : "" ,
-      description : "",
-      type : ""
+      SUCCESS_CRITERIA : "" ,
+      THE_PROJECTS_OBJECTIVES : "",
+      Type : "",
+      APPROVAL : ""
     })
      
     function openModal() {
@@ -44,24 +49,10 @@ export  function MileStoneAdd ({ refetch} : Props) {
       setIsOpen(false)
     }
     
-    const mutation = api.mileStoneRouter.milestoneAdd.useMutation({
-      onSuccess : async  () => {
-          await refetch()
-          closeModal()
-      },
-      onError : () => {
-        toast.error("failed to add new milestone of the project")
-      }
-    })
   
 
     const handleSubmit = () => {
-      mutation.mutate({
-        description : formData.description ,
-        dueDate : value[1] || new Date(), 
-        name : formData.name , 
-        project_id : getProjectMetaData()
-      })
+     //todo
     }
    
 
@@ -114,7 +105,7 @@ export  function MileStoneAdd ({ refetch} : Props) {
                     as="div"
                     className=" w-full h-[50px] px-4 flex justify-between items-center border-b "
                   >
-               <div><p className='text-sm text-gray-500'>Add  Mailstone</p></div>  
+               <div><p className='text-sm text-gray-500'>Add  New project objective</p></div>  
                <div>
                 
                     <button
@@ -132,26 +123,45 @@ export  function MileStoneAdd ({ refetch} : Props) {
                  
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-6">
-                      <NewTimePicker value={value} setValue={setValue} text="only the end date will be taken"/>
-              </div>
-            <Input
-              lable='Title'
-              value={formData.name}
-              onChange={(e) => setFormData({...formData , name : e.target.value})}
+                <div className='col-span-6 '>
+                                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                       Type
+                                  </label>
+                                  <Select
+                                          
+                                          onChange={(e) => setFormData({...formData , Type : e?.value  || ""})}  
+                                           name="Type"
+                                           options={OJECTIVES_TYPES}
+                                           className="basic-multi-select"
+                                           classNamePrefix="select"
+                                   />
+               </div>
+           
+            <TextField
+              lable='THE PROJECTS OBJECTIVES'
+              value={formData.THE_PROJECTS_OBJECTIVES}
+              onChange={(e) => setFormData({...formData , THE_PROJECTS_OBJECTIVES : e.target.value})}
             />
-             
+
             
             <TextField
-              lable='Milestone Description'
-              value={formData.description}
-              onChange={(e) => setFormData({...formData , description : e.target.value})}
+                    lable='SUCCESS CRITERIA'
+                    value={formData.SUCCESS_CRITERIA}
+                    onChange={(e) => setFormData({...formData , SUCCESS_CRITERIA : e.target.value})}
             />
+           
+             
+            <TextField
+                    lable='APPROVAL'
+                    value={formData.APPROVAL}
+                    onChange={(e) => setFormData({...formData , APPROVAL : e.target.value})}
+            />
+
         
              <div className="bg-white py-3 col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={mutation.isLoading}
+            isLoading={false}
             className={buttonVariants({size:'sm' , variant : "primary"})}
             >
               submit

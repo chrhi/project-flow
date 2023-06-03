@@ -5,13 +5,18 @@ import {type  TaskType } from "./Task";
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
-
+import { openTasksDonePanle } from '~/store/open-models'
 
 
 type Props = {
   tasks : TaskType[],
 
 }
+
+// const tasks : TaskType[] = [
+//   {id : "123" , status : "TODO" , title : "create the pop up when end task" , discription : "how can i create a log description" , priority : "LOW"},
+//   {id : "128873" , status : "TODO" , title : "build end phase button"  , priority : "LOW"}
+// ]
 
 function BoardContainer({tasks} : Props ) {
 
@@ -20,6 +25,7 @@ function BoardContainer({tasks} : Props ) {
   const [Done , setDone ] = useState<TaskType[]>([])
   const [Canceled , setCanceled ] = useState<TaskType[]>([])
 
+  const openModel = openTasksDonePanle(state => state.setEveryThing)
   api.tasksRouter.getTasks.useQuery({projectId : getProjectMetaData()},{
     onSuccess : (data) => {
       const prepare = data.map((item ) : TaskType => {
@@ -38,6 +44,7 @@ function BoardContainer({tasks} : Props ) {
       setCanceled(prepare.filter(item => item.status === "CANCELED"))
     },
     onError : () => {
+      setTodo(tasks)
       toast.error("something went wrong may be your internet connection ?")
     }
   })
@@ -83,6 +90,7 @@ function BoardContainer({tasks} : Props ) {
     if (destination?.droppableId === "done") {
   
       setDone([{ ...task, status: "DONE" }, ...Done]);
+      openModel({id : task.id ,endedAt : new Date() , startAt : new Date() })
     }
     if (destination?.droppableId== "Canceled") {
       setCanceled([{ ...task, status: "CANCELED" }, ...Canceled]);

@@ -7,20 +7,35 @@ import { FormContainer } from "~/components/used/FormContainer";
 import {  AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { DataTable } from "~/components/common/constants/mile-stone-table/data-table";
+import { api } from "~/utils/api";
+import { columns ,type MileStone } from "~/components/common/constants/mile-stone-table/column";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { toast } from "react-hot-toast";
 
-import { columns } from "~/components/common/constants/mile-stone-table/column";
 
-type IpiData = {
-  name : string , 
-  id :  string,
-  start_at : Date ,
-  ends_at : Date
-}
 const Page: NextPage = () => {
 
-  
+  const [data , setData] = useState<MileStone[]>([] as MileStone[])
+
+  const {refetch} = api.mileStoneRouter.getMilestones.useQuery({ projectId : getProjectMetaData()} , {
+    onSuccess(data) {
+      const prepare = data.map((item ): MileStone  => {
+        return {
+            date : item.dueDate || new Date() , 
+            description : item.description || "", 
+            id : item.id  || "", 
+            mileStone : item.name || "", 
+           
+        }
+      })
+      setData(prepare  )
+    },
+    onError: () => {
+      toast.error("failed to fetch the milestones")
+    }
+  })
  
-  const [commingData , setCommingData] = useState<IpiData[]>([] as IpiData[])
+  
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
@@ -29,21 +44,6 @@ const Page: NextPage = () => {
  
     
 
-    const satisfyTable = () : ItemTable[] => {
-
-      const array : ItemTable[] =  commingData.map(item => (
-        {
-          id : item.id ,
-          callback : (id : string) => {
-           //todo
-          },
-          properties : [item.name  ,item.start_at]
-        } 
-      ))
-    
-     
-      return array
-    }
 
   return (
     <>  
@@ -56,12 +56,12 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
             <div className="col-span-6 lg:col-span-12 ">
-            <RowGridText text="Manage stakeholder " />
-            <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+            <RowGridText text="MileStones " />
+            <RowGridText small text="A milestone in project management is a significant event or point that marks the completion of a major deliverable or stage, serving as a reference for tracking progress and communicating project advancements." />
 
             </div>
             <div  className="col-span-6 lg:col-span-12  ">
-            <DataTable columns={columns} data={[]}  />
+            <DataTable columns={columns} data={data} refetch={refetch} />
             </div>
         </div>
       </div>

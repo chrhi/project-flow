@@ -1,18 +1,20 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "~/components/header/Header";
 import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
 import {
   motion,
   useMotionValue,
   useTransform,
+  
 } from "framer-motion"
 import { FormContainer } from "~/components/used/FormContainer";
 
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
+
   const x = useMotionValue(0);
   const xInput = [-100, 0, 100];
   const background = useTransform(x, xInput, [
@@ -28,6 +30,9 @@ const Page: NextPage = () => {
   const tickPath = useTransform(x, [10, 100], [0, 1]);
   const crossPathA = useTransform(x, [-10, -55], [0, 1]);
   const crossPathB = useTransform(x, [-50, -100], [0, 1]);
+
+ 
+
   return (
     <>
       <Head>

@@ -5,6 +5,7 @@ import {  useState } from "react";
 import BoardContainer from "~/components/board/BoardContainer";
 import { TaskType } from "~/components/board/Task";
 import { Header } from "~/components/header/Header";
+import { TaskEndDone } from "~/components/popup/end-task-pop-up";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { task } from "~/types/type";
@@ -87,6 +88,7 @@ const Page: NextPage = () => {
         <div className="w-full h-[50px] flex items-center pl-4 justify-start">
             <h1 className="text-xl  text-gray-800 "> 📝 Tasks Tracking with kanban Board</h1>
         </div>
+        <TaskEndDone />
         <BoardContainer   tasks={tasksTyped}/>
       </div>
       </main>

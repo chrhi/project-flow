@@ -4,17 +4,36 @@ import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { AbdullahTable, ItemTable } from "~/components/used/AbdullahTable";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { DataTable } from "~/components/common/constants/project-objectives-table/data-table";
-import { columns } from "~/components/common/constants/project-objectives-table/column";
-
+import { columns , type  Objectives } from "~/components/common/constants/project-objectives-table/column";
+import { api } from "~/utils/api";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { toast } from "react-hot-toast";
 
 const Page: NextPage = () => {
 
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
+  const [data , setData] = useState<Objectives[]>([] as Objectives[])
 
+  const {refetch } = api.ProjectObjectivesRouter.getObjectives.useQuery({projectId : getProjectMetaData()}, {
+    onSuccess : (data) => {
+      const prepare =  data.map((item) :Objectives => {
+        return {
+          APPROVAL : item.APPROVAL || "", 
+          id : item.id || "", 
+          SUCCESS_CRITERIA : item.SUCCESS_CRITERIA || "", 
+          THE_PROJECTS_OBJECTIVES : item.THE_PROJECTS_OBJECTIVES || "", 
+          type : item.Type || ""
+        }
+      }  )
+      setData(prepare)
+    },
+    onError : () => {
+      toast.error("there is a error ")
+    }
+  })
 
 
  

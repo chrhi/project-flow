@@ -12,7 +12,7 @@ import {
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type MileStone = {
+export type Objectives = {
   id: string
   THE_PROJECTS_OBJECTIVES: string
   SUCCESS_CRITERIA: string
@@ -20,7 +20,7 @@ export type MileStone = {
   type : string
 }
 
-export const columns: ColumnDef<MileStone>[] = [
+export const columns: ColumnDef<Objectives>[] = [
   {
     accessorKey: "THE_PROJECTS_OBJECTIVES",
     header: "THE PROJECTS OBJECTIVES",

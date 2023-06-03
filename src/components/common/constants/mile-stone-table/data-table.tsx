@@ -30,12 +30,14 @@ import { MileStoneAdd } from "~/components/popup/mile-stone-add"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
-    data: TData[]
+    data: TData[],
+    refetch : () => Promise<any>
   }
   
   export function DataTable<TData, TValue>({
     columns,
     data,
+    refetch
   }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
     const [columnVisibility, setColumnVisibility] =
@@ -151,7 +153,7 @@ import { MileStoneAdd } from "~/components/popup/mile-stone-add"
           >
             Next
           </Button>
-          <MileStoneAdd />
+          <MileStoneAdd refetch={refetch} />
         </div>
       </>
   
