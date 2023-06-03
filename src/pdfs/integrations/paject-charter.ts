@@ -45,6 +45,9 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
                 * {
                    font-family: "Poppins", "sans-serif" !important ;
                  }
+                 html {
+                    -webkit-print-color-adjust: exact;
+                  }
                  @media print {
                      body {
                        font-size: 16px;
@@ -70,7 +73,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
         <div class="w-full min-h-[70px] h-fit pt-1 mb-4 flex justify-between  border-b ">
               <div class="w-[50%] flex items-start h-full flex-col justify-start p-4">
                         <h1 class=" font-semibold leading-6 text-xl text-blue-500">Project charter</h1>
-                        <h3 class="  leading-6 text-sm text-gary-400" > prepared at ${formatDate(new Date())}</h3>
+                        <h3 class="  leading-6 text-sm text-gary-700" > prepared at ${formatDate(new Date())}</h3>
                         <h3  class=" font-semibold leading-6 text-sm text-gray-900" > project customer : <span class="font-normal"> ${projectCustomer[0]?.name || "provide customer"}</span> </h3>
               </div>
               <div class="w-[50%] flex items-start flex-col h-full justify-start p-4">
@@ -105,7 +108,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
         
  <div class="relative w-[97%] mx-auto   ">
     <table class="w-full text-sm text-left  text-gray-400 ">
-        <thead class="text-xs  uppercase  bg-gray-700 text-gray-400">
+        <thead class="text-xs  uppercase  !bg-gray-700 text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
                   
@@ -126,7 +129,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
         ${
             objectives.map(item => {
                 return `
-                <tr class=" border-b bg-gray-800 border-gray-700 no-break-inside ">
+                <tr class=" border-b !bg-gray-800 border-gray-700 no-break-inside ">
                 <th scope="row" class="px-6 py-4 font-medium  text-white">
                     ${item.Type}
                 </th>
@@ -154,7 +157,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
 
 <div class="relative w-[97%] mx-auto  ">
     <table class="w-full text-sm text-left  text-gray-400">
-        <thead class="text-xs  uppercase  bg-gray-700 text-gray-400">
+        <thead class="text-xs  uppercase  !bg-gray-700 text-gray-400">
             <tr>   
                 <th scope="col" class="px-6 py-3">
                     Summary Milestones
@@ -168,7 +171,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
             ${
                 milestone.map(item => {
                     return`
-                    <tr class=" border-b bg-gray-800 border-gray-700 no-break-inside ">
+                    <tr class=" border-b !bg-gray-800 border-gray-700 no-break-inside ">
                     <th scope="row" class="px-6 py-4 font-medium  text-white">
                        ${item.name}
                     </th>
@@ -196,7 +199,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
 
 <div class="relative w-[97%] mx-auto  no-break-inside ">
     <table class="w-full text-sm text-left  text-gray-400">
-        <thead class="text-xs  uppercase  bg-gray-700 text-gray-400">
+        <thead class="text-xs  uppercase  !bg-gray-700 text-gray-400">
            
             <tr>   
                 <th scope="col" class="px-6 py-3">
@@ -212,7 +215,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
             ${
                 stakeholders.map(item => {
                     const row =   `
-                        <tr class=" border-b bg-gray-800 border-gray-700 no-break-inside ">
+                        <tr class=" border-b !bg-gray-800 border-gray-700 no-break-inside ">
                         <th scope="row" class="px-6 py-4 font-medium  text-white">
                             ${item.name || ""}
                         </th>
