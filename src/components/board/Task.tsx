@@ -32,10 +32,10 @@ function Task({index , id , title , discription , imgUrl , priority }  : PropsTy
              ${snapshot.isDragging ? "shadow-xl " : "" }`}
             {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
                {
-                    true ?
+                    imgUrl ?
                      <img 
                        alt={title}
-                       src={imgUrl || "https://media.tenor.com/-NkL2pGJTQsAAAAC/uw-u-oshi-no-ko.gif"}
+                       src={imgUrl || ""}
                        className='w-[100%]   '   /> : null
                   }
                 <div className='w-full h-fit p-4 '>
