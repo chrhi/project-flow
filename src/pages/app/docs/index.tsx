@@ -22,7 +22,7 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height overflow-y-auto  flex w-full justify-center items-center bg-gray-50 ">
         <DocsSideBar  />
        <div
-        className=" ml-[20rem] w-[80%] h-full p-8 "
+        className=" ml-[20rem] w-[80%] flex flex-wrap gap-4 h-full p-8 "
        >
        {/* build the pdf builder component */}
        <DocumentBuilder

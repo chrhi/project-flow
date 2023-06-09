@@ -19,7 +19,7 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Header />
-      <main className=" custopn-page-height  flex w-full justify-center items-center bg-gray-50 ">
+      <main className=" custopn-page-height  flex w-full justify-center container items-center bg-gray-50 ">
         <DocsSideBar  />
        <div
         className=" overflow-y-auto ml-[20rem] w-[80%] h-full p-8 "

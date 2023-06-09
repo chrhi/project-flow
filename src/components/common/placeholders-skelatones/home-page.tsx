@@ -14,8 +14,11 @@ import Skeleton from 'react-loading-skeleton';
                 <div className="w-[65%] h-[80%] ">
                 <Skeleton style={{width : "100%" , height:"400px"}} />
                 </div>
-                <div className="w-[25%]  h-[80%] duration-500 flex flex-col p-4  rounded-lg">
-                <Skeleton style={{width : "100%" , height:"400px"}} />
+                <div className="w-[25%]  h-[80%] duration-500 flex flex-col gap-y-4  rounded-lg">
+                <Skeleton style={{width : "100%" }} className='dark:!bg-neutral-800' />
+                <Skeleton style={{width : "100%" }} />
+                <Skeleton style={{width : "100%" }} />
+                <Skeleton style={{width : "100%" }} />
                 </div>
        </div>
        <div className="w-full h-[50px] flex items-center justify-start ">

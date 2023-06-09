@@ -32,7 +32,7 @@ export default function DropDowsMenu() {
     <Menu as="div" className="relative z-[100]  inline-block text-left">
       <div className='h-[60px] w-[50px] flex justify-center items-center'>
           <Menu.Button >
-             <Settings className='w-5 h-5 text-gray-700 cursor-pointer ' />
+             <Settings className='w-5 h-5 text-gray-700 dark:text-white cursor-pointer ' />
           </Menu.Button>
       </div>
       <Transition
@@ -44,7 +44,7 @@ export default function DropDowsMenu() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute z-[100]  right-0 top-12  w-[280px] origin-top-right divide-y divide-gray-100  bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute z-[100]  right-0 top-12  w-[280px] origin-top-right divide-y divide-gray-100  bg-white dark:bg-black shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1  z-[100] ">
           <Menu.Item>
               {({ active }) => (
@@ -61,8 +61,8 @@ export default function DropDowsMenu() {
                   <img  className='rounded-[50%] w-[50px] h-[50px] ' src={photo} alt="profile pic" />
                   </div>
                   <div className='w-[80%] min-h-[45px] h-fit   flex flex-col justify-center p-4 gap-y-1 '>
-                  <h3 className='truncate text-md text-gray-600 '>{email }</h3>
-                  <h3 className='truncate text-md text-gray-600 '>{ first_name + " " + last_name || "unknown"}</h3>
+                  <h3 className='truncate text-md text-gray-600 dark:text-white'>{email }</h3>
+                  <h3 className='truncate text-md text-gray-600  dark:text-white '>{ first_name + " " + last_name || "unknown"}</h3>
                 </div>
                 </div>
               )}
@@ -70,10 +70,10 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <div className='w-full min-h-[45px] h-fit border-b flex flex-col justify-center p-4 gap-y-1 '>
-                   <h3 className='truncate text-lg font-bold  text-gray-800 '>{ "project : "}</h3>
-                  <h3 className='truncate text-md text-gray-600 '>{projectTitle}</h3>
+                   <h3 className='truncate text-lg font-bold  text-gray-800 dark:text-white '>{ "project : "}</h3>
+                  <h3 className='truncate text-md text-gray-600 dark:text-white '>{projectTitle}</h3>
                   <h3 className='truncate text-md font-semibold  text-gray-800 '>{ "current phase : "}</h3>
-                  <h3 className='truncate text-md text-gray-600 '>{ currentPhase}</h3>
+                  <h3 className='truncate text-md text-gray-600 dark:text-white '>{ currentPhase}</h3>
                 </div>
               )}
             </Menu.Item>
@@ -85,7 +85,7 @@ export default function DropDowsMenu() {
                   set_current_page({payload:PAGES.PROFILE})
                 }  }
                   className={`
-                  ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
                   ${
                     current_page === PAGES.PROFILE ? 'bg-blue-200 text-gray-900 font-semibold ' : ' '  
                   } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
@@ -105,7 +105,7 @@ export default function DropDowsMenu() {
                   set_current_page({payload:PAGES.PASSWORD})
                   router.push("/app/user/password_settings")  }}
                   className={`
-                  ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
                   ${
                     current_page === PAGES.PASSWORD ? 'bg-blue-200 text-gray-900 font-semibold ' : ''  
                   } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
@@ -126,7 +126,7 @@ export default function DropDowsMenu() {
                   set_current_page({payload:PAGES.SETTINGS})
                   router.push("/app/user/settings") } }
                   className={
-                 `   ${ active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'}
+                 `     ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
                     ${
                     current_page === PAGES.SETTINGS ? 'bg-blue-200 text-gray-900 font-semibold ' : ''  
                   }  group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`
@@ -144,9 +144,7 @@ export default function DropDowsMenu() {
               {({ active }) => (
                 <button
                 onClick={handleLogout}
-                  className={`${
-                    active ? 'bg-gray-50 text-gray-900' : 'text-gray-900'
-                  } group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
+                  className={`  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'} group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />

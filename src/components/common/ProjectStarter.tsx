@@ -52,25 +52,28 @@ export const ProjectStarter = ({ refetch }: Props) => {
   };
 
   return (
-    <div className="w-full max-w-4xl duration-500 transform hover:-translate-y-1 hover:shadow-2xl bg-white rounded-lg flex h-[500px] shadow-xl border">
+    <div className="w-full max-w-4xl   bg-white dark:bg-black rounded-lg  flex h-[500px] shadow-xl border">
       <div className="w-[50%] gird grid-cols-12 p-4 gap-y-4 h-full">
         <div className="col-span-12 my-4 h-[40px] flex items-center">
-          <h1 className="text-2xl font-semibold text-stone-900">démarrage du projet </h1>
+          <h1 className="text-2xl font-semibold text-stone-900 dark:text-white">Stating the project </h1>
         </div>
         <Input
           lable="enter your password"
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}
+          className='my-4'
         />
-        <div className="col-span-12">
+        <div className="col-span-12 my-4 ">
           <NewTimePicker value={value} setValue={setValue} text="sélectionner une heure à laquelle ce projet doit commencer et se terminer" />
         </div>
         <Input
+          className='my-4'
           lable="quel est le titre du projet ?"
           value={data.title}
           onChange={(e) => setData({ ...data, title: e.target.value })}
         />
         <TextField
+          className='my-4'
           lable="pouvez-vous décrire le projet ?"
           value={data.description}
           onChange={(e) => setData({ ...data, description: e.target.value })}

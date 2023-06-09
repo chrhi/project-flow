@@ -15,7 +15,7 @@ interface ProvidersAbdullahProps {
 }
 
 const Providers: FC<ProvidersAbdullahProps> = ({children}) => {
-  return     <div className="w-full h-fit relative scrollbar-hide ">
+  return     <div className="w-full h-fit relative  scrollbar-hide ">
      <NextNProgress options={{ showSpinner: false }} />
       <Loading />
       <AccessPopUp />

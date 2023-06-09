@@ -22,11 +22,15 @@ type Props ={
 
 const List = [
  
-  {name : "team member status report" , path : "/app/controlling" , navs : NAVS.ONE},
-  {name : "Change request" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
-  {name : "Risk management" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
-  {name : "Quality audit " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
+  {name : "Change Log" , path : "/app/controlling/change_log" , navs : NAVS.ONE},
+  {name : "Cost Baseline" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
+  {name : "Issue Log" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
+  {name : "Project Performance Report " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
 
+  {name : "Risk Audit" , path : "/app/controlling" , navs : NAVS.ONE},
+  {name : "Risk Register" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
+  {name : "Team Member Status Report" , path : "/app/controlling" , navs : NAVS.THREE},
+  {name : "Variance Analysis " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
 ]
 
 export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {

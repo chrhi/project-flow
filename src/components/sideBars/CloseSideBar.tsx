@@ -22,9 +22,16 @@ type Props ={
 
 const List = [
   {name : "Lessens learned" , path : "/app/close/project_documentation" , navs : NAVS.TWO},
-  {name : "Final report" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
-  {name : "Project closure" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
-  {name : "Organizational asset updates" , path : "/app/close/resource_handover" , navs : NAVS.FIVE},
+  {name : "Formal Acceptance Form" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
+  {name : "Project Closeout" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
+  {name : "Contract Closeout" , path : "/app/close/resource_handover" , navs : NAVS.FIVE},
+
+  {name : "Project Performance Report" , path : "/app/close/project_documentation" , navs : NAVS.TWO},
+  {name : "Quality Audit" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
+  {name : "Procurement Audit" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
+ 
+
+
   {name : "End the project" , path : "/app/close/end_project" , navs : NAVS.SIX},
 ]
 

@@ -10,17 +10,23 @@ import { getUserMetadata, setoreProjectMetaData, storeProjectCurrentPhaseAbdulla
 import { toast } from "react-hot-toast";
 import { ProjectReduer } from "~/store/project-reducer";
 
+enum PROJECT_STATUS {
+  LOADING,
+  NO_PROJECT,
+  PROJECT
+}
+
 const Page: NextPage = () => {
 
-  const [hasProjectStart , setHasProjectStart] = useState<boolean>(false)
+  const [hasProjectStart , setHasProjectStart] = useState<PROJECT_STATUS>(PROJECT_STATUS.LOADING)
 
   const setProject = ProjectReduer(state => state.set_project)
 
-    const {isLoading , refetch} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata() || ""} , {      
+    const {refetch} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata() || ""} , {      
            retryOnMount : false ,
            onSuccess(data) {
              if (data?.id &&  data?.currentPhase){
-              setHasProjectStart(true)
+              setHasProjectStart(PROJECT_STATUS.PROJECT)
               setoreProjectMetaData({project_id  : data.id})
               storeProjectCurrentPhaseAbdullah(data?.currentPhase)
               setProject({
@@ -31,10 +37,13 @@ const Page: NextPage = () => {
                 projectId : data.id , 
                 projectTitle : data.title || ""
               })
+              return
              }
+             setHasProjectStart(PROJECT_STATUS.NO_PROJECT)
            },
            onError(){
-            toast.error("quelque chose s'est mal passé")
+            toast.error("somethign went wrong")
+            setHasProjectStart(PROJECT_STATUS.NO_PROJECT)
            }
     })
 
@@ -44,9 +53,9 @@ const Page: NextPage = () => {
     <>
      <AppLayout>
       {
-        isLoading ? 
+        hasProjectStart === PROJECT_STATUS.LOADING ? 
         <HomePageLoader /> :    
-         hasProjectStart ?
+         hasProjectStart === PROJECT_STATUS.PROJECT ?
          <HomePage />
          :
          <ProjectStarter refetch={refetch}  /> 

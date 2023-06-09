@@ -43,8 +43,8 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
   const Link = (current_page: NAVS_STARTUP, Nav: NAVS_STARTUP, path: string, name: string) => (
     <Button
     onClick={() => handleClick(path, Nav)}
-    className={`rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 justify-start
-      ${current_page === Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' : '!text-gray-600'} text-md shadow-sm`}
+    className={`rounded-lg w-[90%] mx-auto p-4 border dark:border-white ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 justify-start
+      ${current_page === Nav ? ' !text-gray-800 dark:!text-white  font-bold bg-sky-50 dark:bg-neutral-800 border border-blue-500 ' : '!text-gray-600 dark:bg-neutral-900 dark:!text-white'} text-md shadow-sm  `}
   >
     {name}
   </Button>
@@ -58,7 +58,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
           onClick={() => {
             if (setIsOpen) setIsOpen(true);
           }}
-          className={`w-[70px] h-[70px]  transition duration-500 transform hover:translate-x-1 rounded-full bg-white shadow-xl flex items-center justify-end p-4 text-white`}
+          className={`w-[70px] h-[70px]  transition duration-500 transform hover:translate-x-1 rounded-full bg-white dark:bg-neutral-800 shadow-xl flex items-center justify-end p-4 text-white`}
         >
          <ArrowRightIcon className='text-gray-900 w-5 h-5 ' />
         </button>
@@ -69,9 +69,9 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
           initial={isOpen ? "open" : "closed"}
           animate={isOpen ? "open" : "closed"}
           exit="exit"
-          className={`fixed flex flex-col m-4 mt-0 top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0]"} bg-gray-50 custopn-page-height rounded-lg border-gray-[100px]`}
+          className={`fixed flex flex-col m-4 mt-0 top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0]"} bg-gray-50  dark:bg-neutral-800 custopn-page-height rounded-lg border-gray-[100px]`}
         >
-          <div className={`${isOpen ? "flex" : "hidden"} items-center justify-end h-12 bg-white w-full mx-auto mt-[55px] p-4 pr-0`}>
+          <div className={`${isOpen ? "flex" : "hidden"} items-center justify-end h-12 bg-white dark:bg-neutral-900 w-full mx-auto mt-[55px] p-4 pr-0`}>
             <button
               onClick={() => {
                 if (setIsOpen) setIsOpen(false);
@@ -83,7 +83,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
               </svg>
             </button>
           </div>
-          <ScrollArea className={`  w-full mx-auto bg-white ${isOpen ? "" : "hidden"}`}>
+          <ScrollArea className={`  w-full mx-auto bg-white dark:bg-neutral-900 ${isOpen ? "" : "hidden"}`}>
             <div className="flex flex-col py-4 gap-y-3 items-center space-y-1">
               {List.map((item) => Link(current_page, item.navs, item.path, item.name))}
               <NextSwitch indexThisPhase={0} />

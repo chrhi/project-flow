@@ -131,7 +131,7 @@ const Page: NextPage = () => {
     <>
     
       <Header />
-      <main className="   flex w-full bg-gray-50 ">
+      <main className="   flex w-full bg-gray-50 dark:bg-neutral-800 ">
         
        <Sidebar 
            setIsOpen ={setIsOpen} 
@@ -142,7 +142,7 @@ const Page: NextPage = () => {
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
   
       <Form >
-      <div className="bg-white px-4 py-5 sm:p-6 ">
+      <div className="bg-white dark:bg-neutral-900 px-4 py-5 sm:p-6 ">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <RowGridText text="Starting up the project " />
             <RowGridText small text=" During the project startup phase, it is important to define clear objectives, analyze stakeholders, establish governance, develop a project charter, and identify potential risks" />

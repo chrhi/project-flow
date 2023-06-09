@@ -3,6 +3,7 @@ import Image from "next/image"
 import logo from "~/assets/logo.png"
 import React from "react"
 import { PagesNav } from "./PagesNav" 
+import { MobilManueBar } from "./mobil-header/mobile-manue-bar"
 
 
 
@@ -11,8 +12,9 @@ import { PagesNav } from "./PagesNav"
 export const Header = () => {
 
   return (
-    <div className = {`w-full !z-[50] h-14 sticky top-0 flex justify-start px-4  items-center bg-white shadow-sm border-b border-gray-300 `}>
-       <div className="w-[5%] h-full flex justify-start items-center">
+    <div className = {`w-full !z-[50] h-14 sticky top-0 flex justify-start px-4  items-center bg-white dark:bg-neutral-900 shadow-sm border-b border-gray-300 dark:border-stone-900 `}>
+      <MobilManueBar />
+       <div className="w-[5%] h-full hidden  lg:flex justify-start items-center">
           <Image alt="logo" src={logo} width={35} height={35}  />
        </div>
        <PagesNav />

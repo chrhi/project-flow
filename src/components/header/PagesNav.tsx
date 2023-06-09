@@ -39,7 +39,7 @@ export function PagesNav() {
       name : "Overview" , path : "/app" , page : PAGES.DASHBORD
     },
     {
-      name : "Startup" , path : "/app/startup", page : PAGES.STARTUP
+      name : "Initiating" , path : "/app/startup", page : PAGES.STARTUP
     },
     {
       name : "Planning" , path : "/app/planning" , page : PAGES.PLANNING
@@ -59,7 +59,7 @@ export function PagesNav() {
   ]
 
   return (
-    <div className='w-[70%]  h-full hidden md:flex  justify-start items-center gap-x-6 '>
+    <div className='w-[70%]  h-full hidden lg:flex  justify-start items-center gap-x-6 '>
       {LIST.map((item , index ) => (
            <Button 
            
@@ -68,7 +68,7 @@ export function PagesNav() {
             onClick={() => handleRouting(item.path , item.page , index - 1 )}
                 className={`
 
-                ${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500  ${current_page === item.page ? ' text-slate-900' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200  
+                ${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500 dark:text-gray-100 ${current_page === item.page ? ' text-slate-900 dark:text-white' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-stone-800 dark:active:bg-stone-700  
                 ${IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index - 1}) || item.page === PAGES.DOCS? "" : "text-gray-200"}
                 `}
            >   {item.name}

@@ -23,8 +23,16 @@ type Props ={
 
 const List = [
 
-  {name : " Tasks tracking" , path : "/app/executing" , navs : NAVS.TWO},
-  {name : " Time tracking" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
+  {name : " Tasks tracking" , path : "/app/executing" , navs : NAVS.ONE},
+  {name : " Time tracking" , path : "/app/executing/timeTracking" , navs : NAVS.TWO},
+
+  {name : " Change Request" , path : "/app/executing" , navs : NAVS.THREE},
+  {name : " Contractor Status Report" , path : "/app/executing/timeTracking" , navs : NAVS.FOUR},
+  {name : " Earned Value Status Report" , path : "/app/executing" , navs : NAVS.FIVE},
+  {name : " Procurement and Impact Matrix" , path : "/app/executing/timeTracking" , navs : NAVS.SIX},
+
+  {name : " Team Directory" , path : "/app/executing" , navs : NAVS.SEVEN},
+  // {name : " Activity Attributes" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
 
 ]
 

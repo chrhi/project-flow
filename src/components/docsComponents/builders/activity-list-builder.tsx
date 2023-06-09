@@ -48,7 +48,7 @@ export function ActivityListBuilder() {
     onDrag={() => setVelocity(x.getVelocity())}
 
     whileTap={{ scale: 1.05 }}
-    className="flex w-[90%] gap-y-4 my-4 items-start  rounded-md border flex-col  border-gray-200 bg-white p-3 shadow-lg transition-[border-color] hover:border-black "
+    className="flex w-[90%] gap-y-4    max-w-sm items-start  rounded-md border flex-col  border-gray-200 bg-white p-3 shadow-lg transition-[border-color] hover:border-black "
    >
         <h3 className='text-xl font-bold text-gray-800 '>📙 Activity list </h3>
         <p className='text-md text-gray-500 '>

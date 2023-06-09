@@ -61,14 +61,14 @@ function NextSwitch({indexThisPhase} : Props) {
       };
 
   return (
-    <div className='w-[90%] h-[200px] p-4 rounded-lg border  flex flex-col justify-center items-center gap-y-8'>
-        <p className="text-center text-gray-400 text-md ">
+    <div className='w-[90%] h-[200px] p-4 rounded-lg border  flex flex-col dark:bg-neutral-900 bg-white justify-center items-center gap-y-8'>
+        <p className="text-center text-gray-400 dark:text-white text-md ">
         {/* Si vous avez terminé le travail pour cette phase, assurez-vous de basculer le bouton ci-dessous afin d'avoir accès à la phase suivante */}
         If you have completed the work for this phase, you must toggle the button below in order to gain access to the next phase
         </p>
         {
             isLoading ? <p>loading...</p> :
-            <div className="w-full h-[50px] flex items-center justify-between px-2">
+            <div className="w-full h-[50px] flex items-center dark:text-white justify-between px-2">
             <p>Phase terminée</p>
              <Switch checked={checked} onCheckedChange={handleChange} id="material-switch"/>
             </div>
