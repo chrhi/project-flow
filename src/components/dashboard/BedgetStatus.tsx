@@ -7,8 +7,7 @@ import {
   Icon,
   Text,
   Title,
-  Toggle,
-  ToggleItem,
+
 } from "@tremor/react";
 import { InformationCircleIcon } from "@heroicons/react/outline";
 
@@ -111,19 +110,10 @@ function BedgetStatus() {
           </Flex>
           <Text> Daily increase or decrease per domain </Text>
         </div>
-        <div className="mt-6 md:mt-0">
-          <Toggle
-            color="zinc"
-            defaultValue={selectedKpi}
-            onValueChange={(value) => setSelectedKpi(value)}
-          >
-            <ToggleItem value="Sales" text="Budget spand" />
-            <ToggleItem value="Profit" text="Document generated" />
-         
-          </Toggle>
-        </div>
+      
       </div>
       <AreaChart
+        
         data={performance}
         index="date"
         categories={[selectedKpi]}

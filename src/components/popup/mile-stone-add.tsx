@@ -26,10 +26,10 @@ export  function MileStoneAdd ({ refetch} : Props) {
 
  
     const [isOpen, setIsOpen] = useState(false)
-    const [value , setValue] = useState<DateRangePickerValue>([
-      new Date(),
-      new Date()
-    ])
+    const [value , setValue] = useState<DateRangePickerValue>({
+      from: new Date(2023, 1, 1),
+      to: new Date(),
+    })
   
     const [formData , setFormData] = useState({
       name : "" ,
@@ -58,7 +58,7 @@ export  function MileStoneAdd ({ refetch} : Props) {
     const handleSubmit = () => {
       mutation.mutate({
         description : formData.description ,
-        dueDate : value[1] || new Date(), 
+        dueDate : value.to || new Date(), 
         name : formData.name , 
         project_id : getProjectMetaData()
       })

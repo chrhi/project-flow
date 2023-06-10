@@ -16,7 +16,12 @@ type Props = {
 };
 
 export const ProjectStarter = ({ refetch }: Props) => {
-  const [value, setValue] = useState<DateRangePickerValue>([new Date(), new Date()]);
+  const [value, setValue] = useState<DateRangePickerValue>(
+    {
+      from: new Date(2023, 1, 1),
+      to: new Date(),
+    }
+  );
   const [data, setData] = useState({
     password: '',
     userId: '',
@@ -45,8 +50,8 @@ export const ProjectStarter = ({ refetch }: Props) => {
     }
     mutation.mutate({
       title: data.title,
-      endsAt: value[1] as Date,
-      startAt: value[0] as Date,
+      endsAt: value.to as Date,
+      startAt: value.from  as Date,
       user_id: getUserMetadata(),
     });
   };

@@ -35,10 +35,10 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
       AlocatedRessources : [] as any[]
     })
     const [update, setUpdate] = useState(false);
-    const [value , setValue] = useState<DateRangePickerValue>([
-      new Date(),
-      new Date()
-    ])
+    const [value , setValue] = useState<DateRangePickerValue>({
+      from: new Date(2023, 1, 1),
+      to: new Date(),
+    })
     const [FechedStakeHolders, setFechedStakeHolders] = useState<{label: string  , value : string}[]>([]);
     const [FechedResources, setFechedResources] = useState<{label: string  , value : string}[]>([]);
 
@@ -92,7 +92,11 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
         AssignTo : [JSON.stringify(data?.AssignedTo)] ,
 
       })
-      setValue([data?.StartAt , data?.EndsAt])
+      // setValue([data?.StartAt , data?.EndsAt])
+      setValue({
+        from : data?.StartAt || new Date() , 
+        to : data?.EndsAt || new Date()
+      })
     },
     onError : () => {
       toast.error("failed to fetch the task")
@@ -124,8 +128,8 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
         AlocatedRessources : inputs.AlocatedRessources , 
         AssignTo : inputs.AssignTo , 
         cost : Number(inputs.cost) , 
-        endsAt : value[1] as Date , 
-        startAt : value[0] as Date  ,
+        endsAt : value.to as Date , 
+        startAt : value.from as Date  ,
         projectId : getProjectMetaData(),
       })
   

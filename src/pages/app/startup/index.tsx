@@ -20,10 +20,10 @@ const Page: NextPage = () => {
 
   let id_abdullah : any 
   const [isOpen , setIsOpen] = useState<boolean>(true)
-  const [value , setValue] = useState<DateRangePickerValue>([
-    new Date(),
-    new Date()
-  ])
+  const [value , setValue] = useState<DateRangePickerValue>({
+    from : new Date(),
+    to : new Date()
+  })
   const [formData , setFormData] = useState({
     id : "",
     Title :"",

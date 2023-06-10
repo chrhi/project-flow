@@ -33,10 +33,10 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
       AlocatedRessources : [] as any[]
     })
     const [update, setUpdate] = useState(false);
-    const [value , setValue] = useState<DateRangePickerValue>([
-      new Date(),
-      new Date()
-    ])
+    const [value , setValue] = useState<DateRangePickerValue>({
+      from : new Date(),
+      to : new Date()
+    })
     const [FechedStakeHolders, setFechedStakeHolders] = useState<{label: string  , value : string}[]>([]);
     const [FechedResources, setFechedResources] = useState<{label: string  , value : string}[]>([]);
 
@@ -95,8 +95,8 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
         AlocatedRessources : inputs.AlocatedRessources , 
         AssignTo : inputs.AssignTo , 
         cost : Number(inputs.cost) , 
-        endsAt : value[1] as Date , 
-        startAt : value[0] as Date  ,
+        endsAt : value.to as Date , 
+        startAt : value.from as Date  ,
         projectId : getProjectMetaData(),
       })
   

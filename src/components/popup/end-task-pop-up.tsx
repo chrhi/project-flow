@@ -28,10 +28,10 @@ export  function TaskEndDone ({ } : Props) {
     const isOpen = openTasksDonePanle(state => state.showModel)
     const setIsOpen = openTasksDonePanle(state => state.setShowModel)
     
-    const [value , setValue] = useState<DateRangePickerValue>([
-      new Date(),
-      new Date()
-    ])
+    const [value , setValue] = useState<DateRangePickerValue>({
+      from: new Date(2023, 1, 1),
+      to: new Date(),
+    })
   
     const [formData , setFormData] = useState({
       name : "" ,

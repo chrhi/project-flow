@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
-import { Badge, Title } from '@tremor/react'
-import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
+import { buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
 import { useRouter } from 'next/router'
 import { getProjectCurrentPhaseAbdullah } from '~/lib/MetaData'
 import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
 import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
 import { IsPhaseLocked } from '~/utils/access/IsPhaseLocked'
 import { Button } from '../ui/button'
-import { Ban } from 'lucide-react'
+import { Separator } from '../ui/separator'
 
 
 export function PagesNav() {
@@ -60,8 +59,11 @@ export function PagesNav() {
 
   return (
     <div className='w-[70%]  h-full hidden lg:flex  justify-start items-center gap-x-6 '>
-      {LIST.map((item , index ) => (
-           <Button 
+      {LIST.map((item , index ) => {
+       
+          return (
+            <>
+            <Button 
            
            variant="ghost"
            key={item.name}
@@ -74,20 +76,13 @@ export function PagesNav() {
            >   {item.name}
      
            </Button>
-      ))}
-         <Button 
-           
-           variant="ghost"
+          {(index === 0 || index === 5) && <Separator orientation="vertical" className='h-[60%] ' />}
+           </>
+          )
+         
+      }
+      )}
         
-            onClick={() => handleRouting("/admin" , PAGES.DASHBORD , 0 )}
-                className={`
-
-                ${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500   font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200  
-              
-                `}
-           >   Admin access <Badge color='red'>test only</Badge>
-     
-           </Button>
     </div>
   )
 }

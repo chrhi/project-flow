@@ -30,10 +30,10 @@ export  function ObjectiveAdd ({refetch } : Props) {
 
  
     const [isOpen, setIsOpen] = useState(false)
-    const [value , setValue] = useState<DateRangePickerValue>([
-      new Date(),
-      new Date()
-    ])
+    const [value , setValue] = useState<DateRangePickerValue>({
+      from: new Date(2023, 1, 1),
+      to: new Date(),
+    })
   
     const [formData , setFormData] = useState({
       SUCCESS_CRITERIA : "" ,

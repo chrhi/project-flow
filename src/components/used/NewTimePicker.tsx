@@ -16,7 +16,7 @@ const NewTimePicker: FC<NewTimePickerAbdullahProps> = ({ text, value, setValue }
       <div className='w-full h-[20px] flex justify-start items-center'>
         <p className="block text-sm font-medium leading-6 !font-poppins text-gray-700 truncate dark:text-white">{text}</p>
       </div>
-      <DateRangePicker className="w-full h-[30px] mx-auto dark:text-white dark:bg-stone-900" value={value} onValueChange={setValue} locale={fr} dropdownPlaceholder="Seleccionar" />
+      <DateRangePicker className="w-full h-[30px] mx-auto dark:text-white dark:bg-stone-900" value={value} onValueChange={setValue} locale={fr}  selectPlaceholder="Seleccionar" />
     </div>
   );
 };
