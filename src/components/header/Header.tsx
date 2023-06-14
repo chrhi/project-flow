@@ -4,6 +4,7 @@ import logo from "~/assets/logo.png"
 import React from "react"
 import { PagesNav } from "./PagesNav" 
 import { MobilManueBar } from "./mobil-header/mobile-manue-bar"
+import { NewDropDown } from "./dropDown/NewDropDown"
 
 
 
@@ -23,6 +24,7 @@ export const Header = () => {
            
            <div className="w-[10%] h-full" >
                  <DropDowsMenu />
+               
            </div> 
        </div>
        {/* <MobilSideBar /> */}
