@@ -11,6 +11,7 @@ import { ScrollArea , ScrollBar} from "../ui/scroll-area";
 import { IsPhaseLocked } from "~/utils/access/IsPhaseLocked";
 import { getProjectCurrentPhaseAbdullah } from "~/lib/MetaData";
 import RecentStakHolder from "./RecentStakHolder";
+import { RecentStakeholdersNew } from "./recent-stakeholders";
   
 
 const LISTA = [
@@ -32,30 +33,34 @@ const LISTA = [
           <p className=" text-xl md:text-2xl font-semibold ">Hi 👋 this is the dashboard and your personal space </p>
        </div>
 
-       <div className="w-full h-[600px]  gap-x-4 justify-start   flex flex-col lg:flex-row">
+       <div className="w-full hidden lg:flex  gap-x-4  mb-4 items-center  justify-center">
+           
+           {LISTA.map((item , index) => {
+             return (
+               <Chain
+                 PAGE={item.page}
+                 available={IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index})}
+                 image={item.image}
+                 name={item.name}
+                 path={item.path}
+               />
+             )
+           })}
+           
+    </div>
+
+    <div className="w-full h-[50px] flex items-center justify-start ">
+          <p className=" text-xl md:text-2xl font-semibold ">some stistscs you can find in here</p>
+       </div>
+
+       <div className="w-full h-[600px]  gap-x-4 justify-start mb-10  flex flex-col lg:flex-row">
                 <div className="w-full lg:w-[65%] h-[80%] ">
                         <BedgetStatus />
                 </div>
-               <RecentStakHolder />
+               <RecentStakeholdersNew />
        </div>
-       <div className="w-full h-[20px] flex items-center justify-start ">
-          <p className="hidden lg:block lg:text-2xl font-semibold ">📙 Here you can navigate to the phase you want </p>
-       </div>
-       <div className="w-full hidden lg:flex  gap-x-4  mb-4 items-center  justify-start">
-           
-              {LISTA.map((item , index) => {
-                return (
-                  <Chain
-                    PAGE={item.page}
-                    available={IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index})}
-                    image={item.image}
-                    name={item.name}
-                    path={item.path}
-                  />
-                )
-              })}
-              
-       </div>
+     
+     
       </div>
     )
   }

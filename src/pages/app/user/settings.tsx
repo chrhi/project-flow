@@ -6,6 +6,7 @@ import { AbdullahButton } from "~/components/used/AbdullahButton";
 import { Button } from "@tremor/react";
 import { api } from "~/utils/api";
 import toast from "react-hot-toast";
+import { CookieSettings } from "~/components/common/cookies-settings";
 
 const Page: NextPage = () => {
   const projectMutation = api.projectRouter.delete_project.useMutation({
@@ -35,9 +36,14 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Header />
-      <main className="custopn-page-height justify-center items-center flex w-full bg-gray-50">
-        <div className="w-full max-w-7xl min-h-[500px] flex pt-8 flex-col p-4 h-fit bg-white rounded-lg shadow-lg">
-          <div className="w-[95%] my-4 p-4 mx-auto h-[200px] rounded-lg border flex flex-col">
+      <main className="custopn-page-height   w-full bg-gray-50 py-8">
+        <div className="w-full max-w-6xl min-h-[500px] mx-auto  flex p-4 pt-12 mt-8 flex-col  h-fit bg-white rounded-lg shadow-lg">
+
+
+        <CookieSettings />
+
+          <div className="w-[95%] my-4 p-4 mx-auto min-h-[200px]  rounded-lg border flex flex-col">
+         
             <div className="w-full h-[140px] flex flex-col justify-start">
               <h4 className="text-xl font-semibold text-gray-900 font-sans text-start">Delete My Project</h4>
               <p className="text-md font-sans text-gray-400 text-start">

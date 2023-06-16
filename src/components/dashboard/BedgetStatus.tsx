@@ -2,14 +2,15 @@
 import { useState } from "react";
 import {
   AreaChart,
-  Card,
-  Flex,
-  Icon,
-  Text,
-  Title,
-
 } from "@tremor/react";
 import { InformationCircleIcon } from "@heroicons/react/outline";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "~/components/ui/card"
 
  const performance = [
     {
@@ -92,26 +93,15 @@ function BedgetStatus() {
 
     
   return (
-   <div className='w-full duration-500   bg-white rounded-2xl h-fit '>
-      <div className=" p-0 lg:p-8 !border-none">
-      <div className="md:flex justify-between">
-        <div>
-          <Flex
-            justifyContent="start"
-            className="space-x-0.5"
-            alignItems="center"
-          >
-            <Title> Performance History </Title>
-            <Icon
-              icon={InformationCircleIcon}
-              variant="simple"
-              tooltip="Shows day-over-day (%) changes of past performance"
-            />
-          </Flex>
-          <Text> Daily increase or decrease per domain </Text>
-        </div>
-      
-      </div>
+
+      <Card >
+      <CardHeader>
+        <CardTitle>Recent Sales</CardTitle>
+        <CardDescription>
+          You made 265 sales this month.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
       <AreaChart
         
         data={performance}
@@ -123,8 +113,10 @@ function BedgetStatus() {
         yAxisWidth={56}
         className=" h-52 lg:h-64 mt-6"
       />
-    </div>
-   </div>
+
+      </CardContent>
+    </Card>
+   
   )
 }
 
