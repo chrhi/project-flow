@@ -15,7 +15,7 @@ import {
   Lock,
   User,
 } from "lucide-react"
-import { Icon } from "@tremor/react";
+import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
 
 
 export default function DropDowsMenu() {
@@ -37,9 +37,8 @@ export default function DropDowsMenu() {
     <div className="fixed text-right z-[100]">
     <Menu as="div" className="relative z-[100]  inline-block text-left">
       <div className='h-[60px] w-[50px] flex justify-center items-center'>
-          <Menu.Button >
-             {/* <Settings className='w-5 h-5 text-gray-700 dark:text-white cursor-pointer ' /> */}
-             <Icon size="sm" icon={Settings} color="blue" className='rounded-lg w-6 h-6 flex items-center justify-center text-white ' variant="solid" tooltip="Settings" />
+          <Menu.Button className={`${buttonVariants({variant : "ghost" , size : "sm"})}`} >
+           <Settings  className='w-5 h-5 text-neutral-800' />
           </Menu.Button>
       </div>
       <Transition

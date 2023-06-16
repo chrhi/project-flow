@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import { startupSideBarReducer ,NAVS_STARTUP } from '~/store/app-reducer/side-bar-store';
-import { AbdullahEffectButton, buttonVariantsAbdullah } from '../used/AbdullahEffectButton';
+import {  buttonVariantsAbdullah } from '../used/AbdullahEffectButton';
 import type { Dispatch, SetStateAction } from 'react';
 import NextSwitch from '../common/NextSwitch';
 import { motion } from 'framer-motion';
@@ -69,9 +69,9 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
           initial={isOpen ? "open" : "closed"}
           animate={isOpen ? "open" : "closed"}
           exit="exit"
-          className={`fixed flex flex-col m-4 mt-0 top-[2rem] left-[0px] ${isOpen ? "w-[20rem]" : "w-[0]"} bg-gray-50  dark:bg-neutral-800 custopn-page-height rounded-lg border-gray-[100px]`}
+          className={`fixed flex flex-col m-4 mt-0 top-[2rem] left-[0px] shadow-lg lg:shadow-none  z-[9] ${isOpen ? " w-full pr-4 md:pr-0  md:w-[20rem]" : " w-[0] "}  bg-white lg:bg-gray-50  dark:bg-neutral-800 custopn-page-height rounded-lg border-gray-[100px]`}
         >
-          <div className={`${isOpen ? "flex" : "hidden"} items-center justify-end h-12 bg-white dark:bg-neutral-900 w-full mx-auto mt-[55px] p-4 pr-0`}>
+          <div className={`${isOpen ? "flex" : "hidden"} items-center justify-end h-12  bg-white dark:bg-neutral-900 w-full mx-auto mt-[55px] p-4 pr-0`}>
             <button
               onClick={() => {
                 if (setIsOpen) setIsOpen(false);

@@ -1,6 +1,5 @@
-import { ChevronDown, Circle, Plus, Star } from "lucide-react"
+import {  Circle,  Hammer } from "lucide-react"
 
-import { Button } from "~/components/ui/button"
 import {
   Card,
   CardContent,
@@ -8,70 +7,43 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
-import { Separator } from "~/components/ui/separator"
 
-export function DemoGithub() {
+import { AbdullahButton, buttonVariants } from "../used/AbdullahButton"
+
+type Props ={
+  title : string , 
+  description : string , 
+  phase : string , 
+  color : string 
+}
+
+export function GeneraleBuilder({title , description , phase , color}:Props) {
   return (
-    <Card>
-      <CardHeader className="grid grid-cols-[1fr_110px] items-start gap-4 space-y-0">
+    <Card className="lg:max-w-md max-h-64">
+      <CardHeader className="grid grid-cols-[1fr_110px]  items-start gap-4 space-y-0">
         <div className="space-y-1">
-          <CardTitle>shadcn/ui</CardTitle>
+          <CardTitle>📙 {title}</CardTitle>
           <CardDescription>
-            Beautifully designed components built with Radix UI and Tailwind
-            CSS.
+          {description}.
           </CardDescription>
         </div>
-        <div className="flex items-center space-x-1 rounded-md bg-secondary text-secondary-foreground">
-          <Button variant="secondary" className="px-3">
-            <Star className="mr-2 h-4 w-4" />
-            Star
-          </Button>
-          <Separator orientation="vertical" className="h-[20px]" />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" className="px-2">
-                <ChevronDown className="h-4 w-4 text-secondary-foreground" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="end"
-              alignOffset={-5}
-              className="w-[200px]"
-              forceMount
-            >
-              <DropdownMenuLabel>Suggested Lists</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuCheckboxItem checked>
-                Future Ideas
-              </DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem>My Stack</DropdownMenuCheckboxItem>
-              <DropdownMenuCheckboxItem>Inspiration</DropdownMenuCheckboxItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <Plus className="mr-2 h-4 w-4" /> Create List
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="flex items-end  w-fit rounded-md bg-white text-secondary-foreground">
+        <AbdullahButton
+           className={buttonVariants({variant : "primary", size:"sm"})} >
+               <Hammer className="mr-1 h-3 w-3" />   build
+        </AbdullahButton> 
+          
         </div>
       </CardHeader>
       <CardContent>
         <div className="flex space-x-4 text-sm text-muted-foreground">
           <div className="flex items-center">
-            <Circle className="mr-1 h-3 w-3 fill-sky-400 text-sky-400" />
-            TypeScipt
+            <Circle className={`mr-1 h-3 w-3 fill-sky-400 text-sky-400 ${color}`} />
+           {phase}
           </div>
           <div className="flex items-center">
-            <Star className="mr-1 h-3 w-3" />
-            10k
+            <Hammer className="mr-1 h-3 w-3" />
+            1
           </div>
           <div>Updated April 2023</div>
         </div>

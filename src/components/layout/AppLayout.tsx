@@ -1,5 +1,4 @@
 import type {  FC , ReactNode } from 'react'
-import Head from '../common/Head'
 import { Header } from '../header/Header'
 
 interface AppLayoutAbdullahProps {
@@ -9,7 +8,7 @@ interface AppLayoutAbdullahProps {
 const AppLayout: FC<AppLayoutAbdullahProps> = ({children}) => {
  return (
     <>
-    <Head />
+  
     <Header />
     <main className=" custopn-page-height  flex flex-col overflow-x-hidden scrollbar-hide  justify-center container  items-center bg-white dark:bg-stone-900 ">
     {children}

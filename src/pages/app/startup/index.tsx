@@ -19,7 +19,7 @@ import { toast } from "react-hot-toast";
 const Page: NextPage = () => {
 
   let id_abdullah : any 
-  const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [isOpen , setIsOpen] = useState<boolean>(false)
   const [value , setValue] = useState<DateRangePickerValue>({
     from : new Date(),
     to : new Date()
@@ -139,7 +139,7 @@ const Page: NextPage = () => {
            isOpen = {isOpen}
           
         />
-       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
+       <FormContainer className ={` ${isOpen ? "lg:ml-[20rem]" : "ml-[0]"}`}>
   
       <Form >
       <div className="bg-white dark:bg-neutral-900 px-4 py-5 sm:p-6 ">

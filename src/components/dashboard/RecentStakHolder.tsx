@@ -29,7 +29,7 @@ function RecentStakHolder() {
   })
 
   return (
-    <div className="w-[25%] h-full duration-500 flex flex-col p-4   bg-white rounded-lg">
+    <div className=" w-full lg:w-[25%] h-full duration-500 flex flex-col p-4   bg-white rounded-lg">
       
 
        {

@@ -58,7 +58,7 @@ export const ProjectStarter = ({ refetch }: Props) => {
 
   return (
     <div className="w-full max-w-4xl   bg-white dark:bg-black rounded-lg  flex h-[500px] shadow-xl border">
-      <div className="w-[50%] gird grid-cols-12 p-4 gap-y-4 h-full">
+      <div className=" w-full lg:w-[50%] gird grid-cols-12 p-4 gap-y-4 h-full">
         <div className="col-span-12 my-4 h-[40px] flex items-center">
           <h1 className="text-2xl font-semibold text-stone-900 dark:text-white">Stating the project </h1>
         </div>
@@ -83,15 +83,21 @@ export const ProjectStarter = ({ refetch }: Props) => {
           value={data.description}
           onChange={(e) => setData({ ...data, description: e.target.value })}
         />
+          <div className="col-span-12  flex lg:hidden justify-end items-center ">
+          <AbdullahButton className={buttonVariants({ variant: 'primary' })} onClick={handleSubmit} isLoading={mutation.isLoading}>
+            Démarrer le projet
+          </AbdullahButton>
+        </div>
       </div>
-      <div className="w-[50%] h-full flex flex-col justify-end items-center">
-        <Image width={200} className="mb-24" src={animatin} alt="starting up the project" />
+      <div className=" hidden w-[0] lg:w-[50%] h-full lg:flex flex-col justify-end items-center">
+        <Image width={200} className="mb-24 " src={animatin} alt="starting up the project" />
         <div className="w-full flex justify-end items-center p-8 h-[50px]">
           <AbdullahButton className={buttonVariants({ variant: 'primary' })} onClick={handleSubmit} isLoading={mutation.isLoading}>
             Démarrer le projet
           </AbdullahButton>
         </div>
       </div>
+
     </div>
   );
 };

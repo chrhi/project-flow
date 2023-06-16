@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/header/Header";
 import DocsSideBar from "~/components/docsComponents/DocsSideBar";
-import { DocumentBuilder } from "~/components/docsComponents/DocumentBuilder";
+import { GeneraleBuilder } from "~/components/docsComponents/generale-builder";
 
 
 const Page: NextPage = () => {
@@ -19,42 +19,31 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Header />
-      <main className=" custopn-page-height  flex w-full justify-center container items-center bg-gray-50 ">
+      <main className=" custopn-page-height flex w-full justify-center items-center container  bg-white ">
         <DocsSideBar  />
        <div
-        className=" overflow-y-auto ml-[20rem] w-[80%] h-full p-8 "
+        className="ml-[20rem] w-[80%]  grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 h-full gap-4 pt-8 pb-8 "
        >
-       {/* this is the planning section */}
-       
-       <DocumentBuilder title="Plan de gestion de la qualite " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-       <DocumentBuilder title="Metrique qualite " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-       <DocumentBuilder title="Muses a jour du plan de maagement du projet" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-        {/* this is the executing section */}
-        <DocumentBuilder title="Rapport de qualite " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-        <DocumentBuilder title="Documents de valuation et de test " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-        <DocumentBuilder title="Damandes de changement" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-        <DocumentBuilder title="Mise a jour du plan de management du projet " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-        <DocumentBuilder title="Mise a jour des documents du projet" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-         {/* this is the controlling section */}
-         <DocumentBuilder title="Mesures de controle de la qualite " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-         <DocumentBuilder title="Livrables verifies " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-         <DocumentBuilder title="information sur la performanace d'execution" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-         <DocumentBuilder title="Demandes e changemant " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-         <DocumentBuilder title="Mises a jour du plan de management du projet " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-
-         <DocumentBuilder title="Mises a jour des documents du projet " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+           <GeneraleBuilder 
+              title="Quality Management Plan"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+             <GeneraleBuilder 
+              title="Quality Matrix"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+             <GeneraleBuilder 
+              title="Quality Audit"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+           
+           
        </div>
       </main>
     </>

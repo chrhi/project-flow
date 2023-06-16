@@ -8,6 +8,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { ReactFlowProvider } from 'reactflow';
 import { AccessPopUp } from '~/components/common/AccessPopUp';
 import  { Toaster } from 'react-hot-toast';
+import Head from '../common/Head';
 
 
 interface ProvidersAbdullahProps {
@@ -23,6 +24,7 @@ const Providers: FC<ProvidersAbdullahProps> = ({children}) => {
        position="top-right"
        reverseOrder={false}
       />
+      <Head />
     <ReactFlowProvider>
           {children}
     </ReactFlowProvider> 

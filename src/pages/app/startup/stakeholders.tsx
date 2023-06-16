@@ -20,7 +20,7 @@ import { RowGridText } from "~/components/typography/RowGridText";
 
 const Page: NextPage = () => {
 
-  const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [isOpen , setIsOpen] = useState<boolean>(false)
   const [stakeholders , setStakeHolders] = useState<Stakholder[]>([] as Stakholder[])
 
 
@@ -49,7 +49,7 @@ const Page: NextPage = () => {
       <Header />
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-      <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
+      <FormContainer className ={` ${isOpen ? "lg:ml-[20rem]" : "ml-[0]"}`}>
         <StakeHolder />
       <ConfirmePopUpDeleteStakeHolder refetch={refetch} />
       <Form  >

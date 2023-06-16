@@ -13,7 +13,7 @@ import { toast } from "react-hot-toast";
 
 const Page: NextPage = () => {
 
-  const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [isOpen , setIsOpen] = useState<boolean>(false)
 
   const [data , setData] = useState<Objectives[]>([] as Objectives[])
 
@@ -43,7 +43,7 @@ const Page: NextPage = () => {
       <Header />
       <main className=" scrollbar-hide  flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-      <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
+      <FormContainer className ={` ${isOpen ? "lg:ml-[20rem]" : "ml-[0]"}`}>
     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">

@@ -93,7 +93,7 @@ function BedgetStatus() {
     
   return (
    <div className='w-full duration-500   bg-white rounded-2xl h-fit '>
-      <div className=" p-8 !border-none">
+      <div className=" p-0 lg:p-8 !border-none">
       <div className="md:flex justify-between">
         <div>
           <Flex
@@ -121,7 +121,7 @@ function BedgetStatus() {
         showLegend={false}
         valueFormatter={formatters[selectedKpi]}
         yAxisWidth={56}
-        className="h-64 mt-6"
+        className=" h-52 lg:h-64 mt-6"
       />
     </div>
    </div>

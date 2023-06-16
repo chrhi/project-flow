@@ -14,8 +14,9 @@ html{
   font-family: "Poppins", "sans-serif" !important ;
 }
 body{
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 250 249 / var(--tw-bg-opacity));
+  /* --tw-bg-opacity: 1;
+  background-color: rgb(250 250 249 / var(--tw-bg-opacity)); */
+  background-color: white;
 
 }
 
@@ -32,7 +33,7 @@ html::-webkit-scrollbar-track {
 }
 
 .download-image.react-flow {
-  background: #1a365d;
+  background: white;
 }
 
 .download-image .react-flow__node {
@@ -175,11 +176,7 @@ html::-webkit-scrollbar-track {
     scrollbar-color: #777 #555;
 }
 
-body{
-    --tw-bg-opacity: 1;
-    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-  
-}
+
 
 
 

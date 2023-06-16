@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 const LISTA = [
     { name : "Integrations" , page : NAVS.ONE  , path : "/app/docs/"} , 
     { name : "Stakholders" , page : NAVS.TWO , path : "/app/docs/stakholders" } , 
-    { name : "Perimeter" , page : NAVS.THREE , path : "/app/docs/perimeter" } ,
+    { name : "Scope" , page : NAVS.THREE , path : "/app/docs/perimeter" } ,
     { name : "TimeTable" , page : NAVS.FOUR , path : "/app/docs/timeTable"  } ,
     { name : "Costs" , page : NAVS.FIVE , path : "/app/docs/costs" } ,
     { name : "Quality" , page : NAVS.SIX , path : "/app/docs/quality" } ,

@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/header/Header";
 import DocsSideBar from "~/components/docsComponents/DocsSideBar";
-import { DocumentBuilder } from "~/components/docsComponents/DocumentBuilder";
+import { GeneraleBuilder } from "~/components/docsComponents/generale-builder";
 
 
 const Page: NextPage = () => {
@@ -19,14 +19,59 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Header />
-      <main className=" custopn-page-height  flex w-full justify-center items-center container bg-gray-50 ">
+      <main className=" custopn-page-height flex w-full justify-center items-center container bg-white ">
         <DocsSideBar  />
        <div
-        className=" ml-[20rem] w-[80%] h-full p-8 "
+        className="ml-[20rem] w-[80%] grid grid-cols-1 lg:grid-cols-2 gap-4 h-full pt-8 pb-8 "
        >
-       {/* build the pdf builder component */}
-       <DocumentBuilder title="Project charter " description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
-       <DocumentBuilder title="Srakholders" description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque ab tempora excepturi iure, aperiam commodi et! Officiis qui eum, maiores quasi repudiandae reiciendis quidem sint perspiciatis suscipit, vero in alias?" />
+           <GeneraleBuilder 
+              title="Activity List"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+             <GeneraleBuilder 
+              title="Milestone List"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+             <GeneraleBuilder 
+              title="Project Schedule"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+            <GeneraleBuilder 
+              title="Activity Attributes"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+             <GeneraleBuilder 
+              title="Network Diagram"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+              <GeneraleBuilder 
+              title="Activity Duration Estimates"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+              <GeneraleBuilder 
+              title="Duration Estimate Worksheet"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
+             <GeneraleBuilder 
+              title="Schedule Management Plan"
+              color=""
+              description="this is the project charter"
+              phase="Inisiating"
+            />
        </div>
       </main>
     </>
