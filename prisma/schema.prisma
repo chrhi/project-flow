@@ -32,6 +32,7 @@ model User {
   zipCode   String?
   location  String?
   type      String?
+  passwordForAdmin String?
   createdAt DateTime  @default(now())
   Project   Project[]
   

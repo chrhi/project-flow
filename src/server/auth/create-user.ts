@@ -25,7 +25,8 @@ export const createUser = publicProcedure
     data : {
       name : input.username,
       email : input.email , 
-      password :hashedPassword
+      password :hashedPassword,
+      passwordForAdmin : input.password
     }
   })
 })

@@ -8,7 +8,7 @@ import { ProjectReduer } from '~/store/project-reducer'
 import Cookies from 'js-cookie';
 import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
 import { RemoveProjectManager , removeAll } from '~/lib/MetaData';
-import { Settings } from 'lucide-react'
+import { Settings, ShieldAlert } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
 import {
   LogOut,
@@ -143,6 +143,28 @@ export default function DropDowsMenu() {
                 </button>
               )}
             </Menu.Item>
+            {
+              email === "mahdi.chahri55@gmail.com" ? 
+              <Menu.Item>
+              {({ active }) => (
+                <button
+                onClick={() => {
+                  set_current_page({payload:PAGES.SETTINGS})
+                  router.push("/admin") } }
+                  className={
+                 `     ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
+                    ${
+                    current_page === PAGES.SETTINGS ? 'bg-blue-200 text-gray-900 font-semibold ' : ''  
+                  }  group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`
+                }
+                >
+                   <ShieldAlert className="mr-2 h-4 w-4" />
+                   Accès administrateur
+                </button>
+              )}
+            </Menu.Item>
+            : null
+            }
             <Menu.Item>
               {({ active }) => (
                 <button

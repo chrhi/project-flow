@@ -26,7 +26,8 @@ export type User = {
   phone : string , 
   zipCode : string , 
   createdAt : string , 
-  status : string
+  status : string,
+  password : string
 }
 
 export const columns: ColumnDef<User>[] = [
@@ -79,6 +80,8 @@ export const columns: ColumnDef<User>[] = [
     accessorKey: "createdAt",
     header: "Created At",
   },
+
+ 
  
   {
     accessorKey: "status",
@@ -87,6 +90,10 @@ export const columns: ColumnDef<User>[] = [
      
       return <Badge>{row.original.status}</Badge>
     }
+  },
+  {
+    accessorKey: "password",
+    header: "password",
   },
   {
     id: "actions",

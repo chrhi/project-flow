@@ -1,5 +1,4 @@
 import { type NextPage } from "next";
-
 import { useState  } from "react";
 import { ProjectStarter } from "~/components/common/ProjectStarter";
 import { api } from "~/utils/api";

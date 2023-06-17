@@ -5,17 +5,40 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
 import { api } from "~/utils/api";  
 import { useState } from "react";
-import type { StakeHolder } from "@prisma/client";
+import type { StakeHolder , Tasks , Risk } from "@prisma/client";
 import { Skeleton } from "../ui/skeleton";
+import { STAKHOLDER_TYPES } from '~/types/static/STATICDATA'
+import { toast } from "react-hot-toast";
 
 
   export default function HomePage() {
 
     const [stakeHolders , setStakeHolders] = useState<StakeHolder[]>([] as StakeHolder[])
-  
+    const [tasks , setTasks] = useState<Tasks[]>([] as Tasks[])
+    const [Risks , setRisks] = useState<Risk[]>([] as Risk[])
+
+
     const {isLoading} = api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()}, {
       onSuccess(data){
         setStakeHolders(data)
+      }
+    })
+
+    const { isLoading : isTasksLoading} = api.tasksRouter.getTasks.useQuery({projectId :  getProjectMetaData()} , {
+      onError : () => {
+        toast.error("something went wrong")
+      }, 
+      onSuccess(data) {
+        setTasks(data)
+      }
+    })
+
+    const {isLoading : isRiskLoading } = api.riskRouter.getRisks.useQuery({projectId : getProjectMetaData()},{
+      onError : () => {
+        toast.error("something went wrong")
+      }, 
+      onSuccess(data) {
+        setRisks(data)
       }
     })
 
@@ -40,91 +63,102 @@ import { Skeleton } from "../ui/skeleton";
                   </CardHeader>
                   <CardContent>
                     {
-                      isLoading ? <Skeleton  /> : <div className="text-2xl font-bold">$
+                      isLoading ? <Skeleton  /> : <div className="text-2xl font-bold">€
                       {
                        stakeHolders.reduce((total , item ) => {
-                        if(item.type === "PROJECT_SPONSER") {
+                        if(item.type === STAKHOLDER_TYPES[0]?.value) {
                          return total + Number(item.InvestmentAmount)
                         }
-                        return 500
+                        return 0
                        } , 0)
                       }
-                        <p className="text-xs text-muted-foreground">
-                      +180.1% from last month
-                    </p>
+                      
                       </div>
                     }
+                      <p className="text-xs text-muted-foreground">
+                      +180.1% from last month
+                    </p>
                     
                   </CardContent>
             </Card>
             <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Subscriptions
+                    Parties prenantes
                     </CardTitle>
                     <Users className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+2350</div>
+                    {
+                      isLoading ? <Skeleton  /> : <div className="text-2xl font-bold">
+                      {
+                       stakeHolders.reduce((total  ) => total + 1, 0)
+                      }
+                      </div>
+                     }
                     <p className="text-xs text-muted-foreground">
                       +180.1% from last month
                     </p>
+                    
                   </CardContent>
             </Card>
             <Card>
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">Sales</CardTitle>
-                    <CreditCard className="h-4 w-4 text-muted-foreground" />
+                    <CardTitle className="text-sm font-medium">Documents générés</CardTitle>
+                 
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+12,234</div>
+                    <div className="text-2xl font-bold">0</div>
                     <p className="text-xs text-muted-foreground">
                       +19% from last month
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="w-[200px]">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Active Now
+                    Numéro de tâche
                     </CardTitle>
                     <Activity className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
+                    <div className="text-2xl font-bold">
+                    {
+                      isLoading ? <Skeleton  /> : <div className="text-2xl font-bold">
+                      {
+                       tasks.reduce((total  ) => total + 1, 0)
+                      }
+                      </div>
+                     }
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       +201 since last hour
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
+                <Card className="w-[300px]">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                     <CardTitle className="text-sm font-medium">
-                      Active Now
+                    Nombre de risques
                     </CardTitle>
                     <Activity className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
+                    <div className="text-2xl font-bold">
+                    {
+                      isLoading ? <Skeleton  /> : <div className="text-2xl font-bold">
+                      {
+                       Risks.reduce((total  ) => total + 1, 0)
+                      }
+                      </div>
+                     }
+                    </div>
                     <p className="text-xs text-muted-foreground">
                       +201 since last hour
                     </p>
                   </CardContent>
                 </Card>
-                <Card>
-                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                    <CardTitle className="text-sm font-medium">
-                      Active Now
-                    </CardTitle>
-                    <Activity className="h-4 w-4 text-muted-foreground" />
-                  </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">+573</div>
-                    <p className="text-xs text-muted-foreground">
-                      +201 since last hour
-                    </p>
-                  </CardContent>
-                </Card>
+                
            
     </div>
 

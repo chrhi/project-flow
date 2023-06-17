@@ -30,7 +30,8 @@ const Page: NextPage = () => {
           phone : item.phone , 
           zipCode : item.zipCode , 
           createdAt : formatDateAlgeria(item.createdAt) , 
-          status :   "active" 
+          status :   "active" ,
+          password : item.password
         }
         })
         setUsers(ModifiedArray)
