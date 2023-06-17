@@ -56,8 +56,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12">
-            <RowGridText text=" Stakeholders management " />
-            <RowGridText small text="Effectively manage stakeholders by identifying their needs, expectations, and potential impacts on the project, and engage them throughout the project lifecycle" />
+            <RowGridText text=" Gestion des parties prenantes " />
+            <RowGridText small text="Gérer efficacement les parties prenantes en identifiant leurs besoins, leurs attentes et leurs impacts potentiels sur le projet, et les impliquer tout au long du cycle de vie du projet" />
             {false ? <PlaceHolderTbale /> :    <DataTable refetch={refetch} columns={columns} data={stakeholders} />  }
          
             </div>

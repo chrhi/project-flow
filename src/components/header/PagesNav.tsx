@@ -35,25 +35,25 @@ export function PagesNav() {
 
   const LIST = [
     {
-      name : "Overview" , path : "/app" , page : PAGES.DASHBORD
+      name : "Aperçu" , path : "/app" , page : PAGES.DASHBORD
     },
     {
-      name : "Initiating" , path : "/app/startup", page : PAGES.STARTUP
+      name : "Démarage" , path : "/app/startup", page : PAGES.STARTUP
     },
     {
-      name : "Planning" , path : "/app/planning" , page : PAGES.PLANNING
+      name : "Planification" , path : "/app/planning" , page : PAGES.PLANNING
     },
     {
-      name : "Executing" , path : "/app/executing" , page : PAGES.EXECUTING
+      name : "Exécution" , path : "/app/executing" , page : PAGES.EXECUTING
     },
     {
-      name : "Controlling" , path : "/app/controlling" , page : PAGES.CONTROLLING
+      name : "Contrôler" , path : "/app/controlling" , page : PAGES.CONTROLLING
     },
     {
-      name : "Closing " , path : "/app/close" , page : PAGES.CLOSING
+      name : "Clôture " , path : "/app/close" , page : PAGES.CLOSING
     },
     {
-      name : "Docs " , path : "/app/docs" , page : PAGES.DOCS
+      name : "Documents " , path : "/app/docs" , page : PAGES.DOCS
     },
   ]
 

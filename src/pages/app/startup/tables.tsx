@@ -49,8 +49,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
        <div className="col-span-6 lg:col-span-12 ">
-       <RowGridText text="set   the project objectives " />
-            <RowGridText small text=" Define specific, measurable, achievable, relevant, and time-bound (SMART) project objectives that clearly state the desired outcomes and deliverables, providing a clear direction and focus for the project" />
+       <RowGridText text="fixer les objectifs du projet " />
+            <RowGridText small text=" Définir des objectifs de projet spécifiques, mesurables, réalisables, pertinents et limités dans le temps (SMART) qui énoncent clairement les résultats et les livrables souhaités, fournissant une direction et une orientation claires pour le projet" />
      
       <div   className="col-span-6 lg:col-span-12 ">
         <DataTable  columns={columns} data={data} refetch={refetch}  />

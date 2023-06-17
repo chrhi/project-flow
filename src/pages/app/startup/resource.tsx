@@ -60,8 +60,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
         <div className="col-span-6 lg:col-span-12">
-            <RowGridText text=" Resources management" />
-            <RowGridText small text="Effectively manage material resources by accurately identifying, procuring, tracking, and optimizing their utilization throughout the project, ensuring timely availability and cost-effective management" />
+            <RowGridText text=" Gestion des ressources" />
+            <RowGridText small text="Gérer efficacement les ressources matérielles en identifiant, en achetant, en suivant et en optimisant avec précision leur utilisation tout au long du projet, en garantissant une disponibilité rapide et une gestion rentable" />
         <DataTable refetch={refetch} columns={columns} data={resource} /> 
         </div>
     

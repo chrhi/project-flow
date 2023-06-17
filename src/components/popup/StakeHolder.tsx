@@ -7,8 +7,8 @@ import { ScrollArea } from '../ui/scroll-area'
 import { Input } from '../used/Input'
 import { TextField } from '../used/TextField'
 import { OpenStakeHolderOpoUpShowCase } from '~/store/open-models'
-
-
+import { api } from '~/utils/api'
+import { toast } from 'react-hot-toast'
 
 
 
@@ -17,6 +17,36 @@ export  function StakeHolder () {
   const isShowing = OpenStakeHolderOpoUpShowCase(state => state.showModel)
  
   const setIsShowing = OpenStakeHolderOpoUpShowCase(state => state.setShowModel)
+
+  const id = OpenStakeHolderOpoUpShowCase(state => state.id)
+
+  const [ourData , setOurData] = useState({
+    name : "" , 
+    email : "" , 
+    type : "" , 
+    position : "" , 
+    impact : "",
+    Requiremnts : "",
+    Expectations : ""
+  })
+
+  const {isLoading} = api.StakeHolderRouter.get_one_stakeholder.useQuery({id} , {
+    onError : () => {
+      toast.error("il y a une erreur lors de l'obtention de la partie prenante")
+    },
+    onSuccess(data) {
+      setOurData({
+        name : data?.name || "", 
+        email : data?.contact || "", 
+        type : data?.type || "", 
+        position : data?.position || "",  
+        impact : data?.impact || "", 
+        Requiremnts : data?.Requirements || "", 
+        Expectations : data?.Expectations || ""
+      })
+    },
+  })
+  
 
   function closeModal() {
     setIsShowing(false)
@@ -70,60 +100,53 @@ export  function StakeHolder () {
                        </svg>
                     </button>
                 </div>
-                 
-                 {
-                  // isFetching ? 
-                  false ?
-                <h1 className='text-xl text-stone-900'>loading...</h1>
-                  :
+               
                   <ScrollArea className='px-8 py-4 mx-auto   h-fit min-h-full  grid grid-cols-1 w-[70%]   '>
                   <Input 
-                        
+                        isLoading={isLoading}
                         lable="name "
-                        value="abdullah jsk"
-                        onChange={() => console.log("")}
+                        value= {ourData.name}
+                        onChange={(e) => setOurData({...ourData , name : e.target.value})}
                   />
                    <Input 
-                       
+                        isLoading={isLoading}
                         lable="email "
-                        value="mahdi.chahri55@gmail.com"
-                        onChange={() => console.log("")}
+                        value= {ourData.email}
+                        onChange={(e) => setOurData({...ourData , email : e.target.value})}
                   />
                      <Input 
-                       
+                        isLoading={isLoading}
                        lable="type "
-                       value="type"
-                       onChange={() => console.log("")}
+                       value= {ourData.type}
+                       onChange={(e) => setOurData({...ourData , type : e.target.value})}
                   />
                     <Input 
-                       
+                        isLoading={isLoading}
                        lable="Position "
-                       value="type"
-                       onChange={() => console.log("")}
+                       value= {ourData.position}
+                       onChange={(e) => setOurData({...ourData , position : e.target.value})}
                   />
                    <Input 
-                       
+                        isLoading={isLoading}
                        lable="Impact "
-                       value="type"
-                       onChange={() => console.log("")}
+                       value= {ourData.impact}
+                       onChange={(e) => setOurData({...ourData , impact : e.target.value})}
                   />
                   <TextField
+                         isLoading={isLoading}
                         lable="Requiremnts "
-                        value="type"
-                        onChange={() => console.log("")}
+                        value= {ourData.Requiremnts}
+                        onChange={(e) => setOurData({...ourData , Requiremnts : e.target.value})}
                   />
                   <TextField
+                         isLoading={isLoading}
                         lable="Expectations "
-                        value="type"
-                        onChange={() => console.log("")}
+                        value= {ourData.Expectations}
+                        onChange={(e) => setOurData({...ourData , Expectations : e.target.value})}
                   />
-                    <TextField
-                        lable="Expectations "
-                        value="type"
-                        onChange={() => console.log("")}
-                  />
+                    
                   </ScrollArea>
-                 }
+                 
                 </Dialog.Panel>
               </Transition.Child>
             </div>

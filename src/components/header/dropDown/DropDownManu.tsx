@@ -77,9 +77,9 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <div className='w-full min-h-[30px] h-fit border-b bg-gradient-to-r mb-3 from-pink-500 to-purple-500 flex flex-col justify-center p-4 gap-y-1 '>
-                   <h3 className='truncate text-md font-bold text-white '>{ "project : "}</h3>
+                   <h3 className='truncate text-md font-bold text-white '>{ "Titre du projet  "}</h3>
                   <h3 className='truncate text-sm text-white '>{projectTitle}</h3>
-                  <h3 className='truncate text-sm font-semibold  text-white '>{ "current phase : "}</h3>
+                  <h3 className='truncate text-sm font-semibold  text-white '>{ "phase actuelle  "}</h3>
                   <h3 className='truncate text-sm text-white'>{ currentPhase}</h3>
                 </div>
               )}
@@ -99,7 +99,7 @@ export default function DropDowsMenu() {
                 >
                      <User className="mr-2 h-4 w-4" />
               
-              My profile
+                     Mon profil
                 </button>
               )}
             </Menu.Item>
@@ -119,7 +119,7 @@ export default function DropDowsMenu() {
                <Lock className="mr-2 h-4 w-4" />
 
               
-            Password settings
+               mot de passe
                 </button>
               )}
             </Menu.Item>           
@@ -139,7 +139,7 @@ export default function DropDowsMenu() {
                    <Settings className="mr-2 h-4 w-4" />
            
 
-                Settings
+                   Paramètres
                 </button>
               )}
             </Menu.Item>
@@ -150,7 +150,7 @@ export default function DropDowsMenu() {
                   className={`  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'} group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                     <LogOut className="mr-2 h-4 w-4" />
-             Sign out
+                    se déconnecter
                 </button>
               )}
             </Menu.Item>

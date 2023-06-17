@@ -48,12 +48,25 @@ export const columns: ColumnDef<Stakholder>[] = [
     header: "Impact",
     cell: ({ row }) => {
 
-      return <Badge color={getColor({text : row.original.impact})}>{row.original.impact}</Badge>
+      return <Badge color={getColor({text : row.original.impact})} className="rounded-lg ">{row.original.impact}</Badge>
     }
   },
   {
     accessorKey: "type",
     header: "Type",
+    cell: ({ row }) => {
+
+       // Convert to lowercase
+     const lowercaseString = row.original.type.toLowerCase();
+
+     // Split by underscores
+     const splitString = lowercaseString.split('_');
+
+     // Join by spaces
+     const formattedString = splitString.join(' ');
+
+      return <Badge color="purple" className="rounded-lg ">{formattedString}</Badge>
+    }
   },
   {
     header: "Actions",

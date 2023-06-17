@@ -8,11 +8,12 @@ import { FormContainer } from "~/components/used/FormContainer";
 import { TextField } from "~/components/used/TextField";
 import { FormButton } from "~/components/used/FormButton";
 import { RowGridText } from "~/components/typography/RowGridText";
-import NewTimePicker from "~/components/used/NewTimePicker";
-import type { DateRangePickerValue } from "@tremor/react";
+import { addDays, format } from "date-fns"
+import { DateRange } from "react-day-picker"
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
+import { DatePickerWithRange } from "~/components/ui/date-range-picker";
 
 
 
@@ -20,9 +21,9 @@ const Page: NextPage = () => {
 
   let id_abdullah : any 
   const [isOpen , setIsOpen] = useState<boolean>(false)
-  const [value , setValue] = useState<DateRangePickerValue>({
-    from : new Date(),
-    to : new Date()
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(),
+    to: addDays(new Date(), 20),
   })
   const [formData , setFormData] = useState({
     id : "",
@@ -48,6 +49,7 @@ const Page: NextPage = () => {
         ProjectDescription : data?.ProjectDescription || "" , 
         ProjectObjectiveAndOpportunity : data?.ProjectObjectiveAndOpportunity || ""
       })
+    
     },
     onError(err) {
       console.log(err)
@@ -144,8 +146,8 @@ const Page: NextPage = () => {
       <Form >
       <div className="bg-white dark:bg-neutral-900 px-4 py-5 sm:p-6 ">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <RowGridText text="Starting up the project " />
-            <RowGridText small text=" During the project startup phase, it is important to define clear objectives, analyze stakeholders, establish governance, develop a project charter, and identify potential risks" />
+            <RowGridText text="Démarrage du projet" />
+            <RowGridText small text="Lors de la phase de démarrage du projet, il est important de définir des objectifs clairs, d'analyser les parties prenantes, d'établir une gouvernance, d'élaborer une charte de projet et d'identifier les risques potentiels" />
          
             <TextField
                 isLoading={isLoading}
@@ -156,11 +158,9 @@ const Page: NextPage = () => {
                 }}
                 value={formData.Title}
              />
-              <div className="col-span-6">
-          
-            <NewTimePicker value={value} setValue={setValue} text="sélectionner une heure à laquelle ce projet doit commencer et se terminer"/>
-           </div>
-           
+              <div className="col-span-6 flex justify-center items-center">
+                  <DatePickerWithRange label="sélectionner la plage de la date"  date={date} setDate={setDate} />
+              </div>
              <TextField
             isLoading={isLoading}
             lable="Objectif et opportunité de projet :  "

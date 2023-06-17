@@ -113,8 +113,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
             <div className="col-span-6 lg:col-span-12">
-            <RowGridText text=" Risks Management" />
-            <RowGridText small text=" Proactively manage project risks by identifying, assessing, and prioritizing potential risks, developing mitigation strategies, and regularly monitoring and controlling risks throughout the project lifecycle to minimize their impact on project objectives" />
+            <RowGridText text=" Gestion des risques" />
+            <RowGridText small text="Gérer de manière proactive les risques du projet en identifiant, évaluant et hiérarchisant les risques potentiels, en élaborant des stratégies d'atténuation et en surveillant et contrôlant régulièrement les risques tout au long du cycle de vie du projet afin de minimiser leur impact sur les objectifs du projet" />
             <DataTable columns={columns} data={data} /> 
        
             </div>

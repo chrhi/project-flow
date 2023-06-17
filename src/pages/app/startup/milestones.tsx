@@ -55,8 +55,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
             <div className="col-span-6 lg:col-span-12 ">
-            <RowGridText text="MileStones " />
-            <RowGridText small text="A milestone in project management is a significant event or point that marks the completion of a major deliverable or stage, serving as a reference for tracking progress and communicating project advancements." />
+            <RowGridText text="gestion des jalons " />
+            <RowGridText small text="Un jalon dans la gestion de projet est un événement ou un point significatif qui marque l'achèvement d'un livrable ou d'une étape majeur, servant de référence pour suivre les progrès et communiquer les avancées du projet." />
 
             </div>
             <div  className="col-span-6 lg:col-span-12  ">

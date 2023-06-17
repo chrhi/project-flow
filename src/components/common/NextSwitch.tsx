@@ -64,7 +64,7 @@ function NextSwitch({indexThisPhase} : Props) {
     <div className='w-[90%] h-[200px] p-4 rounded-lg border  flex flex-col dark:bg-neutral-900 bg-white justify-center items-center gap-y-8'>
         <p className="text-center text-gray-400 dark:text-white text-md ">
         {/* Si vous avez terminé le travail pour cette phase, assurez-vous de basculer le bouton ci-dessous afin d'avoir accès à la phase suivante */}
-        If you have completed the work for this phase, you must toggle the button below in order to gain access to the next phase
+        Si vous avez terminé le travail pour cette phase, vous devez basculer le bouton ci-dessous afin d'accéder à la phase suivante
         </p>
         {
             isLoading ? <p>loading...</p> :
