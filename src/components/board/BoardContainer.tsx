@@ -13,10 +13,7 @@ type Props = {
 
 }
 
-// const tasks : TaskType[] = [
-//   {id : "123" , status : "TODO" , title : "create the pop up when end task" , discription : "how can i create a log description" , priority : "LOW"},
-//   {id : "128873" , status : "TODO" , title : "build end phase button"  , priority : "LOW"}
-// ]
+
 
 function BoardContainer({tasks} : Props ) {
 
@@ -25,8 +22,28 @@ function BoardContainer({tasks} : Props ) {
   const [Done , setDone ] = useState<TaskType[]>([])
   const [Canceled , setCanceled ] = useState<TaskType[]>([])
 
+   const task_mutation = api.tasksRouter.updateTaskStatus.useMutation({
+    onSuccess : async (data) => {
+   
+      toast.success("Mis à jour avec succés")
+      await refetch()
+    },
+    onError: () => {
+      toast.error("quelque chose s'est mal passé")
+    }
+   })
+
+   const handleUpdate = (idTask : string , value : string) => {
+   
+    task_mutation.mutate({
+      id : idTask , 
+      Status : value
+    })
+
+   }
+
   const openModel = openTasksDonePanle(state => state.setEveryThing)
-  api.tasksRouter.getTasks.useQuery({projectId : getProjectMetaData()},{
+ const {isLoading , refetch} = api.tasksRouter.getTasks.useQuery({projectId : getProjectMetaData()},{
     onSuccess : (data) => {
       const prepare = data.map((item ) : TaskType => {
         return {
@@ -56,6 +73,11 @@ function BoardContainer({tasks} : Props ) {
   const handleDragEnd = (result : DropResult) => {
     const { destination, source, draggableId } = result;
 
+    
+    const task = findItemById(draggableId, [...todo, ...Doing , ...Done , ...Canceled]);
+    if(!task) return 
+
+
     if (source.droppableId == destination?.droppableId) return;
    // REMOVE FROM SOURCE ARRAY
     if (source.droppableId === "todo") {
@@ -74,27 +96,32 @@ function BoardContainer({tasks} : Props ) {
     }
     // GET ITEM
 
-    const task = findItemById(draggableId, [...todo, ...Doing , ...Done , ...Canceled]);
-
-    if(!task) return 
 
     if (destination?.droppableId === "todo") {
+      handleUpdate(task.id ,"TODO" )
       setTodo([{ ...task, status: "TODO" }, ...todo]);
+      
+      return
     }
 
     if (destination?.droppableId === "doing") {
-    
+      handleUpdate(task.id ,"DOING" )
       setDoing([{ ...task, status: "DOING" }, ...Doing]);
+      return
     }
 
     if (destination?.droppableId === "done") {
-  
+      handleUpdate(task.id ,"DONE" )
       setDone([{ ...task, status: "DONE" }, ...Done]);
-      openModel({id : task.id ,endedAt : new Date() , startAt : new Date() })
+      // openModel({id : task.id ,endedAt : new Date() , startAt : new Date() })
+      return
     }
     if (destination?.droppableId== "Canceled") {
+      handleUpdate(task.id ,"CANCELED" )
       setCanceled([{ ...task, status: "CANCELED" }, ...Canceled]);
+      return
     }
+    return
 
   
   };

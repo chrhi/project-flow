@@ -95,6 +95,30 @@ export const tasksRouter = createTRPCRouter({
         })
     }),
 
+
+    updateTaskStatus : publicProcedure
+    .input(z.object({
+       id : z.string().uuid(),
+      
+       Status : z.string(),
+      
+      
+         }))
+    .mutation( async ({ input , ctx }) => {
+
+  
+        await ctx.prisma.tasks.update({
+            data :{
+               
+                Status : input.Status
+            },
+            where:{
+                id : input.id
+            }
+        })
+    }),
+
+
     completeTask : publicProcedure
     .input(z.object({
         id : z.string().uuid(),

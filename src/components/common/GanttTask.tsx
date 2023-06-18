@@ -8,8 +8,8 @@ import { Label } from '../ui/label';
 import { Switch } from '../ui/switch';
 import { Title } from '@tremor/react';
 import { AbdullahButton , buttonVariants } from '../used/AbdullahButton';
-import { RowGridText } from '../typography/RowGridText';
-
+import LoadingComponents from './loading-components';
+import EmptyGanttChard from '../gantt-chard/empty';
 
 const tasksStatic: Task[] = [
   {
@@ -33,6 +33,8 @@ export const GanttTask = () => {
 
   const [showTaskList, setShowTaskList] = useState<boolean>(true);
 
+  const [status , setSTatus] = useState("LOADING")
+
   const handleChange = () => {
     setShowTaskList(!showTaskList)
   }
@@ -54,11 +56,16 @@ export const GanttTask = () => {
             progressSelectedColor: item.Color || '#0794f3',
           },
         }));
-        if(data.length === 0) return
+        if(data.length === 0){ 
+          setSTatus("EMPTY")
+          return
+        }
         setTasks(preparedTasks);
+        setSTatus("END")
       },
       onError: () => {
         toast.error('Something went wrong');
+        setSTatus("EMPTY")
       },
     }
   );
@@ -93,7 +100,13 @@ export const GanttTask = () => {
         </div>
         </div>
       </div>
-      <Gantt
+      {
+        status === "LOADING" ? 
+        <LoadingComponents />
+        : status === "EMPTY" ? 
+       <EmptyGanttChard />
+        :
+        <Gantt
         viewMode={view || ViewMode.Week}
         
         fontFamily="poppines"
@@ -105,6 +118,7 @@ export const GanttTask = () => {
         onDelete ={(event) => console.log(event)}
         fontSize="10"
       />
+      }
     </div>
   );
 };
