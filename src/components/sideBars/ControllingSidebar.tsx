@@ -22,15 +22,13 @@ type Props ={
 
 const List = [
  
-  {name : "Change Log" , path : "/app/controlling/change_log" , navs : NAVS.ONE},
-  {name : "Cost Baseline" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
-  {name : "Issue Log" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
-  {name : "Project Performance Report " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
-
-  {name : "Risk Audit" , path : "/app/controlling" , navs : NAVS.ONE},
-  {name : "Risk Register" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
-  {name : "Team Member Status Report" , path : "/app/controlling" , navs : NAVS.THREE},
-  {name : "Variance Analysis " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
+  {name : "Journal des modifications" , path : "/app/controlling/change_log" , navs : NAVS.ONE},
+  {name : "Coût de référence" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
+  {name : "Journal des problèmes" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
+  {name : "Rapport sur le rendement du projet " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
+  {name : "Audit des risques" , path : "/app/controlling" , navs : NAVS.ONE},
+  {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling" , navs : NAVS.THREE},
+  {name : "Analyse de variance" , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
 ]
 
 export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {

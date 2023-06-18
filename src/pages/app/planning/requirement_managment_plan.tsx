@@ -21,8 +21,8 @@ const Page: NextPage = () => {
        <Form >
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-              <RowGridText text="Requirements management plan " />
-              <RowGridText small text=" Develop a comprehensive requirements management plan that includes processes for eliciting, documenting, validating, and managing project requirements, ensuring a clear understanding of stakeholder needs, effective communication, and successful delivery of the project's required functionalities and features." />
+              <RowGridText text="Plan de gestion des exigences" />
+              <RowGridText small text=" Élaborer un plan complet de gestion des exigences qui comprend des processus pour obtenir, documenter, valider et gérer les exigences du projet, assurer une compréhension claire des besoins des parties prenantes, une communication efficace et une livraison réussie des fonctionnalités et caractéristiques requises du projet." />
          
               <TextField
                       lable="Schedule Methodology"

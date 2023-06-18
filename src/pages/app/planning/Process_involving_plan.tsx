@@ -21,8 +21,8 @@ const Page: NextPage = () => {
        <Form >
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-              <RowGridText text="Process involment management plan " />
-              <RowGridText small text=" Develop a robust process involvement management plan that outlines the procedures and strategies for engaging stakeholders throughout the project, fostering effective communication, facilitating their participation in decision-making processes, and ensuring their continuous involvement and satisfaction." />
+              <RowGridText text="Plan de gestion de l'implication des processus " />
+              <RowGridText small text=" Élaborer un solide plan de gestion de l'implication dans les processus qui décrit les procédures et les stratégies pour impliquer les parties prenantes tout au long du projet, favoriser une communication efficace, faciliter leur participation aux processus décisionnels et assurer leur implication et leur satisfaction continues." />
          
               <TextField
                       lable="Schedule Methodology"

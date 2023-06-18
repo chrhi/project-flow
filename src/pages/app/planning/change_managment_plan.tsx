@@ -126,8 +126,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
 
-      <RowGridText text="Change  management plan " />
-          <RowGridText small text=" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
+      <RowGridText text="Plan de gestion du changement" />
+          <RowGridText small text=" Le plan de gestion des changements est un document qui établit une approche structurée pour gérer les modifications au sein d'un projet, comprenant des procédures de contrôle des changements, des critères d'évaluation, un comité de revue des changements et un processus de mise en œuvret. Deserunt ex ad dicta animi soluta deleniti a distinctio quo. Non tempore numquam odio sequi iste adipisci laudantium aperiam, eius quas quidem." />
          
         
           <TextField 

@@ -29,8 +29,8 @@ const Page: NextPage = () => {
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
 
-          <RowGridText text="Cost  management plan" />
-          <RowGridText small text="Develop a comprehensive cost management plan that includes accurate estimation of project costs, establishing a budget, monitoring and controlling expenses, tracking variances, and implementing cost-effective measures to ensure the project is completed within the allocated budget" />
+          <RowGridText text="Plan de gestion des coûts" />
+          <RowGridText small text="Élaborer un plan complet de gestion des coûts qui comprend une estimation précise des coûts du projet, l'établissement d'un budget, le suivi et le contrôle des dépenses, le suivi des écarts et la mise en œuvre de mesures rentables pour s'assurer que le projet est achevé dans le budget alloué" />
          
 
           <TextField 

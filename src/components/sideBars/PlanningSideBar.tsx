@@ -23,17 +23,17 @@ type Props ={
 }
 
 export const List = [
-  {name : " Project scope plan" , path : "/app/planning" , navs : NAVS.ONE},
-  {name : " Work breakdown  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
-  {name : " Project management plan " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
-  {name : "  Project schedule plan" , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
-  {name : "  Communications management plan " , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},
-  {name : " Cost management plan  " , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
-  {name : "   Change management plan " , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
-  {name : " Risk management  plan " , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
-  {name : "   Process Improvment plan " , path : "/app/planning/Process_involving_plan" , navs : NAVS.TEN},
-  {name : " Stakholder management  plan " , path : "/app/planning/stakholder_managment_plan" , navs : NAVS.A},
-  {name : " Requiremts management  plan " , path : "/app/planning/requirement_managment_plan" , navs : NAVS.ELEVEN},
+  {name : "Énoncé de la portée du projet" , path : "/app/planning" , navs : NAVS.ONE},
+  {name : " WBD  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
+  {name : " Plan de gestion de projet " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
+  {name : "Planification du calendrier du projet" , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
+  {name : "Plan de gestion des communications" , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},
+  {name : "Plan de gestion des coûts" , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
+  {name : "Plan de gestion du changement" , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
+  {name : "Plan de gestion des risques" , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
+  {name : "Plan d'amélioration des processus" , path : "/app/planning/Process_involving_plan" , navs : NAVS.TEN},
+  {name : "Plan de gestion des parties prenantes" , path : "/app/planning/stakholder_managment_plan" , navs : NAVS.A},
+  {name : "Plan de gestion des exigences" , path : "/app/planning/requirement_managment_plan" , navs : NAVS.ELEVEN},
 ] 
 
 

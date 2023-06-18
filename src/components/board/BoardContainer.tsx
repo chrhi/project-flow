@@ -140,22 +140,22 @@ function BoardContainer({tasks} : Props ) {
     onDragEnd = {(result) => handleDragEnd(result)}>
     <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex justify-between ">
       <Column 
-       title="To do"
+       title="Faire"
        tasks={todo} 
        id="todo"
        />
         <Column 
-      title="In progress"
+      title="En cours"
        tasks={Doing} 
        id="doing"
        />
         <Column 
-      title="Done"
+      title="Fait"
        tasks={Done} 
        id="done"
        />
         <Column 
-      title="Canceled"
+      title="Annulé"
        tasks={Canceled} 
        id="Canceled"
        />

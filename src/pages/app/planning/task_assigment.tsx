@@ -222,8 +222,8 @@ const Page: NextPage = () => {
       <Form >
       <div className="bg-white px-4 py-5 sm:p-6">
         <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-           <RowGridText text="Project management plan " />
-           <RowGridText small text=" Create a comprehensive project management plan that integrates various management aspects, including scope, schedule, cost, quality, resources, communication, risks, and procurement, providing a roadmap for the successful execution, monitoring, and control of the project from initiation to closure." />
+           <RowGridText text="Plan de gestion de projet " />
+           <RowGridText small text="Créez un plan de gestion de projet complet qui intègre divers aspects de gestion, notamment la portée, le calendrier, le coût, la qualité, les ressources, la communication, les risques et les achats, en fournissant une feuille de route pour la réussite de l'exécution, du suivi et du contrôle du projet, du lancement à la clôture." />
          
           <div className="col-span-6 lg:col-span-12 ">
              <AbdullahTable

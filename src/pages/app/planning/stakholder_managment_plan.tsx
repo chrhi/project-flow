@@ -21,8 +21,8 @@ const Page: NextPage = () => {
        <Form >
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <RowGridText text="Stakholder  management plan " />
-              <RowGridText small text=" Develop a stakeholder management plan that identifies key stakeholders, assesses their interests, expectations, and potential impact on the project, defines strategies for effective communication, engagement, and relationship building, to ensure stakeholder satisfaction, involvement, and alignment with project goals" />
+            <RowGridText text="Plan de gestion des parties prenantes" />
+              <RowGridText small text="Élaborer un plan de gestion des parties prenantes qui identifie les principales parties prenantes, évalue leurs intérêts, leurs attentes et leur impact potentiel sur le projet, définit des stratégies de communication, d'engagement et d'établissement de relations efficaces, afin d'assurer la satisfaction, l'implication et l'alignement des parties prenantes avec les objectifs du projet" />
          
               <TextField
                       lable="Schedule Methodology"

@@ -21,8 +21,8 @@ const Page: NextPage = () => {
        <Form >
             <div className="bg-white px-4 py-5 sm:p-6">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <RowGridText text="Project scheduel management plan " />
-              <RowGridText small text=" Create a detailed project schedule management plan that includes activities, dependencies, milestones, and resource allocation, to effectively plan, execute, monitor, and control the project timeline, ensuring timely completion of tasks and successful project delivery" />
+            <RowGridText text="Plan de gestion du calendrier du projet" />
+              <RowGridText small text=" Créer un plan détaillé de gestion du calendrier du projet qui comprend les activités, les dépendances, les jalons et l'allocation des ressources, afin de planifier, d'exécuter, de surveiller et de contrôler efficacement le calendrier du projet, en garantissant l'achèvement des tâches dans les délais et la réussite de la livraison du projet" />
          
               <TextField
                       lable="Schedule Methodology"

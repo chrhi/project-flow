@@ -23,15 +23,15 @@ type Props ={
 
 const List = [
 
-  {name : " Tasks tracking" , path : "/app/executing" , navs : NAVS.ONE},
-  {name : " Time tracking" , path : "/app/executing/timeTracking" , navs : NAVS.TWO},
+  {name : "Suivi des tâches" , path : "/app/executing" , navs : NAVS.ONE},
+  {name : "Suivi du temps" , path : "/app/executing/timeTracking" , navs : NAVS.TWO},
 
-  {name : " Change Request" , path : "/app/executing" , navs : NAVS.THREE},
-  {name : " Contractor Status Report" , path : "/app/executing/timeTracking" , navs : NAVS.FOUR},
-  {name : " Earned Value Status Report" , path : "/app/executing" , navs : NAVS.FIVE},
-  {name : " Procurement and Impact Matrix" , path : "/app/executing/timeTracking" , navs : NAVS.SIX},
+  {name : "Changer de requête" , path : "/app/executing" , navs : NAVS.THREE},
+  {name : "Rapport d'état de l'entrepreneur" , path : "/app/executing/timeTracking" , navs : NAVS.FOUR},
+  {name : "Rapport sur l'état de la valeur acquise" , path : "/app/executing" , navs : NAVS.FIVE},
+  {name : "Matrice d'approvisionnement et d'impact" , path : "/app/executing/timeTracking" , navs : NAVS.SIX},
 
-  {name : " Team Directory" , path : "/app/executing" , navs : NAVS.SEVEN},
+  {name : "Annuaire de l'équipe" , path : "/app/executing" , navs : NAVS.SEVEN},
   // {name : " Activity Attributes" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
 
 ]
