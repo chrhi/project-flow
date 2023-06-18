@@ -12,6 +12,9 @@ import { getProjectMetaData } from '~/lib/MetaData'
 import NewTimePicker from '../used/NewTimePicker'
 import type { DateRangePickerValue } from '@tremor/react'
 import { openTasksShowUp } from '~/store/open-models';
+import { DatePickerWithRange } from '../ui/date-range-picker';
+import { DateRange } from 'react-day-picker';
+import { addDays } from 'date-fns';
 
 
 type Props = {
@@ -35,9 +38,9 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
       AlocatedRessources : [] as any[]
     })
     const [update, setUpdate] = useState(false);
-    const [value , setValue] = useState<DateRangePickerValue>({
-      from: new Date(2023, 1, 1),
-      to: new Date(),
+    const [value, setValue] = useState<DateRange | undefined>({
+      from: new Date(),
+      to: addDays(new Date(), 20),
     })
     const [FechedStakeHolders, setFechedStakeHolders] = useState<{label: string  , value : string}[]>([]);
     const [FechedResources, setFechedResources] = useState<{label: string  , value : string}[]>([]);
@@ -128,9 +131,10 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
         AlocatedRessources : inputs.AlocatedRessources , 
         AssignTo : inputs.AssignTo , 
         cost : Number(inputs.cost) , 
-        endsAt : value.to as Date , 
-        startAt : value.from as Date  ,
+        endsAt : value?.to as Date , 
+        startAt : value?.from as Date  ,
         projectId : getProjectMetaData(),
+        Color : ""
       })
   
 
@@ -205,7 +209,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                                    />
                             </div>
                             <div className="col-span-6">
-                                 <NewTimePicker value={value} setValue={setValue} text="Due Date"/>
+                            <DatePickerWithRange label="sélectionner la plage de la date"  date={value} setDate={setValue} />
                               </div>
                           
                             <div className='col-span-6 '>

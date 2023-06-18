@@ -54,6 +54,7 @@ export const GanttTask = () => {
             progressSelectedColor: item.Color || '#0794f3',
           },
         }));
+        if(data.length === 0) return
         setTasks(preparedTasks);
       },
       onError: () => {

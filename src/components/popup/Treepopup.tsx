@@ -5,12 +5,12 @@ import { Input } from '~/components/used/Input'
 import  toast  from 'react-hot-toast';
 import Select from 'react-select';
 import { TextField } from '~/components/used/TextField';
-import { OPTIONS} from '~/types/static/STATICDATA'
+import { OPTIONS , COLORS} from '~/types/static/STATICDATA'
 import { api } from '~/utils/api'
 import { getProjectMetaData } from '~/lib/MetaData'
-
-import NewTimePicker from '../used/NewTimePicker'
-import type { DateRangePickerValue } from '@tremor/react'
+import { DatePickerWithRange } from '../ui/date-range-picker';
+import { addDays } from 'date-fns';
+import { DateRange } from 'react-day-picker';
 
 interface Props {
   
@@ -29,13 +29,14 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
       Priority : "",
       cost : "",
       description : "",
+      Color : "",
       AssignTo : [] as any[],
       AlocatedRessources : [] as any[]
     })
     const [update, setUpdate] = useState(false);
-    const [value , setValue] = useState<DateRangePickerValue>({
-      from : new Date(),
-      to : new Date()
+    const [value, setValue] = useState<DateRange | undefined>({
+      from: new Date(),
+      to: addDays(new Date(), 20),
     })
     const [FechedStakeHolders, setFechedStakeHolders] = useState<{label: string  , value : string}[]>([]);
     const [FechedResources, setFechedResources] = useState<{label: string  , value : string}[]>([]);
@@ -95,9 +96,10 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
         AlocatedRessources : inputs.AlocatedRessources , 
         AssignTo : inputs.AssignTo , 
         cost : Number(inputs.cost) , 
-        endsAt : value.to as Date , 
-        startAt : value.from as Date  ,
+        endsAt : value?.to as Date , 
+        startAt : value?.from as Date  ,
         projectId : getProjectMetaData(),
+        Color : inputs.Color
       })
   
 
@@ -133,12 +135,12 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[900px] h-[580px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-[930px] h-[625px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
                   >
-               <div><p className='text-md text-gray-900 font-semibold  ml-4'>Create a new task</p></div>  
+               <div><p className='text-md text-gray-900 font-semibold  ml-4'>Créer une nouvelle tâche</p></div>  
                <div>
                     <button
                           onClick={() => setIsOpen(false)}
@@ -151,14 +153,15 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                   </Dialog.Title>
                 <div className="bg-white p-4  w-full  ">
                       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+
                           <Input
-                               lable='Title'
+                               lable='Titre'
                                value={inputs.title}
                                onChange={(e) => setInput({...inputs , title : e.target.value})}
                            />
                             <div className='col-span-6 '>
                                    <label  className="block text-sm font-medium leading-6 text-gray-900">
-                                       Assign to
+                                   Affecter à
                                   </label>
                                   <Select
                                       
@@ -170,13 +173,26 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                                            isMulti
                                    />
                             </div>
+                            <div className='col-span-12 '>
+                                   <label  className="block text-sm font-medium leading-6 text-gray-900">
+                                   choisir une couleur
+                                  </label>
+                                  <Select
+                                          onChange={(e) => setInput({...inputs , Color : e?.value  || ""})}  
+                                          
+                                           name="color"
+                                           options={COLORS}
+                                           className="basic-multi-select"
+                                           classNamePrefix="select"
+                                   />
+                            </div>
                             <div className="col-span-6">
-                                 <NewTimePicker value={value} setValue={setValue} text="Due Date"/>
+                            <DatePickerWithRange label="sélectionner la plage de la date"  date={value} setDate={setValue} />
                               </div>
                           
                             <div className='col-span-6 '>
                                    <label  className="block text-sm font-medium leading-6 text-gray-900">
-                                      Alocated ressources
+                                   Ressources allouées
                                   </label>
                                   <Select
                                            isMulti 
@@ -189,7 +205,7 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                             </div>
                             <div className='col-span-6 '>
                                    <label  className="block text-sm font-medium leading-6 text-gray-900">
-                                       Priority
+                                   Priorité
                                   </label>
                                   <Select
                                           onChange={(e) => setInput({...inputs , Priority : e?.value  || ""})}  
@@ -204,21 +220,21 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                             <Input
                                type ="number"
                                onChange={(e) => setInput({...inputs , cost : e?.target.value  || ""})}  
-                               lable='cost'
+                               lable='Coût'
                                value={inputs.cost}
                               
                              />
                              
                              <TextField
                                className='lg:col-span-12'
-                               lable='description'
+                               lable='Description'
                                value={inputs.description}
                                onChange={(e) => setInput({...inputs , description : e?.target.value  || ""})}  
                              />
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
-                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>cancel</AbdullahButton>
-                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Create Task</AbdullahButton>
+                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>Annuler</AbdullahButton>
+                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Créer  tâche</AbdullahButton>
                         </div>
                  </div> 
                 </Dialog.Panel>

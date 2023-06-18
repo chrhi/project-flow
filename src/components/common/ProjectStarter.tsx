@@ -7,21 +7,21 @@ import { TextField } from '../used/TextField';
 import NewTimePicker from '../used/NewTimePicker';
 import toast from 'react-hot-toast';
 import { api } from '~/utils/api';
-import type { DateRangePickerValue } from '@tremor/react';
+import { DateRange } from "react-day-picker"
 import { getUserMetadata } from '~/lib/MetaData';
 import { redis } from '~/lib/upstash';
+import { DatePickerWithRange } from "~/components/ui/date-range-picker";
+import { addDays, format } from "date-fns"
 
 type Props = {
   refetch: () => Promise<any>;
 };
 
 export const ProjectStarter = ({ refetch }: Props) => {
-  const [value, setValue] = useState<DateRangePickerValue>(
-    {
-      from: new Date(2023, 1, 1),
-      to: new Date(),
-    }
-  );
+  const [value, setValue] = useState<DateRange | undefined>({
+    from: new Date(),
+    to: addDays(new Date(), 20),
+  })
   const [data, setData] = useState({
     password: '',
     userId: '',
@@ -32,7 +32,7 @@ export const ProjectStarter = ({ refetch }: Props) => {
   const mutation = api.projectRouter.create_project.useMutation({
     onSuccess: async (data) => {
       
-      await redis.set(data.id, JSON.stringify({currentPhase : data.currentPhase}));
+      
       await refetch();
       toast('Good Job!', {
         icon: '👏',
@@ -50,8 +50,8 @@ export const ProjectStarter = ({ refetch }: Props) => {
     }
     mutation.mutate({
       title: data.title,
-      endsAt: value.to as Date,
-      startAt: value.from  as Date,
+      endsAt: value?.to as Date,
+      startAt: value?.from  as Date,
       user_id: getUserMetadata(),
     });
   };
@@ -60,16 +60,16 @@ export const ProjectStarter = ({ refetch }: Props) => {
     <div className="w-full max-w-4xl   bg-white dark:bg-black rounded-lg  flex h-[500px] shadow-xl border">
       <div className=" w-full lg:w-[50%] gird grid-cols-12 p-4 gap-y-4 h-full">
         <div className="col-span-12 my-4 h-[40px] flex items-center">
-          <h1 className="text-2xl font-semibold text-stone-900 dark:text-white">Stating the project </h1>
+          <h1 className="text-2xl font-semibold text-stone-900 dark:text-white">Énoncer le projet </h1>
         </div>
         <Input
-          lable="enter your password"
+          lable="écrire le monde  CONFIRMER"
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}
           className='my-4'
         />
         <div className="col-span-12 my-4 ">
-          <NewTimePicker value={value} setValue={setValue} text="sélectionner une heure à laquelle ce projet doit commencer et se terminer" />
+          <DatePickerWithRange label="sélectionner la plage de la date"  date={value} setDate={setValue} />
         </div>
         <Input
           className='my-4'
