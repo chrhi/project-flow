@@ -1,9 +1,9 @@
-import { NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 import { Header } from "~/components/header/Header";
 import { getProjectMetaData, getUserMetadata, deteProjectMetaData } from "~/lib/MetaData";
 import { AbdullahButton } from "~/components/used/AbdullahButton";
-import { Button } from "@tremor/react";
+
 import { api } from "~/utils/api";
 import toast from "react-hot-toast";
 import { CookieSettings } from "~/components/common/cookies-settings";
@@ -40,33 +40,33 @@ const Page: NextPage = () => {
         <div className="w-full max-w-6xl min-h-[500px] mx-auto  flex p-4 pt-12 mt-8 flex-col  h-fit bg-white rounded-lg shadow-lg">
 
 
-        <CookieSettings />
+        {/* <CookieSettings /> */}
 
           <div className="w-[95%] my-4 p-4 mx-auto min-h-[200px]  rounded-lg border flex flex-col">
          
             <div className="w-full h-[140px] flex flex-col justify-start">
-              <h4 className="text-xl font-semibold text-gray-900 font-sans text-start">Delete My Project</h4>
+              <h4 className="text-xl font-semibold text-gray-900 font-sans text-start">Supprimer mon projet</h4>
               <p className="text-md font-sans text-gray-400 text-start">
-                By selecting this option, you are about to initiate the deletion of your project from the Project Management Platform. It is essential to understand that this action is irreversible, meaning that once completed, it cannot be undone. Therefore, we strongly urge you to exercise caution and make sure this is the intended course of action.
+              En sélectionnant cette option, vous êtes sur le point de démarrer la suppression de votre projet de la plateforme de gestion de projets. Il est essentiel de comprendre que cette action est irréversible, ce qui signifie qu'une fois terminée, elle ne pourra pas être annulée. Par conséquent, nous vous recommandons vivement de faire preuve de prudence et de vous assurer que c'est bien le choix que vous souhaitez faire.
               </p>
             </div>
             <div className="h-[60px] w-full flex justify-end items-center p-4">
               <AbdullahButton onClick={deleteMyProject} isLoading={projectMutation.isLoading} className="bg-red-500 text-white font-semibold">
-                Delete my Project
+              Supprimer mon projet
               </AbdullahButton>
             </div>
           </div>
 
           <div className="w-[95%] my-4 p-4 mx-auto h-[200px] rounded-lg border flex flex-col">
             <div className="w-full h-[140px] flex flex-col justify-start">
-              <h4 className="text-xl font-semibold text-gray-900 font-sans text-start">Delete Personal Account</h4>
+              <h4 className="text-xl font-semibold text-gray-900 font-sans text-start">Supprimer mon compte personnel</h4>
               <p className="text-md font-sans text-gray-400 text-start">
-                ProjectFlow values the privacy and control of our users' data. We provide this option to give you complete control over your account and its contents. By removing your Personal Account, all information, files, and any other data associated with your account will be permanently deleted from our servers. This includes any projects, documents, settings, and user preferences you have customized during your time on the platform.
+              ProjectFlow accorde une grande importance à la confidentialité et au contrôle des données de nos utilisateurs. Nous offrons cette option pour vous donner un contrôle total sur votre compte et son contenu. En supprimant votre compte personnel, toutes les informations, fichiers et autres données associées à votre compte seront définitivement supprimés de nos serveurs. Cela inclut tous les projets, documents, paramètres et préférences utilisateur que vous avez personnalisés pendant votre utilisation de la plateforme
               </p>
             </div>
             <div className="h-[60px] w-full flex justify-end items-center p-4">
               <AbdullahButton className="bg-red-500 text-white font-semibold">
-                Delete my Account
+              Supprimer mon compte
               </AbdullahButton>
             </div>
           </div>
