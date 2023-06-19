@@ -26,9 +26,9 @@ const List = [
   {name : "Coût de référence" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
   {name : "Journal des problèmes" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
   {name : "Rapport sur le rendement du projet " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
-  {name : "Audit des risques" , path : "/app/controlling" , navs : NAVS.ONE},
-  {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling" , navs : NAVS.THREE},
-  {name : "Analyse de variance" , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
+  {name : "Audit des risques" , path : "/app/controlling" , navs : NAVS.FIVE},
+  {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling" , navs : NAVS.SIX},
+  {name : "Analyse de variance" , path : "/app/controlling/quality_control" , navs : NAVS.SEVEN},
 ]
 
 export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {
