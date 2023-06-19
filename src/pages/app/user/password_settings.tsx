@@ -6,7 +6,7 @@ import { api } from "~/utils/api";
 import { useEffect , useState } from "react";
 import { getUserMetadata } from "~/lib/MetaData";
 import  toast  from "react-hot-toast";
-
+import { Label } from "~/components/ui/label";
 
 const Page: NextPage = () => {
 
@@ -44,45 +44,47 @@ const Page: NextPage = () => {
     
       <Header />
 
-      <main className=" custopn-page-height max-w-7xl  items-center pt-8 flex flex-col w-full bg-gray-100 ">
+      <main className=" custopn-page-height  items-center pt-8 flex flex-col w-full bg-gray-50 ">
         <div className="w-full h-[70px] flex justify-center items-start  flex-col px-8">
-          <h1 className="text-3xl font-semibold text-gray-900 ">Password Settings</h1>
-          <p className="text-lg  text-gray-700 " >By changing your password, all of your active sessions will be logged out. </p>
+          <h1 className="text-3xl font-semibold text-gray-900 ">Paramètres de mot de passe</h1>
+          <p className="text-lg  text-gray-700 " >En modifiant votre mot de passe, toutes vos sessions actives seront déconnectées </p>
         </div>
 
         <div className='  w-full max-w-5xl  p-4 mx-auto rounded-lg   h-fit min-h-[300px] flex flex-col  my-4   bg-white '>
         
-        <div className="flex  w-full flex-col  gap-y-2  items-start gap-x-2">
-                   <p>Current Password</p>
-                   <input value={inputs.password} type="text"
+        <div className="flex  w-full flex-col my-2 mt-4   p-4 items-start gap-x-2">
+                   <Label>Mot de passe actuel</Label>
+                   <input 
+                   value={inputs.password} 
+                   type="password"
                     onChange={({target}) => setInputs({...inputs , password : target.value })}
-                   className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
+                   className="px-4 py-1.5 h-[40px] mt-1 rounded-lg outline-none border border-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
          </div>
-         <div className="flex gap-x-8 w-full h-[60px] items-center">
+         <div className="flex gap-x-4 w-full p-4 my-2 mb-2 h-[60px] items-center">
 
-              <div className="flex  w-[50%] flex-col gap-y-2  items-start gap-x-2">
-                   <p>New Password</p>
-                   <input value={inputs.newPassword} type="text"
+              <div className="flex  w-[50%] flex-col  justify-start  items-start gap-x-2">
+                   <Label>Nouveau mot de passe</Label>
+                   <input value={inputs.newPassword} type="password"
                     onChange={({target}) => setInputs({...inputs , newPassword : target.value })}
-                   className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
+                   className="px-4 py-1.5 h-[40px] mt-1  rounded-lg outline-none border border-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
               </div>
 
-               <div className="flex  w-[50%] flex-col gap-y-2  items-start gap-x-2">
-                   <p>Confirm New Password</p>
-                   <input value={inputs.confirmNewPassword} type="text"
+               <div className="flex  w-[50%] flex-col  items-start gap-x-2">
+                   <Label>Confirmez le nouveau mot de passe</Label>
+                   <input value={inputs.confirmNewPassword} type="password"
                     onChange={({target}) => setInputs({...inputs , confirmNewPassword : target.value })}
-                   className="px-4 py-1.5 h-[40px] max-w-[70%] rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
+                   className="px-4 py-1.5 h-[40px] mt-1  rounded-lg outline-none border border-gray-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full" />
                </div>
 
 
          </div>
          
-             <div className="w-full h-[50px] items-center justify-start flex ">
+             <div className="w-full h-[50px] p-4 my-4 items-center justify-end flex ">
                  <AbdullahButton 
                  onClick={handleSubmit}
                  isLoading={mutation.isLoading}
                  className={`${buttonVariants({size:"sm", variant:'primary'})} font-semibold`}>
-                        save changes
+                      Enregistrer les modifications
                  </AbdullahButton>
              </div>
         </div>
