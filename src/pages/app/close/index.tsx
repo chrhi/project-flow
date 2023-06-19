@@ -3,12 +3,10 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/header/Header";
 import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
-import { AbdullahTable } from "~/components/used/AbdullahTable";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-
-
-
+import { RowGridText } from "~/components/typography/RowGridText";
+import { TextField } from "~/components/used/TextField";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -25,36 +23,93 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
-       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
+       <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
      
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className="col-span-6 lg:col-span-12">
-            <AbdullahTable
-                 title="Transfer of product,"
-                 description="Lessons learned refer to the process of capturing, documenting, and analyzing project experiences to promote learning and knowledge sharing. They are used to improve project management practices, enhance organizational learning, and promote innovation. By sharing knowledge and experiences, project teams can save time and resources, reduce risks, and increase the likelihood of project success."
-                 headers={["What Worked Well"  , "What Can Be Improved"]}
-                 body={[
-                  {
-                    id : "12334" , 
-                    callback:(id ) => console.log(id) ,
-                    properties:["Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion." , "Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion."]
-                  },
-                  {
-                    id : "52334" , 
-                    callback:(id ) => console.log(id) ,
-                    properties:["Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion." , "Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion."]
-                  },
-                  {
-                    id : "12884" , 
-                    callback:(id ) => console.log(id) ,
-                    properties:["Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion." , "Project documentation refers to the collection of project-related documents used to track progress, ensure requirements are met, and provide a historical record of the project. It facilitates project management, decision-making, and communication among stakeholders. Effective project documentation can enhance project outcomes and ensure successful project completion."]
-                  },
-                 ]}
-              // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-         />
-            </div>
+         
+          
+            <RowGridText text="Résumé des performances" />
+            <RowGridText text="La clôture de projet est la phase finale où toutes les activités, les livrables et les objectifs sont terminés, et le projet est officiellement clôturé, visant à valider le succès du projet et faciliter la transition vers les opérations en cours ou les projets ultérieurs" small />
+
+            {/* this is a row */}
+            <TextField
+                isLoading={false}
+                lable=" Objectifs du projet (Portée)"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Critères de réalisation de la portée du projet"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Les objectifs de la portée ont été atteints."
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+            {/* this is another row  */}
+            <TextField
+                isLoading={false}
+                lable="Objectifs de qualité du projet"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Critères de réalisation de la qualité"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Comment la qualité a été atteinte"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+              {/* this is another row  */}
+              <TextField
+                isLoading={false}
+                lable="Objectifs de temps du projet"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Critères de réalisation des délais"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Comment les objectifs de délais ont été atteints"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+              {/* this is another row  */}
+              <TextField
+                isLoading={false}
+                lable="Objectifs de coût du projet"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Critères de réalisation des coûts"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+             <TextField
+                isLoading={false}
+                lable="Comment les objectifs de coûts ont été atteints"
+                onChange={(e) => console.log(e)}
+                value={""}
+            />
+          
         </div>
       </div>
    

@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/header/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { RowGridText } from "~/components/typography/RowGridText";
 import { AbdullahTable,type ItemTable } from "~/components/used/AbdullahTable";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
@@ -65,99 +66,89 @@ const Page: NextPage = () => {
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <Input
-                  isLoading={false}
-                  lable="Team Member"
-                  onChange={(e) => console.log(e)}
-                  value={""}
-            />
-             <Input
-                  isLoading={false}
-                  lable="Role"
-                  onChange={(e) => console.log(e)}
-                  value={""}
-            />
+            <RowGridText text="Journal des modifications" />
+            <RowGridText small text="Le journal des modifications est un document utilisé pour suivre et gérer les changements survenant pendant le cycle de vie d'un projet" />
             <TextField
                 isLoading={false}
-                lable="Activities Planned for This Reporting Period"
+                lable="Activités prévues pour cette période de rapport."
                 onChange={(e) => console.log(e)}
                 value={""}
             />
             <TextField
                 isLoading={false}
-                lable="Activities Accomplished This Reporting Period"
+                lable="Activités réalisées au cours de cette période de rapport."
                 onChange={(e) => console.log(e)}
                 value={""}
             />
             <TextField
                 isLoading={false}
-                lable="Activities Planned but Not Accomplished This Reporting Period"
+                lable="Activités prévues mais non réalisées au cours de cette période de rapport"
                 onChange={(e) => console.log(e)}
                 value={""}
             />
               <TextField
                 isLoading={false}
-                lable="Root Cause of Variancess"
+                lable="La cause profonde des écarts"
                 onChange={(e) => console.log(e)}
                 value={""}
             />
              <TextField
                 isLoading={false}
-                lable="Funds Spent This Reporting Period"
+                lable="Fonds dépensés au cours de cette période de rapport"
                 onChange={(e) => console.log(e)}
                 value={""}
             />
                <TextField
                 isLoading={false}
-                lable="Funds Planned to Be Spent This Reporting Period"
+                lable="Fonds prévus à dépenser au cours de cette période de rapport"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="Root Cause of Variances"
+                lable="Cause fondamentale des écarts"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="Quality Variances Identified This Period"
+                lable="Écarts de qualité identifiés pendant cette période"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="Planned Corrective or Preventive Action"
+                lable="Action corrective ou préventive planifiée"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="Activities Planned for Next Reporting Period"
+                lable="Activités prévues pour la prochaine période de rapport"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="Costs Planned for Next Reporting Period"
+                lable="Coûts prévus pour la prochaine période de rapport"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="New Risks Identified"
+                lable="Risques nouvellement identifiés"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="Issues"
+                lable="Problèmes identifiés"
                 onChange={(e) => console.log(e)}
                 value={""}
                />
                 <TextField
                 isLoading={false}
-                lable="Comments"
+                lable="Commentaires"
                 onChange={(e) => console.log(e)}
                 value={""}
                />

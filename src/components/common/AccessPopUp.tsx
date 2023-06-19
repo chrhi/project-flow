@@ -42,16 +42,16 @@ export  function AccessPopUp () {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[600px] h-[350px] flex flex-col items-center p-8 gap-8  z-[100]  transform overflow-hidden  bg-white  text-left align-middle shadow-xl transition-all">
-                <h1 className='text-2xl  font-bold text-gray-900 text-center '>Locked Out: Understanding and Overcoming Action Access Restrictions</h1>
+                <Dialog.Panel className="w-[600px] h-[380px] flex flex-col items-center p-8 gap-8  z-[100]  transform overflow-hidden  bg-white  text-left align-middle shadow-xl transition-all">
+                <h1 className='text-2xl  font-bold text-gray-900 text-center '>Verrouillé dehors : Comprendre et surmonter les restrictions d'accès aux actions</h1>
                    <p className='text-lg leading-8  text-center text-gray-700'>
-                   Proper communication with project authorities is key to resolving access issues, enabling one to contribute to the project's success by following the correct protocols.
+                   Une communication appropriée avec les autorités du projet est essentielle pour résoudre les problèmes d'accès, permettant à chacun de contribuer au succès du projet en suivant les protocoles appropriés
                    </p>
                    <AbdullahButton
                     onClick={() => set_isOpen({payload: false})}
                       className={`${buttonVariants({size:"lg", variant:'primary'})} font-bold`}
                     >
-                       accept and close 
+                     Accepter et fermer
                   </AbdullahButton>
                 </Dialog.Panel>
               </Transition.Child>

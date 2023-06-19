@@ -26,9 +26,9 @@ const List = [
   {name : "Coût de référence" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
   {name : "Journal des problèmes" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
   {name : "Rapport sur le rendement du projet " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
-  {name : "Audit des risques" , path : "/app/controlling" , navs : NAVS.ONE},
-  {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling" , navs : NAVS.THREE},
-  {name : "Analyse de variance" , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
+  {name : "Audit des risques" , path : "/app/controlling" , navs : NAVS.FIVE},
+  {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling" , navs : NAVS.SIX},
+  {name : "Analyse de variance" , path : "/app/controlling/quality_control" , navs : NAVS.SEVEN},
 ]
 
 export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {
@@ -44,7 +44,7 @@ export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {
               <Button
                  onClick={() => handleClick(path , Nav)}
                  className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
-                 ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-md shadow-sm`}>
+                 ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-sm shadow-sm`}>
                   {name}
               </Button>
 return (

@@ -44,7 +44,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
     <Button
     onClick={() => handleClick(path, Nav)}
     className={`rounded-lg w-[90%] mx-auto p-4 border dark:border-white ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 justify-start
-      ${current_page === Nav ? ' !text-gray-800 dark:!text-white  font-bold bg-sky-50 dark:bg-neutral-800 border border-blue-500 ' : '!text-gray-600 dark:bg-neutral-900 dark:!text-white'} text-md shadow-sm  `}
+      ${current_page === Nav ? ' !text-gray-800 dark:!text-white  font-bold bg-sky-50 dark:bg-neutral-800 border border-blue-500 ' : '!text-gray-600 dark:bg-neutral-900 dark:!text-white'} text-sm shadow-sm  `}
   >
     {name}
   </Button>

@@ -76,7 +76,7 @@ import { toast } from "react-hot-toast";
                       </div>
                     }
                       <p className="text-xs text-muted-foreground">
-                      +180.1% from last month
+                      depuis la dernière heure.
                     </p>
                     
                   </CardContent>
@@ -97,7 +97,7 @@ import { toast } from "react-hot-toast";
                       </div>
                      }
                     <p className="text-xs text-muted-foreground">
-                      +180.1% from last month
+                    depuis la dernière heure.
                     </p>
                     
                   </CardContent>
@@ -110,7 +110,7 @@ import { toast } from "react-hot-toast";
                   <CardContent>
                     <div className="text-2xl font-bold">0</div>
                     <p className="text-xs text-muted-foreground">
-                      +19% from last month
+                    depuis la dernière heure.
                     </p>
                   </CardContent>
                 </Card>
@@ -132,7 +132,7 @@ import { toast } from "react-hot-toast";
                      }
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      +201 since last hour
+                    depuis la dernière heure.
                     </p>
                   </CardContent>
                 </Card>
@@ -154,7 +154,7 @@ import { toast } from "react-hot-toast";
                      }
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      +201 since last hour
+                   depuis la dernière heure.
                     </p>
                   </CardContent>
                 </Card>

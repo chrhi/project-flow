@@ -1,0 +1,53 @@
+
+
+const List1 = [
+    {name : "Leçons apprises" , path : "/app/close/project_documentation" , navs : NAVS.TWO},
+    {name : "Formulaire d'acceptation formelle" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
+    {name : "Clôture du projet" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
+    {name : "Clôture du contrat" , path : "/app/close/resource_handover" , navs : NAVS.FIVE},
+    {name : "Rapport sur le rendement du projet" , path : "/app/close/project_documentation" , navs : NAVS.TWO},
+    {name : "Vérification de la qualité" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
+    {name : "Audit des achats" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
+    {name : "Terminer le projet" , path : "/app/close/end_project" , navs : NAVS.SIX},
+  ]
+
+  const List2 = [
+ 
+    {name : "Journal des modifications" , path : "/app/controlling/change_log" , navs : NAVS.ONE},
+    {name : "Coût de référence" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
+    {name : "Journal des problèmes" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
+    {name : "Rapport sur le rendement du projet " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
+    {name : "Audit des risques" , path : "/app/controlling" , navs : NAVS.ONE},
+    {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling" , navs : NAVS.THREE},
+    {name : "Analyse de variance" , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
+  ]
+
+const List3 = [
+
+  {name : "Suivi des tâches" , path : "/app/executing" , navs : NAVS.ONE},
+  {name : "Suivi du temps" , path : "/app/executing/timeTracking" , navs : NAVS.TWO},
+
+  {name : "Changer de requête" , path : "/app/executing" , navs : NAVS.THREE},
+  {name : "Rapport d'état de l'entrepreneur" , path : "/app/executing/timeTracking" , navs : NAVS.FOUR},
+  {name : "Rapport sur l'état de la valeur acquise" , path : "/app/executing" , navs : NAVS.FIVE},
+  {name : "Matrice d'approvisionnement et d'impact" , path : "/app/executing/timeTracking" , navs : NAVS.SIX},
+
+  {name : "Annuaire de l'équipe" , path : "/app/executing" , navs : NAVS.SEVEN},
+  // {name : " Activity Attributes" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
+
+]
+
+
+export const List4 = [
+  {name : "Énoncé de la portée du projet" , path : "/app/planning" , navs : NAVS.ONE},
+  {name : " WBD  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
+  {name : " Plan de gestion de projet " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
+  {name : "Planification du calendrier du projet" , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
+  {name : "Plan de gestion des communications" , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},
+  {name : "Plan de gestion des coûts" , path : "/app/planning/cost_managment_plan" , navs : NAVS.SEVEN},
+  {name : "Plan de gestion du changement" , path : "/app/planning/change_managment_plan" , navs : NAVS.EIGHT},
+  {name : "Plan de gestion des risques" , path : "/app/planning/risk_management_plan" , navs : NAVS.NIGHT},
+  {name : "Plan d'amélioration des processus" , path : "/app/planning/Process_involving_plan" , navs : NAVS.TEN},
+  {name : "Plan de gestion des parties prenantes" , path : "/app/planning/stakholder_managment_plan" , navs : NAVS.A},
+  {name : "Plan de gestion des exigences" , path : "/app/planning/requirement_managment_plan" , navs : NAVS.ELEVEN},
+] 
