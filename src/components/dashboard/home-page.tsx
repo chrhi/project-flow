@@ -69,7 +69,7 @@ import { toast } from "react-hot-toast";
                         if(item.type === STAKHOLDER_TYPES[0]?.value) {
                          return total + Number(item.InvestmentAmount)
                         }
-                        return 0
+                        return total
                        } , 0)
                       }
                       
