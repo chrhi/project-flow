@@ -25,13 +25,13 @@ const Page: NextPage = () => {
           firstName: item.name,
           email: item.email,
           LastName : item.lastName ,
-          type :   item.type ,
-          street : item.location , 
-          phone : item.phone , 
-          zipCode : item.zipCode , 
-          createdAt : formatDateAlgeria(item.createdAt) , 
+          // type :   item.type ,
+          // street : item.location , 
+          // phone : item.phone , 
+          // zipCode : item.zipCode , 
+          // createdAt : formatDateAlgeria(item.createdAt) , 
           status :   "active" ,
-          password : item.passwordForAdmin
+          // password : item.passwordForAdmin
         }
         })
         setUsers(ModifiedArray)

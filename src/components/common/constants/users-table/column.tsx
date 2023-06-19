@@ -21,13 +21,13 @@ export type User = {
   firstName: string
   email: string
   LastName : string 
-  type : string
-  street : string , 
-  phone : string , 
-  zipCode : string , 
-  createdAt : string , 
+  // type : string
+  // street : string , 
+  // phone : string , 
+  // zipCode : string , 
+  // createdAt : string , 
   status : string,
-  password : string
+  // password : string
 }
 
 export const columns: ColumnDef<User>[] = [
@@ -57,29 +57,29 @@ export const columns: ColumnDef<User>[] = [
     accessorKey: "LastName",
     header: "Last Name",
   },
-  {
-    accessorKey: "type",
-    header: "Type",
+  // {
+  //   accessorKey: "type",
+  //   header: "Type",
 
-  },
+  // },
  
-  {
-    accessorKey: "street",
-    header: "street",
-  },
-  {
-    accessorKey: "phone",
-    header: "Phone",
-  },
+  // {
+  //   accessorKey: "street",
+  //   header: "street",
+  // },
+  // {
+  //   accessorKey: "phone",
+  //   header: "Phone",
+  // },
  
-  {
-    accessorKey: "zipCode",
-    header: "Zip Code",
-  },
-  {
-    accessorKey: "createdAt",
-    header: "Created At",
-  },
+  // {
+  //   accessorKey: "zipCode",
+  //   header: "Zip Code",
+  // },
+  // {
+  //   accessorKey: "createdAt",
+  //   header: "Created At",
+  // },
 
  
  
@@ -91,10 +91,10 @@ export const columns: ColumnDef<User>[] = [
       return <Badge>{row.original.status}</Badge>
     }
   },
-  {
-    accessorKey: "password",
-    header: "password",
-  },
+  // {
+  //   accessorKey: "password",
+  //   header: "password",
+  // },
   {
     id: "actions",
     cell: ({ row }) => {
