@@ -11,66 +11,87 @@ import {
   CardHeader,
   CardTitle,
 } from "~/components/ui/card"
+import { api } from "~/utils/api";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { Tasks } from "@prisma/client";
+import { toast } from "react-hot-toast";
+import LoadingComponents from "../common/loading-components";
+import EmptyGanttChard from '../gantt-chard/empty';
 
-const chartdata = [
-  {
-    date: "Jan 22",
-    SemiAnalysis: 2890,
-    "The Pragmatic Engineer": 2338,
-  },
-  {
-    date: "Feb 22",
-    SemiAnalysis: 2756,
-    "The Pragmatic Engineer": 2103,
-  },
-  {
-    date: "Mar 22",
-    SemiAnalysis: 3322,
-    "The Pragmatic Engineer": 2194,
-  },
-  {
-    date: "Apr 22",
-    SemiAnalysis: 3470,
-    "The Pragmatic Engineer": 2108,
-  },
-  {
-    date: "May 22",
-    SemiAnalysis: 3475,
-    "The Pragmatic Engineer": 1812,
-  },
-  {
-    date: "Jun 22",
-    SemiAnalysis: 3129,
-    "The Pragmatic Engineer": 1726,
-  },
-];
+
+function formatDate(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'short',
+    year: '2-digit'
+  };
+  return new Intl.DateTimeFormat('en-US', options).format(date);
+}
+
   // Basic formatters for the chart values
- const dataFormatter = (number: number) => {
-  return "$ " + Intl.NumberFormat("us").format(number).toString();
-};
+  const dataFormatter = (number: number): string => {
+    return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number);
+  };
   
 function BedgetStatus() {
+
+  const [status , setStatus ] = useState("LOADING")
+
+  const [tasks , setTasks ] = useState<any[]>([] as any[])
+
+   api.tasksRouter.getTasks.useQuery({projectId : getProjectMetaData()},{
+    onError : () => {
+        toast.error("Quelque chose s'est mal passé.")
+    }, 
+    onSuccess : (data) =>  {
+     const prepare = data.map(item => {
+      return {
+           date:formatDate(item.EndsAt || new Date()),
+           "Coût prévu pour une tâche": item.cost,
+           "Le coût réel de la tâche": item.RealCost,
+
+      }
+
+     })
+     if(prepare.length === 0) {
+        setStatus("EMPTY")
+        return
+     }
+     setTasks(prepare)
+     setStatus("PLAYING")
+    }, 
+  })
    
     
   return (
 
       <Card >
       <CardHeader>
-        <CardTitle>Recent Sales</CardTitle>
+        <CardTitle>Comment nous dépensons le budget pendant le projet</CardTitle>
         <CardDescription>
-          You made 265 sales this month.
+        Le budget est généré à partir des sponsors du projet.
         </CardDescription>
       </CardHeader>
-      <CardContent>
-      <AreaChart
-      className="h-72 mt-4"
-      data={chartdata}
-      index="date"
-      categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-      colors={["blue", "cyan"]}
-      valueFormatter={dataFormatter}
-    />
-      </CardContent>
+      {
+         
+          status === "LOADING" ? 
+          <LoadingComponents />
+          : status === "EMPTY" ? 
+         <EmptyGanttChard />
+          :
+          <CardContent>
+          <AreaChart
+          allowDecimals
+          className="h-72 mt-4"
+          data={tasks || []}
+          index="date"
+          categories={["Coût prévu pour une tâche", "Le coût réel de la tâche"]}
+          colors={["yellow", "orange"]}
+          valueFormatter={dataFormatter}
+        />
+          </CardContent>
+      }
+     
     </Card>
    
   )

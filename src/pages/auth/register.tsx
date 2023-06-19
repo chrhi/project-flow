@@ -53,27 +53,27 @@ const Page: NextPage = () => {
         
       <div className="w-[50%] max-w-md p-4 bg-white border shadow-2xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form className="space-y-6" action="#">
-        <h5 className="text-xl font-medium text-gray-900 ">Register </h5>
+        <h5 className="text-xl font-medium text-gray-900 ">S'inscrire. </h5>
         <div>
-            <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 ">Your user name</label>
+            <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 ">Votre nom d'utilisateur.</label>
             <input
             onChange={(e) => setFormData({...formData , userName : e.target.value})}
-            type="text" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com" required />
+            type="text" name="username" id="username" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="nom" required />
         </div>
         <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Votre adresse e-mail.</label>
             <input
             onChange={(e) => setFormData({...formData , email : e.target.value})}
             type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com" required />
         </div>
         <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Votre mot de passe.</label>
             <input  
             onChange={(e) => setFormData({...formData , password : e.target.value})}
             type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
         </div>
         <div>
-            <label htmlFor="Confirmpassword" className="block mb-2 text-sm font-medium text-gray-900">confirm your password</label>
+            <label htmlFor="Confirmpassword" className="block mb-2 text-sm font-medium text-gray-900">Confirmez votre mot de passe.</label>
             <input  
              onChange={(e) => setFormData({...formData , confirmPassword : e.target.value})}
             type="password" name="Confirmpassword" id="Confirmpassword" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />

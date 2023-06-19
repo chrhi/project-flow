@@ -2,7 +2,7 @@ import BedgetStatus from "./BedgetStatus";
 import { getProjectCurrentPhaseAbdullah, getProjectMetaData } from "~/lib/MetaData";
 import { RecentStakeholdersNew } from "./recent-stakeholders";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Activity, CreditCard, DollarSign, Users } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Euro, Users } from "lucide-react";
 import { api } from "~/utils/api";  
 import { useState } from "react";
 import type { StakeHolder , Tasks , Risk } from "@prisma/client";
@@ -59,7 +59,7 @@ import { toast } from "react-hot-toast";
                     <CardTitle className="text-sm font-medium">
                       Budget total
                     </CardTitle>
-                    <DollarSign className="h-4 w-4 text-muted-foreground" />
+                    <Euro   className="h-4 w-4 text-muted-foreground" />
                   </CardHeader>
                   <CardContent>
                     {

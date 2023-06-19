@@ -23,7 +23,7 @@ type Props ={
 }
 
 export const List = [
-  {name : "Énoncé de la portée du projet" , path : "/app/planning" , navs : NAVS.ONE},
+  {name : "Plan de Portée du Projet" , path : "/app/planning" , navs : NAVS.ONE},
   {name : " WBD  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
   {name : " Plan de gestion de projet " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
   {name : "Planification du calendrier du projet" , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
@@ -51,7 +51,7 @@ export  const PlanningSideBar = ({isOpen , setIsOpen} : Props) => {
   const Link = (current_page: NAVS, Nav: NAVS, path: string, name: string) => (
     <Button
       onClick={() => handleClick(path, Nav)}
-      className={`rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 justify-start
+      className={`rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 flex items-center justify-start
         ${current_page === Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' : '!text-gray-600'} text-sm shadow-sm`}
     >
       {name}

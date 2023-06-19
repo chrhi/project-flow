@@ -22,16 +22,15 @@ type Props ={
 }
 
 const List = [
-
   {name : "Suivi des tâches" , path : "/app/executing" , navs : NAVS.ONE},
   {name : "Suivi du temps" , path : "/app/executing/timeTracking" , navs : NAVS.TWO},
 
   {name : "Changer de requête" , path : "/app/executing" , navs : NAVS.THREE},
-  {name : "Rapport d'état de l'entrepreneur" , path : "/app/executing/timeTracking" , navs : NAVS.FOUR},
+  {name : "Rapport d'état des contractants" , path : "/app/executing/timeTracking" , navs : NAVS.FOUR},
   {name : "Rapport sur l'état de la valeur acquise" , path : "/app/executing" , navs : NAVS.FIVE},
   {name : "Matrice d'approvisionnement et d'impact" , path : "/app/executing/timeTracking" , navs : NAVS.SIX},
 
-  {name : "Annuaire de l'équipe" , path : "/app/executing" , navs : NAVS.SEVEN},
+  {name : "Répertoire de l'équipe" , path : "/app/executing" , navs : NAVS.SEVEN},
   // {name : " Activity Attributes" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
 
 ]
@@ -48,7 +47,7 @@ export  const ExecutingSidebar = ({isOpen , setIsOpen} : Props) => {
   const Link = (current_page : NAVS ,Nav : NAVS ,path : string, name : string ) => 
               <Button
                  onClick={() => handleClick(path , Nav)}
-                 className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+                 className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 flex items-center justify-start
                  ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-sm shadow-sm`}>
                   {name}
               </Button>

@@ -68,15 +68,15 @@ const Page: NextPage = () => {
         
       <div className="w-[50%] max-w-md p-4 z-[999] bg-white border shadow-2xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form className="space-y-6" action="#">
-        <h5 className="text-xl font-semibold text-gray-900 ">Login </h5>
+        <h5 className="text-xl font-semibold text-gray-900 "> Connexion. </h5>
         <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Your rmail</label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Votre adresse e-mail.</label>
             <input
              onChange={(e) => setFormData({...formData , email : e.target.value})}
             type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com" required />
         </div>
         <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Your password</label>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Votre mot de passe.</label>
             <input  
             onChange={(e) => setFormData({...formData , password : e.target.value})}
             type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
@@ -88,11 +88,11 @@ const Page: NextPage = () => {
            isLoading ={mutation.isLoading}
           onClick={(e :FormEvent) => handleSubmit(e)}
       >
-        Sign into your account
+      Se connecter à votre compte.
       </AbdullahButton>
 
         <div className="text-sm font-medium text-gray-500 ">
-        Not registered? <Link href="/auth/register" className="text-blue-500 hover:underline ">Create an account</Link>
+        Pas encore inscrit(e) ?<Link href="/auth/register" className="text-blue-500 hover:underline ">Créer un compte.</Link>
         </div>
         {/* <div className="text-sm font-medium text-gray-500 ">
         or if you have an invitation? <Link href="/auth/invitation" className="text-blue-500 hover:underline ">use my invite</Link>

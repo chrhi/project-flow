@@ -35,7 +35,7 @@ export function PagesNav() {
 
   const LIST = [
     {
-      name : "Aperçu" , path : "/app" , page : PAGES.DASHBORD
+      name : "Accueil" , path : "/app" , page : PAGES.DASHBORD
     },
     {
       name : "Démarage" , path : "/app/startup", page : PAGES.STARTUP
@@ -53,7 +53,7 @@ export function PagesNav() {
       name : "Clôture " , path : "/app/close" , page : PAGES.CLOSING
     },
     {
-      name : "Documents " , path : "/app/docs" , page : PAGES.DOCS
+      name : "Mes documents " , path : "/app/docs" , page : PAGES.DOCS
     },
   ]
 

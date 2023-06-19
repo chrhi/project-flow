@@ -21,14 +21,14 @@ type Props ={
 }
 
 const List = [
-  {name : " Clôture du projet" , path : "/app/close" , navs : NAVS.ONE},
-  {name : "Formulaire d'acceptation formelle" , path : "/app/close/project_evaluation" , navs : NAVS.TWO},
-  {name : "Leçons apprises" , path : "/app/close/project_closure" , navs : NAVS.THREE},
-  {name : "Clôture du contrat" , path : "/app/close/resource_handover" , navs : NAVS.FOUR},
-  {name : "Rapport sur le rendement du projet" , path : "/app/close/project_documentation" , navs : NAVS.FIVE},
-  {name : "Vérification de la qualité" , path : "/app/close/project_evaluation" , navs : NAVS.SIX},
-  {name : "Audit des achats" , path : "/app/close/project_closure" , navs : NAVS.SEVEN},
-  {name : "Terminer le projet" , path : "/app/close/end_project" , navs : NAVS.EIGHT},
+  {name : "Clôture du projet" , path : "/app/close" , navs : NAVS.TWO},
+  {name : "Formulaire d'acceptation formelle" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
+  {name : "Leçons apprises " , path : "/app/close/project_closure" , navs : NAVS.FOUR},
+  {name : "Clôture du contrat" , path : "/app/close/resource_handover" , navs : NAVS.FIVE},
+  {name : "Rapport sur le rendement du projet" , path : "/app/close/project_documentation" , navs : NAVS.TWO},
+  {name : "Vérification de la qualité" , path : "/app/close/project_evaluation" , navs : NAVS.THREE},
+  {name : "Audit des achats" , path : "/app/close/project_closure" , navs : NAVS.FOUR},
+  {name : "Terminer le projet" , path : "/app/close/end_project" , navs : NAVS.SIX},
 ]
 
 export  const CloseSideBar = ({isOpen , setIsOpen} : Props) => {
@@ -43,7 +43,7 @@ export  const CloseSideBar = ({isOpen , setIsOpen} : Props) => {
   const Link = (current_page : NAVS ,Nav : NAVS ,path : string, name : string ) => 
               <Button
                  onClick={() => handleClick(path , Nav)}
-                 className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 justify-start
+                 className={` rounded-lg w-[90%] mx-auto p-4 border ${buttonVariantsAbdullah({variant:'ghost' , size:'lg'})} h-14 flex items-center justify-start
                  ${current_page == Nav ? ' !text-gray-800 font-bold bg-sky-50 border border-blue-500 ' :'!text-gray-600' } text-sm shadow-sm`}>
                   {name}
               </Button>

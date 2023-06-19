@@ -24,7 +24,7 @@ type Props = {
 const List = [
   { name: 'Initialisation', path:'/app/startup', navs: NAVS_STARTUP.SETUP },
   { name: 'Parties prenantes', path: '/app/startup/stakeholders', navs: NAVS_STARTUP.STAKEHOLDER },
-  { name: 'Objets du projet', path: '/app/startup/tables', navs: NAVS_STARTUP.TABLE },
+  { name: 'Objectives du projet', path: '/app/startup/tables', navs: NAVS_STARTUP.TABLE },
   { name: 'Déclaration de ressources', path:'/app/startup/resource', navs: NAVS_STARTUP.STARTUP },
   { name: 'Jalons', path: '/app/startup/milestones', navs: NAVS_STARTUP.MILESTONES },
   { name: 'Des risques', path: '/app/startup/risks', navs: NAVS_STARTUP.SECONDFORM },
@@ -43,7 +43,7 @@ export const Sidebar = ({ isOpen, setIsOpen }: Props) => {
   const Link = (current_page: NAVS_STARTUP, Nav: NAVS_STARTUP, path: string, name: string) => (
     <Button
     onClick={() => handleClick(path, Nav)}
-    className={`rounded-lg w-[90%] mx-auto p-4 border dark:border-white ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 justify-start
+    className={`rounded-lg w-[90%] mx-auto p-4 border dark:border-white ${buttonVariantsAbdullah({ variant: 'ghost', size: 'lg' })} h-14 flex items-center justify-start
       ${current_page === Nav ? ' !text-gray-800 dark:!text-white  font-bold bg-sky-50 dark:bg-neutral-800 border border-blue-500 ' : '!text-gray-600 dark:bg-neutral-900 dark:!text-white'} text-sm shadow-sm  `}
   >
     {name}
