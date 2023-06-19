@@ -24,7 +24,7 @@ const Page: NextPage = () => {
     const {refetch} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata() || ""} , {      
            retryOnMount : false ,
            onSuccess(data) {
-             if (data?.id &&  data?.currentPhase){
+             if (data && data?.id &&  data?.currentPhase){
               setHasProjectStart(PROJECT_STATUS.PROJECT)
               setoreProjectMetaData({project_id  : data.id})
               storeProjectCurrentPhaseAbdullah(data?.currentPhase)
@@ -39,6 +39,7 @@ const Page: NextPage = () => {
               return
              }
              setHasProjectStart(PROJECT_STATUS.NO_PROJECT)
+             return
            },
            onError(){
             toast.error("somethign went wrong")

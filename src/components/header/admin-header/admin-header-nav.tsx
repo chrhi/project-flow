@@ -4,9 +4,10 @@ import { NextRouter, useRouter } from "next/router";
 import { useMemo } from "react";
 
 const tabs = [
-    { name: "Dashboard", href: `/admin` },
-    { name: "Users", href: `/admin/users` },
-    { name: "Settings", href: `/admin/settings` },
+    { name: "Tableau de bord", href: `/admin` },
+    { name: "Utilisateurs", href: `/admin/users` },
+
+   
 ]
 
 export default function AdminNavTabs() {

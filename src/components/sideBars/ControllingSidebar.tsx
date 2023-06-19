@@ -22,7 +22,7 @@ type Props ={
 
 const List = [
  
-  {name : "Journal des modifications" , path : "/app/controlling/change_log" , navs : NAVS.ONE},
+  {name : "Journal des modifications" , path : "/app/controlling" , navs : NAVS.ONE},
   {name : "Coût de référence" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
   {name : "Journal des problèmes" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
   {name : "Rapport sur le rendement du projet " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},

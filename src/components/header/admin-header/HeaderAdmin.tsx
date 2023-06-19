@@ -6,9 +6,9 @@ import AdminNavTabs from "./admin-header-nav"
 
 
 const Items = [
-    {name : "Dashboard" , path : "/admin"},
-    {name : "Users" , path : "/"},
-    {name : "Settings" , path : "/"},
+    {name : "Tableau de bord" , path : "/admin"},
+    {name : "Utilisateurs" , path : "/"},
+    
 ]
 
 export const HeaderAdmin = () => {

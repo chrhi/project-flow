@@ -1,33 +1,34 @@
 import { type NextPage } from "next";
 import { HeaderAdmin } from "~/components/header/admin-header/HeaderAdmin";
-import { Card, LineChart, Title } from "@tremor/react";
+import {  LineChart } from "@tremor/react";
 import MaxWidthWrapper from "~/components/layout/MaxWidthWrapper";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 
 const chartdata = [
   {
-    year: 0,
-    "Users Growth Rate": 0,
-    "Project Growth Rate": 0,
+    date: 0,
+    "Nombre d'utilisateurs": 0,
+  
   },
   {
-    year: 7,
-    "Users Growth Rate": 1,
-    "Project Growth Rate": 1.58,
+    date: 7,
+    "Nombre d'utilisateurs": 1,
+   
   },
   {
-    year: 12,
-    "Users Growth Rate": 1,
-    "Project Growth Rate": 1.61,
+    date: 12,
+    "Nombre d'utilisateurs": 1,
+   
   },
   {
-    year: 22,
-    "Users Growth Rate": 2,
-    "Project Growth Rate": 1.61,
+    date: 22,
+    "Nombre d'utilisateurs": 2,
+   
   },
   {
-    year: 27,
-    "Users Growth Rate": 4,
-    "Project Growth Rate": 1.67,
+    date: 27,
+    "Nombre d'utilisateurs": 4,
+   
   },
   //...
 ];
@@ -37,22 +38,32 @@ const Page: NextPage = () => {
   return (
     <>
     <HeaderAdmin />
-      <main className=" w-full custom-hieght-navbar bg-stone-50 flex justify-start items-center  ">
+      <main className=" w-full custom-hieght-navbar bg-stone-50  flex justify-start items-center  ">
         <MaxWidthWrapper>
         <div className="w-full flex flex-wrap gap-8 ">
-          
-          <Card className="w-[80%] mx-auto h-[400px]">
-          <Title>Users Growth Rates </Title>
-        <LineChart
-              className="mt-6"
-              data={chartdata}
-              index="year"
-              categories={["Users Growth Rate"]}
-              colors={["blue"]}
-             
-              yAxisWidth={40}
+
+        <Card  >
+      <CardHeader>
+        <CardTitle>Taux de croissance des utilisateurs</CardTitle>
+        <CardDescription>
+        La croissance des utilisateurs est cruciale pour évaluer le succès d'une entreprise et prendre des décisions stratégiques en matière de développement et de marketing.
+        </CardDescription>
+      </CardHeader>
+    
+          <CardContent>
+        
+             <LineChart
+                   className="mt-6"
+                   data={chartdata}
+                   index="date"
+                   categories={["Nombre d'utilisateurs"]}
+                   colors={["blue"]}
+                   yAxisWidth={40}
              />
-            </Card>
+          </CardContent>
+      
+     
+    </Card>
       
         </div>
         </MaxWidthWrapper>
