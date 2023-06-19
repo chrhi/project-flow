@@ -30,7 +30,7 @@ export function GeneraleBuilder({title , description , phase , color}:Props) {
         <div className="flex items-end  w-fit rounded-md bg-white text-secondary-foreground">
         <AbdullahButton
            className={buttonVariants({variant : "primary", size:"sm"})} >
-               <Hammer className="mr-1 h-3 w-3" />   build
+               <Hammer className="mr-1 h-3 w-3 font-bold" />   Construire
         </AbdullahButton> 
           
         </div>
@@ -43,9 +43,9 @@ export function GeneraleBuilder({title , description , phase , color}:Props) {
           </div>
           <div className="flex items-center">
             <Hammer className="mr-1 h-3 w-3" />
-            1
+            0
           </div>
-          <div>Updated April 2023</div>
+          {/* <div>Updated April 2023</div> */}
         </div>
       </CardContent>
     </Card>

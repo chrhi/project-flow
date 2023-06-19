@@ -28,7 +28,7 @@ export default function Column({ title, tasks, id } : PropsType ) {
             {...provided.droppableProps}
           >
             {tasks.map((item, index) => (
-              <Task priority={item.priority} key={item.id} index={index} title={item.title} id={item.id} discription={item.discription} imgUrl={item.imgUrl} />
+              <Task priority={item.priority} endsAt={item.endsAt} key={item.id} index={index} title={item.title} id={item.id} discription={item.discription} imgUrl={item.imgUrl} />
             ))}
             {provided.placeholder}
           </div>

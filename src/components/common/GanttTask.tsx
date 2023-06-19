@@ -73,17 +73,17 @@ export const GanttTask = () => {
   return (
     <div className="w-full h-full flex pb-8 pt-4 flex-col  relative bg-white overflow-x-auto overflow-y-auto items-start">
       <div className="w-full h-[100px] flex mb-4 flex-col items-start">
-        <Title>Gantt  chart view </Title>
+        <Title>Vue du diagramme de Gantt </Title>
        
         <div className="w-full h-[65px] gap-x-4 flex items-center justify-end px-4">
           {
             [
-              {name : " Hour" , value : ViewMode.Hour},
-              {name : "   Quarter Day" , value : ViewMode.QuarterDay},
-              {name : "  Haft of day" , value : ViewMode.HalfDay},
-              {name : "    Week" , value : ViewMode.Week},
-              {name : "    Month" , value : ViewMode.Month},
-              {name : "   Year" , value : ViewMode.Year},
+              {name : " Heure" , value : ViewMode.Hour},
+              {name : "   Quart de journée" , value : ViewMode.QuarterDay},
+              {name : "  Moitié de journée" , value : ViewMode.HalfDay},
+              {name : "    Semaine" , value : ViewMode.Week},
+              {name : "    Mois" , value : ViewMode.Month},
+              {name : "   Année" , value : ViewMode.Year},
              
             ].map(item => (
               <AbdullahButton
@@ -96,7 +96,7 @@ export const GanttTask = () => {
         
         <div className="flex items-center ml-4 space-x-2">
            <Switch checked={showTaskList} onCheckedChange={handleChange} id="tasklist-show" />
-           <Label htmlFor="tasklist-show">Show task list</Label>
+           <Label htmlFor="tasklist-show">Afficher la liste des tâches</Label>
         </div>
         </div>
       </div>

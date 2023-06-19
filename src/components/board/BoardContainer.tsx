@@ -53,6 +53,7 @@ function BoardContainer({tasks} : Props ) {
           discription : item.description || "" , 
           imgUrl : "",
           priority : item.Priority || "",
+          endsAt : item.EndsAt || new Date()
         }
       })
       setTodo(prepare.filter(item => item.status === "TODO"))
@@ -140,7 +141,7 @@ function BoardContainer({tasks} : Props ) {
     onDragEnd = {(result) => handleDragEnd(result)}>
     <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex justify-between ">
       <Column 
-       title="Faire"
+       title="A faire"
        tasks={todo} 
        id="todo"
        />
@@ -150,12 +151,12 @@ function BoardContainer({tasks} : Props ) {
        id="doing"
        />
         <Column 
-      title="Fait"
+      title="Terminer"
        tasks={Done} 
        id="done"
        />
         <Column 
-      title="Annulé"
+      title="Annuler"
        tasks={Canceled} 
        id="Canceled"
        />
