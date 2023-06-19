@@ -63,7 +63,7 @@ export const ProjectStarter = ({ refetch }: Props) => {
           <h1 className="text-2xl font-semibold text-stone-900 dark:text-white">Énoncer le projet </h1>
         </div>
         <Input
-          lable="écrire le monde  CONFIRMER"
+          lable="écrire le mot  CONFIRMER"
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}
           className='my-4'
