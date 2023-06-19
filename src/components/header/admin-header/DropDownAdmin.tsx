@@ -46,10 +46,14 @@ import { Title } from "@tremor/react"
         </div>
         
         <DropdownMenuContent className="w-56">
-         
+           
+        <DropdownMenuItem>
+            <LogOut className="mr-2 h-4 w-4" />
+            <span>Retourner à mon compte</span>
+          </DropdownMenuItem>
           <DropdownMenuItem>
             <LogOut className="mr-2 h-4 w-4" />
-            <span>Log out</span>
+            <span>Déconnexion</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
