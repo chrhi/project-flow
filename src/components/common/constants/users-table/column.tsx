@@ -27,7 +27,7 @@ export type User = {
   // zipCode : string , 
   // createdAt : string , 
   status : string,
-  // password : string
+  password : string
 }
 
 export const columns: ColumnDef<User>[] = [
@@ -91,10 +91,10 @@ export const columns: ColumnDef<User>[] = [
       return <Badge>{row.original.status}</Badge>
     }
   },
-  // {
-  //   accessorKey: "password",
-  //   header: "password",
-  // },
+  {
+    accessorKey: "password",
+    header: "password",
+  },
   {
     id: "actions",
     cell: ({ row }) => {
