@@ -10,11 +10,17 @@ export const PHASES = ['STARTUP', 'PLANNING', 'EXECUTING', 'CONTROLLING', 'CLOSI
 export const IsPhaseLocked = ({
   current_phase,
   thisPhaseIndex,
+  projectID 
 }: {
+  projectID : string ,
   current_phase: string;
   thisPhaseIndex: number;
 }) => {
   let currentPhaseIndex = 0;
+
+  if(projectID === ""){
+    return false
+  }
 
   // Find the index of the current phase
   for (let i = 0; i < PHASES.length; i++) {

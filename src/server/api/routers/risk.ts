@@ -37,4 +37,18 @@ export const riskRouter = createTRPCRouter({
       })
     return resources
     }),
+    deleteRisk : publicProcedure
+    .input(z.object({ 
+      ID: z.string(),
+     
+     }))
+    .mutation( async({ input  , ctx }) => {
+
+      const resources =  await ctx.prisma.risk.delete({
+        where:{
+            id : input.ID,  
+        }
+      })
+    return resources
+    }),
 });

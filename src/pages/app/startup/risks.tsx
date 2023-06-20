@@ -7,97 +7,39 @@ import { FormContainer } from "~/components/used/FormContainer";
 import { DataTable } from "~/components/common/constants/risks-table/data-table"
 import { RiskType , columns } from "~/components/common/constants/risks-table/column";
 import { RowGridText } from "~/components/typography/RowGridText";
+import { api } from "~/utils/api";
+import { getProjectMetaData } from "~/lib/MetaData";
+import toast from "react-hot-toast";
+import { ConfirmDeletePopUpRisks } from "~/components/popup/table-confirm/delete-risk-popup";
 
 
-
-
-const data : RiskType[] =  [
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  {
-    id: "728ed52f",
-    title : "abdullah",
-    discreption : "this is a really long text that has to been " ,
-    solution : "there is no solotion at all",
-    status : "doesnt appear"
-  },
-  
-]
 
 
 const Page: NextPage = () => {
 
   const [isOpen , setIsOpen] = useState<boolean>(false)
 
+  const [risks , setRisks ] = useState<any[]>([])
 
+  const { refetch} = api.riskRouter.getRisks.useQuery({projectId : getProjectMetaData()}, {
+    onSuccess(data) {
+      const AbdullahData  = data.map(item =>{
+        return {
+          id : item.id,
+          title : item.name,
+          discreption : item.description,
+          solution : item.solutions,
+          status : item.levelOfDanger
+        }
+      })
+      setRisks( AbdullahData  )
+    },
+    onError(){
+      toast.error("error fetching the data")
+    },
+    retryOnMount : false 
+  })
+    
   
 
    
@@ -115,7 +57,8 @@ const Page: NextPage = () => {
             <div className="col-span-6 lg:col-span-12">
             <RowGridText text=" Gestion des risques" />
             <RowGridText small text="Gérer de manière proactive les risques du projet en identifiant, évaluant et hiérarchisant les risques potentiels, en élaborant des stratégies d'atténuation et en surveillant et contrôlant régulièrement les risques tout au long du cycle de vie du projet afin de minimiser leur impact sur les objectifs du projet" />
-            <DataTable columns={columns} data={data} /> 
+            <ConfirmDeletePopUpRisks  refetch={refetch} />
+            <DataTable refetch={refetch} columns={columns} data={risks} /> 
        
             </div>
         </div>

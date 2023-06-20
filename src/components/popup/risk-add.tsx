@@ -8,10 +8,34 @@ import { Input } from '../used/Input'
 import Select from 'react-select';
 import { STAKHOLDER_TYPES , OPTIONS} from '~/types/static/STATICDATA'
 import { Button } from '../ui/button'
+import { toast } from 'react-hot-toast'
+import { getProjectMetaData } from '~/lib/MetaData'
+
+type Props = {
+  refetch : () => Promise<void>
+}
 
 
 
-export  function RiskAdd () {
+export  function RiskAdd ({refetch} : Props ) {
+
+  const [data , setData ] = useState({
+    soulotions : "",
+    name : "" , 
+    description : "",
+    LevelOfDanger : ""
+  })
+
+ const  mutation =   api.riskRouter.riskAdd.useMutation({
+    onError : () => {
+      toast.error("there is an error")
+    },
+    onSuccess : async () => {
+      toast.success("risk create  sussefully")
+      await refetch()
+    }
+  })
+
   const [isOpen, setIsOpen] = useState(false);
 
   function openModal() {
@@ -25,7 +49,13 @@ export  function RiskAdd () {
  
   
   const handleSubmit = () => {
-  //todo
+    mutation.mutate({
+      project_id : getProjectMetaData(),
+      description : data.description , 
+      levelOfDanger : data.LevelOfDanger , 
+      name : data.name , 
+      solutions : data.soulotions
+    })
   };
 
   return (
@@ -93,7 +123,7 @@ export  function RiskAdd () {
                   Level of danger
                   </label>
                   <Select
-                        onChange={(e) => console.log(e)}
+                        onChange={(e) => setData({...data , LevelOfDanger : e?.value || ""})}
                         name="stakholders_types"
                         options={STAKHOLDER_TYPES}
                         className="basic-multi-select"
@@ -102,20 +132,20 @@ export  function RiskAdd () {
             </div> 
             <Input
               lable='Nom'
-              value={""}
-              onChange={(e) => console.log(e)}
+              value={data.name}
+              onChange={(e) => setData({...data , name : e.target.value})}
             />
             
             
              <TextField
               lable='description'
-              value={""}
-              onChange={(e) => console.log(e)}
+              value={data.description}
+              onChange={(e) => setData({...data , description : e.target.value})}
             />
             <TextField
               lable='soulotions'
-              value={""}
-              onChange={(e) => console.log(e)}
+              value={data.soulotions}
+              onChange={(e) => setData({...data , soulotions : e.target.value})}
             />
 
            
@@ -123,7 +153,7 @@ export  function RiskAdd () {
              <div className="bg-white flex justify-end items-end  col-span-6 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
-            isLoading={false}
+            isLoading={mutation.isLoading}
             className={`${buttonVariants({size:'sm'  , variant:"primary"})}  `}
             >
            sauvegarder

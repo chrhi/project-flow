@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { buttonVariantsAbdullah } from '../used/AbdullahEffectButton'
 import { useRouter } from 'next/router'
-import { getProjectCurrentPhaseAbdullah } from '~/lib/MetaData'
+import { getProjectCurrentPhaseAbdullah, getProjectMetaData } from '~/lib/MetaData'
 import { ErrorNoteReducer } from '~/store/app-reducer/errorReducer'
 import { header_page_Reducer , PAGES } from '~/store/app-reducer/headerReducer'
 import { IsPhaseLocked } from '~/utils/access/IsPhaseLocked'
@@ -18,8 +18,14 @@ export function PagesNav() {
   const router = useRouter()
 
  async function handleRouting (path : string , page : PAGES , INDEX : number) {
-   const available = IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : INDEX})
-   if(page === PAGES.DOCS){
+   const available = IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah(), projectID : getProjectMetaData() , thisPhaseIndex : INDEX})
+   if(page === PAGES.DASHBORD  ){
+    set_current_page({payload : page})
+    await router.push(path)
+    return 
+   }
+   
+   if(page === PAGES.DOCS && getProjectMetaData() !== "" ){
     set_current_page({payload : page})
     await router.push(path)
     return 
@@ -71,7 +77,7 @@ export function PagesNav() {
                 className={`
 
                 ${buttonVariantsAbdullah({variant :'ghost' , size:"sm" })} text-gray-500 dark:text-gray-100 ${current_page === item.page ? ' text-slate-900 dark:text-white' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-stone-800 dark:active:bg-stone-700  
-                ${IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() , thisPhaseIndex : index - 1}) || item.page === PAGES.DOCS? "" : "text-gray-200"}
+                ${IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah() ,projectID : getProjectMetaData() , thisPhaseIndex : index - 1}) || item.page === PAGES.DOCS || item.page === PAGES.DASHBORD ? "" : "text-gray-200"}
                 `}
            >   {item.name}
      

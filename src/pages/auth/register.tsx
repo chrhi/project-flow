@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { type NextPage } from "next";
 import { type   FormEvent,  useState } from "react";
 import Link from "next/link";
@@ -5,9 +6,14 @@ import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
 import toast from 'react-hot-toast';
 import { api } from "~/utils/api";
+import { useRouter } from "next/router";
 
 const Page: NextPage = () => {
-  
+
+
+  const router = useRouter();
+
+
   const [formData , setFormData] = useState({
     password : "",
     email : "",
@@ -19,7 +25,7 @@ const Page: NextPage = () => {
   const mutation = api.userRouter.createUser.useMutation({
     onSuccess(data) {
       toast.success(`new user has been created`)
-      console.log(data)
+      router.push("/")
     },
     onError(error){
       toast.error("something went wrong")

@@ -28,7 +28,7 @@ const Page: NextPage = () => {
   })
   const [didGetData , setDidGetData] = useState<boolean>(false)
 
-  const {isFetching , refetch} = api.scopePlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
+  const {isLoading : isFetching , refetch} = api.scopePlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
     retryOnMount : false ,
     onSuccess(data) {
       if(data?.id ){
