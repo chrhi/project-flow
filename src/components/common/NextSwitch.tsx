@@ -64,12 +64,12 @@ function NextSwitch({indexThisPhase} : Props) {
     <div className='w-[90%] h-[200px] p-4 rounded-lg border  flex flex-col dark:bg-neutral-900 bg-white justify-center items-center gap-y-8'>
         <p className="text-center text-gray-400 dark:text-white text-md ">
         {/* Si vous avez terminé le travail pour cette phase, assurez-vous de basculer le bouton ci-dessous afin d'avoir accès à la phase suivante */}
-        Si vous avez terminé le travail pour cette phase, vous devez basculer le bouton ci-dessous afin d'accéder à la phase suivante
+        Finissez cette phase et basculez le bouton pour pouvoir passer à la suivante
         </p>
         {
             isLoading ? <p>loading...</p> :
-            <div className="w-full h-[50px] flex items-center dark:text-white justify-between px-2">
-            <p>Phase terminée</p>
+            <div className="w-full h-[40px] flex items-center dark:text-white justify-center gap-x-4 px-2">
+            <p className="text-center text-gray-700 dark:text-white text-md ">Phase terminée</p>
              <Switch checked={checked} onCheckedChange={handleChange} id="material-switch"/>
             </div>
         }

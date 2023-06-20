@@ -18,6 +18,10 @@ import { toast } from "react-hot-toast";
 import LoadingComponents from "../common/loading-components";
 import EmptyGanttChard from '../gantt-chard/empty';
 
+function sortDates(dates: Date[]): Date[] {
+  const sortedDates = dates.sort((a, b) => a.getTime() - b.getTime());
+  return sortedDates;
+}
 
 function formatDate(date: Date): string {
   const options: Intl.DateTimeFormatOptions = {
@@ -44,7 +48,9 @@ function BedgetStatus() {
         toast.error("Quelque chose s'est mal passé.")
     }, 
     onSuccess : (data) =>  {
-     const prepare = data.map(item => {
+
+      const sortedData =  data.sort((a, b) => a.EndsAt.getTime() - b.EndsAt.getTime());
+     const prepare = sortedData.map(item => {
       return {
            date:formatDate(item.EndsAt || new Date()),
            "Coût prévu pour une tâche": item.cost,
