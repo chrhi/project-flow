@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useState } from "react";
 import {
@@ -48,8 +49,12 @@ function BedgetStatus() {
         toast.error("Quelque chose s'est mal passé.")
     }, 
     onSuccess : (data) =>  {
-
-      const sortedData =  data.sort((a, b) => a.EndsAt.getTime() - b.EndsAt.getTime());
+      if(!data || data.length === 0 ){
+        setStatus("EMPTY")
+        return
+      }
+      //@ts-ignore
+      const sortedData =  data.sort((a, b) => a?.EndsAt?.getTime() - b?.EndsAt?.getTime());
      const prepare = sortedData.map(item => {
       return {
            date:formatDate(item.EndsAt || new Date()),
@@ -59,10 +64,7 @@ function BedgetStatus() {
       }
 
      })
-     if(prepare.length === 0) {
-        setStatus("EMPTY")
-        return
-     }
+    
      setTasks(prepare)
      setStatus("PLAYING")
     }, 
