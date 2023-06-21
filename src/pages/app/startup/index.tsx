@@ -43,7 +43,7 @@ const Page: NextPage = () => {
       }
       setFormData({
         id : data?.id || "",
-        Title : data?.HighLevelRequirements  || "", 
+        Title : data?.Title  || "", 
         HighLevelRequirements : data?.HighLevelRequirements  || "", 
         HighLevelRisks : data?.HighLevelRisks || "" , 
         ProjectDescription : data?.ProjectDescription || "" , 
@@ -60,7 +60,7 @@ const Page: NextPage = () => {
     onSuccess : async (data) =>  {
       setFormData({
         id : data?.id || "",
-        Title : data?.HighLevelRequirements  || "", 
+        Title : data?.Title  || "", 
         HighLevelRequirements : data?.HighLevelRequirements  || "", 
         HighLevelRisks : data?.HighLevelRisks || "" , 
         ProjectDescription : data?.ProjectDescription || "" , 

@@ -1,13 +1,43 @@
+import { LineChart } from "@tremor/react";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { Header } from "~/components/header/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
-import { AbdullahTable } from "~/components/used/AbdullahTable";
+import { RowGridText } from "~/components/typography/RowGridText";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { FormHead } from "~/components/used/FormHead";
 
+
+
+const chartdata = [
+  {
+    date: 0,
+    "tasks costs": 0,
+  
+  },
+  {
+    date: 7,
+    "tasks costs": 1,
+   
+  },
+  {
+    date: 12,
+    "tasks costs": 1,
+   
+  },
+  {
+    date: 22,
+    "tasks costs": 2,
+   
+  },
+  {
+    date: 27,
+    "tasks costs": 4,
+   
+  },
+  //...
+];
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -27,25 +57,22 @@ const Page: NextPage = () => {
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
       
       <Form  >
-      <div className="bg-white px-4 py-5 sm:p-6">
-      <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-      <div className="col-span-6 lg:col-span-12 ">
-
-<AbdullahTable
-    isLoading={false}
-  
-    title="Issue management"
-    description="
-    Issue management in PMBOK is a process to identify, document, track and resolve project issues. It involves six steps: issue identification, logging, prioritization, assignment, resolution and closure. Effective issue management helps minimize negative impacts on project objectives.
-    "
-    Action ={false}
-    headers={["issue" , "status" , "action"]}
-    body={[]}
-    // PlusButton={<PlusButtonIssueManagment  />}
-    />
-    </div>
-        </div>
+  <div className="bg-white px-4 py-5 sm:p-6">
+     <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+            <RowGridText text="Cost Base Line" />
+            <RowGridText text="La clôture de projet est la phase finale où toutes les activités, les livrables et les objectifs sont terminés, et le projet est officiellement clôturé, visant à valider le succès du projet et faciliter la transition vers les opérations en cours ou les projets ultérieurs" small />  
+          <div className="w-full h-[400px] flex justify-center items-start pt-8 col-span-12">
+          <LineChart
+                   className="mt-6"
+                   data={chartdata}
+                   index="date"
+                   categories={["tasks costs"]}
+                   colors={["yellow"]}
+                   yAxisWidth={40}
+             />
+          </div>
       </div>
+  </div>
    
        </Form>
   </FormContainer>

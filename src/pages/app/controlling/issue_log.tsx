@@ -6,45 +6,40 @@ import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import { FormHead } from "~/components/used/FormHead";
-import { AreaChart } from "@tremor/react";
+import {  BarChart } from "@tremor/react";
+import { RowGridText } from "~/components/typography/RowGridText";
+import { AbdullahTable } from "~/components/used/AbdullahTable";
 
 const chartdata = [
   {
-    date: "Jan 22",
-    SemiAnalysis: 2890,
-    "The Pragmatic Engineer": 2338,
+    name: "Amphibians",
+    "Number of threatened species": 2488,
   },
   {
-    date: "Feb 22",
-    SemiAnalysis: 2756,
-    "The Pragmatic Engineer": 2103,
+    name: "Birds",
+    "Number of threatened species": 1445,
   },
   {
-    date: "Mar 22",
-    SemiAnalysis: 3322,
-    "The Pragmatic Engineer": 2194,
+    name: "Crustaceans",
+    "Number of threatened species": 743,
   },
   {
-    date: "Apr 22",
-    SemiAnalysis: 3470,
-    "The Pragmatic Engineer": 2108,
+    name: "abdullah",
+    "Number of threatened species": 2488,
   },
   {
-    date: "May 22",
-    SemiAnalysis: 3475,
-    "The Pragmatic Engineer": 1812,
+    name: "chehri",
+    "Number of threatened species": 1445,
   },
   {
-    date: "Jun 22",
-    SemiAnalysis: 3129,
-    "The Pragmatic Engineer": 1726,
+    name: "123mahdi",
+    "Number of threatened species": 743,
   },
 ];
 
 const dataFormatter = (number: number) => {
   return "$ " + Intl.NumberFormat("us").format(number).toString();
 };
-
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -62,20 +57,34 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <ControllingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
-    
+ 
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+                  
+            <RowGridText text="ISSUE LOG" />
+            <RowGridText text="La clôture de projet est la phase finale où toutes les activités, les livrables et les objectifs sont terminés, et le projet est officiellement clôturé, visant à valider le succès du projet et faciliter la transition vers les opérations en cours ou les projets ultérieurs" small />
+            <RowGridText text="Issues" />
             <div className="col-span-6 lg:col-span-12 ">
-            <AreaChart
-               className="h-72 mt-4"
-               data={chartdata}
-               index="date"
-               categories={["SemiAnalysis", "The Pragmatic Engineer"]}
-               colors={["indigo", "cyan"]}
-               valueFormatter={dataFormatter}
-             />
-            </div>
+                 <AbdullahTable
+                
+              
+                   headers={["Issue ID" , "Category" , "Issue" , "Impact on Objectives" , "Urgency"  ]}
+                   body={[]}
+                  //  PlusButton={<OtherAdd  />}
+                  />
+              </div>
+              <RowGridText text="Responsible Party" />
+              <div className="col-span-6 lg:col-span-12 ">
+                 <AbdullahTable
+                
+              
+                   headers={["Responsible Party" , "Actions" , "Status" , "Due Date" , "Comments"  ]}
+                   body={[]}
+                  //  PlusButton={<OtherAdd  />}
+                  />
+               </div>  
+
         </div>
       </div>
    

@@ -1,6 +1,7 @@
-import { ReactNode } from "react"
+import Image from "next/image";
+import type  { ReactNode } from "react"
 import Skeleton from 'react-loading-skeleton';
-
+import empty from "~/assets/empty.png"
 
 export type ItemTable = {
     id : string
@@ -44,6 +45,7 @@ export const AbdullahTable = ({title , description , headers , isLoading  , body
             </th>
         </tr>
     </thead>}
+   
     {isLoading && (
           <tbody>
             {["one", "two", "tree", "four", "five"].map((item) => (
@@ -61,25 +63,37 @@ export const AbdullahTable = ({title , description , headers , isLoading  , body
             ))}
           </tbody>
         )}
-        {!isLoading && (
-           <tbody>
-           {body?.map((current , index) => (
+       
 
-           <tr key={ index + 999 } className="bg-white border-b ">
-               {current.properties.map(item => (
-               <th key={index + 45679684623} scope="row" className={`px-6 py-4 font-medium text-gray-900 ${wrap ? "" : " whitespace-nowrap " }`}>
-                  {item } 
-               </th>
-               ))}
-             {Action &&   <td className={`px-6 py-4 text-right`}>
-                   <button onClick={() => current.callback(current?.id)} className="font-medium text-blue-600 hover:underline">{ActionName}</button>
-               </td>}
-           </tr>
-           ))} 
-       </tbody>
-        )}
+        {!isLoading && body.length !== 0 &&
+            <tbody>
+           {
+            body?.map((current , index) => (
+
+              <tr key={ index + 999 } className="bg-white border-b ">
+                  {current.properties.map(item => (
+                  <th key={index + 45679684623} scope="row" className={`px-6 py-4 font-medium text-gray-900 ${wrap ? "" : " whitespace-nowrap " }`}>
+                     {item } 
+                  </th>
+                  ))}
+                {Action &&   <td className={`px-6 py-4 text-right`}>
+                      <button onClick={() => current.callback(current?.id)} className="font-medium text-blue-600 hover:underline">{ActionName}</button>
+                  </td>}
+              </tr>
+              )) 
+           }
+            </tbody>
+          }
+      
+        
       
     </table>
+    {
+          body.length === 0 && <div className="w-full h-[200px] flex justify-center flex-col items-center">
+            <Image  src={empty} alt="empty file" className="w-24 h-24 "  />
+            <h1 className="text-xl  text-gray-900">Empty</h1>
+          </div>
+    }
     <div className="bg-white  my-2 col-span-6  text-right ">
     {PlusButton && PlusButton}
           

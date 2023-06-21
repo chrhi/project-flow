@@ -25,12 +25,12 @@ const List = [
   {name : "Suivi des tâches" , path : "/app/executing" , navs : NAVS.ONE},
   {name : "Suivi du temps" , path : "/app/executing/timeTracking" , navs : NAVS.TWO},
 
-  {name : "Changer de requête" , path : "/app/executing" , navs : NAVS.THREE},
-  {name : "Rapport d'état des contractants" , path : "/app/executing/timeTracking" , navs : NAVS.FOUR},
-  {name : "Rapport sur l'état de la valeur acquise" , path : "/app/executing" , navs : NAVS.FIVE},
-  {name : "Matrice d'approvisionnement et d'impact" , path : "/app/executing/timeTracking" , navs : NAVS.SIX},
+  {name : "Changer de requête" , path : "/app/executing/ChangeRequest" , navs : NAVS.THREE},
+  {name : "Rapport d'état des contractants" , path : "/app/executing/ContractorStatusReport" , navs : NAVS.FOUR},
+  {name : "Rapport sur l'état de la valeur acquise" , path : "/app/executing/EarnedValueStatusReport" , navs : NAVS.FIVE},
+  {name : "Matrice d'approvisionnement et d'impact" , path : "/app/executing/ProcurementandImpactMatrix" , navs : NAVS.SIX},
 
-  {name : "Répertoire de l'équipe" , path : "/app/executing" , navs : NAVS.SEVEN},
+  {name : "Répertoire de l'équipe" , path : "/app/executing/TeamDirectory" , navs : NAVS.SEVEN},
   // {name : " Activity Attributes" , path : "/app/executing/timeTracking" , navs : NAVS.THREE},
 
 ]

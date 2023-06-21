@@ -23,12 +23,12 @@ type Props ={
 const List = [
  
   {name : "Journal des modifications" , path : "/app/controlling" , navs : NAVS.ONE},
-  {name : "Coût de référence" , path : "/app/controlling/change_managment" , navs : NAVS.TWO},
-  {name : "Journal des problèmes" , path : "/app/controlling/risk_managment" , navs : NAVS.THREE},
-  {name : "Rapport sur le rendement du projet " , path : "/app/controlling/quality_control" , navs : NAVS.FOUR},
-  {name : "Audit des risques" , path : "/app/controlling" , navs : NAVS.FIVE},
-  {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling" , navs : NAVS.SIX},
-  {name : "Analyse de variance" , path : "/app/controlling/quality_control" , navs : NAVS.SEVEN},
+  {name : "Coût de référence" , path : "/app/controlling/cost_base_line" , navs : NAVS.TWO},
+  {name : "Journal des problèmes" , path : "/app/controlling/issue_log" , navs : NAVS.THREE},
+  {name : "Rapport sur le rendement du projet " , path : "/app/controlling/project_performance_report" , navs : NAVS.FOUR},
+  {name : "Audit des risques" , path : "/app/controlling/risk_audit" , navs : NAVS.FIVE},
+  {name : "Rapport sur l'état des membres de l'équipe" , path : "/app/controlling/team_mumber_status_report" , navs : NAVS.SIX},
+  {name : "Analyse de variance" , path : "/app/controlling/varianc_analyses" , navs : NAVS.SEVEN},
 ]
 
 export  const ControllingSidebar = ({isOpen , setIsOpen} : Props) => {

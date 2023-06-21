@@ -7,6 +7,8 @@ import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import { FormHead } from "~/components/used/FormHead";
 import {  BarChart } from "@tremor/react";
+import { RowGridText } from "~/components/typography/RowGridText";
+import { AbdullahTable } from "~/components/used/AbdullahTable";
 
 const chartdata = [
   {
@@ -59,18 +61,30 @@ const Page: NextPage = () => {
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+                  
+            <RowGridText text="ISSUE LOG" />
+            <RowGridText text="La clôture de projet est la phase finale où toutes les activités, les livrables et les objectifs sont terminés, et le projet est officiellement clôturé, visant à valider le succès du projet et faciliter la transition vers les opérations en cours ou les projets ultérieurs" small />
+            <RowGridText text="Issues" />
             <div className="col-span-6 lg:col-span-12 ">
+                 <AbdullahTable
+                
+              
+                   headers={["Issue ID" , "Category" , "Issue" , "Impact on Objectives" , "Urgency"  ]}
+                   body={[]}
+                  //  PlusButton={<OtherAdd  />}
+                  />
+              </div>
+              <RowGridText text="Responsible Party" />
+              <div className="col-span-6 lg:col-span-12 ">
+                 <AbdullahTable
+                
+              
+                   headers={["Responsible Party" , "Actions" , "Status" , "Due Date" , "Comments"  ]}
+                   body={[]}
+                  //  PlusButton={<OtherAdd  />}
+                  />
+               </div>  
 
-            <BarChart
-                 className="mt-6"
-                 data={chartdata}
-                 index="name"
-                 categories={["Number of threatened species"]}
-                 colors={["blue"]}
-                 valueFormatter={dataFormatter}
-                  yAxisWidth={48}
-             />
-            </div>
         </div>
       </div>
    

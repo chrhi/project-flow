@@ -1,15 +1,14 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
-import Select from "react-select";
 import { Header } from "~/components/header/Header";
 import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
+import { RowGridText } from "~/components/typography/RowGridText";
 import { AbdullahTable } from "~/components/used/AbdullahTable";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { FormHead } from "~/components/used/FormHead";
 import { TextField } from "~/components/used/TextField";
-import { STAKHOLDER_TYPES } from "~/types/static/STATICDATA";
+
 
 
 const Page: NextPage = () => {
@@ -32,55 +31,98 @@ const Page: NextPage = () => {
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-     
-      <div className='col-span-6 '>
-                  <label  className="block text-sm font-medium leading-6 text-gray-900">
-                       Area Audited
-                  </label>
-                  <Select
-                        onChange={(e) => console.log(e)}
-                        name="stakholders_types"
-                        options={STAKHOLDER_TYPES}
-                        className="basic-multi-select"
-                        classNamePrefix="select"
-                    />
-      </div> 
+
+        
+      <RowGridText text="VARIANCE ANALYSIS" />
+      <RowGridText  small text="Perform Quantitative Assessment" />
+
+    
+      <RowGridText text="Schedule Variance" />
+
+      <div className="col-span-6 lg:col-span-12">
+        <AbdullahTable
+        isLoading={false}
+        Action ={false}
+        headers={["Planned Result" , "Actual Result" , "Variance" ]}
+        body={[]}
+    // PlusButton={<PlusButtonIssueManagment  />}
+        />
+        </div>
+
+
       <TextField
-        lable="Good Practices to Share"
+        lable="Root Cause"
         onChange={(e) => console.log(e)}
         isLoading={false}
         value={""}
       />
       <TextField
-        lable="Areas for Improvement"
+        lable="Planned Response"
         onChange={(e) => console.log(e)}
         isLoading={false}
         value={""}
       />
 
-       
-         <TextField
-        lable="Comments"
-        onChange={(e) => console.log(e)}
-        isLoading={false}
-        value={""}
-      />
-       <div className="col-span-6 lg:col-span-12">
+      <RowGridText text="Cost Variance" />
+      <div className="col-span-6 lg:col-span-12">
         <AbdullahTable
         isLoading={false}
-        
-        title="Deficiencies or Defects"
-        description="
-         
-         "
         Action ={false}
-        headers={["ID" , "Defect" , "Action" , "Responsible Party" , "Due Date"]}
+        headers={["Planned Result" , "Actual Result" , "Variance" ]}
         body={[]}
     // PlusButton={<PlusButtonIssueManagment  />}
         />
         </div>
+
+       
+       
+
+     <TextField
+        lable="Root Cause"
+        onChange={(e) => console.log(e)}
+        isLoading={false}
+        value={""}
+      />
+      <TextField
+        lable="Planned Response"
+        onChange={(e) => console.log(e)}
+        isLoading={false}
+        value={""}
+      />
+     
+     <RowGridText text="Quality Variance" />
+      <div className="col-span-6 lg:col-span-12">
+        <AbdullahTable
+        isLoading={false}
+        Action ={false}
+        headers={["Planned Result" , "Actual Result" , "Variance" ]}
+        body={[]}
+    // PlusButton={<PlusButtonIssueManagment  />}
+        />
+        </div>
+
+       
+       
+
+     <TextField
+        lable="Root Cause"
+        onChange={(e) => console.log(e)}
+        isLoading={false}
+        value={""}
+      />
+      <TextField
+        lable="Planned Response"
+        onChange={(e) => console.log(e)}
+        isLoading={false}
+        value={""}
+      />
+     
         </div>
       </div>
+      
+   
+
+      
    
        </Form>
   </FormContainer>
