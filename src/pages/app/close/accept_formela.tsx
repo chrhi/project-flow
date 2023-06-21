@@ -6,7 +6,7 @@ import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
 import { AbdullahTable } from "~/components/used/AbdullahTable";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { FormHead } from "~/components/used/FormHead";
+import { FormalAcceptance } from "~/components/popup/close-phases/FormalAcceptance";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -24,21 +24,21 @@ const Page: NextPage = () => {
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
        <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
-      
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
             <div className="col-span-6 lg:col-span-12 ">
 
         <AbdullahTable
-            title="Communication"
+            title="FORMAL ACCEPTANCE FORM"
             description="
-            Communication in the closing phase of a project refers to the process of effectively communicating project status, completion, and results to all stakeholders. It involves documenting and disseminating the final project status report, highlighting project successes, challenges, and lessons learned, and thanking stakeholders for their contributions. Effective communication in the closing phase helps to ensure that all stakeholders are informed of project outcomes, promotes transparency, and provides closure for the project. It also sets the stage for future project collaborations and builds goodwill for future engagements.
+            Project evaluation refers to the process of assessing the success of a project based on predetermined criteria, such as project objectives, schedule, budget, and stakeholder satisfaction. It involves collecting and analyzing project data, identifying areas of success and improvement, and developing recommendations for future projects. Effective project evaluation helps to improve project management practices, enhance organizational learning, and ensure that project goals are achieved.
             "
-            headers={["name" , "role / responsability"]}
+            headers={["ID" , "Requirement" , "Acceptance Criteria" , "Validation Method" , "Status" , "Comments" , "Signoff"]}
             body={[]}
-            // PlusButton={<PLusButtonStakHolder refetch={refetch} />}
-
+            // PlusButton={<FormalAcceptance refetch={refetch} />}
+            PlusButton={<FormalAcceptance  />}
          />
             </div>
         </div>

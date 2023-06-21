@@ -11,6 +11,10 @@ import { getProjectMetaData } from "~/lib/MetaData";
 import toast from "react-hot-toast";
 import { api } from "~/utils/api";
 import { FormButton } from "~/components/used/FormButton";
+import { Input } from "~/components/used/Input";
+import { AbdullahTable } from "~/components/used/AbdullahTable";
+import { RecordOfContractChanges } from "~/components/popup/close-phases/RecordOfContractChanges";
+import { RecordOfContractDisputes } from "~/components/popup/close-phases/RecordOfContractDisputes";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -175,85 +179,112 @@ const Page: NextPage = () => {
       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
          
           
-            <RowGridText text="Résumé des performances" />
+            <RowGridText text="Contract close out" />
             <RowGridText text="La clôture de projet est la phase finale où toutes les activités, les livrables et les objectifs sont terminés, et le projet est officiellement clôturé, visant à valider le succès du projet et faciliter la transition vers les opérations en cours ou les projets ultérieurs" small />
 
             {/* this is a row */}
-            <TextField
+            
+            <RowGridText text="Vendor Performance Analysis What Worked Well:"  />
+            <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable=" Objectifs du projet (Portée)"
+                lable="Scope"
                 onChange={(e) => setFormData({...formData , ObjectDuProjet : e.target.value})}
                 value={formData.ObjectDuProjet}
             />
-             <TextField
+             <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Critères de réalisation de la portée du projet"
+                lable="Quality"
                 onChange={(e) => setFormData({...formData , CritereDeRealisationDeLaPorteeDuProjet : e.target.value})}
                 value={formData.CritereDeRealisationDeLaPorteeDuProjet}
             />
-             <TextField
+             <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Les objectifs de la portée ont été atteints."
-                onChange={(e) => setFormData({...formData , ObjectifsDeLaPorteeOntEteAttents : e.target.value})}
+                lable="Schedule"
+                onChange={(e) => setFormData({...formData , ObjectDuProjet : e.target.value})}
                 value={formData.ObjectifsDeLaPorteeOntEteAttents}
             />
             {/* this is another row  */}
-            <TextField
+            <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Objectifs de qualité du projet"
+                lable="Cost"
                 onChange={(e) => setFormData({...formData , ObjectifsDeQualiteDuProjet : e.target.value})}
                 value={formData.ObjectifsDeQualiteDuProjet}
             />
-             <TextField
+             <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Critères de réalisation de la qualité"
+                lable="Other"
                 onChange={(e) => setFormData({...formData , CriteresDeRealisationDeLaQualite : e.target.value})}
                 value={formData.CriteresDeRealisationDeLaQualite}
             />
-             <TextField
-                isLoading={false}
-                lable="Comment la qualité a été atteinte"
-                onChange={(e) => setFormData({...formData , CommentLaQualiteAEteAtteinte : e.target.value})}
-                value={formData.CommentLaQualiteAEteAtteinte}
-            />
+            
+                <RowGridText text="What Can Be Improved"  />
               {/* this is another row  */}
-              <TextField
+              <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Objectifs de temps du projet"
+                lable="Scope"
                 onChange={(e) => setFormData({...formData , ObjectifsDeTempsDuProjet : e.target.value})}
                 value={formData.ObjectifsDeTempsDuProjet}
             />
-             <TextField
+             <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Critères de réalisation des délais"
+                lable="Quality"
                 onChange={(e) => setFormData({...formData , CriteresDeRealisationDesDelais : e.target.value})}
                 value={formData.CriteresDeRealisationDesDelais}
             />
-             <TextField
+             <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Comment les objectifs de délais ont été atteints"
+                lable="Schedule"
                 onChange={(e) => setFormData({...formData , CommentLesObjectifsDeDelaisOntEteAtteints : e.target.value})}
                 value={formData.CommentLesObjectifsDeDelaisOntEteAtteints}
             />
               {/* this is another row  */}
-              <TextField
+              <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Objectifs de coût du projet"
+                lable="Cost"
                 onChange={(e) => setFormData({...formData , ObjectifsDeCoutDuProjet : e.target.value})}
                 value={formData.ObjectifsDeCoutDuProjet}
             />
-             <TextField
+             <Input
+                className="xl:col-span-3"
                 isLoading={false}
-                lable="Critères de réalisation des coûts"
+                lable="Other"
                 onChange={(e) => setFormData({...formData , CriteresDeRealisationDeLaQualite : e.target.value})}
                 value={formData.CriteresDeRealisationDeLaQualite}
             />
-             <TextField
-                isLoading={false}
-                lable="Comment les objectifs de coûts ont été atteints"
-                onChange={(e) => setFormData({...formData , CommentLesObjectifsDeCoutsOntEteAtteints : e.target.value})}
-                value={formData.CommentLesObjectifsDeCoutsOntEteAtteints}
-            />
+            
+           
+           <div className="col-span-6 lg:col-span-12 ">
+              <AbdullahTable
+               title="Record of Contract Changes"
+              
+               headers={["Change ID" , "Change Description" , "Date Approved" ]}
+               body={[]}
+               PlusButton={<RecordOfContractChanges  />}
+               />
+           </div>
+
+           
+           
+           
+           <div className="col-span-6 lg:col-span-12 ">
+              <AbdullahTable
+               title="Record of Contract Disputes"
+             
+               headers={["Description" , "Resolution" , "Date Resolved" ]}
+               body={[]}
+               PlusButton={<RecordOfContractDisputes  />}
+               />
+           </div>
+
              <FormButton
                          isLoading={update.isLoading || post.isLoading}
                          state={didGetData}

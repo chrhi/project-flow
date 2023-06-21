@@ -86,6 +86,8 @@ model Project {
   Tasks        Tasks[]
   ProjectObjectives ProjectObjectives[]
   Document      Document[]
+  ProjectCloseOut  ProjectCloseOut[]
+  ChangeLog     ChangeLog[]
 
   @@index([id])
   @@index([userId])
@@ -112,6 +114,8 @@ model Tasks {
     @@index([id])
     @@index([projectId])
 }
+
+
 
 model Document {
    id        String  @id @default(uuid())
@@ -361,4 +365,46 @@ model ManagementPlan {
 
   @@index([id])
   @@index([PlanningId])
+}
+
+model ProjectCloseOut {
+  id        String  @id @default(uuid())
+  ObjectDuProjet      String? @db.LongText
+  CritereDeRealisationDeLaPorteeDuProjet String? @db.LongText
+  ObjectifsDeLaPorteeOntEteAttents String? @db.LongText
+  ObjectifsDeQualiteDuProjet String? @db.LongText
+  CriteresDeRealisationDeLaQualite String? @db.LongText
+  CommentLaQualiteAEteAtteinte String? @db.LongText
+  ObjectifsDeTempsDuProjet String? @db.LongText
+  CriteresDeRealisationDesDelais String? @db.LongText
+  CommentLesObjectifsDeDelaisOntEteAtteints      String? @db.LongText
+  ObjectifsDeCoutDuProjet String? @db.LongText
+  CriteresDeRealisationDesCouts String? @db.LongText
+  CommentLesObjectifsDeCoutsOntEteAtteints String? @db.LongText
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id])
+  @@index([id])
+  @@index([projectId])
+}
+
+model ChangeLog {
+  id        String  @id @default(uuid())
+  ActivitesPrevuesPourCettePeriodeDeRapport      String? @db.LongText
+  ActivitesRealiseesAuCoursDeCettePeriodeDeRapport String? @db.LongText
+  ActivitesPrevuesMaisNonRealiseesAuCoursDeCettePeriodeDeRapport String? @db.LongText
+  LaCauseProfondeDesEcarts String? @db.LongText
+  FondsDepensesAuCoursDeCettePeriodeDeRapport String? @db.LongText
+  FondsPrevusADepenserAuCoursDeCettePeriodeDeRapport String? @db.LongText
+  CauseFondamentaleDesEcarts String? @db.LongText
+  EcartsDeQualiteIdentifiesPendantCettePeriode String? @db.LongText
+  ActionCorrectiveOuPreventivePlanifiee      String? @db.LongText
+  ActivitesPrevuesPourLaProchainePeriodeDeRapport String? @db.LongText
+  CoutsPrevusPourLaProchainePeriodeDeRapport String? @db.LongText
+  RisquesNouvellementIdentifies String? @db.LongText
+  ProblrmesIdentifies String? @db.LongText
+  Commentaires String? @db.LongText
+  projectId String?
+  project Project?  @relation(fields: [projectId], references: [id])
+  @@index([id])
+  @@index([projectId])
 }

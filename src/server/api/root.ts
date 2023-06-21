@@ -14,6 +14,10 @@ import { integrationsRouter } from "./pdf-generater/integrations";
 import { tasksRouter } from "./routers/tasks-route";
 import { mileStoneRouter } from "./routers/mileStones";
 import { ProjectObjectivesRouter } from "./routers/project-objectives";
+import { changeLogRouter } from "./inputs/controlling/change-log";
+import { projectCloseOutRouter } from "./inputs/close/project-close-out";
+
+
 
 export const appRouter = createTRPCRouter({
     userRouter,
@@ -30,7 +34,9 @@ export const appRouter = createTRPCRouter({
     integrationsRouter,
     tasksRouter,
     mileStoneRouter,
-    ProjectObjectivesRouter
+    ProjectObjectivesRouter,
+    changeLogRouter,
+    projectCloseOutRouter
 });
 
 // export type definition of API

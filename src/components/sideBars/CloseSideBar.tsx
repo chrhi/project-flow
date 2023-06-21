@@ -22,12 +22,12 @@ type Props ={
 
 const List = [
   {name : "Clôture du projet" , path : "/app/close" , navs : NAVS.ONE},
-  {name : "Formulaire d'acceptation formelle" , path : "/app/close/project_evaluation" , navs : NAVS.TWO},
-  {name : "Leçons apprises " , path : "/app/close/project_closure" , navs : NAVS.THREE},
-  {name : "Clôture du contrat" , path : "/app/close/resource_handover" , navs : NAVS.FOUR},
-  {name : "Rapport sur le rendement du projet" , path : "/app/close/project_documentation" , navs : NAVS.FIVE},
-  {name : "Vérification de la qualité" , path : "/app/close/project_evaluation" , navs : NAVS.SIX},
-  {name : "Audit des achats" , path : "/app/close/project_closure" , navs : NAVS.SEVEN},
+  {name : "Formulaire d'acceptation formelle" , path : "/app/close/accept_formela" , navs : NAVS.TWO},
+  {name : "Leçons apprises " , path : "/app/close/lessens_learned" , navs : NAVS.THREE},
+  {name : "Clôture du contrat" , path : "/app/close/contract_close_out" , navs : NAVS.FOUR},
+  {name : "Rapport sur le rendement du projet" , path : "/app/close/project_performance_report" , navs : NAVS.FIVE},
+  {name : "Vérification de la qualité" , path : "/app/close/quality_audit" , navs : NAVS.SIX},
+  {name : "Audit des achats" , path : "/app/close/procurement_audit" , navs : NAVS.SEVEN},
   {name : "Terminer le projet" , path : "/app/close/end_project" , navs : NAVS.EIGHT},
 ]
 

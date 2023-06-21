@@ -1,9 +1,9 @@
 import { StakeHolder } from "@prisma/client"
-import { ChevronDown } from "lucide-react"
 import { useState } from "react"
 import toast from "react-hot-toast"
 import LoadingComponents from "../common/loading-components";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
+import { useRouter } from "next/router";
 
 import {
   Card,
@@ -18,6 +18,9 @@ import { api } from "~/utils/api"
 import { AbdullahButton , buttonVariants } from "../used/AbdullahButton";
 
 export function RecentStakeholdersNew() {
+
+  const router = useRouter()
+
   const [stakeHolders , setStakeHolders] = useState<StakeHolder[]>([] as StakeHolder[])
   const [status , setStatus ] = useState("LOADING")
 
@@ -51,7 +54,9 @@ export function RecentStakeholdersNew() {
                  </CardDescription>
             </CardHeader>
             <CardContent className=" w-full h-[300px] flex justify-center items-start pt-20">
-            <AbdullahButton className={`${buttonVariants({variant : "primary"})}`}>
+            <AbdullahButton
+            onClick={() => router.push("/app/startup/stakeholders")}
+            className={`${buttonVariants({variant : "primary"})}`}>
                    Ajouter un nouvel intervenant.
             </AbdullahButton>
             </CardContent>
