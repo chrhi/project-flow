@@ -152,6 +152,8 @@ model Risk {
   id        String  @id @default(uuid())
   projectId String?
   name      String? 
+  cost      String?
+  
   description String?  @db.LongText
   levelOfDanger String? 
   solutions  String?    @db.LongText
@@ -166,7 +168,8 @@ model Resources {
   name      String? 
   description String?  @db.LongText
   cost   Float? 
-  quality String? 
+  quality String?
+  imageUrl String? 
   project Project?  @relation(fields: [projectId], references: [id])
 
   @@index([id])

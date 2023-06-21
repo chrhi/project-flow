@@ -9,7 +9,8 @@ export const resourcesRouter = createTRPCRouter({
       name : z.string(),
       description : z.string(),
       cost : z.number(),
-      quality : z.string()
+      quality : z.string(),
+      imageUrl : z.string()
      }))
     .mutation( async({ input  , ctx }) => {
 
@@ -19,7 +20,8 @@ export const resourcesRouter = createTRPCRouter({
             name : input.name , 
             description : input.description,
             cost : input.cost ,
-            quality : input.quality
+            quality : input.quality,
+            imageUrl : input.imageUrl
         }
       })
     }),

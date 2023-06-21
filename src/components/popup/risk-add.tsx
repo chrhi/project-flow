@@ -6,7 +6,7 @@ import { TextField } from '../used/TextField'
 import { AbdullahButton, buttonVariants} from '../used/AbdullahButton'
 import { Input } from '../used/Input'
 import Select from 'react-select';
-import { STAKHOLDER_TYPES , OPTIONS} from '~/types/static/STATICDATA'
+import {  OPTIONS} from '~/types/static/STATICDATA'
 import { Button } from '../ui/button'
 import { toast } from 'react-hot-toast'
 import { getProjectMetaData } from '~/lib/MetaData'
@@ -23,7 +23,10 @@ export  function RiskAdd ({refetch} : Props ) {
     soulotions : "",
     name : "" , 
     description : "",
-    LevelOfDanger : ""
+    LevelOfDanger : "",
+    cost : "",
+    imageUrl : ""
+
   })
 
  const  mutation =   api.riskRouter.riskAdd.useMutation({
@@ -54,7 +57,8 @@ export  function RiskAdd ({refetch} : Props ) {
       description : data.description , 
       levelOfDanger : data.LevelOfDanger , 
       name : data.name , 
-      solutions : data.soulotions
+      solutions : data.soulotions,
+      cost : Number(data.cost)
     })
   };
 
@@ -99,7 +103,7 @@ export  function RiskAdd ({refetch} : Props ) {
                 leaveTo="opacity-0 scale-95"
                
               >
-                <Dialog.Panel className="  w-[450px] h-[600px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="  w-[750px] h-[430px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
@@ -117,7 +121,7 @@ export  function RiskAdd ({refetch} : Props ) {
                   </Dialog.Title>
                  
            <div className="bg-white p-4  w-full  ">
-            <div className="grid grid-cols-6  gap-6">
+            <div className="grid grid-cols-12  gap-6">
             <div className='col-span-6 '>
                   <label  className="block text-sm font-medium leading-6 text-gray-900">
                   Level of danger
@@ -125,7 +129,7 @@ export  function RiskAdd ({refetch} : Props ) {
                   <Select
                         onChange={(e) => setData({...data , LevelOfDanger : e?.value || ""})}
                         name="stakholders_types"
-                        options={STAKHOLDER_TYPES}
+                        options={OPTIONS}
                         className="basic-multi-select"
                         classNamePrefix="select"
                     />
@@ -135,22 +139,37 @@ export  function RiskAdd ({refetch} : Props ) {
               value={data.name}
               onChange={(e) => setData({...data , name : e.target.value})}
             />
+              <Input
+              lable='Image Url'
+              value={data.imageUrl}
+              onChange={(e) => setData({...data , imageUrl : e.target.value})}
+            />
+              <Input
+              lable='Cost'
+              value={data.cost}
+              onChange={(e) => setData({...data , cost : e.target.value})}
+            />
             
             
              <TextField
+             className='col-span-12'
               lable='description'
               value={data.description}
               onChange={(e) => setData({...data , description : e.target.value})}
             />
+            
             <TextField
+              className='col-span-12'
               lable='soulotions'
               value={data.soulotions}
               onChange={(e) => setData({...data , soulotions : e.target.value})}
             />
 
-           
+          
+
+            
                 
-             <div className="bg-white flex justify-end items-end  col-span-6 text-right ">
+             <div className="bg-white flex justify-end items-end  col-span-12  text-right ">
             <AbdullahButton
             onClick={handleSubmit}
             isLoading={mutation.isLoading}

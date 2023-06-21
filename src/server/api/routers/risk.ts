@@ -9,7 +9,8 @@ export const riskRouter = createTRPCRouter({
       name : z.string(),
       description : z.string(),
       solutions : z.string(),
-      levelOfDanger : z.string()
+      levelOfDanger : z.string(),
+      cost : z.number()
      }))
     .mutation( async({ input  , ctx }) => {
 
@@ -19,7 +20,8 @@ export const riskRouter = createTRPCRouter({
             name : input.name , 
             description : input.description,
             solutions : input.solutions ,
-            levelOfDanger : input.levelOfDanger
+            levelOfDanger : input.levelOfDanger,
+            cost : input.cost.toString()
         }
       })
     }),

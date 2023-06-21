@@ -10,8 +10,8 @@ import { Input } from '../used/Input'
 import { getProjectMetaData } from '~/lib/MetaData'
 import { TimePicker } from '../used/TimePicker'
 import { TextField } from '../used/TextField'
-import type { DateRangePickerValue } from '@tremor/react'
-import NewTimePicker from '../used/NewTimePicker'
+import { DatePickerShadowui } from '../used/DatePickerShadowui'
+
 type Props = {
   
   refetch : () => Promise<any>
@@ -26,10 +26,7 @@ export  function MileStoneAdd ({ refetch} : Props) {
 
  
     const [isOpen, setIsOpen] = useState(false)
-    const [value , setValue] = useState<DateRangePickerValue>({
-      from: new Date(2023, 1, 1),
-      to: new Date(),
-    })
+    const [value , setValue] = useState<Date | undefined>()
   
     const [formData , setFormData] = useState({
       name : "" ,
@@ -58,9 +55,10 @@ export  function MileStoneAdd ({ refetch} : Props) {
     const handleSubmit = () => {
       mutation.mutate({
         description : formData.description ,
-        dueDate : value.to || new Date(), 
+        dueDate : value || new Date(), 
         name : formData.name , 
-        project_id : getProjectMetaData()
+        project_id : getProjectMetaData(),
+        
       })
     }
    
@@ -132,10 +130,11 @@ export  function MileStoneAdd ({ refetch} : Props) {
                  
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 gap-6">
-            <div className="col-span-6">
-                      <NewTimePicker value={value} setValue={setValue} text="only the end date will be taken"/>
-              </div>
+            <div className="col-span-6 mt-4 ">
+                <DatePickerShadowui label="sélectionner  la date"  date={value} setDate={setValue} />
+            </div>
             <Input
+               className='col-span-6'
               lable='Title'
               value={formData.name}
               onChange={(e) => setFormData({...formData , name : e.target.value})}
@@ -143,6 +142,7 @@ export  function MileStoneAdd ({ refetch} : Props) {
              
             
             <TextField
+              className='col-span-6'
               lable='Milestone Description'
               value={formData.description}
               onChange={(e) => setFormData({...formData , description : e.target.value})}

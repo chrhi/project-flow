@@ -21,7 +21,9 @@ export  function ResourceAdd ({refetch} : Props ) {
     name : "" ,
     description: "",
     cost : 0,
-    quality : ""
+    quality : "",
+    amount : 1,
+    imgUrl : ""
 
   })
 
@@ -54,7 +56,8 @@ export  function ResourceAdd ({refetch} : Props ) {
       name : data.name ,
       cost : data.cost , 
       description : data.description ,
-      quality : data.quality 
+      quality : data.quality ,
+      imageUrl : data.imgUrl
     })
   };
 
@@ -65,7 +68,6 @@ export  function ResourceAdd ({refetch} : Props ) {
           variant="outline"
           size="sm"
           onClick={openModal}
-    
         >
          Add new Resource
         </Button>
@@ -99,7 +101,7 @@ export  function ResourceAdd ({refetch} : Props ) {
                 leaveTo="opacity-0 scale-95"
                
               >
-                <Dialog.Panel className="  w-[600px] h-[570px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="  w-[800px] h-[550px]  transform overflow-hidden  bg-white text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4  "
@@ -118,7 +120,7 @@ export  function ResourceAdd ({refetch} : Props ) {
                  
            <div className="bg-white p-4  w-full  ">
             <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
-            <div className='col-span-6  lg:col-span-12'>
+            <div className='col-span-6  '>
                   <label  className="block text-sm font-medium leading-6 text-gray-900">
                   quality
                   </label>
@@ -131,30 +133,46 @@ export  function ResourceAdd ({refetch} : Props ) {
                     />
             </div> 
             <Input
-              className="col-span-6  lg:col-span-12"
+              className="col-span-6  "
               lable='Nom'
               value={data.name}
               onChange={(e) => setData({...data , name : e.target.value})}
             />
             
             
-             <TextField
-              className="col-span-6  lg:col-span-12"
-              lable='description'
-              value={data.description}
-              onChange={(e) => setData({...data , description : e.target.value})}
-            />
+            
              <Input
-              className="col-span-6  lg:col-span-12"
+              className="col-span-6  "
               lable='cost'
               value={data.cost}
 
               onChange={(e) => setData({...data , cost : Number(e.target.value)})}
             />
 
+           <Input
+              className="col-span-6  "
+              lable='image url'
+              value={data.imgUrl}
+              onChange={(e) => setData({...data , imgUrl : e.target.value})}
+            />
+
+            
+           <Input
+              className="col-span-6 "
+              lable='amount'
+              value={data.amount}
+              onChange={(e) => setData({...data , amount : Number(e.target.value)})}
+            />
+
+            <TextField
+              className="col-span-6 lg:col-span-12"
+              lable='description'
+              value={data.description}
+              onChange={(e) => setData({...data , description : e.target.value})}
+            />
            
                 
-             <div className="bg-white flex justify-end items-end p-4 col-span-6  lg:col-span-12 text-right ">
+             <div className="bg-white flex justify-end items-end pt-4 col-span-6  lg:col-span-12 text-right ">
             <AbdullahButton
             onClick={handleSubmit}
             isLoading={mutation.isLoading}

@@ -28,14 +28,14 @@ export function DatePickerShadowui({
 
 
   return (
-    <div className={cn(" w-full flex flex-col items-start", className)}>
+    <div className={cn(" w-full z-[999] flex flex-col items-start", className)}>
       <Label> {label}</Label>
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
           className={cn(
-            "w-[280px] justify-start text-left font-normal",
+            "w-full justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
         >
@@ -43,7 +43,7 @@ export function DatePickerShadowui({
           {date ? format(date, "PPP") : <span>Pick a date</span>}
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
+      <PopoverContent className="w-auto z-[999] p-0">
         <Calendar
           mode="single"
           selected={date}
