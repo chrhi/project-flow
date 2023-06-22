@@ -98,6 +98,11 @@ export const GanttTask = () => {
            <Switch checked={showTaskList} onCheckedChange={handleChange} id="tasklist-show" />
            <Label htmlFor="tasklist-show">Afficher la liste des tâches</Label>
         </div>
+        <AbdullahButton
+              onClick={() => console.log("")}
+              className={`${buttonVariants({variant : "secondary"})} `} >
+                grow
+        </AbdullahButton>
         </div>
       </div>
       {

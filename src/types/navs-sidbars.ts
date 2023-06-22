@@ -23,7 +23,8 @@ export enum NAVS_PLANNING {
     NIGHT,
     TEN,
     A,
-    ELEVEN
+    ELEVEN,
+    TASKS
   }
   // all the navs for the executing phase 
   export enum NAVS_EXECUTING {

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable react/no-unescaped-entities */
-import { useState} from "react"
+import { FormEvent, useState} from "react"
 import { TextField } from "~/components/used/TextField";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
@@ -10,12 +10,105 @@ import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import { RowGridText } from "~/components/typography/RowGridText";
+import { getProjectMetaData } from "~/lib/MetaData";
+import { api } from "~/utils/api";
+import toast from "react-hot-toast";
+import { FormButton } from "~/components/used/FormButton";
 
 
 
 const Page: NextPage = () => {
   const [didGetData , setDidGetData] = useState<boolean>(false)
   const [isOpen , setIsOpen] = useState<boolean>(true)
+
+
+  const [formData , setFormData] = useState({
+    id : "",
+    Methodology : "",
+    RolesAndResponsibilities : "",
+    RiskCategories : "",
+    RiskManagementFunding : "",
+    ContingencyProtocols : "",
+    FrequencyAndTiming :"",
+    StakeholderRiskTolerances : "",
+    TrackingAndAudit : "",
+  })
+
+
+  const {isLoading  , refetch} = api.riskPlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
+    retryOnMount : false ,
+    onSuccess(data) {
+      if(data?.id ){
+        setDidGetData(true)
+      }
+      setFormData({
+        id : data?.id || "",
+        Methodology : data?.Methodology  || "", 
+        RolesAndResponsibilities : data?.RolesAndResponsibilities  || "", 
+        RiskManagementFunding : data?.RiskManagementFunding || "" , 
+        RiskCategories : data?.RiskCategories || "" , 
+        ContingencyProtocols : data?.ContingencyProtocols || "",
+        FrequencyAndTiming :data?.FrequencyAndTiming || "",
+        StakeholderRiskTolerances : data?.StakeholderRiskTolerances || "",
+        TrackingAndAudit : data?.TrackingAndAudit || "",
+      })
+    },
+    onError(err) {
+      toast.error("something went wrong")
+    },
+  })
+ const  post = api.riskPlanningRouter.dataAdd.useMutation( {
+    onSuccess : async () =>  {
+      toast.success("mise à jour réussie")
+      await refetch()
+    },
+    onError(err) {
+     
+      toast.error("quelque chose s'est mal passé")
+    },
+  })
+  const  update = api.riskPlanningRouter.dataUpdate.useMutation( {
+    onSuccess : async () =>  {
+      toast.success("mise à jour réussie")
+      await refetch()
+    },
+    onError(err) {
+      
+      toast.error("quelque chose s'est mal passé")
+    },
+  })
+
+    const handleCreate = (event : FormEvent) => {
+      //todo handle this later
+      event.preventDefault()
+    
+      post.mutate({
+        projectId : getProjectMetaData() ,
+        Methodology : formData?.Methodology  || "", 
+        RolesAndResponsibilities : formData?.RolesAndResponsibilities  || "", 
+        RiskManagementFunding : formData?.RiskManagementFunding || "" , 
+        RiskCategories : formData?.RiskCategories || "" , 
+        ContingencyProtocols : formData?.ContingencyProtocols || "",
+        FrequencyAndTiming :formData?.FrequencyAndTiming || "",
+        StakeholderRiskTolerances : formData?.StakeholderRiskTolerances || "",
+        TrackingAndAudit : formData?.TrackingAndAudit || "",
+      })
+    }
+    const handleUpdate = (event : FormEvent) => {
+      //todo handle later
+     
+      update.mutate({
+        id : formData.id ,
+        Methodology : formData?.Methodology  || "", 
+        RolesAndResponsibilities : formData?.RolesAndResponsibilities  || "", 
+        RiskManagementFunding : formData?.RiskManagementFunding || "" , 
+        RiskCategories : formData?.RiskCategories || "" , 
+        ContingencyProtocols : formData?.ContingencyProtocols || "",
+        FrequencyAndTiming :formData?.FrequencyAndTiming || "",
+        StakeholderRiskTolerances : formData?.StakeholderRiskTolerances || "",
+        TrackingAndAudit : formData?.TrackingAndAudit || "",
+      })
+    }
   return (
     <>
     
@@ -32,89 +125,58 @@ const Page: NextPage = () => {
          
           <TextField 
           lable="Methodology"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
           <TextField 
           lable="Roles and Responsibilities"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
           <TextField 
           lable="Risk Categories"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
           <TextField 
           lable="Risk Management Funding"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
 
           <TextField 
           lable="Contingency Protocols"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
 
           <TextField 
           lable="Frequency and Timing"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
 
         <TextField 
           lable="Stakeholder Risk Tolerances"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
 
         <TextField 
           lable="Tracking and Audit"
-          onChange={(e) => console.log("Hi")} 
-          value={"" }
+          onChange={(e) => setFormData({...formData , Methodology : e.target.value})} 
+          value={formData.Methodology}
           />
-           <div className="col-span-6 ">
-            <AbdullahTable
-            Action={false}
-              title="Probability and Impact Matrix"
-              description="Definitions of Impact by Objective"
-              headers={["" , "Scope" , "Quality" , "Time" , "Cost"]}
-              body={[
-              { id : "ggge",
-                callback:() => console.log("hi"),
-              properties : ["Very high" , " " , " " , " " , " "]
-              }
-            ]}
 
-            />
-          </div>
-     
-
-
-         
+        <FormButton
+                         isLoading={update.isLoading || post.isLoading}
+                         state={didGetData}
+                         create={handleCreate}
+                         update={handleUpdate}
+        />     
         </div>
       </div>
-      <div className="bg-white px-4 py-3 text-right sm:px-6">
-        {
-          didGetData ?
-           <button
-        //    onClick={ (e : FormEvent) => habdleUpdate(e)}
-           type="submit"
-           className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-           >
-            mise à jour
-          </button> 
-          :
-          <button
-          type="submit"
-       
-          className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-        >
-         enregistrer & continuer
-        </button>
-        }
-       </div>
+      
        </Form>
   </FormContainer>
       </main>

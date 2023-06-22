@@ -239,6 +239,9 @@ model Closing  {
   projectId String?
   project Project?  @relation(fields: [projectId], references: [id])
   
+  formalAcceptance formalAcceptance[]
+
+
   @@index([id])
   @@index([projectId])
 }
@@ -410,4 +413,20 @@ model ChangeLog {
   project Project?  @relation(fields: [projectId], references: [id])
   @@index([id])
   @@index([projectId])
+}
+
+  
+
+model  formalAcceptance {
+    id        String  @id @default(uuid())
+    ClosingId String? 
+    REQUIREMENT String?
+    ACCEPTANCE_CRITERIA  String?
+    VALIDATION_METHOD   String?
+    STATUS         String?
+    COMMENTS       String?
+    SIGNOFF        String?
+    closing Closing?  @relation(fields: [ClosingId], references: [id])
+    @@index([id])
+    @@index([ClosingId])
 }

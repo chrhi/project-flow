@@ -193,6 +193,11 @@ const Page: NextPage = () => {
       className={buttonVariants({variant:"primary" })}>
         create new task
       </AbdullahButton>
+      <AbdullahButton 
+      onClick={() => setIsPopUpOpen(true)}
+      className={`${buttonVariants({variant:"primary" })} bg-gradient-to-r from-purple-600 to-purple-300`}>
+        node magic
+      </AbdullahButton>
       </div>
     <div id="treeWrapper" className='mx-auto bg-white ' style={{ width: '95%', height: '100%' }}>
 
@@ -220,7 +225,7 @@ const Page: NextPage = () => {
       <div className="save__controls">
      
       </div>
-      <MiniMap  zoomable pannable />
+      <MiniMap  zoomable pannable  />
       <Controls />
       <Background color="#aaa" gap={16} />
        <DownloadButton />

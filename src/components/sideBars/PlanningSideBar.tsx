@@ -25,6 +25,7 @@ type Props ={
 export const List = [
   {name : "Plan de Portée du Projet" , path : "/app/planning" , navs : NAVS.ONE},
   {name : " WBD  " , path : "/app/planning/work_break_done" , navs : NAVS.TWO},
+  {name : "tasks managment" , path : "/app/planning/tasks_hub" , navs : NAVS.TASKS},
   {name : " Plan de gestion de projet " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},
   {name : "Planification du calendrier du projet" , path : "/app/planning/Project_Scheduler" , navs : NAVS.FOUR},
   {name : "Plan de gestion des communications" , path : "/app/planning/comminucation_plan" , navs : NAVS.SIX},

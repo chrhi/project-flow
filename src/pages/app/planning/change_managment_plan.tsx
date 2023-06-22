@@ -30,7 +30,7 @@ const Page: NextPage = () => {
   })
   const [didGetData , setDidGetData] = useState<boolean>(false)
 
-  const {isFetching , refetch} = api.changePlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
+  const {isLoading : isFetching , refetch} = api.changePlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
     retryOnMount : false ,
     onSuccess(data) {
       if(data?.id ){
@@ -191,16 +191,16 @@ const Page: NextPage = () => {
           onChange={(e) =>setFormData({...formData , ChangeRequestDisposition : e.target.value})} 
           value={formData.ChangeRequestDisposition}
           />
-         
+           <FormButton
+                state ={didGetData}
+                isLoading ={post.isLoading || update.isLoading}
+                create={handleCreate}
+                update={handleUpdate}
+
+           />
         </div>
       </div>
-      <FormButton
-    state ={didGetData}
-    isLoading ={post.isLoading || update.isLoading}
-    create={handleCreate}
-    update={handleUpdate}
-
-    />
+    
        </Form>
   </FormContainer>
       </main>
