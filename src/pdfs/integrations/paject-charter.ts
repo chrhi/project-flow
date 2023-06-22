@@ -79,7 +79,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
               <div class="w-[50%] flex items-start flex-col h-full justify-start p-4">
                 <p class=" font-semibold leading-6 text-sm text-gray-900" >Project Title: <span class="font-normal">${project?.title || "project without title"}</span>  </p>
     
-                    <h3  class="  font-semibold leading-6 text-sm text-gray-900" > project Scponser :<span class="font-normal"> ${projectScponser[0]?.name || "provide sponser"}</span> </h3>
+                    <h3  class="  font-semibold leading-6 text-sm text-gray-900" > project Scponser :<span class="font-normal"> ${projectScponser[0]?.name || "multinational"}</span> </h3>
                     <h3  class="  font-semibold leading-6 text-sm text-gray-900" > project Manager :<span class="font-normal"> ${projectManager[0]?.name || "provide project manager"} </span> </h3>
                     
               </div>
@@ -189,7 +189,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
 
 
 <div class="w-[97%] mx-auto  min-h-[20px] my-4  pt-1 flex justify-between items-start px-4 border no-break-inside ">
-    <h2 class="  font-bold  leading-6 text-lg text-gray-900 text-start">Estimated Budget: </h2>
+    <h2 class="  font-bold  leading-6 text-lg text-gray-900 text-start">Estimated Budget: €750000 </h2>
     <p class="  font-bold  leading-6 text-md text-gray-400 text-start" >${projectScponser[0]?.InvestmentAmount || ""}</p>
 </div>
 
