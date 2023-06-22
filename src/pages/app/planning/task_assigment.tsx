@@ -12,7 +12,8 @@ import { api } from "~/utils/api";
 import  toast  from "react-hot-toast";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { FormButton } from "~/components/used/FormButton";
-
+import { ProjectLifeSCYcleAdd } from "~/components/popup/planning-phase/ProjectLifeSycle";
+import { DataTable } from "~/components/common/constants/resource-table/data-table";
 
 
 
@@ -54,6 +55,28 @@ const Page: NextPage = () => {
     ProjectReviews : ""
   })
   const [didGetData , setDidGetData] = useState<boolean>(false)
+
+  const [dataLifeCycle , setDataLifeCycle] = useState<ItemTable[]>([] as ItemTable[])
+
+  const {refetch : AbdullahRefech , isLoading :  isAbdullahLoading} = api.ProjecrLifeCycleRouter.dataGet.useQuery({projectId : getProjectMetaData()},{
+    onError : (err) => {
+      toast.error(err.message)
+    },
+    onSuccess(data) {
+      const PreparedArray = data.map((item) => {
+        return {
+          id : item.id , 
+          properties : [item.Phase , item.KeyDeliverables],
+          callback: (id: string) => console.log(id)
+        }
+      })
+      
+        setDataLifeCycle(PreparedArray as ItemTable[])
+      
+    },
+  })
+
+ 
 
   const {isFetching , refetch} = api.projectManagmentPlanRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
     retryOnMount : false ,
@@ -97,8 +120,8 @@ const Page: NextPage = () => {
       })
     },
     onError(err) {
-      console.log(err)
-      toast.error("something went wrong")
+    
+      toast.error(err.message)
     },
   })
  const  post = api.projectManagmentPlanRouter.dataAdd.useMutation( {
@@ -107,8 +130,8 @@ const Page: NextPage = () => {
       await refetch()
     },
     onError(err) {
-      console.log(err)
-      toast.error("quelque chose s'est mal passé")
+  
+      toast.error(err.message)
     },
   })
   const  update = api.projectManagmentPlanRouter.dataUpdate.useMutation( {
@@ -227,11 +250,12 @@ const Page: NextPage = () => {
          
           <div className="col-span-6 lg:col-span-12 ">
              <AbdullahTable
-                    isLoading={ false}
+                    isLoading={isAbdullahLoading}
                     Action={false}
                     ActionName="Assign"
                     headers={["Phase" , "Key Deliverables" ]}
-                    body={[]}
+                    body={dataLifeCycle}
+                    PlusButton={<ProjectLifeSCYcleAdd refetch={AbdullahRefech} />}
               />
            </div>
            <RowGridText text="Project Management Processes and Tailoring Decisions"/>

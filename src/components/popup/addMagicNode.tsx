@@ -3,13 +3,6 @@ import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
 import { Input } from '~/components/used/Input'
 import  toast  from 'react-hot-toast';
-import Select from 'react-select';
-import { TextField } from '~/components/used/TextField';
-import { OPTIONS , COLORS} from '~/types/static/STATICDATA'
-import { DatePickerWithRange } from '../ui/date-range-picker';
-import { addDays } from 'date-fns';
-
-
 import { v4 as uuidV4 } from 'uuid';
 
 interface Props {
@@ -22,17 +15,12 @@ interface Props {
 }
 
 
-export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
+export  function AddMagicNode ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
   
     const [inputs , setInput ] = useState({
       title : "" ,
     })
    
-
-
-
-
-  
    const handleSubmit = () => {
 
         const id = uuidV4()
@@ -42,15 +30,12 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
         return
       }
     
-      if(onAdd === undefined || id) return
+      if(onAdd === undefined || !id) return
       onAdd({title : inputs.title ,id :  id })
       setIsOpen(false)
 
     }
  
-
-   
-
   return (
     <>
      
@@ -78,16 +63,16 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[930px] h-[625px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-[730px] h-[325px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                     as="div"
-                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
+                    className=" w-[100%] mx-auto bg-gradient-to-br from-pink-500 to-purple-800 h-[50px] flex justify-between items-center px-4 border-b "
                   >
-               <div><p className='text-md text-gray-900 font-semibold  ml-4'>Créer une nouvelle tâche</p></div>  
+               <div><p className='text-md text-white font-semibold  ml-4'>Créer une nouvelle tâche</p></div>  
                <div>
                     <button
                           onClick={() => setIsOpen(false)}
-                          className='!text-xl !font-semibold !text-slate-900 !p-0  '>
+                          className='!text-xl !font-semibold !text-white !p-0  '>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -95,24 +80,19 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                 </div> 
                   </Dialog.Title>
                 <div className="bg-white p-4  w-full  ">
-                      <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+                      <div className="grid grid-cols-6 mt-12  gap-6">
 
                           <Input
+                              
                                lable='Titre'
                                value={inputs.title}
                                onChange={(e) => setInput({...inputs , title : e.target.value})}
-                           />
-                           
-                           
-                          
-                         
-                           
-                         
+                           /> 
                            
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
                             <AbdullahButton className={` ${buttonVariants({ variant:"secondary"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>Annuler</AbdullahButton>
-                            <AbdullahButton  onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Créer  tâche</AbdullahButton>
+                            <AbdullahButton  onClick={handleSubmit} className={`${buttonVariants({ variant:"primary"})} bg-gradient-to-br from-pink-500 to-purple-500`}>create magic node</AbdullahButton>
                         </div>
                  </div> 
                 </Dialog.Panel>

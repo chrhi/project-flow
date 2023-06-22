@@ -3,6 +3,8 @@ import { Header } from "~/components/header/Header";
 import DocsSideBar from "~/components/docsComponents/DocsSideBar";
 import Head from "~/components/common/Head";
 import { GeneraleBuilder } from "~/components/docsComponents/generale-builder";
+import { ProjectCharterBuilder } from "~/components/docsComponents/builders/ProjectCharterBuilder";
+import { ProjectManagmentBuilder } from "~/components/docsComponents/builders/projectManagmentPlanBuilder";
 
 const Page: NextPage = () => {
   
@@ -18,18 +20,22 @@ const Page: NextPage = () => {
         className="ml-[20rem] w-[80%]  grid grid-cols-1 lg:grid-cols-2  h-full gap-4 pt-8 pb-8 "
        >
        {/* build the pdf builder component */}
-        <GeneraleBuilder 
-          title="Charte de projet"
-          color=""
-          description="Document formalisant les objectifs, le périmètre, les livrables et les parties prenantes d'un projet, établissant ainsi les bases pour sa planification et son exécution. "
-          phase="Démarrage "
-        />
+        
+        <ProjectCharterBuilder
+title="Charte de projet"
+color=""
+description="Document formalisant les objectifs, le périmètre, les livrables et les parties prenantes d'un projet, établissant ainsi les bases pour sa planification et son exécution. "
+phase="Démarrage "
+          />
 
-        <GeneraleBuilder 
-          title="Plan de gestion de projet"
-          color="fill-yellow-400 text-yellow-400"
-          description="Document détaillant les approches, les processus, les activités, les ressources et les calendriers nécessaires à la gestion et à l'exécution d'un projet."
-          phase="Planification"
+      
+        <ProjectManagmentBuilder 
+
+      title="Plan de gestion de projet"
+      color="fill-yellow-400 text-yellow-400"
+      description="Document détaillant les approches, les processus, les activités, les ressources et les calendriers nécessaires à la gestion et à l'exécution d'un projet." 
+      phase="Planification"
+
         />
 
         <GeneraleBuilder 

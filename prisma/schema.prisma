@@ -212,6 +212,7 @@ model Planning {
   costlManagementPlan costlManagementPlan[]
   ChangelManagementPlan ChangelManagementPlan[]
   RisklManagementPlan RisklManagementPlan[]
+  ProjectLifeCycle    ProjectLifeCycle[]
   @@index([id])
   @@index([projectId])
 }
@@ -429,4 +430,16 @@ model  formalAcceptance {
     closing Closing?  @relation(fields: [ClosingId], references: [id])
     @@index([id])
     @@index([ClosingId])
+}
+
+model ProjectLifeCycle {
+    id        String  @id @default(uuid())
+  PlanningId String?
+  Phase      String? @db.LongText
+  KeyDeliverables String? @db.LongText
+  
+  planning Planning?  @relation(fields: [PlanningId], references: [id])
+
+  @@index([id])
+  @@index([PlanningId])
 }

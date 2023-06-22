@@ -31,6 +31,7 @@ import { getProjectMetaData, getUserMetadata } from '~/lib/MetaData';
 import toast  from 'react-hot-toast';
 import { TaskPopUpShowCase } from '~/components/popup/task-pop-up';
 import { openTasksShowUp } from '~/store/open-models';
+import { AddMagicNode } from '~/components/popup/addMagicNode';
 
 const initialNodes = [
  
@@ -47,6 +48,7 @@ const Page: NextPage = () => {
 
   const edgeUpdateSuccessful = useRef(true);
   const [isOpen , setIsOpen] = useState<boolean>(false)
+  const [isOpenMagic , setIsOpenMagic] = useState<boolean>(false)
   const [isOpenAlert , setIsOpenAlert] = useState<boolean>(true)
   const [isPopUpOpen , setIsPopUpOpen ] = useState<boolean>(false)
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -168,8 +170,8 @@ const Page: NextPage = () => {
         <TaskPopUpShowCase />
        <PlanningSideBar setIsOpen ={setIsOpenAlert} isOpen = {isOpenAlert} />
        <FormContainer className ={` ${isOpenAlert ? "ml-[20rem]" : "m-[0]"}`}>
-      <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/>
-     
+      {/* <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/> */}
+  
    
       <div className='w-[95%] mx-auto h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
      
@@ -194,8 +196,8 @@ const Page: NextPage = () => {
         create new task
       </AbdullahButton>
       <AbdullahButton 
-      onClick={() => setIsPopUpOpen(true)}
-      className={`${buttonVariants({variant:"primary" })} bg-gradient-to-r from-purple-600 to-purple-300`}>
+      onClick={() => setIsOpenMagic(true)}
+      className={`${buttonVariants({variant:"primary" })} bg-gradient-to-r from-pink-400 to-pink-500`}>
         node magic
       </AbdullahButton>
       </div>
@@ -207,6 +209,11 @@ const Page: NextPage = () => {
       setIsOpen={setIsPopUpOpen} 
       onAdd={onAdd}
       />
+    <AddMagicNode
+     setIsOpen ={setIsOpenMagic} 
+     isOpen ={isOpenMagic}   
+     onAdd={onAdd}  
+     />
     <ReactFlow
       nodes={nodes}
       edges={edges}
