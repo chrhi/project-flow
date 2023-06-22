@@ -67,7 +67,7 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
     <div class="w-full min-h-[70px] h-fit pt-1 mb-4 flex justify-between  border-b ">
           <div class="w-[50%] flex items-start h-full flex-col justify-start p-4">
                     <h1 class=" font-semibold leading-6 text-xl text-blue-500"> Project Managment Plan</h1>
-                    <h3 class=" leading-6 text-sm text-gary-800" > prepared at ${formatDate(new Date())}</h3> 
+                    <h3 class=" leading-6 text-sm text-gray-900 " > prepared at ${formatDate(new Date())}</h3> 
           </div>
           <div class="w-[50%] flex items-start flex-col h-full justify-start p-4">
             <p class=" font-semibold leading-6 text-sm text-gray-900" >Project Title: <span class="font-normal">${project?.title}</span>  </p>   
@@ -94,19 +94,19 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                 <tbody>  
                  
                     ${
-                        projectLifeCycle.map(item => {
-                           `
-                           <tr class=" border-b no-break-inside bg-gray-800 border-gray-700">
-                           <td class="px-6 py-4  font-medium  text-white ">
-                             ${item.Phase}
-                           </td>
-                           <td class="px-6 py-4  font-medium  text-white ">
-                           ${item.KeyDeliverables}
-                           </td>
-                        
-                       </tr>
-                           `
-                        }) 
+                        projectLifeCycle.map(item => (
+                            `
+                        <tr class=" border-b no-break-inside bg-gray-800 border-gray-700">
+                        <td class="px-6 py-4  font-medium  text-white ">
+                          ${item.Phase}
+                        </td>
+                        <td class="px-6 py-4  font-medium  text-white ">
+                        ${item.KeyDeliverables}
+                        </td>
+                     
+                        </tr>
+                     `
+                        )) 
                     }
                  
                 </tbody>
