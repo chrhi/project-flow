@@ -197,7 +197,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
     <h2 class="  font-bold  leading-6 text-lg text-gray-900 text-start">stakeholders :</h2>
 </div>
 
-<div class="relative w-[97%] mx-auto  no-break-inside ">
+<div class="relative w-[97%] mx-auto   ">
     <table class="w-full text-sm text-left  text-gray-400">
         <thead class="text-xs  uppercase  !bg-gray-700 text-gray-400">
            
