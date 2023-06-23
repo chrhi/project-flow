@@ -290,7 +290,7 @@ const Page: NextPage = () => {
            <TextField isLoading={isFetching} lable="Stakeholders Processes" onChange={(e) => setFormData({...formData ,StakeholdersProcesses : e.target.value })} value={formData.StakeholdersProcesses} />
            <TextField isLoading={isFetching} lable="Stakeholders Tailoring Decisions" onChange={(e) => setFormData({...formData ,StakeholdersTailoringDecisions : e.target.value })}  value={formData.StakeholdersTailoringDecisions} />
 
-           <RowGridText text="Project Management Processes and Tailoring Decisions"/>
+           <RowGridText text="Process Tools and Techniques"/>
            {/* this is a row */}
            <TextField isLoading={isFetching} lable="Integration Tools and Techniques" onChange={(e) => setFormData({...formData ,IntegrationToolsandTechniques : e.target.value })} value={formData.IntegrationToolsandTechniques} />
            {/* this is a row */}

@@ -73,7 +73,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
         <div class="w-full min-h-[70px] h-fit pt-1 mb-4 flex justify-between  border-b ">
               <div class="w-[50%] flex items-start h-full flex-col justify-start p-4">
                         <h1 class=" font-semibold leading-6 text-xl text-blue-500">Project charter</h1>
-                        <h3 class="  leading-6 text-sm text-gary-700" > prepared at ${formatDate(new Date())}</h3>
+                        <h3 class="  leading-6 text-sm text-gray-900" > prepared at ${formatDate(new Date())}</h3>
                         <h3  class=" font-semibold leading-6 text-sm text-gray-900" > project customer : <span class="font-normal"> ${projectCustomer[0]?.name || " Direction Exploitation"}</span> </h3>
               </div>
               <div class="w-[50%] flex items-start flex-col h-full justify-start p-4">

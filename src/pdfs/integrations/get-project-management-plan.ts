@@ -267,9 +267,7 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <th scope="col" class="px-6 py-3">
                             Knowledge Area
                         </th>
-                        <th scope="col" class="px-6 py-3">
-                            Processes
-                        </th>
+                       
                         <th scope="col" class="px-6 py-3">
                             Tailoring Decisions
                         </th>
@@ -280,22 +278,19 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Integration
                         </td>
+                      
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.ScopeTailoringDecisions}
                         </td>
                     </tr>
                     <tr class=" border-b bg-gray-800 border-gray-700">
                         <td class="px-6 py-4  font-medium  text-white ">
                             Scope
                         </td>
+                
+                    
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.ScopeTailoringDecisions}
                         </td>
                     </tr>
 
@@ -303,11 +298,9 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                               Time
                         </td>
+                     
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.ScopeTailoringDecisions}
                         </td>
                     </tr>
                   
@@ -316,11 +309,9 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Cost
                         </td>
+                     
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.CostProcesses}
                         </td>
                     </tr>
 
@@ -328,11 +319,9 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Quality
                         </td>
+                      
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.QualityProcesses}
                         </td>
                     </tr>
 
@@ -340,11 +329,9 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Human Resources
                         </td>
+                       
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.HumanResourcesProcesses}
                         </td>
                     </tr>
 
@@ -352,11 +339,9 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Communication
                         </td>
+                       
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.ScopeTailoringDecisions}
                         </td>
                     </tr>
 
@@ -364,11 +349,9 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Risk
                         </td>
+                       
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.RiskProcesses}
                         </td>
                     </tr>
 
@@ -376,11 +359,9 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Procurement
                         </td>
+                      
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
+                        ${formData?.ProcurementProcesses}
                         </td>
                     </tr>
                          
@@ -388,17 +369,46 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
                         <td class="px-6 py-4  font-medium  text-white ">
                             Stakeholders
                         </td>
+                      
                         <td class="px-6 py-4  font-medium  text-white ">
-                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
-                        <td class="px-6 py-4  font-medium  text-white ">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti fuga dolores temporibus provident et corporis illo asperiores quisquam quasi, nihil rerum, facere incidunt totam. Ipsum nesciunt at maiores esse adipisci!
-                        </td>
+                        ${formData?.StakeholdersProcesses}
                     </tr>
                 </tbody>
             </table>
         </div>
+
+       
+        <div class="w-full  min-h-[20px] my-2  pt-1 flex justify-start items-start px-4  no-break-inside ">
+            <h2 class="text-base font-bold  leading-6 text-lg text-gray-900 text-start">  Variances and Baseline Management</h2>
+        </div>
       
+        <!-- title description -->
+        <div class="w-full  min-h-[70px] h-fit pt-1 flex flex-col  justify-start items-start px-4 no-break-inside ">
+            <h2 class="text-base font-semibold leading-6 text-md text-gray-900 text-start">Scope Variance (Écart de périmètre)</h2>
+            <p class="text-base leading-6 text-sm text-gray-500">
+            Le schedule variance mesure l'écart entre le calendrier réel du projet et le calendrier prévu dans la ligne de base du calendrier. Il indique si le projet est en retard ou en avance par rapport à la planification initiale. Un écart positif indique un retard, tandis qu'un écart négatif indique une avance par rapport au calendrier prévu. La gestion de la ligne de base du calendrier implique le suivi des activités, la mise à jour du calendrier, l'identification des retards potentiels et la mise en œuvre de mesures correctives pour respecter les échéances établies.
+            </p>
+        </div>
+
+        <!-- title description -->
+        <div class="w-full  min-h-[70px] h-fit pt-1 flex flex-col  justify-start items-start px-4 no-break-inside ">
+            <h2 class="text-base font-semibold leading-6 text-md text-gray-900 text-start">Cost Variance (Écart de coût) </h2>
+            <p class="text-base leading-6 text-sm text-gray-500">Le cost variance mesure l'écart entre les coûts réels du projet et les coûts prévus dans la ligne de base des coûts. Il indique si le projet est en train de respecter le budget établi. Un écart positif indique des dépassements de coûts, tandis qu'un écart négatif indique des économies réalisées par rapport au budget prévu. La gestion de la ligne de base des coûts implique le suivi des dépenses, l'identification des écarts de coûts, l'analyse des raisons des écarts et la prise de mesures correctives pour maîtriser les coûts du projet.</p>
+        </div>
+
+        <!-- title description -->
+        <div class="w-full  min-h-[70px] h-fit pt-1 flex flex-col  justify-start items-start px-4 no-break-inside ">
+            <h2 class="text-base font-semibold leading-6 text-md text-gray-900 text-start">Baseline Management (Gestion des références)</h2>
+            <p class="text-base leading-6 text-sm text-gray-500">La gestion des références consiste à maintenir, surveiller et contrôler les différentes lignes de base établies pour le périmètre, le calendrier et les coûts du projet. Cela implique de documenter et de mettre à jour les références initiales, de suivre les variations par rapport à ces références, de prendre des mesures correctives lorsque des écarts sont identifiés, et de s'assurer que toutes les modifications apportées aux références sont dûment évaluées et approuvées. La gestion des références garantit la cohérence et le contrôle des objectifs du projet tout au long de sa réalisation.</p>
+        </div>
+
+
+
+
+
+
+
+
         <div class="w-full  min-h-[70px] h-fit pt-1 flex flex-col  justify-start items-start px-4 no-break-inside ">
             <h2 class="text-base font-semibold leading-6 text-md text-gray-900 text-start">Project Reviews</h2>
             <p class="text-base leading-6 text-sm text-gray-500"></p>
