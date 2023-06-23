@@ -35,3 +35,21 @@ export const confirmDeleteStakeholder = create<ReducerStakeholder>(
         setId : (input : string) => set({id : input})
     }),
 )
+
+
+type ReducerTasksDelete ={
+    id : string,
+    showModel: boolean,
+    setShowModel : (input :boolean) => void,
+    setId : (input:string) => void
+}
+
+export const confirmDeleteTask = create<ReducerTasksDelete>(
+
+    (set) => ({
+        id : "",
+        showModel:false,
+        setShowModel:(input :boolean) => set({showModel : input}),
+        setId : (input : string) => set({id : input})
+    }),
+)

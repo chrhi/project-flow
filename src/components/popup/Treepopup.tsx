@@ -10,7 +10,8 @@ import { api } from '~/utils/api'
 import { getProjectMetaData } from '~/lib/MetaData'
 import { DatePickerWithRange } from '../ui/date-range-picker';
 import { addDays } from 'date-fns';
-import { DateRange } from 'react-day-picker';
+import type { DateRange } from 'react-day-picker';
+import { ScrollArea } from '../ui/scroll-area';
 
 interface Props {
   
@@ -135,7 +136,7 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[930px] h-[625px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <ScrollArea className="w-[930px] h-[625px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
@@ -237,7 +238,7 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                             <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Créer  tâche</AbdullahButton>
                         </div>
                  </div> 
-                </Dialog.Panel>
+                </ScrollArea>
               </Transition.Child>
             </div>
           </div>
