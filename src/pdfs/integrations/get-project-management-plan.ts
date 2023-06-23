@@ -411,7 +411,7 @@ export const get_project_managment_plan = async ({projectId} : {projectId : stri
 
         <div class="w-full  min-h-[70px] h-fit pt-1 flex flex-col  justify-start items-start px-4 no-break-inside ">
             <h2 class="text-base font-semibold leading-6 text-md text-gray-900 text-start">Project Reviews</h2>
-            <p class="text-base leading-6 text-sm text-gray-500"></p>
+            <p class="text-base leading-6 text-sm text-gray-500">${formData?.ProjectReviews}</p>
         </div>
         
         
