@@ -234,8 +234,8 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                              />
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
-                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>Annuler</AbdullahButton>
-                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>Créer  tâche</AbdullahButton>
+                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary" , size:"sm"})} bg-gray-300 text-gray-900`} onClick={() => setIsOpen(false)}>Annuler</AbdullahButton>
+                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary" , size :"sm"})}>Créer  tâche</AbdullahButton>
                         </div>
                  </div> 
                 </ScrollArea>

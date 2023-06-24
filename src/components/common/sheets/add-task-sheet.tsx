@@ -87,15 +87,18 @@ export function CreateTaskButton({refetch} : Props) {
       onSuccess: async (data) => {
         toast.success("new task added ")
         await refetch()
+        closeButton.current?.click()
       
       }, 
       onError : () => {
+        closeButton.current?.click()
         toast.error("failed to create new task check your internet connection")
+       
       }
     })
   
      const handleSubmit = () => {
-        closeButton.current?.click()
+     
         if(!inputs.title ){
           toast.error("task title is required")
           return
@@ -110,7 +113,9 @@ export function CreateTaskButton({refetch} : Props) {
           endsAt : value?.to as Date , 
           startAt : value?.from as Date  ,
           projectId : getProjectMetaData(),
-          Color : inputs.Color
+          Color : inputs.Color,
+          priority : inputs.Priority
+          
         })
     
   
@@ -209,18 +214,18 @@ export function CreateTaskButton({refetch} : Props) {
                                <Input
                                  className='lg:col-span-12'
                                
-                               onChange={(e) => setInput({...inputs , cost : e?.target.value  || ""})}  
+                               onChange={(e) =>console.log(e)}  
                                lable='Image url'
-                               value={inputs.cost}
+                               value={""}
                               
                              />
                               <Input
                                  className='lg:col-span-12'
                                
-                               onChange={(e) => setInput({...inputs , cost : e?.target.value  || ""})}  
+                               onChange={(e) => console.log(e)}  
                                lable='Attachmets'
                                type="input"
-                               value={inputs.cost}
+                               value={""}
                               
                              />
                              

@@ -24,48 +24,57 @@ import {
     },
   ]
   
+ 
+
   export const statuses = [
+  
     {
-      value: "backlog",
-      label: "Backlog",
-      icon: HelpCircle,
-    },
-    {
-      value: "todo",
+      value: "TODO",
       label: "Todo",
       icon: Circle,
     },
     {
-      value: "in progress",
+      value: "DOING",
       label: "In Progress",
       icon: ArrowUpCircle,
     },
     {
-      value: "done",
+      value: "DONE",
       label: "Done",
       icon: CheckCircle2,
     },
     {
-      value: "canceled",
+      value: "CANCELED",
       label: "Canceled",
       icon: XCircle,
     },
   ]
   
+
   export const priorities = [
     {
+      label: "very low",
+      value: "VERY_LOW",
+      icon: ArrowDownToLine,
+    },
+    {
       label: "Low",
-      value: "low",
+      value: "LOW",
       icon: ArrowDownToLine,
     },
     {
       label: "Medium",
-      value: "medium",
+      value: "MEDIUM",
       icon: ArrowRightToLine,
     },
     {
       label: "High",
-      value: "high",
+      value: "HEIGH",
+      icon: ArrowUpToLine,
+    },
+    {
+      label: "very heigh",
+      value: "VERY_HEIGH",
       icon: ArrowUpToLine,
     },
   ]

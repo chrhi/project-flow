@@ -25,7 +25,8 @@ export const tasksRouter = createTRPCRouter({
        cost : z.number() , 
        AssignTo : z.string().array(),
        AlocatedRessources : z.string().array(),
-       Color : z.string()
+       Color : z.string(),
+       priority : z.string()
          }))
     .mutation( async ({ input , ctx }) => {
 
@@ -43,7 +44,8 @@ export const tasksRouter = createTRPCRouter({
                 AssignedTo : AssignToJson, 
                 AlocatedRessources : AlocatedRessourcesJson,
                 Status : "TODO",
-                Color : input.Color
+                Color : input.Color,
+                Priority : input.priority
             }
         })
         return task

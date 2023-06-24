@@ -63,6 +63,7 @@ export function CreateStakeHolder({refetch}:Props) {
       closeModal()
       toast.success("une nouvelle partie prenante a été créée")
       await refetch()
+      closeButton.current?.click()
     },
     onError (){
       toast.error("n'a pas réussi à créer une partie prenante")

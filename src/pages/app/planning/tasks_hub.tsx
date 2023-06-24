@@ -27,10 +27,6 @@ const Page: NextPage = () => {
             status : item.Status || "",
             priority : item.Priority || "" ,
             label : item.description || "",
-           
-            // cost  : item.cost || "" ,
-            // assignTo : item.AssignedTo || "" , 
-            // allocatedRessources : item.AlocatedRessources || ""
           }
         })
         setTasks(prepare )

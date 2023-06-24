@@ -75,7 +75,7 @@ export  function TaskAdd ({ refetch  } : Props) {
     onSuccess: async (data) => {
       toast.success("new task added ")
         await refetch()
-      setIsOpen(false)
+     
     
     }, 
     onError : () => {
