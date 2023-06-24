@@ -32,6 +32,7 @@ import toast  from 'react-hot-toast';
 import { TaskPopUpShowCase } from '~/components/popup/task-pop-up';
 import { openTasksShowUp } from '~/store/open-models';
 import { AddMagicNode } from '~/components/popup/addMagicNode';
+import { Plus } from 'lucide-react';
 
 const initialNodes = [
  
@@ -176,29 +177,38 @@ const Page: NextPage = () => {
       <div className='w-[95%] mx-auto h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
      
         {/* first button */}
+        <AbdullahButton 
+       onClick={onSave}
+       isLoading={SaveToDataBase.isLoading}
+       className={buttonVariants({variant:"secondary" , size:"sm"})}>
+      Start from zero
+      </AbdullahButton>
+      
     <AbdullahButton 
        onClick={onSave}
        isLoading={SaveToDataBase.isLoading}
-       className={buttonVariants({variant:"secondary"})}>
+       className={buttonVariants({variant:"secondary" , size:"sm" })}>
       save
       </AbdullahButton>
         {/* second button */}
       <AbdullahButton 
       isLoading={isFetching}
       onClick={onRestore}
-      className={buttonVariants({variant:"secondary"})}>
+      className={buttonVariants({variant:"secondary" , size:"sm" })}>
         re load
       </AbdullahButton>
     
       <AbdullahButton 
       onClick={() => setIsPopUpOpen(true)}
-      className={buttonVariants({variant:"primary" })}>
+      className={buttonVariants({variant:"primary" , size:"sm"})}>
+        <Plus className="w-4 h-4 mr-2 " />
         create new task
       </AbdullahButton>
       <AbdullahButton 
       onClick={() => setIsOpenMagic(true)}
-      className={`${buttonVariants({variant:"primary" })} bg-gradient-to-r from-pink-400 to-pink-500`}>
-        node magic
+      className={`${buttonVariants({variant:"primary", size:"sm" })} bg-gradient-to-r from-pink-400 to-pink-500`}>
+        <Plus className="w-4 h-4 mr-2 " />
+        Add deliverables
       </AbdullahButton>
       </div>
     <div id="treeWrapper" className='mx-auto bg-white ' style={{ width: '95%', height: '100%' }}>

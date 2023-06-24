@@ -41,8 +41,8 @@ function DownloadButton() {
 
   return (
     <Panel position="top-right">
-      <AbdullahButton className={`${buttonVariants({variant : "primary"})}`} onClick={onClick}>
-        <Camera className='text-white font-bold w-6 h-6' />
+      <AbdullahButton className={`${buttonVariants({variant : "secondary" , size : "sm"})}`} onClick={onClick}>
+        <Camera className='  w-4 h-4' />
       </AbdullahButton>
     </Panel>
   );

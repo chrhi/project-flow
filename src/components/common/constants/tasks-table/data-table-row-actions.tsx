@@ -6,48 +6,68 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "~/components/ui/dropdown-menu"
 
 import { labels } from "./data/data"
 import { taskSchema } from "./data/schema"
+import { confirmDeleteTask } from "~/store/app-reducer/confirm-actions"
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row:  Row<{
+    title: string;
+    status: string;
+    id: string;
+    priority: string;
+    label: string;
+}>
 }
 
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
 //   const task = taskSchema.parse(row.original)
+const setIsShowing = confirmDeleteTask(state => state.setShowModel)
+const setStakeHolderId = confirmDeleteTask(state => state.setId)
+
+ //update
+// const setIsShowingPopUpShowCase = confirmDeleteTask(state => state.setShowModel)
+// const setShowCaseId = confirmDeleteTask(state => state.setId)
+
+const handleDelete = () => {
+  setStakeHolderId(row.original.id)
+  setIsShowing(true)
+
+}
+
+// const handleShowCase = () => {
+//   setShowCaseId(row.original.id)
+//   setIsShowingPopUpShowCase(true)
+// }
+
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="flex h-8 w-8 p-0 data-[state=open]:bg-muted"
-        >
-          <MoreHorizontal className="h-4 w-4" />
-          <span className="sr-only">Open menu</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>
-          <Pen className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-          Edit
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Copy className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-          Make a copy
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Trash className="mr-2 h-3.5 w-3.5 text-muted-foreground/70" />
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(row.original.title)}
+            >
+              Copy Task name 
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => console.log("not yet")}>View details</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
   )
 }
