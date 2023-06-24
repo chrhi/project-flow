@@ -4,7 +4,7 @@ import toast from "react-hot-toast"
 import LoadingComponents from "../common/loading-components";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
 import { useRouter } from "next/router";
-
+import { ScrollArea } from "../ui/scroll-area";
 import {
   Card,
   CardContent,
@@ -71,7 +71,7 @@ export function RecentStakeholdersNew() {
              ici, vous pouvez voir les parties prenantes 
            </CardDescription>
          </CardHeader>
-         
+         <ScrollArea>
          <CardContent className="flex flex-col justify-start items-start  h-[300px] ">
            {
              stakeHolders.map(item => (
@@ -92,6 +92,9 @@ export function RecentStakeholdersNew() {
          
           
          </CardContent>
+
+         </ScrollArea>
+        
        </Card>
 }
     </>

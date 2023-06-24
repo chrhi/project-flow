@@ -89,7 +89,7 @@ const Page: NextPage = () => {
     
       <Header />
 
-      <main className=" custopn-page-height max-w-7xl  items-center pt-8 flex flex-col w-full bg-gray-100 ">
+      <main className=" custopn-page-height   items-center pt-8 flex flex-col w-full bg-gray-50 ">
         <div className="w-full h-[70px] flex justify-center items-start  flex-col px-8">
           <h1 className="text-3xl font-semibold text-gray-900 ">Profile's informations</h1>
           <p className="text-lg  text-gray-700 " >this is a dommy data this is going to be displayed in here </p>
@@ -139,18 +139,18 @@ const Page: NextPage = () => {
            {/* this is the rest of the Profile */}
            <div className="w-full  flex flex-col gap-y-4 ">
                <div className="flex  w-full justify-between  items-center gap-x-2">
-                   <p>id :</p>
+                   <p>Job title</p>
                    <input 
                    value={inputs?.id}
                    disabled className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-[80%]" />
                 </div>
                 <div className="flex   w-full justify-between  items-center gap-x-2">
-                   <p>Account type :</p>
+                   <p>Department or team</p>
                    <input disabled value={inputs?.AccountType} className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in w-[80%]" />
                 </div>
                 <div className="flex  w-full justify-between  items-center gap-x-2">
-                   <p>zip code :</p>
-                   <input value={inputs?.zipCode}   onChange={({target}) => setInputs({...inputs , zipCode : target.value })}  className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-[80%]" />
+                   <p>About me</p>
+                   <textarea value={inputs?.zipCode}   onChange={({target}) => setInputs({...inputs , zipCode : target.value })}  className="px-4 py-1.5 h-[40px]  rounded-lg outline-none border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-[80%]" />
                 </div>
                 <div className="flex  w-full justify-between  items-center gap-x-2">
                    <p>location</p>

@@ -11,7 +11,7 @@ import { RowGridText } from "~/components/typography/RowGridText";
 import { addDays, format } from "date-fns"
 import { DateRange } from "react-day-picker"
 import { api } from "~/utils/api";
-import { getProjectMetaData } from "~/lib/MetaData";
+import { getProjectMetaData, getUserMetadata } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
 import { DatePickerWithRange } from "~/components/ui/date-range-picker";
 
@@ -34,6 +34,27 @@ const Page: NextPage = () => {
     HighLevelRisks : ""
   })
   const [didGetData , setDidGetData] = useState<boolean>(false)
+
+  const {isLoading : isProjectLoading} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata()},{
+    retryOnMount : false ,
+    onSuccess(data) {
+      if(data?.id ){
+        setDidGetData(true)
+      }
+      setFormData({
+        ...formData , 
+        Title : data?.title  || ""
+      })
+      setDate({
+        from : data?.startAt || new Date() , 
+        to : data?.endsAt || new Date() 
+      })
+    },
+    onError(err) {
+      console.log(err)
+      toast.error("something went wrong")
+    },
+  })
 
   const {isLoading , refetch} = api.startupRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
     retryOnMount : false ,
@@ -150,7 +171,7 @@ const Page: NextPage = () => {
             <RowGridText small text="Lors de la phase de démarrage du projet, il est important de définir des objectifs clairs, d'analyser les parties prenantes, d'établir une gouvernance, d'élaborer une charte de projet et d'identifier les risques potentiels" />
          
             <TextField
-                isLoading={isLoading}
+                isLoading={isProjectLoading}
                 lable="Intitulé de projet "
                 onChange={(e) => {
                   setFormData({...formData , Title : e.target.value})
