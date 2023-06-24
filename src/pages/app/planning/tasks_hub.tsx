@@ -59,7 +59,7 @@ const Page: NextPage = () => {
           <RowGridText small text="Le plan de gestion des communications est un document qui établit une approche structurée pour gérer les communications au sein d'un projet, comprenant les objectifs de communication, les parties prenantes, les méthodes de communication, le calendrier, et les responsabilités associées." />
           <div className="col-span-12 pt-8 ">
                 {/* <DataTable  columns={columns} data={tasks} refetch={refetch} /> */}
-                <DataTable2  columns={columns} data={tasks}    />
+                <DataTable2  columns={columns} data={tasks}  refetch={refetch}   />
           </div>
         </div>  
       </div>

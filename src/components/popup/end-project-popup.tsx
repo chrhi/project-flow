@@ -1,10 +1,18 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Dispatch, Fragment, SetStateAction, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '../used/AbdullahButton'
+import { CookieSettings } from '../common/cookies-settings'
+
+interface Props {
+  
+  isOpen : boolean ,
+  setIsOpen : Dispatch<SetStateAction<boolean>>,
+
+}
 
 
-export  function EndProjectPopUp () {
-  const [isOpen, setIsOpen] = useState(false)
+export  function EndProjectPopUp ({isOpen , setIsOpen} : Props) {
+ 
 
  
   function closeModal() {
@@ -18,11 +26,7 @@ export  function EndProjectPopUp () {
   return (
     <>
      
-     <AbdullahButton 
-     onClick={openModal}
-     className={buttonVariants({variant : "secondary"})} >
-                      distroy
-     </AbdullahButton> 
+     
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
@@ -35,7 +39,7 @@ export  function EndProjectPopUp () {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0  bg-sky-100 bg-opacity-25" />
+            <div className="fixed inset-0  bg-sky-200 bg-opacity-25" />
           </Transition.Child>
 
           <div className="fixed inset-0  overflow-y-auto">
@@ -49,21 +53,8 @@ export  function EndProjectPopUp () {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[400px] min-h-[100px] h-fit  flex flex-wrap gap-8  z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <h2 className='text-center text-lg text-red-500 font-semibold '> DO YOU WANT TO END YOUR PROJECT ?  </h2>
-              
-                <div className='w-full h-[50px] flex items-center justify-center gap-x-8 '>
-                <AbdullahButton 
-                   onClick={closeModal}
-                   className={buttonVariants({variant : "primary"})} >
-                          confirme
-               </AbdullahButton> 
-               <AbdullahButton 
-                     onClick={closeModal}
-                     className={buttonVariants({variant : "secondary"})} >
-                      cancel
-               </AbdullahButton> 
-                </div>
+                <Dialog.Panel className="w-[600px] rounded-lg h-fit  flex flex-col items-center gap-8  z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <CookieSettings />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

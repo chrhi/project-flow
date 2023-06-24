@@ -25,15 +25,18 @@ import {
 
 import { DataTablePagination } from "./data-table-pagination"
 import { DataTableToolbar } from "./data-table-toolbar"
+import { Button } from "~/components/ui/button"
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  refetch : () => Promise<any>
 }
 
 export function DataTable2<TData, TValue>({
   columns,
   data,
+  refetch
 }: DataTableProps<TData, TValue>) {
   const [rowSelection, setRowSelection] = React.useState({})
   const [columnVisibility, setColumnVisibility] =
@@ -118,7 +121,12 @@ export function DataTable2<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <DataTablePagination table={table} />
+    
+   
+       
+      <DataTablePagination table={table} refetch={refetch} />
+   
+ 
     </div>
   )
 }

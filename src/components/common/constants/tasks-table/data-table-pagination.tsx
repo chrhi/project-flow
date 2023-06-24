@@ -14,13 +14,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
+import { CreateTaskButton } from "../../sheets/add-task-sheet"
 
 interface DataTablePaginationProps<TData> {
-  table: Table<TData>
+  table: Table<TData>,
+  refetch : () => Promise<any>,
 }
 
 export function DataTablePagination<TData>({
   table,
+  refetch
 }: DataTablePaginationProps<TData>) {
   return (
     <div className="flex items-center justify-between px-2">
@@ -90,6 +93,7 @@ export function DataTablePagination<TData>({
             <span className="sr-only">Go to last page</span>
             <ChevronsRight className="h-4 w-4" />
           </Button>
+          <CreateTaskButton  refetch={refetch} />
         </div>
       </div>
     </div>

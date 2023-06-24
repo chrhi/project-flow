@@ -26,6 +26,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
+import { CreateStakeHolder } from "../../sheets/add-stakeholder-sheet";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -152,7 +153,8 @@ export function DataTable<TData, TValue>({
         >
           Next
         </Button>
-        <PLusButtonStakHolder  refetch={refetch}/>
+        <CreateStakeHolder refetch={refetch} />
+        {/* <PLusButtonStakHolder  refetch={refetch}/> */}
       </div>
     </>
 

@@ -6,16 +6,33 @@ import { CloseSideBar } from "~/components/sideBars/CloseSideBar";
 import {
   motion,
   useMotionValue,
+  useMotionValueEvent,
   useTransform,
   
 } from "framer-motion"
 import { FormContainer } from "~/components/used/FormContainer";
+import { EndProjectPopUp } from "~/components/popup/end-project-popup";
 
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
 
+  const [isOpenProjectEnd , setIsOpenProjectEnd] = useState<boolean>(false)
+
   const x = useMotionValue(0);
+
+  // useMotionValueEvent(x, "animationStart", () => {
+  //   console.log("animation started on x")
+  // })
+  
+  useMotionValueEvent(x, "change", (latest) => {
+   
+    if(latest > 100){
+      setIsOpenProjectEnd(true)
+      return
+    }
+  })
+
   const xInput = [-100, 0, 100];
   const background = useTransform(x, xInput, [
     "linear-gradient(180deg, #ff008c 0%, rgb(211, 9, 225) 100%)",
@@ -45,7 +62,8 @@ const Page: NextPage = () => {
       </Head>
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
-       <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}/>
+        <EndProjectPopUp isOpen={isOpenProjectEnd} setIsOpen={setIsOpenProjectEnd} />
+       <CloseSideBar isOpen={isOpen} setIsOpen={setIsOpen}  />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
        <motion.div className="example-container rounded-lg !h-[94%] flex justify-center items-center !w-[95%] mx-auto" style={{ background }}>
       <motion.div
