@@ -6,33 +6,34 @@ import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { DataTable } from "~/components/common/constants/tasks-table/data-table";
-import { TaskType , columns } from "~/components/common/constants/tasks-table/column"
+// import { TaskType , columns } from "~/components/common/constants/tasks-table/column"
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
 import { ConfirmDeleteTask } from "~/components/popup/table-confirm/confirm-delete-task";
-
+import { DataTable2 } from "~/components/common/constants/tasks-table/data-table2";
+ import {  columns } from "~/components/common/constants/tasks-table/columns"
 
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
-  const [tasks  , setTasks] = useState<TaskType[]>([] as TaskType[] )
+  const [tasks  , setTasks] = useState<any[]>([])
   const {isLoading , refetch} = api.tasksRouter.getTasks.useQuery({projectId : getProjectMetaData()},{
     onSuccess : (data) => {
         const prepare = data.map(item => {
           return {
             id : item.id || "" , 
             title : item.title || "" ,
-            description : item.description || "" , 
+            status : item.Status || "",
             priority : item.Priority || "" ,
-            dueDate   : item.StartAt || "" , 
-            endsAt : item.EndsAt || "" ,
-            cost  : item.cost || "" ,
-            assignTo : item.AssignedTo || "" , 
-            allocatedRessources : item.AlocatedRessources || ""
+            label : item.description || "",
+           
+            // cost  : item.cost || "" ,
+            // assignTo : item.AssignedTo || "" , 
+            // allocatedRessources : item.AlocatedRessources || ""
           }
         })
-        setTasks(prepare as TaskType[])
+        setTasks(prepare )
     },
     onError : (err) => {
       toast.error(err.message)
@@ -57,7 +58,8 @@ const Page: NextPage = () => {
           <RowGridText text="Plan de gestion des communications" />
           <RowGridText small text="Le plan de gestion des communications est un document qui établit une approche structurée pour gérer les communications au sein d'un projet, comprenant les objectifs de communication, les parties prenantes, les méthodes de communication, le calendrier, et les responsabilités associées." />
           <div className="col-span-12 pt-8 ">
-                <DataTable  columns={columns} data={tasks} refetch={refetch} />
+                {/* <DataTable  columns={columns} data={tasks} refetch={refetch} /> */}
+                <DataTable2  columns={columns} data={tasks}    />
           </div>
         </div>  
       </div>

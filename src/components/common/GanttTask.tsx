@@ -10,6 +10,7 @@ import { Title } from '@tremor/react';
 import { AbdullahButton , buttonVariants } from '../used/AbdullahButton';
 import LoadingComponents from './loading-components';
 import EmptyGanttChard from '../gantt-chard/empty';
+import { Expand } from 'lucide-react';
 
 const tasksStatic: Task[] = [
   {
@@ -101,7 +102,7 @@ export const GanttTask = () => {
         <AbdullahButton
               onClick={() => console.log("")}
               className={`${buttonVariants({variant : "secondary"})} `} >
-                grow
+               <Expand /> 
         </AbdullahButton>
         </div>
       </div>

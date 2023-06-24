@@ -2,6 +2,7 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import {  Badge, BadgeDelta  } from "@tremor/react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 
 type PropsType =  {
   index : number ,
@@ -22,6 +23,9 @@ type PropsType =  {
   status : string,
   endsAt? : Date 
 }
+
+
+
 
 function remainingTime(date: Date): string {
   const currentDate = new Date();
@@ -44,28 +48,20 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority }  
   return (
     <Draggable  draggableId={id} index={index}>
         {(provided , snapshot) => (
-            <article 
+            <Card 
             className={`w-[97%] flex flex-col items-start gap-y-2   shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 
              ${snapshot.isDragging ? "shadow-xl " : "" }`}
             {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
-               {
-                    imgUrl ?
-                     <img 
-                       alt={title}
-                       src={imgUrl || ""}
-                       className='w-[100%]   '   /> : null
-                  }
-                <div className='w-full h-fit p-4 '>
-                <h3 className='text-sm font-semibold text-start '>{title}</h3>
-                  <p className='text-sm text-gray-700  text-start '>
-                    {discription}
-                  </p>
-                  <div className='w-full h-[20px] flex justify-end px-2'>
-                { endsAt && <Badge color={"cyan"} className='rounded-lg' size='xs'>{remainingTime(endsAt)}</Badge> }
-                  </div>
-                </div>
-                 
-            </article>
+             <CardHeader>
+                 <CardTitle>{title}</CardTitle>
+                 <CardDescription>
+                       {discription}
+                 </CardDescription>
+             </CardHeader>
+             <CardContent>
+   
+             </CardContent>    
+            </Card>
         )}
      </Draggable>
   )
