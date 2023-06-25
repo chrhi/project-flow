@@ -9,6 +9,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
+import { Badge } from "@tremor/react"
+import { getColor } from "~/utils/formate/getColor"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -32,10 +34,27 @@ export const columns: ColumnDef<Resource>[] = [
   {
     accessorKey: "cost",
     header: "Cost",
+    cell: ({ row }) => {
+
+      return <Badge color="yellow"  className="rounded-lg ">€ {row.original.cost}</Badge>
+    }
   },
   {
     accessorKey: "quality",
     header: "Quality",
+    cell : ({row}) => {
+      
+      // Convert to lowercase
+    const lowercaseString = row.original.quality.toLowerCase();
+
+    // Split by underscores
+    const splitString = lowercaseString.split('_');
+
+    // Join by spaces
+    const formattedString = splitString.join(' ');
+
+     return <Badge color={getColor({text : row.original.quality})} className="rounded-lg ">{formattedString}</Badge>
+    }
   },
   {
     id: "actions",
