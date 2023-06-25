@@ -10,6 +10,7 @@ import { STAKHOLDER_TYPES , OPTIONS, RESOURCE_QUALITY} from '~/types/static/STAT
 import { Button } from '../ui/button'
 import toast from 'react-hot-toast'
 import { getProjectMetaData } from '~/lib/MetaData'
+import { InputNumber } from '../used/NumberInput'
 
 type Props = {
   refetch : () => Promise<void>
@@ -141,7 +142,7 @@ export  function ResourceAdd ({refetch} : Props ) {
             
             
             
-             <Input
+             <InputNumber
               className="col-span-6  "
               lable='cost'
               value={data.cost}

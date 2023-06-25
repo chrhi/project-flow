@@ -58,8 +58,6 @@ export const columns: ColumnDef<RiskType>[] = [
     header: "Cost",
     cell: ({ row }) => {
 
-    
-
      return <Badge color="yellow"  className="rounded-lg ">€ {row.original.cost}</Badge>
    }
    
