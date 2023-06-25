@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Gantt, Task, ViewMode } from 'gantt-task-react';
+import { Gantt, type  Task, ViewMode } from 'gantt-task-react';
 import 'gantt-task-react/dist/index.css';
 import { getProjectMetaData } from '~/lib/MetaData';
 import { api } from '~/utils/api';
