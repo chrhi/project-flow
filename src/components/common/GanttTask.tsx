@@ -89,7 +89,7 @@ export const GanttTask = () => {
             ].map(item => (
               <AbdullahButton
               onClick={() => setView(item.value)}
-              className={`${buttonVariants({variant : "secondary"})} ${view === item.value ? "bg-blue-500 text-white" : ""}`} >
+              className={`${buttonVariants({variant : "secondary" ,size:"sm"})} ${view === item.value ? "bg-blue-500 text-white" : ""}`} >
                 {item.name}
               </AbdullahButton>
             ))
@@ -101,7 +101,7 @@ export const GanttTask = () => {
         </div>
         <AbdullahButton
               onClick={() => console.log("")}
-              className={`${buttonVariants({variant : "secondary"})} `} >
+              className={`${buttonVariants({variant : "secondary" , size:"sm"})} `} >
                <Expand /> 
         </AbdullahButton>
         </div>

@@ -35,9 +35,10 @@ function formatDate(date: Date): string {
 
   // Basic formatters for the chart values
   const dataFormatter = (number: number): string => {
-    return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number);
+    return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number).split(",")[0] + "€" || "";
   };
-  
+
+
 function BedgetStatus() {
 
   const [status , setStatus ] = useState("LOADING")
@@ -87,10 +88,10 @@ function BedgetStatus() {
           : status === "EMPTY" ? 
          <EmptyGanttChard />
           :
-          <CardContent>
+          <CardContent >
           <AreaChart
           allowDecimals
-          className="h-72 mt-4"
+          className="h-72 mt-4  "
           data={tasks || []}
           index="date"
           categories={["Coût prévu pour une tâche", "Le coût réel de la tâche"]}

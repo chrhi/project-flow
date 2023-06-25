@@ -39,7 +39,7 @@ function NextSwitch({indexThisPhase} : Props) {
                 return 
             }
 
-            toast.success("project phase successfully updated")
+            toast.success("🎉 project phase successfully updated")
             storeProjectCurrentPhaseAbdullah(data.currentPhase)
             runFireworks()
         },
