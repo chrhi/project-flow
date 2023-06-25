@@ -46,7 +46,7 @@ export const GanttTask = () => {
       onSuccess: (data) => {
         const preparedTasks = data.map((item): Task => ({
           start: item.StartAt || new Date(),
-          end: item.EndedAt || new Date(),
+          end: item.EndsAt || new Date(),
           name: item.title || '',
           id: item.id || '',
           type: 'task' || '',

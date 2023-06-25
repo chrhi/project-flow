@@ -34,8 +34,8 @@ export const ProjectStarter = ({ refetch }: Props) => {
       
       
       await refetch();
-      toast('Good Job!', {
-        icon: '👏',
+      toast('un nouveau projet a été lancé!', {
+        icon: '🎉',
       });
     },
     onError: () => {
