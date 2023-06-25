@@ -126,6 +126,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
       }
     
       taskMutation.mutate({
+        priority : inputs.Priority ,
         title : inputs.title ,
         description : inputs.description,
         AlocatedRessources : inputs.AlocatedRessources , 

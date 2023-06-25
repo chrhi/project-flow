@@ -29,7 +29,8 @@ const Page: NextPage = () => {
           title : item.name,
           discreption : item.description,
           solution : item.solutions,
-          status : item.levelOfDanger
+          status : item.levelOfDanger,
+          cost : Number(item.cost)
         }
       })
       setRisks( AbdullahData  )

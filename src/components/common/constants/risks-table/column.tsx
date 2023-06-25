@@ -13,6 +13,7 @@ import {
 import { OpenDeteRisksDeleteModel } from "~/store/open-models"
 
 import { api } from "~/utils/api"
+import { Badge } from "@tremor/react"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -21,7 +22,8 @@ export type RiskType = {
   title: string
   discreption: string
   status : string 
-  solution : string
+  solution : string,
+  cost : number
 }
 
 export const columns: ColumnDef<RiskType>[] = [
@@ -50,6 +52,17 @@ export const columns: ColumnDef<RiskType>[] = [
   {
     accessorKey: "solution",
     header: "solution",
+  },
+  {
+    accessorKey: "cost",
+    header: "Cost",
+    cell: ({ row }) => {
+
+    
+
+     return <Badge color="yellow"  className="rounded-lg ">€ {row.original.cost}</Badge>
+   }
+   
   },
   {
     header: "Actions",

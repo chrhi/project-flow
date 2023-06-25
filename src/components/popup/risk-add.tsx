@@ -10,6 +10,7 @@ import {  OPTIONS} from '~/types/static/STATICDATA'
 import { Button } from '../ui/button'
 import { toast } from 'react-hot-toast'
 import { getProjectMetaData } from '~/lib/MetaData'
+import { InputNumber } from '../used/NumberInput'
 
 type Props = {
   refetch : () => Promise<void>
@@ -24,7 +25,7 @@ export  function RiskAdd ({refetch} : Props ) {
     name : "" , 
     description : "",
     LevelOfDanger : "",
-    cost : "",
+    cost : 0,
     imageUrl : ""
 
   })
@@ -144,10 +145,10 @@ export  function RiskAdd ({refetch} : Props ) {
               value={data.imageUrl}
               onChange={(e) => setData({...data , imageUrl : e.target.value})}
             />
-              <Input
+              <InputNumber
               lable='Cost'
               value={data.cost}
-              onChange={(e) => setData({...data , cost : e.target.value})}
+              onChange={(e) => setData({...data , cost : Number(e.target.value)})}
             />
             
             
