@@ -92,6 +92,7 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
       }
     
       taskMutation.mutate({
+        priority : inputs.Priority ,
         title : inputs.title ,
         description : inputs.description,
         AlocatedRessources : inputs.AlocatedRessources , 
