@@ -201,7 +201,14 @@ const Page: NextPage = () => {
       isLoading={isFetching}
       onClick={onRestore}
       className={buttonVariants({variant:"secondary" , size:"sm" })}>
-        re load
+      {isFetching ? "loading" : "status"}
+      </AbdullahButton>
+
+      <AbdullahButton 
+      isLoading={isFetching}
+      onClick={async () => await refetch()}
+      className={buttonVariants({variant:"secondary" , size:"sm" })}>
+      reload
       </AbdullahButton>
     
       <AbdullahButton 

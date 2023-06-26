@@ -33,13 +33,26 @@ import {
 
  import { ChevronsUpDown } from "lucide-react"
 import { Title } from "@tremor/react"
+import { useRouter } from "next/router"
+import Cookies from "js-cookie"
+import { RemoveProjectManager, removeAll } from "~/lib/MetaData"
+
   
   export function DropDownAdmin() {
-    const {email} = userReducer()
+
+    const router = useRouter();
+    
+    const handleLogout = () => {
+      Cookies.remove("abdullah-access-token")
+      RemoveProjectManager()
+      removeAll()
+      window.location.reload()
+    }
+    
     return (
       <DropdownMenu>
         <div className="flex gap-x-4 items-center justify-start">
-        <Title>{email}</Title>
+        <Title>mahdi.chahri55@gmail.com</Title>
         <DropdownMenuTrigger asChild>
         <Button variant="ghost"><ChevronsUpDown className="w-4 h-4 text-gray-400" /></Button>
         </DropdownMenuTrigger>
@@ -47,11 +60,11 @@ import { Title } from "@tremor/react"
         
         <DropdownMenuContent className="w-56">
            
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={async () => await router.push("/app")}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Retourner à mon compte</span>
           </DropdownMenuItem>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
             <span>Déconnexion</span>
           </DropdownMenuItem>

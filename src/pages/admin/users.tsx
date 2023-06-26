@@ -31,7 +31,7 @@ const Page: NextPage = () => {
           // zipCode : item.zipCode , 
           // createdAt : formatDateAlgeria(item.createdAt) , 
           status :   "active" ,
-          password : item.passwordForAdmin
+          // password : item.passwordForAdmin
         }
         })
         setUsers(ModifiedArray)
