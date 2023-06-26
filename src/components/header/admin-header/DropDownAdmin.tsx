@@ -42,11 +42,11 @@ import { RemoveProjectManager, removeAll } from "~/lib/MetaData"
 
     const router = useRouter();
     
-    const handleLogout = () => {
+    const handleLogout = async  () => {
       Cookies.remove("abdullah-access-token")
       RemoveProjectManager()
       removeAll()
-      window.location.reload()
+      await router.push("/")
     }
     
     return (
