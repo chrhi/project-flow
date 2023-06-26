@@ -3,6 +3,7 @@ import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import {  Badge, BadgeDelta  } from "@tremor/react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
+import { openTasksShowUp } from '~/store/open-models';
 
 type PropsType =  {
   index : number ,
@@ -45,10 +46,18 @@ function remainingTime(date: Date): string {
 }
 
 function Task({index , id , title , discription , imgUrl , endsAt , priority }  : PropsType) {
+
+  const setIsOpen  = openTasksShowUp(state => state.setShowModel)
+  const setId = openTasksShowUp(state => state.setId)
+
   return (
     <Draggable  draggableId={id} index={index}>
         {(provided , snapshot) => (
             <Card 
+            onClick={() => {
+              setId(id)
+              setIsOpen(true)
+            }}
             className={`w-[97%] flex flex-col items-start gap-y-2   shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 
              ${snapshot.isDragging ? "shadow-xl " : "" }`}
             {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>

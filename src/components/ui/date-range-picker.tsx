@@ -2,7 +2,7 @@ import * as React from "react"
 import { addDays, format } from "date-fns"
 import { Calendar as CalendarIcon } from "lucide-react"
 import { DateRange } from "react-day-picker"
- 
+import Skeleton from 'react-loading-skeleton';
 import { cn } from "~/lib/utils"
 import { Button } from "~/components/ui/button"
 import { Calendar } from "~/components/ui/calendar"
@@ -16,20 +16,26 @@ import { Label } from "./label"
 interface Props  extends React.HTMLAttributes<HTMLDivElement> {
     date :  DateRange | undefined , 
     setDate :  React.Dispatch<React.SetStateAction<DateRange | undefined>>,
-    label : string
+    label : string,
+    isLoading? : boolean
 }
  
 export function DatePickerWithRange({
   className,
   date , 
   setDate,
-  label
+  label,
+  isLoading
 }: Props) {
     
  
   return (
     <div className={cn("grid gap-2 w-full", className)}>
-        <Label> {label}</Label>
+      {isLoading ? <Skeleton style={{width : "50%"}} /> : <Label> {label}</Label> }
+        
+        {
+          isLoading ? <Skeleton style={{width : "100%"}} /> : 
+        
       <Popover>
         <PopoverTrigger asChild>
           <Button
@@ -66,6 +72,7 @@ export function DatePickerWithRange({
           />
         </PopoverContent>
       </Popover>
+      }
     </div>
   )
 }

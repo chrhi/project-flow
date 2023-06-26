@@ -1,6 +1,6 @@
 import type  { Row } from "@tanstack/react-table"
 import { Copy, MoreHorizontal, Pen, Star, Tags, Trash } from "lucide-react"
-
+import { openTasksShowUp } from "~/store/open-models"
 import { Button } from "~/components/ui/button"
 import {
   DropdownMenu,
@@ -33,6 +33,9 @@ export function DataTableRowActions<TData>({
 const setIsShowing = confirmDeleteTask(state => state.setShowModel)
 const setStakeHolderId = confirmDeleteTask(state => state.setId)
 
+const setIsOpen  = openTasksShowUp(state => state.setShowModel)
+const setId = openTasksShowUp(state => state.setId)
+
  //update
 // const setIsShowingPopUpShowCase = confirmDeleteTask(state => state.setShowModel)
 // const setShowCaseId = confirmDeleteTask(state => state.setId)
@@ -43,10 +46,10 @@ const handleDelete = () => {
 
 }
 
-// const handleShowCase = () => {
-//   setShowCaseId(row.original.id)
-//   setIsShowingPopUpShowCase(true)
-// }
+const handleShowCase = () => {
+  setId(row.original.id)
+  setIsOpen(true)
+}
 
 
   return (
@@ -65,7 +68,7 @@ const handleDelete = () => {
               Copy Task name 
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => console.log("not yet")}>View details</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleShowCase}>View details</DropdownMenuItem>
             <DropdownMenuItem onClick={handleDelete}>Delete </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

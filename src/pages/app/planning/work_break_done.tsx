@@ -127,6 +127,13 @@ const Page: NextPage = () => {
     restoreFlow();
   }, [setNodes, setViewport]);
 
+  const reSet = () => {
+  
+    setNodes([]);
+    setEdges([]);
+    setViewport({ x : 0, y : 0, zoom : 1 });
+  }
+
 
   const onAdd = useCallback(({title , id   } : {title: string  }) => {
     //in here we have to make a pop up
@@ -178,8 +185,7 @@ const Page: NextPage = () => {
      
         {/* first button */}
         <AbdullahButton 
-       onClick={onSave}
-       isLoading={SaveToDataBase.isLoading}
+       onClick={reSet}
        className={buttonVariants({variant:"secondary" , size:"sm"})}>
       Start from zero
       </AbdullahButton>
@@ -232,7 +238,7 @@ const Page: NextPage = () => {
       onConnect={onConnect}
       onInit={setRfInstance}
       defaultEdgeOptions={edgeOptions}
-      onNodeClick={(node) => handleNodeClicked(node)}
+      // onNodeClick={(node) => handleNodeClicked(node)}
       snapToGrid
       onEdgeUpdate={onEdgeUpdate}
       onEdgeUpdateStart={onEdgeUpdateStart}

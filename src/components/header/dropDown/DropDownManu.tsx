@@ -76,7 +76,7 @@ export default function DropDowsMenu() {
             </Menu.Item>
             <Menu.Item>
               {({ active }) => (
-                <div className='w-full min-h-[30px] h-fit border-b bg-gradient-to-r mb-3 from-pink-500 to-purple-500 flex flex-col justify-center p-4 gap-y-1 '>
+                <div className='w-full min-h-[30px] h-fit border-b bg-gradient-to-br mb-3 from-emerald-800 to-green-500 flex flex-col justify-center p-4 gap-y-1 '>
                    <h3 className='truncate text-md font-bold text-white '>{ "Titre du projet  "}</h3>
                   <h3 className='truncate text-sm text-white '>{projectTitle}</h3>
                   <h3 className='truncate text-sm font-semibold  text-white '>{ "phase actuelle  "}</h3>

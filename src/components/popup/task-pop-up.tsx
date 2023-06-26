@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Dialog, Transition } from '@headlessui/react'
 import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
@@ -8,13 +9,12 @@ import { TextField } from '~/components/used/TextField';
 import { OPTIONS} from '~/types/static/STATICDATA'
 import { api } from '~/utils/api'
 import { getProjectMetaData } from '~/lib/MetaData'
-
-import NewTimePicker from '../used/NewTimePicker'
-import type { DateRangePickerValue } from '@tremor/react'
+import Skeleton from 'react-loading-skeleton';
 import { openTasksShowUp } from '~/store/open-models';
 import { DatePickerWithRange } from '../ui/date-range-picker';
 import { DateRange } from 'react-day-picker';
 import { addDays } from 'date-fns';
+
 
 
 type Props = {
@@ -84,7 +84,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
     }
   })
 
-  api.tasksRouter.getTask.useQuery({id  },{
+ const {isLoading} =  api.tasksRouter.getTask.useQuery({id  },{
     onSuccess : (data) => {
       setInput({
         title : data?.title || "",
@@ -148,6 +148,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
   return (
     <>
      
+      {/* <Transition appear show={isOpen} as={Fragment}> */}
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-[100]" onClose={() => setIsOpen(false)}>
           <Transition.Child
@@ -172,12 +173,13 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[900px] h-[580px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-[900px] h-[580px]  rounded-lg z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                     as="div"
                     className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
                   >
-               <div><p className='text-md text-gray-900 font-semibold  ml-4'>{inputs.title}</p></div>  
+                    {isLoading ? <Skeleton style={{width : "300px" }} /> :  <div><p className='text-md text-gray-900 font-semibold  ml-4'>{inputs.title}</p></div>   }
+              
                <div>
                     <button
                           onClick={() => setIsOpen(false)}
@@ -185,32 +187,47 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
+                   
                     </button>
                 </div> 
                   </Dialog.Title>
                 <div className="bg-white p-4  w-full  ">
                       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
                           <Input
+                               isLoading={isLoading}
                                lable='Title'
                                value={inputs.title}
                                onChange={(e) => setInput({...inputs , title : e.target.value})}
                            />
                             <div className='col-span-6 '>
-                                   <label  className="block text-sm font-medium leading-6 text-gray-900">
-                                       Assign to
-                                  </label>
-                                  <Select
+                            
+                              <label  className="block text-sm font-medium leading-6 text-gray-900">
+                              Assign to
+                              </label>
+                              
+
+                             
+                                <Select
                                           
-                                           onChange={(e) => setInput({...inputs , AssignTo : e.map(item => item.value) })}  
-                                           name="stakholders"
-                                           options={FechedStakeHolders}
-                                           className="basic-multi-select"
-                                           classNamePrefix="select"
-                                           isMulti
-                                   />
+                                onChange={(e) => setInput({...inputs , AssignTo : e.map(item => item.value) })}  
+                                name="stakholders"
+                                options={FechedStakeHolders}
+                                className="basic-multi-select"
+                                classNamePrefix="select"
+                                isMulti
+                                
+                              />
+                              
+                                  
+                               
                             </div>
                             <div className="col-span-6">
-                            <DatePickerWithRange label="sélectionner la plage de la date"  date={value} setDate={setValue} />
+                            <DatePickerWithRange
+                             label="sélectionner la plage de la date"  
+                             date={value}
+                             setDate={setValue}
+                             isLoading={isLoading}
+                            />
                               </div>
                           
                             <div className='col-span-6 '>
@@ -224,6 +241,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                                            options={FechedResources}
                                            className="basic-multi-select"
                                            classNamePrefix="select"
+                                           
                                    />
                             </div>
                             <div className='col-span-6 '>
@@ -232,7 +250,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                                   </label>
                                   <Select
                                           onChange={(e) => setInput({...inputs , Priority : e?.value  || ""})}  
-                                          
+                                         
                                            name="Priority"
                                            options={OPTIONS}
                                            className="basic-multi-select"
@@ -241,6 +259,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                             </div>
                          
                             <Input
+                               isLoading={isLoading}
                                type ="number"
                                onChange={(e) => setInput({...inputs , cost : Number(e?.target.value ) || 0})}  
                                lable='cost'
@@ -249,6 +268,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                              />
                              
                              <TextField
+                               isLoading={isLoading}
                                className='lg:col-span-12'
                                lable='description'
                                value={inputs.description}
@@ -256,8 +276,8 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                              />
                        </div>
                        <div className='w-fill grid-col-12  h-[50px] my-4 flex justify-end items-center gap-x-8'>
-                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary"}) } bg-red-500 text-white`} onClick={handleDelete}>delete task</AbdullahButton>
-                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary"})}>update task</AbdullahButton>
+                            <AbdullahButton className={` ${buttonVariants({ variant:"secondary" , size : "sm"}) } `}  isLoading={deleteTask.isLoading}  onClick={handleDelete}>Delete task</AbdullahButton>
+                            <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary" , size : "sm"})}>update task</AbdullahButton>
                         </div>
                  </div> 
                 </Dialog.Panel>

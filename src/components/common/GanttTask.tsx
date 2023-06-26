@@ -11,6 +11,9 @@ import { AbdullahButton , buttonVariants } from '../used/AbdullahButton';
 import LoadingComponents from './loading-components';
 import EmptyGanttChard from '../gantt-chard/empty';
 import { Expand } from 'lucide-react';
+import { openTasksShowUp } from '~/store/open-models';
+import { TaskPopUpShowCase } from '../popup/task-pop-up';
+import { debounce } from 'lodash';
 
 const tasksStatic: Task[] = [
   {
@@ -36,11 +39,14 @@ export const GanttTask = () => {
 
   const [status , setSTatus] = useState("LOADING")
 
+  const setIsOpen  = openTasksShowUp(state => state.setShowModel)
+  const setId = openTasksShowUp(state => state.setId)
+
   const handleChange = () => {
     setShowTaskList(!showTaskList)
   }
 
-  api.tasksRouter.getTasks.useQuery(
+  const {refetch} = api.tasksRouter.getTasks.useQuery(
     { projectId: getProjectMetaData() },
     {
       onSuccess: (data) => {
@@ -71,8 +77,29 @@ export const GanttTask = () => {
     }
   );
 
+  const mutation = api.tasksRouter.updateOnlyDate.useMutation({
+    onSuccess : () => {
+      toast.success("updated ")
+    }
+  })
+
+  const handleDoubleClick = ({id } : {id : string}) => {
+    setIsOpen(true)
+    setId(id)
+  }
+
+  // Define the debounced version of the function with a desired delay (e.g., 300 milliseconds)
+const debouncedMutation = debounce((event) => {
+  mutation.mutate({
+    endsAt: event?.end,
+    startAt: event?.start,
+    id: event.id,
+  });
+}, 300);
+
   return (
     <div className="w-full h-full flex pb-8 pt-4 flex-col  relative bg-white overflow-x-auto overflow-y-auto items-start">
+      <TaskPopUpShowCase  refetch ={refetch} /> 
       <div className="w-full h-[100px] flex mb-4 flex-col items-start">
         <Title>Vue du diagramme de Gantt </Title>
        
@@ -102,7 +129,7 @@ export const GanttTask = () => {
         <AbdullahButton
               onClick={() => console.log("")}
               className={`${buttonVariants({variant : "secondary" , size:"sm"})} `} >
-               <Expand /> 
+               <Expand className='w-4 h-4' /> 
         </AbdullahButton>
         </div>
       </div>
@@ -117,8 +144,10 @@ export const GanttTask = () => {
         
         fontFamily="poppines"
         tasks={tasks }
+        
+        onDoubleClick={({id}) => handleDoubleClick({id })}
         listCellWidth={showTaskList ? undefined : ''}
-        onDateChange ={(event) => console.log(event) }
+        // onDateChange={(event) => debouncedMutation(event)}
         onProgressChange={(event => console.log(event ))}
         onExpanderClick = {(event => console.log(event ))}
         onDelete ={(event) => console.log(event)}

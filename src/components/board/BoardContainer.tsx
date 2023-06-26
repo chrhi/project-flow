@@ -6,6 +6,7 @@ import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
 import { openTasksDonePanle } from '~/store/open-models'
+import { TaskPopUpShowCase } from "../popup/task-pop-up";
 
 
 type Props = {
@@ -139,6 +140,7 @@ function BoardContainer({tasks} : Props ) {
     <DragDropContext 
     
     onDragEnd = {(result) => handleDragEnd(result)}>
+      <TaskPopUpShowCase  refetch ={refetch} />
     <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex justify-between ">
       <Column 
        title="A faire"

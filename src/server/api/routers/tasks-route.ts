@@ -96,6 +96,32 @@ export const tasksRouter = createTRPCRouter({
             }
         })
     }),
+    updateOnlyDate: publicProcedure
+    .input(z.object({
+       id : z.string().uuid(),
+        
+       startAt : z.date() ,
+       endsAt : z.date(),
+      
+      
+         }))
+    .mutation( async ({ input , ctx }) => {
+
+
+        await ctx.prisma.tasks.update({
+            data :{
+              
+                StartAt : input.startAt , 
+                EndsAt : input.endsAt,
+         
+                
+                
+            },
+            where:{
+                id : input.id
+            }
+        })
+    }),
 
 
     updateTaskStatus : publicProcedure

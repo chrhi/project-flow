@@ -38,12 +38,11 @@ const Page: NextPage = () => {
   const {isLoading : isProjectLoading} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata()},{
     retryOnMount : false ,
     onSuccess(data) {
-      if(data?.id ){
-        setDidGetData(true)
-      }
+      
       setFormData({
         ...formData , 
-        Title : data?.title  || ""
+        Title : data?.title  || "",
+        
       })
       setDate({
         from : data?.startAt || new Date() , 
@@ -64,7 +63,7 @@ const Page: NextPage = () => {
       }
       setFormData({
         id : data?.id || "",
-        Title : data?.Title  || "", 
+        Title : data?.Title || "", 
         HighLevelRequirements : data?.HighLevelRequirements  || "", 
         HighLevelRisks : data?.HighLevelRisks || "" , 
         ProjectDescription : data?.ProjectDescription || "" , 

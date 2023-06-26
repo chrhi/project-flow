@@ -13,7 +13,7 @@ import { toast } from "react-hot-toast";
 import { ConfirmDeleteTask } from "~/components/popup/table-confirm/confirm-delete-task";
 import { DataTable2 } from "~/components/common/constants/tasks-table/data-table2";
  import {  columns } from "~/components/common/constants/tasks-table/columns"
-
+import { TaskPopUpShowCase } from "~/components/popup/task-pop-up";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
@@ -45,6 +45,7 @@ const Page: NextPage = () => {
       <Header />
       <main className=" custopn-page-height  flex w-full bg-gray-50 ">
         <ConfirmDeleteTask  refetch={refetch} />
+      <TaskPopUpShowCase  refetch ={refetch} />  
       <PlanningSideBar setIsOpen ={setIsOpen} isOpen = {isOpen} />
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[5rem]"}`}>
   
