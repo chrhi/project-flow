@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { prisma } from "~/lib/prisma"
+import { STAKHOLDER_TYPES } from "~/types/static/STATICDATA"
 import { formatDate } from "~/utils/current-day"
 
 
@@ -14,6 +15,8 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
 
     const milestone = await prisma.mileStones.findMany({where : { projectId }})
 
+ 
+
     //get the project customer and sponser adn manager
     const projectManager = stakeholders.filter(item => item.type === "PROJECT_MANAGER")
     const projectCustomer = stakeholders.filter(item => item.type === "PROJECT_CUSTOMER")
@@ -24,6 +27,12 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
     // const objectives_Schedule = objectives.filter(item => item.Type === "Schedule")
     // const objectives_cost = objectives.filter(item => item.Type === "cost")
 
+    const budget =   stakeholders.reduce((total , item ) => {
+        if(item.type === STAKHOLDER_TYPES[0]?.value) {
+         return total + Number(item.InvestmentAmount)
+          }
+        return total
+       } , 0) 
    
 
     return (
@@ -189,7 +198,7 @@ export const getProjectCharter = async  ({projectId  } : {projectId : string }) 
 
 
 <div class="w-[97%] mx-auto  min-h-[20px] my-4  pt-1 flex justify-between items-start px-4 border no-break-inside ">
-    <h2 class="  font-bold  leading-6 text-lg text-gray-900 text-start">Estimated Budget: €750000 </h2>
+    <h2 class="  font-bold  leading-6 text-lg text-gray-900 text-start">Estimated Budget: €${ budget} </h2>
     <p class="  font-bold  leading-6 text-md text-gray-400 text-start" >${projectScponser[0]?.InvestmentAmount || ""}</p>
 </div>
 
