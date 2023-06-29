@@ -68,7 +68,7 @@ const Page: NextPage = () => {
         
       <div className="w-[50%] max-w-md p-4 z-[999] bg-white border shadow-2xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form className="space-y-6" action="#">
-        <h5 className="text-xl font-semibold text-gray-900 "> Connexion. </h5>
+        <h5 className="text-xl font-semibold text-gray-900 "> Connexion </h5>
         <div>
             <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Votre adresse e-mail.</label>
             <input
@@ -88,11 +88,11 @@ const Page: NextPage = () => {
            isLoading ={mutation.isLoading}
           onClick={(e :FormEvent) => handleSubmit(e)}
       >
-      Se connecter à votre compte.
+      Se connecter à votre compte
       </AbdullahButton>
 
         <div className="text-sm font-medium text-gray-500 ">
-        Pas encore inscrit(e) ? <Link href="/auth/register" className="text-blue-500 hover:underline ">Créer un compte.</Link>
+        Pas encore inscrit(e) ? <Link href="/auth/register" className="text-blue-500 hover:underline ">Créer un compte</Link>
         </div>
         {/* <div className="text-sm font-medium text-gray-500 ">
         or if you have an invitation? <Link href="/auth/invitation" className="text-blue-500 hover:underline ">use my invite</Link>

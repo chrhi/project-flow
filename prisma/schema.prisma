@@ -230,7 +230,9 @@ model Controlling  {
   id        String  @id @default(uuid())
   projectId String?
   project Project?  @relation(fields: [projectId], references: [id])
-  
+  ContractorStatusReport ContractorStatusReport[]
+
+
   @@index([id])
   @@index([projectId])
 }
@@ -433,7 +435,7 @@ model  formalAcceptance {
 }
 
 model ProjectLifeCycle {
-    id        String  @id @default(uuid())
+  id        String  @id @default(uuid())
   PlanningId String?
   Phase      String? @db.LongText
   KeyDeliverables String? @db.LongText
@@ -442,4 +444,22 @@ model ProjectLifeCycle {
 
   @@index([id])
   @@index([PlanningId])
+}
+
+model ContractorStatusReport {
+    id        String  @id @default(uuid())
+    ControllingId String?
+    controlling Controlling?  @relation(fields: [ControllingId], references: [id])
+    ScopePerformanceThisReportingPeriod String? @db.LongText
+    QualityPerformanceThisReportingPeriod  String? @db.LongText
+    SchedulePerformanceThisReportingPeriod String? @db.LongText
+    PlannedCorrectiveOrPreventiveAction  String? @db.LongText
+    CostPerformanceThisReportingPeriod String? @db.LongText
+    ForecastPerformanceForFutureReportingPeriods String? @db.LongText
+    ClaimsOrDisputes String? @db.LongText
+    Risks String? @db.LongText
+    Issues String? @db.LongText
+    Comments String? @db.LongText
+    @@index([id])
+    @@index([ControllingId])
 }
