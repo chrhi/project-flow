@@ -62,6 +62,24 @@ export  function StakeHolder () {
       })
     },
   })
+
+  const mutation = api.StakeHolderRouter.update_stakeholder.useMutation({
+    onError : () => {
+      toast.error("il y a une erreur lors de l'obtention de la partie prenante")
+    },
+    onSuccess(data) {
+      setOurData({
+        name : data?.name || "", 
+        email : data?.contact || "", 
+        type : data?.type || "", 
+        position : data?.position || "",  
+        impact : data?.impact || "", 
+        Requiremnts : data?.Requirements || "", 
+        Expectations : data?.Expectations || "",
+        Role : data?.role || ""
+      })
+    },
+  })
   
 
   function closeModal() {
