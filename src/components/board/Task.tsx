@@ -97,7 +97,7 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
                  <Separator orientation="horizontal" className='w-full ' />
                  <div className='w-full min-h-[50px] flex justify-end  flex-wrap gap-x-1 pt-2 '>
                         {
-                          isFetching ? <Skeleton  style={{width:"80%" , height :"30px" }} className='mx-auto rounded-lg' /> : 
+                          isFetching ?       <Skeleton style={{width : "100%"}} />: 
                             stakeHolders.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
                         }
                         <Badge color="emerald" size='xs' className="rounded-lg  my-1  "> {priority}</Badge>

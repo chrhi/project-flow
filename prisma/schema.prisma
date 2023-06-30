@@ -105,6 +105,8 @@ model Tasks {
     EndedAt    DateTime?
     cost       Float?
     RealCost   Float?
+    imgUrl     String?
+    progress   Int?
     Shape       String?
     Status      String?
     AssignedTo  Json?

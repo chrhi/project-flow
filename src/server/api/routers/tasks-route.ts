@@ -26,7 +26,8 @@ export const tasksRouter = createTRPCRouter({
        AssignTo : z.string().array(),
        AlocatedRessources : z.string().array(),
        Color : z.string(),
-       priority : z.string()
+       priority : z.string(),
+       imgUrl : z.string().optional()
          }))
     .mutation( async ({ input , ctx }) => {
 
@@ -45,7 +46,9 @@ export const tasksRouter = createTRPCRouter({
                 AlocatedRessources : AlocatedRessourcesJson,
                 Status : "TODO",
                 Color : input.Color,
-                Priority : input.priority
+                Priority : input.priority, 
+                imgUrl : input.imgUrl || ""
+                
             }
         })
         return task
@@ -73,6 +76,7 @@ export const tasksRouter = createTRPCRouter({
        AssignTo : z.string().array(),
        Status : z.string(),
        AlocatedRessources : z.string().array(),
+       imgUrl : z.string().optional()
       
          }))
     .mutation( async ({ input , ctx }) => {
@@ -89,7 +93,8 @@ export const tasksRouter = createTRPCRouter({
                 cost : input.cost,
                 AssignedTo : AssignToJson, 
                 AlocatedRessources : AlocatedRessourcesJson,
-                Status : input.Status
+                Status : input.Status,
+                imgUrl : input.imgUrl || ""
             },
             where:{
                 id : input.id
