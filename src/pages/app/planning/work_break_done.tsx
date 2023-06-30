@@ -184,7 +184,17 @@ const Page: NextPage = () => {
        <PlanningSideBar setIsOpen ={setIsOpenAlert} isOpen = {isOpenAlert} />
        <FormContainer className ={` ${isOpenAlert ? "ml-[20rem]" : "m-[0]"}`}>
       {/* <Treepopup setIsOpen ={setIsOpen} isOpen ={isOpen} refetch={() => {console.log("")}} parent_id={233}/> */}
-  
+     <div className='w-[95%] mx-auto h-[70px] bg-white pl-4'>
+
+       <div class="flex p-4 mb-4 text-sm text-blue-800 rounded-lg bg-white  " role="alert">
+          <svg aria-hidden="true" class="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+          <span class="sr-only">Info</span>
+       <div>
+       <span class="font-medium">Alerte d'information! </span> Les livrables dans la structure de découpage du travail (WBS) ne sont pas liés aux tâches dans notre outil
+       </div>
+       </div>
+
+     </div>
    
       <div className='w-[95%] mx-auto h-[50px] bg-white gap-x-4 py-4 flex justify-end px-4 items-center '>
      
@@ -192,41 +202,41 @@ const Page: NextPage = () => {
         <AbdullahButton 
        onClick={reSet}
        className={buttonVariants({variant:"secondary" , size:"sm"})}>
-      Start from zero
+     Commencer à partir de zéro
       </AbdullahButton>
       
     <AbdullahButton 
        onClick={onSave}
        isLoading={SaveToDataBase.isLoading}
        className={buttonVariants({variant:"secondary" , size:"sm" })}>
-      save
+      sauvegarder
       </AbdullahButton>
         {/* second button */}
       <AbdullahButton 
       isLoading={isFetching}
       onClick={onRestore}
       className={buttonVariants({variant:"secondary" , size:"sm" })}>
-      {isFetching ? "loading" : "status"}
+      {isFetching ? "chargement" : "statut"}
       </AbdullahButton>
 
       <AbdullahButton 
       isLoading={isFetching}
       onClick={async () => await refetch()}
       className={buttonVariants({variant:"secondary" , size:"sm" })}>
-      reload
+      recharger
       </AbdullahButton>
     
       <AbdullahButton 
       onClick={() => setIsPopUpOpen(true)}
       className={buttonVariants({variant:"primary" , size:"sm"})}>
         <Plus className="w-4 h-4 mr-2 " />
-        create new task
+        créer une nouvelle tâche
       </AbdullahButton>
       <AbdullahButton 
       onClick={() => setIsOpenMagic(true)}
       className={`${buttonVariants({variant:"primary", size:"sm" })} bg-gradient-to-r from-pink-400 to-pink-500`}>
         <Plus className="w-4 h-4 mr-2 " />
-        Add deliverables
+        Ajouter des livrables
       </AbdullahButton>
       </div>
     <div id="treeWrapper" className='mx-auto bg-white ' style={{ width: '95%', height: '100%' }}>
