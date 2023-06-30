@@ -34,7 +34,7 @@ function formatDate(date: Date): string {
 }
 
 const dataFormatter = (number: number): string => {
-  return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number).split(",")[0] + "€" || "";
+  return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number).split(",")[0]  || "";
 };
 
 
@@ -90,7 +90,7 @@ function BedgetStatus() {
           <CardContent >
           <AreaChart
           allowDecimals
-          className="h-72 mt-4  "
+          className="h-72 w-full mt-4  "
           data={tasks || []}
           index="date"
           categories={["Coût prévu pour une tâche", "Le coût réel de la tâche"]}
