@@ -30,7 +30,7 @@ const Page: NextPage = () => {
           // phone : item.phone , 
           // zipCode : item.zipCode , 
           // createdAt : formatDateAlgeria(item.createdAt) , 
-          status :   "active" ,
+          status :   item.status || "not provided" ,
           // password : item.passwordForAdmin
         }
         })

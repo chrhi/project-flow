@@ -53,3 +53,4 @@ export const confirmDeleteTask = create<ReducerTasksDelete>(
         setId : (input : string) => set({id : input})
     }),
 )
+

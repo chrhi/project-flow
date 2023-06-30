@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { LineChart } from "@tremor/react";
 import { type NextPage } from "next";
 import Head from "next/head";
@@ -7,7 +8,12 @@ import { ControllingSidebar } from "~/components/sideBars/ControllingSidebar";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-
+import { getProjectMetaData } from "~/lib/MetaData";
+import { Tasks } from "@prisma/client";
+import { toast } from "react-hot-toast";
+import LoadingComponents from "~/components/common/loading-components";
+import EmptyGanttChard from "~/components/gantt-chard/empty";
+import { api } from "~/utils/api";
 
 
 const chartdata = [
@@ -28,7 +34,7 @@ const chartdata = [
   },
   {
     date: 22,
-    "tasks costs": 2,
+    "Coûts des tâches": 2,
    
   },
   {
@@ -39,8 +45,57 @@ const chartdata = [
   //...
 ];
 
+
+function formatDate(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'short',
+    year: '2-digit'
+  };
+  return new Intl.DateTimeFormat('en-US', options).format(date);
+}
+
+  // Basic formatters for the chart values
+  const dataFormatter = (number: number): string => {
+    return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number).split(",")[0] + "€" || "";
+  };
+
+
+
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [status , setStatus ] = useState("LOADING")
+
+  
+  const [tasks , setTasks ] = useState<any[]>([] as any[])
+
+  api.tasksRouter.getTasks.useQuery({projectId : getProjectMetaData()},{
+    onError : () => {
+        toast.error("Quelque chose s'est mal passé.")
+    }, 
+    onSuccess : (data) =>  {
+      if(!data || data.length === 0 ){
+        setStatus("EMPTY")
+        return
+      }
+      //@ts-ignore
+      const sortedData =  data.sort((a, b) => a?.EndsAt?.getTime() - b?.EndsAt?.getTime());
+     const prepare = sortedData.map(item => {
+      return {
+           date:formatDate(item.EndsAt || new Date()),
+           "Coûts des tâches": item.cost,
+          
+
+      }
+
+     })
+    
+     setTasks(prepare)
+     setStatus("PLAYING")
+    }, 
+  })
+   
+  
   return (
     <>
       <Head>
@@ -62,14 +117,23 @@ const Page: NextPage = () => {
             <RowGridText text="Cost Base Line" />
             <RowGridText text="La clôture de projet est la phase finale où toutes les activités, les livrables et les objectifs sont terminés, et le projet est officiellement clôturé, visant à valider le succès du projet et faciliter la transition vers les opérations en cours ou les projets ultérieurs" small />  
           <div className="w-full h-[400px] flex justify-center items-start pt-8 col-span-12">
-          <LineChart
-                   className="mt-6"
-                   data={chartdata}
-                   index="date"
-                   categories={["tasks costs"]}
-                   colors={["yellow"]}
-                   yAxisWidth={40}
-             />
+          {
+         
+         status === "LOADING" ? 
+         <LoadingComponents />
+         : status === "EMPTY" ? 
+        <EmptyGanttChard />
+         :
+         <LineChart
+         className="mt-6"
+         data={tasks}
+         index="date"
+         categories={["Coûts des tâches"]}
+         colors={["yellow"]}
+         yAxisWidth={40}
+         />
+     }
+        
           </div>
       </div>
   </div>

@@ -5,12 +5,14 @@ import '~/styles/globals.css';
 import { getUserMetadata, setoreProjectMetaData, storeProjectCurrentPhaseAbdullah } from '~/lib/MetaData';
 import { ProjectReduer } from "~/store/project-reducer";
 import { userReducer } from '~/store/userReducer';
-
+import { BlockedPopUp as ABDULLAH } from '~/store/app-reducer/errorReducer'
 
 const MyApp: AppType = ({ Component, pageProps }) => {
 
   const setUser = userReducer(state => state.set_user)
   const setProject = ProjectReduer(state => state.set_project)
+
+  const set_isOpen = ABDULLAH(state => state.setIsOpen)
 
   api.userRouter.getUser.useQuery({ id : getUserMetadata() } , {
     onSuccess(data) {
@@ -22,6 +24,11 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           lastName : data.lastName || "error" , 
           name : data.name || "error" 
         })
+        
+        
+      }
+      if(data.status === "BLOCKED"){
+        set_isOpen({payload : true})
       }
     },
   })

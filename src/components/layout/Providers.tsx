@@ -9,6 +9,7 @@ import { ReactFlowProvider } from 'reactflow';
 import { AccessPopUp } from '~/components/common/AccessPopUp';
 import  { Toaster } from 'react-hot-toast';
 import Head from '../common/Head';
+import { BlockedPopUp } from '../common/BlockedPopUp';
 
 
 interface ProvidersAbdullahProps {
@@ -20,6 +21,7 @@ const Providers: FC<ProvidersAbdullahProps> = ({children}) => {
      <NextNProgress options={{ showSpinner: false }} />
       <Loading />
       <AccessPopUp />
+      <BlockedPopUp />
       <Toaster
        position="top-right"
        reverseOrder={false}

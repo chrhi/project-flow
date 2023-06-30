@@ -7,7 +7,7 @@ export const contractStatusReport = createTRPCRouter({
   dataAdd : publicProcedure
     .input(z.object({ 
     projectId: z.string().uuid(),
-    ControllingId : z.string() , 
+  
     ScopePerformanceThisReportingPeriod : z.string() ,
     QualityPerformanceThisReportingPeriod  : z.string() ,
     SchedulePerformanceThisReportingPeriod : z.string() ,
@@ -30,7 +30,7 @@ export const contractStatusReport = createTRPCRouter({
       }
       await ctx.prisma.contractorStatusReport.create({
         data:{
-          ControllingId : input.ControllingId , 
+          ControllingId :controlling.id, 
           ScopePerformanceThisReportingPeriod :  input.ScopePerformanceThisReportingPeriod , 
           QualityPerformanceThisReportingPeriod  : input.QualityPerformanceThisReportingPeriod , 
           SchedulePerformanceThisReportingPeriod : input.SchedulePerformanceThisReportingPeriod , 

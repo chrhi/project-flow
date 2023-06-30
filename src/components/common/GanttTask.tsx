@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Gantt, type  Task, ViewMode } from 'gantt-task-react';
 import 'gantt-task-react/dist/index.css';
 import { getProjectMetaData } from '~/lib/MetaData';
@@ -58,11 +58,9 @@ export const GanttTask = () => {
           type: 'task' || '',
           isDisabled: false,
           progress: 100,
-          
           styles: {
             progressColor: item.Color || '#0794f3',
             progressSelectedColor: item.Color || '#0794f3',
-            
           },
         }));
         if(data.length === 0){ 
@@ -99,25 +97,6 @@ const debouncedMutation = debounce((event) => {
   });
 }, 300);
 
-const handleDateChage = (event : Task) => {
-  const tasksToEdit = tasks
-  //get the task 
-  const currentTask = tasks.find(item => item.id === event.id)
-
-  if(!currentTask) return
-
-  const updatedTask : Task = {
-    ...currentTask , 
-    start :  event?.start , 
-    end :   event?.end , 
-  }
-  //remove the old task 
-  const tasklist = tasks.filter(item => item.id === event.id)
-  //upadte the task list and send it to the server 
-  setTasks([...tasklist , updatedTask ])
-
-}
-
   return (
     <div className="w-full h-full flex pb-8 pt-4 flex-col  relative bg-white overflow-x-auto overflow-y-auto items-start">
       <TaskPopUpShowCase  refetch ={refetch} /> 
@@ -152,11 +131,6 @@ const handleDateChage = (event : Task) => {
               className={`${buttonVariants({variant : "secondary" , size:"sm"})} `} >
                <Expand className='w-4 h-4' /> 
         </AbdullahButton>
-        <AbdullahButton
-              onClick={() => console.log("")}
-              className={`${buttonVariants({variant : "secondary" , size:"sm"})} `} >
-              save
-        </AbdullahButton>
         </div>
       </div>
       {
@@ -170,21 +144,14 @@ const handleDateChage = (event : Task) => {
         
         fontFamily="poppines"
         tasks={tasks }
-      
+        
         onDoubleClick={({id}) => handleDoubleClick({id })}
         listCellWidth={showTaskList ? undefined : ''}
-        onDateChange={(event) => handleDateChage(event)}
+        // onDateChange={(event) => debouncedMutation(event)}
         onProgressChange={(event => console.log(event ))}
         onExpanderClick = {(event => console.log(event ))}
         onDelete ={(event) => console.log(event)}
-        locale='fr'
         fontSize="10"
-        rowHeight={35}
-        headerHeight={35}
-        handleWidth={300}
-        ganttHeight={300}
-        todayColor='#0794f3'
-        
       />
       }
     </div>

@@ -9,7 +9,21 @@ import { TextField } from '../used/TextField'
 import { OpenStakeHolderOpoUpShowCase } from '~/store/open-models'
 import { api } from '~/utils/api'
 import { toast } from 'react-hot-toast'
+import { cn } from '~/lib/utils'
 
+
+const formateType = (text : string) => {
+   // Convert to lowercase
+   const lowercaseString = text.toLowerCase();
+
+   // Split by underscores
+   const splitString = lowercaseString.split('_');
+
+   // Join by spaces
+   const formattedString = splitString.join(' ');
+
+   return formattedString
+}
 
 
 export  function StakeHolder () {
@@ -27,7 +41,8 @@ export  function StakeHolder () {
     position : "" , 
     impact : "",
     Requiremnts : "",
-    Expectations : ""
+    Expectations : "",
+    Role : ""
   })
 
   const {isLoading} = api.StakeHolderRouter.get_one_stakeholder.useQuery({id} , {
@@ -42,7 +57,8 @@ export  function StakeHolder () {
         position : data?.position || "",  
         impact : data?.impact || "", 
         Requiremnts : data?.Requirements || "", 
-        Expectations : data?.Expectations || ""
+        Expectations : data?.Expectations || "",
+        Role : data?.role || ""
       })
     },
   })
@@ -117,7 +133,7 @@ export  function StakeHolder () {
                      <Input 
                         isLoading={isLoading}
                        lable="type "
-                       value= {ourData.type}
+                       value= {formateType(ourData.type )}
                        onChange={(e) => setOurData({...ourData , type : e.target.value})}
                   />
                     <Input 
@@ -126,10 +142,11 @@ export  function StakeHolder () {
                        value= {ourData.position}
                        onChange={(e) => setOurData({...ourData , position : e.target.value})}
                   />
-                   <Input 
+                   <Input
+                   
                         isLoading={isLoading}
                        lable="Impact "
-                       value= {ourData.impact}
+                       value= { formateType(ourData.impact)}
                        onChange={(e) => setOurData({...ourData , impact : e.target.value})}
                   />
                   <TextField
@@ -144,6 +161,17 @@ export  function StakeHolder () {
                         value= {ourData.Expectations}
                         onChange={(e) => setOurData({...ourData , Expectations : e.target.value})}
                   />
+                    <TextField
+                         isLoading={isLoading}
+                        lable="ROLE / RESPONSABILITY "
+                        value= {ourData.Role}
+                        onChange={(e) => setOurData({...ourData , Role : e.target.value})}
+                  />
+                  <div className='col-span-12  flex w-full h-[70px] items-center justify-center'>
+                      <AbdullahButton className={cn(buttonVariants({variant : "primary"}) , "w-full")}>
+                      Mettre à jour la partie prenante
+                      </AbdullahButton>
+                  </div>
                     
                   </ScrollArea>
                  

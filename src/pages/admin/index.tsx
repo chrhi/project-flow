@@ -1,39 +1,57 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { type NextPage } from "next";
 import { HeaderAdmin } from "~/components/header/admin-header/HeaderAdmin";
 import {  LineChart } from "@tremor/react";
 import MaxWidthWrapper from "~/components/layout/MaxWidthWrapper";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { api } from "~/utils/api";
+import { useState } from "react";
+import { Tasks } from "@prisma/client";
+import { toast } from "react-hot-toast";
+import LoadingComponents from "~/components/common/loading-components";
+import EmptyGanttChard from "~/components/gantt-chard/empty";
 
-const chartdata = [
-  {
-    date: 0,
-    "Nombre d'utilisateurs": 0,
-  
-  },
-  {
-    date: 7,
-    "Nombre d'utilisateurs": 1,
-   
-  },
-  {
-    date: 12,
-    "Nombre d'utilisateurs": 1,
-   
-  },
-  {
-    date: 22,
-    "Nombre d'utilisateurs": 2,
-   
-  },
-  {
-    date: 27,
-    "Nombre d'utilisateurs": 4,
-   
-  },
-  //...
-];
+
+function formatDate(date: Date): string {
+  const options: Intl.DateTimeFormatOptions = {
+    day: 'numeric',
+    month: 'short',
+    year: '2-digit'
+  };
+  return new Intl.DateTimeFormat('en-US', options).format(date);
+}
 
 const Page: NextPage = () => {
+
+  const [status , setStatus ] = useState("LOADING")
+
+  const [users , setUsers ] = useState<any[]>([] as any[])
+
+  api.userRouter.getAllUser.useQuery(undefined,{
+    onError : () => {
+        toast.error("Quelque chose s'est mal passé.")
+    }, 
+    onSuccess : (data) =>  {
+      if(!data || data.length === 0 ){
+        setStatus("EMPTY")
+        return
+      }
+      //@ts-ignore
+      const sortedData =  data.sort((a, b) => a?.EndsAt?.getTime() - b?.EndsAt?.getTime());
+     const prepare = sortedData.map((item , index) => {
+      return {
+           date:formatDate(item.createdAt || new Date()),
+           "Nombre d'utilisateurs": index,
+      }
+
+     })
+    
+     setUsers(prepare)
+     setStatus("PLAYING")
+    }, 
+  })
+
+   
 
   return (
     <>
@@ -49,19 +67,26 @@ const Page: NextPage = () => {
         La croissance des utilisateurs est cruciale pour évaluer le succès d'une entreprise et prendre des décisions stratégiques en matière de développement et de marketing.
         </CardDescription>
       </CardHeader>
-    
-          <CardContent>
+      {
+         
+         status === "LOADING" ? 
+         <LoadingComponents />
+         : status === "EMPTY" ? 
+        <EmptyGanttChard />
+         :
+         <CardContent >
         
-             <LineChart
+        <LineChart
                    className="mt-6"
-                   data={chartdata}
+                   data={users}
                    index="date"
                    categories={["Nombre d'utilisateurs"]}
                    colors={["blue"]}
                    yAxisWidth={40}
              />
-          </CardContent>
-      
+         </CardContent>
+     }
+         
      
     </Card>
       

@@ -12,6 +12,8 @@ import {
 } from "~/components/ui/dropdown-menu"
 import { ReactNode } from "react"
 import { Badge } from "@tremor/react"
+import { api } from "~/utils/api"
+import { toast } from "react-hot-toast"
 
 
 // This type is used to define the shape of our data.
@@ -106,6 +108,43 @@ export const columns: ColumnDef<User>[] = [
         setUserId(row.original.id)
         setShowModel(true)
       }
+
+    const block =   api.userRouter.BlockUser.useMutation({
+        onSuccess : (data) => {
+          //todo hanle that 
+          row.original.status === data.status?.toLowerCase()
+          
+          toast.success("bloqué avec succès")
+        },
+        onError : () => {
+        
+          
+          toast.error("Échec de blocage de l'utilisateur")
+        }
+      })
+    const Unblock =   api.userRouter.UnBlockUser.useMutation({
+        onSuccess : (data) => {
+          //todo hanle that 
+          row.original.status === data.status?.toLowerCase()
+        
+          toast.success("  débloqué avec succès")
+        },
+        onError : () => {
+          toast.error("Échec de déblocage de l'utilisateur")
+        }
+      })
+
+      const handleBlockUnBlockUser = () => {
+
+        if(row.original.status === "BLOCKED"){
+        
+          Unblock.mutate({ID : row.original.id})
+          return
+        }
+        block.mutate({ID : row.original.id})
+
+        
+      }
     
  
       return (
@@ -122,13 +161,13 @@ export const columns: ColumnDef<User>[] = [
             className="cursor-pointer"
               onClick={() => navigator.clipboard.writeText(row.original.id)}
             >
-              Copy User ID
+             Copier l'ID utilisateur
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="cursor-pointer">Update User</DropdownMenuItem>
+            <DropdownMenuItem className="cursor-pointer" onClick={handleBlockUnBlockUser} >{row.original.status === "BLOCKED"? "débloquer l'utilisateur" : "Bloquer un utilisateur" }</DropdownMenuItem>
             <DropdownMenuItem 
         
-            className="cursor-pointer !hover:bg-red-300" onClick={handleDeleteUser}>Delete</DropdownMenuItem>
+            className="cursor-pointer !hover:bg-red-300" onClick={handleDeleteUser}>Supprimer</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       )

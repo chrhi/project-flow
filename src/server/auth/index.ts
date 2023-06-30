@@ -8,7 +8,9 @@ import {
   createTRPCRouter,
 } from "~/server/api/trpc";
 import { updateUserPassword } from "./update-password";
+import { BlockUser, UnBlockUser } from "./block-unblock-user";
 
 export const userRouter = createTRPCRouter({
-  createUser , updateUser , deleteUser , getAllUser , getUser , verifyUser , updateUserPassword
+  createUser , updateUser , deleteUser , getAllUser , getUser , verifyUser , updateUserPassword,
+  BlockUser , UnBlockUser
 });

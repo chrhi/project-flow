@@ -231,7 +231,8 @@ model Controlling  {
   projectId String?
   project Project?  @relation(fields: [projectId], references: [id])
   ContractorStatusReport ContractorStatusReport[]
-
+  IssueLog  IssueLog[]
+  ProjectPeformaceReport ProjectPeformaceReport[]
 
   @@index([id])
   @@index([projectId])
@@ -462,4 +463,38 @@ model ContractorStatusReport {
     Comments String? @db.LongText
     @@index([id])
     @@index([ControllingId])
+}
+
+model IssueLog {
+   id            String  @id @default(uuid())
+   ControllingId String?
+   controlling Controlling?  @relation(fields: [ControllingId], references: [id])
+
+   FirstTable  Json?
+   SecondTable  Json?
+
+   @@index([id])
+   @@index([ControllingId])
+}
+
+model ProjectPeformaceReport {
+   id            String  @id @default(uuid())
+   ControllingId String?
+   controlling Controlling?  @relation(fields: [ControllingId], references: [id])
+
+   AccomplishmentsForThisReportingPeriod String? @db.LongText 
+   AccomplishmentsPlannedButNotCompletedThisReportingPeriod String? @db.LongText 
+   RootCauseOfVariances String? @db.LongText 
+   ImpactToUpcomingMilestonesOrProjectDueDate String? @db.LongText 
+   PlannedCorrectiveOrPreventiveAction String? @db.LongText 
+   FundsSpentThisReportingPeriod String? @db.LongText 
+   AccomplishmentsPlannedForNextReportingPeriod String? @db.LongText 
+   ImpactToOverallBudgetOrContingencyFunds String? @db.LongText 
+   CostsPlannedForNextReportingPeriod String? @db.LongText 
+   Risk String? @db.LongText 
+   Issues String? @db.LongText 
+   Comments String? @db.LongText 
+
+   @@index([id])
+   @@index([ControllingId])
 }
