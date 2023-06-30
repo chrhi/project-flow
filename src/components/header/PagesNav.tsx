@@ -19,21 +19,21 @@ export function PagesNav() {
 
  async function handleRouting (path : string , page : PAGES , INDEX : number) {
    const available = IsPhaseLocked({current_phase : getProjectCurrentPhaseAbdullah(), projectID : getProjectMetaData() , thisPhaseIndex : INDEX})
-  //  if(page === PAGES.DASHBORD  ){
-  //   set_current_page({payload : page})
-  //   await router.push(path)
-  //   return 
-  //  }
+   if(page === PAGES.DASHBORD  ){
+    set_current_page({payload : page})
+    await router.push(path)
+    return 
+   }
    
-  //  if(page === PAGES.DOCS && getProjectMetaData() !== "" ){
-  //   set_current_page({payload : page})
-  //   await router.push(path)
-  //   return 
-  //  }
-  //  if(!available){
-  //   set_access_error({payload : true})
-  //   return 
-  //  }
+   if(page === PAGES.DOCS && getProjectMetaData() !== "" ){
+    set_current_page({payload : page})
+    await router.push(path)
+    return 
+   }
+   if(!available){
+    set_access_error({payload : true})
+    return 
+   }
    set_current_page({payload : page})
    await router.push(path)
 

@@ -18,6 +18,7 @@ type PropsType =  {
  export type TaskType = {
   id : string ,
   title : string , 
+  AssignedTo : string[],
   discription? : string , 
   imgUrl? : string,
   priority?: string,
@@ -49,6 +50,21 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority }  
 
   const setIsOpen  = openTasksShowUp(state => state.setShowModel)
   const setId = openTasksShowUp(state => state.setId)
+
+  // const [stakeHolders , setStakeHolders] = useState<any[]>([])
+
+  // api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
+  //   onSuccess:(data) => {
+  //     const stakeholders = row.original.stakeholders.map(item => {
+  //       const stakeholder = data.find(stakeholder => stakeholder.id === item)
+  //       return stakeholder?.name
+  //     })
+  //     setStakeHolders(stakeholders)
+  //   }, 
+  //   onError : () => {
+  //     toast.error("failed to fetch stakeholders")
+  //   }
+  // })
 
   return (
     <Draggable  draggableId={id} index={index}>
