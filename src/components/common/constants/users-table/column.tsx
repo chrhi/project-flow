@@ -105,6 +105,10 @@ export const columns: ColumnDef<User>[] = [
       const setUserId = confirmDeleteUser(state =>  state.setId)
 
       const handleDeleteUser = () => {
+        if(row.original.email === "mahdi.chahri55@gmail.com"){
+          toast.success("  sorry you can not delete me")
+          return
+        }
         setUserId(row.original.id)
         setShowModel(true)
       }
@@ -136,9 +140,15 @@ export const columns: ColumnDef<User>[] = [
 
       const handleBlockUnBlockUser = () => {
 
+      
+
         if(row.original.status === "BLOCKED"){
         
           Unblock.mutate({ID : row.original.id})
+          return
+        }
+        if(row.original.email === "mahdi.chahri55@gmail.com"){
+          toast.success("  sorry you can not block me")
           return
         }
         block.mutate({ID : row.original.id})

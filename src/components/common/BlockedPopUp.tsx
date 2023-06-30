@@ -15,7 +15,7 @@ export  function BlockedPopUp () {
 
     const isOpen = ABDULLAH(state => state.isOpen)
 
-    const set_isOpen = ABDULLAH(state => state.setIsOpen)
+   
 
     const handleLogout = () => {
       Cookies.remove("abdullah-access-token")
@@ -27,7 +27,7 @@ export  function BlockedPopUp () {
   return (
        
     <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-[100]" onClose={() => set_isOpen({payload: false})}>
+        <Dialog as="div" className="relative z-[100]" onClose={ handleLogout }>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"

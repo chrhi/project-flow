@@ -48,7 +48,7 @@ export  function PLusButtonStakHolder ({refetch} : Props) {
  })
   
   const handleSubmit = () => {
-    if(!data.name || !data.contact || !data.expectation || !data.investemtAmount || !data.position || !data.requirements || !data.role || !data.type){
+    if(!data.name || !data.contact || !data.expectation  || !data.position || !data.requirements || !data.role || !data.type){
       toast.error("tous les champs sont obligatoires")
       return 
     }

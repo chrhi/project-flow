@@ -18,6 +18,7 @@ import { changeLogRouter } from "./inputs/controlling/change-log";
 import { projectCloseOutRouter } from "./inputs/close/project-close-out";
 import { costPlanningRouter } from "./inputs/management-plan/cost-managment";
 import { ProjecrLifeCycleRouter } from "./inputs/management-plan/project-life-cycle";
+import { comunicationsRouter } from "./routers/comunications";
 
 
 
@@ -41,6 +42,7 @@ export const appRouter = createTRPCRouter({
     projectCloseOutRouter,
     costPlanningRouter,
     ProjecrLifeCycleRouter,
+    comunicationsRouter
     
 });
 

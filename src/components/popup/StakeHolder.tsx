@@ -10,6 +10,7 @@ import { OpenStakeHolderOpoUpShowCase } from '~/store/open-models'
 import { api } from '~/utils/api'
 import { toast } from 'react-hot-toast'
 import { cn } from '~/lib/utils'
+import { InputNumber } from '../used/NumberInput'
 
 
 const formateType = (text : string) => {
@@ -35,6 +36,7 @@ export  function StakeHolder () {
   const id = OpenStakeHolderOpoUpShowCase(state => state.id)
 
   const [ourData , setOurData] = useState({
+    id : "",
     name : "" , 
     email : "" , 
     type : "" , 
@@ -42,7 +44,8 @@ export  function StakeHolder () {
     impact : "",
     Requiremnts : "",
     Expectations : "",
-    Role : ""
+    Role : "",
+    invest : "",
   })
 
   const {isLoading} = api.StakeHolderRouter.get_one_stakeholder.useQuery({id} , {
@@ -51,6 +54,7 @@ export  function StakeHolder () {
     },
     onSuccess(data) {
       setOurData({
+        id : data?.id || "",
         name : data?.name || "", 
         email : data?.contact || "", 
         type : data?.type || "", 
@@ -58,7 +62,8 @@ export  function StakeHolder () {
         impact : data?.impact || "", 
         Requiremnts : data?.Requirements || "", 
         Expectations : data?.Expectations || "",
-        Role : data?.role || ""
+        Role : data?.role || "",
+        invest : data?.InvestmentAmount || "0"
       })
     },
   })
@@ -69,6 +74,7 @@ export  function StakeHolder () {
     },
     onSuccess(data) {
       setOurData({
+        id : data?.id || "",
         name : data?.name || "", 
         email : data?.contact || "", 
         type : data?.type || "", 
@@ -76,10 +82,26 @@ export  function StakeHolder () {
         impact : data?.impact || "", 
         Requiremnts : data?.Requirements || "", 
         Expectations : data?.Expectations || "",
-        Role : data?.role || ""
+        Role : data?.role || "",
+        invest : data?.InvestmentAmount || "0"
       })
     },
   })
+
+  const handleUpdate = () => {
+    mutation.mutate({
+      id : ourData.id , 
+      contact : ourData.email , 
+      Expectations : ourData.Expectations , 
+      impact : ourData.impact , 
+      name : ourData.name , 
+      position : ourData.position , 
+      Requirements : ourData.Requiremnts , 
+      role : ourData.Role , 
+      type : ourData.type , 
+      InvestmentAmount : ourData.invest
+    })
+  }
   
 
   function closeModal() {
@@ -148,6 +170,12 @@ export  function StakeHolder () {
                         value= {ourData.email}
                         onChange={(e) => setOurData({...ourData , email : e.target.value})}
                   />
+                  <InputNumber
+                     isLoading={isLoading}
+                     lable="Investissement "
+                     value= {Number(ourData.invest)}
+                     onChange={(e) => setOurData({...ourData , invest : e.target.value})}
+                  />
                      <Input 
                         isLoading={isLoading}
                        lable="type "
@@ -186,7 +214,10 @@ export  function StakeHolder () {
                         onChange={(e) => setOurData({...ourData , Role : e.target.value})}
                   />
                   <div className='col-span-12  flex w-full h-[70px] items-center justify-center'>
-                      <AbdullahButton className={cn(buttonVariants({variant : "primary"}) , "w-full")}>
+                      <AbdullahButton
+                      isLoading={mutation.isLoading}
+                      onClick={handleUpdate}
+                      className={cn(buttonVariants({variant : "primary"}) , "w-full")}>
                       Mettre à jour la partie prenante
                       </AbdullahButton>
                   </div>

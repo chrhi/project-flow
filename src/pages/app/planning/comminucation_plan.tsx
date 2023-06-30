@@ -1,4 +1,4 @@
-
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import {   useState} from "react"
 import { TextField } from "~/components/used/TextField";
 import { Form } from "~/components/used/Form";
@@ -9,12 +9,49 @@ import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { PlanningSideBar } from "~/components/sideBars/PlanningSideBar";
 import { RowGridText } from "~/components/typography/RowGridText";
+import { DataTable } from "~/components/common/constants/comunications-table/data-table";
+import { api } from "~/utils/api";
+import { columns , type ComunicationType } from "~/components/common/constants/comunications-table/column";
+import toast from "react-hot-toast";
+import { getProjectMetaData } from "~/lib/MetaData";
+
 
 
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)
+  const [data , setData] = useState<any[]>([] )
 
+  const {refetch} = api.comunicationsRouter.getComunications.useQuery({ projectId : getProjectMetaData()} , {
+    onSuccess(data) {
+      const prepare = data.map((item ) : ComunicationType  => {
+        if(item.stakeholder){
+          //@ts-ignore
+          const stakeholders = JSON.parse(item.stakeholder )
+          return {
+            time : item.time || new Date() , 
+            description : item.description || "", 
+            id : item.id  || "", 
+            sender : item.Sender || "", 
+            stakeholders : stakeholders,
+            method : item.method || ""
+           }
+        }
+        return {
+          time : item.time || new Date() , 
+          description : item.description || "", 
+          id : item.id  || "", 
+          sender : item.Sender || "", 
+          stakeholders : [],
+          method : item.method || ""   
+        }
+      })
+      setData(prepare  )
+    },
+    onError: () => {
+      toast.error("failed to fetch the milestones")
+    }
+  })
  
   
  
@@ -35,16 +72,7 @@ const Page: NextPage = () => {
           <RowGridText small text="Le plan de gestion des communications est un document qui établit une approche structurée pour gérer les communications au sein d'un projet, comprenant les objectifs de communication, les parties prenantes, les méthodes de communication, le calendrier, et les responsabilités associées." />
          
         <div className="col-span-6 6 lg:col-span-12 ">
-          <AbdullahTable
-           isLoading={true}
-        
-          title="manage all your meetings"
-          description="lorem this is just a log text that has to be very good"
-          headers={["stakeholder" , "Information" , "Method" , "Timing or Frequency" , "Sender"]}
-          body={[]}
-        
-          Action
-          />
+          <DataTable columns={columns} data={data} refetch={refetch} />
           </div>
       
       

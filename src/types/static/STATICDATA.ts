@@ -33,6 +33,13 @@ export const OPTIONS =[
    
   ]
 
+  export const METHODS =[
+    { label : "online", value : "online"},
+    { label : "off line ", value : "off Line"},
+   
+   
+  ]
+
   export const COLORS = [
     { label : "blue", value : "#0c41ff"},
     { label : "verte", value : "#2ef606"},

@@ -67,7 +67,7 @@ export const StakeHolderRouter = createTRPCRouter({
       const { name, type, position, impact, role, Requirements, contact, InvestmentAmount, Expectations } = input;
 
       // Update stakeholder with provided ID
-      await ctx.prisma.stakeHolder.update({
+     const data =  await ctx.prisma.stakeHolder.update({
         data: {
           name,
           type,
@@ -83,6 +83,7 @@ export const StakeHolderRouter = createTRPCRouter({
           id: input.id
         }
       });
+      return data
     }),
 
   // Get one stakeholder
