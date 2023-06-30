@@ -48,6 +48,9 @@ function BoardContainer({tasks} : Props ) {
     onSuccess : (data) => {
       const prepare = data.map((item ) : TaskType => {
         return {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          AssignedTo : JSON.parse(item?.AssignedTo ),
           id : item.id , 
           status : item.Status || "" , 
           title : item.title || "", 

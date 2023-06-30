@@ -1,9 +1,13 @@
 /* eslint-disable  */
-import React from 'react'
+import React, { useState } from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import {  Badge, BadgeDelta  } from "@tremor/react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { openTasksShowUp } from '~/store/open-models';
+import { Separator } from '../ui/separator';
+import { api } from '~/utils/api';
+import { getProjectMetaData } from '~/lib/MetaData';
+import { toast } from 'react-hot-toast';
 
 type PropsType =  {
   index : number ,
@@ -12,7 +16,8 @@ type PropsType =  {
   discription? : string , 
   imgUrl? : string,
   priority?: string
-  endsAt? : Date 
+  endsAt? : Date ,
+  AssignedTo : string[],
 }
 
  export type TaskType = {
@@ -46,25 +51,26 @@ function remainingTime(date: Date): string {
   }
 }
 
-function Task({index , id , title , discription , imgUrl , endsAt , priority }  : PropsType) {
+function Task({index , id , title , discription , imgUrl , endsAt , priority ,AssignedTo }  : PropsType) {
 
   const setIsOpen  = openTasksShowUp(state => state.setShowModel)
   const setId = openTasksShowUp(state => state.setId)
 
-  // const [stakeHolders , setStakeHolders] = useState<any[]>([])
+  const [stakeHolders , setStakeHolders] = useState<any[]>([])
 
-  // api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
-  //   onSuccess:(data) => {
-  //     const stakeholders = row.original.stakeholders.map(item => {
-  //       const stakeholder = data.find(stakeholder => stakeholder.id === item)
-  //       return stakeholder?.name
-  //     })
-  //     setStakeHolders(stakeholders)
-  //   }, 
-  //   onError : () => {
-  //     toast.error("failed to fetch stakeholders")
-  //   }
-  // })
+  api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
+    onSuccess:(data) => {
+      const stakeholders = AssignedTo.map(item => {
+        const stakeholder = data.find(stakeholder => stakeholder.id === item)
+        return stakeholder?.name
+      })
+      setStakeHolders(stakeholders)
+      
+    }, 
+    onError : () => {
+      toast.error("failed to fetch stakeholders")
+    }
+  })
 
   return (
     <Draggable  draggableId={id} index={index}>
@@ -82,13 +88,18 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority }  
                  <CardDescription>
                        {discription}
                  </CardDescription>
-                 <CardContent>
-                  
-                 </CardContent>
+               
              </CardHeader>
-             <CardContent>
-   
-             </CardContent>    
+             <CardContent className='w-full'>
+                 <Separator orientation="horizontal" className='w-full ' />
+                 <div className='w-full min-h-[50px] flex justify-end  flex-wrap gap-x-1 pt-2 '>
+                        {
+                            stakeHolders.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
+                        }
+                        <Badge color="emerald" size='xs' className="rounded-lg  my-1  "> {priority}</Badge>
+                        <Badge color="green" size='xs' className="rounded-lg  my-1  "> {endsAt && remainingTime(endsAt)}</Badge>
+                 </div>
+                 </CardContent>   
             </Card>
         )}
      </Draggable>
