@@ -91,7 +91,7 @@ const Page: NextPage = () => {
        <ExecutingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className={` ${isOpen ? "ml-[20rem]" : "ml-[0]"} w-full overflow-y-auto  h-fit min-h-[400px]`}>
         <div className="w-full h-[50px] flex items-center pl-4 justify-start">
-            <h1 className="text-xl  text-gray-800 "> 📝Suivi des tâches avec tableau Kanban</h1>
+            <h1 className="text-xl  text-gray-800 font-bold  ml-4"> Suivi des tâches avec tableau Kanban</h1>
         </div>
         <TaskEndDone />
         <BoardContainer   tasks={tasksTyped}/>

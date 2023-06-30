@@ -83,7 +83,7 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
               setId(id)
               setIsOpen(true)
             }}
-            className={`w-[97%] flex flex-col items-start gap-y-2   shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 
+            className={`w-[80%]  min-w-[300px]  flex flex-col items-start gap-y-2   shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 
              ${snapshot.isDragging ? "shadow-xl " : "" }`}
             {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
              <CardHeader>

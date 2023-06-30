@@ -144,7 +144,7 @@ function BoardContainer({tasks} : Props ) {
     
     onDragEnd = {(result) => handleDragEnd(result)}>
       <TaskPopUpShowCase  refetch ={refetch} />
-    <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex justify-between ">
+    <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex  ">
       <Column 
        title="A faire"
        tasks={todo} 

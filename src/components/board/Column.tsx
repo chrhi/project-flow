@@ -3,6 +3,9 @@ import { StrictModeDroppable as Droppable } from "~/utils/FixBugs/StrictModeDrop
 import Task, { type TaskType } from "./Task";
 import { AbdullahButton  , buttonVariants} from "../used/AbdullahButton";
 import { ScrollArea } from "../ui/scroll-area";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { Button } from "../ui/button";
+import { MoreHorizontal } from "lucide-react";
 
 type PropsType ={
   title : string , 
@@ -12,10 +15,25 @@ type PropsType ={
 
 export default function Column({ title, tasks, id } : PropsType ) {
   return (
-   <div className="w-[300px]  h-fit  overflow-x-hidden bg-gray-50  ">
+   <div className="w-[25%]  h-fit  overflow-x-hidden bg-gray-50  ">
        {/* this is the column header */}
      <div className="w-[300px]  flex justify-between px-4 items-center h-[35px]  my-2  ">
      <p className="text-md font-semibold  text-gray-900 ">   {title}({tasks.length})</p>
+     <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+           
+            <DropdownMenuSeparator />
+            <DropdownMenuItem >Colabs this colomn</DropdownMenuItem>
+            <DropdownMenuItem >change name</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
     </div>
     {/* this the draggable area */}
     <Droppable droppableId={id}>

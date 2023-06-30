@@ -28,6 +28,11 @@ const Page: NextPage = () => {
   const handleSubmit = () => {
     if(inputs.newPassword !== inputs.confirmNewPassword){
       toast.error("passwords should match")
+      return
+    }
+    if(getUserMetadata() === "73ceab8c-88ba-4150-be71-1654f3bd5e8e"){
+      toast.error("sorry this is not going to work for this account")
+      return
     }
     mutation.mutate({
       userId : getUserMetadata(),
