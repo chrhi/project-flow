@@ -82,6 +82,9 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority }  
                  <CardDescription>
                        {discription}
                  </CardDescription>
+                 <CardContent>
+                  
+                 </CardContent>
              </CardHeader>
              <CardContent>
    
