@@ -17,7 +17,7 @@ export default function Column({ title, tasks, id } : PropsType ) {
   return (
    <div className="w-[25%]  h-fit  overflow-x-hidden bg-gray-50  ">
        {/* this is the column header */}
-     <div className="w-[300px]  flex justify-between px-4 items-center h-[35px]  my-2  ">
+     <div className="w-full max-w-[300px]  flex justify-between px-4 items-center h-[35px]  my-2  ">
      <p className="text-md font-semibold  text-gray-900 ">   {title}({tasks.length})</p>
      <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -30,8 +30,8 @@ export default function Column({ title, tasks, id } : PropsType ) {
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
            
             <DropdownMenuSeparator />
-            <DropdownMenuItem >Colabs this colomn</DropdownMenuItem>
-            <DropdownMenuItem >change name</DropdownMenuItem>
+            <DropdownMenuItem >fermer cette colonne</DropdownMenuItem>
+            <DropdownMenuItem >changer le nom</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
     </div>

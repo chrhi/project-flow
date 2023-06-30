@@ -44,7 +44,8 @@ export function CreateTaskButton({refetch} : Props) {
         description : "",
         Color : "",
         AssignTo : [] as any[],
-        AlocatedRessources : [] as any[]
+        AlocatedRessources : [] as any[],
+        imageUrl : ""
       })
       const [update, setUpdate] = useState(false);
       const [value, setValue] = useState<DateRange | undefined>({
@@ -114,7 +115,8 @@ export function CreateTaskButton({refetch} : Props) {
           startAt : value?.from as Date  ,
           projectId : getProjectMetaData(),
           Color : inputs.Color,
-          priority : inputs.Priority
+          priority : inputs.Priority,
+          imgUrl : inputs.imageUrl
           
         })
     
@@ -213,10 +215,9 @@ export function CreateTaskButton({refetch} : Props) {
                              />
                                <Input
                                  className='lg:col-span-12'
-                               
-                               onChange={(e) =>console.log(e)}  
+                               onChange={(e) => setInput({...inputs , imageUrl : e?.target.value  || ""})}  
                                lable='Image url'
-                               value={""}
+                               value={inputs.imageUrl}
                               
                              />
                               <Input

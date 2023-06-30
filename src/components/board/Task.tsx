@@ -9,6 +9,7 @@ import { api } from '~/utils/api';
 import { getProjectMetaData } from '~/lib/MetaData';
 import { toast } from 'react-hot-toast';
 import Skeleton from 'react-loading-skeleton';
+import Image from 'next/image';
 
 type PropsType =  {
   index : number ,
@@ -41,14 +42,14 @@ function remainingTime(date: Date): string {
 
   if (timeLeft >= 30 * 24 * 60 * 60 * 1000) {
     const monthsLeft = Math.floor(timeLeft / (30 * 24 * 60 * 60 * 1000));
-    return `${monthsLeft} months left`;
+    return `${monthsLeft} mois restants`;
   } else if (timeLeft >= 24 * 60 * 60 * 1000) {
     const daysLeft = Math.floor(timeLeft / (24 * 60 * 60 * 1000));
-    return `${daysLeft} days left`;
+    return `${daysLeft} Jours restants`;
   } else {
     const hoursLeft = Math.floor(timeLeft / (60 * 60 * 1000));
     const minutesLeft = Math.floor((timeLeft / (60 * 1000)) % 60);
-    return `${hoursLeft} hours and ${minutesLeft} minutes left`;
+    return `${hoursLeft} heures et ${minutesLeft} minutes restant`;
   }
 }
 
@@ -57,36 +58,40 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
   const setIsOpen  = openTasksShowUp(state => state.setShowModel)
   const setId = openTasksShowUp(state => state.setId)
 
-  const [stakeHolders , setStakeHolders] = useState<any[]>([])
+  // const [stakeHolders , setStakeHolders] = useState<any[]>([])
 
- const {isFetching} =  api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
+//  const {isFetching} =  api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
     
-    onSuccess:(data) => {
-      const stakeholders = AssignedTo.map(item => {
-        const stakeholder = data.find(stakeholder => stakeholder.id === item)
-        return stakeholder?.name
-      })
-      setStakeHolders(stakeholders)
+//     onSuccess:(data) => {
+//       const stakeholders = AssignedTo.map(item => {
+//         const stakeholder = data.find(stakeholder => stakeholder.id === item)
+//         return stakeholder?.name
+//       })
+//       setStakeHolders(stakeholders)
       
-    }, 
-    onError : () => {
-      toast.error("failed to fetch stakeholders")
-    },
+//     }, 
+//     onError : () => {
+//       toast.error("failed to fetch stakeholders")
+//     },
    
-  })
+//   })
 
   return (
     <Draggable  draggableId={id} index={index}>
         {(provided , snapshot) => (
+          
             <Card 
             onClick={() => {
               setId(id)
               setIsOpen(true)
             }}
-            className={`w-[80%]  min-w-[300px]  flex flex-col items-start gap-y-2   shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 
+            className={`w-[90%]   flex flex-col items-start gap-y-2   shadow-lg h-fit min-h-[50px] rounded-lg bg-white my-4 
              ${snapshot.isDragging ? "shadow-xl " : "" }`}
             {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+            
+
              <CardHeader>
+             
                  <CardTitle>{title}</CardTitle>
                  <CardDescription>
                        {discription}
@@ -94,15 +99,17 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
                
              </CardHeader>
              <CardContent className='w-full'>
-                 <Separator orientation="horizontal" className='w-full ' />
+                 {/* <Separator orientation="horizontal" className='w-full ' /> */}
+                 {imgUrl &&  <img alt="task image" src={imgUrl}  className='w-[99%] mx-auto'/>}
                  <div className='w-full min-h-[50px] flex justify-end  flex-wrap gap-x-1 pt-2 '>
-                        {
-                          isFetching ?       <Skeleton style={{width : "100%"}} />: 
-                            stakeHolders.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
-                        }
+                        
+                   {    
+                 AssignedTo.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
+}     
                         <Badge color="emerald" size='xs' className="rounded-lg  my-1  "> {priority}</Badge>
                         <Badge color="green" size='xs' className="rounded-lg  my-1  "> {endsAt && remainingTime(endsAt)}</Badge>
                  </div>
+                 <Separator orientation="horizontal" className='w-full bg-blue-500 h-1 ' />
                  </CardContent>   
             </Card>
         )}

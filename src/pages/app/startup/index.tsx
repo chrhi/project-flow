@@ -37,6 +37,10 @@ const Page: NextPage = () => {
 
   const {isLoading : isProjectLoading} = api.projectRouter.get_project.useQuery({user_id : getUserMetadata()},{
     retryOnMount : false ,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
     onSuccess(data) {
       
       setFormData({

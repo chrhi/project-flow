@@ -7,6 +7,7 @@ import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
 import { openTasksDonePanle } from '~/store/open-models'
 import { TaskPopUpShowCase } from "../popup/task-pop-up";
+import LoadingComponents from "../common/loading-components";
 
 
 type Props = {
@@ -50,12 +51,12 @@ function BoardContainer({tasks} : Props ) {
         return {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           //@ts-ignore
-          AssignedTo : JSON.parse(item?.AssignedTo ),
+          AssignedTo : item?.AssignedTo ,
           id : item.id , 
           status : item.Status || "" , 
           title : item.title || "", 
           discription : item.description || "" , 
-          imgUrl : "",
+          imgUrl : item.imgUrl || "",
           priority : item.Priority || "",
           endsAt : item.EndsAt || new Date()
         }
@@ -68,7 +69,8 @@ function BoardContainer({tasks} : Props ) {
     onError : () => {
       setTodo(tasks)
       toast.error("something went wrong may be your internet connection ?")
-    }
+    },
+   
   })
 
 
@@ -144,7 +146,11 @@ function BoardContainer({tasks} : Props ) {
     
     onDragEnd = {(result) => handleDragEnd(result)}>
       <TaskPopUpShowCase  refetch ={refetch} />
-    <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex  ">
+      {
+        isLoading ? <LoadingComponents  className="bg-gray-50" /> :
+
+  
+    <div className="w-[95%] ml-[5%]   overflow-x-hidden   h-fit min-h-[500px] flex justify-between ">
       <Column 
        title="A faire"
        tasks={todo} 
@@ -166,6 +172,7 @@ function BoardContainer({tasks} : Props ) {
        id="Canceled"
        />
     </div>
+        }
     </DragDropContext>
   )
 }

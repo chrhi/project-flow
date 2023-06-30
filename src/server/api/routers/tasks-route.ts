@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
@@ -62,7 +63,27 @@ export const tasksRouter = createTRPCRouter({
                 projectId : input.projectId
             }
         })
-        return tasks
+        const stakeholders = await ctx.prisma.stakeHolder.findMany({
+            where:{
+                projectId : input.projectId
+            }
+        })
+    const newPreparedArray = tasks.map(item => {
+        if(!item?.AssignedTo){
+            return item 
+        }
+        //@ts-ignore
+        const prepare = JSON.parse(item?.AssignedTo).map(item => {
+            const peaple = stakeholders.filter(haja => haja.id === item)
+            return peaple[0]?.name
+        })
+
+
+        return{
+            ...item , AssignedTo :prepare
+        }
+    })
+        return newPreparedArray
     }),
 
     updateTask: publicProcedure
@@ -181,6 +202,9 @@ export const tasksRouter = createTRPCRouter({
             id : input.id
         }
     })
+
+
+
     return task 
   }),
   deleteTask : publicProcedure .input(z.object({ id : z.string()})).mutation(async ({input , ctx}) => {
