@@ -57,10 +57,20 @@ const Page: NextPage = () => {
 
   const {isLoading , refetch} = api.startupRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
     retryOnMount : false ,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
+    
     onSuccess(data) {
-      if(data?.id ){
+      if(data?.id  ){
         setDidGetData(true)
+        return
       }
+      if(formData.Title !== "" || formData.HighLevelRequirements !== "" || formData.HighLevelRisks !== ""  ){
+        return
+      }
+      
       setFormData({
         id : data?.id || "",
         Title : data?.Title || "", 

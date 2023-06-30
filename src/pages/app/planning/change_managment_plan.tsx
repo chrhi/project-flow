@@ -32,6 +32,10 @@ const Page: NextPage = () => {
 
   const {isLoading : isFetching , refetch} = api.changePlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
     retryOnMount : false ,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
     onSuccess(data) {
       if(data?.id ){
         setDidGetData(true)

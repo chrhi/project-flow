@@ -83,7 +83,12 @@ const Page: NextPage = () => {
   
     onError : () => {
       toast.error("failed to fetch the data")
-    }
+    },
+    retryOnMount : false ,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
   })
 
   const SaveToDataBase = api.projectRouter.setProjectBreakDown.useMutation({

@@ -38,6 +38,10 @@ const Page: NextPage = () => {
 
   const {isLoading , refetch} = api.changeLogRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
     retryOnMount : false ,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+    refetchOnReconnect: false,
+    retry: false,
     onSuccess(data) {
       if(data?.id ){
         setDidGetData(true)

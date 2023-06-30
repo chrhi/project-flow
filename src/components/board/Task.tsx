@@ -8,6 +8,7 @@ import { Separator } from '../ui/separator';
 import { api } from '~/utils/api';
 import { getProjectMetaData } from '~/lib/MetaData';
 import { toast } from 'react-hot-toast';
+import Skeleton from 'react-loading-skeleton';
 
 type PropsType =  {
   index : number ,
@@ -58,7 +59,8 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
 
   const [stakeHolders , setStakeHolders] = useState<any[]>([])
 
-  api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
+ const {isFetching} =  api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
+    
     onSuccess:(data) => {
       const stakeholders = AssignedTo.map(item => {
         const stakeholder = data.find(stakeholder => stakeholder.id === item)
@@ -69,7 +71,8 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
     }, 
     onError : () => {
       toast.error("failed to fetch stakeholders")
-    }
+    },
+   
   })
 
   return (
@@ -94,6 +97,7 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
                  <Separator orientation="horizontal" className='w-full ' />
                  <div className='w-full min-h-[50px] flex justify-end  flex-wrap gap-x-1 pt-2 '>
                         {
+                          isFetching ? <Skeleton  style={{width:"80%" , height :"30px" }} className='mx-auto rounded-lg' /> : 
                             stakeHolders.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
                         }
                         <Badge color="emerald" size='xs' className="rounded-lg  my-1  "> {priority}</Badge>

@@ -34,6 +34,10 @@ const Page: NextPage = () => {
       
         const {isLoading  , refetch} = api.scheduelPlanningRouter.dataGet.useQuery({projectId : getProjectMetaData()}, {
           retryOnMount : false ,
+          refetchOnWindowFocus: false,
+          refetchOnMount: false,
+          refetchOnReconnect: false,
+          retry: false,
           onSuccess(data) {
             if(data?.id ){
               setDidGetData(true)
