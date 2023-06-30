@@ -33,10 +33,9 @@ function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('en-US', options).format(date);
 }
 
-  // Basic formatters for the chart values
-  const dataFormatter = (number: number): string => {
-    return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number).split(",")[0] + "€" || "";
-  };
+const dataFormatter = (number: number): string => {
+  return new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(number).split(",")[0] + "€" || "";
+};
 
 
 function BedgetStatus() {
