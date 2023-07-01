@@ -20,7 +20,7 @@ const Page: NextPage = () => {
        <FormContainer className ={` ${isOpen ? "ml-[20rem]" : "ml-[0]"}`}>
        
        <Form >
-            <div className="bg-white px-4 py-5 h-[100%] w-full sm:p-6">
+            <div className="bg-white px-4 py-5 h-[100%] w-full min-h-[500px] sm:p-6">
                 <Flow  />
             </div>
       </Form>

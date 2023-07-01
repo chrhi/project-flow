@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
-import React, { useCallback } from 'react';
-import ReactFlow, { useNodesState, useEdgesState, addEdge, MiniMap, Controls } from 'reactflow';
+import React, { useCallback , useState } from 'react';
+import ReactFlow, { useNodesState, useEdgesState, addEdge,    Background, MiniMap, Controls } from 'reactflow';
 
 import 'reactflow/dist/base.css';
 
@@ -16,20 +16,20 @@ const initNodes = [
   {
     id: '1',
     type: 'custom',
-    data: { name: 'Jane Doe', job: 'CEO', emoji: '😎' },
+    data: { title: 'this is a word', description: 'CEO', cost: 400 , level : 1},
     position: { x: 0, y: 50 },
   },
   {
     id: '2',
     type: 'custom',
-    data: { name: 'Tyler Weary', job: 'Designer', emoji: '🤓' },
+    data: { title: 'this is a word and it has every thing in it this is a word and it has every thing in it this is a word and it has every thing in it', description: 'Designer', cost: 800 , level : 1 },
 
     position: { x: -200, y: 200 },
   },
   {
     id: '3',
     type: 'custom',
-    data: { name: 'Kristi Price', job: 'Developer', emoji: '🤩' },
+    data: { title: 'but for how long it is going to work', description: 'Developer', cost: 788 , level : 1 },
     position: { x: 200, y: 200 },
   },
 ];
@@ -51,22 +51,31 @@ const Flow = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
 
+  const [edgeOptions , setEdgeOption] = useState( {
+    animated: true,
+    type: 'smoothstep',
+  })
+
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
 
   return (
-    <ReactFlow
+   <div   style={{ height: 600 }}>
+     <ReactFlow
       nodes={nodes}
       edges={edges}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       onConnect={onConnect}
       nodeTypes={nodeTypes}
+      defaultEdgeOptions={edgeOptions}
       fitView
-      className="bg-teal-50"
+      
     >
+         <Background color="#aaa" gap={16} />
       <MiniMap />
       <Controls />
     </ReactFlow>
+   </div>
   );
 };
 
