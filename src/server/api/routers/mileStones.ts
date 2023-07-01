@@ -25,7 +25,7 @@ export const mileStoneRouter = createTRPCRouter({
     }),
     milestoneDelete : publicProcedure
     .input(z.object({ 
-      id: z.string().uuid(),
+      id: z.string(),
      
      
      }))
