@@ -265,6 +265,7 @@ const Page: NextPage = () => {
       onEdgeUpdate={onEdgeUpdate}
       onEdgeUpdateStart={onEdgeUpdateStart}
       onEdgeUpdateEnd={onEdgeUpdateEnd}
+      onNodesDelete={(nodes) => { console.log("delete node")}}
     >
 
       <div className="save__controls">

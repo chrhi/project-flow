@@ -62,3 +62,40 @@ export const openTasksDonePanle = create<TaksDoneModelType>(
         setEveryThing : ({id , endedAt , startAt} : {id : string , endedAt : Date , startAt : Date  }) =>  set({id ,  endedAt , startAt , showModel : true  }),
     }),
 )
+
+type DelerableModelType ={
+    id : string , 
+    title : string , 
+    description : string , 
+    cost : number , 
+    showModel: boolean,
+    setShowModel : (input :boolean) => void,
+  
+    setEveryThing : ({
+        id,
+        title , 
+        description , 
+        cost , 
+       
+    }: 
+    {
+        id : string , 
+        title : string , 
+        description : string , 
+        cost : number , 
+
+    }) => void
+}
+
+export const OpenDelevaribleUpdateModel = create<DelerableModelType>(
+
+    (set) => ({
+        id : "",
+        title : "" , 
+        description : "" , 
+        cost : 0 , 
+        showModel:false,
+        setShowModel:(input :boolean) => set({showModel : input}),
+        setEveryThing : ({id, title ,  description ,  cost , }:  { id : string , title : string ,  description : string , cost : number , }) => set({id , title , description , cost})
+    }),
+)

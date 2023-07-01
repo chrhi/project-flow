@@ -12,6 +12,9 @@ import { DatePickerWithRange } from '../ui/date-range-picker';
 import { addDays } from 'date-fns';
 import type { DateRange } from 'react-day-picker';
 import { ScrollArea } from '../ui/scroll-area';
+import { X } from 'lucide-react'
+
+
 
 interface Props {
   
@@ -19,7 +22,13 @@ interface Props {
     isOpen : boolean ,
     setIsOpen : Dispatch<SetStateAction<boolean>>,
     refetch : () => Promise<any>,
-    onAdd?: ({title , id  } : {title: string , id : string }) => void
+    onAdd?: ({ id, description, title, cost, level }: {
+      title: string;
+      description: string;
+      cost: number;
+      level: number;
+      id: string;
+  }) => void
 }
 
 
@@ -75,7 +84,7 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
     onSuccess:(data) => {
       toast.success("new task added ")
       if(onAdd === undefined || !data.id) return
-      onAdd({title : inputs.title ,id :  data.id })
+      onAdd({title : inputs.title ,id :  data.id , cost : data.cost || 0 , description : data.description || "" , level : 4})
       setIsOpen(false)
     
     }, 
@@ -137,20 +146,22 @@ export  function Treepopup ({isOpen , setIsOpen , refetch  , onAdd} : Props) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <ScrollArea className="w-[930px] h-[625px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <ScrollArea className="w-[930px] h-[635px]   z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                     as="div"
-                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
+                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 "
                   >
-               <div><p className='text-md text-gray-900 font-semibold  ml-4'>Créer une nouvelle tâche</p></div>  
-               <div>
+               
+               <div className='w-[85%]'><p className='text-sm text-gray-500 truncate '>Créer une nouvelle tâche </p></div>  
+               <div className='w-[10%] ml-[5%] flex justify-end items-center'>
+                
                     <button
-                          onClick={() => setIsOpen(false)}
-                          className='!text-xl !font-semibold !text-slate-900 !p-0  '>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                  onClick={() => setIsOpen(false)}
+                   className='!text-xl !font-semibold !text-slate-900 !p-0  '
+                   >
+                   <X className='w-4 h-4 '/>
                     </button>
+                   
                 </div> 
                   </Dialog.Title>
                 <div className="bg-white p-4  w-full  ">

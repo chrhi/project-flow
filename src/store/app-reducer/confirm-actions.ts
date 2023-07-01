@@ -54,3 +54,21 @@ export const confirmDeleteTask = create<ReducerTasksDelete>(
     }),
 )
 
+
+type ReducerDelevarebleDelete ={
+    id : string,
+    showModel: boolean,
+    setShowModel : (input :boolean) => void,
+    setId : (input:string) => void
+}
+
+export const confirmDelevarebleTask = create<ReducerTasksDelete>(
+
+    (set) => ({
+        id : "",
+        showModel:false,
+        setShowModel:(input :boolean) => set({showModel : input}),
+        setId : (input : string) => set({id : input})
+    }),
+)
+

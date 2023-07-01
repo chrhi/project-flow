@@ -70,18 +70,18 @@ export  function ConfirmePopUpDeleteStakeHolder ({refetch} : Props) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-[400px] min-h-[100px] h-fit  flex flex-wrap gap-8  z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <h2 className='text-center text-lg font-semibold '> are you sure you want to distroy this file the information may varry  </h2>
+                <h2 className='text-center text-lg font-semibold '> Deleting this stakeholder will remove them from the project's stakeholder registry and associated communication channels. Please ensure that this is the intended action, as it may impact project interactions and communication  </h2>
               
                 <div className='w-full h-[50px] flex items-center justify-center gap-x-8 '>
                 <AbdullahButton 
                    onClick={handleSubmit}
                    isLoading={mutation.isLoading}
-                   className={buttonVariants({variant : "primary"})} >
+                   className={buttonVariants({variant : "primary" , size : "sm"})} >
                           confirme
                </AbdullahButton> 
                <AbdullahButton 
                      onClick={closeModal}
-                     className={buttonVariants({variant : "secondary"})} >
+                     className={buttonVariants({variant : "secondary" , size : "sm"})} >
                       cancel
                </AbdullahButton> 
                 </div>

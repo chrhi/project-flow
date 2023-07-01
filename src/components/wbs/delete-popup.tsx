@@ -1,42 +1,34 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton' 
-import { confirmDeleteUser } from '~/store/app-reducer/confirm-actions'
+import {   confirmDelevarebleTask as confirmDeleteTask } from '~/store/app-reducer/confirm-actions'
 import { api } from '~/utils/api'
 import  toast  from 'react-hot-toast'
 
+
 type Props = {
-  refetch : () => Promise<any>
+    onDelete: ({ id }: {
+        id: string;
+    }) => void
 }
 
-export  function ConfirmePopUpDeleteUser ({refetch} : Props) {
+export  function ConfirmDeleteDelevarble ({onDelete} : Props) {
 
-  const isShowing = confirmDeleteUser(state => state.showModel)
+  const isShowing = confirmDeleteTask(state => state.showModel)
 
-  const setIsShowing = confirmDeleteUser(state => state.setShowModel)
+  const setIsShowing = confirmDeleteTask(state => state.setShowModel)
 
-  const UserId = confirmDeleteUser(state => state.id)
+  const ID = confirmDeleteTask(state => state.id)
 
-  const mutation = api.userRouter.deleteUser.useMutation({
-    onSuccess : async  () => {
-      toast.success("user has been deleted")
-      closeModal()
-      await refetch()
-    },
-    onError(){
-      toast.error("something went wrong")
-      closeModal()
-    }
-  })
+ 
 
   function closeModal() {
     setIsShowing(false)
   }
 
   function handleSubmit (){
-    mutation.mutate({
-      ID : UserId
-    })
+    onDelete({id : ID})
+    closeModal()
   }
 
   return (
@@ -70,18 +62,18 @@ export  function ConfirmePopUpDeleteUser ({refetch} : Props) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-[400px] min-h-[100px] h-fit  flex flex-wrap gap-8  z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <h2 className='text-center text-lg font-semibold '> Are you sure you want to delete this user?  </h2>
+                <h2 className='text-center text-lg font-semibold '> This action cannot be undone. Deleting the task will remove all associated data and progress. Please ensure that this is the intended action. </h2>
               
                 <div className='w-full h-[50px] flex items-center justify-center gap-x-8 '>
                 <AbdullahButton 
                    onClick={handleSubmit}
-                   isLoading={mutation.isLoading}
-                   className={buttonVariants({variant : "primary"})} >
+                
+                   className={buttonVariants({variant : "primary" , size : "sm"})} >
                           confirme
                </AbdullahButton> 
                <AbdullahButton 
                      onClick={closeModal}
-                     className={buttonVariants({variant : "secondary"})} >
+                     className={buttonVariants({variant : "secondary" , size : "sm"})} >
                       cancel
                </AbdullahButton> 
                 </div>

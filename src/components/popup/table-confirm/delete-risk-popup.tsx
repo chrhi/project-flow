@@ -70,18 +70,18 @@ export  function ConfirmDeletePopUpRisks ({refetch} : Props) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="w-[400px] min-h-[100px] h-fit  flex flex-wrap gap-8  z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <h2 className='text-center text-lg font-semibold '> are you sure you want to delete this file  </h2>
+                <h2 className='text-center text-lg font-semibold '> This action cannot be undone. Deleting the risk will remove all associated data and response plans. Please ensure that this is the intended action.  </h2>
               
                 <div className='w-full h-[50px] flex items-center justify-center gap-x-8 '>
                 <AbdullahButton 
                    onClick={handleSubmit}
                    isLoading={mutation.isLoading}
-                   className={buttonVariants({variant : "primary"})} >
+                   className={buttonVariants({variant : "primary" , size : "sm"})} >
                           confirme
                </AbdullahButton> 
                <AbdullahButton 
                      onClick={closeModal}
-                     className={buttonVariants({variant : "secondary"})} >
+                     className={buttonVariants({variant : "secondary" , size : "sm"})} >
                       cancel
                </AbdullahButton> 
                 </div>
