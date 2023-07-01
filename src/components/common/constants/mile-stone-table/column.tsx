@@ -10,6 +10,8 @@ import {
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
 import { AlgeriaformatDate } from "~/utils/formate/AlgeriaFormate"
+import { api } from "~/utils/api"
+import { toast } from "react-hot-toast"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -44,7 +46,17 @@ export const columns: ColumnDef<MileStone>[] = [
  
   {
     id: "actions",
-    cell: () => {
+    cell: ({row}) => {
+
+     const mutation =  api.mileStoneRouter.milestoneDelete.useMutation({
+        onSuccess : () => {
+          toast.success("raho tfasa doka")
+        },
+        onError : () => {
+          toast.success("there is an erro")
+        }
+      })
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -57,7 +69,10 @@ export const columns: ColumnDef<MileStone>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
            
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete </DropdownMenuItem>
+            <DropdownMenuItem
+         
+            onClick={() => mutation.mutate({id : row.original.id})}
+            >supprimer </DropdownMenuItem>
          
           </DropdownMenuContent>
         </DropdownMenu>

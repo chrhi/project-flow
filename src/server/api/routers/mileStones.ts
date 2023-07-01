@@ -23,6 +23,20 @@ export const mileStoneRouter = createTRPCRouter({
         }
       })
     }),
+    milestoneDelete : publicProcedure
+    .input(z.object({ 
+      id: z.string().uuid(),
+     
+     
+     }))
+    .mutation( async({ input  , ctx }) => {
+
+      await ctx.prisma.mileStones.delete({
+        where : {
+          id : input.id
+        }
+      })
+    }),
     getMilestones : publicProcedure
     .input(z.object({ 
       projectId: z.string().uuid(),
