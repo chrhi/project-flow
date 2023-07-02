@@ -25,7 +25,7 @@ import {
 } from "~/components/ui/sheet"
 import { useState , useRef } from "react";
 import { InputNumber } from "~/components/used/NumberInput";
-
+import { WBS_NODES } from "~/types/static/STATICDATA";
 
 
 
@@ -48,6 +48,7 @@ export function CreateDelevarble({onAdd} : Props) {
         title : "" ,
         level : 1,
         cost : 0,
+        type : "",
         description : "",
      
 
@@ -86,6 +87,68 @@ export function CreateDelevarble({onAdd} : Props) {
         </SheetHeader>
       
         <div className="w-[90%] mr-[10%] my-6 gap-y-4  min-h-full grid grid-cols-1 px-2 ">
+
+                <div className='col-span-12 '>
+                        <label  className="block text-sm font-medium leading-6 text-gray-900">
+                        Deliverable type 
+                        </label>
+                        <Select
+                               onChange={(e) => setInput({...inputs , type : e?.value || ""})}
+                               name="stakholders_types"
+                               options={WBS_NODES}
+                               className="basic-multi-select"
+                               classNamePrefix="select"
+                          />
+                 </div> 
+                 
+                <div className='col-span-12 '>
+                        <label  className="block text-sm font-medium leading-6 text-gray-900">
+                        Milestone dependency 
+                        </label>
+                        <Select
+                               onChange={(e) => setInput({...inputs , type : e?.value || ""})}
+                               name="stakholders_types"
+                               options={WBS_NODES}
+                               className="basic-multi-select"
+                               classNamePrefix="select"
+                          />
+                 </div> 
+                 <div className='col-span-12 '>
+                        <label  className="block text-sm font-medium leading-6 text-gray-900">
+                        Risk dependency 
+                        </label>
+                        <Select
+                               onChange={(e) => setInput({...inputs , type : e?.value || ""})}
+                               name="stakholders_types"
+                               options={WBS_NODES}
+                               className="basic-multi-select"
+                               classNamePrefix="select"
+                          />
+                 </div> 
+                 <div className='col-span-12 '>
+                        <label  className="block text-sm font-medium leading-6 text-gray-900">
+                        Objectives dependency 
+                        </label>
+                        <Select
+                               onChange={(e) => setInput({...inputs , type : e?.value || ""})}
+                               name="stakholders_types"
+                               options={WBS_NODES}
+                               className="basic-multi-select"
+                               classNamePrefix="select"
+                          />
+                 </div> 
+                 <div className='col-span-12 '>
+                        <label  className="block text-sm font-medium leading-6 text-gray-900">
+                        meets dependency 
+                        </label>
+                        <Select
+                               onChange={(e) => setInput({...inputs , type : e?.value || ""})}
+                               name="stakholders_types"
+                               options={WBS_NODES}
+                               className="basic-multi-select"
+                               classNamePrefix="select"
+                          />
+                 </div> 
                 
                           <Input
                                className='lg:col-span-12'

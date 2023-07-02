@@ -58,9 +58,11 @@ export const GanttTask = () => {
           type: 'task' || '',
           isDisabled: false,
           progress: 100,
+          
           styles: {
-            progressColor: item.Color || '#0794f3',
-            progressSelectedColor: item.Color || '#0794f3',
+            progressColor:  '#0794f3',
+            progressSelectedColor:  '#0794f3',
+
           },
         }));
         if(data.length === 0){ 
@@ -141,9 +143,16 @@ const debouncedMutation = debounce((event) => {
         :
         <Gantt
         viewMode={view || ViewMode.Week}
-        
+        columnWidth={50}
+        TooltipContent={({task , fontFamily , fontSize }) => <div>  <h1>{task.name}</h1></div>}
         fontFamily="poppines"
         tasks={tasks }
+       
+          barCornerRadius={20}
+          locale='fr'
+          handleWidth={50}
+         
+
         
         onDoubleClick={({id}) => handleDoubleClick({id })}
         listCellWidth={showTaskList ? undefined : ''}

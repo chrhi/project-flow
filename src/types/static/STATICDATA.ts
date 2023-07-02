@@ -53,3 +53,10 @@ export const OPTIONS =[
     {label : "ciel ",value : "#06d6f6"},
     {label : "indigo ",value : "VERY_HEIGH"},
   ]
+
+  export const WBS_NODES = [
+    { label : "project deliverable", value : "#0c41ff"},
+    { label : "major deliverable", value : "#2ef606"},
+    { label : " deliverable ",value : "#ffff07"},
+    {label : "work package ",value : "#f60606"},
+  ]
