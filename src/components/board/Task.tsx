@@ -104,7 +104,7 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
                  <div className='w-full min-h-[50px] flex justify-end  flex-wrap gap-x-1 pt-2 '>
                         
                    {    
-                 AssignedTo.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
+                 AssignedTo?.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
 }     
                         <Badge color="emerald" size='xs' className="rounded-lg  my-1  "> {priority}</Badge>
                         <Badge color="green" size='xs' className="rounded-lg  my-1  "> {endsAt && remainingTime(endsAt)}</Badge>

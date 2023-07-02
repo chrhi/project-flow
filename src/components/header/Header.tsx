@@ -4,6 +4,10 @@ import logo from "~/assets/logo.png"
 import React from "react"
 import { PagesNav } from "./PagesNav" 
 import { MobileSideBar } from "./mobile"
+import Invitation from "./dropDown/Invitation"
+import TaskNotifictions from "./dropDown/TaskNotifictions"
+import SearchBar from "./dropDown/SearchBar"
+import MessageNofinications from "./dropDown/MessageNofinications"
 
 
 
@@ -21,12 +25,14 @@ export const Header = () => {
        </div>
        <PagesNav />
       
-       <div className="w-[25%]  h-[60px] gap-x-4 md:gap-x-1  hidden lg:flex justify-end items-center mr-2   ">     
+       <div className="w-[25%]  h-[60px]  md:gap-x-4  hidden md:flex justify-end items-center mr-2   ">     
            
-           <div className="w-[10%] h-full" >
+                 <SearchBar  />
+                 <MessageNofinications  />
+                 <TaskNotifictions  />
+                 <Invitation  />
                  <DropDowsMenu />
-               
-           </div> 
+                
        </div>
        <MobileSideBar />
    </div>

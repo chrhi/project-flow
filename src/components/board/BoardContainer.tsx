@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import { openTasksDonePanle } from '~/store/open-models'
 import { TaskPopUpShowCase } from "../popup/task-pop-up";
 import LoadingComponents from "../common/loading-components";
+import { OrderArrayTodo, updateToDoOrderArray } from "~/lib/hooks/use-order-array";
 
 
 type Props = {
@@ -61,7 +62,8 @@ function BoardContainer({tasks} : Props ) {
           endsAt : item.EndsAt || new Date()
         }
       })
-      setTodo(prepare.filter(item => item.status === "TODO"))
+      
+      setTodo( OrderArrayTodo({data : prepare.filter(item => item.status === "TODO")}))
       setDoing(prepare.filter(item => item.status === "DOING"))
       setDone(prepare.filter(item => item.status === "DONE"))
       setCanceled(prepare.filter(item => item.status === "CANCELED"))
@@ -89,6 +91,7 @@ function BoardContainer({tasks} : Props ) {
    // REMOVE FROM SOURCE ARRAY
     if (source.droppableId === "todo") {
       setTodo(removeItemById(draggableId, todo))
+     
     }
 
     if (source.droppableId === "doing") {
@@ -107,7 +110,7 @@ function BoardContainer({tasks} : Props ) {
     if (destination?.droppableId === "todo") {
       handleUpdate(task.id ,"TODO" )
       setTodo([{ ...task, status: "TODO" }, ...todo]);
-      
+      updateToDoOrderArray({data : [{ ...task, status: "TODO" }, ...todo]})
       return
     }
 

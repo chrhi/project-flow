@@ -34,9 +34,9 @@ export default function DropDowsMenu() {
   }
 
   return (
-    <div className="fixed text-right z-[100]">
+    <div className=" text-right z-[100]">
     <Menu as="div" className="relative z-[100]  inline-block text-left">
-      <div className='h-[60px] w-[50px] flex justify-center items-center'>
+      <div className='h-[60px] w-[20px] flex justify-center items-center'>
           <Menu.Button className={`${buttonVariants({variant : "ghost" , size : "sm"})}`} >
            <Settings  className='w-5 h-5 text-neutral-800' />
           </Menu.Button>

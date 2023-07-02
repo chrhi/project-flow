@@ -15,7 +15,7 @@ type PropsType ={
 
 export default function Column({ title, tasks, id } : PropsType ) {
   return (
-   <div className="w-[25%]  h-fit  overflow-x-hidden bg-gray-50  ">
+   <div className="w-[25%]  h-fit  overflow-x-hidden  ">
        {/* this is the column header */}
      <div className="w-full max-w-[300px]  flex justify-between px-4 items-center h-[35px]  my-2  ">
      <p className="text-md font-semibold  text-gray-900 ">   {title}({tasks.length})</p>
@@ -46,7 +46,7 @@ export default function Column({ title, tasks, id } : PropsType ) {
             {...provided.droppableProps}
           >
             {tasks.map((item, index) => (
-              <Task priority={item.priority} endsAt={item.endsAt} key={item.id} AssignedTo={item.AssignedTo} index={index} title={item.title} id={item.id} discription={item.discription} imgUrl={item.imgUrl} />
+              <Task priority={item?.priority} endsAt={item?.endsAt} key={item?.id} AssignedTo={item?.AssignedTo} index={index} title={item?.title} id={item?.id} discription={item?.discription} imgUrl={item?.imgUrl} />
             ))}
             {provided.placeholder}
           </div>

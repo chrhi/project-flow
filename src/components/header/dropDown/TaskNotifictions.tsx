@@ -1,22 +1,23 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { Menu, Transition } from '@headlessui/react'
-import { MailOpen } from 'lucide-react'
+import { CheckSquare, MailOpen } from 'lucide-react'
 import { Fragment } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
 
 
 
-export default function Invitation() {
+export default function TaskNotifictions() {
   //initializes hooks
  
 
 
   return (
-    <div className="  text-right z-[100]">
+    <div className=" text-right z-[100]">
     <Menu as="div" className="relative z-[100]  inline-block text-left">
       <div className='h-[60px] w-[20px] flex justify-center items-center'>
       <Menu.Button className={`${buttonVariants({variant : "ghost" , size : "sm"})}`} >
-         <MailOpen   className='w-5 h-5 text-neutral-800'/>
+        
+         <CheckSquare className='w-5 h-5 text-neutral-800' />
       </Menu.Button>
       </div>
       <Transition

@@ -7,6 +7,8 @@ import { TaskType } from "~/components/board/Task";
 import { Header } from "~/components/header/Header";
 import { TaskEndDone } from "~/components/popup/end-task-pop-up";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
+import { Button } from "~/components/ui/button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "~/components/ui/dropdown-menu";
 import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
 import { task } from "~/types/type";
 
@@ -87,11 +89,33 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Header />
-      <main className=" custopn-page-height overflow-y-auto  flex w-full bg-gray-50 ">
+      <main className=" custopn-page-height overflow-y-auto  flex w-full ">
+        <img alt="background " className="w-full  absolute -z-50 bg-center bg-cover " src="https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700314818.jpg" />
        <ExecutingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className={` ${isOpen ? "ml-[20rem]" : "ml-[0]"} w-full overflow-y-auto  h-fit min-h-[400px]`}>
-        <div className="w-full h-[50px] flex items-center pl-4 justify-start">
-            <h1 className="text-xl  text-gray-800 font-bold  ml-4"> Suivi des tâches avec tableau Kanban</h1>
+        <div className="w-full h-[50px] flex items-center pl-4 justify-between">
+           <div className=" h-full w-fit flex items-center justify-start" >
+               <h1 className="text-xl  text-gray-800 font-bold truncate ml-4"> Suivi des tâches avec tableau Kanban</h1>
+           </div>
+           <div className="w-[150px] h-full flex items-center justify-start">
+           <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                   <Button variant="default" >
+                    Background
+                   </Button>
+                </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem >black</DropdownMenuItem>
+                  <DropdownMenuItem >anime</DropdownMenuItem>
+                  <DropdownMenuItem >image</DropdownMenuItem>
+                  <DropdownMenuItem >yellow</DropdownMenuItem>
+                  <DropdownMenuItem >Sonatrach</DropdownMenuItem>
+                  <DropdownMenuItem >ow</DropdownMenuItem>
+                  </DropdownMenuContent>
+            </DropdownMenu>
+           </div>
         </div>
         <TaskEndDone />
         <BoardContainer   tasks={tasksTyped}/>
