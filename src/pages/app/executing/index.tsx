@@ -89,8 +89,8 @@ const Page: NextPage = () => {
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
       <Header />
-      <main className=" custopn-page-height overflow-y-auto  flex w-full ">
-        <img alt="background " className="w-full  absolute -z-50 bg-center bg-cover " src="https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700314818.jpg" />
+      <main className=" custopn-page-height overflow-y-auto  flex w-full bg-gray-50  ">
+        
        <ExecutingSidebar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className={` ${isOpen ? "ml-[20rem]" : "ml-[0]"} w-full overflow-y-auto  h-fit min-h-[400px]`}>
         <div className="w-full h-[50px] flex items-center pl-4 justify-between">

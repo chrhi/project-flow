@@ -106,8 +106,8 @@ function Task({index , id , title , discription , imgUrl , endsAt , priority ,As
                    {    
                  AssignedTo?.map(item => <Badge color="yellow" size='xs' className="rounded-lg my-1  "> {item}</Badge> )
 }     
-                        <Badge color="emerald" size='xs' className="rounded-lg  my-1  "> {priority}</Badge>
-                        <Badge color="green" size='xs' className="rounded-lg  my-1  "> {endsAt && remainingTime(endsAt)}</Badge>
+                        <Badge color="pink" size='xs' className="rounded-lg h-4 my-1  "> {priority}</Badge>
+                        <Badge color="blue" size='xs' className="rounded-lg h-4 my-1  "> {endsAt && remainingTime(endsAt)}</Badge>
                  </div>
                  <Separator orientation="horizontal" className='w-full bg-blue-500 h-1 ' />
                  </CardContent>   

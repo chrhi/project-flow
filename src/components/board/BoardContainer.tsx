@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import  { useState, useEffect } from "react";
 import { DragDropContext, type DropResult } from "react-beautiful-dnd";
 import Column from "./Column";
@@ -8,7 +9,7 @@ import { toast } from "react-hot-toast";
 import { openTasksDonePanle } from '~/store/open-models'
 import { TaskPopUpShowCase } from "../popup/task-pop-up";
 import LoadingComponents from "../common/loading-components";
-import { OrderArrayTodo, updateToDoOrderArray } from "~/lib/hooks/use-order-array";
+import { OrderArrayTodo, handleDeleteOrder, updateToDoOrderArray } from "~/lib/hooks/use-order-array";
 
 
 type Props = {
@@ -91,7 +92,7 @@ function BoardContainer({tasks} : Props ) {
    // REMOVE FROM SOURCE ARRAY
     if (source.droppableId === "todo") {
       setTodo(removeItemById(draggableId, todo))
-     
+      handleDeleteOrder(draggableId)
     }
 
     if (source.droppableId === "doing") {
@@ -110,8 +111,23 @@ function BoardContainer({tasks} : Props ) {
     if (destination?.droppableId === "todo") {
       handleUpdate(task.id ,"TODO" )
       setTodo([{ ...task, status: "TODO" }, ...todo]);
-      updateToDoOrderArray({data : [{ ...task, status: "TODO" }, ...todo]})
-      return
+
+      const tasks = [{ ...task, status: "TODO" }, ...todo]
+
+        const [reorderedItem] = tasks.splice(source.index, 1)
+        // if(destination && reorderedItem){
+          //@ts-ignore
+          tasks.splice(destination?.index, 0, reorderedItem)
+          console.log("this is the task index ")
+          console.log(destination?.index)
+          setTodo(tasks);
+          updateToDoOrderArray({data : tasks})
+      
+        
+
+        setTodo(tasks);
+    
+  
     }
 
     if (destination?.droppableId === "doing") {
@@ -137,11 +153,11 @@ function BoardContainer({tasks} : Props ) {
   };
 
   function findItemById(id : string, array : TaskType[]) {
-    return array?.find((item) => item.id == id);
+    return array?.find((item) => item?.id == id);
   }
 
   function removeItemById(id : string, array : TaskType[]) {
-    return array?.filter((item) => item.id != id);
+    return array?.filter((item) => item?.id != id);
   }
 
   return (
