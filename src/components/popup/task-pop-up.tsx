@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import { Dialog, Transition } from '@headlessui/react'
 import { type Dispatch, Fragment, type SetStateAction, useState } from 'react'
@@ -14,13 +15,31 @@ import { openTasksShowUp } from '~/store/open-models';
 import { DatePickerWithRange } from '../ui/date-range-picker';
 import { DateRange } from 'react-day-picker';
 import { addDays } from 'date-fns';
-
-
+import { ScrollArea } from '../ui/scroll-area';
+import { ColorNumber } from '../used/InputColor';
+import { Label } from '../ui/label';
+import { Progress } from "~/components/ui/progress"
 
 type Props = {
   refetch : () => Promise<any>,
 
 }
+
+interface Item {
+  label: string;
+  value: string;
+}
+
+function filterArrayByValues(originalArray: Item[], valuesArray: string[]): Item[] {
+  const filteredArray = originalArray.filter((item) => valuesArray.includes(item.value));
+  return filteredArray;
+}
+
+function filterArrayByValue(originalArray: Item[], value: string): Item | null {
+  const filteredItem = originalArray.find((item) => item.value === value);
+  return filteredItem || null;
+}
+
 
 
 export  function TaskPopUpShowCase ({refetch} : Props ) {
@@ -30,12 +49,15 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
     const id  = openTasksShowUp(state => state.id)
 
     const [inputs , setInput ] = useState({
+      id : "",
       title : "" ,
       Priority : "",
       cost : 0,
+      imgUrl : "",
+      color : "",
       description : "",
-      AssignTo : [] as any[],
-      AlocatedRessources : [] as any[]
+      AssignTo : [] as string[],
+      AlocatedRessources : [] as string[]
     })
     const [update, setUpdate] = useState(false);
     const [value, setValue] = useState<DateRange | undefined>({
@@ -45,6 +67,9 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
     const [FechedStakeHolders, setFechedStakeHolders] = useState<{label: string  , value : string}[]>([]);
     const [FechedResources, setFechedResources] = useState<{label: string  , value : string}[]>([]);
 
+  
+    // const [FechedResources, setFechedResources] = useState<{label: string  , value : string}[]>([]);
+
   api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()},{
     onSuccess:(data) => {
       const prepare = data.map(item => {
@@ -53,7 +78,10 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
           value : item.id || ""
         }
       })
+
       setFechedStakeHolders(prepare)
+
+     
     }, 
     onError : () => {
       toast.error("failed to fetch stakeholders")
@@ -74,9 +102,9 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
     }
   })
 
-  const taskMutation = api.tasksRouter.createTask.useMutation({
+  const taskMutation = api.tasksRouter.updateTask.useMutation({
     onSuccess:() => {
-      toast.success("new task added ")
+      toast.success("task updated  ")
       setIsOpen(false)
     }, 
     onError : () => {
@@ -87,12 +115,17 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
  const {isLoading} =  api.tasksRouter.getTask.useQuery({id  },{
     onSuccess : (data) => {
       setInput({
+        color : data?.Color || "" , 
+        imgUrl : data?.imgUrl || "", 
+        id : data?.id || "" , 
         title : data?.title || "",
         cost : Number(data?.cost ) || 0 , 
         description : data?.description || "" , 
-        Priority : data?.Priority  || "", 
-        AlocatedRessources :  [JSON.stringify(data?.AlocatedRessources)] ,
-        AssignTo : [JSON.stringify(data?.AssignedTo)] ,
+        Priority : data?.Priority  || "",
+        //@ts-ignore 
+        AlocatedRessources : data?.AlocatedRessources &&  JSON.parse(data?.AlocatedRessources ) || [] ,
+        //@ts-ignore 
+        AssignTo : data?.AssignedTo  && JSON.parse(data?.AssignedTo ) || [] ,
 
       })
       // setValue([data?.StartAt , data?.EndsAt])
@@ -126,7 +159,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
       }
     
       taskMutation.mutate({
-        priority : inputs.Priority ,
+         
         title : inputs.title ,
         description : inputs.description,
         AlocatedRessources : inputs.AlocatedRessources , 
@@ -134,14 +167,21 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
         cost : Number(inputs.cost) , 
         endsAt : value?.to as Date , 
         startAt : value?.from as Date  ,
-        projectId : getProjectMetaData(),
-        Color : ""
+        id : inputs.id , 
+        color : inputs.color ,
+        imgUrl : inputs.imgUrl
       })
   
 
     }
     
-    const handleDelete = () =>  deleteTask.mutate({ id }) 
+    const handleDelete = () =>  {
+      
+      deleteTask.mutate({ id })
+      
+  
+
+    }
 
    
 
@@ -173,12 +213,12 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-[900px] h-[580px]  rounded-lg z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <ScrollArea className="w-[1000px] h-[580px]  rounded-lg z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <Dialog.Title
                     as="div"
-                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4 border-b "
+                    className=" w-[100%] mx-auto  h-[50px] flex justify-between items-center px-4"
                   >
-                    {isLoading ? <Skeleton style={{width : "300px" }} /> :  <div><p className='text-md text-gray-900 font-semibold  ml-4'>{inputs.title}</p></div>   }
+                    {isLoading ? <Skeleton style={{width : "300px" }} /> :  <div><p className='text-2xl text-gray-900 font-semibold  '>{inputs.title} </p></div>   }
               
                <div>
                     <button
@@ -193,6 +233,10 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                   </Dialog.Title>
                 <div className="bg-white p-4  w-full  ">
                       <div className="grid grid-cols-6 lg:grid-cols-12 gap-6">
+                         <div className='col-span-12 w-full h-[70px] flex flex-col gap-y-4  justify-center items-start  '>
+                            <Label className='text-xl'>See the progress of this task</Label>
+                            <Progress  value={70} className="w-[95%] mt-1" />
+                         </div>
                           <Input
                                isLoading={isLoading}
                                lable='Title'
@@ -208,9 +252,11 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
 
                              
                                 <Select
-                                          
-                                onChange={(e) => setInput({...inputs , AssignTo : e.map(item => item.value) })}  
+                                value={ filterArrayByValues(FechedStakeHolders , inputs.AssignTo)}
+                                  
+                                onChange={(e) => setInput({...inputs , AssignTo : e.map(item => item?.value || "") })}  
                                 name="stakholders"
+                               
                                 options={FechedStakeHolders}
                                 className="basic-multi-select"
                                 classNamePrefix="select"
@@ -235,6 +281,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                                       Alocated ressources
                                   </label>
                                   <Select
+                                           value={ filterArrayByValues(FechedResources , inputs.AlocatedRessources)}
                                            isMulti 
                                            onChange={(e) => setInput({...inputs , AlocatedRessources : e.map(item => item.value) })}  
                                            name="Ressources"
@@ -250,7 +297,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                                   </label>
                                   <Select
                                           onChange={(e) => setInput({...inputs , Priority : e?.value  || ""})}  
-                                         
+                                          value={filterArrayByValue(OPTIONS , inputs.Priority)}
                                            name="Priority"
                                            options={OPTIONS}
                                            className="basic-multi-select"
@@ -266,6 +313,20 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                                value={inputs.cost}
                               
                              />
+                              <Input
+                               isLoading={isLoading}
+                            
+                               onChange={(e) => setInput({...inputs , imgUrl : e?.target.value  || ""})}  
+                               lable='image url'
+                               value={inputs.imgUrl}
+                             />
+                            
+                             <ColorNumber
+                               isLoading={isLoading}
+                               onChange={(e) => setInput({...inputs , color : e?.target.value  || ""})}  
+                               lable='pik a Color'
+                               value={inputs.color}
+                             />
                              
                              <TextField
                                isLoading={isLoading}
@@ -280,7 +341,7 @@ export  function TaskPopUpShowCase ({refetch} : Props ) {
                             <AbdullahButton isLoading  = {taskMutation.isLoading} onClick={handleSubmit} className={buttonVariants({ variant:"primary" , size : "sm"})}>update task</AbdullahButton>
                         </div>
                  </div> 
-                </Dialog.Panel>
+                </ScrollArea>
               </Transition.Child>
             </div>
           </div>

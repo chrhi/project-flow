@@ -95,7 +95,7 @@ export const tasksRouter = createTRPCRouter({
        endsAt : z.date(),
        cost : z.number() , 
        AssignTo : z.string().array(),
-       Status : z.string(),
+       color : z.string(),
        AlocatedRessources : z.string().array(),
        imgUrl : z.string().optional()
       
@@ -114,7 +114,7 @@ export const tasksRouter = createTRPCRouter({
                 cost : input.cost,
                 AssignedTo : AssignToJson, 
                 AlocatedRessources : AlocatedRessourcesJson,
-                Status : input.Status,
+                Color : input.color,
                 imgUrl : input.imgUrl || ""
             },
             where:{
