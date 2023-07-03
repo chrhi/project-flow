@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
+import { confirmObjectiveDelete } from "~/store/app-reducer/confirm-actions"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -40,7 +41,15 @@ export const columns: ColumnDef<Objectives>[] = [
  
   {
     id: "actions",
-    cell: () => {
+    cell: ({row}) => {
+      
+      const setDeleteModelOpen = confirmObjectiveDelete(state => state.setShowModel)
+      const setId = confirmObjectiveDelete(state => state.setId)
+
+      const handleDelete = () => {
+        setId(row.original.id)
+        setDeleteModelOpen(true)
+      }
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -53,7 +62,7 @@ export const columns: ColumnDef<Objectives>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
            
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete </DropdownMenuItem>
          
           </DropdownMenuContent>
         </DropdownMenu>

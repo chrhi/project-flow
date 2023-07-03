@@ -11,6 +11,7 @@ import {
 } from "~/components/ui/dropdown-menu"
 import { Badge } from "@tremor/react"
 import { getColor } from "~/utils/formate/getColor"
+import { confirmResourceDelete } from "~/store/app-reducer/confirm-actions"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
@@ -59,8 +60,15 @@ export const columns: ColumnDef<Resource>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original
-      
+     
+
+        const setDeleteModelOpen = confirmResourceDelete(state => state.setShowModel)
+        const setId = confirmResourceDelete(state => state.setId)
+
+        const handleDelete = () => {
+          setId(row.original.id)
+          setDeleteModelOpen(true)
+        }
  
       return (
         <DropdownMenu>
@@ -74,7 +82,7 @@ export const columns: ColumnDef<Resource>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
            
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete tool</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete tool</DropdownMenuItem>
          
           </DropdownMenuContent>
         </DropdownMenu>

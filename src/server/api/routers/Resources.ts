@@ -25,6 +25,20 @@ export const resourcesRouter = createTRPCRouter({
         }
       })
     }),
+    objectivesDelete : publicProcedure
+    .input(z.object({ 
+      id: z.string(),
+     
+     
+     }))
+    .mutation( async({ input  , ctx }) => {
+
+      await ctx.prisma.resources.delete({
+        where : {
+          id : input.id
+        }
+      })
+    }),
     getResources : publicProcedure
     .input(z.object({ 
       projectId: z.string().uuid(),

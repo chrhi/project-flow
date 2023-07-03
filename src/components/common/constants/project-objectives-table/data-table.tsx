@@ -28,6 +28,7 @@ import {
   } from "~/components/ui/dropdown-menu"
 
 import { ObjectiveAdd } from "~/components/popup/project-objectibe-add,"
+import { ConfirmDeleteObjective } from "~/components/popup/table-confirm/delete-objective"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -63,6 +64,7 @@ import { ObjectiveAdd } from "~/components/popup/project-objectibe-add,"
     return (
       <>
       <div className="flex items-center py-4">
+        <ConfirmDeleteObjective  refetch={refetch} />
       <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">

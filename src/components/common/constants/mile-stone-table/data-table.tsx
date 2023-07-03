@@ -27,6 +27,7 @@ import {
     DropdownMenuTrigger,
   } from "~/components/ui/dropdown-menu"
 import { MileStoneAdd } from "~/components/popup/mile-stone-add"
+import { ConfirmDeleteMilestone } from "~/components/popup/table-confirm/delete-milestone"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -62,6 +63,7 @@ import { MileStoneAdd } from "~/components/popup/mile-stone-add"
     return (
       <>
       <div className="flex items-center py-4">
+        <ConfirmDeleteMilestone  refetch={refetch} />
       <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">

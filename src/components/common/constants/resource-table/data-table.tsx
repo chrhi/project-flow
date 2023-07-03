@@ -26,6 +26,7 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
   } from "~/components/ui/dropdown-menu"
+import { ConfirmDeleteResource } from "~/components/popup/table-confirm/delete-resource"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -61,6 +62,7 @@ import {
     return (
       <>
       <div className="flex items-center py-4">
+        <ConfirmDeleteResource refetch={refetch}/>
       <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">
