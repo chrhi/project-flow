@@ -50,7 +50,7 @@ const Page: NextPage = () => {
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
       <FormContainer className ={` ${isOpen ? "lg:ml-[20rem]" : "ml-[0]"}`}>
-        <StakeHolder />
+        <StakeHolder refetch={refetch} />
       <ConfirmePopUpDeleteStakeHolder refetch={refetch} />
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">

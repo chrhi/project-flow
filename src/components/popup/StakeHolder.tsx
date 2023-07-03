@@ -27,7 +27,11 @@ const formateType = (text : string) => {
 }
 
 
-export  function StakeHolder () {
+type Props = {
+  refetch : () => Promise<any>,
+
+}
+export  function StakeHolder ({refetch} :Props ) {
 
   const isShowing = OpenStakeHolderOpoUpShowCase(state => state.showModel)
  
@@ -72,7 +76,7 @@ export  function StakeHolder () {
     onError : () => {
       toast.error("il y a une erreur lors de l'obtention de la partie prenante")
     },
-    onSuccess(data) {
+    onSuccess : async (data) =>  {
       setOurData({
         id : data?.id || "",
         name : data?.name || "", 
@@ -85,6 +89,8 @@ export  function StakeHolder () {
         Role : data?.role || "",
         invest : data?.InvestmentAmount || "0"
       })
+      await refetch()
+      setIsShowing(false)
     },
   })
 

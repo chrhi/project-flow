@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Header } from "~/components/header/Header";
 import DocsSideBar from "~/components/docsComponents/DocsSideBar";
 import { GeneraleBuilder } from "~/components/docsComponents/generale-builder";
+import { ActivityListBuilder } from "~/components/docsComponents/builders/Activity-list";
 
 
 const Page: NextPage = () => {
@@ -24,12 +25,7 @@ const Page: NextPage = () => {
        <div
         className="ml-[20rem] w-[80%] grid grid-cols-1 lg:grid-cols-2 gap-4 h-full pt-8 pb-8 "
        >
-           <GeneraleBuilder 
-              title="Activity List"
-              color=""
-              description="this is the project charter"
-              phase="Inisiating"
-            />
+          <ActivityListBuilder />
              <GeneraleBuilder 
               title="Milestone List"
               color=""
