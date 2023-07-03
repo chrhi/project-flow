@@ -25,10 +25,10 @@ type Props ={
 export const List = [
   {name : "Plan de Portée du Projet" , path : "/app/planning" , navs : NAVS.ONE},
   {name : " WBS  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
-  {name : " OBS  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
-  {name : " RBS  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
-  {name : " CBS  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
-  {name : " OHC  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
+  // {name : " OBS  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
+  // {name : " RBS  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
+  // {name : " CBS  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
+  // {name : " OHC  " , path : "/app/planning/adbullah" , navs : NAVS.TWO},
 
   {name : "Gestion des tâches" , path : "/app/planning/tasks_hub" , navs : NAVS.TASKS},
   {name : " Plan de gestion de projet " , path : "/app/planning/task_assigment" , navs : NAVS.THREE},

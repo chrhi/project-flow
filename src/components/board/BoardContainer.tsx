@@ -64,7 +64,7 @@ function BoardContainer({tasks} : Props ) {
         }
       })
       
-      setTodo( OrderArrayTodo({data : prepare.filter(item => item.status === "TODO")}))
+      setTodo( prepare.filter(item => item.status === "TODO"))
       setDoing(prepare.filter(item => item.status === "DOING"))
       setDone(prepare.filter(item => item.status === "DONE"))
       setCanceled(prepare.filter(item => item.status === "CANCELED"))
@@ -92,7 +92,7 @@ function BoardContainer({tasks} : Props ) {
    // REMOVE FROM SOURCE ARRAY
     if (source.droppableId === "todo") {
       setTodo(removeItemById(draggableId, todo))
-      handleDeleteOrder(draggableId)
+    
     }
 
     if (source.droppableId === "doing") {
@@ -112,20 +112,7 @@ function BoardContainer({tasks} : Props ) {
       handleUpdate(task.id ,"TODO" )
       setTodo([{ ...task, status: "TODO" }, ...todo]);
 
-      const tasks = [{ ...task, status: "TODO" }, ...todo]
-
-        const [reorderedItem] = tasks.splice(source.index, 1)
-        // if(destination && reorderedItem){
-          //@ts-ignore
-          tasks.splice(destination?.index, 0, reorderedItem)
-          console.log("this is the task index ")
-          console.log(destination?.index)
-          setTodo(tasks);
-          updateToDoOrderArray({data : tasks})
-      
-        
-
-        setTodo(tasks);
+      return
     
   
     }

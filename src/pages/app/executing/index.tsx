@@ -97,25 +97,7 @@ const Page: NextPage = () => {
            <div className=" h-full w-fit flex items-center justify-start" >
                <h1 className="text-xl  text-gray-800 font-bold truncate ml-4"> Suivi des tâches avec tableau Kanban</h1>
            </div>
-           <div className="w-[150px] h-full flex items-center justify-start">
-           <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                   <Button variant="default" >
-                    Background
-                   </Button>
-                </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem >black</DropdownMenuItem>
-                  <DropdownMenuItem >anime</DropdownMenuItem>
-                  <DropdownMenuItem >image</DropdownMenuItem>
-                  <DropdownMenuItem >yellow</DropdownMenuItem>
-                  <DropdownMenuItem >Sonatrach</DropdownMenuItem>
-                  <DropdownMenuItem >ow</DropdownMenuItem>
-                  </DropdownMenuContent>
-            </DropdownMenu>
-           </div>
+           
         </div>
         <TaskEndDone />
         <BoardContainer   tasks={tasksTyped}/>
