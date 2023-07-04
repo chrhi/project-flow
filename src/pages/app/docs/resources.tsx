@@ -25,27 +25,27 @@ const Page: NextPage = () => {
         className="ml-[20rem] w-[80%]  grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 h-full gap-4 pt-8 pb-8 "
        >
            <GeneraleBuilder 
-              title="Human Resource Management Plan"
+              title="Plan de gestion des ressources humaines"
               color=""
-              description="this is the project charter"
+              description="Un document détaillant comment les ressources humaines seront planifiées, acquises, développées, gérées et contrôlées tout au long du projet"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Resource Breakdown Structure"
+              title="Structure de découpage des ressources"
               color=""
-              description="this is the project charter"
+              description="Une structure hiérarchique qui décompose les ressources nécessaires pour exécuter le projet."
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Activity Resource Requirements"
+              title="Besoins en ressources pour les activités"
               color=""
-              description="this is the project charter"
+              description="Un document spécifiant les types et les quantités de ressources humaines nécessaires pour chaque activité du projet."
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Team Performance Assignment"
+              title="Attribution des performances de l'équipe"
               color=""
-              description="this is the project charter"
+              description="Une évaluation des performances individuelles des membres de l'équipe, ainsi que leur affectation aux tâches appropriées."
               phase="Inisiating"
             />
            

@@ -27,45 +27,45 @@ const Page: NextPage = () => {
        >
           <ActivityListBuilder />
              <GeneraleBuilder 
-              title="Milestone List"
+              title="Liste des jalons"
               color=""
-              description="this is the project charter"
+              description="Une liste des jalons clés du projet, marquant des points d'achèvement ou d'étape importante"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Project Schedule"
+              title="Planning du projet"
               color=""
-              description="this is the project charter"
+              description="Un calendrier détaillé indiquant les dates de début et de fin prévues pour les activités du projet"
               phase="Inisiating"
             />
             <GeneraleBuilder 
-              title="Activity Attributes"
+              title="Attributs d'activité"
               color=""
-              description="this is the project charter"
+              description=" Des informations supplémentaires et spécifiques pour chaque activité du projet, telles que les ressources, les contraintes, les dépendances, etc."
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Network Diagram"
+              title="Diagramme de réseau"
               color=""
-              description="this is the project charter"
+              description="Une représentation graphique du réseau logique des activités du projet et de leurs interdépendances."
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Activity Duration Estimates"
+              title="Estimations de durée d'activité"
               color=""
-              description="this is the project charter"
+              description="Les estimations du temps nécessaire pour compléter chaque activité du projet."
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Duration Estimate Worksheet"
+              title="Feuille de travail d'estimation de la durée"
               color=""
-              description="this is the project charter"
+              description="Un document qui contient les détails et les calculs des estimations de durée pour les activités du projet"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Schedule Management Plan"
+              title="Plan de gestion du planning"
               color=""
-              description="this is the project charter"
+              description="Un document détaillant comment le calendrier du projet sera développé, mis à jour et contrôlé tout au long du projet."
               phase="Inisiating"
             />
        </div>

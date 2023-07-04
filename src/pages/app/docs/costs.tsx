@@ -25,45 +25,45 @@ const Page: NextPage = () => {
         className="ml-[20rem] w-[80%]  grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 h-full gap-4 pt-8 pb-8 "
        >
            <GeneraleBuilder 
-              title="Bottom-Up Cost Estimating Worksheet"
+              title="Feuille de calcul d'estimation des coûts détaillée"
               color=""
-              description="this is the project charter"
+              description="Un document détaillant les coûts de chaque composant ou activité du projet, calculés à partir des estimations des ressources et des quantités."
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Cost Management Plan"
+              title="Plan de gestion des coûts"
               color=""
-              description="this is the project charter"
+              description=" Un document détaillant la manière dont les coûts du projet seront planifiés, estimés, budgétisés et contrôlés"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Cost Baseline"
+              title="Ligne de base des coûts"
               color=""
-              description="this is the project charter"
+              description="La version approuvée du budget du projet, servant de référence pour la mesure et le contrôle ultérieurs des coûts"
               phase="Inisiating"
             />
             <GeneraleBuilder 
-              title="Activity Cost Estimates"
+              title="Estimations des coûts d'activité"
               color=""
-              description="this is the project charter"
+              description="Les estimations des coûts associées à chaque activité du projet."
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Cost Estimating Worksheet"
+              title="Feuille de travail d'estimation des coûts"
               color=""
-              description="this is the project charter"
+              description="Un document qui contient les détails et les calculs des estimations de coûts pour les différentes activités du projet."
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Earned Value Status Report"
+              title="Rapport d'état de la valeur acquise (Earned Value)"
               color=""
-              description="this is the project charter"
+              description=" Un rapport qui compare l'état actuel du projet en termes de coûts, de planning et de performance avec le plan initial."
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Variance Analysis"
+              title="Analyse des écarts"
               color=""
-              description="this is the project charter"
+              description="Une évaluation des différences entre les coûts réels et les coûts prévus, ainsi que les raisons de ces écarts."
               phase="Inisiating"
             />
            

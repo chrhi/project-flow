@@ -25,21 +25,21 @@ const Page: NextPage = () => {
         className="ml-[20rem] w-[80%]  grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 h-full gap-4 pt-8 pb-8 "
        >
            <GeneraleBuilder 
-              title="Quality Management Plan"
+              title="Plan de gestion de la qualité"
               color=""
-              description="this is the project charter"
+              description="Un document détaillant les politiques, les procédures et les approches pour assurer la qualité tout au long du projet."
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Quality Matrix"
+              title="Matrice de qualité"
               color=""
-              description="this is the project charter"
+              description="Un tableau qui définit les critères de qualité et les normes à atteindre pour chaque livrable ou composant du projet"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Quality Audit"
+              title="Audit qualité"
               color=""
-              description="this is the project charter"
+              description="Une évaluation systématique et indépendante des processus et des livrables du projet pour s'assurer qu'ils répondent aux normes de qualité spécifiées."
               phase="Inisiating"
             />
            

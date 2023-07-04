@@ -25,45 +25,45 @@ const Page: NextPage = () => {
         className="ml-[20rem] w-[80%]  grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 h-full gap-4 pt-8 pb-8 "
        >
            <GeneraleBuilder 
-              title="Project Scope Statement"
+              title="Énoncé du périmètre du projet"
               color=""
-              description="this is the project charter"
+              description="Un document détaillant la portée, les objectifs et les livrables du projet"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Requirements Documentation"
+              title="Documentation des exigences"
               color=""
-              description="this is the project charter"
+              description="Une liste complète des exigences fonctionnelles et non fonctionnelles du projet"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="WBS Dictionary"
+              title="Dictionnaire de la structure de découpage du projet (WBS)"
               color=""
-              description="this is the project charter"
+              description="Un document qui définit chaque élément de la structure de découpage du projet (WBS) avec des descriptions détaillées"
               phase="Inisiating"
             />
             <GeneraleBuilder 
-              title="Scope Management Plan"
+              title="Plan de gestion du périmètre"
               color=""
-              description="this is the project charter"
+              description="Un document détaillant comment la portée du projet sera définie, validée et contrôlée"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Assumption and Constraint Log"
+              title="Registre des hypothèses et contraintes"
               color=""
-              description="this is the project charter"
+              description="Un document qui enregistre les hypothèses faites et les contraintes identifiées pour le projet"
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Requirements Traceability Matrix"
+              title=" Matrice de traçabilité des exigences"
               color=""
-              description="this is the project charter"
+              description=" Un outil qui permet de suivre et de vérifier la relation entre les exigences et les livrables du projet"
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Resource Breakdown Structure"
+              title="Structure de découpage des ressources"
               color=""
-              description="this is the project charter"
+              description="Une structure hiérarchique qui décompose les ressources nécessaires pour exécuter le projet"
               phase="Inisiating"
             />
             

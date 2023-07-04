@@ -25,51 +25,51 @@ const Page: NextPage = () => {
         className="ml-[20rem] w-[80%] grid grid-cols-1 lg:grid-cols-2 gap-4 h-full pt-8 pb-8 "
        >
            <GeneraleBuilder 
-              title="Stakeholder Analysis Matrix"
+              title="Matrice d'analyse des parties prenantes"
               color=""
-              description="this is the project charter"
+              description="Un outil pour identifier et évaluer l'impact des parties prenantes sur le projet."
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Stakeholder Management Plan"
+              title="Plan de gestion des parties prenantes"
               color=""
-              description="this is the project charter"
+              description=" Un document détaillant les stratégies pour engager, communiquer et gérer les parties prenantes tout au long du projet"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Stakeholder Registry"
+              title="Registre des parties prenantes"
               color=""
-              description="this is the project charter"
+              description="Un document répertoriant toutes les parties prenantes identifiées pour le projet, avec leurs informations clés"
               phase="Inisiating"
             />
             <GeneraleBuilder 
-              title="Team Directory"
+              title=" Répertoire de l'équipe"
               color=""
-              description="this is the project charter"
+              description="Une liste contenant les coordonnées et les rôles de chaque membre de l'équipe"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Team Operating Agreement"
+              title="Accord de fonctionnement de l'équipe"
               color=""
-              description="this is the project charter"
+              description="Un accord décrivant les règles, les normes et les responsabilités au sein de l'équipe de projet"
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Roles and Personalities"
+              title="Rôles et personnalités"
               color=""
-              description="this is the project charter"
+              description="Un document décrivant les responsabilités et les caractéristiques personnelles de chaque membre de l'équipe"
               phase="Inisiating"
             />
               <GeneraleBuilder 
-              title="Team Member Performance Assessment"
+              title="Évaluation des performances des membres de l'équipe"
               color=""
-              description="this is the project charter"
+              description=" Un processus pour évaluer la performance individuelle des membres de l'équipe de projet"
               phase="Inisiating"
             />
              <GeneraleBuilder 
-              title="Team Member Status Report"
+              title="Rapport d'état des membres de l'équipe"
               color=""
-              description="this is the project charter"
+              description=" Un rapport qui fournit des mises à jour sur l'avancement et les activités des membres de l'équipe de proje"
               phase="Inisiating"
             />
        </div>
