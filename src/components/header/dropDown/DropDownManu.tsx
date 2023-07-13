@@ -16,22 +16,15 @@ import {
   User,
 } from "lucide-react"
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
-
+import { useSession,  signOut } from "next-auth/react"
 
 export default function DropDowsMenu() {
   //initializes hooks
    const router = useRouter()
-  const {email , first_name , last_name , photo   } = userReducer()
-  const { currentPhase , projectTitle } = ProjectReduer()
-  const current_page = header_page_Reducer(state => state.current_page)
-  const set_current_page = header_page_Reducer(state => state.set_current_page)
+  
+   const session= useSession()
  
-  const handleLogout = () => {
-    Cookies.remove("abdullah-access-token")
-    RemoveProjectManager()
-    removeAll()
-    window.location.reload()
-  }
+ 
 
   return (
     <div className=" text-right z-[100]">
@@ -60,115 +53,25 @@ export default function DropDowsMenu() {
                 w-full min-h-[30px] h-fit border-b cursor-pointer flex overflow-x-hidden items-center gap-x-1`}
                 onClick={() => {
                   router.push("/app/user/profile")
-                  set_current_page({payload:PAGES.PROFILE})
+                 
                 }  }
                 >
                  <Avatar>
-                  <AvatarImage src={photo} alt="@abdullah" />
+                  <AvatarImage src={session.data?.user.image || ""} alt="@abdullah" />
                   <AvatarFallback>AB</AvatarFallback>
                 </Avatar>
                   <div className='w-[80%] min-h-[45px] h-fit   flex flex-col justify-center p-4 gap-y-1 '>
-                  <h3 className='truncate text-sm text-gray-600 dark:text-white'>{email }</h3>
-                  <h3 className='truncate text-sm text-gray-600  dark:text-white '>{ first_name + " " + last_name || "unknown"}</h3>
+                  <h3 className='truncate text-sm text-gray-600 dark:text-white'>{session.data?.user.email}</h3>
+                  <h3 className='truncate text-sm text-gray-600  dark:text-white '>{session.data?.user.name}</h3>
                 </div>
                 </div>
               )}
             </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <div className='w-full min-h-[30px] h-fit border-b bg-gradient-to-br mb-3 from-emerald-800 to-green-500 flex flex-col justify-center p-4 gap-y-1 '>
-                   <h3 className='truncate text-md font-bold text-white '>{ "Titre du projet  "}</h3>
-                  <h3 className='truncate text-sm text-white '>{projectTitle}</h3>
-                  <h3 className='truncate text-sm font-semibold  text-white '>{ "phase actuelle  "}</h3>
-                  <h3 className='truncate text-sm text-white'>{ currentPhase}</h3>
-                </div>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                onClick={() => {
-                  router.push("/app/user/profile")
-                  set_current_page({payload:PAGES.PROFILE})
-                }  }
-                  className={`
-                  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
-                  ${
-                    current_page === PAGES.PROFILE ? 'bg-blue-200 text-gray-900 font-semibold ' : ' '  
-                  } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
-                >
-                     <User className="mr-2 h-4 w-4" />
-              
-                     Mon profil
-                </button>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <button
-                onClick={() =>{
-                  set_current_page({payload:PAGES.PASSWORD})
-                  router.push("/app/user/password_settings")  }}
-                  className={`
-                  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
-                  ${
-                    current_page === PAGES.PASSWORD ? 'bg-blue-200 text-gray-900 font-semibold ' : ''  
-                  } group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
-                >
-               
-               <Lock className="mr-2 h-4 w-4" />
 
-              
-               mot de passe
-                </button>
-              )}
-            </Menu.Item>           
-           <Menu.Item>
-              {({ active }) => (
-                <button
-                onClick={() => {
-                  set_current_page({payload:PAGES.SETTINGS})
-                  router.push("/app/user/settings") } }
-                  className={
-                 `     ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
-                    ${
-                    current_page === PAGES.SETTINGS ? 'bg-blue-200 text-gray-900 font-semibold ' : ''  
-                  }  group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`
-                }
-                >
-                   <Settings className="mr-2 h-4 w-4" />
-           
-
-                   Paramètres
-                </button>
-              )}
-            </Menu.Item>
-            {
-              email === "mahdi.chahri55@gmail.com" ? 
-              <Menu.Item>
-              {({ active }) => (
-                <button
-                onClick={() => {
-                  set_current_page({payload:PAGES.SETTINGS})
-                  router.push("/admin") } }
-                  className={
-                 `     ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'}
-                    ${
-                    current_page === PAGES.SETTINGS ? 'bg-blue-200 text-gray-900 font-semibold ' : ''  
-                  }  group flex w-full gap-x-4 items-center rounded-md px-2 py-2 text-sm`
-                }
-                >
-                   <ShieldAlert className="mr-2 h-4 w-4" />
-                   Accès administrateur
-                </button>
-              )}
-            </Menu.Item>
-            : null
-            }
             <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={handleLogout}
+                onClick={async () => await signOut()}
                   className={`  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'} group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                     <LogOut className="mr-2 h-4 w-4" />

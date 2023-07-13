@@ -1,61 +1,54 @@
 import { type NextPage } from "next";
-import { type  FormEvent , useState } from "react";
-import { toast } from "react-toastify";
 import Link from "next/link";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
-import { storeUserMetadata } from "~/lib/MetaData";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
-import { api } from "~/utils/api";
-import Cookies from "js-cookie";
+import { signIn } from "next-auth/react";
+import { cn } from "~/lib/utils";
+
+import {z} from "zod"
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 
-type input = {
-  email : string ,
-  password : string , 
-}
+const validateSchema = z
+    .object({
+      password: z.string().min(6),
+      email: z.string().email(),
+    })
+
+type FormData = z.infer<typeof validateSchema>
+
 
 const Page: NextPage = () => {
 
-  const set_user = userReducer(state => state.set_user)
- 
-
-
-  const router = useRouter()
-
-  const [formData , setFormData] = useState<input>({
-    password : "",
-    email : "",
+  const [isLoading , setIsLoading] = useState(false)
+  const{
+    register,
+    handleSubmit,
+    formState :{errors}
+  } = useForm<FormData>({
+    resolver : zodResolver(validateSchema)
   })
 
-  const mutation = api.userRouter.verifyUser.useMutation({
-    onSuccess : async  (data) =>  {
-     
-      Cookies?.set("abdullah-access-token" , data.jwt)
-      storeUserMetadata({user_id : data.id})
-      set_user({email : data.email as string , name : data.name as string   , photo : data.photo as string , lastName : data.lastName || "" })
-      await router.push("/app")
-      console.log(data)
-    },
-    onError(error){
-      toast.error("something went wrong")
+  const onSubmit =   (data: FormData) => {
+    setIsLoading(true)
+    signIn("credentials" , {
+      email : data.email , 
+      password : data.password,
+      
+    }).then(() => {
+      setIsLoading(false)
+      toast.success(`success`)
+    }).catch(error => {
+      setIsLoading(false)
       console.log(error)
-    }
-  })
-  const handleSubmit = (e : FormEvent) => {
-    e.preventDefault()
-    if(formData.email === "" ||formData.password === "" ){
-     
-       toast.error("all faileds are required")
-       return
-    }
-    mutation.mutate({
-      email : formData.email ,
-      password : formData.password
+      toast.error("email or password are not currect")
     })
-  
-  
   }
 
   
@@ -67,38 +60,52 @@ const Page: NextPage = () => {
       <main className=" w-full custom-hieght-navbar bg-white flex justify-center pl-16  items-center  ">
         
       <div className="w-[50%] max-w-md p-4 z-[999] bg-white border shadow-2xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
-    <form className="space-y-6" action="#">
-        <h5 className="text-xl font-semibold text-gray-900 "> Connexion </h5>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#">
+        <h5 className="text-xl font-semibold text-gray-900 "> Sign in </h5>
         <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Votre adresse e-mail</label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 ">Email Adress</label>
             <input
-             onChange={(e) => setFormData({...formData , email : e.target.value})}
-            type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com" required />
+            {...register("email")}
+            type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " placeholder="name@company.com"  />
+            <p className='mt-1 text-sm text-red-600'>{errors.email?.message}</p>
         </div>
         <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Votre mot de passe</label>
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
             <input  
-            onChange={(e) => setFormData({...formData , password : e.target.value})}
-            type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " required />
+             {...register("password")}
+            type="password" name="password" id="password" placeholder="••••••••" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  />
+            <p className='mt-1 text-sm text-red-600'>{errors.password?.message}</p>
         </div>
       
         <AbdullahButton
+           isLoading={isLoading}
            className={buttonVariants({size :'lg' , variant :'rukia'})}
-        
-           isLoading ={mutation.isLoading}
-          onClick={(e :FormEvent) => handleSubmit(e)}
-      >
-      Se connecter à votre compte
+         >
+             Login to your account
       </AbdullahButton>
 
-        <div className="text-sm font-medium text-gray-500 ">
-        Pas encore inscrit(e) ?<Link href="/auth/register" className="text-blue-500 hover:underline ">Créer un compte.</Link>
-        </div>
-        {/* <div className="text-sm font-medium text-gray-500 ">
-        or if you have an invitation? <Link href="/auth/invitation" className="text-blue-500 hover:underline ">use my invite</Link>
-        </div> */}
+      
 
+        <div className="text-sm font-medium text-gray-500 ">
+        Pas encore inscrit(e) ?<Link href="/auth/signup" className="text-blue-500 hover:underline ">Créer un compte.</Link>
+        </div>
     </form>
+    <div className="relative">
+           <div className="absolute inset-0 flex items-center">
+            <span className="w-full border-t" />
+          </div>
+        <div className="relative flex justify-center text-xs uppercase">
+           <span className="bg-background px-2 text-muted-foreground">
+              Or continue with
+           </span>
+        </div>
+        </div>
+    <AbdullahButton
+              onClick={() => signIn("github")}
+              className={cn(buttonVariants({size :'lg' , variant :'secondary'}) , "w-full flex justify-center ")}
+           >
+             github
+    </AbdullahButton>
 </div>
 
       </main>
