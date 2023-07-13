@@ -20,7 +20,7 @@ export function PagesNav() {
       name : "Chat" , path : "/app/chat"
     },
     {
-      name : "Projects" , path : "/app/projects" 
+      name : "Projects" , path : "/app/project" 
     },
     {
       name : "Tasks" , path : "/app/tasks" 
@@ -38,6 +38,7 @@ export function PagesNav() {
       {LIST.map((item , index ) => {
           return (
             <Button 
+                   onClick={async () => await router.push(item.path)}
                    variant="ghost"
                    key={item.name}
                    className={cn(buttonVariantsAbdullah({variant :'ghost' , size:"sm" }) , ` text-gray-500 dark:text-gray-100 ${use_is_current_page(item.path) ? ' text-slate-900 dark:text-white' : null}  font-semibold text-sm transition-all duration-75 hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-stone-800 dark:active:bg-stone-700`)} > 
