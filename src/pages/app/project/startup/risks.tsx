@@ -11,7 +11,7 @@ import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
 import toast from "react-hot-toast";
 import { ConfirmDeletePopUpRisks } from "~/components/popup/table-confirm/delete-risk-popup";
-
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 
 
 

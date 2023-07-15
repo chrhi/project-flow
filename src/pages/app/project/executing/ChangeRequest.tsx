@@ -5,7 +5,7 @@ import { Header } from "~/components/header/Header";
 
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { AbdullahTable } from "~/components/used/AbdullahTable";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";

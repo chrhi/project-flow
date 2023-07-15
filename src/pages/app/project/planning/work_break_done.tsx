@@ -33,6 +33,9 @@ import { TaskPopUpShowCase } from '~/components/popup/task-pop-up';
 import { openTasksShowUp } from '~/store/open-models';
 import { AddMagicNode } from '~/components/popup/addMagicNode';
 import { Plus } from 'lucide-react';
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
+
+
 
 const initialNodes = [
  
@@ -130,7 +133,7 @@ const Page: NextPage = () => {
     };
 
     restoreFlow();
-  }, [setNodes, setViewport]);
+  }, [setEdges, setNodes, setViewport]);
 
   const reSet = () => {
   

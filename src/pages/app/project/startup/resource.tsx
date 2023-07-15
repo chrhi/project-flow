@@ -1,6 +1,5 @@
 import { FormEvent,  useState } from "react";
 import { Form } from "~/components/used/Form";
-import { FormButton } from "~/components/used/FormButton";
 import { FormContainer } from "~/components/used/FormContainer";
 import { api } from "~/utils/api";
 import { type NextPage } from "next";
@@ -11,7 +10,7 @@ import { Resource , columns } from "~/components/common/constants/resource-table
 import toast from "react-hot-toast";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { RowGridText } from "~/components/typography/RowGridText";
-
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 
 
 
@@ -53,6 +52,9 @@ const Page: NextPage = () => {
     
       <Header />
       <main className="   flex w-full bg-gray-50 ">
+        <PhasesSideBar
+             isOpen = {isOpen}
+         />
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
       <FormContainer className ={` ${isOpen ? "lg:ml-[20rem]" : "ml-[0]"}`}>
      

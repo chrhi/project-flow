@@ -5,3 +5,11 @@ interface Project {
     avatar : string 
     tag : string 
 }
+
+interface Organization {
+    id : string 
+    name : string 
+    members : json
+    projects : json
+
+}

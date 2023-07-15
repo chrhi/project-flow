@@ -9,6 +9,7 @@ import { FormHead } from "~/components/used/FormHead";
 import {  BarChart } from "@tremor/react";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { AbdullahTable } from "~/components/used/AbdullahTable";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 
 const chartdata = [
   {

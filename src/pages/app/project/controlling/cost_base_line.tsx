@@ -14,7 +14,7 @@ import { toast } from "react-hot-toast";
 import LoadingComponents from "~/components/common/loading-components";
 import EmptyGanttChard from "~/components/gantt-chard/empty";
 import { api } from "~/utils/api";
-
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 
 const chartdata = [
   {

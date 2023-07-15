@@ -12,8 +12,10 @@ import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
 import { ConfirmDeleteTask } from "~/components/popup/table-confirm/confirm-delete-task";
 import { DataTable2 } from "~/components/common/constants/tasks-table/data-table2";
- import {  columns } from "~/components/common/constants/tasks-table/columns"
+import {  columns } from "~/components/common/constants/tasks-table/columns"
 import { TaskPopUpShowCase } from "~/components/popup/task-pop-up";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
+
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)

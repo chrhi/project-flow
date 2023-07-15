@@ -7,6 +7,8 @@ import { Form } from "~/components/used/Form";
 import { TextField } from "~/components/used/TextField";
 import { RowGridText } from "~/components/typography/RowGridText";
 import Flow from "~/components/wbs/play-ground";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
+
 
 const Page: NextPage = () => {
  

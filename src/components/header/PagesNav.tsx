@@ -29,7 +29,7 @@ export function PagesNav() {
       name : "Brain" , path : "/app/brain" 
     },
     {
-      name : "Map " , path : "/app/map" 
+      name : "Invoices " , path : "/app/map" 
     }
   ]
 

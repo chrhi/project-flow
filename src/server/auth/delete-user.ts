@@ -11,7 +11,7 @@ export const deleteUser = publicProcedure
     where : {
       id : input.ID
     },
-    include: {Project : true  }, // Include the 'children' relation
+    
   })
   return user
 })

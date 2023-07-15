@@ -9,22 +9,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
-import { confirmDeleteStakeholder } from "~/store/app-reducer/confirm-actions"
-import { getColor } from "~/utils/formate/getColor"
-import { Badge } from "@tremor/react"
-import { OpenStakeHolderOpoUpShowCase } from "~/store/open-models"
+
+import { OpenDeteRisksDeleteModel } from "~/store/open-models"
+
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type Stakholder = {
+export type RiskType = {
   id: string
   name: string
   email: string
-  impact : string 
-  type : string
+  role : string 
+  image : string,
+
 }
 
-export const columns: ColumnDef<Stakholder>[] = [
+export const columns: ColumnDef<RiskType>[] = [
+  {
+    accessorKey: "image",
+    header: "Avatar",
+  },
   {
     accessorKey: "name",
     header: "Name",
@@ -44,64 +48,31 @@ export const columns: ColumnDef<Stakholder>[] = [
     },
   },
   {
-    accessorKey: "impact",
-    header: "Impact",
-    cell: ({ row }) => {
-
-      // Convert to lowercase
-    const lowercaseString = row.original.impact.toLowerCase();
-
-    // Split by underscores
-    const splitString = lowercaseString.split('_');
-
-    // Join by spaces
-    const formattedString = splitString.join(' ');
-
-     return <Badge color={getColor({text : row.original.impact})} className="rounded-lg ">{formattedString}</Badge>
-   }
-   
+    accessorKey: "role",
+    header: "Role",
   },
-  {
-    accessorKey: "type",
-    header: "Type",
-    cell: ({ row }) => {
-
-       // Convert to lowercase
-     const lowercaseString = row.original.type.toLowerCase();
-
-     // Split by underscores
-     const splitString = lowercaseString.split('_');
-
-     // Join by spaces
-     const formattedString = splitString.join(' ');
-
-      return <Badge color="purple" className="rounded-lg ">{formattedString}</Badge>
-    }
-  },
+ 
+ 
+  
   {
     header: "Actions",
     id: "actions",
     cell: ({ row }) => {
-     
-      const setIsShowing = confirmDeleteStakeholder(state => state.setShowModel)
-      const setStakeHolderId = confirmDeleteStakeholder(state => state.setId)
 
-       
-      const setIsShowingPopUpShowCase = OpenStakeHolderOpoUpShowCase(state => state.setShowModel)
-      const setShowCaseId = OpenStakeHolderOpoUpShowCase(state => state.setId)
+      const setRisksDelete = OpenDeteRisksDeleteModel(state => state.setId)
+
+      const setIsShowing = OpenDeteRisksDeleteModel(state => state.setShowModel)
 
       const handleDelete = () => {
-        setStakeHolderId(row.original.id)
+        setRisksDelete(row.original.id)
         setIsShowing(true)
 
       }
-
-      const handleShowCase = () => {
-        setShowCaseId(row.original.id)
-        setIsShowingPopUpShowCase(true)
-      }
  
       return (
+
+       
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="h-8 w-8 p-0">
@@ -111,14 +82,10 @@ export const columns: ColumnDef<Stakholder>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(row.original.email)}
-            >
-              Copy Email 
-            </DropdownMenuItem>
+           
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleShowCase}>View details</DropdownMenuItem>
-            <DropdownMenuItem onClick={handleDelete}>Delete </DropdownMenuItem>
+            <DropdownMenuItem onClick={handleDelete}>Delete</DropdownMenuItem>
+           
           </DropdownMenuContent>
         </DropdownMenu>
       )

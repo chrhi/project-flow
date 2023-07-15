@@ -12,7 +12,7 @@ import {
 } from "framer-motion"
 import { FormContainer } from "~/components/used/FormContainer";
 import { EndProjectPopUp } from "~/components/popup/end-project-popup";
-
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)

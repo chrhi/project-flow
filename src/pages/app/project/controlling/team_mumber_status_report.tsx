@@ -11,6 +11,7 @@ import { FormContainer } from "~/components/used/FormContainer";
 import { FormHead } from "~/components/used/FormHead";
 import { TextField } from "~/components/used/TextField";
 import { STAKHOLDER_TYPES } from "~/types/static/STATICDATA";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 
 
 const Page: NextPage = () => {

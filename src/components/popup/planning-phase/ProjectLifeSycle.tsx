@@ -23,16 +23,7 @@ type Props = {
 export  function ProjectLifeSCYcleAdd ({refetch } : Props) {
 
 
-    const mutation = api.ProjecrLifeCycleRouter.dataAdd.useMutation({
-      onSuccess :async  () => {
-        toast.success("added ")
-          await refetch()
-          closeModal()
-      },
-      onError : () => {
-        toast.error("failed to add new project goal")
-      }
-    })
+  
     const [isOpen, setIsOpen] = useState(false)
    
   
@@ -51,14 +42,7 @@ export  function ProjectLifeSCYcleAdd ({refetch } : Props) {
     
  
 
-    const handleSubmit = () => {
-      mutation.mutate({
-        projectId : getProjectMetaData() , 
-        Phase : formData.Phase , 
-        KeyDeliverables : formData.KeyDeliverables , 
-      })
-    }
-   
+  
 
   return (
     <>
@@ -147,8 +131,7 @@ export  function ProjectLifeSCYcleAdd ({refetch } : Props) {
         
              <div className="bg-white py-3 col-span-6  flex items-end justify-end p-4text-right ">
             <AbdullahButton
-            onClick={handleSubmit}
-            isLoading={mutation.isLoading}
+         
             className={buttonVariants({size:'sm' , variant : "primary"})}
             >
              Soumettre

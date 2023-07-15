@@ -22,7 +22,7 @@ export default function Board({  projects } : PropsType ) {
     <DragDropContext 
     
     onDragEnd = {(result) => handleDragEnd(result)}>
-   <div className="w-full  h-fit min-h-screen  overflow-x-hidden  ">
+   <div className="w-full  h-fit min-h-screen  p-6  overflow-x-hidden  ">
     
       <Droppable droppableId={"board"}>
     

@@ -2,6 +2,7 @@ import { type AppType } from 'next/app';
 import Providers from '~/components/layout/Providers';
 import { api } from '~/utils/api';
 import '~/styles/globals.css';
+
 import { SessionProvider } from "next-auth/react"
 
 

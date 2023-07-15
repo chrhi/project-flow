@@ -4,38 +4,36 @@ import { useState } from "react";
 import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
-import { loading_Reducer } from "~/store/app-reducer/loadingReducer";
-import { api } from "~/utils/api";
-import { toast } from "react-toastify";
-import { getProjectMetaData } from "~/lib/MetaData";
-import { getColor } from "~/utils/formate/getColor";
-import { ConfirmePopUpDeleteStakeHolder } from "~/components/popup/table-confirm/delete-stakeholder-con";
-import { Badge } from "@tremor/react";
-import { DataTable } from "~/components/common/constants/stakholder-table/data-table";
-import { Stakholder , columns } from "~/components/common/constants/stakholder-table/column";
-import { PlaceHolderTbale } from "~/components/common/table-place-holder";
-import { StakeHolder } from "~/components/popup/StakeHolder";
+import { DataTable } from "~/components/common/constants/risks-table/data-table"
+import { RiskType , columns } from "~/components/common/constants/risks-table/column";
 import { RowGridText } from "~/components/typography/RowGridText";
+import { api } from "~/utils/api";
+import { getProjectMetaData } from "~/lib/MetaData";
+import toast from "react-hot-toast";
+import { ConfirmDeletePopUpRisks } from "~/components/popup/table-confirm/delete-risk-popup";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
+
 
 
 const Page: NextPage = () => {
 
   const [isOpen , setIsOpen] = useState<boolean>(false)
-  const [stakeholders , setStakeHolders] = useState<Stakholder[]>([] as Stakholder[])
 
+  const [risks , setRisks ] = useState<any[]>([])
 
-  const {isFetching , refetch} = api.StakeHolderRouter.get_stakeholders.useQuery({projectId : getProjectMetaData()}, {
+  const { refetch} = api.riskRouter.getRisks.useQuery({projectId : getProjectMetaData()}, {
     onSuccess(data) {
       const AbdullahData  = data.map(item =>{
         return {
           id : item.id,
-          name : item.name,
-          email:  item.contact,
-          impact:  item.impact?.toLowerCase(),
-          type : item.type,
+          title : item.name,
+          discreption : item.description,
+          solution : item.solutions,
+          status : item.levelOfDanger,
+          cost : Number(item.cost)
         }
       })
-    setStakeHolders( AbdullahData as Stakholder[] )
+      setRisks( AbdullahData  )
     },
     onError(){
       toast.error("error fetching the data")
@@ -43,26 +41,30 @@ const Page: NextPage = () => {
     retryOnMount : false 
   })
     
+  
 
+   
   return (
     <>
+    
       <Header />
       <main className="   flex w-full bg-gray-50 ">
       <Sidebar setIsOpen ={setIsOpen} isOpen = {isOpen} />
-      <FormContainer className ={` ${isOpen ? "lg:ml-[20rem]" : "ml-[0]"}`}>
-        <StakeHolder refetch={refetch} />
-      <ConfirmePopUpDeleteStakeHolder refetch={refetch} />
+       <FormContainer className ={` ${isOpen ? "lg:ml-[20rem]" : "ml-[0]"}`}>
+     
       <Form  >
       <div className="bg-white px-4 py-5 sm:p-6">
-        <div className="grid grid-cols-6  lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-6 lg:grid-cols-12  gap-6">
             <div className="col-span-6 lg:col-span-12">
-            <RowGridText text=" Gestion des parties prenantes " />
-            <RowGridText small text="Gérer efficacement les parties prenantes en identifiant leurs besoins, leurs attentes et leurs impacts potentiels sur le projet, et les impliquer tout au long du cycle de vie du projet" />
-            {false ? <PlaceHolderTbale /> :    <DataTable refetch={refetch} columns={columns} data={stakeholders} />  }
-         
+            <RowGridText text=" Gestion des risques" />
+            <RowGridText small text="Gérer de manière proactive les risques du projet en identifiant, évaluant et hiérarchisant les risques potentiels, en élaborant des stratégies d'atténuation et en surveillant et contrôlant régulièrement les risques tout au long du cycle de vie du projet afin de minimiser leur impact sur les objectifs du projet" />
+            <ConfirmDeletePopUpRisks  refetch={refetch} />
+            <DataTable refetch={refetch} columns={columns} data={risks} /> 
+       
             </div>
         </div>
       </div>
+      
        </Form>
   </FormContainer>
       </main>

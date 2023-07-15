@@ -30,17 +30,7 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
 
     const [velocity, setVelocity] = useState<number>(0);
 
-    const mutation = api.integrationsRouter.ProjectCharter.useMutation({
-        onSuccess(data){
-          toast.success("we have the project charter")
-          setIsBuiled(true)
-          setPublicUrl(data.url || "")
-        },
-        onError(){
-          toast.error("there is an error")
-        }
-      })
-
+    
   return (
     <motion.div 
     animate={controls}
@@ -58,9 +48,6 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
         <p className='text-md text-gray-500 '>
         {description}
         </p>
-        {
-              isBuilded ? 
-              
               
               <div className='w-full h-[70px] flex justify-end gap-x-4 items-center'>  
                  <ConfirmePopUp />
@@ -71,20 +58,7 @@ export function DocumentBuilder({title , description }  : DocumentBuilderProps) 
                   </AbdullahButton>  
                   
               </div>
-              :
-              <div className='w-full h-[70px] flex justify-end gap-x-4 items-center'>  
-                  <AbdullahButton 
-                  onClick={() => mutation.mutate({
-                    projectId : getProjectMetaData()
-                  })}
-                  isLoading={mutation.isLoading}
-                
-              
-                  className={buttonVariants({variant : "primary"})} >
-                      Build document
-                  </AbdullahButton>  
-              </div>
-        }
+           
     
     </motion.div>
   )

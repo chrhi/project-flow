@@ -1,9 +1,14 @@
 import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter} from "@auth/prisma-adapter";
-import { NextAuthOptions } from "next-auth";
 import { prisma } from "./prisma";
 import bcrypt from "bcrypt"
+import { type GetServerSidePropsContext } from "next";
+import {
+  getServerSession,
+  type NextAuthOptions,
+  type DefaultSession,
+} from "next-auth";
 
 function getCredintionals(){
     const GITHUB_ID  = process.env.GITHUB_ID
@@ -76,12 +81,55 @@ export const authOptions : NextAuthOptions = {
     strategy:"jwt"
    },
    pages:{
-    signIn : "/"
+    signIn : "/",
+    error :"/"
   },
   callbacks:{
     redirect() {
         return '/app'
     },
+    session({token , session}) {
+      if(token){
+        session.user.id = token.id ,
+        session.user.email = token.email ,
+        session.user.name = token.name ,
+        session.user.image = token.picture
+        session.user.role  = token.role,
+        session.user.firstName = token.firstName
+        session.user.lastName  = token.lastName,
+        session.user.role = token.role
+      }
+
+      return session
+    },
+    //@ts-ignore
+    async jwt({token , user }) {
+      const dbUser = await prisma.user.findUnique({
+        where : {
+          email : token.email as string
+        }
+      }) 
+  
+      if(!dbUser) return token
+      return {
+        ...token ,
+        id : dbUser.id , 
+        email : dbUser.email , 
+        name : dbUser.name , 
+        picture : dbUser.image , 
+        firstName : dbUser.name , 
+        lastName : dbUser.LastName , 
+        role : dbUser.role , 
+        userName : dbUser.UserName , 
+      }
+    }
     
+  }
 }
-}
+
+export const getServerAuthSession = (ctx: {
+  req: GetServerSidePropsContext["req"];
+  res: GetServerSidePropsContext["res"];
+}) => {
+  return getServerSession(ctx.req, ctx.res, authOptions);
+};

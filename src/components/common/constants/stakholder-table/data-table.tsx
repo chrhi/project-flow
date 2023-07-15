@@ -9,8 +9,14 @@ import {
   type  VisibilityState,
 } from "@tanstack/react-table"
 import { useState } from "react"
+import AddTeamMember from "~/components/crm/add-team-member"
 import { Button } from "~/components/ui/button"
-import { PLusButtonStakHolder } from "~/components/popup/PLusButtonStakHolder";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu"
 import {
   Table,
   TableBody,
@@ -20,24 +26,19 @@ import {
   TableRow,
   
 } from "~/components/ui/table"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
-import { CreateStakeHolder } from "../../sheets/add-stakeholder-sheet";
+
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
-  refetch : () => Promise<any>
+
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
-  refetch
+
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnVisibility, setColumnVisibility] =
@@ -61,37 +62,40 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-    <div className="flex items-center py-4">
+
+    <div className="w-full h-[50px]  flex justify-end gap-x-4 items-center">
+    <AddTeamMember />
     <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter(
-                (column) => column.getCanHide()
-              )
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value: any) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {column.id}
-                  </DropdownMenuCheckboxItem>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" >
+                Columns
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter(
+                  (column) => column.getCanHide()
                 )
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+                .map((column) => {
+                  return (
+                    <DropdownMenuCheckboxItem
+                      key={column.id}
+                      className="capitalize"
+                      checked={column.getIsVisible()}
+                      onCheckedChange={(value: any) =>
+                        column.toggleVisibility(!!value)
+                      }
+                    >
+                      {column.id}
+                    </DropdownMenuCheckboxItem>
+                  )
+                })}
+            </DropdownMenuContent>
+          </DropdownMenu>
     </div>
-    <div className="rounded-md border">
+  
+    <div className="rounded-md border bg-white ">
     
       <Table>
         <TableHeader>
@@ -153,7 +157,7 @@ export function DataTable<TData, TValue>({
         >
           Next
         </Button>
-        <CreateStakeHolder refetch={refetch} />
+    
         {/* <PLusButtonStakHolder  refetch={refetch}/> */}
       </div>
     </>

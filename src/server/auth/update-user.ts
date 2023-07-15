@@ -16,17 +16,6 @@ export const updateUser = publicProcedure
 }) )
 .mutation( async ({ input , ctx  }) => {
 
- const user =  await ctx.prisma.user.update({
-    data: {
-      lastName : input.lastName , 
-      location : input.location , 
-      name : input.name , 
-      photo : input.photo , 
-      zipCode : input.zipCode
-    },
-    where : {
-      id : input.userId
-    }
-  })
-  return user
+  return "not supported yet"
+
 })

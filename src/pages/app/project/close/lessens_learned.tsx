@@ -15,6 +15,8 @@ import { RisksAndIssues } from "~/components/popup/close-phases/RisksAndIssues";
 import { QualityDefectsAdd } from "~/components/popup/close-phases/QualityDefects";
 import { RisksAndIssuesAdd } from "~/components/popup/close-phases/VendorManagement";
 import { OtherAdd } from "~/components/popup/close-phases/OtherAdd";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
+
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)

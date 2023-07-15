@@ -8,6 +8,13 @@ datasource db {
   relationMode = "prisma"
 }
 
+enum ROLES {
+  Admin
+  ProjectManager
+  TeamMember
+  Client
+}
+
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -33,10 +40,12 @@ model User {
   LastName         String?
   UserName         String?
   OrganizationName String?
-  email            String   @unique
+  email            String    @unique
   emailVerified    DateTime?
   password         String?
   image            String?
+  Organizations    Json
+  role             ROLES     @default(TeamMember)
   accounts         Account[]
   sessions         Session[]
 
@@ -47,6 +56,7 @@ model Organization {
   id        String    @id @default(cuid())
   userId    String
   name      String?
+  Members   Json
   Category  String?
   tag       String?
   createdAt DateTime  @default(now())
@@ -55,6 +65,21 @@ model Organization {
 
   @@index([id])
   @@index([userId])
+}
+
+model JoinRequest {
+  id               String   @id @default(cuid())
+  OrganizationName String
+  OrganizationId   String 
+  senderName       String
+  senderId         String
+  senderAvatar     String 
+  senderEmail      String
+  typeRelation     String
+  targetEmail      String
+  createdAt        DateTime @default(now())
+
+  @@index([id])
 }
 
 model Session {

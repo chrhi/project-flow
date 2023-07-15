@@ -10,6 +10,9 @@ import { columns , type  Objectives } from "~/components/common/constants/projec
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
 import { toast } from "react-hot-toast";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
+
+
 
 const Page: NextPage = () => {
 

@@ -7,6 +7,8 @@ import { AbdullahTable } from "~/components/used/AbdullahTable";
 import { Form } from "~/components/used/Form";
 import { FormContainer } from "~/components/used/FormContainer";
 import { FormalAcceptance } from "~/components/popup/close-phases/FormalAcceptance";
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
+
 
 const Page: NextPage = () => {
   const [isOpen , setIsOpen] = useState<boolean>(true)

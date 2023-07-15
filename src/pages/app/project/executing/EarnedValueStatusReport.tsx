@@ -7,7 +7,7 @@ import { FormContainer } from "~/components/used/FormContainer";
 import { RowGridText } from "~/components/typography/RowGridText";
 import { TextField } from "~/components/used/TextField";
 import { ExecutingSidebar } from "~/components/sideBars/ExecutingSidebar";
-
+import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 
 
 const Page: NextPage = () => {

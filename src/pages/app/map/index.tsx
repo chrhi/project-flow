@@ -15,7 +15,7 @@ const Page: NextPage = () => {
     
 
       <main className=" w-full custom-hieght-navbar bg-white flex justify-center pl-16  items-center  ">
-        <h1>this is the tasks section</h1>
+        <h1>this is the map section</h1>
 
       </main>
     </>

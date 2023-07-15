@@ -28,16 +28,7 @@ export function ProjectManagmentBuilder({title , description , phase , color}:Pr
 
     const [publicUrl , setPublicUrl ] = useState<string>("")
     
-    const mutation = api.integrationsRouter.Projct_managmant_plan.useMutation({
-        onSuccess(data){
-          toast.success("we have the project charter")
-          setIsBuiled(true)
-          setPublicUrl(data.url || "")
-        },
-        onError(){
-          toast.error("there is an error")
-        }
-      })
+ 
 
   return (
     <Card className="lg:max-w-md max-h-64">
@@ -49,24 +40,13 @@ export function ProjectManagmentBuilder({title , description , phase , color}:Pr
           </CardDescription>
         </div>
         <div className="flex items-end  w-fit rounded-md bg-white text-secondary-foreground">
-            {
-             isBuilded ? 
-                   <AbdullahButton
+           
+        <AbdullahButton
                    onClick={() => openNewTap(publicUrl)}
                    className={`${buttonVariants({variant : "primary", size:"sm"})} bg-green-500`} >
                          afficher le document
                   </AbdullahButton> 
-                : 
-                <AbdullahButton
-                onClick={() => mutation.mutate({
-                    projectId : getProjectMetaData()
-                  })}
-                  isLoading={mutation.isLoading}
-                className={buttonVariants({variant : "primary", size:"sm"})} >
-                    <Hammer className="mr-1 h-3 w-3 font-bold" />   Construire
-                </AbdullahButton> 
-
-            }
+                
     
           
         </div>

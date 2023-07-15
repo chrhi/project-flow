@@ -1,22 +1,23 @@
 import { type NextPage } from "next";
+import ChatHeader from "~/components/chat/ChatHeader";
+import { Header } from "~/components/header/Header";
 
 
-
+const projects : Project[] =[
+  {avatar : "" , description : "" , id : "" , tag : "" , title :""}
+] 
 
 
 const Page: NextPage = () => {
 
-
-
-  
-
   return (
-    <>
-    
+    <> 
+    <Header />
+      <main className=" w-full custom-hieght-navbar  ">
+        <ChatHeader  />
 
-      <main className=" w-full custom-hieght-navbar bg-white flex justify-center pl-16  items-center  ">
-        <h1>this is the tasks section</h1>
-
+         {/* contact feed */}
+         {/* {messages } */}
       </main>
     </>
   );
