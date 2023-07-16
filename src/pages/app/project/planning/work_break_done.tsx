@@ -167,7 +167,7 @@ const Page: NextPage = () => {
   const onEdgeUpdate = useCallback((oldEdge, newConnection) => {
     edgeUpdateSuccessful.current = true;
     setEdges((els) => updateEdge(oldEdge, newConnection, els));
-  }, []);
+  }, [setEdges]);
 
   const onEdgeUpdateEnd = useCallback((_, edge) => {
     if (!edgeUpdateSuccessful.current) {
@@ -175,7 +175,7 @@ const Page: NextPage = () => {
     }
 
     edgeUpdateSuccessful.current = true;
-  }, []);
+  }, [setEdges]);
 //   className="inline-flex justify-center rounded-md bg-blue-500 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
 
   return (

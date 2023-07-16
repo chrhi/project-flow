@@ -26,6 +26,7 @@ export const createUser = publicProcedure
   const hashedPassword  : string = await bcrypt?.hash(input.password, 10); // salt round
   const createdUser = await ctx.prisma.user.create({
     data : {
+      
       email : input.email , 
       image : "",
       password : hashedPassword,
@@ -35,6 +36,8 @@ export const createUser = publicProcedure
 
   const organization = await ctx.prisma.organization.create({
     data :{
+      Members : JSON.stringify([{user : createdUser.id , role : "leader" }]),
+      Leader : createdUser.id ,
       userId : createdUser.id
     }
   })
