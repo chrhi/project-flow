@@ -11,21 +11,21 @@ export const create_invitaion  = protectedProcedure
   OrganizationName: z.string() ,
   targetEmail : z.string(),
   typeRelation : z.string(),
-  OrganizationId : z.string().uuid()
+  OrganizationId : z.string()
 }) )
 .mutation( async ({ input , ctx }) => {
 
   const {email , image , id , name } = ctx.session.user
 
-  if(!email || !image || !id || !name ){
-    throw new TRPCError({ code: "UNAUTHORIZED" });
+  if(!email  || !id || !name ){
+    throw new TRPCError({ code: "UNAUTHORIZED" , message :"the email or the id or the name is messing"});
   }
     
     const invitaion = await ctx.prisma.joinRequest.create({
       data:{
         OrganizationName : input.OrganizationName, 
         OrganizationId : input.OrganizationId,
-        senderAvatar :  image , 
+        senderAvatar :  image || "https://cdna.artstation.com/p/assets/images/images/056/671/852/large/nooarth-pilotanimegirl.jpg?1669822674" , 
         senderEmail : email, 
         senderId :  id, 
         senderName : name, 

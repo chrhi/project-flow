@@ -10,6 +10,7 @@ import { AccessPopUp } from '~/components/common/AccessPopUp';
 import  { Toaster } from 'react-hot-toast';
 import Head from '../common/Head';
 import { BlockedPopUp } from '../common/BlockedPopUp';
+import { OpenInvitationMessage } from '../popup/invites/organization-invite';
 
 
 
@@ -23,6 +24,7 @@ const Providers: FC<ProvidersAbdullahProps> = ({children}) => {
       <Loading />
       <AccessPopUp />
       <BlockedPopUp />
+      <OpenInvitationMessage  />
       <Toaster
        position="top-right"
        reverseOrder={false}

@@ -57,7 +57,7 @@ function AddTeamMember() {
 
   const mutaion = api.notificatioRouter.create_invitaion.useMutation({
     onSuccess :() => {
-      toast.error("error fetching the data")
+      toast.success("your invitation has been send")
     },
     onError : () => {
 
@@ -65,19 +65,18 @@ function AddTeamMember() {
   })
 
   const handleSubmit = () => {
+
     if(!formData.email || !formData.relationType){
       toast.error("all fiealds are require")
       return
     }
+   
     mutaion.mutate({
       OrganizationId : organizationId ,
       OrganizationName : organizationName, 
       targetEmail : formData.email , 
       typeRelation : formData.relationType
     })
-
-   
-
   }
 
   return (
@@ -107,9 +106,9 @@ function AddTeamMember() {
 
         <div className='w-full h-[50px] flex justify-center flex-col my-4 gap-y-2 items-start'>
                    <Label>Select what type  </Label>
-                    <AbdullahSelect onValueChange={(value) => setFormData({...formData , relationType : value})} defaultValue="TeamMember">
+                    <AbdullahSelect onValueChange={(value) => setFormData({...formData , relationType : value})} >
                               <SelectTrigger className="w-full mt-2">
-                                      <SelectValue placeholder="TeamMember" />
+                                      <SelectValue placeholder="select the type of invitaion" />
                               </SelectTrigger>
                               <SelectContent>
                                      <SelectItem value="TeamMember">team member</SelectItem>
