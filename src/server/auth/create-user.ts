@@ -87,7 +87,7 @@ export const PushUserMoreInformations = publicProcedure
       id : UserOrganization?.id
     },
     data :{
-      name : input.OrganizationName
+      name : input.OrganizationName,
     }
   })
   

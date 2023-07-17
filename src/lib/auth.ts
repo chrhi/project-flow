@@ -10,6 +10,7 @@ import {
   type DefaultSession,
 } from "next-auth";
 
+
 function getCredintionals(){
     const GITHUB_ID  = process.env.GITHUB_ID
     const GITHUB_SERCRET = process.env.GITHUB_SERCRET
@@ -82,12 +83,27 @@ export const authOptions : NextAuthOptions = {
    },
    pages:{
     signIn : "/",
-    error :"/"
+    error :"/errors/continue-singup"
   },
   callbacks:{
     redirect() {
         return '/app'
     },
+    // async signIn({ user, account, profile, email, credentials }) {
+     
+    //  const dbUser = await prisma.user.findUniqueOrThrow({
+    //   where :{
+    //     id : user.id
+    //   }
+    //  })
+
+    //  if(!dbUser?.LastName){
+    //   return "error"
+    //  }
+
+    //  return true
+    
+    // },
     session({token , session}) {
       if(token){
         session.user.id = token.id ,
@@ -124,7 +140,10 @@ export const authOptions : NextAuthOptions = {
       }
     }
     
-  }
+  },
+
+  
+
 }
 
 export const getServerAuthSession = (ctx: {

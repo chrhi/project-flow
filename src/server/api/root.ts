@@ -9,6 +9,7 @@ import { mileStoneRouter } from "./routers/mileStones";
 import { ProjectObjectivesRouter } from "./routers/project-objectives";
 import { comunicationsRouter } from "./routers/comunications";
 import { notificatioRouter } from "../notifications";
+import { organizationRouter } from "./routers/organization";
 
 
 
@@ -22,7 +23,8 @@ export const appRouter = createTRPCRouter({
     mileStoneRouter,
     ProjectObjectivesRouter,
     comunicationsRouter,
-    notificatioRouter
+    notificatioRouter,
+    organizationRouter
 });
 
 // export type definition of API

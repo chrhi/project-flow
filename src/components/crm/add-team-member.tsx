@@ -19,7 +19,7 @@ import { api } from '~/utils/api'
 import { useSession } from "next-auth/react"
 import { toast } from 'react-hot-toast'
 import { Label } from '../ui/label'
-
+import { organizationReduer } from '~/store/organization-reducer';
 
 
 
@@ -28,6 +28,8 @@ import { Label } from '../ui/label'
 function AddTeamMember() {
 
   const session= useSession()
+
+ const  {organizationId , organizationName  } = organizationReduer()
 
   const [emails , setEmails] = useState<{ label: string; value: string; }[]>([] as { label: string; value: string; }[])
 
@@ -68,11 +70,13 @@ function AddTeamMember() {
       return
     }
     mutaion.mutate({
-      OrganizationId : "" ,
-      OrganizationName : "", 
-      targetEmail : "", 
-      typeRelation : ""
+      OrganizationId : organizationId ,
+      OrganizationName : organizationName, 
+      targetEmail : formData.email , 
+      typeRelation : formData.relationType
     })
+
+   
 
   }
 
@@ -117,6 +121,7 @@ function AddTeamMember() {
 
         <div className='w-full h-[50px] flex justify-end my-4 items-center'>
                  <AbdullahButton 
+                 onClick={handleSubmit}
                  isLoading={mutaion.isLoading}
                  className={cn(buttonVariants({size :"sm" , variant :"primary"}))}>
                      send invate
