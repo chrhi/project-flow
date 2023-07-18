@@ -106,13 +106,7 @@ const Page: NextPage = () => {
             <Image src="/assets/github.png" alt="github" width={20} height={20}  />
              continue with github
     </AbdullahButton>
-    <AbdullahButton
-              onClick={() => signIn("facebook")}
-              className={cn(buttonVariants({size :'lg' , variant :'secondary'}) , "w-full mt-4 flex justify-center gap-x-6 ")}
-           >
-            <Image src="/assets/facebook.png" alt="facebook" width={20} height={20}  />
-            continue with  facebook
-    </AbdullahButton>
+  
 </div>
 
       </main>
