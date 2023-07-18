@@ -4,6 +4,7 @@ import { PrismaAdapter} from "@auth/prisma-adapter";
 import { prisma } from "./prisma";
 import bcrypt from "bcrypt"
 import { type GetServerSidePropsContext } from "next";
+import FacebookProvider from "next-auth/providers/facebook";
 import {
   getServerSession,
   type NextAuthOptions,
@@ -32,6 +33,10 @@ export const authOptions : NextAuthOptions = {
   adapter : PrismaAdapter(prisma),
   // Configure one or more authentication providers
   providers: [
+    FacebookProvider({
+      clientId: process.env.FACEBOOK_CLIENT_ID!,
+      clientSecret: process.env.FACEBOOK_CLIENT_SECRET!
+    }) ,
     GithubProvider({
       clientId: getCredintionals().GITHUB_ID,
       clientSecret: getCredintionals().GITHUB_SERCRET,
