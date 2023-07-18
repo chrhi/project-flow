@@ -6,11 +6,60 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { cn } from "~/lib/utils";
+import { prisma } from "~/lib/prisma";
+import { getSession } from "next-auth/react";
+import {z} from "zod"
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from "react";
+
+
+const validateSchema = z
+    .object({
+      FirstName: z.string().min(3),
+      LastName: z.string().min(3),
+      Username: z.string().min(3),
+      title: z.string(),
+      Phone: z.string(),
+      Address: z.string(),
+      city: z.string(),
+      state : z.string(),
+      Country : z.string(),
+      Zipcode : z.string()
+    })
+
+type FormData = z.infer<typeof validateSchema>
 
 
 
 
-const Page: NextPage = () => {
+export async function getServerSideProps(ctx: any) {
+
+    const session = await getSession(ctx)
+
+    const data = await prisma.user.findUnique({
+      where :{
+            id : session?.user.id
+      }
+    })
+
+    
+     
+    
+      return { props: { data } }
+}
+//@ts-ignore
+const Page: NextPage = ({ data }) => {
+
+  const{
+            register,
+            handleSubmit,
+            formState :{errors}
+          }  = useForm<FormData>({
+           resolver : zodResolver(validateSchema)
+       })
+
+      
 
   return (
     <> 
@@ -21,13 +70,13 @@ const Page: NextPage = () => {
           <div className="w-[80%] h-[50px] mx-auto max-w-2xl">
               <h1 className="text-2xl font-semibold text-center text-gray-900">Complete your profile to join your agency workspace </h1>
           </div>
-
+          
           {/* this is the profile form */}
 
           <div className="w-[80%] flex items-center gap-x-4 h-[100px] mx-auto max-w-2xl">
               <div className="w-[20%] gap-y-2 flex flex-col h-full items-center">
                     <Avatar className="w-24 h-24 shadow-lg ">
-                           <AvatarImage src="https://github.com/shadcn.png" />
+                           <AvatarImage src={data?.image || "/assets/avatar.png"} />
                            <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
                     <AbdullahButton className="w-10 h-10 rounded-[50%]  z-[99]">
@@ -38,21 +87,33 @@ const Page: NextPage = () => {
                       <div className="w-full h-[50%] gap-x-1 flex items-center">
                               <div className="flex w-[50%] h-full items-center gap-x-1">
                                     <Label>First name</Label>
-                                    <Input className="w-[60%] ml-auto" />
+                                    <Input 
+                                    defaultValue={data?.name }
+                                    {...register("FirstName")}
+                                    className="w-[60%] ml-auto" />
                               </div>
                               <div className="flex w-[50%] h-full items-center gap-x-1">
-                                    <Label>Fast name</Label>
-                                    <Input className="w-[60%] ml-auto" />
+                                    <Label>Last name</Label>
+                                    <Input
+                                     defaultValue={data?.LastName || ""}
+                                    {...register("LastName")}
+                                    className="w-[60%] ml-auto" />
                               </div>
                       </div>
                       <div className="w-full h-[50%]  gap-x-1 flex items-center">
                               <div className="flex w-[50%] h-full items-center gap-x-1">
-                                    <Label>Username :</Label>
-                                    <Input className="w-[60%] ml-auto" />
+                                    <Label>UserName :</Label>
+                                    <Input 
+                                       defaultValue={data?.UserName || ""}
+                                     {...register("Username")}
+                                    className="w-[60%] ml-auto" />
                               </div>
                               <div className="flex w-[50%] h-full items-center gap-x-1">
                                     <Label>Email ID :</Label>
-                                    <Input className="w-[60%] ml-auto" />
+                                    <Input 
+                                    disabled
+                                    value={data?.Email}
+                                    className="w-[60%] ml-auto" />
                               </div>
                       </div>
                </div> 
@@ -63,34 +124,48 @@ const Page: NextPage = () => {
                                   <div className="w-[70%]  border-b h-[5px]" />
           </div>
           <div className="w-[80%] flex  items-center jutify-between h-[40px] max-w-2xl mx-auto   ">
-                                    <Label>title :</Label>
-                                    <Input className="w-[80%] ml-auto" />
+                                    <Label>job title :</Label>
+                                    <Input 
+                                        {...register("title")}
+                                    className="w-[80%] ml-auto" />
           </div>
           <div className="w-[80%] flex  items-center jutify-between h-[40px] max-w-2xl mx-auto   ">
                                     <Label>Phone :</Label>
-                                    <Input className="w-[80%] ml-auto" />
+                                    <Input
+                                    {...register("Phone")}
+                                    className="w-[80%] ml-auto" />
           </div>
           <div className="w-[80%] flex  items-center jutify-between h-[40px] max-w-2xl mx-auto   ">
                                     <Label>Address :</Label>
-                                    <Input className="w-[80%] ml-auto" />
+                                    <Input 
+                                        {...register("Address")}
+                                    className="w-[80%] ml-auto" />
           </div>
 
          
           <div className="w-[80%] flex  items-center jutify-between h-[40px] max-w-2xl mx-auto   ">
                                     <Label>city :</Label>
-                                    <Input className="w-[80%] ml-auto" />
+                                    <Input 
+                                        {...register("city")}
+                                    className="w-[80%] ml-auto" />
           </div>
           <div className="w-[80%] flex  items-center jutify-betweenh-[40px] max-w-2xl mx-auto   ">
                                     <Label>state :</Label>
-                                    <Input className="w-[80%] ml-auto" />
+                                    <Input
+                                        {...register("state")}
+                                    className="w-[80%] ml-auto" />
           </div>
           <div className="w-[80%] flex  items-center jutify-between h-[40px] max-w-2xl mx-auto   ">
                                     <Label>Country  :</Label>
-                                    <Input className="w-[80%] ml-auto" />
+                                    <Input 
+                                    {...register("Country")}
+                                    className="w-[80%] ml-auto" />
           </div>
           <div className="w-[80%] flex  items-center jutify-between h-[40px] max-w-2xl mx-auto   ">
-                                    <Label>Zipcode :  :</Label>
-                                    <Input className="w-[80%] ml-auto" />
+                                    <Label>Zip code  :</Label>
+                                    <Input
+                                        {...register("Zipcode")}
+                                    className="w-[80%] ml-auto" />
           </div>
 
              {/* this is the divided section */}

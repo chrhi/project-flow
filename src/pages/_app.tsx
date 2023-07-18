@@ -4,7 +4,7 @@ import { api } from '~/utils/api';
 import '~/styles/globals.css';
 import { SessionProvider } from "next-auth/react"
 import { organizationReduer } from '~/store/organization-reducer';
-
+import { useRouter } from 'next/router';
 
 const MyApp: AppType = ({
   Component, 
@@ -14,12 +14,15 @@ const MyApp: AppType = ({
 
   const setOrganozation = organizationReduer(state => state.set_organization)
 
+  const router = useRouter()
+
 
   api.organizationRouter.getUserOrganization.useQuery(undefined,{
       onSuccess: (data) => {
             if(!data?.id || !data?.name ){
                   return
             }
+            console.log("not in the if")
       setOrganozation({
          organizationId : data.id , 
          organizationImage : data?.id , 
