@@ -6,13 +6,12 @@ import { useRouter } from "next/router";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
 import { signIn } from "next-auth/react";
 import { cn } from "~/lib/utils";
-
 import {z} from "zod"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 
 const validateSchema = z
@@ -90,8 +89,8 @@ const Page: NextPage = () => {
         Pas encore inscrit(e) ?<Link href="/auth/signup" className="text-blue-500 hover:underline ">Créer un compte.</Link>
         </div>
     </form>
-    <div className="relative">
-           <div className="absolute inset-0 flex items-center">
+    <div className="relative mt-4 ">
+           <div className="absolute inset-0 flex  items-center">
             <span className="w-full border-t" />
           </div>
         <div className="relative flex justify-center text-xs uppercase">
@@ -102,9 +101,17 @@ const Page: NextPage = () => {
         </div>
     <AbdullahButton
               onClick={() => signIn("github")}
-              className={cn(buttonVariants({size :'lg' , variant :'secondary'}) , "w-full flex justify-center ")}
+              className={cn(buttonVariants({size :'lg' , variant :'secondary'}) , "w-full mt-4 flex justify-center gap-x-6 ")}
            >
-             github
+            <Image src="/assets/github.png" alt="github" width={20} height={20}  />
+             continue with github
+    </AbdullahButton>
+    <AbdullahButton
+              onClick={() => signIn("github")}
+              className={cn(buttonVariants({size :'lg' , variant :'secondary'}) , "w-full mt-4 flex justify-center gap-x-6 ")}
+           >
+            <Image src="/assets/facebook.png" alt="facebook" width={20} height={20}  />
+            continue with  facebook
     </AbdullahButton>
 </div>
 

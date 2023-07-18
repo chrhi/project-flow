@@ -12,8 +12,8 @@ const Page: NextPage = () => {
   return (
     <> 
     <Header />
-      <main className=" w-full custom-hieght-navbar  ">
-     <h1>this is the psyment page</h1>
+      <main className=" w-full bg-white  custom-hieght-navbar  ">
+      <p>this is the payment page</p>
       </main>
     </>
   );

@@ -34,7 +34,7 @@ const Page: NextPage = () => {
     const mutation = api.userRouter.PushUserMoreInformations.useMutation({
        onSuccess(data) {
          toast.success(`new user has been created`)
-         router.push("/")
+         router.push("/auth/signup/payment")
         },
        onError(error){
          toast.error(error.message)
@@ -131,6 +131,7 @@ const Page: NextPage = () => {
          
              <div className="w-full h-[50px]  my-4 items-center justify-start flex ">
                  <AbdullahButton 
+                                isLoading ={mutation.isLoading}
                                 className={`${buttonVariants({size:"sm", variant:'primary'})} font-semibold`}>
                                 Save & Continue
                  </AbdullahButton>
