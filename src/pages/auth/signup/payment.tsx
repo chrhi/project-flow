@@ -13,7 +13,11 @@ const Page: NextPage = () => {
     <> 
     <Header />
       <main className=" w-full bg-white  custom-hieght-navbar  ">
-      <p>this is the payment page</p>
+   <div>
+   <p>this is the payment page</p>
+   <p>this is the payment page</p>
+   <p>this is the payment page</p>
+   </div>
       </main>
     </>
   );
