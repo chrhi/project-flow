@@ -64,17 +64,7 @@ export const PushUserMoreInformations = publicProcedure
     throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: error,})
   })
   // after we found the user we update it's informations
-  await ctx.prisma.user.update({
-    where :{
-      email : input.confirmEmail,
-    },
-    data : {
-      emailVerified : new Date() , 
-      LastName : input.LastName , 
-      UserName : input.userName , 
-      name : user?.name || input.FirstName
-    }
-  })
+
   // we found the organization 
   const UserOrganization = await ctx.prisma.organization.findFirst({
     where :{
@@ -88,6 +78,18 @@ export const PushUserMoreInformations = publicProcedure
     },
     data :{
       name : input.OrganizationName,
+    }
+  })
+  await ctx.prisma.user.update({
+    where :{
+      email : input.confirmEmail,
+    },
+    data : {
+      emailVerified : new Date() , 
+      LastName : input.LastName , 
+      UserName : input.userName , 
+      selectedOrganizationId :  UserOrganization?.id ,
+      name : user?.name || input.FirstName
     }
   })
   

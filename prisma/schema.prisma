@@ -24,6 +24,7 @@ model Account {
   refresh_token     String? @db.Text
   access_token      String? @db.Text
   expires_at        Int?
+ 
   token_type        String?
   scope             String?
   id_token          String? @db.Text
@@ -42,6 +43,7 @@ model User {
   OrganizationName String?
   email            String    @unique
   emailVerified    DateTime?
+   required          String
   password         String?
   image            String?
   selectedOrganizationId String? 

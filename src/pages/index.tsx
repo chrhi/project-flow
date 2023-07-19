@@ -39,10 +39,6 @@ const Page: NextPage = () => {
     signIn("credentials" , {
       email : data.email , 
       password : data.password,
-      
-    }).then(() => {
-      setIsLoading(false)
-      toast.success(`success`)
     }).catch(error => {
       setIsLoading(false)
       console.log(error)

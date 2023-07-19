@@ -10,7 +10,8 @@ declare module 'next-auth/jwt' {
         role : ROLES,
         firstName : string , 
         lastName : string , 
-        userName : string
+        userName : string,
+       
     }
 }
 
@@ -21,7 +22,8 @@ declare module 'next-auth' {
             role : ROLES,
             firstName : string , 
             lastName : string , 
-            userName : string
+            userName : string,
+           
         }
     }
 }
