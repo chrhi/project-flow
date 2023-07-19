@@ -6,14 +6,14 @@ import { TRPCError } from "@trpc/server";
 
 
 
-export const getJoinRequest  = protectedProcedure
+export const rejectJoinRequest  = protectedProcedure
 .input(z.object({ 
     id: z.string() ,
   }) )
 .query( async ({ input , ctx }) => {
 
     
-    const joinRequest = await ctx.prisma.joinRequest.fintFirst({
+    const joinRequest = await ctx.prisma.joinRequest.delete({
         where :{
             id : input.id
         }
