@@ -6,6 +6,7 @@ import { openInvitationModel } from '~/store/messages-popup';
 import { api } from '~/utils/api';
 import { cn } from '~/lib/utils';
 import { toast } from 'react-hot-toast';
+import { getOrganizationId } from '~/lib/data-in-cookies';
 
 
 
@@ -31,11 +32,11 @@ export  function OpenInvitationMessage () {
 
   const setIsOpen = openInvitationModel(state => state.setIsOpen)
 
-  const id = openInvitationModel(state => state.id)
+
 
   const [data , setData] = useState<JoinRequest>({} as JoinRequest)
 
- const {isLoading , isError} = api.notificatioRouter.getJoinRequest.useQuery({id }, {
+ const {isLoading , isError} = api.notificatioRouter.getJoinRequest.useQuery({id  : getOrganizationId()}, {
     onSuccess : (data) => {
       setData(data as JoinRequest)
     },
@@ -119,16 +120,17 @@ const acceptMutation = api.notificatioRouter.accept_join_request.useMutation({
                             
                                <AbdullahButton 
                                    isLoading ={rejectMutation.isLoading}
-                                   onClick={() => rejectMutation.mutate({id})}
+                                   onClick={() => rejectMutation.mutate({id : getOrganizationId()})}
                                    className={`${buttonVariants({variant : "secondary" , size : "sm"})}  `} >
                                    Reject
                                 </AbdullahButton> 
                                 <AbdullahButton 
                                    isLoading={acceptMutation.isLoading}
                                    onClick={() => acceptMutation.mutate({
-                                    id,
+                                    id : getOrganizationId(),
                                     organization_id : data?.OrganizationId , 
-                                    role : data?.typeRelation
+                                    role : data?.typeRelation,
+                                  
                                   })}
                                    className={`${buttonVariants({variant : "primary" , size :"sm"})} `} >
                                    Accept

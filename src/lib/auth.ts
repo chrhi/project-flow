@@ -85,7 +85,7 @@ export const authOptions : NextAuthOptions = {
    },
    pages:{
     signIn : "/",
-    error :"/errors/continue-singup"
+    error :"/"
   },
   callbacks:{
     redirect() {

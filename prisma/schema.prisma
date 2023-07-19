@@ -43,7 +43,7 @@ model User {
   OrganizationName String?
   email            String    @unique
   emailVerified    DateTime?
-   required          String
+  
   password         String?
   image            String?
   selectedOrganizationId String? 

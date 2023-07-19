@@ -36,7 +36,8 @@ export const accept_join_request  = protectedProcedure
          email : ctx.session.user.email,
          name : ctx.session.user.name,
          user : ctx.session.user.id ,
-         role : "member"
+         role : "member",
+         
          }]
 
     const updatedOrganization = await ctx.prisma.organization.update({

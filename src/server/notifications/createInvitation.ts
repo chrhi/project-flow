@@ -30,7 +30,7 @@ export const create_invitaion  = protectedProcedure
         senderId :  id, 
         senderName : name, 
         targetEmail  : input.targetEmail, 
-        typeRelation : input.typeRelation, 
+        typeRelation : input.typeRelation || "TeamMember", 
 
       }
     })
