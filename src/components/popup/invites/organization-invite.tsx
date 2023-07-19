@@ -3,11 +3,26 @@ import { Dispatch, Fragment,  useState } from 'react'
 import { AbdullahButton , buttonVariants } from '../../used/AbdullahButton'
 import { X } from 'lucide-react';
 import { openInvitationModel } from '~/store/messages-popup';
+import { api } from '~/utils/api';
+import { cn } from '~/lib/utils';
+import { toast } from 'react-hot-toast';
 
 
 
 
 
+type JoinRequest = {
+  id: string;
+  OrganizationName: string;
+  OrganizationId: string;
+  senderName: string;
+  senderId: string;
+  senderAvatar: string;
+  senderEmail: string;
+  typeRelation: string;
+  targetEmail: string;
+  createdAt: Date;
+}
 
 export  function OpenInvitationMessage () {
  
@@ -18,7 +33,34 @@ export  function OpenInvitationMessage () {
 
   const id = openInvitationModel(state => state.id)
 
-  
+  const [data , setData] = useState<JoinRequest>({} as JoinRequest)
+
+ const {isLoading , isError} = api.notificatioRouter.getJoinRequest.useQuery({id }, {
+    onSuccess : (data) => {
+      setData(data as JoinRequest)
+    },
+  })
+ 
+const rejectMutation = api.notificatioRouter.rejectJoinRequest.useMutation({
+        onSuccess : () => {
+          closeModal()
+       },
+       onError : () => {
+        toast.error("some thing went wrong")
+       }
+})
+
+const acceptMutation = api.notificatioRouter.accept_join_request.useMutation({
+  onSuccess : (data) => {
+    closeModal()
+    toast.error("you have joined the organization successfuly")
+    console.log(data)
+ },
+ onError : () => {
+  toast.error("some thing went wrong")
+ }
+})
+
 
   function closeModal() {
     setIsOpen(false)
@@ -59,24 +101,37 @@ export  function OpenInvitationMessage () {
               >
                 <Dialog.Panel className="w-[600px] min-h-[100px] h-fit  flex flex-wrap gap-8  z-[100]  transform overflow-hidden  bg-white p-6 text-left align-middle shadow-xl transition-all">
                 {/* this is the header */}
-                <div className='w-full h-[20px] flex items-center  justify-end '><X  className='w-4 h-4 text-gray-900'/></div>
+                <div className='w-full h-[20px] flex items-center  justify-end '>
+                  <AbdullahButton 
+                  onClick={closeModal}
+                  className={cn(buttonVariants({variant:"ghost" , size :"sm"}))}>
+                      <X  className='w-4 h-4 text-gray-900'/>
+                  </AbdullahButton>
+                </div>
                 {/* this is the body */}
                 <div className='w-full flex flex-col gap-y-4 items-center'>
 
-                        <div className='w-full h-[500px] flex justify-between items-center'>
-
+                        <div className='w-full h-[500px] flex flex-col items-center p-4'>
+                            <h1 className='text-3xl font-semibold text-gray-900 text-start'>{data?.senderName} wants you to join his organization {data?.OrganizationName} </h1>
+                            <p className="mb-3 text-gray-500 mt-4">Track work across the enterprise through an open, collaborative platform. <em className="font-italic">Link issues across Jira</em> and ingest data from other software development tools, so your IT support and operations teams have richer contextual information to rapidly respond to requests, incidents, and changes.</p>
                         </div> 
                         <div className='w-full h-[40px] flex justify-end gap-x-4 items-center'>
                             
                                <AbdullahButton 
-                                   onClick={openModal}
+                                   isLoading ={rejectMutation.isLoading}
+                                   onClick={() => rejectMutation.mutate({id})}
                                    className={`${buttonVariants({variant : "secondary" , size : "sm"})}  `} >
-                                   reject
+                                   Reject
                                 </AbdullahButton> 
                                 <AbdullahButton 
-                                   onClick={openModal}
+                                   isLoading={acceptMutation.isLoading}
+                                   onClick={() => acceptMutation.mutate({
+                                    id,
+                                    organization_id : data?.OrganizationId , 
+                                    role : data?.typeRelation
+                                  })}
                                    className={`${buttonVariants({variant : "primary" , size :"sm"})} `} >
-                                   accept
+                                   Accept
                                 </AbdullahButton> 
                         </div>
                 </div>

@@ -44,7 +44,7 @@ model User {
   emailVerified    DateTime?
   password         String?
   image            String?
- 
+  selectedOrganizationId String? 
   role             ROLES     @default(TeamMember)
   accounts         Account[]
   sessions         Session[]

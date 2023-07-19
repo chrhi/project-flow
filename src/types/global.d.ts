@@ -13,3 +13,12 @@ interface Organization {
     projects : json
 
 }
+
+interface MemberOrg {
+    id: string,
+    image : string,
+    email : string,
+    name : string,
+    user : string,
+    role : string,
+}

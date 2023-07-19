@@ -3,21 +3,20 @@ import { protectedProcedure } from "../api/trpc";
 import { TRPCError } from "@trpc/server";
 
 
+export const getJoinRequestsOfUser  = protectedProcedure
 
+.query(async ({ input , ctx }) => {
 
+  const {email } = ctx.session.user
 
-export const getJoinRequest  = protectedProcedure
-.input(z.object({ 
-    id: z.string() ,
-  }) )
-.query( async ({ input , ctx }) => {
-
+  if(!email  ){
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
     
-    const joinRequest = await ctx.prisma.joinRequest.fintFirst({
-        where :{
-            id : input.id
-        }
+    const joinRequests = await ctx.prisma.joinRequest.findMany({
+     where :{
+        targetEmail : email
+     }
     })
-    
-    return joinRequest
+    return joinRequests
 })

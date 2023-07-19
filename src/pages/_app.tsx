@@ -5,6 +5,7 @@ import '~/styles/globals.css';
 import { SessionProvider } from "next-auth/react"
 import { organizationReduer } from '~/store/organization-reducer';
 import { useRouter } from 'next/router';
+import { storeOrganizationId } from '~/lib/data-in-cookies';
 
 const MyApp: AppType = ({
   Component, 
@@ -28,6 +29,7 @@ const MyApp: AppType = ({
          organizationImage : data?.id , 
          organizationName : data?.name
       })
+      storeOrganizationId({org_id : data.id})
   }
 })
 

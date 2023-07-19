@@ -15,16 +15,9 @@ import { OpenDeteRisksDeleteModel } from "~/store/open-models"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type RiskType = {
-  id: string
-  name: string
-  email: string
-  role : string 
-  image : string,
 
-}
 
-export const columns: ColumnDef<RiskType>[] = [
+export const columns: ColumnDef<MemberOrg>[] = [
   {
     accessorKey: "image",
     header: "Avatar",
@@ -35,17 +28,7 @@ export const columns: ColumnDef<RiskType>[] = [
   },
   {
     accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    header: "Email",
   },
   {
     accessorKey: "role",
