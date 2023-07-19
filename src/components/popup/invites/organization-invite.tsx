@@ -16,6 +16,10 @@ export  function OpenInvitationMessage () {
 
   const setIsOpen = openInvitationModel(state => state.setIsOpen)
 
+  const id = openInvitationModel(state => state.id)
+
+  
+
   function closeModal() {
     setIsOpen(false)
   }
