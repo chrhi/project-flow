@@ -11,8 +11,8 @@ import {
 import {  buttonVariants } from '~/components/used/AbdullahButton'
 import { useSession,  signOut } from "next-auth/react"
 import { api } from '~/utils/api'
-import { Organization } from '@prisma/client'
-
+import type { Organization } from '@prisma/client'
+import { RemoveOrgId, RemoveOrgName } from '~/lib/data-in-cookies'
 
 export default function DropDowsMenu() {
  
@@ -186,7 +186,11 @@ export default function DropDowsMenu() {
             <Menu.Item>
               {({ active }) => (
                 <button
-                onClick={async () => await signOut()}
+                onClick={async () =>{
+                  RemoveOrgId()
+                  RemoveOrgName()
+                  await signOut()
+                }}
                   className={`  ${ active ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900' : 'text-gray-900 dark:text-white'} group flex w-full  gap-x-4 items-center rounded-md px-2 py-2 text-sm`}
                 >
                     <LogOut className="mr-2 h-4 w-4" />

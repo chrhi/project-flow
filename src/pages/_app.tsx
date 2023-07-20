@@ -3,9 +3,9 @@ import Providers from '~/components/layout/Providers';
 import { api } from '~/utils/api';
 import '~/styles/globals.css';
 import { SessionProvider } from "next-auth/react"
-import { organizationReduer } from '~/store/organization-reducer';
+
 import { useRouter } from 'next/router';
-import { storeOrganizationId } from '~/lib/data-in-cookies';
+import { storeOrgName, storeOrganizationId } from '~/lib/data-in-cookies';
 
 const MyApp: AppType = ({
   Component, 
@@ -13,23 +13,19 @@ const MyApp: AppType = ({
   pageProps: { session, ...pageProps },
 }) => {
 
-  const setOrganozation = organizationReduer(state => state.set_organization)
+  
 
   const router = useRouter()
 
 
-  api.organizationRouter.getUserOrganization.useQuery(undefined,{
+  api.organizationRouter.getUserSelectedOrg.useQuery(undefined,{
       onSuccess: (data) => {
-            if(!data?.id || !data?.name ){
-                  return
-            }
-            console.log("not in the if")
-      setOrganozation({
-         organizationId : data.id , 
-         organizationImage : data?.id , 
-         organizationName : data?.name
-      })
-      storeOrganizationId({org_id : data.id})
+
+        if(!data || !data.id || !data.name){
+          return 
+        }
+      storeOrgName({org_name : data.name})
+      storeOrganizationId({org_id : data?.id})
   }
 })
 

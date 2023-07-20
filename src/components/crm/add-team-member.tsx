@@ -20,6 +20,7 @@ import { useSession } from "next-auth/react"
 import { toast } from 'react-hot-toast'
 import { Label } from '../ui/label'
 import { organizationReduer } from '~/store/organization-reducer';
+import { getOrgName, getOrganizationId } from '~/lib/data-in-cookies'
 
 
 
@@ -72,8 +73,8 @@ function AddTeamMember() {
     }
    
     mutaion.mutate({
-      OrganizationId : organizationId ,
-      OrganizationName : organizationName, 
+      OrganizationId : getOrganizationId() ,
+      OrganizationName : getOrgName(), 
       targetEmail : formData.email , 
       typeRelation : formData.relationType
     })

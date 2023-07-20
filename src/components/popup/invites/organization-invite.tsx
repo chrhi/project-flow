@@ -32,11 +32,11 @@ export  function OpenInvitationMessage () {
 
   const setIsOpen = openInvitationModel(state => state.setIsOpen)
 
-
+  const join_request_id = openInvitationModel(state => state.id)
 
   const [data , setData] = useState<JoinRequest>({} as JoinRequest)
 
- const {isLoading , isError} = api.notificatioRouter.getJoinRequest.useQuery({id  : getOrganizationId()}, {
+ const {isLoading , isError} = api.notificatioRouter.getJoinRequest.useQuery({id  : join_request_id}, {
     onSuccess : (data) => {
       setData(data as JoinRequest)
     },
@@ -127,13 +127,23 @@ const acceptMutation = api.notificatioRouter.accept_join_request.useMutation({
                                 <AbdullahButton 
                                    isLoading={acceptMutation.isLoading}
                                    onClick={() => acceptMutation.mutate({
-                                    id : getOrganizationId(),
+                                    id : join_request_id,
                                     organization_id : data?.OrganizationId , 
                                     role : data?.typeRelation,
                                   
                                   })}
                                    className={`${buttonVariants({variant : "primary" , size :"sm"})} `} >
                                    Accept
+                                </AbdullahButton> 
+                                <AbdullahButton 
+                                   isLoading={acceptMutation.isLoading}
+                                   onClick={() =>{
+                                    console.log(join_request_id , data?.OrganizationId  , data?.typeRelation)
+                                   } 
+                                  
+                                  }
+                                   className={`${buttonVariants({variant : "primary" , size :"sm"})} `} >
+                                   test
                                 </AbdullahButton> 
                         </div>
                 </div>
