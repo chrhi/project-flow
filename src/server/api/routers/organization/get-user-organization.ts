@@ -23,7 +23,11 @@ export const getUserOrganization = protectedProcedure
 
         console.log("name of orgs for" , ctx.session.user.name)
 
-        console.log(org_id)
+        console.log(org_id[0]?.role === "leader")
+
+        if(org_id[0]?.role === "leader"){
+            continue
+        }
         
         //if we found any thing we return it 
         if(org_id && org){
@@ -39,11 +43,6 @@ export const getUserOrganization = protectedProcedure
         }
     })
 
-
-    // if(orgs_user_invo_ivedInto && orgs_user_invo_ivedInto.length > 0){
-    //     return [...organization, ...orgs_user_invo_ivedInto]
-    // }
-    // in here i have to get the json array of each organization and see in the id of the user is in it
 
     return [...organization, ...orgs_user_invo_ivedInto]
 })
