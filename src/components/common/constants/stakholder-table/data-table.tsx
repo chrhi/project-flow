@@ -10,7 +10,6 @@ import {
 } from "@tanstack/react-table"
 import { useState } from "react"
 import AddTeamMember from "~/components/crm/add-team-member"
-import { Button } from "~/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -26,7 +25,8 @@ import {
   TableRow,
   
 } from "~/components/ui/table"
-
+import { AbdullahButton , buttonVariants } from "~/components/used/AbdullahButton"
+import { cn } from "~/lib/utils"
 
 
 interface DataTableProps<TData, TValue> {
@@ -67,9 +67,9 @@ export function DataTable<TData, TValue>({
     <AddTeamMember />
     <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" >
-                Columns
-              </Button>
+              <AbdullahButton className={cn(buttonVariants({variant :"secondary" , size : "sm"}))}>
+              Columns
+              </AbdullahButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {table
@@ -95,12 +95,12 @@ export function DataTable<TData, TValue>({
           </DropdownMenu>
     </div>
   
-    <div className="rounded-md border bg-white ">
+    <div className="rounded-md  bg-white ">
     
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id}>
+            <TableRow key={headerGroup.id} className="border-none">
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id}>
@@ -122,9 +122,10 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className="border-none group "
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="text-md font-semibold   text-gray-900">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -141,23 +142,19 @@ export function DataTable<TData, TValue>({
       </Table>
     </div>
     <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </Button>
-    
+             <AbdullahButton
+                   onClick={() => table.previousPage()}
+                   disabled={!table.getCanPreviousPage()}
+                   className={cn(buttonVariants({variant :"secondary" , size : "sm"}))}>
+                Previous
+              </AbdullahButton>
+
+              <AbdullahButton
+                    onClick={() => table.nextPage()}
+                    disabled={!table.getCanNextPage()}
+                    className={cn(buttonVariants({variant :"secondary" , size : "sm"}))}>
+                  Next
+              </AbdullahButton>
         {/* <PLusButtonStakHolder  refetch={refetch}/> */}
       </div>
     </>

@@ -11,6 +11,7 @@ import {
 } from "~/components/ui/dropdown-menu"
 
 import { OpenDeteRisksDeleteModel } from "~/store/open-models"
+import { Badge } from "@tremor/react"
 
 
 // This type is used to define the shape of our data.
@@ -19,20 +20,70 @@ import { OpenDeteRisksDeleteModel } from "~/store/open-models"
 
 export const columns: ColumnDef<MemberOrg>[] = [
   {
+    accessorKey: "index",
+    header: ({ column }) => {
+      return (
+        <Button
+          className="flex items-center justify-start pl-0"
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          #
+       
+        </Button>
+      )
+    },
+  },
+  {
     accessorKey: "image",
     header: "Avatar",
+    cell: ({ row }) => {
+
+      return (
+        <img src={row.original.image || "/assets/avatar.png"} alt="avatar" className="w-[40px] rounded-[50%]"  />
+    
+      )
+    }
   },
   {
     accessorKey: "name",
-    header: "Name",
+  
+    header: ({ column }) => {
+      return (
+        <Button
+        className="flex items-center justify-start pl-0"
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+        
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "email",
-    header: "Email",
+   
+    header: ({ column }) => {
+      return (
+        <Button
+        className="flex items-center justify-start pl-0"
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Email
+          
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "role",
     header: "Role",
+    cell: ({ row }) => {
+
+      return <Badge color="blue" className="rounded-md ">{row.original.role}</Badge>
+    }
   },
  
  

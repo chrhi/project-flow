@@ -34,9 +34,17 @@ export const createUser = publicProcedure
     }
   })
 
+
   const organization = await ctx.prisma.organization.create({
     data :{
-      Members : JSON.stringify([{user : createdUser.id , role : "leader" }]),
+      Members : JSON.stringify([{
+         user : createdUser.id ,
+         role : "leader" ,
+         image : createdUser.image,
+         email : createdUser.email ,
+         name  : createdUser.name ,
+         id   : createdUser.id
+        }]),
       Leader : createdUser.id ,
       userId : createdUser.id
     }

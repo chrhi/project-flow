@@ -10,6 +10,7 @@ function Head() {
         <link rel="icon" type="image/png" sizes="32x32" href="/logo.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/logo.png" />
         <link rel="manifest" href="/logo.png" />
+        <noscript>You need to enable JavaScript to run this app.</noscript>
         {/* <script src="//code.tidio.co/f4ntqdkrkcmkov2pbgapiuevig4fhtbq.js" async></script> */}
     </Head_change>
   )

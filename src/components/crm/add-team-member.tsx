@@ -84,7 +84,7 @@ function AddTeamMember() {
   
     <Popover>
            <PopoverTrigger asChild> 
-                 <AbdullahButton  >
+                 <AbdullahButton className={cn(buttonVariants({variant :"primary" , size :"sm"}))} >
                        Invite Members
                  </AbdullahButton>
            </PopoverTrigger>

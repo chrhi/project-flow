@@ -21,16 +21,12 @@ export const getUserOrganization = protectedProcedure
         const Members : MemberOrg[] = JSON.parse(org.Members) as MemberOrg[]
         const org_id = Members.filter(item => item.user === ctx.session.user.id)
 
-        console.log("name of orgs for" , ctx.session.user.name)
-
-        console.log(org_id[0]?.role === "leader")
-
         if(org_id[0]?.role === "leader"){
             continue
         }
         
         //if we found any thing we return it 
-        if(org_id && org){
+        if(org_id.length > 0 && org){
             //@ts-ignore
             orgs_user_invo_ivedInto.push(org)
         }
