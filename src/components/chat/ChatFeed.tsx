@@ -4,6 +4,7 @@ import Messages from './Messages'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { api } from '~/utils/api'
+import toast from 'react-hot-toast'
 
 
 
@@ -16,9 +17,11 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
 
   const  session =  useSession()
 
-  const [messages , setMessages ] = useState<any[]>([])
+  const [messages , setMessages] = useState<any[]>([])
 
-  const [chatPartener , setChatPartener ] = useState({} )
+  const [chatPartener , setChatPartener] = useState({})
+
+
 
   useEffect(() => {
     console.log(chatId)
@@ -31,7 +34,7 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
       setMessages(data )
     },
     onError : () => {
-      window.location.reload()
+     toast.error("there is an error fetching the messages")
     }
   })
 
@@ -43,7 +46,7 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
       
     },
     onError : () => {
-      window.location.reload()
+      toast.error("there is an error fetching the chat partner ")
     }
   })
 

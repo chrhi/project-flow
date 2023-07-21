@@ -6,6 +6,7 @@ import { SessionProvider } from "next-auth/react"
 
 import { useRouter } from 'next/router';
 import { storeOrgName, storeOrganizationId } from '~/lib/data-in-cookies';
+import AuthWrapper from '~/components/layout/AutoLogoutProvider';
 
 const MyApp: AppType = ({
   Component, 
@@ -32,12 +33,15 @@ const MyApp: AppType = ({
  
 
   return (
-    <SessionProvider session={session}>
-        <Providers>
-           <Component {...pageProps} />
-        </Providers> 
-    </SessionProvider>
-     
+   
+      <SessionProvider session={session}>
+         <AuthWrapper>
+          <Providers>
+             <Component {...pageProps} />
+          </Providers> 
+          </AuthWrapper>
+      </SessionProvider>
+ 
   );
 };
 

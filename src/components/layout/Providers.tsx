@@ -14,27 +14,36 @@ import { OpenInvitationMessage } from '../popup/invites/organization-invite';
 
 
 
+
 interface ProvidersAbdullahProps {
   children : ReactNode
 }
 
 const Providers: FC<ProvidersAbdullahProps> = ({children}) => {
-  return     <div className="w-full h-fit relative  scrollbar-hide ">
-     <NextNProgress options={{ showSpinner: false }} />
-      <Loading />
-      <AccessPopUp />
-      <BlockedPopUp />
-      <OpenInvitationMessage  />
-      <Toaster
-       position="top-right"
-       reverseOrder={false}
-      />
-      <Head />
-    <ReactFlowProvider>
-          {children}
-    </ReactFlowProvider> 
-   
-  </div>
+
+  return(
+
+    
+         <div className="w-full h-fit relative  scrollbar-hide ">
+             <NextNProgress options={{ showSpinner: false }} />
+             <Loading />
+             <AccessPopUp />
+             <BlockedPopUp />
+             <OpenInvitationMessage  />
+             <Toaster
+                  position="top-right"
+                  reverseOrder={false}
+              />
+             <Head />
+             <ReactFlowProvider>
+                     {children}
+             </ReactFlowProvider> 
+          </div>
+  
+    
+  )
+
+     
 }
 
 export default Providers

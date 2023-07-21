@@ -26,11 +26,11 @@ export const createUser = publicProcedure
   const hashedPassword  : string = await bcrypt?.hash(input.password, 10); // salt round
   const createdUser = await ctx.prisma.user.create({
     data : {
-      
-      email : input.email , 
-      image : "",
+
+      email : input.email, 
+      image : "https://avatars.githubusercontent.com/u/116351398?v=4",
       password : hashedPassword,
-      emailVerified : new Date() ,
+      emailVerified : new Date(),
     }
   })
 
@@ -38,18 +38,17 @@ export const createUser = publicProcedure
   const organization = await ctx.prisma.organization.create({
     data :{
       Members : JSON.stringify([{
-         user : createdUser.id ,
-         role : "leader" ,
+         user : createdUser.id,
+         role : "leader",
          image : createdUser.image,
          email : createdUser.email ,
          name  : createdUser.name ,
          id   : createdUser.id
         }]),
-      Leader : createdUser.id ,
-      userId : createdUser.id
+        Leader : createdUser.id ,
+        userId : createdUser.id
     }
   })
-  //now i have to be able to create an acount in this level here
 })
 
 
@@ -86,6 +85,14 @@ export const PushUserMoreInformations = publicProcedure
     },
     data :{
       name : input.OrganizationName,
+      Members : JSON.stringify([{
+        image : user?.image,
+        email : user?.image,
+        name :  user?.UserName,
+        user :  user?.id ,
+        role : "leader",
+        
+        }])
     }
   })
   await ctx.prisma.user.update({

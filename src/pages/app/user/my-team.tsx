@@ -24,6 +24,8 @@ const Page: NextPage = () => {
       })
 
       setPeople(prepare)
+
+      console.log(prepare)
      
     }, 
     onError : () => {
