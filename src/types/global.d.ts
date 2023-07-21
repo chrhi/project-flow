@@ -22,5 +22,14 @@ interface MemberOrg {
     user : string,
     role : string,
     index? : number 
-   
+}
+
+interface Message {
+    id: string
+    receiverId : string
+    senderId: string
+    text: string
+    type? : string 
+    url? : string
+    timestamp: number
 }

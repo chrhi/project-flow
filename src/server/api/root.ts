@@ -10,6 +10,7 @@ import { ProjectObjectivesRouter } from "./routers/project-objectives";
 import { comunicationsRouter } from "./routers/comunications";
 import { notificatioRouter } from "../notifications";
 import { organizationRouter } from "./routers/organization";
+import { chatRouter } from "../chat-server";
 
 
 
@@ -24,7 +25,8 @@ export const appRouter = createTRPCRouter({
     ProjectObjectivesRouter,
     comunicationsRouter,
     notificatioRouter,
-    organizationRouter
+    organizationRouter,
+    chatRouter
 });
 
 // export type definition of API

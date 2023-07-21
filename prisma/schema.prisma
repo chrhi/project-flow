@@ -43,7 +43,6 @@ model User {
   OrganizationName String?
   email            String    @unique
   emailVerified    DateTime?
-  
   password         String?
   image            String?
   selectedOrganizationId String? 
@@ -52,6 +51,23 @@ model User {
   sessions         Session[]
 
   organization Organization[]
+}
+
+// model ChatRoom {
+//      id          String    @id @default(cuid())
+//      messages    Message[]
+//      createdAt   DateTime  @default(now())
+// }
+
+model Message {
+    id          String    @id @default(cuid())
+    receiverId  String 
+    senderId    String
+    text        String
+    type        String 
+    url         String?
+    timestamp   DateTime  @default(now())
+    @@index([id])
 }
 
 model Organization {
