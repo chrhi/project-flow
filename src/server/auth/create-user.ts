@@ -37,14 +37,7 @@ export const createUser = publicProcedure
 
   const organization = await ctx.prisma.organization.create({
     data :{
-      Members : JSON.stringify([{
-         user : createdUser.id,
-         role : "leader",
-         image : createdUser.image,
-         email : createdUser.email ,
-         name  : createdUser.name ,
-         id   : createdUser.id
-        }]),
+      Members : JSON.stringify([]),
         Leader : createdUser.id ,
         userId : createdUser.id
     }
@@ -87,8 +80,8 @@ export const PushUserMoreInformations = publicProcedure
       name : input.OrganizationName,
       Members : JSON.stringify([{
         image : user?.image,
-        email : user?.image,
-        name :  user?.UserName,
+        email : user?.email,
+        name :  input.userName ,
         user :  user?.id ,
         role : "leader",
         
