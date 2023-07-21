@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import { type FC, useEffect, useRef, useState } from 'react'
 import type { User  , Message} from '@prisma/client'
+import { ScrollArea } from '../ui/scroll-area'
 
 interface MessagesProps {
   initialMessages: Message[]
@@ -37,6 +38,7 @@ const Messages: FC<MessagesProps> = ({
   
 
   return (
+    <ScrollArea>
     <div
       id='messages'
       className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
@@ -69,7 +71,7 @@ const Messages: FC<MessagesProps> = ({
                 )}>
                 <span
                   className={cn('px-4 py-2 rounded-lg inline-block', {
-                    'bg-gradient-to-tr from-pink-500 to-fuchsia-700 text-white': isCurrentUser,
+                    'bg-gradient-to-tr from-indigo-500 to-blue-700 text-white': isCurrentUser,
                     'bg-gray-200 text-gray-900': !isCurrentUser,
                     'rounded-br-none':
                       !hasNextMessageFromSameUser && isCurrentUser,
@@ -106,6 +108,7 @@ const Messages: FC<MessagesProps> = ({
 
        
     </div>
+    </ScrollArea>
   )
 }
 

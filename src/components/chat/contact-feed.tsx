@@ -15,6 +15,7 @@ import ChatContact from './chat-contact'
 import { Input } from '../ui/input'
 import Search from '../icons/search'
 import ContactLoading from './contact-loading'
+import { ScrollArea } from '../ui/scroll-area'
 
 function ContactFeed() {
 
@@ -54,16 +55,22 @@ function ContactFeed() {
           <Search className="w-6 h-6 text-gray-500" />
         </div>
         {
-          isLoading ? <ContactLoading /> :  people.map(item => (
-            <ChatContact 
-              id={item.user}
-              key={item.user}
-              image={item.image}
-              isUnseenMessages={true}
-              lastMessage={item.email}
-              name={item.name}
-            />
-         ))
+          isLoading ? <ContactLoading /> :  
+          <ScrollArea>
+            {
+               people.map(item => (
+                <ChatContact 
+                  id={item.user}
+                  key={item.user}
+                  image={item.image}
+                  isUnseenMessages={true}
+                  lastMessage={item.email}
+                  name={item.name}
+                />
+             ))
+            }
+    
+        </ScrollArea>
         }
        </TabsContent>
     </Tabs>

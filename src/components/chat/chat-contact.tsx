@@ -31,7 +31,7 @@ const ChatContact: FC<chatContactAbdullahProps> = ({image , name , lastMessage ,
  
   return <div
             onClick={handleClick}
-            className={cn("w-full h-[60px] px-4  cursor-pointer my-1 hover:bg-gray-100  flex items-center justify-start gap-x-2 ",{
+            className={cn("w-full h-[60px] px-4  cursor-pointer my-2 hover:bg-gray-100  flex items-center justify-start gap-x-2 ",{
               "bg-sky-50" : getChatPartnerId() === id
             }
            )}>
