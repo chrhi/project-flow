@@ -29,3 +29,18 @@ return org_name || ""
 export const RemoveOrgName = () => {
 Cookies?.remove("abdullah-org-name-abdullah")
 }
+
+export const storeChatPartnerId  = ({
+  id  
+}:{id : string }) => {
+  Cookies?.set("abdullah-chat-partner-id" , id)
+}
+
+export const getChatPartnerId= () : string => {
+const org_id : string | undefined =   Cookies.get("abdullah-chat-partner-id") // => 'value'
+return org_id || ""
+}
+
+export const RemoveChatPartnerId = () => {
+Cookies?.remove("abdullah-chat-partner-id")
+}

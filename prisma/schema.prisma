@@ -63,7 +63,7 @@ model Message {
     id          String    @id @default(cuid())
     receiverId  String 
     ChatId      String
-    senderId    String
+    senderId     String
     text        String
     type        String 
     url         String?

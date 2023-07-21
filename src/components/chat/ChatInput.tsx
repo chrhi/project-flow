@@ -3,19 +3,22 @@ import { toast } from 'react-hot-toast'
 import TextareaAutosize from 'react-textarea-autosize'
 import { AbdullahButton } from '../used/AbdullahButton'
 import { api } from '~/utils/api'
+import { getChatPartnerId } from '~/lib/data-in-cookies'
+import type { User } from '@prisma/client'
 
 interface ChatInputProps {
   chatPartner: User
-  chatId: string,
+
   refetch : () => Promise<any>
 }
 
-const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId , refetch }) => {
+const ChatInput: FC<ChatInputProps> = ({ chatPartner , refetch }) => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null)
   const [input, setInput] = useState<string>('')
 
   const mutation = api.chatRouter.send_message.useMutation({
     onSuccess :(data) => {
+      console.log(data)
       toast.success(data?.text)
       refetch()
     },
@@ -27,11 +30,11 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId , refetch }) => {
   const sendMessage = async () => {
     if(!input) return
     mutation.mutate({
-      ChatId : chatId,
+      partnerId : getChatPartnerId(),
       text : input , 
       type : "text", 
       url :"https://images5.alphacoders.com/131/1316292.jpeg",
-      receiverId : ""
+      receiverId : getChatPartnerId()
     })
   }
 
@@ -49,7 +52,7 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId , refetch }) => {
           rows={1}
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={`Message ${chatPartner?.firstName}`}
+          placeholder={`Message ${chatPartner?.name}`}
           className='block w-full resize-none border-0 bg-transparent text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:py-1.5 sm:text-sm sm:leading-6'
         />
 

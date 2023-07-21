@@ -21,9 +21,9 @@ const config = {
         "@typescript-eslint/no-floating-promises" : "off",
         "@typescript-eslint/no-empty-function":"off",
         "@typescript-eslint/require-await":"off",
-        "@typescript-eslint/restrict-template-expressions" :"off"
+        "@typescript-eslint/restrict-template-expressions" :"off",
+        "@next/next/no-img-element": "off",
         
-       
       },
       files: ["*.ts", "*.tsx"],
       parserOptions: {

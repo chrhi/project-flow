@@ -23,7 +23,7 @@ const Page: NextPage = () => {
    
        
         <ContactFeed />
-       
+        <ChatFeed  chatId={chatId as string}/>
        
       </main>
     </>

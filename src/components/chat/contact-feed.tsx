@@ -12,6 +12,9 @@ import { toast } from 'react-hot-toast'
 import { useSession } from 'next-auth/react'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import ChatContact from './chat-contact'
+import { Input } from '../ui/input'
+import Search from '../icons/search'
+import ContactLoading from './contact-loading'
 
 function ContactFeed() {
 
@@ -21,7 +24,7 @@ function ContactFeed() {
  
 
   //get the team members to show them in the contact list
-  const {isFetching} = api.userRouter.get_org_members.useQuery({id : getOrganizationId()}, {
+  const {isLoading} = api.userRouter.get_org_members.useQuery({id : getOrganizationId()}, {
     onSuccess : (data) => {
       setPeople(data.filter(item => item.user !== session.data?.user.id))
     }, 
@@ -33,7 +36,7 @@ function ContactFeed() {
   return (
     <div className='w-[370px] pt-[50px] fixed top-0 left-0 bottom-0 border-r-gray-500 border-r-[2px] bg-white h-screen'>
         <ChatHeader  />
-        {isFetching ? <p>loading...</p> : 
+   
         <Tabs defaultValue="team" className="w-[360px] mx-auto ">
       <TabsList className="grid w-full grid-cols-2 h-[50px] rounded-none">
         <TabsTrigger className='h-full' value="team">My team</TabsTrigger>
@@ -43,8 +46,15 @@ function ContactFeed() {
         <h1>projects</h1>
       </TabsContent>
       <TabsContent value="team">
-        
-         {people.map(item => (
+       
+        <div className='w-full  h-[40px] flex border items-center rounded-lg  px-2'>
+          <Input 
+          placeholder='serach for contact...'
+          className='h-[40px] w-[90%] mr-auto border-none ' />
+          <Search className="w-6 h-6 text-gray-500" />
+        </div>
+        {
+          isLoading ? <ContactLoading /> :  people.map(item => (
             <ChatContact 
               id={item.user}
               key={item.user}
@@ -53,10 +63,11 @@ function ContactFeed() {
               lastMessage={item.email}
               name={item.name}
             />
-         ))}
+         ))
+        }
        </TabsContent>
     </Tabs>
-}
+
     </div>
   )
 }

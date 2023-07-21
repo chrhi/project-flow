@@ -3,8 +3,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { Badge } from '@tremor/react'
 import { useRouter } from 'next/router'
 import { cn } from '~/lib/utils'
-import { use_is_current_page } from '~/utils/navigation-helper'
 import { useSession } from 'next-auth/react'
+import { storeChatPartnerId  , getChatPartnerId} from '~/lib/data-in-cookies'
 
 interface chatContactAbdullahProps {
   id : string ,
@@ -21,15 +21,20 @@ const ChatContact: FC<chatContactAbdullahProps> = ({image , name , lastMessage ,
   const router = useRouter()
 
   const handleClick = () => {
-    router.push(`/app/chat/${id}--${session.data?.user.id}`)
+    router.push(`/app/chat`)
+    storeChatPartnerId({
+      id 
+    })
     
     
   }
  
   return <div
             onClick={handleClick}
-            className={cn("w-full h-[60px] px-4  cursor-pointer my-1 hover:bg-gray-100  flex items-center justify-start gap-x-2 ",
-            `${use_is_current_page(`/app/chat/${id}--${session.data?.user.id}`) ? "bg-sky-900" :" bg-white" }`)}>
+            className={cn("w-full h-[60px] px-4  cursor-pointer my-1 hover:bg-gray-100  flex items-center justify-start gap-x-2 ",{
+              "bg-sky-50" : getChatPartnerId() === id
+            }
+           )}>
             <Avatar className='w-[50px] h-[50px]'>
                    <AvatarImage src={image || "/assets/avatar.png"} alt="@abdullah" />
                    <AvatarFallback>AB</AvatarFallback>
@@ -38,9 +43,7 @@ const ChatContact: FC<chatContactAbdullahProps> = ({image , name , lastMessage ,
                 <h3 className='truncate text-sm text-gray-600 '>{name}</h3>
                 <h3 className={ `truncate text-sm ${isUnseenMessages ? "text-gray-900 font-semibold" : "text-gray-600"}    ` }>{lastMessage} </h3>
            </div>
-            <div className='w-[50px] h-full flex items-center justify-center'>
-                 <Badge className='rounded-xl ' color='blue'>new</Badge>
-            </div>
+          
 </div>
 }
 

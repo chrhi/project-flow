@@ -8,14 +8,20 @@ import { TRPCError } from "@trpc/server";
 
 export const get_messages  = protectedProcedure
 .input(z.object({ 
-    receiverId : z.string(),
+  partnerId : z.string(),
   }) )
 .query( async ({ input , ctx }) => {
 
     const message = await ctx.prisma.message.findMany({
         where :{
-            receiverId : input.receiverId , 
-            senderId : ctx.session.user.id
+          OR :[
+            {
+                ChatId : `${input.partnerId}-${ctx.session.user.id}`
+            },
+            {
+              ChatId : `${ctx.session.user.id}-${input.partnerId}`
+            }
+          ]    
         }
     }).catch(err => {
       throw new TRPCError({

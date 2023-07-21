@@ -5,11 +5,14 @@ import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { api } from '~/utils/api'
 import toast from 'react-hot-toast'
+import { getChatPartnerId } from '~/lib/data-in-cookies'
+import type { Message, User } from '@prisma/client'
 
-
-
-
-
+function sortDatesNewToOld(dates: Date[]): Date[] {
+  const sortedDates = [...dates];
+  sortedDates.sort((date1, date2) => date2.getTime() - date1.getTime());
+  return sortedDates;
+}
 
 
 const ChatFeed =  ({ chatId }: {chatId : string}) => {
@@ -17,31 +20,34 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
 
   const  session =  useSession()
 
-  const [messages , setMessages] = useState<any[]>([])
+  const [initialMessages , setInitialMessages] = useState<Message[]>([])
 
-  const [chatPartener , setChatPartener] = useState({})
-
-
-
-  useEffect(() => {
-    console.log(chatId)
-  },[chatId])
+  const [chatPartner , setChatPartner] = useState<User>({} as User)
 
 
 
-  const {refetch , isLoading}  = api.chatRouter.get_messages.useQuery({receiverId : chatId},{
+
+
+
+
+  const {refetch , isLoading}  = api.chatRouter.get_messages.useQuery({partnerId : getChatPartnerId() },{
     onSuccess : (data) => {
-      setMessages(data )
+
+      const sortedArray = data.sort((item1, item2) => item1.timestamp.getTime() - item2.timestamp.getTime())
+
+      setInitialMessages(sortedArray.reverse())
+   
     },
     onError : () => {
      toast.error("there is an error fetching the messages")
     }
   })
 
-  const {isLoading : isChatPartnerLoading} = api.chatRouter.get_chat_partner.useQuery({receiverId : chatId} , {
+  const {isLoading : isChatPartnerLoading} = api.chatRouter.get_chat_partner.useQuery({receiverId : getChatPartnerId()} , {
     onSuccess : (user) => {
       if(user){
-        setChatPartener(user)
+        setChatPartner(user)
+     
       }
       
     },
@@ -50,40 +56,35 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
     }
   })
 
-  // get messages 
 
-  // get chat partner 
 
 
   return (
-    <div className='flex-1 max-w-[calc(100vw-370px)] ml-[370px] bg-white p-4 justify-between flex flex-col h-full max-h-[calc(100vh-6rem)]'>
-      <div className='flex sm:items-center justify-between py-3 border-b-2 border-gray-200'>
-        <div className='relative flex items-center space-x-4'>
+    <div className='flex-1 max-w-[calc(100vw-370px)] ml-[370px] bg-white  justify-between flex flex-col h-full max-h-[calc(100vh-6rem)]'>
+      <div className='flex sm:items-center justify-between py-3 h-[50px]   border-b-2 border-gray-200'>
+        <div className='relative flex items-center space-x-4 p-4'>
           <div className='relative'>
-            <div className='relative w-8 sm:w-12 h-8 sm:h-12'>
-              <Image
-                fill
-                referrerPolicy='no-referrer'
-                src={ "/assets/avatar.png"}
+            <div className='relative w-8 sm:w-8 h-8 sm:h-8'>
+              <img
+                src={ chatPartner?.image ?  chatPartner?.image : "/assets/avatar.png"}
                 alt={`${ "/assets/avatar.png"} profile picture`}
                 className='rounded-full'
               />
-              {/* chatPartner?.name ||
-              chatPartner?.image || */}
+            
             </div>
           </div>
 
           <div className='flex flex-col leading-tight'>
-            <div className='text-xl flex items-center'>
+            <div className='text-md flex items-center'>
               <span className='text-gray-700 mr-3 font-semibold'>
-                {/* {chatPartner.name} */}
-                {"abdullah"}
+                {chatPartner?.name ? chatPartner?.name : "chat partner"}
+                
               </span>
             </div>
 
-            <span className='text-sm text-gray-600'>
-              {/* {chatPartner.email} */}
-              {"mahdi.chahri55@gmail.com"}
+            <span className='text-xs text-gray-600'>
+              {chatPartner?.email}
+            
               </span>
           </div>
         </div>
@@ -94,15 +95,15 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
         <>
         <Messages
             chatId={chatId}
-            chatPartner={chatPartener as unknown as User}
+            chatPartner={chatPartner }
             sessionImg={session?.data?.user.image}
             sessionId={session?.data?.user.id || ""}
-            initialMessages={messages}
+            initialMessages={initialMessages}
          />
         <ChatInput 
             refetch ={refetch} 
-            chatId={chatId} 
-            chatPartner={chatPartener as unknown as User} />
+           
+            chatPartner={chatPartner } />
         
         </>
       }
