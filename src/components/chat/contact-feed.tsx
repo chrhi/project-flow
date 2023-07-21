@@ -50,8 +50,8 @@ function ContactFeed() {
               key={item.user}
               image={item.image}
               isUnseenMessages={true}
-              lastMessage='how are you doing baby'
-              name='Salah blil'
+              lastMessage={item.email}
+              name={item.name}
             />
          ))}
        </TabsContent>

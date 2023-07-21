@@ -8,6 +8,7 @@ import { TRPCError } from "@trpc/server";
 
 export const send_message  = protectedProcedure
 .input(z.object({ 
+    ChatId : z.string() ,
     receiverId : z.string(),
     text : z.string().max(2000),
     type : z.string().optional(),
@@ -19,6 +20,7 @@ export const send_message  = protectedProcedure
       data :{
         senderId: ctx.session.user.id,
         receiverId : input.receiverId,
+        ChatId : input.ChatId,
         text: input.text,
         type :input.type || "TEXT", 
         url : input.url || "",

@@ -4,6 +4,7 @@ import { Badge } from '@tremor/react'
 import { useRouter } from 'next/router'
 import { cn } from '~/lib/utils'
 import { use_is_current_page } from '~/utils/navigation-helper'
+import { useSession } from 'next-auth/react'
 
 interface chatContactAbdullahProps {
   id : string ,
@@ -15,11 +16,12 @@ interface chatContactAbdullahProps {
 
 const ChatContact: FC<chatContactAbdullahProps> = ({image , name , lastMessage ,isUnseenMessages , id}) => {
 
+  const session = useSession()
 
   const router = useRouter()
 
   const handleClick = () => {
-    router.push(`/app/chat/${id}`)
+    router.push(`/app/chat/${id}--${session.data?.user.id}`)
     
     
   }
@@ -27,7 +29,7 @@ const ChatContact: FC<chatContactAbdullahProps> = ({image , name , lastMessage ,
   return <div
             onClick={handleClick}
             className={cn("w-full h-[60px] px-4  cursor-pointer my-1 hover:bg-gray-100  flex items-center justify-start gap-x-2 ",
-            `${use_is_current_page(`/app/chat/${id}`) ? "bg-sky-900" :" bg-white" }`)}>
+            `${use_is_current_page(`/app/chat/${id}--${session.data?.user.id}`) ? "bg-sky-900" :" bg-white" }`)}>
             <Avatar className='w-[50px] h-[50px]'>
                    <AvatarImage src={image || "/assets/avatar.png"} alt="@abdullah" />
                    <AvatarFallback>AB</AvatarFallback>

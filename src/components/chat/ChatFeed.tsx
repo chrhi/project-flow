@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ChatInput from './ChatInput'
 import Messages from './Messages'
 import { useSession } from 'next-auth/react'
@@ -19,6 +19,12 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
   const [messages , setMessages ] = useState<any[]>([])
 
   const [chatPartener , setChatPartener ] = useState({} )
+
+  useEffect(() => {
+    console.log(chatId)
+  },[chatId])
+
+
 
   const {refetch , isLoading}  = api.chatRouter.get_messages.useQuery({receiverId : chatId},{
     onSuccess : (data) => {

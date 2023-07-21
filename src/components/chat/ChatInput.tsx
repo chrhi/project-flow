@@ -27,6 +27,7 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId , refetch }) => {
   const sendMessage = async () => {
     if(!input) return
     mutation.mutate({
+      ChatId : chatId,
       text : input , 
       type : "text", 
       url :"https://images5.alphacoders.com/131/1316292.jpeg",
