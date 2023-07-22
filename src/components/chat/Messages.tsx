@@ -5,6 +5,9 @@ import { type FC, useEffect, useRef, useState } from 'react'
 import type { User  , Message} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import { pusherClient } from '~/lib/pusher'
+import useSound from 'use-sound';
+import AudioPlayer from './AudioPlayer'
+
 
 interface MessagesProps {
   initialMessages: Message[]
@@ -20,6 +23,9 @@ const Messages: FC<MessagesProps> = ({
   chatPartner,
   sessionImg,
 }) => {
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
   const [messages, setMessages] = useState<Message[]>([])
 
  
@@ -37,6 +43,10 @@ const Messages: FC<MessagesProps> = ({
 
     const messageHandler = (message: Message) => {
       setMessages((prev) => [message, ...prev])
+      if (audioRef?.current) {
+        audioRef?.current?.play();
+      }
+ 
     }
 
     pusherClient.bind('incoming-message', messageHandler)
@@ -60,6 +70,7 @@ const Messages: FC<MessagesProps> = ({
 
   return (
     <ScrollArea>
+    <AudioPlayer audioRef={audioRef} />
     <div
       id='messages'
       className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>

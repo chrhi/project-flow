@@ -18,12 +18,12 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner , refetch }) => {
 
   const mutation = api.chatRouter.send_message.useMutation({
     onSuccess :(data) => {
-      console.log(data)
-      toast.success(data?.text)
+      setInput("")
       refetch()
     },
     onError : (err) => {
-      toast.error(err?.message)
+      setInput("")
+      refetch()
     }
   })
 
