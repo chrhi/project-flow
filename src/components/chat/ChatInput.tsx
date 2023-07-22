@@ -17,13 +17,14 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner , refetch }) => {
   const [input, setInput] = useState<string>('')
 
   const mutation = api.chatRouter.send_message.useMutation({
-    onSuccess :(data) => {
+    onSuccess : async (data) => {
       setInput("")
-      refetch()
+      await refetch()
     },
-    onError : (err) => {
+    onError : async (err) => {
+      await refetch()
       setInput("")
-      refetch()
+  
     }
   })
 

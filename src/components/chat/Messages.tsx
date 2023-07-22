@@ -1,11 +1,8 @@
 import { cn, toPusherKey, } from '~/lib/utils'
-import { format } from 'date-fns'
-import Image from 'next/image'
 import { type FC, useEffect, useRef, useState } from 'react'
 import type { User  , Message} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import { pusherClient } from '~/lib/pusher'
-import useSound from 'use-sound';
 import AudioPlayer from './AudioPlayer'
 
 
@@ -13,13 +10,13 @@ interface MessagesProps {
   initialMessages: Message[]
   sessionId: string
   sessionImg: string | null | undefined
-  chatPartner: User
+  chatPartner: User,
+ 
 }
 
 const Messages: FC<MessagesProps> = ({
   initialMessages,
   sessionId,
-  
   chatPartner,
   sessionImg,
 }) => {
@@ -43,9 +40,7 @@ const Messages: FC<MessagesProps> = ({
 
     const messageHandler = (message: Message) => {
       setMessages((prev) => [message, ...prev])
-      if (audioRef?.current) {
-        audioRef?.current?.play();
-      }
+     
  
     }
 
@@ -58,6 +53,9 @@ const Messages: FC<MessagesProps> = ({
       pusherClient.unbind('incoming-message', messageHandler)
     }
   }, [ sessionId , chatPartner.id ])
+
+
+  
 
 
   function getFormattedHourAndMinutesFromDate(date: Date): string {

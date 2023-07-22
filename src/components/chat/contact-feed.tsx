@@ -35,7 +35,7 @@ function ContactFeed() {
   })
 
   return (
-    <div className='w-[370px] pt-[50px] fixed top-0 left-0 bottom-0 border-r-gray-500 border-r-[2px] bg-white h-screen'>
+    <div className='w-[0] hidden md:block md:w-[370px] pt-[50px]  fixed top-0 left-0 bottom-0 border-r-gray-500 border-r-[2px] bg-white h-screen'>
         <ChatHeader  />
    
         <Tabs defaultValue="team" className="w-[360px] mx-auto ">
