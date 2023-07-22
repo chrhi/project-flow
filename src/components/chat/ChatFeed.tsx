@@ -94,6 +94,7 @@ const ChatFeed =  ({  }) => {
         isChatPartnerLoading || isLoading ? <h1>loading messages...</h1> : 
         <>
         <Messages
+              refetch ={refetch} 
             chatPartner={chatPartner }
             sessionImg={session?.data?.user.image}
             sessionId={session?.data?.user.id || ""}

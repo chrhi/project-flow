@@ -11,6 +11,7 @@ interface MessagesProps {
   sessionId: string
   sessionImg: string | null | undefined
   chatPartner: User,
+  refetch : () => Promise<any>
  
 }
 
@@ -19,6 +20,7 @@ const Messages: FC<MessagesProps> = ({
   sessionId,
   chatPartner,
   sessionImg,
+  refetch
 }) => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -40,10 +42,9 @@ const Messages: FC<MessagesProps> = ({
 
     const messageHandler = (message: Message) => {
      
-      console.log(message)
-      console.log(typeof(message))
-      const newMessage = {...message ,timestamp : message.timestamp || new Date()}
-      setMessages([...messages , newMessage].sort((item1, item2) => item1.timestamp?.getTime() - item2.timestamp?.getTime())?.reverse())
+      refetch().then(() => {
+        console.log("the client has been trigered")
+      })
     }
 
     pusherClient.bind('incoming-message', messageHandler)
@@ -54,7 +55,7 @@ const Messages: FC<MessagesProps> = ({
       )
       pusherClient.unbind('incoming-message', messageHandler)
     }
-  }, [ sessionId , chatPartner.id , messages])
+  }, [ sessionId , chatPartner.id , messages , refetch])
 
 
   
