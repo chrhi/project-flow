@@ -31,8 +31,13 @@ export const send_message  = protectedProcedure
       throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message and ${err.message}`})
     })
 
-    await pusherServer.trigger(toPusherKey(`chat:${ctx.session.user.id}-${input.partnerId}`), 'incoming-message', JSON.stringify(message))
+    try{
+      await pusherServer.trigger(toPusherKey(`chat:${ctx.session.user.id}-${input.partnerId}`), 'incoming-message', JSON.stringify(message))
+    }catch(err){
+      return message
+    }
 
+   
 
     return message
    
