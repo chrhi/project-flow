@@ -34,11 +34,10 @@ const Messages: FC<MessagesProps> = ({
     setMessages(initialMessages)
   },[initialMessages])
 
-  
+  // toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
   useEffect(() => {
-    console.log(sessionId)
     pusherClient.subscribe(
-      "chat"
+      "qqq"
     )
 
     const messageHandler = (message: Message) => {
@@ -51,7 +50,7 @@ const Messages: FC<MessagesProps> = ({
 
     return () => {
       pusherClient.unsubscribe(
-       "chat"
+        "qqq"
       )
       pusherClient.unbind('incoming-message', messageHandler)
     }
