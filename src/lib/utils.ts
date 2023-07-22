@@ -55,3 +55,8 @@ export function downloadImage(dataUrl : any) {
   a.setAttribute('href', dataUrl);
   a.click();
 }
+
+
+export function toPusherKey(key: string) {
+  return key.replace(/:/g, '__')
+}

@@ -15,7 +15,7 @@ function sortDatesNewToOld(dates: Date[]): Date[] {
 }
 
 
-const ChatFeed =  ({ chatId }: {chatId : string}) => {
+const ChatFeed =  ({  }) => {
  
 
   const  session =  useSession()
@@ -24,7 +24,7 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
 
   const [chatPartner , setChatPartner] = useState<User>({} as User)
 
-
+  
 
 
 
@@ -94,7 +94,6 @@ const ChatFeed =  ({ chatId }: {chatId : string}) => {
         isChatPartnerLoading || isLoading ? <h1>loading messages...</h1> : 
         <>
         <Messages
-            chatId={chatId}
             chatPartner={chatPartner }
             sessionImg={session?.data?.user.image}
             sessionId={session?.data?.user.id || ""}

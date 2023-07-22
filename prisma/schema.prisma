@@ -64,7 +64,7 @@ model Message {
     receiverId  String 
     ChatId      String
     senderId     String
-    text        String
+    text        String  @db.LongText
     type        String 
     url         String?
     timestamp   DateTime  @default(now())

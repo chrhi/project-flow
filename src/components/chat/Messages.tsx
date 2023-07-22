@@ -1,14 +1,14 @@
-import { cn, } from '~/lib/utils'
+import { cn, toPusherKey, } from '~/lib/utils'
 import { format } from 'date-fns'
 import Image from 'next/image'
 import { type FC, useEffect, useRef, useState } from 'react'
 import type { User  , Message} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
+import { pusherClient } from '~/lib/pusher'
 
 interface MessagesProps {
   initialMessages: Message[]
   sessionId: string
-  chatId: string
   sessionImg: string | null | undefined
   chatPartner: User
 }
@@ -16,7 +16,7 @@ interface MessagesProps {
 const Messages: FC<MessagesProps> = ({
   initialMessages,
   sessionId,
-  chatId,
+  
   chatPartner,
   sessionImg,
 }) => {
@@ -28,6 +28,27 @@ const Messages: FC<MessagesProps> = ({
   useEffect(() => {
     setMessages(initialMessages)
   },[initialMessages])
+
+  
+  useEffect(() => {
+    pusherClient.subscribe(
+      toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
+    )
+
+    const messageHandler = (message: Message) => {
+      setMessages((prev) => [message, ...prev])
+    }
+
+    pusherClient.bind('incoming-message', messageHandler)
+
+    return () => {
+      pusherClient.unsubscribe(
+        toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
+      )
+      pusherClient.unbind('incoming-message', messageHandler)
+    }
+  }, [ sessionId , chatPartner.id ])
+
 
   function getFormattedHourAndMinutesFromDate(date: Date): string {
     const hour = date.getHours().toString().padStart(2, '0');
@@ -47,9 +68,7 @@ const Messages: FC<MessagesProps> = ({
 
     {messages.map((message, index) => {
         const isCurrentUser = message.senderId === sessionId
-        console.log("here we are in the messages list")
-        console.log(message)
-
+    
         const hasNextMessageFromSameUser =
           messages[index - 1]?.senderId === messages[index]?.senderId
 
