@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { protectedProcedure } from "../api/trpc";
+import {  protectedProcedure } from "../api/trpc";
 import { TRPCError } from "@trpc/server";
 import { pusherServer } from "~/lib/pusher";
 import { toPusherKey } from "~/lib/utils";
@@ -18,11 +18,14 @@ export const send_message  = protectedProcedure
   }) )
 .mutation( async ({ input , ctx }) => {
 
+//toPusherKey(`chat:${input.partnerId}-${ctx?.session?.user.id}`)   
+
+  
     const message = await ctx.prisma.message.create({
       data :{
-        senderId: ctx.session.user.id,
+        senderId: ctx?.session?.user.id || "",
         receiverId : input.receiverId,
-        ChatId : `${ctx.session.user.id}-${input.partnerId}`,
+        ChatId : `${ctx?.session?.user.id}-${input.partnerId}`,
         text: input.text,
         type :input.type || "TEXT", 
         url : input.url || "",
@@ -30,10 +33,19 @@ export const send_message  = protectedProcedure
     }).catch(err => {
       throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message and ${err.message}`})
     })
+    
+    
 
-      await pusherServer.trigger(toPusherKey(`chat:${input.partnerId}-${ctx.session.user.id}`), 'incoming-message', message).catch(err => {
-      throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message and ${err.message}`})
+    await pusherServer.trigger( toPusherKey(`chat:${input.partnerId}`), 'incoming-message', message).catch(err => {
+      throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message pucher error and ${err.message}`})
     })
+  
+
+
+
+     
+
+     
     
    
 

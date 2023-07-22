@@ -36,22 +36,22 @@ const Messages: FC<MessagesProps> = ({
 
   
   useEffect(() => {
+    console.log(sessionId)
     pusherClient.subscribe(
-      toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
+      toPusherKey(`chat:${sessionId}`)
     )
 
     const messageHandler = (message: Message) => {
-     
-      refetch().then(() => {
-        console.log("the client has been trigered")
-      })
+     console.log(message)
+     message.timestamp = new Date()
+     setMessages((prev) => [message, ...prev])
     }
 
     pusherClient.bind('incoming-message', messageHandler)
 
     return () => {
       pusherClient.unsubscribe(
-        toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
+        toPusherKey(`chat:${sessionId}`)
       )
       pusherClient.unbind('incoming-message', messageHandler)
     }

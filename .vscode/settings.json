@@ -1,13 +1,15 @@
 {
-    "cSpell.words": [
-        "Créez",
-        "démarrage",
-        "exigenc",
-        "maintenant",
-        "Objectif",
-        "Projet",
-        "superjson",
-        "tailwindcss",
-        "TRPC"
-    ]
+  "cSpell.words": [
+    "Créez",
+    "démarrage",
+    "exigenc",
+    "maintenant",
+    "Objectif",
+    "Projet",
+    "superjson",
+    "tailwindcss",
+    "TRPC"
+  ],
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
