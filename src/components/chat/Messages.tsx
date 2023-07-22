@@ -39,9 +39,11 @@ const Messages: FC<MessagesProps> = ({
     )
 
     const messageHandler = (message: Message) => {
-      setMessages((prev) => [message, ...prev])
      
- 
+      console.log(message)
+      console.log(typeof(message))
+      const newMessage = {...message ,timestamp : message.timestamp || new Date()}
+      setMessages([...messages , newMessage].sort((item1, item2) => item1.timestamp?.getTime() - item2.timestamp?.getTime())?.reverse())
     }
 
     pusherClient.bind('incoming-message', messageHandler)
@@ -52,13 +54,14 @@ const Messages: FC<MessagesProps> = ({
       )
       pusherClient.unbind('incoming-message', messageHandler)
     }
-  }, [ sessionId , chatPartner.id ])
+  }, [ sessionId , chatPartner.id , messages])
 
 
   
 
 
   function getFormattedHourAndMinutesFromDate(date: Date): string {
+    if(!date) return "00:00"
     const hour = date?.getHours()?.toString()?.padStart(2, '0');
     const minutes = date?.getMinutes()?.toString()?.padStart(2, '0');
   
@@ -75,7 +78,7 @@ const Messages: FC<MessagesProps> = ({
       <div ref={scrollDownRef} />
     
 
-    {messages.map((message, index) => {
+    {messages?.map((message, index) => {
         const isCurrentUser = message.senderId === sessionId
     
         const hasNextMessageFromSameUser =
