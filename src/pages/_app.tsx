@@ -3,10 +3,8 @@ import Providers from '~/components/layout/Providers';
 import { api } from '~/utils/api';
 import '~/styles/globals.css';
 import { SessionProvider } from "next-auth/react"
-
-import { useRouter } from 'next/router';
 import { storeOrgName, storeOrganizationId } from '~/lib/data-in-cookies';
-import AuthWrapper from '~/components/layout/AutoLogoutProvider';
+
 
 const MyApp: AppType = ({
   Component, 
@@ -16,7 +14,6 @@ const MyApp: AppType = ({
 
   
 
-  const router = useRouter()
 
 
   api.organizationRouter.getUserSelectedOrg.useQuery(undefined,{
@@ -35,11 +32,9 @@ const MyApp: AppType = ({
   return (
    
       <SessionProvider session={session}>
-         <AuthWrapper>
           <Providers>
              <Component {...pageProps} />
           </Providers> 
-          </AuthWrapper>
       </SessionProvider>
  
   );

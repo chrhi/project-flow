@@ -4,6 +4,17 @@ import type { User  , Message} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import { pusherClient } from '~/lib/pusher'
 import AudioPlayer from './AudioPlayer'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "~/components/ui/dropdown-menu"
+import { Button } from '../ui/button'
+import { MoreVertical, SmilePlus } from 'lucide-react'
+import { AbdullahButton , buttonVariants } from '../used/AbdullahButton'
 
 
 interface MessagesProps {
@@ -32,6 +43,7 @@ const Messages: FC<MessagesProps> = ({
 
   useEffect(() => {
     setMessages(initialMessages)
+    scrollDownRef?.current?.scrollIntoView({ behavior: 'smooth' });
   },[initialMessages])
 
   // toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
@@ -44,6 +56,9 @@ const Messages: FC<MessagesProps> = ({
      console.log(message)
      message.timestamp = new Date()
      setMessages((prev) => [message, ...prev])
+     //to scroll down when a new message hits
+     scrollDownRef?.current?.scrollIntoView({ behavior: 'smooth' });
+     audioRef.current?.play()
     }
 
     pusherClient.bind('incoming-message', messageHandler)
@@ -100,6 +115,7 @@ const Messages: FC<MessagesProps> = ({
                     'order-2 items-start': !isCurrentUser,
                   }
                 )}>
+               
                 <span
                   className={cn('px-4 py-2 rounded-lg inline-block', {
                     'bg-gradient-to-tr from-indigo-500 to-blue-700 text-white': isCurrentUser,
@@ -114,8 +130,8 @@ const Messages: FC<MessagesProps> = ({
                    {getFormattedHourAndMinutesFromDate(message?.timestamp)}
                   </span>
                 </span>
-              </div>
 
+              </div>
               <div
                 className={cn('relative w-6 h-6', {
                   'order-2': isCurrentUser,

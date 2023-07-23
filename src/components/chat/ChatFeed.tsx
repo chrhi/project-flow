@@ -7,6 +7,7 @@ import { api } from '~/utils/api'
 import toast from 'react-hot-toast'
 import { getChatPartnerId } from '~/lib/data-in-cookies'
 import type { Message, User } from '@prisma/client'
+import ChatHeaderLoading from './ChatHeaderLoading'
 
 function sortDatesNewToOld(dates: Date[]): Date[] {
   const sortedDates = [...dates];
@@ -61,6 +62,10 @@ const ChatFeed =  ({  }) => {
 
   return (
     <div className='flex-1 w-full md:max-w-[calc(100vw-370px)] md:ml-[370px] bg-white  justify-between flex flex-col h-full max-h-[calc(100vh-6rem)]'>
+      {isLoading? 
+
+      <ChatHeaderLoading />
+      :
       <div className='flex sm:items-center justify-between py-3 h-[50px]   border-b-2 border-gray-200'>
         <div className='relative flex items-center space-x-4 p-4'>
           <div className='relative'>
@@ -89,6 +94,7 @@ const ChatFeed =  ({  }) => {
           </div>
         </div>
       </div>
+     }
 
       {
         isChatPartnerLoading || isLoading ? <h1>loading messages...</h1> : 

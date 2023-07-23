@@ -7,7 +7,6 @@ import { toPusherKey } from "~/lib/utils";
 
 
 
-
 export const send_message  = protectedProcedure
 .input(z.object({ 
     partnerId : z.string() ,
@@ -34,8 +33,16 @@ export const send_message  = protectedProcedure
       throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message and ${err.message}`})
     })
 
+    //send the message in the chat feed
     await pusherServer.trigger(toPusherKey(`chat:${input.partnerId}-${ctx?.session?.user.id}`), 'incoming-message', message).catch(err => {
       throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message pucher error and ${err.message}`})
+    })
+
+    //send the notifiction the user in real time
+    await pusherServer.trigger(toPusherKey(`user:${input.partnerId}:chats`), 'new_message', {
+       ...message,
+       senderImg: ctx.session.user?.image,
+       senderName: ctx.session.user?.name
     })
   
 
