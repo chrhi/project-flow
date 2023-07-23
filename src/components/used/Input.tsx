@@ -10,11 +10,12 @@ interface PropsType  extends React.HtmlHTMLAttributes<HTMLInputElement>  {
     inputClassName? : string ,
     className? : string,
     type? : string ,
+    isRequired? : boolean
 }
 
 
 
-export  const Input = ({lable , value , onChange , type  , lableClassName , isLoading, inputClassName ,className  , ...PropsType}:PropsType) => {
+export  const Input = ({lable , value , onChange , isRequired , type  , lableClassName , isLoading, inputClassName ,className  , ...PropsType}:PropsType) => {
   return (
    <>
       {
@@ -26,7 +27,7 @@ export  const Input = ({lable , value , onChange , type  , lableClassName , isLo
           : 
         <div  className={`col-span-6  ${className ? className : ""}`}>
            <label htmlFor={lable} className={`block text-sm font-medium leading-6 text-gray-900 dark:text-white ${lableClassName ? lableClassName : ""}`}>
-             {lable}
+             {lable} {""} {isRequired && <span className='text-red-500 '>*</span>}
            </label>
            <input {...PropsType} onChange={onChange}   name={lable} id={lable + "id"} value={value}
              className={`px-4 py-1.5 rounded-lg outline-none dark:text-white dark:bg-stone-900 dark:ring-stone-600 dark:border-stone-600 border focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full ${inputClassName ? inputClassName : ""}`}

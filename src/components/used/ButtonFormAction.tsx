@@ -20,6 +20,15 @@ export  function FormButtonAction({ name ,  ...props } : FromButtonprops) {
       >
             {name}
       </AbdullahButton>
+
+      <AbdullahButton
+      type="submit"
+      className={buttonVariants({size:"sm", variant:'primary'})}
+      isLoading ={false}
+      {...props}
+      >
+            {name}
+      </AbdullahButton>
      
    </div>
   )

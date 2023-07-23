@@ -8,10 +8,11 @@ type PropsType = {
     value : string | number | readonly string[] | undefined ,
     onChange : React.ChangeEventHandler<HTMLTextAreaElement> | undefined,
     isLoading? : boolean, 
-    className? : string
+    className? : string,
+    isRequired? : boolean
 }
 
-export  const TextField = ({lable , value , onChange , isLoading , className}:PropsType) => {
+export  const TextField = ({lable , value , isRequired , onChange , isLoading , className}:PropsType) => {
   return (
   <>
   {
@@ -24,7 +25,7 @@ export  const TextField = ({lable , value , onChange , isLoading , className}:Pr
     : 
     <div className={`col-span-6 ${className ? className : ""} `}>
     <label htmlFor={lable} className="block text-sm font-medium leading-6 !font-poppins text-gray-700 dark:text-white">
-        {lable}
+        {lable} {""} {isRequired && <span className='text-red-500 '>*</span>}
      </label>
      <textarea 
          onChange={onChange}
