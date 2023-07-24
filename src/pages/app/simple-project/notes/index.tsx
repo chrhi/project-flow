@@ -49,7 +49,7 @@ const Page: NextPage = () => {
 
   const handleRouterToAddPage = async () => {
     setIsLoading(true)
-    await router.push("noteAdd")
+    await router.push("/app/simple-project/notes/noteAdd")
     setIsLoading(false)
   }
  
