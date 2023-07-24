@@ -53,11 +53,7 @@ model User {
   organization Organization[]
 }
 
-// model ChatRoom {
-//      id          String    @id @default(cuid())
-//      messages    Message[]
-//      createdAt   DateTime  @default(now())
-// }
+
 
 model Message {
     id          String    @id @default(cuid())
@@ -82,7 +78,6 @@ model Organization {
   createdAt DateTime  @default(now())
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   project   Project[]
-
   @@index([id])
   @@index([userId])
 }
@@ -140,7 +135,8 @@ model Project {
   title                String
   type                 String  //this one idicates if the project is using pmbook or not it could be SIMPLE or COMPLEXE
   image                String
-  imagetype            String              
+  imagetype            String     
+  createdBy            String         
   description          String              @db.LongText
   startAt              DateTime?
   endsAt               DateTime?
@@ -149,6 +145,7 @@ model Project {
   WorkBreakDownStorage Json?
   Budget               Float?
   team                 Json
+  createdAt            DateTime            @default(now())
   Organization         Organization?       @relation(fields: [OrganizationId], references: [id], onDelete: Cascade)
   StakHolder           StakeHolder[]
   Risk                 Risk[]

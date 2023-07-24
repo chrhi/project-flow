@@ -10,14 +10,20 @@ import { getOrganizationId } from '~/lib/data-in-cookies'
 import { api } from '~/utils/api'
 import { toast } from 'react-hot-toast'
 import { useSession } from 'next-auth/react'
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import ChatContact from './chat-contact'
 import { Input } from '../ui/input'
 import Search from '../icons/search'
 import ContactLoading from './contact-loading'
 import { ScrollArea } from '../ui/scroll-area'
+import type { Project } from '@prisma/client'
+import ProjectGroupe from './project-groupe'
 
-function ContactFeed() {
+type Props ={
+  projects : Project[],
+
+}
+
+function ContactFeed({projects } : Props) {
 
   const [people , setPeople] = useState<MemberOrg[]>([])
 
@@ -44,7 +50,25 @@ function ContactFeed() {
         <TabsTrigger className='h-full' value="projects">Projects</TabsTrigger>
       </TabsList>
       <TabsContent value="projects">
-        <h1>projects</h1>
+        <div className='w-full  h-[40px] flex border items-center rounded-lg  px-2'>
+          <Input 
+          placeholder='serach for contact...'
+          className='h-[40px] w-[90%] mr-auto border-none ' />
+          <Search className="w-6 h-6 text-gray-500" />
+        </div>
+        {projects.map(item => {
+         return (
+          <ProjectGroupe
+            title={item.title}
+            description={item.description}
+            id={item.id}
+            image={item.image}
+            imageType={item.imagetype}
+            isUnseenMessages={true}
+            key={item.id + "project groupe-098765432"}
+           />
+           )
+        })}
       </TabsContent>
       <TabsContent value="team">
        
@@ -58,6 +82,7 @@ function ContactFeed() {
           isLoading ? <ContactLoading /> :  
           <ScrollArea>
             {
+               
                people.map(item => (
                 <ChatContact 
                   id={item.user}

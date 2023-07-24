@@ -8,6 +8,7 @@ import toast from 'react-hot-toast'
 import { getChatPartnerId } from '~/lib/data-in-cookies'
 import type { Message, User } from '@prisma/client'
 import ChatHeaderLoading from './ChatHeaderLoading'
+import { block } from 'million/react'
 
 function sortDatesNewToOld(dates: Date[]): Date[] {
   const sortedDates = [...dates];

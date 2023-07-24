@@ -60,3 +60,13 @@ export function downloadImage(dataUrl : any) {
 export function toPusherKey(key: string) {
   return key.replace(/:/g, '__')
 }
+
+// Function to order an array of dates from newest to oldest
+function orderDatesNewestToOldest(dates: Date[]): Date[] {
+  return dates.slice().sort((a, b) => b.getTime() - a.getTime());
+}
+
+// Function to order an array of dates from oldest to newest
+function orderDatesOldestToNewest(dates: Date[]): Date[] {
+  return dates.slice().sort((a, b) => a.getTime() - b.getTime());
+}

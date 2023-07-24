@@ -1,22 +1,31 @@
-import type { FC } from 'react'
+import type { Dispatch, FC, SetStateAction } from 'react'
 import LayoutButton from './Tabs'
 import { AbdullahButton , buttonVariants} from '~/components/used/AbdullahButton'
 import { Plus } from 'lucide-react'
 import { cn } from '~/lib/utils'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '~/components/ui/dropdown-menu'
 import { useRouter } from 'next/router'
+import {  type Project } from '@prisma/client'
+import { GetResult } from '@prisma/client/runtime/library'
 
 interface boardHeadAbdullahProps {
-  setFlows : () => void
+  setData: Dispatch<SetStateAction<any>>
+  data : Project[]
 }
 
-const Boardhead: FC<boardHeadAbdullahProps> = ({setFlows}) => {
+const Boardhead: FC<boardHeadAbdullahProps> = ({setData , data}) => {
 
   const router = useRouter()
 
+  const newOnes = () => {
+    setData(data.slice().sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime()))
+  }
 
+  const oldOnes = () => {
+    setData(data.slice().sort((a, b) =>   a.createdAt.getTime() - b.createdAt.getTime()))
+  }
 
-  return <div className='w-full h-[70px] p-6 sticky flex justify-between px-4 top-[50px] '>
+  return <div className='w-full h-[70px] p-6  flex justify-between px-4  '>
     <div className='w-[100px] h-full flex items-center justify-center'>
       <h1 className='text-2xl font-semibold text-gray-900'>Projects</h1>
     </div>
@@ -30,8 +39,8 @@ const Boardhead: FC<boardHeadAbdullahProps> = ({setFlows}) => {
             </AbdullahButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem >new ones</DropdownMenuItem>
-            <DropdownMenuItem >old ones</DropdownMenuItem>
+            <DropdownMenuItem onClick={newOnes} >new ones</DropdownMenuItem>
+            <DropdownMenuItem  onClick={oldOnes}>old ones</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
 

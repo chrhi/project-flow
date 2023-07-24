@@ -19,17 +19,31 @@ export const create_project  = protectedProcedure
   .mutation( async ({ input , ctx }) => {
 
 
+    const selectedTeamMembers = await Promise.all(
+      input.team.map( async (id) => {
+        const person = await ctx.prisma.user.findFirst({
+          where :{
+            id 
+          }
+        })
+        return person
+      } )
+    )
+
     const project = await ctx.prisma.project.create({
       data :{
         OrganizationId : input.organization_id,
         description : input.description,
         image : input.image,
         imagetype : input.imagetype,
-        team : JSON.stringify(input.team),
+        team : JSON.stringify(selectedTeamMembers),
         title : input.title,
         type : "SIMPLE",
+        createdBy : ctx.session.user.id,
+        currentPhase :"business case"
       }
     })
 
+    
     return project
 })

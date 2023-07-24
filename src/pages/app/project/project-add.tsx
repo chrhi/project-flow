@@ -38,8 +38,8 @@ const Page: NextPage = () => {
       onSuccess : (data) => {
         const prepare = data.map(item => {
           return {
-            label : item.name , 
-            value : item.id
+            label : item?.name , 
+            value : item?.user
           }
         })
         setMyTeam(prepare)
@@ -82,6 +82,8 @@ const Page: NextPage = () => {
         setIsCreateProjectLoading(false)
         return 
       }
+
+      console.log(inputs.teamMembers)
 
       mutation.mutate({
         description : inputs.description ,
@@ -148,9 +150,7 @@ const Page: NextPage = () => {
                   Add team members to this project
                 </label>
                 <Select
-                    onChange={
-                      (e) => setInputs({...inputs , teamMembers : e.map(item => item.value) })
-                    }  
+                     onChange={(e) => setInputs({...inputs , teamMembers : e.map(item => item.value) })}   
                     name="my team"
                     options={MyTeam}
                     className="basic-multi-select"

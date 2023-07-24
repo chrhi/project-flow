@@ -2,9 +2,6 @@ import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 
 
-const projects : Project[] =[
-  {avatar : "" , description : "" , id : "" , tag : "" , title :""}
-] 
 
 
 const Page: NextPage = () => {

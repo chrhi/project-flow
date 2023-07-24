@@ -2,8 +2,11 @@ import React from "react";
 import { StrictModeDroppable as Droppable } from "~/utils/FixBugs/StrictModeDroppable";
 import Flow from "./Flow";
 import { DragDropContext, type DropResult } from "react-beautiful-dnd";
-
-
+import type { Project } from "@prisma/client";
+// import { block } from "million/react-server";
+import {  block } from "million/react";
+import { useRouter } from "next/router";
+import { setoreProjectMetaData } from "~/lib/MetaData";
 
 
 type PropsType ={
@@ -11,7 +14,8 @@ type PropsType ={
   projects : Project[]
 }
 
-export default function Board({  projects } : PropsType ) {
+ function Board({  projects } : PropsType ) {
+
 
 
     const handleDragEnd = (result : DropResult) => {
@@ -22,26 +26,25 @@ export default function Board({  projects } : PropsType ) {
     <DragDropContext 
     
     onDragEnd = {(result) => handleDragEnd(result)}>
-   <div className="w-full  h-fit min-h-screen  p-6  overflow-x-hidden  ">
+   <div className="w-full   p-6    h-full ">
     
       <Droppable droppableId={"board"}>
     
         {(provided, snapshot) => (
          
           <div
-              className="w-full h-fit min-h-full  "
+              className="w-full flex gap-4 flex-wrap h-fit  "
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
+             
             {projects.map((item, index) => (
                 <Flow 
+
+                    {...item}
                     key = {item?.id}
                     index={index} 
-                    avatar=""
-                    description="this is the desciption about the task we are going for"
-                    title="Create this board"
-                    tag="business"
-                    id="09875544"
+                  
                    />
             ))}
             {provided.placeholder}
@@ -52,3 +55,8 @@ export default function Board({  projects } : PropsType ) {
    </DragDropContext>
      );
 }
+
+
+const BoardBlock = block(Board)
+
+export default BoardBlock

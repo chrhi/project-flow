@@ -4,6 +4,7 @@ import type { User  , Message} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import { pusherClient } from '~/lib/pusher'
 import AudioPlayer from './AudioPlayer'
+import { block } from 'million/react'
 
 
 
@@ -149,4 +150,4 @@ const Messages: FC<MessagesProps> = ({
   )
 }
 
-export default Messages
+export default block(Messages)

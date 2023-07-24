@@ -5,6 +5,7 @@
  * This is especially useful for Docker builds.
  */
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"));
+import million from 'million/compiler';
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -15,4 +16,4 @@ const config = {
     defaultLocale: "en",
   },
 };
-export default config;
+export default million.next(config);
