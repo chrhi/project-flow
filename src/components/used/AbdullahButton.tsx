@@ -26,7 +26,8 @@ const buttonVariants = cva(
         default: 'h-10 py-2 px-4',
         sm: 'h-9 px-2 rounded-md',
         lg: 'h-11 px-8 rounded-md',
-        none : "p-1"
+        none : "p-1",
+        abdullah : 'h-14 py-4 px-4 border-none shadow-none'
       },
     },
     defaultVariants: {

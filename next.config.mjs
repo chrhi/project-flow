@@ -10,6 +10,7 @@ import million from 'million/compiler';
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  esmExternals: false, // THIS IS THE FLAG THAT MATTERSs
 
   i18n: {
     locales: ["en"],

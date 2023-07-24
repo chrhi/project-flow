@@ -1,22 +1,15 @@
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
-import { Form } from "~/components/used/Form";
-import { FormContainer } from "~/components/used/FormContainer";
-import { RowGridText } from "~/components/typography/RowGridText";
-import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 import { FlowImage } from "~/components/used/flow-image";
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
-import { Project } from "@prisma/client";
-import BarChartAbdullah from "~/components/dashboard/BarChart";
-import LineChartAbdullah from "~/components/dashboard/LineChart";
-import DonatChartAbdullah from "~/components/dashboard/DonatChart";
-import ChatFlowFeed from "~/components/chat/messages-flow";
+import type  { Project } from "@prisma/client";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { cn } from "~/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import PhasesSideBarSimpleProject from "~/components/sideBars/simple-project-sidebar";
+import ChatFlowFeed from "~/components/chat/messages-flow";
 
 const Page: NextPage = () => {
 
@@ -51,15 +44,11 @@ const Page: NextPage = () => {
   }
  
 
- 
-    
-
-
   return (
     <>  
       <Header />
       <main className="   flex w-full h-full bg-gray-50 overflow-hidden">
-      <PhasesSideBar isOpen = {true} />
+      <PhasesSideBarSimpleProject isOpen = {true} />
 
       <div className={` 
       ${viewState === "MID" ?  " w-[calc(50%-70px)] " : viewState === "FLOW" ? "w-[calc(100%-70px)]" : "w-[0%]"}
@@ -70,7 +59,7 @@ const Page: NextPage = () => {
             </div>
             {/* here it is the dashboard */}
             <div className="w-[90%]  mx-auto h-[calc(100%-60px)] scrollbar-w-2 scrollbar-track-blue-lighter scrollbar-thumb-blue scrollbar-thumb-rounded overflow-y-auto bg-white rounded-lg p-4 shadow-md ">
-                    <h2 className="text-xl my-4 font-bold  text-start text-gray-500">Brief</h2>
+                    <h2 className="text-xl my-4 font-bold  text-start text-gray-500">team</h2>
                    
                     <div className="w-full flex flex-col  gap-y-8  my-4 h-[1200px]">
                       <h1 className="text-md text-gray-500 text-start ">{project.description}</h1>
@@ -82,7 +71,7 @@ const Page: NextPage = () => {
       <div className={` ${viewState === "MID" ?  "w-[50%]" : viewState === "CHAT" ? "w-[calc(100%-70px)]" : "w-[0%]"} h-[calc(100vh-50px)] bg-blue-500 relative  `} >
 
         {/* this is the circle */}
-        <div className="absolute left-[-30px] shadow-md flex items-center z-[10] overflow-hidden top-[50%] w-[60px] h-[60px] bg-transparent border-none rounded-[50%] ">
+        <div className="absolute left-[-30px] shadow-md flex items-center z-[5] overflow-hidden top-[50%] w-[60px] h-[60px] bg-transparent border-none rounded-[50%] ">
           <AbdullahButton
           onClick={() => changeViewState("CHAT")}
           className={cn(buttonVariants({variant : "ghost"}) , ` p-1 h-16 w-10 bg-white  ` )}>

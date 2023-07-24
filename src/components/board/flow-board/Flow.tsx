@@ -1,7 +1,6 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card';
-import { openTasksShowUp } from '~/store/open-models';
 import { ArrowUpNarrowWide, Grid, GripVertical } from 'lucide-react';
 import { DropdownMenuSeparator } from '~/components/ui/dropdown-menu';
 import type { Project, User } from "@prisma/client";
@@ -23,8 +22,6 @@ const FlowImage = (image : string, type : string) => {
   <span className='text-[40px]'>{image}</span>
 </div>)
   }
-
-
 
 }
 
@@ -60,7 +57,7 @@ function Flow({image , team , description , imagetype  , title , id , index , cu
 
   const handleRouting = () => {
     setoreProjectMetaData({project_id : id})
-    router.push("/app/project/dashboard")
+    router.push("/app/simple-project/brief")
   
   }
 
@@ -70,7 +67,7 @@ function Flow({image , team , description , imagetype  , title , id , index , cu
         {(provided , snapshot) => (
             <Card 
             onClick={handleRouting}
-            className={`w-[100%] max-w-[400px] h-[400px] cursor-pointer  flex flex-col items-start gap-y-2   shadow-lg hover:shadow-sky-200  min-h-[50px] rounded-lg bg-white my-4 
+            className={`w-[100%]  transition duration-500 transform hover:-translate-y-1 max-w-[400px] h-[400px] cursor-pointer  flex flex-col items-start gap-y-2   shadow-lg hover:shadow-sky-200  min-h-[50px] rounded-lg bg-white my-4 
              ${snapshot.isDragging ? "shadow-xl " : "" }`}
              {...provided.draggableProps}  ref={provided.innerRef}
            >

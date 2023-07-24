@@ -1,22 +1,16 @@
 import { type NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
-import { Sidebar } from "~/components/sideBars/StaringUpSidebar";
-import { Form } from "~/components/used/Form";
-import { FormContainer } from "~/components/used/FormContainer";
-import { RowGridText } from "~/components/typography/RowGridText";
-import PhasesSideBar from "~/components/sideBars/PhasesSideBar";
 import { FlowImage } from "~/components/used/flow-image";
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
-import { Project } from "@prisma/client";
-import BarChartAbdullah from "~/components/dashboard/BarChart";
-import LineChartAbdullah from "~/components/dashboard/LineChart";
-import DonatChartAbdullah from "~/components/dashboard/DonatChart";
-import ChatFlowFeed from "~/components/chat/messages-flow";
+import type  { Project } from "@prisma/client";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { cn } from "~/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import PhasesSideBarSimpleProject from "~/components/sideBars/simple-project-sidebar";
+import ChatFlowFeed from "~/components/chat/messages-flow";
+import { block } from "million/react";
 
 const Page: NextPage = () => {
 
@@ -51,15 +45,11 @@ const Page: NextPage = () => {
   }
  
 
- 
-    
-
-
   return (
     <>  
       <Header />
       <main className="   flex w-full h-full bg-gray-50 overflow-hidden">
-      <PhasesSideBar isOpen = {true} />
+      <PhasesSideBarSimpleProject isOpen = {true} />
 
       <div className={` 
       ${viewState === "MID" ?  " w-[calc(50%-70px)] " : viewState === "FLOW" ? "w-[calc(100%-70px)]" : "w-[0%]"}
@@ -82,7 +72,7 @@ const Page: NextPage = () => {
       <div className={` ${viewState === "MID" ?  "w-[50%]" : viewState === "CHAT" ? "w-[calc(100%-70px)]" : "w-[0%]"} h-[calc(100vh-50px)] bg-blue-500 relative  `} >
 
         {/* this is the circle */}
-        <div className="absolute left-[-30px] shadow-md flex items-center z-[10] overflow-hidden top-[50%] w-[60px] h-[60px] bg-transparent border-none rounded-[50%] ">
+        <div className="absolute left-[-30px] shadow-md flex items-center z-[5] overflow-hidden top-[50%] w-[60px] h-[60px] bg-transparent border-none rounded-[50%] ">
           <AbdullahButton
           onClick={() => changeViewState("CHAT")}
           className={cn(buttonVariants({variant : "ghost"}) , ` p-1 h-16 w-10 bg-white  ` )}>
@@ -103,4 +93,4 @@ const Page: NextPage = () => {
   );
 };
 
-export default Page;
+export default Page ;

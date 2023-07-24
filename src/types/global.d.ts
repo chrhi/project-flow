@@ -1,4 +1,10 @@
-
+interface Project {
+    avatar : string 
+    description : string 
+    id : string 
+    tag : string 
+    title : string
+}
 
 interface Organization {
     id : string 
