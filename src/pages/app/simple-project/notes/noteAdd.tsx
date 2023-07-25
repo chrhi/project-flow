@@ -63,10 +63,18 @@ const Page: NextPage = () => {
 
               <div className="w-full h-[70px] flex items-center justify-between">
               <h2 className="text-xl my-4 font-bold  text-start text-gray-500">Create Note</h2>
-              <AbdullahButton className={cn(buttonVariants({variant :"primary" , size : "sm"}))}>
+             <div className="w-[200px] flex h-full items-center gap-x-4 justify-end pr-4">
+
+             <AbdullahButton className={cn(buttonVariants({variant :"secondary" , size : "sm"}))}>
             
-                save
-              </AbdullahButton>
+            cancel
+           </AbdullahButton>
+           <AbdullahButton className={cn(buttonVariants({variant :"primary" , size : "sm"}))}>
+         
+             save
+           </AbdullahButton>
+
+             </div>
               </div>
               <div>
                 <Editor subredditId={""}  />

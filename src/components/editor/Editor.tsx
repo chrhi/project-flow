@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import type  { z } from 'zod'
 import { uploadFiles } from '~/lib/uploadthing'
 import { type  PostCreationRequest, PostValidator } from '~/lib/validators/note'
-
+import TextareaAutosize from 'react-textarea-autosize'
 
 
 
@@ -178,6 +178,16 @@ interface EditorProps {
         className='w-full'
         onSubmit={handleSubmit(onSubmit)}>
         <div className='prose prose-stone dark:prose-invert w-full'>
+        <TextareaAutosize
+            ref={(e) => {
+              titleRef(e)
+              // @ts-ignore
+              _titleRef.current = e
+            }}
+            {...rest}
+            placeholder='Title'
+            className='block w-full resize-none border-0 px-1 text-2xl font-semibold bg-transparent text-gray-900 placeholder:text-gray-800 focus:ring-0 sm:py-1.5 sm:text-md sm:leading-6 !focus:outline-none !border-none'
+          />
           
           <div id='editor' className='min-h-[400px] w-full ' />
           <p className='text-sm text-gray-500'>

@@ -53,7 +53,14 @@ model User {
   organization Organization[]
 }
 
+model Note {
+    id             String    @id @default(cuid())
+    title          String 
+    content        Json
+    timestamp      DateTime  @default(now())
+    @@index([id])
 
+}
 
 model Message {
     id          String    @id @default(cuid())
