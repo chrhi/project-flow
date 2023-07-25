@@ -2,13 +2,13 @@ import { useEffect, useState } from 'react'
 import ChatInput from './ChatInput'
 import Messages from './Messages'
 import { useSession } from 'next-auth/react'
-import Image from 'next/image'
 import { api } from '~/utils/api'
 import toast from 'react-hot-toast'
 import { getChatPartnerId } from '~/lib/data-in-cookies'
 import type { Message, User } from '@prisma/client'
 import ChatHeaderLoading from './ChatHeaderLoading'
 import { block } from 'million/react'
+import MessagesLoading from './MessagesLoading'
 
 function sortDatesNewToOld(dates: Date[]): Date[] {
   const sortedDates = [...dates];
@@ -97,8 +97,8 @@ const ChatFeed =  ({  }) => {
       </div>
      }
 
-      {
-        isChatPartnerLoading || isLoading ? <h1>loading messages...</h1> : 
+          {
+        isChatPartnerLoading || isLoading  ? <MessagesLoading /> : 
         <>
         <Messages
               refetch ={refetch} 

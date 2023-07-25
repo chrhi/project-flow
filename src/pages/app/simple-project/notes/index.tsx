@@ -4,13 +4,15 @@ import { useState } from "react";
 import { FlowImage } from "~/components/used/flow-image";
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
-import type  { Project } from "@prisma/client";
+import type  {  Note, Project } from "@prisma/client";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { cn } from "~/lib/utils";
 import { ChevronLeft, ChevronRight, PlusCircle } from "lucide-react";
 import PhasesSideBarSimpleProject from "~/components/sideBars/simple-project-sidebar";
 import ChatFlowFeed from "~/components/chat/messages-flow";
 import { useRouter } from "next/router";
+import NoteElement from "~/components/editor/Note";
+
 
 const Page: NextPage = () => {
 
@@ -24,6 +26,14 @@ const Page: NextPage = () => {
   const [viewState , setViewState] = useState<string>("MID")
 
   const [project , setProject] = useState<Project>({} as Project)
+
+  const [notes , setNotes] = useState<Note[]>([])
+
+  api.noteRouter.getProjectNotes.useQuery({projectId :getProjectMetaData() }, {
+    onSuccess : (data) => {
+      setNotes(data)
+    }
+  })
 
   api.newProjectRouter.getProjectById.useQuery({id : getProjectMetaData()}, {
     onSuccess : (data) => {
@@ -80,6 +90,16 @@ const Page: NextPage = () => {
                 create note
               </AbdullahButton>
               </div>
+
+              {notes.map(item => <NoteElement
+                  noteId ={item.id}
+                  authorEmail={item.authorEmail}
+                  authorName={item.authorName}
+                  createdAt={item.createdAt}
+                  title={item.title}
+                  key={item.id}
+              />)}
+
     
             </div>
       </div>

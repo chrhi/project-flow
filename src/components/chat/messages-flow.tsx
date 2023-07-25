@@ -7,6 +7,7 @@ import toast from 'react-hot-toast'
 import { getChatPartnerId } from '~/lib/data-in-cookies'
 import type { Message, User } from '@prisma/client'
 import ChatHeaderLoading from './ChatHeaderLoading'
+import MessagesLoading from './MessagesLoading'
 
 
 
@@ -58,7 +59,6 @@ const ChatFlowFeed =  () => {
   return (
     <div className='flex-1 w-full  bg-white pb-4  justify-between flex flex-col h-full max-h-[calc(100vh-3rem)]'>
       {isLoading? 
-
       <ChatHeaderLoading />
       :
       <div className='flex sm:items-center justify-between py-3 h-[60px]   border-b-2 border-gray-200'>
@@ -90,10 +90,11 @@ const ChatFlowFeed =  () => {
         </div>
       </div>
      }
+      
 
       {
-        isChatPartnerLoading || isLoading ? <h1>loading messages...</h1> : 
-        <>
+         
+         isChatPartnerLoading || isLoading  ? <MessagesLoading /> : 
         <Messages
               refetch ={refetch} 
             chatPartner={chatPartner }
@@ -101,13 +102,11 @@ const ChatFlowFeed =  () => {
             sessionId={session?.data?.user.id || ""}
             initialMessages={initialMessages}
          />
+      }
         <ChatInput 
             refetch ={refetch} 
            
             chatPartner={chatPartner } />
-        
-        </>
-      }
 
      
     </div>

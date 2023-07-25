@@ -25,12 +25,12 @@ export function PagesNav() {
     {
       name : "Tasks" , path : "/app/tasks" 
     },
-    {
-      name : "Brain" , path : "/app/brain" 
-    },
-    {
-      name : "Invoices " , path : "/app/map" 
-    }
+    // {
+    //   name : "Brain" , path : "/app/brain" 
+    // },
+    // {
+    //   name : "Invoices " , path : "/app/map" 
+    // }
   ]
 
   return (

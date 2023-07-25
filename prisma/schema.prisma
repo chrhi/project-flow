@@ -159,6 +159,7 @@ model Project {
   WorkBreakDownStorage Json?
   Budget               Float?
   team                 Json
+  content              Json?
   createdAt            DateTime            @default(now())
   notes                Note[]
   Organization         Organization?       @relation(fields: [OrganizationId], references: [id], onDelete: Cascade)

@@ -9,6 +9,9 @@ import million from 'million/compiler';
 
 /** @type {import("next").NextConfig} */
 const config = {
+  images: {
+    domains: ['uploadthing.com', 'lh3.googleusercontent.com'],
+  },
   reactStrictMode: true,
   esmExternals: false, // THIS IS THE FLAG THAT MATTERSs
 

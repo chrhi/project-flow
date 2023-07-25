@@ -1,7 +1,7 @@
 import { useState, type FC } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
 import { cn } from '~/lib/utils'
-import {  Play, Rocket , FolderKanban , GanttChartSquare , Presentation , ListEnd, FileCheck, MessageSquare, Cog, UserCog, BookMarked} from 'lucide-react'
+import {  Play, Rocket , FolderKanban , GanttChartSquare , Presentation , ListEnd, FileCheck, MessageSquare, Cog, UserCog, BookMarked, Users, ClipboardCheck, StickyNote} from 'lucide-react'
 
 
 
@@ -17,10 +17,10 @@ import { useRouter } from 'next/router'
 
 
 const sidebarOptions = [
-    {name : "Brief" , path :"/app/simple-project/brief" , icon : <Rocket className={`text-black w-6 h-6  `} />},
-    {name : "Tasks" , path :"/app/simple-project/tasks", icon :<Play className='text-black w-6 h-6 ' />},
-    {name : "Notes" , path :"/app/simple-project/notes", icon : <FolderKanban  className='text-black h-6 w-6 ' />},
-    {name : "Team" , path :"/app/simple-project/team", icon : <GanttChartSquare className='text-black w-6 h-6' />}   
+    {name : "Brief" , path :"/app/simple-project/brief" , icon : <Rocket className={`text-gray-600 w-6 h-6  `} />},
+    {name : "Tasks" , path :"/app/simple-project/tasks", icon :<ClipboardCheck className={`text-gray-600 w-6 h-6  `} />},
+    {name : "Notes" , path :"/app/simple-project/notes", icon : <StickyNote className={`text-gray-600 w-6 h-6  `} />},
+    {name : "Team" , path :"/app/simple-project/team", icon : <Users className={`text-gray-600 w-6 h-6  `} />}   
 ]
 
 type Props = {
@@ -52,7 +52,7 @@ const PhasesSideBarSimpleProject: FC<Props> = ({isOpen})=> {
                           disabled={isLoading}
                            className={cn(buttonVariants({variant :"secondary" , size :"abdullah"}), 
                            "cursor-pointer  " ,
-                           `${router?.asPath?.split("?")[0]?.split("/").slice(0, 4).join("/") === item.path? "bg-blue-200 " : null}`
+                           `${router?.asPath?.split("?")[0]?.split("/").slice(0, 4).join("/") === item.path? "bg-blue-100 " : null}`
                            )} >
                        {item.icon}
                     </AbdullahButton>

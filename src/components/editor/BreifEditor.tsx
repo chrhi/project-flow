@@ -17,11 +17,11 @@ import { cn } from "~/lib/utils";
 type FormData = z.infer<typeof PostValidator>
 
 interface EditorProps {
-  isBreif? : boolean,
-  blocks? : any
+
+  blocks : any
 }
 
- export const Editor: React.FC<EditorProps> = ({isBreif = false , blocks}) => {
+ export const BreifEditor: React.FC<EditorProps> = ({blocks}) => {
 
   const router = useRouter()
   
@@ -158,14 +158,7 @@ interface EditorProps {
     }
   }, [isMounted, initializeEditor])
 
-  const mutation = api.noteRouter.create_note.useMutation({
-    onSuccess : () => {
-      router.push("/app/simple-project/notes")
-    },
-    onError : () => {
-        toast.error("some thing went wrong please try again")
-    }
-  })
+  const mutation = api.noteRouter.create_note.useMutation()
 
   async function onSubmit(data: FormData) {
     const blocks = await ref.current?.save()
@@ -184,35 +177,13 @@ interface EditorProps {
   const { ref: titleRef, ...rest } = register('title')
 
   return (
-    <>
-   <div className="w-full h-[70px] flex items-center justify-between">
-  <h2 className="text-xl my-4 font-bold text-start text-gray-500">Create Note</h2>
-  <div className="w-[200px] flex h-full items-center gap-x-4 justify-end pr-4">
-    <AbdullahButton className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}>
-      cancel
-    </AbdullahButton>
-    <AbdullahButton 
-       form='abdullah-post-form'
-       className={cn(buttonVariants({ variant: "primary", size: "sm" }))}>
-      save
-    </AbdullahButton>
-  </div>
-</div>
+  
 
 <div>
   <div className="w-full p-4 flex bg-white rounded-lg">
     <form id="abdullah-post-form" className="w-full" onSubmit={handleSubmit(onSubmit)}>
       <div className="prose prose-stone dark:prose-invert w-full">
-        <TextareaAutosize
-          ref={(e) => {
-            titleRef(e);
-            // @ts-ignore
-            _titleRef.current = e;
-          }}
-          {...rest}
-          placeholder="Title"
-          className="block w-full resize-none border-0 px-1 text-2xl font-semibold bg-transparent text-gray-900 placeholder:text-gray-800 focus:ring-0 sm:py-1.5 sm:text-md sm:leading-6 !focus:outline-none !border-none"
-        />
+       
         
         <div id="editor" className="min-h-[400px] w-full" />
         <p className="text-sm text-gray-500">
@@ -227,7 +198,7 @@ interface EditorProps {
   </div>
 </div>
 
-    </>
+   
   )
 }
 
