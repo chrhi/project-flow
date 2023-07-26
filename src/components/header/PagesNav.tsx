@@ -22,9 +22,9 @@ export function PagesNav() {
     {
       name : "Projects" , path : "/app/project" 
     },
-    {
-      name : "Tasks" , path : "/app/tasks" 
-    },
+    // {
+    //   name : "Tasks" , path : "/app/tasks" 
+    // },
     // {
     //   name : "Brain" , path : "/app/brain" 
     // },
