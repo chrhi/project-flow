@@ -12,6 +12,7 @@ import PhasesSideBarSimpleProject from "~/components/sideBars/simple-project-sid
 import ChatFlowFeed from "~/components/chat/messages-flow";
 import { useRouter } from "next/router";
 import NoteElement from "~/components/editor/Note";
+import NoteElementLoading from "~/components/editor/DocLaoding";
 
 
 const Page: NextPage = () => {
@@ -29,13 +30,13 @@ const Page: NextPage = () => {
 
   const [notes , setNotes] = useState<Note[]>([])
 
-  api.noteRouter.getProjectNotes.useQuery({projectId :getProjectMetaData() }, {
+  const {isLoading : AreNotesLoading} = api.noteRouter.getProjectNotes.useQuery({projectId :getProjectMetaData() }, {
     onSuccess : (data) => {
       setNotes(data)
     }
   })
 
-  api.newProjectRouter.getProjectById.useQuery({id : getProjectMetaData()}, {
+  const {isLoading : isProjectsLoading} = api.newProjectRouter.getProjectById.useQuery({id : getProjectMetaData()}, {
     onSuccess : (data) => {
 
         if(!data) return 
@@ -90,15 +91,22 @@ const Page: NextPage = () => {
                 create note
               </AbdullahButton>
               </div>
+              {AreNotesLoading || isProjectsLoading ? 
+          
 
-              {notes.map(item => <NoteElement
+                [1,2,3,4,5].map(item => <NoteElementLoading />)
+                :
+                notes?.map(item => <NoteElement
                   noteId ={item.id}
                   authorEmail={item.authorEmail}
                   authorName={item.authorName}
                   createdAt={item.createdAt}
                   title={item.title}
                   key={item.id}
-              />)}
+              />)
+              }
+ 
+             
 
     
             </div>

@@ -1,50 +1,36 @@
 import type  EditorJS from '@editorjs/editorjs'
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import type  { z } from 'zod'
 import { uploadFiles } from '~/lib/uploadthing'
-import { PostValidator } from '~/lib/validators/note'
 import TextareaAutosize from 'react-textarea-autosize'
 import { api } from '~/utils/api'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
-import { getProjectMetaData } from '~/lib/MetaData'
-import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
-import { cn } from "~/lib/utils";
-
-
-type FormData = z.infer<typeof PostValidator>
+import { AbdullahButton, buttonVariants } from '../used/AbdullahButton'
+import { cn } from '~/lib/utils'
+import { Save, Trash2, Undo2 } from 'lucide-react'
 
 interface EditorProps {
-  isBreif? : boolean,
-  blocks? : any
+  title : string ,
+  blocks : any,
+  noteId : string 
 }
 
- export const Editor: React.FC<EditorProps> = ({isBreif = false , blocks}) => {
+ export const EditorWithPrevData: React.FC<EditorProps> = ({blocks , title , noteId}) => {
 
   const router = useRouter()
-  
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(PostValidator),
-    defaultValues: {
-     
-      title: '',
-      content: null,
-    },
-  })
+ 
   const ref = useRef<EditorJS>()
-  const _titleRef = useRef<HTMLTextAreaElement>(null)
+
  
   const [isMounted, setIsMounted] = useState<boolean>(false)
 
-  const [isRouterLoading, setIsRouterLoading] = useState<boolean>(false)
+  const [Title, setTitle] = useState<string>(title)
 
- 
+  const [content, setContent] = useState<any>([])
+
+  const [isRouterLoading, setisRouterLoading] = useState<boolean>(false)
+
+
  
 
   const initializeEditor = useCallback(async () => {
@@ -82,9 +68,9 @@ interface EditorProps {
         onReady() {
           ref.current = editor
         },
-        placeholder: 'Type here to start writing...',
+      
         inlineToolbar: true,
-        data: {  blocks: blocks? blocks : [] },
+        data: {  blocks:  content },
         tools: {
           header: Header,
           linkTool: {
@@ -124,30 +110,20 @@ interface EditorProps {
         },
       })
     }
-  }, [])
-
-  useEffect(() => {
-    if (Object.keys(errors).length) {
-      for (const [_key, value] of Object.entries(errors)) {
-        value
-        toast.error((value as { message: string }).message)
-      }
-    }
-  }, [errors])
+  }, [content])
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setIsMounted(true)
+     
+      setContent(blocks?.blocks)
+      setTitle(title)
     }
-  }, [])
+  }, [blocks , title])
 
   useEffect(() => {
     const init = async () => {
       await initializeEditor()
-
-      setTimeout(() => {
-        _titleRef?.current?.focus()
-      }, 0)
     }
 
     if (isMounted) {
@@ -160,75 +136,100 @@ interface EditorProps {
     }
   }, [isMounted, initializeEditor])
 
-  const mutation = api.noteRouter.create_note.useMutation({
+  const updateMutation = api.noteRouter.update_note.useMutation({
     onSuccess : () => {
-      
-      router.push("/app/simple-project/notes")
-  
+      toast.success("The note has been updated successfully")
     },
     onError : () => {
-    
-        toast.error("some thing went wrong please try again")
+      toast.error("The note has been deleted ")
     }
   })
 
-  const handleCancel = () => {
-    setIsRouterLoading(true)
-    router.push("/app/simple-project/notes")
-    setIsRouterLoading(false)
+  const deleteMutation = api.noteRouter.delete_note.useMutation(
+    {
+      onSuccess :async  () => {
+       await  router.push("/app/simple-project/notes")
+        setisRouterLoading(false)
+      },
+      onError : () => {
+        toast.error("faild to delete the data")
+        setisRouterLoading(false)
+      }
+    }
+  )
+
+
+  const handleSubmit = async  () =>{
+    const blocks = await ref.current?.save()
+    updateMutation.mutate({
+        noteId,
+        title : Title,
+        content : blocks
+      })
   }
 
-  async function onSubmit(data: FormData) {
- 
-    const blocks = await ref.current?.save()
+  
+  const handleDelete = async  () =>{
+    setisRouterLoading(true)
+    deleteMutation.mutate({noteId })
+  }
 
-    mutation.mutate({
-      projectId : getProjectMetaData(),
-      title : data.title,
-      content : blocks
-    })
+  const handleReturnBack = async () => {
+    setisRouterLoading(true)
+     await router.push("/app/simple-project/notes")
+    setisRouterLoading(true)
+
   }
 
   if (!isMounted) {
     return null
   }
 
-  const { ref: titleRef, ...rest } = register('title')
+
 
   return (
     <>
-   <div className="w-full h-[70px] flex items-center justify-between">
-  <h2 className="text-xl my-4 font-bold text-start text-gray-500">Create Note</h2>
-  <div className="w-[200px] flex h-full items-center gap-x-4 justify-end pr-4">
-    <AbdullahButton
-    onClick={handleCancel}
-    isLoading={isRouterLoading}
-    disabled={mutation.isLoading}
-    className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}>
-      cancel
-    </AbdullahButton>
-    <AbdullahButton 
-       isLoading={mutation.isLoading}
-      disabled={isRouterLoading}
-       form='abdullah-post-form'
-       className={cn(buttonVariants({ variant: "primary", size: "sm" }))}>
-      save
-    </AbdullahButton>
-  </div>
-</div>
-
+    <div className="w-full h-[70px] flex items-center justify-between">
+          <h2 className="text-xl my-4 font-bold text-start text-gray-500">Create Note</h2>
+      <div className="w-[200px] flex h-full items-center gap-x-4 justify-end pr-4">
+         <AbdullahButton
+           isLoading={isRouterLoading}
+           disabled = {updateMutation.isLoading || deleteMutation.isLoading || isRouterLoading}
+           onClick={handleReturnBack}
+           className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}>
+         
+            {!isRouterLoading&&  <Undo2 className='w-4 h-4 text-gray-900'/> }
+           </AbdullahButton>
+           
+           <AbdullahButton
+           isLoading={deleteMutation.isLoading}
+           disabled = {updateMutation.isLoading || deleteMutation.isLoading || isRouterLoading}
+           onClick={handleDelete}
+           className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}>
+            {!deleteMutation.isLoading &&  <Trash2  className='w-4 h-4 text-gray-900'/> }
+           </AbdullahButton>
+           <AbdullahButton 
+              isLoading={updateMutation.isLoading }
+              disabled = {updateMutation.isLoading || deleteMutation.isLoading || isRouterLoading}
+              
+              onClick={handleSubmit}
+              className={cn(buttonVariants({ variant: "secondary", size: "sm" }))}>
+                {!updateMutation.isLoading &&  <Save  className='w-4 h-4 text-gray-900'/> }
+           
+           </AbdullahButton>
+     </div>
+   </div>
+  
 <div>
   <div className="w-full p-4 flex bg-white rounded-lg">
-    <form id="abdullah-post-form" className="w-full" onSubmit={handleSubmit(onSubmit)}>
+    <form id="abdullah-post-form" className="w-full" >
       <div className="prose prose-stone dark:prose-invert w-full">
         <TextareaAutosize
-          ref={(e) => {
-            titleRef(e);
-            // @ts-ignore
-            _titleRef.current = e;
-          }}
-          {...rest}
+        
+     
+          onChange={e => setTitle(e.target.value)}
           placeholder="Title"
+          value={Title}
           className="block w-full resize-none border-0 px-1 text-2xl font-semibold bg-transparent text-gray-900 placeholder:text-gray-800 focus:ring-0 sm:py-1.5 sm:text-md sm:leading-6 !focus:outline-none !border-none"
         />
         
@@ -245,7 +246,7 @@ interface EditorProps {
   </div>
 </div>
 
-    </>
+</>
   )
 }
 

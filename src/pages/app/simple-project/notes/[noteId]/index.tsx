@@ -14,6 +14,8 @@ import ChatFlowFeed from "~/components/chat/messages-flow";
 import { Editor } from "~/components/editor/Editor";
 import { useRouter } from 'next/router'
 import EditorOutput from "~/components/editor/EditorOutput";
+import { EditorWithPrevData } from "~/components/editor/EditorWithPrevData";
+import toast from "react-hot-toast";
 
 const Page: NextPage = () => {
 
@@ -30,8 +32,8 @@ const Page: NextPage = () => {
       if (!data) return;
       setProject(data);
     },
-    onError: () => {
-      // Handle error here
+    onError: (err) => {
+      toast.error(err.message)
     }
   });
 
@@ -40,8 +42,8 @@ const Page: NextPage = () => {
         if (!data) return;
         setNote(data);
       },
-      onError: () => {
-        // Handle error here
+      onError: (err) => {
+        toast.error(err.message)
       }
   })
 
@@ -68,7 +70,12 @@ const Page: NextPage = () => {
           </div>
           {/* Here is the dashboard */}
           <div className="w-[90%] mx-auto h-[calc(100%-60px)] scrollbar-w-2 scrollbar-track-blue-lighter scrollbar-thumb-blue scrollbar-thumb-rounded overflow-y-auto bg-white rounded-lg p-4 shadow-md">
-            <EditorOutput content={note.content} />
+          
+            <EditorWithPrevData
+               noteId={note.id}
+               blocks={note.content}
+               title ={note.title}
+             />
           </div>
         </div>
 
