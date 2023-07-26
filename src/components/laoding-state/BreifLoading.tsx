@@ -19,8 +19,8 @@ function BreifLoading() {
                     </div>
                     <div className="w-full h-fit border-t pt-2 ">
                     <Skeleton className="h-[100px] w-full rounded-lg" />
-                       <Skeleton className="h-4 w-full" />
-                       <Skeleton className="h-4 w-full" />
+                       <Skeleton className="h-4 w-full my-2 " />
+                       <Skeleton className="h-4 w-full my-2" />
                     </div>
                   
             </div>

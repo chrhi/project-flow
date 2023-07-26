@@ -11,24 +11,19 @@ import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
 import PhasesSideBarSimpleProject from "~/components/sideBars/simple-project-sidebar";
 import ChatFlowFeed from "~/components/chat/messages-flow";
 import { useRouter } from "next/router";
-import { BreifEditor } from "~/components/editor/BreifEditor";
+import type { User } from "@prisma/client";
 import BreifLoading from "~/components/laoding-state/BreifLoading";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu";
-import { Button } from "~/components/ui/button";
-import { ConfirmeDeleteProjectPopUp } from "~/components/popup/flow/delete-project-popup";
-import { openDeleteFlowPopup } from "~/store/flow-router/project";
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
+
 
 const Page: NextPage = () => {
   //fetch the data about the project
   const [viewState, setViewState] = useState<string>("MID");
   const [project, setProject] = useState<Project>({} as Project);
-  const setIsOpen = openDeleteFlowPopup(state => state.setShowModel)
+
+  const [team, setTeam] = useState<User[]>([]);
+
+
   const router = useRouter()
 
   const { isLoading } = api.newProjectRouter.getProjectById.useQuery(
@@ -37,6 +32,8 @@ const Page: NextPage = () => {
       onSuccess: (data) => {
         if (!data) return;
         setProject(data);
+        const myTeam = JSON.parse(data.team as string)
+        setTeam(myTeam as User[])
       },
       onError: () => {},
     }
@@ -56,7 +53,7 @@ const Page: NextPage = () => {
     <>
       <Header />
       <main className="flex w-full h-full bg-gray-50 overflow-hidden">
-        <ConfirmeDeleteProjectPopUp />
+      
         <PhasesSideBarSimpleProject isOpen={true} />
 
         <div
@@ -81,33 +78,17 @@ const Page: NextPage = () => {
               {/* here it is the brief header */}
               <div className="w-[90%] mx-auto h-[calc(100%-60px)] scrollbar-w-2 scrollbar-track-blue-lighter scrollbar-thumb-blue scrollbar-thumb-rounded overflow-y-auto bg-white rounded-lg p-4 shadow-md">
                 <div className="w-full h-[40px] flex items-center justify-between">
-                  <h2 className="text-xl my-4 font-bold text-start text-gray-500">Brief</h2>
-                  {/* here goes the drop-down menu */}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
-                        <span className="sr-only">Open menu</span>
-                        <MoreHorizontal className="h-4 w-4" />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                      <DropdownMenuItem
-                       className="cursor-pointer"
-                       onClick={() => router.push("/app/simple-project/brief/edit")}
-                      
-                      >Edit Project</DropdownMenuItem>
-                      <DropdownMenuItem
-                        onClick={() => setIsOpen(true)}
-                        className="cursor-pointer">Delete</DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  <h2 className="text-xl my-4 font-bold text-start text-gray-500">My team</h2>
+                
                 </div>
-                <div className="w-full flex flex-col justify-between gap-y-8 my-4 h-[100px]">
-                  <h1 className="text-md text-gray-500 text-start ">{project.description}</h1>
-                </div>
-                <div className="w-full h-fit border-t">
-                  <BreifEditor blocks={project?.content ? project?.content : []} />
+               
+                <div className="w-full h-fit ">
+                        {/* here put that map the will loop through every element */}
+                        {team.map(item => <TeamMember 
+                                             image={item.image }
+                                             name ={item.name} 
+                                             email={item.email} />
+                        )}
                 </div>
               </div>
             </>
@@ -144,5 +125,19 @@ const Page: NextPage = () => {
     </>
   );
 };
+
+const TeamMember = ({image , name , email } : {image : string | null , name : string | null , email : string | null }) => {
+
+    return (
+        <div className="w-full h-[40px] flex my-4 items-center gap-x-4 justify-start p-4 ">
+           <Avatar>
+               <AvatarImage src={image || "/assets/avatar.png"} alt="@abdullah" />
+               <AvatarFallback>AB</AvatarFallback>
+           </Avatar>
+           <p className="text-lg  text-gray-500 truncate">{name}</p>
+           <p className="text-lg  text-gray-900 truncate">{email}</p>
+        </div>
+    )
+}
 
 export default Page;

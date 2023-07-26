@@ -177,12 +177,12 @@ interface EditorProps {
   const { ref: titleRef, ...rest } = register('title')
 
   return (
-  
+    
 
-<div>
-  <div className="w-full p-4 flex bg-white rounded-lg">
-    <form id="abdullah-post-form" className="w-full" onSubmit={handleSubmit(onSubmit)}>
-      <div className="prose prose-stone dark:prose-invert w-full">
+  <div>
+   <div className="w-full p-4 flex bg-white rounded-lg">
+     <form id="abdullah-post-form" className="w-full" onSubmit={handleSubmit(onSubmit)}>
+       <div className="prose prose-stone dark:prose-invert w-full">
        
         
         <div id="editor" className="min-h-[400px] w-full" />

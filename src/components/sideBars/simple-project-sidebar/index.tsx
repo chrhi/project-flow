@@ -18,7 +18,7 @@ import { useRouter } from 'next/router'
 
 const sidebarOptions = [
     {name : "Brief" , path :"/app/simple-project/brief" , icon : <Rocket className={`text-gray-600 w-6 h-6  `} />},
-    {name : "Tasks" , path :"/app/simple-project/tasks", icon :<ClipboardCheck className={`text-gray-600 w-6 h-6  `} />},
+    // {name : "Tasks" , path :"/app/simple-project/tasks", icon :<ClipboardCheck className={`text-gray-600 w-6 h-6  `} />},
     {name : "Notes" , path :"/app/simple-project/notes", icon : <StickyNote className={`text-gray-600 w-6 h-6  `} />},
     {name : "Team" , path :"/app/simple-project/team", icon : <Users className={`text-gray-600 w-6 h-6  `} />}   
 ]
