@@ -1,9 +1,12 @@
-import React from 'react'
+
 
 function UpcommingTasks() {
-  return (
-    <div>UpcommingTasks</div>
-  )
-}
-
+    return (
+      <div className=" w-full lg:w-[58%] h-[400px] bg-white rounded-lg ">
+  
+      </div>
+    )
+  }
+  
+  
 export default UpcommingTasks

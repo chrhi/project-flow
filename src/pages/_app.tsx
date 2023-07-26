@@ -5,6 +5,7 @@ import '~/styles/globals.css';
 import '~/styles/editor.css'
 import { SessionProvider } from "next-auth/react"
 import { storeOrgName, storeOrganizationId } from '~/lib/data-in-cookies';
+import 'react-clock/dist/Clock.css';
 
 
 const MyApp: AppType = ({

@@ -75,7 +75,23 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    /* @apply bg-background text-foreground; */
+    @apply bg-gray-100 text-foreground;
+  }
+}
+
+.react-clock__hand__body{
+  background: #A5AABE !important;
+}
+
+.react-clock__second-hand__body{
+  background: #62ACE9 !important;
+}
+
+@media (max-width: 767px) {
+ 
+  .react-clock__mark__number{
+    font-size: 8px; /* Smaller font size for mobile screens */
   }
 }
 

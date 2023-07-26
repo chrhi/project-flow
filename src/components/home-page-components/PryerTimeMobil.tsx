@@ -13,7 +13,7 @@ const style ={
   clock :"!w-[92px]  !h-[92px]"
 }
 
-export default function ActivityTracker() {
+export default function PriyerTimeMobil() {
 
   const [value, setValue] = useState<PrayerTimes>({
     Fajr : new Date() ,
@@ -37,7 +37,7 @@ export default function ActivityTracker() {
   }, []);
 
   const BlockClock = (name:string , showBorder = true , time : Date | null) => (
-    <div className={`w-[18%] h-[80%] px-1 ${showBorder ? "border-r border-gray-300 " : ""} flex flex-col items-center justify-center gap-y-4 `}>
+    <div className={`w-[20%] h-[80%] px-1 ${showBorder ? "border-r border-gray-300 " : ""} flex flex-col items-center justify-center gap-y-4 `}>
     <Clock
     renderNumbers
     renderSecondHand={true} 
@@ -51,19 +51,19 @@ export default function ActivityTracker() {
     secondHandLength={70}
     renderHourMarks={true}
     renderMinuteMarks={false}
-    className={`!w-[92px]  !h-[92px] bg-[#2E3349] rounded-[50%] !text-[#A5AABE]`} 
+    className={`!w-[62px]  !h-[62px] md:!w-[92px] md:!h-[92px] bg-[#2E3349] rounded-[50%] !text-[#A5AABE]  `} 
     
     />
    <div>
-    <h1 className='text-md font-semibold text-center'>{name}</h1>
-    <span className='text-sm text-gray-500 text-center' >{formatTimeWithAMPM(time || new Date())}</span>
+    <h1 className='text-sm font-semibold text-center'>{name}</h1>
+    <span className='text-xs text-gray-500 text-center' >{formatTimeWithAMPM(time || new Date())}</span>
    </div>
     </div>
   )
 
   return (
 
-    <div className=' hidden w-full lg:w-[48%]   h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center' >
+    <div className=' lg:hidden w-full lg:w-[48%]   h-[200px] flex lg:gap-x-2 bg-white rounded-lg items-center justify-center' >
       {/* @ts-ignore */}
      {BlockClock("Fajr " ,true , value["Fajr"])}
        {/* @ts-ignore */}

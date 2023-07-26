@@ -6,6 +6,10 @@ interface Project {
     title : string
 }
 
+interface PrayerTimes {
+    [prayer: string]: Date;
+  }
+
 interface Organization {
     id : string 
     name : string 
