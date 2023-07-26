@@ -21,17 +21,17 @@ export function MobileSideBar() {
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent position="right" size="lg">
+      <SheetContent className="w-full">
         <SheetHeader>
           <SheetTitle>ProjectFlow Navigation</SheetTitle>
         </SheetHeader>
         <div className="w-full flex h-[90%] mt-4 flex-col items-start gap-4 py-4">
-         <Button variant="ghost" size="lg">Accuel</Button>
-         <Button variant="ghost" size="lg" >Inisiating</Button>
-         <Button variant="ghost" size="lg" >Planning</Button>
-         <Button variant="ghost" size="lg" >Executing</Button>
+         <Button variant="ghost" size="lg">Home</Button>
+         <Button variant="ghost" size="lg" >Chat</Button>
+         <Button variant="ghost" size="lg" >Projects</Button>
+         <Button variant="ghost" size="lg" >Profile</Button>
          <Button variant="ghost" size="lg" >Controlling</Button>
-         <Button variant="ghost" size="lg" >Closing</Button>
+         <Button variant="ghost" size="lg" >Logout</Button>
         </div>
       </SheetContent>
     </Sheet>

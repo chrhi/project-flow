@@ -1,16 +1,31 @@
-import { Project } from "@prisma/client";
-import { type NextPage } from "next";
+import type { Prisma, Project } from "@prisma/client";
+import type  { GetServerSideProps, InferGetServerSidePropsType , NextPage } from "next";
 import { useState } from "react";
 import Board from "~/components/board/flow-board/board";
 import Boardhead from "~/components/board/flow-board/board-head/board-head";
 import { Header } from "~/components/header/Header";
 import { getOrganizationId } from "~/lib/data-in-cookies";
+import { getProjects } from "~/server/ssr/get-projects";
 import { api } from "~/utils/api";
 
+//Prisma.PromiseReturnType<typeof getProjects>
+
+export const getServerSideProps: GetServerSideProps<{
+  projects: string
+}> = async () => {
+  const projects = await getProjects()
+  return {
+      props: {
+          projects : JSON.stringify(projects)
+      }
+  }
+}
 
 
 
-const Page: NextPage = () => {
+const Page : NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
 
   const [data , setData] = useState<Project[]>([] )
 
@@ -36,7 +51,8 @@ const Page: NextPage = () => {
         <Boardhead
            setData={setData}
            data ={data}/>
-        <Board projects={data} />
+           
+        <Board projects={JSON.parse(props.projects) as Project[]} />
        </>
        }
        
