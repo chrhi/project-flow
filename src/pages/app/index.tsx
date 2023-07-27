@@ -10,28 +10,10 @@ import UpcommingTasks from "~/components/home-page-components/UpcommingTasks";
 
 
 
-// Server-side data fetching
-export const getServerSideProps: GetServerSideProps<{
-  AbdullahSession: string;
-}> = async (context) => {
-  // Fetch the user session
-  
-
- 
-  // Return the fetched data as props
-  return {
-    props: {
-      AbdullahSession: JSON.stringify("hello"),
-    },
-  };
-};
-
 
 
 // Page component
-const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+const Page: NextPage = () => {
 
 
   return (
