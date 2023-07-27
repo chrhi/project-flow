@@ -7,14 +7,10 @@ import toast from 'react-hot-toast'
 import { getChatPartnerId } from '~/lib/data-in-cookies'
 import type { Message, User } from '@prisma/client'
 import ChatHeaderLoading from './ChatHeaderLoading'
-import { block } from 'million/react'
+
 import MessagesLoading from './MessagesLoading'
 
-function sortDatesNewToOld(dates: Date[]): Date[] {
-  const sortedDates = [...dates];
-  sortedDates.sort((date1, date2) => date2.getTime() - date1.getTime());
-  return sortedDates;
-}
+
 
 
 const ChatFeed =  ({  }) => {
@@ -27,9 +23,6 @@ const ChatFeed =  ({  }) => {
   const [chatPartner , setChatPartner] = useState<User>({} as User)
 
   
-
-
-
 
 
   const {refetch , isLoading}  = api.chatRouter.get_messages.useQuery({partnerId : getChatPartnerId() },{

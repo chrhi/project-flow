@@ -19,7 +19,7 @@ export default function MessageNofinications() {
         <div className='bg-blue-500 rounded-full absolute flex justify-center items-center w-4 h-4 top-[0] right-[0]'>
           <span className='text-white text-xs '>2</span>
         </div>
-         <MessagesSquare  className='w-5 h-5 text-neutral-800' />
+         <MessagesSquare  className='w-5 h-5 text-[#64748B]' />
       </Menu.Button>
       </div>
       <Transition

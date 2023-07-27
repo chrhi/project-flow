@@ -14,7 +14,7 @@ import {
 
 import { labels } from "./data/data"
 import { taskSchema } from "./data/schema"
-import { confirmDeleteTask } from "~/store/app-reducer/confirm-actions"
+import { confirmDeleteTask } from "~/store/confirm-actions"
 
 interface DataTableRowActionsProps<TData> {
   row:  Row<{

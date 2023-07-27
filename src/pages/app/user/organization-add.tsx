@@ -1,4 +1,4 @@
-import { type NextPage } from "next";
+import type { GetServerSideProps, InferGetServerSidePropsType,  NextPage } from "next";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { api } from "~/utils/api";
 import  toast  from "react-hot-toast";
@@ -9,6 +9,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from "react";
 import { Header } from "~/components/header/Header";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "~/lib/auth";
+import type { Session } from "next-auth";
 
 
 const validateSchema = z
@@ -22,8 +25,40 @@ const validateSchema = z
 
 type FormData = z.infer<typeof validateSchema>
 
+// Server-side data fetching
+export const getServerSideProps: GetServerSideProps<{
 
-const Page: NextPage = () => {
+  AbdullahSession: string;
+}> = async (context) => {
+  // Fetch the user session
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  // Redirect if the session is not found
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  // Fetch the project details and initial messages using the project ID stored in cookies
+  const AbdullahSession = { ...session };
+  // Return the fetched data as props
+  return {
+    props: {
+      AbdullahSession: JSON.stringify(AbdullahSession),
+    },
+  };
+};
+
+
+
+// Page component
+const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
+
 
     const router = useRouter();
 
@@ -65,7 +100,7 @@ const Page: NextPage = () => {
 
   return (
     <>
-     <Header  />
+     <Header session={JSON.parse(props.AbdullahSession) as Session} />
       <main className=" custopn-page-height  items-center pt-8 flex flex-col w-full  ">
         <div className="w-full h-[70px] flex justify-center items-start  flex-col px-8">
           <h1 className="text-xl font-semibold text-gray-900 ">Add new Organization to your work space</h1>

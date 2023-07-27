@@ -9,10 +9,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
-import { confirmDeleteStakeholder } from "~/store/app-reducer/confirm-actions"
+import { confirmDeleteStakeholder } from "~/store/confirm-actions"
 import { getColor } from "~/utils/formate/getColor"
 import { Badge } from "@tremor/react"
-import { confirmDeleteTask } from "~/store/app-reducer/confirm-actions"
+import { confirmDeleteTask } from "~/store/confirm-actions"
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.

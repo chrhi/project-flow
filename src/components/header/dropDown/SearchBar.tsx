@@ -16,7 +16,7 @@ export default function SearchBar() {
     <Menu as="div" className="relative z-[100]  inline-block text-left">
       <div className='h-[60px] w-[20px] flex justify-center items-center'>
       <Menu.Button  className={`${buttonVariants({variant : "ghost" , size : "sm"})}`}>
-         <Search className='w-5 h-5 text-neutral-800' />
+         <Search className='w-5 h-5 text-[#64748B]' />
       </Menu.Button>
       </div>
       <Transition

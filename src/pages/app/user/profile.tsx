@@ -67,7 +67,7 @@ const Page: NextPage = ({ data }) => {
 
   return (
     <> 
-    <Header />
+    {/* <Header /> */}
   
     <main className="   flex flex-col h-fit min-h-full w-full gap-y-4 p-4 bg-white ">
           {/* this is the title of the web site */}

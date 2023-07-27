@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Link from "next/link";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
-import { userReducer } from "~/store/userReducer";
 import { useRouter } from "next/router";
 import { NotAuthHeader } from "~/components/header/NotAuthHeader";
 import { signIn } from "next-auth/react";
@@ -52,7 +51,7 @@ const Page: NextPage = () => {
     <>
      <NotAuthHeader  />
 
-      <main className=" w-full custom-hieght-navbar bg-white flex justify-center pl-16  items-center  ">
+      <main className=" w-full h-[calc(100vh-50px)] bg-white flex justify-center pl-16  items-center  ">
         
       <div className="w-[50%] max-w-md p-4 z-[999] bg-white border shadow-2xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#">

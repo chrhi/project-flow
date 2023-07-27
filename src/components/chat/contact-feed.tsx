@@ -6,13 +6,12 @@ import {
   TabsList,
   TabsTrigger,
 } from "~/components/ui/tabs"
-import { useSession } from 'next-auth/react'
 import ChatContact from './chat-contact'
 import { Input } from '../ui/input'
-import Search from '../icons/search'
 import { ScrollArea } from '../ui/scroll-area'
 import type { Project } from '@prisma/client'
 import ProjectGroupe from './project-groupe'
+import { Search } from 'lucide-react'
 
 type Props ={
   projects : Project[],
@@ -24,18 +23,10 @@ function ContactFeed({projects , memberOrg } : Props) {
 
   const [people , setPeople] = useState<MemberOrg[]>(memberOrg)
 
-  const session = useSession()
+  const [myProjects , setMyProjects] = useState<Project[]>(projects)
  
 
-  // //get the team members to show them in the contact list
-  // const {isLoading} = api.userRouter.get_org_members.useQuery({id : getOrganizationId()}, {
-  //   onSuccess : (data) => {
-  //     setPeople(data.filter(item => item.user !== session.data?.user.id))
-  //   }, 
-  //   onError : () => {
-  //     toast.error("failed to get the freinds list")
-  //   }
-  // })
+ 
 
   return (
     <div className='w-[0] hidden md:block md:w-[370px] pt-[50px]  fixed top-0 left-0 bottom-0 border-r-gray-500 border-r-[2px] bg-white h-screen'>
@@ -53,7 +44,7 @@ function ContactFeed({projects , memberOrg } : Props) {
           className='h-[40px] w-[90%] mr-auto border-none ' />
           <Search className="w-6 h-6 text-gray-500" />
         </div>
-        {projects.map(item => {
+        {myProjects.map(item => {
          return (
           <ProjectGroupe
             title={item.title}
@@ -75,8 +66,6 @@ function ContactFeed({projects , memberOrg } : Props) {
           className='h-[40px] w-[90%] mr-auto border-none ' />
           <Search className="w-6 h-6 text-gray-500" />
         </div>
-        {/* {
-          isLoading ? <ContactLoading /> :   */}
           <ScrollArea>
             {
                

@@ -47,7 +47,7 @@ const Page: NextPage = () => {
     <>
       <Head />
     
-      <Header />
+      {/* <Header /> */}
 
       <main className=" custopn-page-height  items-center pt-8 flex flex-col w-full bg-gray-50 ">
         <div className="w-full h-[70px] flex justify-center items-start  flex-col px-8">

@@ -1,25 +1,54 @@
 import { addDays } from "date-fns";
-import { type NextPage } from "next";
+import type { GetServerSideProps, InferGetServerSidePropsType,  NextPage } from "next";
 import { useState } from "react";
 import type { DateRange } from "react-day-picker";
 import { Header } from "~/components/header/Header";
-import { RowGridText } from "~/components/typography/RowGridText";
 import Select from 'react-select';
-import { Form } from "~/components/used/Form";
-import { FormContainer } from "~/components/used/FormContainer";
-import { Input } from "~/components/used/Input";
-import { TextField } from "~/components/used/TextField";
 import ProjectAvartPicker from "~/components/used/project-avatar-picker";
 import { getOrganizationId } from "~/lib/data-in-cookies";
 import { api } from "~/utils/api";
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton";
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
+import { getServerSession } from "next-auth/next";
+import type { Session } from "next-auth";
+import { authOptions } from "~/lib/auth";
+
+
+// Server-side data fetching
+export const getServerSideProps: GetServerSideProps<{
+
+  AbdullahSession: string;
+}> = async (context) => {
+  // Fetch the user session
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  // Redirect if the session is not found
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  // Fetch the project details and initial messages using the project ID stored in cookies
+  const AbdullahSession = { ...session };
+  // Return the fetched data as props
+  return {
+    props: {
+      AbdullahSession: JSON.stringify(AbdullahSession),
+    },
+  };
+};
 
 
 
+// Page component
+const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
 
-const Page: NextPage = () => {
 
     const router = useRouter()
 
@@ -101,35 +130,9 @@ const Page: NextPage = () => {
 
   return (
     <> 
-     <Header />
+     <Header session={JSON.parse(props.AbdullahSession) as Session} />
       <main className=" w-full h-full  ">
-        <div className=" w-full mt-4  mx-auto h-[60px] flex flex-col p-4 pl-8 justify-center items-start gap-y-3">
-            <h1 className="text-xl font-semibold text-gray-900">Create new Project</h1>
-            <span className="text-lg  text-gray-500" >Let's get started</span>
-        </div>
-         <FormContainer 
-         stopScroll
-         className="max-w-4xl mx-auto ">
-          
-         <Form >
-         <div className="bg-white dark:bg-neutral-900  rounded-lg px-4 py-5 sm:p-6 ">
-            <div className="grid grid-cols-12  gap-6">
-
-              <RowGridText
-                small
-                text="BASIC INFO"
-                text2="about your project"
-              />
-            
-              <Input  
-                     className="!col-span-6  w-full"
-                     value={inputs.title}
-                     onChange={(e) => setInputs({...inputs , title : e.target.value})}
-                     isLoading={false}
-                     lable="title  "
-                     isRequired
-              />
-              
+       
                     <ProjectAvartPicker 
                        
                         setProjectImage={setProjectImage}
@@ -137,35 +140,7 @@ const Page: NextPage = () => {
                         projectImage = {projectImage}
                     />
            
-              <TextField
-                     isRequired
-                     className="!col-span-12 !xl:col-span-12 w-full"
-                     value={inputs.description}
-                     onChange={(e) => setInputs({...inputs , description : e.target.value})}
-                     isLoading={false}
-                     lable="Breif description about the project "
-              />
-               <div className='col-span-12 '>
-               <label  className="block text-sm font-medium leading-6 text-gray-900">
-                  Add team members to this project
-                </label>
-                <Select
-                     onChange={(e) => setInputs({...inputs , teamMembers : e.map(item => item.value) })}   
-                    name="my team"
-                    options={MyTeam}
-                    className="basic-multi-select"
-                    classNamePrefix="select"
-                    isMulti
-                  
-                 />
-               </div>
-               <TextField
-                     className="!col-span-12 !xl:col-span-12 w-full"
-                     value={inputs.messageSendToTeamMembers}
-                     onChange={(e) => setInputs({...inputs , messageSendToTeamMembers : e.target.value})}
-                     isLoading={false}
-                     lable="message is going to send to them"
-              />
+           
               <div className="bg-white dark:bg-neutral-900  py-3 col-span-6 lg:col-span-12 flex items-center justify-start gap-x-4 text-right ">
     
     
@@ -194,13 +169,8 @@ const Page: NextPage = () => {
                </AbdullahButton>
    
  </div>
-    </div>
-
-  </div>
+    </main>
  
-   </Form>
-</FormContainer>
-      </main>
     </>
   );
 };

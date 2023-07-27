@@ -1,77 +1,69 @@
 import { cn, toPusherKey, } from '~/lib/utils'
 import { type FC, useEffect, useRef, useState } from 'react'
-import type { User  , Message} from '@prisma/client'
+import type { User  , Message, ChatMessageProject} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import { pusherClient } from '~/lib/pusher'
 import AudioPlayer from './AudioPlayer'
 import { block } from 'million/react'
-
+import type { Project } from '@prisma/client'
 
 
 interface MessagesProps {
-  initialMessages: Message[]
-  sessionId: string
-  sessionImg: string | null | undefined
-  chatPartner: User,
-  refetch : () => Promise<any>
+  initialMessages: ChatMessageProject[]
+  project : Project
+  sessionId : string
+
  
 }
 
 const MessagesFlow: FC<MessagesProps> = ({
   initialMessages,
-  sessionId,
-  chatPartner,
-  sessionImg,
-  refetch
+  project ,
+  sessionId ,
+
 }) => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const [messages, setMessages] = useState<Message[]>([])
+  const [messages, setMessages] = useState<ChatMessageProject[]>(initialMessages)
 
  
   const scrollDownRef = useRef<HTMLDivElement | null>(null)
 
-  useEffect(() => {
-    setMessages(initialMessages)
-    scrollDownRef?.current?.scrollIntoView({ behavior: 'smooth' });
-  },[initialMessages])
 
-  // toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
   useEffect(() => {
     pusherClient.subscribe( 
-     toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
+     toPusherKey(`chat:${project.id}`)
     )
 
-    const messageHandler = (message: Message) => {
-     console.log(message)
+    const messageHandler = (message: ChatMessageProject) => {
+     audioRef.current?.play()
      message.timestamp = new Date()
      setMessages((prev) => [message, ...prev])
      //to scroll down when a new message hits
      scrollDownRef?.current?.scrollIntoView({ behavior: 'smooth' });
-     audioRef.current?.play()
+     
     }
 
     pusherClient.bind('incoming-message', messageHandler)
 
     return () => {
       pusherClient.unsubscribe(
-      toPusherKey(`chat:${sessionId}-${chatPartner.id}`)
+      toPusherKey(`chat:${project.id}`)
       )
       pusherClient.unbind('incoming-message', messageHandler)
     }
-  }, [ sessionId , chatPartner.id , messages , refetch])
+  }, [  project.id , messages ])
 
 
   
 
 
-  function getFormattedHourAndMinutesFromDate(date: Date): string {
-    if(!date) return "00:00"
-    const hour = date?.getHours()?.toString()?.padStart(2, '0');
-    const minutes = date?.getMinutes()?.toString()?.padStart(2, '0');
-  
-    return `${hour}:${minutes}`;
+  function getFormattedHourAndMinutesFromDate(date: string): string {
+    if(!date ) return "00:00"
+    const hour = new Date(date).getHours()?.toString()?.padStart(2, '0');
+    const minutes = new Date(date).getHours()?.toString()?.padStart(2, '0');
+    return `${hour}:${minutes}`;  
   }
   
 
@@ -118,7 +110,8 @@ const MessagesFlow: FC<MessagesProps> = ({
                   })}>
                   {message.text}{' '}
                   <span className='ml-2 text-xs text-gray-400'>
-                   {getFormattedHourAndMinutesFromDate(message?.timestamp)}
+                    {/* @ts-ignore */}
+                   {getFormattedHourAndMinutesFromDate(message?.timestamp )}
                   </span>
                 </span>
 
@@ -130,12 +123,8 @@ const MessagesFlow: FC<MessagesProps> = ({
                   invisible: hasNextMessageFromSameUser,
                 })}>
                 <img
-                
-                  src={
-                    isCurrentUser ? (sessionImg as string) || "/assets/avatar.png" : chatPartner.image || "/assets/avatar.png"
-                  }
-                  alt='Profile picture'
-                 
+                  src={ message.senderImage }
+                  alt='Profile picture' 
                   className='rounded-full'
                 />
               </div>

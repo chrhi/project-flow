@@ -1,49 +1,53 @@
-import type { FC , ReactNode} from 'react'
+/*
+ * Import necessary dependencies and components.
+ * Abdullah created this Providers component to wrap the application with various providers and settings.
+ */
+import type { FC, ReactNode } from 'react';
 import NextNProgress from 'nextjs-progressbar';
 import 'react-toastify/dist/ReactToastify.css';
-import { Loading } from '~/components/common/Loading';
-import 'react-toastify/dist/ReactToastify.css';
 import 'reactflow/dist/style.css';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 import { ReactFlowProvider } from 'reactflow';
-import { AccessPopUp } from '~/components/common/AccessPopUp';
-import  { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import Head from '../common/Head';
-import { BlockedPopUp } from '../common/BlockedPopUp';
 import { OpenInvitationMessage } from '../popup/invites/organization-invite';
 
-
-
-
+/*
+ * Interface for the Providers component props.
+ */
 interface ProvidersAbdullahProps {
-  children : ReactNode
+  children: ReactNode;
 }
 
-const Providers: FC<ProvidersAbdullahProps> = ({children}) => {
+/*
+ * Providers component created by Abdullah.
+ * It wraps the application with various providers and settings.
+ */
+const Providers: FC<ProvidersAbdullahProps> = ({ children }) => {
 
-  return(
+  return (
+    /*
+     * Main container for the Providers component.
+     * Includes NextNProgress, OpenInvitationMessage, Toaster, Head, and ReactFlowProvider.
+     */
+    <div className="w-full h-fit relative scrollbar-hide ">
+      {/* Progress bar for Next.js routes */}
+      <NextNProgress options={{ showSpinner: false }} />
+      {/* OpenInvitationMessage popup */}
+      <OpenInvitationMessage />
+      {/* Toast notification container */}
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
+      {/* Custom Head component */}
+      <Head />
+      {/* ReactFlowProvider for handling ReactFlow related contexts */}
+      <ReactFlowProvider>
+        {children}
+      </ReactFlowProvider>
+    </div>
+  );
+};
 
-    
-         <div className="w-full h-fit relative  scrollbar-hide ">
-             <NextNProgress options={{ showSpinner: false }} />
-             <Loading />
-             <AccessPopUp />
-             <BlockedPopUp />
-             <OpenInvitationMessage  />
-             <Toaster
-                  position="top-right"
-                  reverseOrder={false}
-              />
-             <Head />
-             <ReactFlowProvider>
-                     {children}
-             </ReactFlowProvider> 
-          </div>
-  
-    
-  )
-
-     
-}
-
-export default Providers
+export default Providers;

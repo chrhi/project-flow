@@ -31,7 +31,7 @@ model Account {
   session_state     String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+  @@index([userId])
   @@unique([provider, providerAccountId])
 }
 
@@ -81,6 +81,24 @@ model Message {
     @@index([id])
 }
 
+model ChatMessageProject {
+    id          String    @id @default(cuid())
+    projectId   String
+    senderImage String
+    senderName  String 
+    senderEmail String
+    receiverId  String 
+    ChatId      String
+    senderId     String
+    text        String  @db.LongText
+    type        String 
+    url         String?
+    timestamp   DateTime  @default(now())
+    project     Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+    @@index([id])
+    @@index([projectId])
+}
+
 model Organization {
   id        String    @id @default(cuid())
   userId    String
@@ -117,32 +135,11 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model MileStones {
-  id          String    @id @default(cuid())
-  projectId   String
-  name        String?   @db.LongText
-  description String?   @db.LongText
-  dueDate     DateTime?
-  project     Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
-
   @@index([id])
-  @@index([projectId])
+  @@index([userId])
 }
 
-model ProjectObjectives {
-  id                      String   @id @default(cuid())
-  projectId               String
-  THE_PROJECTS_OBJECTIVES String?  @db.LongText
-  SUCCESS_CRITERIA        String?  @db.LongText
-  APPROVAL                String?  @db.LongText
-  Type                    String?  @db.LongText
-  project                 Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  @@index([id])
-  @@index([projectId])
-}
 
 model Project {
   id                   String              @id @default(uuid())
@@ -162,130 +159,17 @@ model Project {
   content              Json?
   createdAt            DateTime            @default(now())
   notes                Note[]
+  messages             ChatMessageProject[]
   Organization         Organization?       @relation(fields: [OrganizationId], references: [id], onDelete: Cascade)
-  StakHolder           StakeHolder[]
-  Risk                 Risk[]
-  Resource             Resources[]
-  Comunications        Comunications[]
-  MileStones           MileStones[]
-  Tasks                Tasks[]
-  ProjectObjectives    ProjectObjectives[]
-  Document             Document[]
-
   @@index([id])
   @@index([OrganizationId])
 }
 
 
-// model ProjectTeam {
-//   id                 String    @id @default(uuid())
-//   userId             String 
-//   projectId          String
-//   username           String
-//   image              String
-//   email              String 
-//   role               String 
-//   project            Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
-//   @@index([id])
-//   @@index([projectId])
-// }
 
-model Tasks {
-  id                 String    @id @default(uuid())
-  projectId          String?
-  title              String?
-  description        String?
-  Priority           String?
-  Color              String?
-  StartAt            DateTime?
-  EndsAt             DateTime?
-  EndedAt            DateTime?
-  cost               Float?
-  RealCost           Float?
-  imgUrl             String?
-  progress           Int?
-  Shape              String?
-  Status             String?
-  AssignedTo         Json?
-  AlocatedRessources Json?
-  project            Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  @@index([id])
-  @@index([projectId])
-}
 
-model Document {
-  id        String   @id @default(uuid())
-  name      String?
-  url       String?
-  path      String?
-  createdAt DateTime @default(now())
-  status    String?
-  projectId String?
-  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  @@index([id])
-  @@index([projectId])
-}
 
-model StakeHolder {
-  id               String   @id @default(uuid())
-  projectId        String?
-  name             String?
-  type             String
-  position         String?
-  impact           String?
-  role             String?  @db.LongText
-  Requirements     String?  @db.LongText
-  contact          String?
-  InvestmentAmount String?
-  Expectations     String?  @db.LongText
-  project          Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-  @@index([id])
-  @@index([projectId])
-}
 
-model Risk {
-  id        String  @id @default(uuid())
-  projectId String?
-  name      String?
-  cost      String?
-
-  description   String?  @db.LongText
-  levelOfDanger String?
-  solutions     String?  @db.LongText
-  project       Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
-
-  @@index([id])
-  @@index([projectId])
-}
-
-model Resources {
-  id          String   @id @default(uuid())
-  projectId   String?
-  name        String?
-  description String?  @db.LongText
-  cost        Float?
-  quality     String?
-  imageUrl    String?
-  project     Project? @relation(fields: [projectId], references: [id])
-
-  @@index([id])
-  @@index([projectId])
-}
-
-model Comunications {
-  id          String    @id @default(uuid())
-  projectId   String?
-  stakeholder Json?
-  description String?   @db.LongText
-  time        DateTime?
-  method      String?
-  Sender      String?
-
-  project Project? @relation(fields: [projectId], references: [id])
-
-  @@index([id])
-  @@index([projectId])
-}

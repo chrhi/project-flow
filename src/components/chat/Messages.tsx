@@ -4,7 +4,6 @@ import type { User  , Message} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import { pusherClient } from '~/lib/pusher'
 import AudioPlayer from './AudioPlayer'
-import { block } from 'million/react'
 
 
 
@@ -66,21 +65,19 @@ const Messages: FC<MessagesProps> = ({
   
 
 
-  function getFormattedHourAndMinutesFromDate(date: Date): string {
-    if(!date) return "00:00"
-    const hour = date?.getHours()?.toString()?.padStart(2, '0');
-    const minutes = date?.getMinutes()?.toString()?.padStart(2, '0');
-  
-    return `${hour}:${minutes}`;
+  function getFormattedHourAndMinutesFromDate(date: string): string {
+    if(!date ) return "00:00"
+    const hour = new Date(date).getHours()?.toString()?.padStart(2, '0');
+    const minutes = new Date(date).getHours()?.toString()?.padStart(2, '0');
+    return `${hour}:${minutes}`;  
   }
   
-
   return (
-    <ScrollArea>
+    <>
     <AudioPlayer audioRef={audioRef} />
     <div
       id='messages'
-      className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
+      className='flex h-full  flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
       <div ref={scrollDownRef} />
     
 
@@ -118,7 +115,8 @@ const Messages: FC<MessagesProps> = ({
                   })}>
                   {message.text}{' '}
                   <span className='ml-2 text-xs text-gray-400'>
-                   {getFormattedHourAndMinutesFromDate(message?.timestamp)}
+                    {/* @ts-ignore */}
+                   {getFormattedHourAndMinutesFromDate(message?.timestamp )}
                   </span>
                 </span>
 
@@ -146,8 +144,9 @@ const Messages: FC<MessagesProps> = ({
 
        
     </div>
-    </ScrollArea>
+    </>
+  
   )
 }
 
-export default block(Messages)
+export default Messages

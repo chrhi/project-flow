@@ -1,7 +1,7 @@
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../ui/card';
-import { ArrowUpNarrowWide, Grid, GripVertical } from 'lucide-react';
+import {  GripVertical } from 'lucide-react';
 import { DropdownMenuSeparator } from '~/components/ui/dropdown-menu';
 import type { Project, User } from "@prisma/client";
 import { block } from "million/react";
@@ -57,7 +57,7 @@ function Flow({image , team , description , imagetype  , title , id , index , cu
 
   const handleRouting = () => {
     setoreProjectMetaData({project_id : id})
-    router.push("/app/simple-project/brief")
+    router.push("/app/project/simple/brief")
   
   }
 

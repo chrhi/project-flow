@@ -1,28 +1,57 @@
-import { type NextPage } from "next";
-import Boardhead from "~/components/board/flow-board/board-head/board-head";
+import  type{ GetServerSideProps ,  InferGetServerSidePropsType,  NextPage } from "next";
+import type { Session } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { Header } from "~/components/header/Header";
 import ActivityTracker from "~/components/home-page-components/ActivityTracker";
 import FutureReminder from "~/components/home-page-components/FutureReminder";
 import PriyerTimeMobil from "~/components/home-page-components/PryerTimeMobil";
 import RecentMessages from "~/components/home-page-components/RecentMessages";
 import UpcommingTasks from "~/components/home-page-components/UpcommingTasks";
+import { authOptions } from "~/lib/auth";
 
 
 
+// Server-side data fetching
+export const getServerSideProps: GetServerSideProps<{
+
+  AbdullahSession: string;
+}> = async (context) => {
+  // Fetch the user session
+  const session = await getServerSession(context.req, context.res, authOptions);
+
+  // Redirect if the session is not found
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  // Fetch the project details and initial messages using the project ID stored in cookies
+  const AbdullahSession = { ...session };
+  // Return the fetched data as props
+  return {
+    props: {
+      AbdullahSession: JSON.stringify(AbdullahSession),
+    },
+  };
+};
 
 
-const Page: NextPage = () => {
 
-
-  
+// Page component
+const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
+  props: InferGetServerSidePropsType<typeof getServerSideProps>
+) => {
 
 
   return (
     <> 
-    <Header />
+     <Header session={JSON.parse(props.AbdullahSession) as Session} />
       <main className=" w-full container min-h-[calc(100vh-50px)] p-1 pt-4 md:p-8 lg:px-24 h-fit overflow-hidden ">
        
-        <h1 className="lg:text-3xl  text-xl font-medium text-gray-900">Hi 👋 this is the dashboard and your personal space</h1>  
+        <h1 className="lg:text-3xl  text-xl font-medium text-[#2F3349]">Hi 👋 this is the dashboard and your personal space</h1>  
           <div className="w-full flex flex-col-reverse lg:flex-row h-[400px] lg:h-[200px] my-4 lg:my-8 gap-x-4 items-center justify-between">
             <FutureReminder />
 
@@ -35,7 +64,7 @@ const Page: NextPage = () => {
             <UpcommingTasks />
             <RecentMessages />
           </div>
-          <h1 className="lg:text-3xl  text-xl font-medium text-gray-900"> Most Recent Flows</h1>  
+          <h1 className="lg:text-3xl  text-xl font-medium text-[#2F3349]"> Most Recent Flows</h1>  
        
       </main>
     </>

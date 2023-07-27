@@ -1,4 +1,4 @@
-import { Table } from "@tanstack/react-table"
+import type { Table } from "@tanstack/react-table"
 import {
   ChevronLeft,
   ChevronRight,
@@ -14,7 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "~/components/ui/select"
-import { CreateTaskButton } from "../../sheets/add-task-sheet"
+
 
 interface DataTablePaginationProps<TData> {
   table: Table<TData>,
@@ -93,7 +93,7 @@ export function DataTablePagination<TData>({
             <span className="sr-only">Go to last page</span>
             <ChevronsRight className="h-4 w-4" />
           </Button>
-          <CreateTaskButton  refetch={refetch} />
+       
         </div>
       </div>
     </div>

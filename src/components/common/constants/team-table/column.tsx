@@ -1,7 +1,7 @@
 import type { ColumnDef } from "@tanstack/react-table"
 import { Button } from "~/components/ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-import { confirmDeleteUser } from '~/store/app-reducer/confirm-actions'
+import { confirmDeleteUser } from '~/store/confirm-actions'
 import {
   DropdownMenu,
   DropdownMenuContent,

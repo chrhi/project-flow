@@ -1,5 +1,5 @@
 import { type NextPage } from "next";
-import SideBar from "~/components/admin-side-bar/SideBar";
+
 import { DataTable } from "~/components/common/constants/users/data-table";
 import {  columns } from "~/components/common/constants/users/column";
 import { api } from "~/utils/api";
@@ -38,7 +38,7 @@ const Page: NextPage = () => {
 
   return (
       <main className=" w-full custom-hieght-navbar  ">
-        <SideBar />
+        
         <div className="w-[80%]  ml-[250px] p-4  flex flex-col items-start">
             <h1 className="text-xl font-semibold ">Admin page</h1>
 

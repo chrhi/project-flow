@@ -10,7 +10,7 @@ import {
   } from "@tanstack/react-table"
   import { useState } from "react"
   import { Button } from "~/components/ui/button"
-  import { PLusButtonStakHolder } from "~/components/popup/PLusButtonStakHolder";
+  
   import {
     Table,
     TableBody,
@@ -26,8 +26,7 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
   } from "~/components/ui/dropdown-menu"
-import { TaskAdd } from "~/components/popup/TaskAdd";
-  
+
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[],
@@ -153,7 +152,7 @@ import { TaskAdd } from "~/components/popup/TaskAdd";
           >
             Next
           </Button>
-          <TaskAdd   refetch={refetch}/>
+         
         </div>
       </>
   

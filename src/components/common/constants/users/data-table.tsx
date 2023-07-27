@@ -7,7 +7,7 @@ import {
     type  SortingState,
     getSortedRowModel,
     type  VisibilityState,
-    ColumnFiltersState,
+    type ColumnFiltersState,
     getFilteredRowModel,
   } from "@tanstack/react-table"
   import { useState } from "react"

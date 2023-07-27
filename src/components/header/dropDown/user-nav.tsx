@@ -14,15 +14,18 @@ import { api } from '~/utils/api'
 import type { Organization } from '@prisma/client'
 import { RemoveOrgId, RemoveOrgName, getOrganizationId, storeOrgName, storeOrganizationId } from '~/lib/data-in-cookies'
 import toast from 'react-hot-toast'
+import type { Session } from 'next-auth'
+
+type Props = {
+  serverSession : Session
+}
 
 
-
-
-export default function DropDowsMenu() {
+export default function DropDowsMenu({serverSession}:Props) {
  
    const router = useRouter()
   
-   const session= useSession()
+  
 
    const [orgSelected , setOrgSelected] = useState("")
 
@@ -69,7 +72,7 @@ export default function DropDowsMenu() {
     <Menu as="div" className="relative z-[100]  inline-block text-left">
       <div className='h-[60px] w-[20px] flex justify-center items-center'>
           <Menu.Button className={`${buttonVariants({variant : "ghost" , size : "sm"})}`} >
-           <Settings  className='w-5 h-5 text-neutral-800' />
+           <Settings  className='w-5 h-5 text-[#64748B]' />
           </Menu.Button>
       </div>
       <Transition
@@ -95,12 +98,12 @@ export default function DropDowsMenu() {
                 }  }
                 >
                  <Avatar>
-                  <AvatarImage src={session.data?.user.image || ""} alt="@abdullah" />
+                  <AvatarImage src={serverSession?.user.image || ""} alt="@abdullah" />
                   <AvatarFallback>AB</AvatarFallback>
                 </Avatar>
                   <div className='w-[80%] min-h-[45px] h-fit   flex flex-col justify-center p-4 gap-y-1 '>
-                  <h3 className='truncate text-sm text-gray-600 dark:text-white'>{session.data?.user.email}</h3>
-                  <h3 className='truncate text-sm text-gray-600  dark:text-white '>{session.data?.user.name} {session.data?.user.lastName}</h3>
+                  <h3 className='truncate text-sm text-gray-600 dark:text-white'>{serverSession?.user.email}</h3>
+                  <h3 className='truncate text-sm text-gray-600  dark:text-white '>{serverSession?.user.name} {serverSession?.user.lastName}</h3>
                 </div>
                 </div>
               )}
