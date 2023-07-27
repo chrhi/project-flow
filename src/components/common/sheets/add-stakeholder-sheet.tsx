@@ -101,7 +101,7 @@ export function CreateStakeHolder({refetch}:Props) {
         </Button>
       </SheetTrigger>
      
-      <SheetContent position="right" size="lg" className="overflow-y-auto">
+      <SheetContent  className="overflow-y-auto">
     
         <SheetHeader>
           <SheetTitle>Enrichir l'écosystème des parties prenantes</SheetTitle>

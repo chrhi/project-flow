@@ -11,7 +11,7 @@ import { getProjectMetaData } from '~/lib/MetaData'
 import { DatePickerWithRange } from "~/components/ui/date-range-picker";
 import { addDays } from 'date-fns';
 import type { DateRange } from 'react-day-picker';
-import { ScrollArea } from "~/components/ui/scroll-area";
+
 import {
   Sheet,
   SheetClose,
@@ -23,7 +23,7 @@ import {
   SheetTrigger,
 } from "~/components/ui/sheet"
 import { useState , useRef } from "react";
-import { InputNumber } from "~/components/used/NumberInput";
+
 
 
 
@@ -127,7 +127,7 @@ export function CreateComunicationEvent({refetch} : Props) {
         </Button>
       </SheetTrigger>
      
-      <SheetContent position="right" size="lg" className="overflow-y-auto">
+      <SheetContent  className="overflow-y-auto">
     
         <SheetHeader>
           <SheetTitle>Add new event  to the list</SheetTitle>

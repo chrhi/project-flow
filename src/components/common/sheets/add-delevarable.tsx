@@ -80,7 +80,7 @@ export function CreateDelevarble({onAdd} : Props) {
         </Button>
       </SheetTrigger>
      
-      <SheetContent position="right" size="lg" className="overflow-y-auto">
+      <SheetContent className="overflow-y-auto">
     
         <SheetHeader>
           <SheetTitle>Create new Delevarable</SheetTitle>

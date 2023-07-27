@@ -135,7 +135,7 @@ export function CreateTaskButton({refetch} : Props) {
         </Button>
       </SheetTrigger>
      
-      <SheetContent position="right" size="lg" className="overflow-y-auto">
+      <SheetContent  className="overflow-y-auto">
     
         <SheetHeader>
           <SheetTitle>Add new task to the list</SheetTitle>

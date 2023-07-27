@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import ChatInput from './ChatInput'
-import Messages from './Messages'
 import { useSession } from 'next-auth/react'
 import { api } from '~/utils/api'
 import toast from 'react-hot-toast'
@@ -8,6 +7,7 @@ import { getChatPartnerId } from '~/lib/data-in-cookies'
 import type { Message, User } from '@prisma/client'
 import ChatHeaderLoading from './ChatHeaderLoading'
 import MessagesLoading from './MessagesLoading'
+import MessagesFlow from './MessagesFlow'
 
 
 
@@ -63,29 +63,17 @@ const ChatFlowFeed =  () => {
       :
       <div className='flex sm:items-center justify-between py-3 h-[60px]   border-b-2 border-gray-200'>
         <div className='relative flex items-center space-x-4 p-4'>
-          <div className='relative'>
-            <div className='relative w-8 sm:w-8 h-8 sm:h-8'>
-              <img
-                src={ chatPartner?.image ?  chatPartner?.image : "/assets/avatar.png"}
-                alt={`${ "/assets/avatar.png"} profile picture`}
-                className='rounded-full'
-              />
-            
-            </div>
-          </div>
+         
 
           <div className='flex flex-col leading-tight'>
             <div className='text-md flex items-center'>
               <span className='text-gray-700 mr-3 font-semibold'>
-                { "project title"}
-                
+                Chat 
               </span>
             </div>
-
             <span className='text-xs text-gray-600'>
-              {"abdullah chehri"}
-            
-              </span>
+              {"abdullah ,"}    {"mahdi "}
+            </span>
           </div>
         </div>
       </div>
@@ -95,12 +83,12 @@ const ChatFlowFeed =  () => {
       {
          
          isChatPartnerLoading || isLoading  ? <MessagesLoading /> : 
-        <Messages
+        <MessagesFlow
               refetch ={refetch} 
-            chatPartner={chatPartner }
-            sessionImg={session?.data?.user.image}
-            sessionId={session?.data?.user.id || ""}
-            initialMessages={initialMessages}
+              chatPartner={chatPartner }
+              sessionImg={session?.data?.user.image}
+              sessionId={session?.data?.user.id || ""}
+              initialMessages={initialMessages}
          />
       }
         <ChatInput 

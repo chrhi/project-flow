@@ -13,17 +13,14 @@ import { api } from "~/utils/api";
 //Prisma.PromiseReturnType<typeof getProjects>
 
 export const getServerSideProps: GetServerSideProps<{
-  projects: string,
-  session : Session | null
+  projects: string
 }> = async (ctx) => {
   const projects = await getProjects()
-  const session =  await getSession(ctx)
-
-
+ 
   return {
       props: {
           projects : JSON.stringify(projects),
-          session 
+         
       }
   }
 }
@@ -42,7 +39,7 @@ const Page : NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = 
 
   return (
     <> 
-    <Header session={props?.session} />
+    <Header  />
       <main className=" w-full min-h-[calc(100vh-50px)] h-fit ">
         {isError ? 
         <h1>sorry an error accoured</h1>  
