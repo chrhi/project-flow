@@ -15,6 +15,9 @@ import type { Organization } from '@prisma/client'
 import { RemoveOrgId, RemoveOrgName, getOrganizationId, storeOrgName, storeOrganizationId } from '~/lib/data-in-cookies'
 import toast from 'react-hot-toast'
 
+
+
+
 export default function DropDowsMenu() {
  
    const router = useRouter()

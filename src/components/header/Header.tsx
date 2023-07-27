@@ -8,14 +8,17 @@ import Invitation from "./dropDown/Invitation"
 import TaskNotifictions from "./dropDown/TaskNotifictions"
 import SearchBar from "./dropDown/SearchBar"
 import MessageNofinications from "./dropDown/MessageNofinications"
+import type { Session } from "next-auth"
+
+
+type Props = {
+  session? : Session | null
+}
 
 
 
 
-
-
-
-export const Header = () => {
+export const Header = ({session}:Props) => {
 
   return (
     <>
@@ -32,7 +35,7 @@ export const Header = () => {
                  <MessageNofinications  />
                  <TaskNotifictions  />
                  <Invitation  />
-                 <DropDowsMenu />
+                 <DropDowsMenu  />
                 
        </div>
        <MobileSideBar />
