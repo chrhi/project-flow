@@ -115,7 +115,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <>  
-     <Header session={JSON.parse(props.AbdullahSession) as Session} />
+    <Header />
       <main className="   flex w-full h-full bg-gray-50 overflow-hidden">
       <PhasesSideBarSimpleProject isOpen = {true} />
 

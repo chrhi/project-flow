@@ -103,7 +103,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <>
-     <Header session={JSON.parse(props.AbdullahSession) as Session} />
+      <Header />
       <main className=" custopn-page-height  items-center pt-8 flex flex-col w-full  ">
         <div className="w-full h-[70px] flex justify-center items-start  flex-col px-8">
           <h1 className="text-xl font-semibold text-gray-900 ">My Organization</h1>

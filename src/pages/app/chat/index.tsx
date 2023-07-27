@@ -13,7 +13,7 @@ import type { Session } from "next-auth";
 export const getServerSideProps: GetServerSideProps<{
   projects: string,
   orgMembers : string,
-  AbdullahSession: string;
+
 }> = async (context) => {
 
   const orgId = context?.req?.cookies['abdullah-org-id']
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<{
       props: {
           projects : JSON.stringify(projects),
           orgMembers : JSON.stringify(MyOrgMembers),
-          AbdullahSession: JSON.stringify(AbdullahSession),     
+      
       }
   }
 }
@@ -58,7 +58,7 @@ const Page : NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = 
 
   return (
     <> 
-    <Header session={JSON.parse(props.AbdullahSession) as Session} />
+    <Header />
       <main className=" w-full h-[calc(100vh-50px)] bg-white overflow-hidden ">
 
         <ContactFeed 

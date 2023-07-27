@@ -70,7 +70,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <>
-      <Header session={JSON.parse(props.AbdullahSession) as Session} />
+      <Header />
       <main className="   flex flex-col h-fit min-h-full w-full gap-y-4 p-4 bg-gray-50 ">
         <div className="w-full h-[70px] flex flex-col  items-start justify-center">
             <h1 className="text-2xl font-semibold ">My team</h1>

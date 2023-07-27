@@ -130,7 +130,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <> 
-     <Header session={JSON.parse(props.AbdullahSession) as Session} />
+     <Header />
       <main className=" w-full h-full  ">
        
                     <ProjectAvartPicker 

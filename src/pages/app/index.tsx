@@ -15,23 +15,13 @@ export const getServerSideProps: GetServerSideProps<{
   AbdullahSession: string;
 }> = async (context) => {
   // Fetch the user session
-  const session = await getSession(context);
+  
 
-  // Redirect if the session is not found
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-  // Fetch the project details and initial messages using the project ID stored in cookies
-  const AbdullahSession = { ...session };
+ 
   // Return the fetched data as props
   return {
     props: {
-      AbdullahSession: JSON.stringify(AbdullahSession),
+      AbdullahSession: JSON.stringify("hello"),
     },
   };
 };
@@ -46,7 +36,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <> 
-     <Header session={JSON.parse(props.AbdullahSession) as Session} />
+     <Header />
       <main className=" w-full container min-h-[calc(100vh-50px)] p-1 pt-4 md:p-8 lg:px-24 h-fit overflow-hidden ">
        
         <h1 className="lg:text-3xl  text-xl font-medium text-[#2F3349]">Hi 👋 this is the dashboard and your personal space</h1>  

@@ -86,7 +86,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
 
   return (
     <>  
-     <Header session={JSON.parse(props.AbdullahSession) as Session} />
+      <Header />
       <main className="flex w-full h-full bg-gray-50 overflow-hidden">
         <PhasesSideBarSimpleProject isOpen={true} />
         <div className={` ${viewState === "MID" ?  "w-[calc(50%-70px)]" : viewState === "FLOW" ? "w-[calc(100%-70px)]" : "w-[0%]"} ml-[70px] h-[calc(100vh-50px)]`}>

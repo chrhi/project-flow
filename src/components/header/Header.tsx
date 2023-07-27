@@ -13,12 +13,15 @@ import TaskNotifictions from "./dropDown/TaskNotifictions";
 import SearchBar from "./dropDown/SearchBar";
 import MessageNofinications from "./dropDown/MessageNofinications";
 import type { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
-type Props = {
-  session: Session | null;
-};
 
-export const Header = ({ session }: Props) => {
+
+export const Header = () => {
+
+
+  const session = useSession()
+
   return (
     /*
      * Main container for the Header component.
@@ -37,7 +40,7 @@ export const Header = ({ session }: Props) => {
           <MessageNofinications />
           <TaskNotifictions />
           <Invitation />
-          <DropDowsMenu serverSession={session as Session} />
+          <DropDowsMenu serverSession={session.data as Session} />
         </div>
         <MobileSideBar />
       </div>

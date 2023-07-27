@@ -59,7 +59,7 @@ const Page : NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = 
 
   return (
     <> 
-      <Header session={JSON.parse(props.AbdullahSession) as Session} />
+      <Header />
       <main className=" w-full min-h-[calc(100vh-50px)] h-fit ">
         {isError ? 
         <h1>sorry an error accoured</h1>  
