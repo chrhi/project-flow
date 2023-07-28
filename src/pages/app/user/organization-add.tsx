@@ -25,40 +25,11 @@ const validateSchema = z
 
 type FormData = z.infer<typeof validateSchema>
 
-// Server-side data fetching
-export const getServerSideProps: GetServerSideProps<{
-
-  AbdullahSession: string;
-}> = async (context) => {
-  // Fetch the user session
-  const session = await getServerSession(context.req, context.res, authOptions);
-
-  // Redirect if the session is not found
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-  // Fetch the project details and initial messages using the project ID stored in cookies
-  const AbdullahSession = { ...session };
-  // Return the fetched data as props
-  return {
-    props: {
-      AbdullahSession: JSON.stringify(AbdullahSession),
-    },
-  };
-};
 
 
 
 // Page component
-const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
-
+const Page: NextPage = () => {
 
     const router = useRouter();
 

@@ -20,40 +20,29 @@ import { getProjectInisialMessages } from "~/server/ssr/get-flow-inisial-message
 import { getProjectById } from "~/server/ssr/get-ptoject-by-id";
 import { authOptions } from "~/lib/auth";
 import type { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 // Server-side data fetching
 export const getServerSideProps: GetServerSideProps<{
   projects: string;
   initialMessages: string;
-  AbdullahSession: string;
-}> = async (context) => {
-  // Fetch the user session
-  const session = await getServerSession(context.req, context.res, authOptions);
 
-  // Redirect if the session is not found
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+}> = async (context) => {
+
 
   // Fetch the project details and initial messages using the project ID stored in cookies
   const projectId = context?.req?.cookies["abdullah-project-id"];
   const project = await getProjectById({ id: projectId });
   const initialMessages = await getProjectInisialMessages({ id: projectId });
 
-  // Store the session data
-  const AbdullahSession = { ...session };
+ 
 
   // Return the fetched data as props
   return {
     props: {
       projects: JSON.stringify(project),
       initialMessages: JSON.stringify(initialMessages),
-      AbdullahSession: JSON.stringify(AbdullahSession),
+     
     },
   };
 };
@@ -70,6 +59,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
   const [project, setProject] = useState<Project>({} as Project);
 
   const router = useRouter()
+  const session = useSession()
 
   const [isSubmitLoading , setIsSubmitLoading] = useState<boolean>(false)
 
@@ -208,7 +198,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
             </AbdullahButton>
           </div>
           <ChatFlowFeed
-            session={JSON.parse(props.AbdullahSession) as Session}
+            session={session.data as Session}
             initialMessages={JSON.parse(props.initialMessages) as ChatMessageProject[]}
             project={JSON.parse(props.projects) as Project}
           />
