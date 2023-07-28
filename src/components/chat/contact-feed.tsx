@@ -12,18 +12,38 @@ import { ScrollArea } from '../ui/scroll-area'
 import type { Project } from '@prisma/client'
 import ProjectGroupe from './project-groupe'
 import { Search } from 'lucide-react'
+import { getOrganizationId } from '~/lib/data-in-cookies'
+import { api } from '~/utils/api'
 
-type Props ={
-  projects : Project[],
-  memberOrg : MemberOrg[]
 
-}
+function ContactFeed() {
 
-function ContactFeed({projects , memberOrg } : Props) {
+  const [projects , setProjects] = useState<Project[]>([])
+  const [orgMemebers , setOrgMemebers] = useState<MemberOrg[]>([])
 
-  const [people , setPeople] = useState<MemberOrg[]>(memberOrg)
 
-  const [myProjects , setMyProjects] = useState<Project[]>(projects)
+  const {isLoading} = api.newProjectRouter.getProjectOfOrg.useQuery({
+    org_id : getOrganizationId(),
+  },{
+    onSuccess : (data) => {
+      setProjects(data)
+    },
+    onError : () => {
+      //handle the error
+    }
+  })
+
+  const {isLoading : orgMemebersLoading} = api.userRouter.get_org_members.useQuery({
+    id : getOrganizationId(),
+  },{
+    onSuccess : (data) => {
+      setOrgMemebers(data)
+    },
+    onError : () => {
+      //handle the error
+    }
+  })
+
  
 
  
@@ -44,7 +64,7 @@ function ContactFeed({projects , memberOrg } : Props) {
           className='h-[40px] w-[90%] mr-auto border-none ' />
           <Search className="w-6 h-6 text-gray-500" />
         </div>
-        {myProjects.map(item => {
+        {projects.map(item => {
          return (
           <ProjectGroupe
             title={item.title}
@@ -67,9 +87,8 @@ function ContactFeed({projects , memberOrg } : Props) {
           <Search className="w-6 h-6 text-gray-500" />
         </div>
           <ScrollArea>
-            {
-               
-               people.map(item => (
+            {    
+               orgMemebers.map(item => (
                 <ChatContact 
                   id={item.user}
                   key={item.user}

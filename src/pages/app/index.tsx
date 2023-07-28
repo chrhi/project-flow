@@ -1,6 +1,4 @@
-import  type{ GetServerSideProps ,  InferGetServerSidePropsType,  NextPage } from "next";
-import type { Session } from "next-auth";
-import { getSession } from "next-auth/react";
+import type { NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import ActivityTracker from "~/components/home-page-components/ActivityTracker";
 import FutureReminder from "~/components/home-page-components/FutureReminder";

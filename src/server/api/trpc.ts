@@ -14,6 +14,9 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 import { getServerAuthSession } from "~/lib/auth";
 import { prisma} from "~/lib/prisma"
+import { httpBatchLink } from '@trpc/client';
+import { createTRPCNext } from '@trpc/next';
+import type { AppRouter } from "./root"
 
 /**
  * 1. CONTEXT
@@ -128,3 +131,5 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+

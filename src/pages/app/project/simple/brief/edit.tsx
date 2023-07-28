@@ -15,42 +15,13 @@ import { Label } from "~/components/ui/label";
 import { Textarea } from "~/components/ui/textarea";
 import ProjectAvartPicker from "~/components/used/project-avatar-picker";
 import { useRouter } from "next/router";
-import { getServerSession } from "next-auth/next";
-import { getProjectInisialMessages } from "~/server/ssr/get-flow-inisial-messages";
-import { getProjectById } from "~/server/ssr/get-ptoject-by-id";
-import { authOptions } from "~/lib/auth";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 
-// Server-side data fetching
-export const getServerSideProps: GetServerSideProps<{
-  projects: string;
-  initialMessages: string;
 
-}> = async (context) => {
-
-
-  // Fetch the project details and initial messages using the project ID stored in cookies
-  const projectId = context?.req?.cookies["abdullah-project-id"];
-  const project = await getProjectById({ id: projectId });
-  const initialMessages = await getProjectInisialMessages({ id: projectId });
-
- 
-
-  // Return the fetched data as props
-  return {
-    props: {
-      projects: JSON.stringify(project),
-      initialMessages: JSON.stringify(initialMessages),
-     
-    },
-  };
-};
 
 // Page component
-const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
-) => {
+const Page: NextPage = () => {
 
 
     
