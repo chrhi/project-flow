@@ -31,6 +31,7 @@ import {
   } from "~/components/ui/dropdown-menu"
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton"
 import { cn } from "~/lib/utils"
+import AddTeamMember from "../my-team-table/AddTeamMember"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -71,7 +72,7 @@ import { cn } from "~/lib/utils"
   
     return (
       <>
-      <div className="flex w-full items-center ">
+      <div className="flex w-full items-center justify-between ">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
@@ -82,7 +83,9 @@ import { cn } from "~/lib/utils"
           className="max-w-sm"
         />
       </div>
-      <DropdownMenu>
+      <div className="w-fit flex h-full gap-x-4">
+        <AddTeamMember />
+        <DropdownMenu>
             <DropdownMenuTrigger asChild>
             <AbdullahButton
              className={cn(buttonVariants({variant : "secondary" , size :"sm"}) , "ml-auto")}>
@@ -111,6 +114,7 @@ import { cn } from "~/lib/utils"
                 })}
             </DropdownMenuContent>
           </DropdownMenu>
+      </div>
       </div>
       <div className="rounded-md border w-full  bg-white ">
       

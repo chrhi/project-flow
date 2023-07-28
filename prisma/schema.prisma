@@ -103,16 +103,18 @@ model ChatMessageProject {
 }
 
 model Organization {
-  id        String    @id @default(cuid())
-  userId    String
-  name      String?
-  Members   Json
-  Leader    String
-  Category  String?
-  tag       String?
-  createdAt DateTime  @default(now())
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  project   Project[]
+  id           String    @id @default(cuid())
+  userId       String
+  name         String?
+  image        String?
+  description  String?
+  Members      Json
+  Leader       String
+  Category     String?
+  tag          String?
+  createdAt    DateTime  @default(now())
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project      Project[]
   @@index([id])
   @@index([userId])
 }

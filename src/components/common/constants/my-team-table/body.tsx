@@ -24,6 +24,7 @@ import {
 } from "~/components/ui/table"
 
 import { DataTablePagination } from "./data-table-pagination"
+import AddTeamMember from "./AddTeamMember"
 
 
 
@@ -70,7 +71,9 @@ export function DataTable2<TData, TValue>({
 
   return (
     <div className="space-y-4">
-  
+      <div className="w-full h-[50px] flex items-center justify-end">
+        <AddTeamMember />
+      </div>
       <div className="rounded-md border">
         <Table>
           <TableHeader>
