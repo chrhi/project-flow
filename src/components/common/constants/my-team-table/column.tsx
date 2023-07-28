@@ -8,7 +8,11 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "~/components/ui/dropdown-menu"
-
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "~/components/ui/avatar"
 
 
 
@@ -24,6 +28,12 @@ export const columns: ColumnDef<MyTeam>[] = [
   {
     accessorKey: "image",
     header: "Image",
+    cell : ({row}) => {
+      return  <Avatar>
+      <AvatarImage src={row.original.image} alt={`${row.original.name} image`} />
+      <AvatarFallback>AB</AvatarFallback>
+    </Avatar>
+    }
   },
   {
     accessorKey: "email",
@@ -56,7 +66,13 @@ export const columns: ColumnDef<MyTeam>[] = [
             className="cursor-pointer"
               onClick={() => navigator.clipboard.writeText(row.original.id)}
             >
-             Delete User
+           copy email
+            </DropdownMenuItem>
+            <DropdownMenuItem
+            className="cursor-pointer text-red-600 font-medium hover:text-red-700"
+              onClick={() => navigator.clipboard.writeText(row.original.id)}
+            >
+             remove
             </DropdownMenuItem>
             </ DropdownMenuContent >
         </DropdownMenu>

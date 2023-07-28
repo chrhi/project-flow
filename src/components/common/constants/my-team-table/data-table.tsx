@@ -31,7 +31,7 @@ import {
   } from "~/components/ui/dropdown-menu"
 import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton"
 import { cn } from "~/lib/utils"
-import AddTeamMember from "../my-team-table/AddTeamMember"
+import AddTeamMember from "./AddTeamMember"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]

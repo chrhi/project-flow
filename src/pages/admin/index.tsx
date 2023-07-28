@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 
-import { DataTable } from "~/components/common/constants/users/data-table";
+import { DataTable } from "~/components/common/constants/my-team-table/data-table";
 import {  columns } from "~/components/common/constants/users/column";
 import { api } from "~/utils/api";
 import { useState } from "react";

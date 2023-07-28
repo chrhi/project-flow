@@ -121,7 +121,7 @@ const acceptMutation = api.notificatioRouter.accept_join_request.useMutation({
                                <AbdullahButton 
                                    isLoading ={rejectMutation.isLoading}
                                    onClick={() => rejectMutation.mutate({id : getOrganizationId()})}
-                                   className={`${buttonVariants({variant : "secondary" , size : "sm"})}  `} >
+                                   className={`${buttonVariants({variant : "secondary" })}  `} >
                                    Reject
                                 </AbdullahButton> 
                                 <AbdullahButton 
@@ -132,19 +132,10 @@ const acceptMutation = api.notificatioRouter.accept_join_request.useMutation({
                                     role : data?.typeRelation,
                                   
                                   })}
-                                   className={`${buttonVariants({variant : "primary" , size :"sm"})} `} >
+                                   className={`${buttonVariants({variant : "primary" })} `} >
                                    Accept
                                 </AbdullahButton> 
-                                <AbdullahButton 
-                                   isLoading={acceptMutation.isLoading}
-                                   onClick={() =>{
-                                    console.log(join_request_id , data?.OrganizationId  , data?.typeRelation)
-                                   } 
-                                  
-                                  }
-                                   className={`${buttonVariants({variant : "primary" , size :"sm"})} `} >
-                                   test
-                                </AbdullahButton> 
+                             
                         </div>
                 </div>
                 </Dialog.Panel>
