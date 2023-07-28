@@ -29,6 +29,8 @@ import {
     DropdownMenuContent,
     DropdownMenuTrigger,
   } from "~/components/ui/dropdown-menu"
+import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton"
+import { cn } from "~/lib/utils"
   
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -69,7 +71,7 @@ import {
   
     return (
       <>
-      <div className="flex w-full items-center py-4">
+      <div className="flex w-full items-center ">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
@@ -82,9 +84,10 @@ import {
       </div>
       <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="ml-auto">
+            <AbdullahButton
+             className={cn(buttonVariants({variant : "secondary" , size :"sm"}) , "ml-auto")}>
                 Columns
-              </Button>
+            </AbdullahButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               {table
@@ -109,7 +112,7 @@ import {
             </DropdownMenuContent>
           </DropdownMenu>
       </div>
-      <div className="rounded-md border w-full">
+      <div className="rounded-md border w-full  bg-white ">
       
         <Table>
           <TableHeader>
@@ -155,22 +158,22 @@ import {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-          <Button
-            variant="outline"
+          <AbdullahButton
+            className={cn(buttonVariants({variant : "secondary" , size :"sm"}))}
             size="sm"
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             Previous
-          </Button>
-          <Button
-            variant="outline"
+          </AbdullahButton>
+          <AbdullahButton
+             className={cn(buttonVariants({variant : "secondary" , size :"sm"}))}
             size="sm"
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >
             Next
-          </Button>
+          </AbdullahButton>
          
         </div>
       </>

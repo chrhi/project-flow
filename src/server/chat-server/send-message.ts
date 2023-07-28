@@ -22,6 +22,9 @@ export const send_message  = protectedProcedure
   
     const message = await ctx.prisma.message.create({
       data :{
+        senderEmail :ctx?.session?.user.email || "",
+        senderImage : ctx?.session?.user.image || "",
+        senderName : ctx?.session?.user.name || "",
         senderId: ctx?.session?.user.id || "",
         receiverId : input.receiverId,
         ChatId : `${ctx?.session?.user.id}-${input.partnerId}`,

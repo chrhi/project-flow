@@ -1,9 +1,9 @@
 import * as React from "react"
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
+  type ColumnDef,
+ type ColumnFiltersState,
+ type SortingState,
+ type VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -24,8 +24,8 @@ import {
 } from "~/components/ui/table"
 
 import { DataTablePagination } from "./data-table-pagination"
-import { DataTableToolbar } from "./data-table-toolbar"
-import { Button } from "~/components/ui/button"
+
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -70,7 +70,7 @@ export function DataTable2<TData, TValue>({
 
   return (
     <div className="space-y-4">
-      <DataTableToolbar table={table} />
+  
       <div className="rounded-md border">
         <Table>
           <TableHeader>

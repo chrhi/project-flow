@@ -73,7 +73,10 @@ model Message {
     id          String    @id @default(cuid())
     receiverId  String 
     ChatId      String
-    senderId     String
+    senderId    String
+    senderImage String
+    senderName  String 
+    senderEmail String
     text        String  @db.LongText
     type        String 
     url         String?

@@ -17,7 +17,7 @@ const Page: NextPage = () => {
   return (
     <> 
      <Header />
-      <main className=" w-full container min-h-[calc(100vh-50px)] p-1 pt-4 md:p-8 lg:px-24 h-fit overflow-hidden ">
+     <main className="w-full container py-10 px-20 h-[calc(100vh-50px)] overflow-hidden overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
        
         <h1 className="lg:text-3xl  text-xl font-medium text-[#2F3349]">Hi 👋 this is the dashboard and your personal space</h1>  
           <div className="w-full flex flex-col-reverse lg:flex-row h-[400px] lg:h-[200px] my-4 lg:my-8 gap-x-4 items-center justify-between">

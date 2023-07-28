@@ -1,12 +1,12 @@
-import type { GetServerSideProps, InferGetServerSidePropsType,  NextPage } from "next";
+import type {  NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { api } from "~/utils/api";
 import { openInvitationModel } from "~/store/messages-popup";
 import { getOrganizationId } from "~/lib/data-in-cookies";
-import { getServerSession } from "next-auth/next";
-import type { Session } from "next-auth";
-import { authOptions } from "~/lib/auth";
+import { DataTable } from "~/components/common/constants/users/data-table";
+import { columns } from "~/components/common/constants/my-team-table/column";
+
 
 
 
@@ -43,13 +43,14 @@ const Page: NextPage = () => {
   return (
     <>
       <Header />
-      <main className="   flex flex-col h-fit min-h-full w-full gap-y-4 p-4 bg-gray-50 ">
+      <main className="w-full container p-8 h-[calc(100vh-50px)] overflow-hidden overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
         <div className="w-full h-[70px] flex flex-col  items-start justify-center">
             <h1 className="text-2xl font-semibold ">My team</h1>
             <p className="text-md text-gray-500">manage all your team in here</p>
         </div>
       
-        {/* <DataTable  columns={columns} data={people} />   */}
+        <DataTable  columns={columns} data={people} />  
+        
          
         
       </main>
