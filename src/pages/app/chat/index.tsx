@@ -4,9 +4,7 @@ import ContactFeed from "~/components/chat/contact-feed";
 import { Header } from "~/components/header/Header";
 import { getProjects } from "~/server/ssr/get-projects";
 import { getOrgMembers } from "~/server/ssr/get-org-memebers";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "~/lib/auth";
-import type { Session } from "next-auth";
+
 
 
 
@@ -17,34 +15,15 @@ export const getServerSideProps: GetServerSideProps<{
 }> = async (context) => {
 
   const orgId = context?.req?.cookies['abdullah-org-id']
-
-  const session = await getServerSession(context.req, context.res, authOptions);
-
-  // Redirect if the session is not found
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-
   const projects = await getProjects({org_id : orgId || ""})
 
-  // Fetch the project details and initial messages using the project ID stored in cookies
-   const AbdullahSession = { ...session };
-
- 
   const orgMembers = await getOrgMembers({id : orgId || "" })
 
-  //remove me from the contact
-  const MyOrgMembers = orgMembers.filter(item => item.id !== session.user.id)
+
   return {
       props: {
           projects : JSON.stringify(projects),
-          orgMembers : JSON.stringify(MyOrgMembers),
+          orgMembers : JSON.stringify(orgMembers),
       
       }
   }

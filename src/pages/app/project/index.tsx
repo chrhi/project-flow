@@ -4,43 +4,28 @@ import { useState } from "react";
 import Board from "~/components/board/flow-board/board";
 import Boardhead from "~/components/board/flow-board/board-head/board-head";
 import { Header } from "~/components/header/Header";
-import { getOrganizationId } from "~/lib/data-in-cookies";
 import { getProjects } from "~/server/ssr/get-projects";
 import { api } from "~/utils/api";
-import { getServerSession } from "next-auth/next";
-import type { Session } from "next-auth";
-import { authOptions } from "~/lib/auth";
 
 
 //Prisma.PromiseReturnType<typeof getProjects>
 
 export const getServerSideProps: GetServerSideProps<{
   projects: string,
-  AbdullahSession: string;
-}> = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
 
-  // Redirect if the session is not found
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
+}> = async (context) => {
+ 
   const org_id = context?.req?.cookies["abdullah-org-id"];
 
   const projects = await getProjects({org_id : org_id || ""})
 
-  // Fetch the project details and initial messages using the project ID stored in cookies
-   const AbdullahSession = { ...session };
+ 
 
  
   return {
       props: {
           projects : JSON.stringify(projects),
-          AbdullahSession: JSON.stringify(AbdullahSession),    
+           
       }
   }
 }
