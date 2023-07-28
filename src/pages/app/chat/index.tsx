@@ -1,11 +1,9 @@
-import { type InferGetServerSidePropsType, type GetServerSideProps, type NextPage } from "next";
-import { useState } from "react";
+import {  type NextPage } from "next";
+
 import ChatFeed from "~/components/chat/ChatFeed";
 import ContactFeed from "~/components/chat/contact-feed";
 import { Header } from "~/components/header/Header";
-import { getOrganizationId } from "~/lib/data-in-cookies";
-import { api } from "~/utils/api";
-import type { Project } from "@prisma/client";
+
 
 
 
@@ -21,11 +19,8 @@ const Page: NextPage = () => {
     <> 
     <Header />
       <main className=" w-full h-[calc(100vh-50px)] bg-white overflow-hidden ">
-
-        <ContactFeed 
-          />
+        <ContactFeed />
         <ChatFeed />
-       
       </main>
     </>
   );
