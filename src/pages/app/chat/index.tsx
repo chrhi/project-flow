@@ -10,7 +10,7 @@ import { getOrgMembers } from "~/server/ssr/get-org-memebers";
 
 export const getServerSideProps: GetServerSideProps<{
   projects: string,
-  orgMembers : string,
+
 
 }> = async (context) => {
 
@@ -23,7 +23,7 @@ export const getServerSideProps: GetServerSideProps<{
   return {
       props: {
           projects : JSON.stringify(projects),
-          orgMembers : JSON.stringify(orgMembers),
+          // orgMembers : JSON.stringify(orgMembers),
       
       }
   }
@@ -41,7 +41,7 @@ const Page : NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = 
       <main className=" w-full h-[calc(100vh-50px)] bg-white overflow-hidden ">
 
         <ContactFeed 
-           memberOrg={props?.orgMembers ? JSON.parse(props?.orgMembers) as   MemberOrg[] : []}
+           memberOrg={[] as   MemberOrg[]}
            projects={ props?.projects ? JSON.parse(props?.projects) : []} />
         <ChatFeed />
        
