@@ -23,7 +23,9 @@ export const createUser = publicProcedure
     throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: "user already exists",})
   }
   //handle hassing the password
-  const hashedPassword  : string = await bcrypt?.hash(input?.password, 10); // salt round
+  const hashedPassword  : string = await bcrypt?.hash(input?.password, 10).catch(error => {
+    throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: "error on hashing the password",})
+  }); // salt round
   const createdUser = await ctx.prisma.user.create({
     data : {
       email : input.email, 
@@ -36,7 +38,7 @@ export const createUser = publicProcedure
 
    await ctx.prisma.organization.create({
     data :{
-      Members : JSON.stringify("this is going to change"),
+      Members : "this is going to change",
         Leader : createdUser.id ,
         userId : createdUser.id
     }
