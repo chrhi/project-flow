@@ -16,9 +16,9 @@ export default function TaskNotifictions() {
     <Menu as="div" className="relative z-[100]  inline-block text-left">
       <div className='h-[60px] w-[20px] flex justify-center items-center'>
       <Menu.Button className={`${buttonVariants({variant : "ghost" , size : "sm"})} relative`} >
-        <div className='bg-blue-500 rounded-full absolute flex justify-center items-center min-w-4 max-w-8 h-4 top-[0] right-[0]'>
+        {/* <div className='bg-blue-500 rounded-full absolute flex justify-center items-center min-w-4 max-w-8 h-4 top-[0] right-[0]'>
           <span className='text-white text-xs '>99+</span>
-        </div>
+        </div> */}
          <CheckSquare className='w-5 h-5 text-[#64748B]' />
       </Menu.Button>
       </div>

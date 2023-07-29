@@ -34,31 +34,5 @@ export const create_invitaion  = protectedProcedure
 
       }
     })
-
-    const target = await ctx.prisma.user.findUnique({
-      where :{
-        email : input.targetEmail
-      }
-    })
-
-    const oldValue =   await ctx.prisma.notifications.findFirst({
-      where :{
-          userId : target?.id
-      },
-     
-    })
-
-   
-
-
-    await ctx.prisma.notifications.update({
-      where :{
-          userId : target?.id
-      },
-      data :{
-          invites : ( oldValue?.invites || 0)  + 1
-      }
-    })
-
     return invitaion
 })

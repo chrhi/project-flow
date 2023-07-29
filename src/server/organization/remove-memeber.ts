@@ -19,7 +19,7 @@ export const remove_persone_from_org = protectedProcedure
     //@ts-ignore
     const oldArray = JSON.parse(organization?.Members) ;
 
-    const newArray = oldArray.filter((item: { id: string; }) => item.id !== input.target_id);
+    const newArray = oldArray.filter((item: { user: string; }) => item.user !== input.target_id);
 
     const updatedOrganization = await ctx.prisma.organization.update({
       where: {

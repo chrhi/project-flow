@@ -34,7 +34,7 @@ const Page: NextPage = () => {
     const mutation = api.userRouter.PushUserMoreInformations.useMutation({
        onSuccess(data) {
          toast.success(`new user has been created`)
-         router.push("/auth/signup/payment")
+         router.push("/")
         },
        onError(error){
          toast.error(error.message)

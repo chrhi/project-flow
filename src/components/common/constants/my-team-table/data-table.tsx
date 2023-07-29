@@ -37,14 +37,14 @@ import AddTeamMember from "./AddTeamMember"
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[],
-    isLoading : boolean
+
 
   }
   
   export function DataTable<TData, TValue>({
     columns,
     data,
-    isLoading
+   
    
   }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])

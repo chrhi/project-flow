@@ -93,21 +93,26 @@ export const authOptions : NextAuthOptions = {
     redirect() {
         return '/app'
     },
-    // async signIn({ user, account, profile, email, credentials }) {
-     
-    //  const dbUser = await prisma.user.findUniqueOrThrow({
-    //   where :{
-    //     id : user.id
-    //   }
-    //  })
+    async signIn({ user, account, profile, email, credentials }) {
 
-    //  if(!dbUser?.LastName){
-    //   return "error"
-    //  }
+      
+      const notification = await prisma.notifications.findFirst({
+        where :{
+          userId :  user.id
+        }
+      })
 
-    //  return true
+      if(!notification){
+        await prisma.notifications.create({
+          data :{
+            userId :  user?.id 
+          }
+        })
+        return true
+      }
+     return true
     
-    // },
+    },
     session({token , session}) {
       if(token){
         session.user.id = token.id ,

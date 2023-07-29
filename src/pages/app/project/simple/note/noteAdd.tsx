@@ -1,5 +1,5 @@
 // Author: Abdullah Chehri
-import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
+import type {  NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { FlowImage } from "~/components/used/flow-image";
@@ -11,54 +11,16 @@ import { ChevronLeft, ChevronRight, PlusCircle } from "lucide-react";
 import PhasesSideBarSimpleProject from "~/components/sideBars/simple-project-sidebar";
 import ChatFlowFeed from "~/components/chat/messages-flow";
 import { Editor } from "~/components/editor/Editor";
-import { getProjectById } from "~/server/ssr/get-ptoject-by-id";
 import type { Project, ChatMessageProject } from "@prisma/client";
-import { getProjectInisialMessages } from "~/server/ssr/get-flow-inisial-messages";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "~/lib/auth";
 import type { Session } from "next-auth";
-
-// Server-side data fetching
-export const getServerSideProps: GetServerSideProps<{
-  projects: string;
-  initialMessages: string;
-  AbdullahSession: string;
-}> = async (context) => {
-  // Fetch the user session
-  const session = await getServerSession(context.req, context.res, authOptions);
-
-  // Redirect if the session is not found
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  // Fetch the project details and initial messages using the project ID stored in cookies
-  const projectId = context?.req?.cookies["abdullah-project-id"];
-  const project = await getProjectById({ id: projectId });
-  const initialMessages = await getProjectInisialMessages({ id: projectId });
-
-  // Store the session data
-  const AbdullahSession = { ...session };
-
-  // Return the fetched data as props
-  return {
-    props: {
-      projects: JSON.stringify(project),
-      initialMessages: JSON.stringify(initialMessages),
-      AbdullahSession: JSON.stringify(AbdullahSession),
-    },
-  };
-};
+import { useSession } from "next-auth/react";
 
 // Page component
-const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
+const Page: NextPage = (
+  props
 ) => {
+
+  const session = useSession()
 
   // Fetch the data about the project
   const [viewState, setViewState] = useState<string>("MID");
@@ -111,9 +73,8 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
             </AbdullahButton>
           </div>
           <ChatFlowFeed
-            session={JSON.parse(props.AbdullahSession) as Session}
-            initialMessages={JSON.parse(props.initialMessages) as ChatMessageProject[]}
-            project={JSON.parse(props.projects) as Project}
+            session={session.data as Session}
+            project={project}
           />
         </div>
       </main>

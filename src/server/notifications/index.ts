@@ -8,6 +8,8 @@ import { getJoinRequestsOfUser } from "./get-join-request";
 import { rejectJoinRequest } from "./reject-join-request";
 import { accept_join_request } from "./accept-join-request";
 import { getJoinRequest } from "./get-one-join-request";
+import { getUserNotifications } from "./get-notifications";
+import { reduceNotifications } from "./reduce-to-zero";
 
 
 export const notificatioRouter = createTRPCRouter({
@@ -15,7 +17,8 @@ export const notificatioRouter = createTRPCRouter({
   getJoinRequest,
   rejectJoinRequest,
   accept_join_request,
-  getJoinRequestsOfUser
-
+  getJoinRequestsOfUser,
+  getUserNotifications,
+  reduceNotifications
 
 });

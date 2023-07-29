@@ -36,26 +36,29 @@ export  function OpenInvitationMessage () {
 
   const [data , setData] = useState<JoinRequest>({} as JoinRequest)
 
- const {isLoading , isError} = api.notificatioRouter.getJoinRequest.useQuery({id  : join_request_id}, {
+ const {isLoading , isError , refetch} = api.notificatioRouter.getJoinRequest.useQuery({id  : join_request_id}, {
     onSuccess : (data) => {
       setData(data as JoinRequest)
     },
   })
  
 const rejectMutation = api.notificatioRouter.rejectJoinRequest.useMutation({
-        onSuccess : () => {
+        onSuccess : async () => {
+          await refetch()
           closeModal()
+
        },
-       onError : () => {
+       onError : (error) => {
+        
         toast.error("some thing went wrong")
        }
 })
 
 const acceptMutation = api.notificatioRouter.accept_join_request.useMutation({
-  onSuccess : (data) => {
+  onSuccess :  (data) => {
     closeModal()
-    toast.error("you have joined the organization successfuly")
-    console.log(data)
+    window?.location?.reload()
+    toast.success("you have joined the organization successfuly")
  },
  onError : () => {
   toast.error("some thing went wrong")
@@ -120,7 +123,7 @@ const acceptMutation = api.notificatioRouter.accept_join_request.useMutation({
                             
                                <AbdullahButton 
                                    isLoading ={rejectMutation.isLoading}
-                                   onClick={() => rejectMutation.mutate({id : getOrganizationId()})}
+                                   onClick={() => rejectMutation.mutate({id : join_request_id})}
                                    className={`${buttonVariants({variant : "secondary" })}  `} >
                                    Reject
                                 </AbdullahButton> 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import { Menu, Transition } from '@headlessui/react'
 import { MailOpen } from 'lucide-react'
-import { Fragment, useState } from 'react'
+import { Fragment, useState , useEffect } from 'react'
 import { AbdullahButton , buttonVariants } from '~/components/used/AbdullahButton'
 import { openInvitationModel } from '~/store/messages-popup'
 import { api } from '~/utils/api'
@@ -10,11 +10,17 @@ import type { JoinRequest } from '@prisma/client'
 import { toast } from 'react-hot-toast'
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar"
 
-export default function Invitation() {
+interface Props {
+  inisialInvites : number
+}
+
+export default function Invitation({inisialInvites}:Props) {
 
   const [isEmpty , setIsEmpty] = useState(true)
 
   const [data , setData] = useState<JoinRequest[]>([])
+
+  const [inisialInvitesNumber , setInisialInvitesNumber] = useState<number>(0)
 
   const setIsOpen = openInvitationModel(state => state.setIsOpen)
 
@@ -37,9 +43,21 @@ export default function Invitation() {
     }
   })
 
+  const mutation = api.notificatioRouter.reduceNotifications.useMutation()
+
   const handleClick = (id : string) => {
     setId(id)
     setIsOpen(true)
+  }
+
+   useEffect(() => {
+
+    setInisialInvitesNumber(inisialInvites)
+  }, [inisialInvites])
+  
+  const handleReduceInvitations = () => {
+    setInisialInvitesNumber(0)
+    mutation.mutate({type :"INVITATION"})
   }
  
 
@@ -52,10 +70,17 @@ export default function Invitation() {
  
       <div className='h-[60px] w-[20px] flex justify-center items-center'>
   
-      <Menu.Button className={`${buttonVariants({variant : "ghost" , size : "sm"})} relative`} >
-        <div className='bg-blue-500 rounded-full absolute flex justify-center items-center w-4 h-4 top-[0] right-[0]'>
-          <span className='text-white text-xs '>9</span>
-        </div>
+      <Menu.Button
+       onClick={handleReduceInvitations}
+        className={`${buttonVariants({variant : "ghost" , size : "sm"})} relative`} >
+        {inisialInvitesNumber > 0 ? 
+         <div className='bg-blue-500 rounded-full absolute flex justify-center items-center w-4 h-4 top-[0] right-[0]'>
+         <span className='text-white text-xs '>{inisialInvitesNumber}</span>
+          </div>
+         : 
+       null
+       }
+       
          <MailOpen  className='w-5 h-5 text-[#64748B]'/>
       </Menu.Button>
       </div>

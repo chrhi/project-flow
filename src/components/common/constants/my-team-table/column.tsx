@@ -55,8 +55,8 @@ export const columns: ColumnDef<MyTeam>[] = [
     cell: ({ row }) => {
      
       const mutation = api.organizationRouter.remove_persone_from_org.useMutation({
-        onSuccess : () => {
-          window?.location?.reload()
+        onSuccess : (data) => {
+          window?.location?.reload()    
         },
         onError : () => {
           toast.error("faild to remove him")

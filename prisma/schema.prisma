@@ -41,6 +41,13 @@ model User {
   LastName         String?
   UserName         String?
   OrganizationName String?
+  jobTitle         String?
+  Phone            String?
+  Address          String?
+  city             String?
+  state            String?
+  Country          String?
+  ZipCode          String?
   email            String    @unique
   emailVerified    DateTime?
   password         String?
@@ -49,8 +56,8 @@ model User {
   role             ROLES     @default(TeamMember)
   accounts         Account[]
   sessions         Session[]
-  
-  organization Organization[]
+  notifications    Notifications[]
+  organization     Organization[]
 }
 
 model Note {
@@ -168,6 +175,17 @@ model Project {
   Organization         Organization?       @relation(fields: [OrganizationId], references: [id], onDelete: Cascade)
   @@index([id])
   @@index([OrganizationId])
+}
+
+model Notifications {
+   id                   String              @id @default(uuid())
+   messages             Int                 @default(0)
+   invites              Int                 @default(0)
+   tasks                Int                 @default(0)
+   userId               String              @unique
+   user                 User @relation(fields: [userId], references: [id], onDelete: Cascade)
+   @@index([id])
+   @@index([userId])
 }
 
 

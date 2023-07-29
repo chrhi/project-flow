@@ -71,6 +71,12 @@ export const PushUserMoreInformations = publicProcedure
       userId : user?.id
     }
   })
+
+  await ctx.prisma.notifications.create({
+    data :{
+      userId :  user?.id || ""
+    }
+  })
   // we updated the organization of the user so it includes it's name 
    await ctx.prisma.organization.update({
     where:{

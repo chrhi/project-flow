@@ -17,6 +17,7 @@ import ProjectAvartPicker from "~/components/used/project-avatar-picker";
 import { useRouter } from "next/router";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
+import { getChatPartnerId } from "~/lib/data-in-cookies";
 
 
 
@@ -28,6 +29,15 @@ const Page: NextPage = () => {
   //fetch the data about the project
   const [viewState, setViewState] = useState<string>("MID");
   const [project, setProject] = useState<Project>({} as Project);
+
+  const {isLoading} = api.newProjectRouter.getProjectById.useQuery({id : getProjectMetaData()},{
+    onSuccess : (data) => {
+      if(!data) return
+      setProject(data)
+    }
+  })
+
+
 
   const router = useRouter()
   const session = useSession()
@@ -56,13 +66,13 @@ const Page: NextPage = () => {
   }
 
   const [projectImage , setProjectImage ] = useState({
-    image : JSON.parse(props.projects)?.image,
-    type : JSON.parse(props.projects)?.type
+    image : project?.image,
+    type : project?.type
   })
 
   const [inputs , setInputs ] = useState({
-    title : JSON.parse(props.projects)?.title,
-    description : JSON.parse(props.projects)?.description
+    title : project?.title,
+    description : project?.description
   })
 
 
@@ -106,9 +116,9 @@ const Page: NextPage = () => {
          
             
               <div className="w-full p-4 gap-x-4 h-[60px] overflow-hidden flex items-center justify-start">
-                <FlowImage small image={JSON.parse(props.projects)?.image} type={JSON.parse(props.projects)?.imagetype} />
+                <FlowImage small image={project?.image} type={project?.imagetype} />
                 <h1 className="text-3xl font-semibold text-gray-900 mt-auto truncate ">
-                  {JSON.parse(props.projects)?.title}
+                  {project?.title}
                 </h1>
               </div>
               {/* here it is the brief header */}
@@ -170,8 +180,7 @@ const Page: NextPage = () => {
           </div>
           <ChatFlowFeed
             session={session.data as Session}
-            initialMessages={JSON.parse(props.initialMessages) as ChatMessageProject[]}
-            project={JSON.parse(props.projects) as Project}
+            project={project}
           />
         </div>
       </main>

@@ -27,8 +27,17 @@ export const accept_join_request  = protectedProcedure
         }
     })
 
-    //@ts-ignore
-    const oldArray = JSON.parse(organization?.Members )
+   
+    const oldArray = JSON.parse(organization?.Members as string) 
+    //chech if the user already exists
+
+    const isThereAlready = [...oldArray].find(item => item?.user === ctx.session.user.id )
+
+     if(isThereAlready  !== undefined){
+       
+        return
+    }
+ 
 
     const newArray = [...oldArray , 
         {

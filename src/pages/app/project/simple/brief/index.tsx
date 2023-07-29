@@ -1,4 +1,4 @@
-import type { GetServerSideProps, InferGetServerSidePropsType, NextPage } from "next";
+import type { NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { FlowImage } from "~/components/used/flow-image";
@@ -18,41 +18,15 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { Button } from "~/components/ui/button";
 import { openDeleteFlowPopup } from "~/store/flow-router/project";
-import { getProjectById } from "~/server/ssr/get-ptoject-by-id";
 import type { Project, ChatMessageProject } from "@prisma/client";
-import { getProjectInisialMessages } from "~/server/ssr/get-flow-inisial-messages";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "~/lib/auth";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
+import { api } from "~/utils/api";
+import { getProjectMetaData } from "~/lib/MetaData";
 
-// Server-side data fetching
-export const getServerSideProps: GetServerSideProps<{
-  projects: string;
-  initialMessages: string;
-  
-}> = async (context) => {
-
-
-  // Fetch the project details and initial messages using the project ID stored in cookies
-  const projectId = context?.req?.cookies["abdullah-project-id"];
-  const project = await getProjectById({ id: projectId });
-  const initialMessages = await getProjectInisialMessages({ id: projectId });
-
-
-  // Return the fetched data as props
-  return {
-    props: {
-      projects: JSON.stringify(project),
-      initialMessages: JSON.stringify(initialMessages),
-   
-    },
-  };
-};
 
 // Page component
-const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
-  props: InferGetServerSidePropsType<typeof getServerSideProps>
+const Page: NextPage = (
 ) => {
   // State and router setup
   const [viewState, setViewState] = useState<string>("MID");
@@ -70,6 +44,16 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
       setViewState("MID");
     }
   };
+
+  const [project, setProject] = useState<Project>({} as Project);
+
+  const {isLoading} = api.newProjectRouter.getProjectById.useQuery({id : getProjectMetaData()},{
+    onSuccess : (data) => {
+      if(!data) return
+      setProject(data)
+    }
+  })
+
 
   // Page layout and components
   return (
@@ -90,9 +74,9 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           } ml-[70px] h-[calc(100vh-50px)]`}
         >
           <div className="w-full p-4 gap-x-4 h-[60px] overflow-hidden flex items-center justify-start">
-            <FlowImage small image={JSON.parse(props.projects)?.image} type={JSON.parse(props.projects)?.imagetype} />
+            <FlowImage small image={project?.image} type={project?.imagetype} />
             <h1 className="text-3xl font-semibold text-gray-900 mt-auto truncate ">
-              {JSON.parse(props.projects)?.title}
+              {project?.title}
             </h1>
           </div>
           {/* Brief header */}
@@ -123,11 +107,11 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
             </div>
             <div className="w-full flex flex-col justify-between gap-y-8 my-4 h-[100px]">
               <h1 className="text-md text-gray-500 text-start ">
-                {JSON.parse(props.projects)?.description}
+                {project?.description}
               </h1>
             </div>
             <div className="w-full h-fit border-t">
-              <BreifEditor blocks={JSON.parse(props.projects)?.content ? JSON.parse(props.projects)?.content : []} />
+              <BreifEditor blocks={project?.content ? project?.content : []} />
             </div>
           </div>
         </div>
@@ -159,8 +143,7 @@ const Page: NextPage<InferGetServerSidePropsType<typeof getServerSideProps>> = (
           </div>
           <ChatFlowFeed
             session={session.data as Session}
-            initialMessages={JSON.parse(props.initialMessages) as ChatMessageProject[]}
-            project={JSON.parse(props.projects) as Project}
+            project={project}
           />
         </div>
       </main>

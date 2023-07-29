@@ -5,7 +5,7 @@
  */
 import DropDowsMenu from "./dropDown/user-nav";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { PagesNav } from "./PagesNav";
 import { MobileSideBar } from "./mobile";
 import Invitation from "./dropDown/Invitation";
@@ -14,10 +14,26 @@ import SearchBar from "./dropDown/SearchBar";
 import MessageNofinications from "./dropDown/MessageNofinications";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
-
-
+import { api } from "~/utils/api";
 
 export const Header = () => {
+
+  const [notifications , setNotifications] = useState({
+    messages : 0 ,
+    invites : 0 ,
+    tasks : 0
+  })
+
+  const {isLoading} = api.notificatioRouter.getUserNotifications.useQuery(undefined , {
+    onSuccess : (data) => {
+      if(!data) return
+      setNotifications({
+        messages : data?.messages , 
+        invites : data?.invites , 
+        tasks : data?.tasks
+      })
+    }
+  })
 
 
   const session = useSession()
@@ -39,7 +55,7 @@ export const Header = () => {
           <SearchBar />
           <MessageNofinications />
           <TaskNotifictions />
-          <Invitation />
+          <Invitation inisialInvites={notifications.invites} />
           <DropDowsMenu serverSession={session.data as Session} />
         </div>
         <MobileSideBar />
