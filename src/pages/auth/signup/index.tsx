@@ -31,7 +31,7 @@ const Page: NextPage = () => {
   const router = useRouter();
 
 
-  const mutation = api.userRouter.createUser.useMutation({
+  const mutation = api.userRouter.createUserVercel.useMutation({
     onSuccess() {
       toast.success(`new user has been created`)
       router.push("/auth/signup/process")

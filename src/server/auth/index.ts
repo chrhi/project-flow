@@ -12,6 +12,7 @@ import { updateUserPassword } from "./update-password";
 import { BlockUser, UnBlockUser } from "./block-unblock-user";
 import { getAllEmails } from "./get-all-emails";
 import { get_org_members } from "./get-members-of-org";
+import { createUserVercel } from "./createUserVercel";
 
 
 
@@ -27,5 +28,6 @@ export const userRouter = createTRPCRouter({
   PushUserMoreInformations,
   getAllEmails,
   get_org_members,
+  createUserVercel
 
 });

@@ -26,7 +26,7 @@ export const createUser = publicProcedure
   const hashedPassword  : string = await bcrypt?.hash(input?.password, 10).catch(error => {
     throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: "error on hashing the password",})
   }); // salt round
-  const createdUser = await ctx.prisma.user.create({
+ await ctx.prisma.user.create({
     data : {
       email : input.email, 
       image : "https://avatars.githubusercontent.com/u/116351398?v=4",
