@@ -8,11 +8,6 @@ import { DataTable } from "~/components/common/constants/my-team-table/data-tabl
 import { columns } from "~/components/common/constants/my-team-table/column";
 
 
-
-
-
-
-
 // Page component
 const Page: NextPage = () => {
 
@@ -22,11 +17,13 @@ const Page: NextPage = () => {
 
   const id = openInvitationModel(state => state.id)
 
-  api.userRouter.get_org_members.useQuery({id : getOrganizationId()}, {
+  const {isLoading} = api.userRouter.get_org_members.useQuery({id : getOrganizationId()}, {
     onSuccess : (data) => {
 
       const prepare = data.map((item , index) => {
-        return {...item , index }
+        return {...item , 
+          id : item.user,
+          index }
       })
 
       setPeople(prepare)
@@ -49,7 +46,7 @@ const Page: NextPage = () => {
             <p className="text-md text-gray-500">manage all your team in here</p>
         </div>
       
-        <DataTable  columns={columns} data={people} />  
+        <DataTable  isLoading={isLoading} columns={columns} data={people} />  
         
          
         

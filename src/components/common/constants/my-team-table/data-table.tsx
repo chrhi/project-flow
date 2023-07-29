@@ -23,6 +23,7 @@ import {
     TableRow,
     
   } from "~/components/ui/table"
+  import { Loader2 } from 'lucide-react'
   import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
@@ -36,12 +37,14 @@ import AddTeamMember from "./AddTeamMember"
   interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
     data: TData[],
+    isLoading : boolean
 
   }
   
   export function DataTable<TData, TValue>({
     columns,
     data,
+    isLoading
    
   }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([])
@@ -137,6 +140,8 @@ import AddTeamMember from "./AddTeamMember"
               </TableRow>
             ))}
           </TableHeader>
+       
+      
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
@@ -159,7 +164,9 @@ import AddTeamMember from "./AddTeamMember"
               </TableRow>
             )}
           </TableBody>
+     
         </Table>
+    
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
           <AbdullahButton

@@ -13,6 +13,9 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "~/components/ui/avatar"
+import { api } from "~/utils/api"
+import { getOrganizationId } from "~/lib/data-in-cookies"
+import toast from "react-hot-toast"
 
 
 
@@ -51,6 +54,24 @@ export const columns: ColumnDef<MyTeam>[] = [
     id: "actions",
     cell: ({ row }) => {
      
+      const mutation = api.organizationRouter.remove_persone_from_org.useMutation({
+        onSuccess : () => {
+          window?.location?.reload()
+        },
+        onError : () => {
+          toast.error("faild to remove him")
+        }
+      })
+
+      const handleDelete = () => {
+        if(row.original.role === "leader"){
+          toast.error("you can not remove the leader")
+        }
+        mutation.mutate({
+          organization_id : getOrganizationId(),
+          target_id : row.original.id
+        })
+      }
  
       return (
         <DropdownMenu>
@@ -69,8 +90,9 @@ export const columns: ColumnDef<MyTeam>[] = [
            copy email
             </DropdownMenuItem>
             <DropdownMenuItem
+            disabled={mutation.isLoading}
             className="cursor-pointer text-red-600 font-medium hover:text-red-700"
-              onClick={() => navigator.clipboard.writeText(row.original.id)}
+              onClick={handleDelete}
             >
              remove
             </DropdownMenuItem>
