@@ -36,13 +36,7 @@ export const createUser = publicProcedure
   })
 
 
-   await ctx.prisma.organization.create({
-    data :{
-      Members : "this is going to change",
-        Leader : createdUser.id ,
-        userId : createdUser.id
-    }
-  })
+ 
 })
 
 
@@ -66,12 +60,18 @@ export const PushUserMoreInformations = publicProcedure
   })
   // after we found the user we update it's informations
 
-  // we found the organization 
-  const UserOrganization = await ctx.prisma.organization.findFirst({
-    where :{
-      userId : user?.id
+  if(!user){
+    throw new TRPCError({code: 'INTERNAL_SERVER_ERROR',message: "user not found",})
+  }
+
+  const UserOrganization  = await ctx.prisma.organization.create({
+    data :{
+      Members : "this is going to change",
+        Leader : user?.id,
+        userId : user?.id
     }
   })
+
 
   await ctx.prisma.notifications.create({
     data :{
