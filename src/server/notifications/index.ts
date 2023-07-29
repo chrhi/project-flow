@@ -3,7 +3,7 @@
 import {
   createTRPCRouter,
 } from "~/server/api/trpc";
-import { create_invitaion } from "./createInvitation";
+import { create_invitation  as create_invitaion} from "./createInvitation";
 import { getJoinRequestsOfUser } from "./get-join-request";
 import { rejectJoinRequest } from "./reject-join-request";
 import { accept_join_request } from "./accept-join-request";

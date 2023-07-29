@@ -52,6 +52,7 @@ model User {
   emailVerified    DateTime?
   password         String?
   image            String?
+  
   selectedOrganizationId String? 
   role             ROLES     @default(TeamMember)
   accounts         Account[]
@@ -113,7 +114,7 @@ model Organization {
   id           String    @id @default(cuid())
   userId       String
   name         String?
-  image        String?
+  image        String    @default("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmphZTJ4bmMyaW94dTZucXJpc2c3MGN4NDMyOWI5N3BqbTNpZW9rYSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/EIUb4bjamL8K0InISB/source.gif")   
   description  String?
   Members      Json
   Leader       String

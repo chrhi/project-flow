@@ -17,6 +17,8 @@ export const getUserOrganization = protectedProcedure
     for(let i = 0 ; i < organizations.length ; i++){
             
         const org = organizations[i]
+        console.error("here it is what is being passed to parse")
+        console.log(typeof(org?.Members))
         //@ts-ignore
         const Members : MemberOrg[] = JSON.parse(org.Members) as MemberOrg[]
         const org_id = Members.filter(item => item.user === ctx.session.user.id)

@@ -113,8 +113,9 @@ export default function AddTeamMember() {
                                       <SelectValue placeholder="select the type of invitaion" />
                               </SelectTrigger>
                               <SelectContent>
-                                     <SelectItem value="TeamMember">team member</SelectItem>
-                                     <SelectItem value="Client">client</SelectItem>
+                                     <SelectItem value="CO_LEADER">Co-Leader</SelectItem>
+                                     <SelectItem value="ELDER">Elder</SelectItem>
+                                     <SelectItem value="MEMBER">Member</SelectItem>
                               </SelectContent>
                    </AbdullahSelect>
         </div>
