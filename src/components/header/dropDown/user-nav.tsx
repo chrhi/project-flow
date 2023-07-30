@@ -33,7 +33,7 @@ type Props = {
 
 const NavigationOptions = [
   { icon: <User className="mr-2 h-4 w-4" />, name: 'My profile', path: '/app/user/profile' },
-  { icon: <Lock className="mr-2 h-4 w-4" />, name: 'Password Settings', path: '/app/user/password_settings' },
+  // { icon: <Lock className="mr-2 h-4 w-4" />, name: 'Password Settings', path: '/app/user/password_settings' },
   { icon: <Users className="mr-2 h-4 w-4" />, name: 'My team', path: '/app/user/my-team' },
   { icon: <Wallet className="mr-2 h-4 w-4" />, name: 'My bills', path: '/app/user/my-bills' },
   { icon: <HelpCircle className="mr-2 h-4 w-4" />, name: 'Support', path: '' },

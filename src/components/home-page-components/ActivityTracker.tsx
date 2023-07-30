@@ -19,13 +19,8 @@ const style = {
 
 export default function ActivityTracker() {
 
-  const [value, setValue] = useState<PrayerTimes>({
-    Fajr: new Date(),
-    Dhuhr: new Date(),
-    Asr: new Date(),
-    Maghrib: new Date(),
-    Isha: new Date(),
-  });
+  
+  const [value, setValue] = useState<PrayerTimes | null>(null);
 
   useEffect(() => {
     // Call the function and log the results
