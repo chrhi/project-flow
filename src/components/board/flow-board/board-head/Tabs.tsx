@@ -1,7 +1,8 @@
 
 import { Tab } from '@headlessui/react'
 import {  Grid, LayoutGrid, LayoutPanelLeft } from 'lucide-react'
-import { LayoutReducer } from '~/store/flow-router/Layouts';
+import { useEffect, useRef } from 'react';
+import { LayoutReducer , type layoutValues } from '~/store/flow-router/Layouts';
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -9,13 +10,38 @@ function classNames(...classes: string[]) {
 
 export default function LayoutButton() {
   const setLayout = LayoutReducer(state => state.setLayout)
+  const layout = LayoutReducer(state => state.layout)
+  
+  const ICON : layoutValues = 'ICONS'
+  const BIG : layoutValues = 'BIG'
+  const SMALL : layoutValues = 'SMALL'
+
+  const Big = useRef<HTMLElement>(null)
+  const Small = useRef<HTMLElement>(null)
+  const Icons = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if(layout === BIG ){
+      Big?.current?.click()
+      return
+    }
+    if(layout === SMALL ){
+      Small?.current?.click()
+      return
+    }
+    if(layout === ICON ){
+      Icons?.current?.click()
+      return
+    }
+  },[])
 
   return (
     <div className="w-[150px] max-w-md px-2 py-4 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex space-x-1 rounded-lg bg-gray-200/20 p-1">
+        <Tab.List  className="flex space-x-1 rounded-lg bg-gray-200/20 p-1">
           
             <Tab
+              ref={Big}
               onClick={() => setLayout({layout : 'BIG'})}
               className={({ selected }) =>
                 classNames(
@@ -31,6 +57,7 @@ export default function LayoutButton() {
             </Tab>
              
             <Tab
+              ref={Small}
               onClick={() => setLayout({layout : 'SMALL'})}
               className={({ selected }) =>
                 classNames(
@@ -47,6 +74,7 @@ export default function LayoutButton() {
             </Tab>
              
             <Tab
+              ref={Icons}
               onClick={() => setLayout({layout : 'ICONS'})}
               className={({ selected }) =>
                 classNames(

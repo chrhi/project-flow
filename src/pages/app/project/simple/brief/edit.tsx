@@ -1,4 +1,4 @@
-import type { GetServerSideProps, InferGetServerSidePropsType,  NextPage } from "next";
+import type { NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { FlowImage } from "~/components/used/flow-image";
@@ -18,16 +18,18 @@ import { useRouter } from "next/router";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { getChatPartnerId } from "~/lib/data-in-cookies";
-
+import { ProjectReducer , type ViewStateValues } from '~/store/flow-router/selected-project';
 
 
 // Page component
 const Page: NextPage = () => {
 
-
+  const  setViewState = ProjectReducer(state => state?.setViewState)
+  const  viewState = ProjectReducer(state => state?.viewState)
+  const stateProject = ProjectReducer(state => state?.project)
     
   //fetch the data about the project
-  const [viewState, setViewState] = useState<string>("MID");
+  
   const [project, setProject] = useState<Project>({} as Project);
   // will have the image selected for the project
    const [selectedFile, setSelectedFile] = useState<File | null | undefined>(null);
@@ -90,15 +92,16 @@ const Page: NextPage = () => {
 
 
 
-  const changeViewState = (point: string) => {
+
+  // Function to handle changing the view state
+  const changeViewState = (point: ViewStateValues) => {
     if (viewState === "MID") {
       setViewState(point);
       return;
     }
-    if (viewState !== "MID") {
       setViewState("MID");
-    }
   };
+
 
   return (
     <>

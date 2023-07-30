@@ -23,26 +23,27 @@ import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
 import { api } from "~/utils/api";
 import { getProjectMetaData } from "~/lib/MetaData";
-
+import { ProjectReducer , type ViewStateValues } from '~/store/flow-router/selected-project';
 
 // Page component
 const Page: NextPage = (
 ) => {
   // State and router setup
-  const [viewState, setViewState] = useState<string>("MID");
+ 
+  const  setViewState = ProjectReducer(state => state?.setViewState)
+  const  viewState = ProjectReducer(state => state?.viewState)
+  const stateProject = ProjectReducer(state => state?.project)
   const setIsOpen = openDeleteFlowPopup((state) => state.setShowModel);
   const router = useRouter();
   const session = useSession()
 
   // Function to handle changing the view state
-  const changeViewState = (point: string) => {
+  const changeViewState = (point: ViewStateValues) => {
     if (viewState === "MID") {
       setViewState(point);
       return;
     }
-    if (viewState !== "MID") {
       setViewState("MID");
-    }
   };
 
   const [project, setProject] = useState<Project>({} as Project);
@@ -74,7 +75,7 @@ const Page: NextPage = (
           } ml-[70px] h-[calc(100vh-50px)]`}
         >
           <div className="w-full p-4 gap-x-4 h-[60px] overflow-hidden flex items-center justify-start">
-            <FlowImage small image={project?.image} type={project?.imagetype} />
+            <FlowImage small image={ project?.image} type={project?.imagetype} />
             <h1 className="text-3xl font-semibold text-gray-900 mt-auto truncate ">
               {project?.title}
             </h1>

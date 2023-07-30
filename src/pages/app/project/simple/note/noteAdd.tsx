@@ -14,16 +14,21 @@ import { Editor } from "~/components/editor/Editor";
 import type { Project, ChatMessageProject } from "@prisma/client";
 import type { Session } from "next-auth";
 import { useSession } from "next-auth/react";
+import { ProjectReducer , type ViewStateValues } from '~/store/flow-router/selected-project';
+
 
 // Page component
 const Page: NextPage = (
   props
 ) => {
+  const  setViewState = ProjectReducer(state => state?.setViewState)
+  const  viewState = ProjectReducer(state => state?.viewState)
+  const stateProject = ProjectReducer(state => state?.project)
 
   const session = useSession()
 
   // Fetch the data about the project
-  const [viewState, setViewState] = useState<string>("MID");
+
   const [project, setProject] = useState<Project>({} as Project);
 
   api.newProjectRouter.getProjectById.useQuery({id: getProjectMetaData()}, {
@@ -36,15 +41,15 @@ const Page: NextPage = (
     }
   });
 
-  const changeViewState = (point: string) => {
+
+  // Function to handle changing the view state
+  const changeViewState = (point: ViewStateValues) => {
     if (viewState === "MID") {
       setViewState(point);
       return;
     }
-    if (viewState !== "MID") {
-      setViewState('MID');
-    }
-  }
+      setViewState("MID");
+  };
 
   return (
     <>  

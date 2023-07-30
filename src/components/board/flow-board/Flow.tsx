@@ -9,6 +9,7 @@ import { setoreProjectMetaData } from '~/lib/MetaData';
 import Image from 'next/image';
 import { AlgeriaformatDate } from '~/utils/formate/AlgeriaFormate';
 import { LayoutReducer , type  layoutValues } from '~/store/flow-router/Layouts';
+import { ProjectReducer } from '~/store/flow-router/selected-project';
 
 const FlowImage =  (image : string, type : string)  => {
   if (type === "IMAGE") {
@@ -55,18 +56,20 @@ const AssignedPeaple = (team : User[]) => {
 };
 
 function Flow({
-  image, team, description, imagetype, title, id, index, currentPhase, dueDate, tag,
-  tagColor,
-  isOnGoing
+ ...project
 }: Project & { index: number }) {
+
+  const {  image, team, description, imagetype, title, id, index, currentPhase, dueDate, tag, tagColor,isOnGoing} = project
   const router = useRouter();
-  const layout = LayoutReducer(state => state.layout) || 'BIG'
+  const  setProject = ProjectReducer(state => state?.setProject)
+  const layout = LayoutReducer(state => state?.layout) || 'BIG'
   const ICON : layoutValues = 'ICONS'
   const BIG : layoutValues = 'BIG'
   const SMALL : layoutValues = 'SMALL'
 
   const handleRouting = () => {
     setoreProjectMetaData({ project_id: id });
+    setProject({project})
     router.push("/app/project/simple/brief");
   };
 
