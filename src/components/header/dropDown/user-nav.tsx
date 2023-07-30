@@ -152,6 +152,8 @@ export default function DropDowsMenu({ serverSession }: Props) {
                     )}
                   </Menu.Item>
                     :
+                    <>
+                    {
                     orgs.map((item) => {
                       return (
                         <div
@@ -173,6 +175,25 @@ export default function DropDowsMenu({ serverSession }: Props) {
                         </div>
                       );
                     })
+                    }
+                    <Menu.Item>
+                    {({ active }) => (
+                      <button
+                      onClick={async () => await router.push("/app/user/organization-add")}
+                        className={`  ${
+                          active
+                            ? 'bg-gray-50 dark:bg-stone-800 dark:text-white text-gray-900'
+                            : 'text-gray-900 dark:text-white'
+                        } group flex w-full  gap-x-4 items-center font-medium rounded-md px-2 py-2 text-sm`}
+                      >
+                        <Plus className="mr-2 h-5 w-5 " />
+                        Create New Organization
+                      </button>
+                    )}
+                  </Menu.Item>
+
+                    </>
+                    
                     }
                 
                   </div>

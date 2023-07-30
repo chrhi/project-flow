@@ -8,6 +8,8 @@ import { getOrgById } from "./get-org-by-id";
 import { updateOrganization } from "./update-organization";
 import { remove_persone_from_org } from "./remove-memeber";
 import { create_org } from "./create-organization";
+import { delete_org } from "./delete-organization";
+import { leave_organization } from "./leave-organization";
 
 export const organizationRouter = createTRPCRouter({
     getUserOrganization,
@@ -16,5 +18,7 @@ export const organizationRouter = createTRPCRouter({
     getOrgById,
     updateOrganization,
     remove_persone_from_org,
-    create_org
+    create_org,
+    delete_org , 
+    leave_organization
 });

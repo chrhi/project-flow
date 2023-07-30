@@ -5,7 +5,7 @@ import { TRPCError } from "@trpc/server";
 
 const updateValidator = z.object({
     organization_id: z.string(),
-    
+    image : z.string(),
     description : z.string(),
     name : z.string(),
     category : z.string()
@@ -23,7 +23,7 @@ export const updateOrganization = protectedProcedure
             id : input.organization_id
         },
         data :{
-          
+            image : input.image ,
             description : input.description,
             name : input.name,
             Category : input.category

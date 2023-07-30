@@ -16,6 +16,7 @@ import {
 import { api } from "~/utils/api"
 import { getOrganizationId } from "~/lib/data-in-cookies"
 import toast from "react-hot-toast"
+import { useSession } from "next-auth/react"
 
 
 
@@ -53,6 +54,9 @@ export const columns: ColumnDef<MyTeam>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const session = useSession()
      
       const mutation = api.organizationRouter.remove_persone_from_org.useMutation({
         onSuccess : (data) => {
@@ -85,17 +89,21 @@ export const columns: ColumnDef<MyTeam>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
             className="cursor-pointer"
-              onClick={() => navigator.clipboard.writeText(row.original.id)}
+              onClick={() =>{
+                toast.success("success")
+                navigator.clipboard.writeText(row.original.email)}}
             >
            copy email
             </DropdownMenuItem>
-            <DropdownMenuItem
-            disabled={mutation.isLoading}
-            className="cursor-pointer text-red-600 font-medium hover:text-red-700"
-              onClick={handleDelete}
-            >
-             remove
-            </DropdownMenuItem>
+            {row.original.role !== 'leader' && row.original.id !== session.data?.user.id && 
+               <DropdownMenuItem
+               disabled={mutation.isLoading}
+               className="cursor-pointer text-red-600 font-medium hover:text-red-700"
+                 onClick={handleDelete}
+               >
+                remove
+               </DropdownMenuItem>
+            } 
             </ DropdownMenuContent >
         </DropdownMenu>
       )
