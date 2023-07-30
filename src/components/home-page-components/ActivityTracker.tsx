@@ -19,7 +19,7 @@ const style = {
 
 export default function ActivityTracker() {
 
-  
+
   const [value, setValue] = useState<PrayerTimes | null>(null);
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function ActivityTracker() {
       });
   }, []);
 
-  const BlockClock = (name: string, showBorder = true, time: Date | null) => (
+  const BlockClock = ({name , showBorder  , time} : {name: string, showBorder :true, time: Date | null}) => (
     <div className={`w-[18%] h-[80%] px-1 ${showBorder ? "border-r border-gray-300 " : ""} flex flex-col items-center justify-center gap-y-4`}>
       <Clock
         renderNumbers
@@ -66,15 +66,16 @@ export default function ActivityTracker() {
      */
     <div className='hidden w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center'>
       {/* @ts-ignore */}
-      {BlockClock("Fajr ", true, value["Fajr"])}
+      
+      {BlockClock({name : "Fajr" , time : value ? value["Fajr"] : new Date() , showBorder : false})}
       {/* @ts-ignore */}
-      {BlockClock("Dhuhr ", true, value["Dhuhr"])}
+      {BlockClock({name : "Dhuhr" , time : value ? value["Dhuhr"] : new Date(), showBorder : true })}
       {/* @ts-ignore */}
-      {BlockClock("Asr", true, value["Asr"])}
+      {BlockClock({name : "Asr" , time : value ? value["Asr"] : new Date() , showBorder : true})}
       {/* @ts-ignore */}
-      {BlockClock("Maghrib", true, value["Maghrib"])}
+      {BlockClock({name : "Maghrib" , time : value ? value["Maghrib"]: new Date() , showBorder : true})}
       {/* @ts-ignore */}
-      {BlockClock("Isha", false, value["Isha"])}
+      {BlockClock({name : "Isha" , time : value ? value["Isha"] : new Date() , showBorder : false})}
     </div>
   );
 }
