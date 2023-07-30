@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Dispatch, Fragment,  useState } from 'react'
 import { AbdullahButton , buttonVariants } from '../../used/AbdullahButton'
 import { X } from 'lucide-react';
-import { openInvitationModel } from '~/store/messages-popup';
+import { openInvitationModel } from '~/store/open-models/messages-popup';
 import { api } from '~/utils/api';
 import { cn } from '~/lib/utils';
 import { toast } from 'react-hot-toast';

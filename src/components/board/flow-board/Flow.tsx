@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { setoreProjectMetaData } from '~/lib/MetaData';
 import Image from 'next/image';
 import { AlgeriaformatDate } from '~/utils/formate/AlgeriaFormate';
+import { LayoutReducer , type  layoutValues } from '~/store/flow-router/Layouts';
 
 const FlowImage =  (image : string, type : string)  => {
   if (type === "IMAGE") {
@@ -59,6 +60,10 @@ function Flow({
   isOnGoing
 }: Project & { index: number }) {
   const router = useRouter();
+  const layout = LayoutReducer(state => state.layout) || 'BIG'
+  const ICON : layoutValues = 'ICONS'
+  const BIG : layoutValues = 'BIG'
+  const SMALL : layoutValues = 'SMALL'
 
   const handleRouting = () => {
     setoreProjectMetaData({ project_id: id });
@@ -70,7 +75,7 @@ function Flow({
       {(provided, snapshot) => (
         <Card
           onClick={handleRouting}
-          className={`w-[100%] transition duration-500 transform hover:-translate-y-1 max-w-[400px] h-[400px] cursor-pointer flex flex-col items-start gap-y-2 shadow-lg hover:shadow-sky-200 hover:shadow-2xl min-h-[50px] rounded-lg bg-white my-4 ${
+          className={`w-[100%] transition duration-500 transform hover:-translate-y-1  ${layout === BIG ? 'max-w-[400px] h-[400px] ' : layout === SMALL ?  'max-w-[290px] h-[300px]' : 'max-w-[290px] h-[110px]' }  cursor-pointer flex flex-col items-start gap-y-2 shadow-lg hover:shadow-sky-200 hover:shadow-2xl min-h-[50px] rounded-lg bg-white my-4 ${
             snapshot.isDragging ? "shadow-xl" : ""
           }`}
           {...provided.draggableProps}
@@ -80,7 +85,7 @@ function Flow({
             <div className='w-full flex items-center justify-between'>
               <div className='w-[90%] flex items-center justify-start gap-x-4'>
                 {FlowImage(image, imagetype)}
-                <CardTitle className='text-xl'>{title}</CardTitle>
+                <CardTitle className={`text-[#2F3349]  ${layout === SMALL ? 'text-lg font-medium ' : layout === ICON ? "text-lg" : "text-xl" }`}>{title}</CardTitle>
               </div>
               <div {...provided.dragHandleProps} className='w-[10%] h-6'>
                 <GripVertical className='text-gray-500 cursor-pointer w-6 h-6' />
@@ -88,12 +93,12 @@ function Flow({
             </div>
           </CardHeader>
           <CardContent className='w-full'>
-            <CardDescription className='h-[120px] overflow-hidden'>
+          <CardDescription className={` ${layout === ICON ? 'hidden' : ""} ${layout === BIG ? 'h-[120px] ' : 'h-[80px]'} overflow-hidden`}>
               {description}
-            </CardDescription>
-            <DropdownMenuSeparator className='rounded-lg bg-gradient-to-r from-blue-500 to-sky-500 mt-6 mb-4 h-1 w-full' />
+          </CardDescription>  
+         <DropdownMenuSeparator className={`rounded-lg bg-gradient-to-r ${ layout === ICON ? "hidden" : ""} from-blue-500 to-sky-500 mt-6 mb-4 h-1 w-full `} /> 
             {/* in here goes the department and who is assigned to */}
-            <div className='w-full flex justify-between items-center my-2 h-[50px]'>
+            <div className={`w-full  ${ layout === ICON ? "hidden" : "flex"} justify-between items-center my-2 h-[50px]`}>
               {AssignedPeaple(JSON.parse(team as string))}
               <div className='w-[200px] h-[50px] flex gap-x-2 items-center justify-end'>
                 <div
@@ -105,16 +110,17 @@ function Flow({
                 <p className='text-gray-700 text-sm truncate'>{tag}</p>
               </div>
             </div>
+          
             {/* in here goes the status and the due date */}
-            <div className='w-full flex justify-between h-[100px]'>
+            <div className={`w-full  ${layout === BIG ? 'flex' : 'hidden'}  justify-between h-[100px]`}>
               <div className='w-[50%] h-[100px] flex flex-col items-start justify-start gap-y-2'>
-                <h4 className='text-md font-semibold'>Due date</h4>
+                <h4 className='text-md font-medium text-[#2F3349]'>Due date</h4>
                 <p className='text-sm'>
                   {isOnGoing ? "on going" : AlgeriaformatDate(dueDate || new Date())}
                 </p>
               </div>
               <div className='w-[50%] h-[100px] flex flex-col items-end justify-start gap-y-2'>
-                <h4 className='text-md font-semibold'>Current phase</h4>
+                <h4 className='text-md font-medium text-[#2F3349]'>Current phase</h4>
                 <p className='text-sm'>{currentPhase}</p>
               </div>
             </div>

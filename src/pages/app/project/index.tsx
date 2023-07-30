@@ -6,6 +6,10 @@ import Boardhead from "~/components/board/flow-board/board-head/board-head";
 import { Header } from "~/components/header/Header";
 import { getOrganizationId } from "~/lib/data-in-cookies";
 import { api } from "~/utils/api";
+import LaodingLayout from "~/components/layout/LaodingLayout"
+
+ 
+
 
 // Page component
 const Page: NextPage = () => {
@@ -28,14 +32,17 @@ const Page: NextPage = () => {
     <>
       <Header />
       <main className="w-full h-[calc(100vh-50px)] overflow-hidden overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-        {isError ? (
-          <h1>Sorry, an error occurred</h1>
-        ) : (
+        
+        isError ? (
+          <h1>Sorry, there is an  error </h1>
+        )
+        :
+         (
           <>
             <Boardhead setData={setProjects} data={projects} />
-            <Board projects={projects} />
+              <Board projects={projects} />
           </>
-        )}
+        )
       </main>
     </>
   );

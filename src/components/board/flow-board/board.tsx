@@ -2,7 +2,11 @@ import React from 'react';
 import { DragDropContext, Droppable, type DropResult } from 'react-beautiful-dnd';
 import type { Project } from '@prisma/client';
 import { block } from 'million/react';
-import Flow from './Flow';
+// import Flow from './Flow';
+import dynamic from 'next/dynamic'
+const Flow = dynamic(() => import('./Flow'), {
+  ssr: false,
+})
 
 type PropsType = {
   projects: Project[];

@@ -2,7 +2,7 @@ import type {  NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import { useState } from "react";
 import { api } from "~/utils/api";
-import { openInvitationModel } from "~/store/messages-popup";
+import { openInvitationModel } from "~/store/open-models/messages-popup";
 import { getOrganizationId } from "~/lib/data-in-cookies";
 import { DataTable } from "~/components/common/constants/my-team-table/data-table";
 import { columns } from "~/components/common/constants/my-team-table/column";
