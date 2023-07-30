@@ -40,7 +40,7 @@ export default function ActivityTracker() {
        
         setValue(prayerTimes);
         console.log("here are the pryer times" )
-        console.log(prayerTimes)
+        console.log(typeof (prayerTimes?.Fajr ) === typeof new Date())
       })
       .catch(error => {
         console.error(error);
@@ -52,7 +52,7 @@ export default function ActivityTracker() {
       <Clock
         renderNumbers
         renderSecondHand={true}
-        value={time ? time : new Date()}
+        value={ time }
         hourHandLength={50}
         hourHandWidth={3}
         hourMarksLength={2}
