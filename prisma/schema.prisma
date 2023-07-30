@@ -162,8 +162,10 @@ model Project {
   imagetype            String     
   createdBy            String         
   description          String              @db.LongText
-  startAt              DateTime?
-  endsAt               DateTime?
+  tag                  String?
+  tagColor             String?        
+  dueDate              DateTime?
+  isOnGoing            Boolean?
   currentPhase         String?             @db.LongText
   OrganizationId       String
   WorkBreakDownStorage Json?

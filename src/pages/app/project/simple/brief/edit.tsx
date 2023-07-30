@@ -29,6 +29,8 @@ const Page: NextPage = () => {
   //fetch the data about the project
   const [viewState, setViewState] = useState<string>("MID");
   const [project, setProject] = useState<Project>({} as Project);
+  // will have the image selected for the project
+   const [selectedFile, setSelectedFile] = useState<File | null | undefined>(null);
 
   const {isLoading} = api.newProjectRouter.getProjectById.useQuery({id : getProjectMetaData()},{
     onSuccess : (data) => {
@@ -128,6 +130,7 @@ const Page: NextPage = () => {
               </div>
               <div className="w-full my-4 flex flex-col gap-y-2 ">
                 <ProjectAvartPicker 
+                        setSelectedFile={setSelectedFile}
                         setProjectImage={setProjectImage}
                         projectImage = {projectImage}  
                 />

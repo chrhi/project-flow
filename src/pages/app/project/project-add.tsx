@@ -1,6 +1,5 @@
-import { addDays } from "date-fns";
 import type {   NextPage } from "next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { projectTags } from "~/static/project-tags";
 import { Header } from "~/components/header/Header";
 import Select from 'react-select';
@@ -11,7 +10,6 @@ import { AbdullahButton, buttonVariants } from "~/components/used/AbdullahButton
 import { useRouter } from "next/router";
 import { toast } from "react-hot-toast";
 import { Checkbox } from "~/components/ui/checkbox"
-
 import { Label } from "~/components/ui/label";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
@@ -36,11 +34,38 @@ import {
   PopoverTrigger,
 } from "~/components/ui/popover"
 
+import  {z} from "zod"
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { uploadFiles } from "~/lib/uploadthing";
+
+
+const validateSchema = z
+    .object({
+      title: z.string().min(1),
+      description: z.string(),
+
+    })
+
 
 const animatedComponents = makeAnimated();
 
+type FormData = z.infer<typeof validateSchema>
+
 // Page component
 const Page: NextPage = ()=> {
+
+  
+  
+  const{
+    register,
+    handleSubmit,
+    formState :{errors}
+  } = useForm<FormData>({
+    resolver : zodResolver(validateSchema)
+  })
+
+  
 
 
     const router = useRouter()
@@ -52,6 +77,16 @@ const Page: NextPage = ()=> {
     const [MyTeam  , setMyTeam ] = useState<{label: string  , value : string}[]>([])
 
     const [date, setDate] = useState<Date>()
+
+    const [isOnGoing, setIsOnGoing] = useState<boolean>(true)
+
+    const [selectedTag , setSelectedTag] = useState<{
+      color : string , 
+      tag : string
+    }>({
+      color : "", 
+      tag : ""
+    })
 
     // will have the image selected for the project
     const [selectedFile, setSelectedFile] = useState<File | null | undefined>(null);
@@ -90,35 +125,59 @@ const Page: NextPage = ()=> {
       type : "COLOR"
     })
 
-    const [inputs , setInputs ] = useState({
-      title : "",
-      description :"",
-      messageSendToTeamMembers : "",
-      teamMembers : [""]
-    })
+    const [teamMembers , setTeamMembers ] = useState([""])
 
-    const hanldeCreateProject = () => {
-
+    const onSubmit = async   (data: FormData) => {
       setIsCreateProjectLoading(true)
-      if(!inputs.title || !inputs.description || !inputs.messageSendToTeamMembers ){
-        toast.error("all fields are required")
+      let file = ""
+      if(!selectedTag.color || !selectedTag.tag){
+        toast.error("please select a tag")
         setIsCreateProjectLoading(false)
-        return 
+        return
       }
-
-      console.log(inputs.teamMembers)
-
+      if(selectedFile && projectImage.type === "IMAGE"){
+       try{
+        const [res] = await uploadFiles({ endpoint: "imageUploader", files: [selectedFile ] });
+        file = res?.fileUrl || ""
+       }catch(error){
+        toast.error("fiald to upload an image ")
+        setIsCreateProjectLoading(false)
+        return
+       }
+      }
+      if(!getOrganizationId()){
+        toast.error("please select an organization ")
+          setIsCreateProjectLoading(false)
+        return
+      }
+      // if the selected file is an image then we return the url of that image if not we assign the value of the imojii or the color
+      const image : string = projectImage.type === "IMAGE" ? file : projectImage.image
       mutation.mutate({
-        description : inputs.description ,
+        description : data?.description ,
         organization_id : getOrganizationId(),
-        image : projectImage.image ,
-        imagetype : projectImage.type , 
-        team : inputs.teamMembers , 
-        title : inputs.title , 
+        image : image  ,
+        tag : selectedTag.tag , 
+        tagColor : selectedTag.color,
+        imagetype : projectImage?.type , 
+        team : teamMembers , 
+        title : data.title , 
         type : "SIMPLE",
+        dueDate : date || new Date(),
+        isOnGoing : isOnGoing , 
       })
-
+  
     }
+
+ 
+    useEffect(() => {
+      if (Object.keys(errors).length) {
+        for (const [_key, value] of Object.entries(errors)) {
+          value
+          toast.error((value as { message: string }).message);
+        }
+      }
+    }, [errors]);
+  
 
 
 
@@ -130,7 +189,7 @@ const Page: NextPage = ()=> {
     <h1 className="text-3xl font-medium text-[#2F3349]">Add new project</h1>
     <p className="text-xl text-gray-500">Let's get started</p>
   </div>
-  <div className="w-full p-4 h-[730px] bg-white my-6 mb-8 flex flex-col gap-y-8 rounded-lg max-w-4xl mx-auto">
+  <form  onSubmit={handleSubmit(onSubmit)} className="w-full p-4 h-[730px] bg-white my-6 mb-8 flex flex-col gap-y-8 rounded-lg max-w-4xl mx-auto">
     <div className="w-full h-[30px] flex items-center justify-start">
       <p className="text-xl text-gray-500">BASIC INFO</p>
     </div>
@@ -138,7 +197,7 @@ const Page: NextPage = ()=> {
     <div className="w-full h-[30px] flex justify-between">
       <div className="w-[47%] h-full">
         <Label>Title</Label>
-        <Input />
+        <Input {...register("title")} />
       </div>
       <div className="w-[47%] h-full">
         <ProjectAvartPicker
@@ -151,7 +210,7 @@ const Page: NextPage = ()=> {
     </div>
     <div className="w-full h-[70px] mt-8 mb-8 flex flex-col justify-center gap-y-2">
       <Label>Abreif decription about the project</Label>
-      <Textarea />
+      <Textarea {...register("description")} />
     </div>
     <div className="w-full h-[30px] flex justify-between">
       <div className="w-[47%] flex flex-col justify-center gap-y-2 h-full">
@@ -175,7 +234,9 @@ const Page: NextPage = ()=> {
             </PopoverContent>
           </Popover>
           <div className="flex items-center space-x-2">
-            <Checkbox id="terms" />
+            <Checkbox id="terms" checked={isOnGoing}
+                  onCheckedChange={(val) => setIsOnGoing(val.valueOf() as boolean )}
+              />
             <label
               htmlFor="terms"
               className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -186,17 +247,22 @@ const Page: NextPage = ()=> {
         </div>
       </div>
       <div className="w-[47%] flex flex-col justify-center gap-y-2 h-full">
-        <Label>Due date</Label>
-        <ABDULLAHselect>
+        <Label>select a tag</Label>
+        <ABDULLAHselect onValueChange={value => {
+          setSelectedTag({
+            color : value.split('_')[1] || "",
+            tag : value.split('_')[0] || "",
+          })
+        }} >
           <SelectTrigger className="w-full">
-            <SelectValue placeholder="Select a fruit" />
+            <SelectValue placeholder="Select a tag" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectLabel>Fruits</SelectLabel>
+              <SelectLabel>tags</SelectLabel>
             
               {projectTags.map(item => (
-                 <SelectItem value={item.name}>
+                 <SelectItem value={`${item.name}_${item.color}`}>
                  <div className="w-[390px] h-[30px] flex justify-between  items-center px-2">
                    <p>{item.name}</p>
                    <div className={`w-4 h-4  rounded-[50px] `}
@@ -216,6 +282,7 @@ const Page: NextPage = ()=> {
     <div className="w-full h-[50px] flex flex-col items-start my-8 justify-center gap-y-4">
         <Label>select the members who you are going to work with </Label>
         <Select
+            onChange={(val) => setTeamMembers(val.map(item => item.value))}
             className="!w-full !focus:border-gray-500"
             closeMenuOnSelect={false}
             components={animatedComponents}
@@ -226,7 +293,7 @@ const Page: NextPage = ()=> {
     </div>
     <div className="w-full h-[70px] mt-4 mb-8 flex flex-col justify-center gap-y-2">
       <Label>Message to send to the members</Label>
-      <Textarea />
+      <Textarea  />
     </div>
     <div className="w-full flex justify-start gap-x-4 items-center h-[60px]">
       
@@ -234,7 +301,7 @@ const Page: NextPage = ()=> {
                    type="submit"
                    className={buttonVariants({size:"sm", variant:'primary'})}
                    isLoading ={isCreateProjectLoading}
-                   onClick={hanldeCreateProject}
+           
                 >
                create
               </AbdullahButton>
@@ -253,7 +320,7 @@ const Page: NextPage = ()=> {
                 cancel
                </AbdullahButton>
     </div>
-  </div>
+  </form>
 </main>
    </>
   );

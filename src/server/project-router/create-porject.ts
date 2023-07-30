@@ -3,19 +3,23 @@ import { protectedProcedure } from "../api/trpc";
 import { TRPCError } from "@trpc/server";
 
 
-
+export const schemaValidators = z.object({ 
+ 
+  organization_id : z.string(),
+  tag : z.string(),
+  tagColor : z.string(),
+  description : z.string(),
+  image : z.string(),
+  imagetype : z.string(),
+  title  : z.string(),
+  dueDate : z.date(),
+  isOnGoing  : z.boolean(),
+  type   : z.string(),
+  team : z.string().array()})
 
 
 export const create_project  = protectedProcedure
-.input(z.object({ 
- 
-    organization_id : z.string(),
-    description : z.string(),
-    image : z.string(),
-    imagetype : z.string(),
-    title  : z.string(),
-    type   : z.string(),
-    team : z.string().array()}) )
+.input(schemaValidators)
   .mutation( async ({ input , ctx }) => {
 
 
@@ -39,6 +43,11 @@ export const create_project  = protectedProcedure
         team : JSON.stringify(selectedTeamMembers),
         title : input.title,
         type : "SIMPLE",
+        dueDate : input.dueDate , 
+        isOnGoing : input.isOnGoing , 
+        tag : input.tag , 
+        tagColor : input.tagColor , 
+
         createdBy : ctx.session.user.id,
         currentPhase :"business case"
       }
