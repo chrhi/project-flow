@@ -32,7 +32,7 @@ const Page: NextPage = () => {
     <>
       <Header />
       <main className="w-full h-[calc(100vh-50px)] overflow-hidden overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
-        
+        {
         isError ? (
           <h1>Sorry, there is an  error </h1>
         )
@@ -43,6 +43,7 @@ const Page: NextPage = () => {
               <Board projects={projects} />
           </>
         )
+         }
       </main>
     </>
   );
