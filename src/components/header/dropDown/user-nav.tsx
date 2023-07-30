@@ -166,7 +166,7 @@ export default function DropDowsMenu({ serverSession }: Props) {
                           }  hover:bg-gray-100 cursor-pointer justify-start h-[45px]`}
                         >
                           <Avatar className="w-[30px] h-[30px]">
-                            <AvatarImage src={''} alt="@abdullah" />
+                            <AvatarImage src={item?.image} alt="@abdullah" />
                             <AvatarFallback>AB</AvatarFallback>
                           </Avatar>
                           <h1 className="text-neutral-700 text-sm">{item?.name}</h1>

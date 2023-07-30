@@ -1,6 +1,6 @@
 import { protectedProcedure } from "../api/trpc";
 import { TRPCError } from "@trpc/server";
-import { Organization } from "@prisma/client";
+import type { Organization } from "@prisma/client";
 
 
 
@@ -21,8 +21,11 @@ export const getUserOrganization = protectedProcedure
 
         if(!org?.Members) {
             throw new TRPCError({code :"BAD_REQUEST" , message :"there is no members "})
-            return
+          
         }
+
+        
+
      
         const Members : MemberOrg[] = JSON.parse(org?.Members as string) as MemberOrg[]
         const org_id = Members.filter(item => item.user === ctx.session.user.id)
@@ -44,6 +47,7 @@ export const getUserOrganization = protectedProcedure
             userId : ctx.session.user.id
         }
     })
+
 
 
     return [...organization, ...orgs_user_invo_ivedInto]

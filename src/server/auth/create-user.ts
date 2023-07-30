@@ -66,7 +66,15 @@ export const PushUserMoreInformations = publicProcedure
 
   const UserOrganization  = await ctx.prisma.organization.create({
     data :{
-      Members : "this is going to change",
+      Members : JSON.stringify([{
+        image : user?.image,
+        email : user?.email,
+        name :  input.userName ,
+        user :  user?.id ,
+        role : "leader",
+        }]),
+        name : input.OrganizationName ,
+        image : "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/OpenSea_icon.svg/1200px-OpenSea_icon.svg.png",
         Leader : user?.id,
         userId : user?.id
     }
@@ -78,23 +86,8 @@ export const PushUserMoreInformations = publicProcedure
       userId :  user?.id || ""
     }
   })
-  // we updated the organization of the user so it includes it's name 
-   await ctx.prisma.organization.update({
-    where:{
-      id : UserOrganization?.id
-    },
-    data :{
-      name : input.OrganizationName,
-      Members : JSON.stringify([{
-        image : user?.image,
-        email : user?.email,
-        name :  input.userName ,
-        user :  user?.id ,
-        role : "leader",
-        
-        }])
-    }
-  })
+
+
   await ctx.prisma.user.update({
     where :{
       email : input.confirmEmail,
