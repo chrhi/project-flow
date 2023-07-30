@@ -1,5 +1,6 @@
 import { protectedProcedure } from "../api/trpc";
 import { TRPCError } from "@trpc/server";
+import { Organization } from "@prisma/client";
 
 
 
@@ -17,10 +18,13 @@ export const getUserOrganization = protectedProcedure
     for(let i = 0 ; i < organizations.length ; i++){
             
         const org = organizations[i]
-        console.error("here it is what is being passed to parse")
-        console.log(typeof(org?.Members))
-        //@ts-ignore
-        const Members : MemberOrg[] = JSON.parse(org.Members) as MemberOrg[]
+
+        if(!org?.Members) {
+            throw new TRPCError({code :"BAD_REQUEST" , message :"there is no members "})
+            return
+        }
+     
+        const Members : MemberOrg[] = JSON.parse(org?.Members as string) as MemberOrg[]
         const org_id = Members.filter(item => item.user === ctx.session.user.id)
 
         if(org_id[0]?.role === "leader"){
@@ -29,7 +33,7 @@ export const getUserOrganization = protectedProcedure
         
         //if we found any thing we return it 
         if(org_id.length > 0 && org){
-            //@ts-ignore
+            
             orgs_user_invo_ivedInto.push(org)
         }
 }

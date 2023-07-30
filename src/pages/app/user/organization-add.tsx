@@ -7,20 +7,24 @@ import { useRouter } from "next/router";
 import {z} from "zod"
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Header } from "~/components/header/Header";
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "~/lib/auth";
-import type { Session } from "next-auth";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "~/components/ui/select";
+import { Input } from "~/components/ui/input";
 
 
 const validateSchema = z
     .object({
-      FirstName: z.string().min(3),
-      LastName: z.string().min(3),
-      OrganizationName: z.string().min(3),
-      UserName: z.string().min(3),
-      ConfirmEmail: z.string().email(),
+      name: z.string().min(3),
+      
     })
 
 type FormData = z.infer<typeof validateSchema>
@@ -33,17 +37,20 @@ const Page: NextPage = () => {
 
     const router = useRouter();
 
-    const [inVitationCode , setInvitationCode] = useState<string>("")
+    const [category , setCategory] = useState<string>("")
+
+    const [isLoading , setIsLoading] = useState<boolean>(false)
 
 
-    const mutation = api.userRouter.PushUserMoreInformations.useMutation({
-       onSuccess(data) {
-         toast.success(`new user has been created`)
-         router.push("/")
+    const mutation = api.organizationRouter.create_org.useMutation({
+       onSuccess : async (data) =>  {
+         toast.success(`new organization has been created`)
+        await  router.push("/app/user/profile")
+         setIsLoading(false)
         },
        onError(error){
          toast.error(error.message)
-         console.log(error)
+         setIsLoading(false)
         }
    })
 
@@ -56,15 +63,22 @@ const Page: NextPage = () => {
     })
 
     const onSubmit = (data: FormData) => {
-        mutation.mutate({
-          confirmEmail : data.ConfirmEmail , 
-          FirstName : data.FirstName , 
-          LastName : data.LastName , 
-          userName : data.UserName , 
-          OrganizationName : data.OrganizationName , 
-          invitationCode : inVitationCode
-        })
+      setIsLoading(true)
+       mutation.mutate({
+        category ,
+        name : data.name
+
+       })
     }
+
+    useEffect(() => {
+      if (Object.keys(errors).length) {
+        for (const [_key, value] of Object.entries(errors)) {
+          value
+          toast.error((value as { message: string }).message)
+        }
+      }
+    }, [errors])
 
 
 
@@ -83,22 +97,40 @@ const Page: NextPage = () => {
          
                <div className="flex  w-full flex-col gap-y-2 justify-start  items-start gap-x-2">
                    <Label > Organization  name  </Label>
-                   <input type="text"
-                   {...register("FirstName")}
-                   className={`px-4 py-1.5 rounded-lg outline-none dark:text-white dark:bg-stone-900 dark:ring-stone-600 dark:border-stone-600 border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full `} />
-                   <p className='mt-1 text-sm text-red-600'>{errors.FirstName?.message}</p>
+                   <Input type="text"
+                   {...register("name")}
+                   />
+                   <p className="text-sm text-red-600">{errors?.name?.message}</p>
+                   
                </div>
-               <div className="flex   gap-y-2 w-full flex-col  items-start gap-x-2">
-                   <Label>Category </Label>
-                   <input 
-                      {...register("LastName")} 
-                      type="text"
-                      className={`px-4 py-1.5 rounded-lg outline-none dark:text-white dark:bg-stone-900 dark:ring-stone-600 dark:border-stone-600 border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 shadow-sm transition ease-in  w-full `} />
-                      <p className='mt-1 text-sm text-red-600'>{errors.LastName?.message}</p>
-               </div>
+              
+                   <div className={`w-full h-[60px]`}>
+              <Label>Organization type</Label>
+              <Select
+               defaultValue="Agency"
+               onValueChange={(value) => setCategory(value)} 
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue  placeholder="Select a type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Fruits</SelectLabel>
+                    <SelectItem value="Agency">Agency</SelectItem>
+                    <SelectItem value="Groupe">Groupe</SelectItem>
+                    <SelectItem value="Company">Company</SelectItem>
+                    <SelectItem value="Department">Department</SelectItem>
+                    <SelectItem value="person">one person</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+             
 
              <div className="w-full h-[50px]  my-4 items-center justify-end flex ">
                  <AbdullahButton 
+                                isLoading={isLoading}
+                                type="submit"
                                 className={`${buttonVariants({size:"sm", variant:'primary'})} font-semibold`}>
                                 Save & Create My Organization
                  </AbdullahButton>
