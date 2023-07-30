@@ -10,8 +10,7 @@ import { getPrayerTimes } from '~/hooks/get-prayer-times';
 
 const algeriaLatitude = 36.752887;
 const algeriaLongitude = 3.042048;
-const year = 2017;
-const month = 4;
+
 
 export function getCurrentYearAndMonth(): { year: number, month: number } {
   const currentDate = new Date();
@@ -37,10 +36,7 @@ export default function ActivityTracker() {
     // Call the function and log the results
     getPrayerTimes(algeriaLatitude, algeriaLongitude, getCurrentYearAndMonth().year, getCurrentYearAndMonth().month)
       .then(prayerTimes => {
-       
         setValue(prayerTimes);
-        console.log("here are the pryer times" )
-        console.log(typeof (prayerTimes?.Fajr ) === typeof new Date())
       })
       .catch(error => {
         console.error(error);
@@ -79,9 +75,7 @@ export default function ActivityTracker() {
      */
    
     <div className='hidden w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center'>
-       {
-      value ? 
-      <>
+    
       {/* @ts-ignore */}
       {BlockClock({name : "Fajr" , time :  value?.Fajr , showBorder : false})}
       {/* @ts-ignore */}
@@ -92,10 +86,6 @@ export default function ActivityTracker() {
       {BlockClock({name : "Maghrib" , time :value?.Maghrib , showBorder : true})}
       {/* @ts-ignore */}
       {BlockClock({name : "Isha" , time : value?.Isha , showBorder : false})}
-      </>
-        :
-        <p> loading... </p>
-        }
     
     </div>
   );
