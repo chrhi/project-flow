@@ -37,8 +37,10 @@ export default function ActivityTracker() {
     // Call the function and log the results
     getPrayerTimes(algeriaLatitude, algeriaLongitude, getCurrentYearAndMonth().year, getCurrentYearAndMonth().month)
       .then(prayerTimes => {
-        if (!prayerTimes) return;
+       
         setValue(prayerTimes);
+        console.log("here are the pryer times" )
+        console.log(prayerTimes)
       })
       .catch(error => {
         console.error(error);
@@ -79,20 +81,20 @@ export default function ActivityTracker() {
     <div className='hidden w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center'>
        {
       value ? 
-        <p> loading... </p>
+      <>
+      {/* @ts-ignore */}
+      {BlockClock({name : "Fajr" , time :  value?.Fajr , showBorder : false})}
+      {/* @ts-ignore */}
+      {BlockClock({name : "Dhuhr" , time :  value?.Dhuhr, showBorder : true })}
+      {/* @ts-ignore */}
+      {BlockClock({name : "Asr" , time :  value?.Asr  , showBorder : true})}
+      {/* @ts-ignore */}
+      {BlockClock({name : "Maghrib" , time :value?.Maghrib , showBorder : true})}
+      {/* @ts-ignore */}
+      {BlockClock({name : "Isha" , time : value?.Isha , showBorder : false})}
+      </>
         :
-        <>
-        {/* @ts-ignore */}
-        {BlockClock({name : "Fajr" , time :  value?.Fajr , showBorder : false})}
-        {/* @ts-ignore */}
-        {BlockClock({name : "Dhuhr" , time :  value?.Dhuhr, showBorder : true })}
-        {/* @ts-ignore */}
-        {BlockClock({name : "Asr" , time :  value?.Asr  , showBorder : true})}
-        {/* @ts-ignore */}
-        {BlockClock({name : "Maghrib" , time :value?.Maghrib , showBorder : true})}
-        {/* @ts-ignore */}
-        {BlockClock({name : "Isha" , time : value?.Isha , showBorder : false})}
-        </>
+        <p> loading... </p>
         }
     
     </div>
