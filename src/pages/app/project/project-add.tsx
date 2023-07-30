@@ -1,7 +1,7 @@
 import { addDays } from "date-fns";
 import type {   NextPage } from "next";
 import { useState } from "react";
-import type { DateRange } from "react-day-picker";
+import { projectTags } from "~/static/project-tags";
 import { Header } from "~/components/header/Header";
 import Select from 'react-select';
 import ProjectAvartPicker from "~/components/used/project-avatar-picker";
@@ -52,6 +52,9 @@ const Page: NextPage = ()=> {
     const [MyTeam  , setMyTeam ] = useState<{label: string  , value : string}[]>([])
 
     const [date, setDate] = useState<Date>()
+
+    // will have the image selected for the project
+    const [selectedFile, setSelectedFile] = useState<File | null | undefined>(null);
 
 
     api.userRouter.get_org_members.useQuery({id : getOrganizationId()},{
@@ -139,6 +142,7 @@ const Page: NextPage = ()=> {
       </div>
       <div className="w-[47%] h-full">
         <ProjectAvartPicker
+          setSelectedFile={setSelectedFile}
           setProjectImage={setProjectImage}
           isRequired
           projectImage={projectImage}
@@ -190,16 +194,20 @@ const Page: NextPage = ()=> {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Fruits</SelectLabel>
-              <SelectItem value="apple">
-                <div className="w-[390px] h-[30px] flex justify-between items-center px-2">
-                  <p>Business</p>
-                  <div className="w-4 h-4 border-[2px] rounded-[50px] border-pink-500" />
-                </div>
-              </SelectItem>
-              <SelectItem value="banana">Banana</SelectItem>
-              <SelectItem value="blueberry">Blueberry</SelectItem>
-              <SelectItem value="grapes">Grapes</SelectItem>
-              <SelectItem value="pineapple">Pineapple</SelectItem>
+            
+              {projectTags.map(item => (
+                 <SelectItem value={item.name}>
+                 <div className="w-[390px] h-[30px] flex justify-between  items-center px-2">
+                   <p>{item.name}</p>
+                   <div className={`w-4 h-4  rounded-[50px] `}
+                     style={{
+                      border : `${item.color} 2px solid`
+                     }}
+                     />
+                 </div>
+               </SelectItem>
+              ))}
+              
             </SelectGroup>
           </SelectContent>
         </ABDULLAHselect>
