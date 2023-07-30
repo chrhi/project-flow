@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { Header } from "~/components/header/Header";
 import ActivityTracker from "~/components/home-page-components/ActivityTracker";
 import FutureReminder from "~/components/home-page-components/FutureReminder";
-import PriyerTimeMobil from "~/components/home-page-components/PryerTimeMobil";
+// import PriyerTimeMobil from "~/components/home-page-components/PryerTimeMobil";
 import RecentMessages from "~/components/home-page-components/RecentMessages";
 import UpcommingTasks from "~/components/home-page-components/UpcommingTasks";
 
@@ -25,7 +25,7 @@ const Page: NextPage = () => {
 
             <ActivityTracker />
 
-            <PriyerTimeMobil />
+            {/* <PriyerTimeMobil /> */}
           </div>
 
           <div className="w-full flex flex-col-reverse lg:flex-row h-[800px] lg:h-[400px] my-4 lg:my-8 gap-x-4 items-center justify-between">

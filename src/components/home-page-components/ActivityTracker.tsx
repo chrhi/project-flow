@@ -13,6 +13,17 @@ const algeriaLongitude = 3.042048;
 const year = 2017;
 const month = 4;
 
+export function getCurrentYearAndMonth(): { year: number, month: number } {
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth() + 1;
+
+  return {
+    year: currentYear,
+    month: currentMonth,
+  };
+}
+
 const style = {
   clock: "!w-[92px] !h-[92px]"
 };
@@ -24,7 +35,7 @@ export default function ActivityTracker() {
 
   useEffect(() => {
     // Call the function and log the results
-    getPrayerTimes(algeriaLatitude, algeriaLongitude, year, month)
+    getPrayerTimes(algeriaLatitude, algeriaLongitude, getCurrentYearAndMonth().year, getCurrentYearAndMonth().month)
       .then(prayerTimes => {
         if (!prayerTimes) return;
         setValue(prayerTimes);
@@ -64,18 +75,26 @@ export default function ActivityTracker() {
      * Abdullah Chahri created this component to display activity times.
      * Email: mahdi.chahri55@gmail.com
      */
+   
     <div className='hidden w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center'>
-      {/* @ts-ignore */}
-      
-      {BlockClock({name : "Fajr" , time : value ? value["Fajr"] : new Date() , showBorder : false})}
-      {/* @ts-ignore */}
-      {BlockClock({name : "Dhuhr" , time : value ? value["Dhuhr"] : new Date(), showBorder : true })}
-      {/* @ts-ignore */}
-      {BlockClock({name : "Asr" , time : value ? value["Asr"] : new Date() , showBorder : true})}
-      {/* @ts-ignore */}
-      {BlockClock({name : "Maghrib" , time : value ? value["Maghrib"]: new Date() , showBorder : true})}
-      {/* @ts-ignore */}
-      {BlockClock({name : "Isha" , time : value ? value["Isha"] : new Date() , showBorder : false})}
+       {
+      value ? 
+        <p> loading... </p>
+        :
+        <>
+        {/* @ts-ignore */}
+        {BlockClock({name : "Fajr" , time :  value?.Fajr , showBorder : false})}
+        {/* @ts-ignore */}
+        {BlockClock({name : "Dhuhr" , time :  value?.Dhuhr, showBorder : true })}
+        {/* @ts-ignore */}
+        {BlockClock({name : "Asr" , time :  value?.Asr  , showBorder : true})}
+        {/* @ts-ignore */}
+        {BlockClock({name : "Maghrib" , time :value?.Maghrib , showBorder : true})}
+        {/* @ts-ignore */}
+        {BlockClock({name : "Isha" , time : value?.Isha , showBorder : false})}
+        </>
+        }
+    
     </div>
   );
 }
