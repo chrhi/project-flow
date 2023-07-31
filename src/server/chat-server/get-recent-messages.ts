@@ -27,10 +27,10 @@ export const get_recent_messages  = protectedProcedure
         }
     })
 
-    const myArray = [...message , ...projectMessages].sort()
+    const myArray = [...message, ...projectMessages].sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
 
    
 
-    return message
+    return myArray.slice(0, 7);
    
 })

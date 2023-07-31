@@ -8,7 +8,7 @@ import { get_messages } from "./get-messages";
 import { get_chat_partner } from "./get-chat-partner";
 import { send_chat_message } from "./send-chat-message";
 import { get_project_messages } from "./get-chat-messages";
-
+import { get_recent_messages } from "./get-recent-messages";
   
   
   export const chatRouter = createTRPCRouter({
@@ -16,6 +16,7 @@ import { get_project_messages } from "./get-chat-messages";
     get_messages,
     get_chat_partner,
     send_chat_message,
-    get_project_messages
+    get_project_messages,
+    get_recent_messages
   });
   
