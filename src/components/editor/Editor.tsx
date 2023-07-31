@@ -163,7 +163,7 @@ interface EditorProps {
   const mutation = api.noteRouter.create_note.useMutation({
     onSuccess : () => {
       
-      router.push("/app/simple-project/notes")
+      router.push("/app/project/simple/note")
   
     },
     onError : () => {
@@ -174,7 +174,7 @@ interface EditorProps {
 
   const handleCancel = () => {
     setIsRouterLoading(true)
-    router.push("/app/simple-project/notes")
+    router.push("/app/project/simple/note")
     setIsRouterLoading(false)
   }
 

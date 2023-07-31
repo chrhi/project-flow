@@ -108,7 +108,7 @@ const Page: NextPage = (
               : viewState === "CHAT"
               ? "w-[calc(100%-70px)]"
               : "w-[0%]"
-          } h-[calc(100vh-50px)] bg-blue-500 relative`}
+          } h-[calc(100vh-50px)] bg-white relative`}
         >
           {/* this is the circle */}
           <div className="absolute left-[-30px] shadow-md flex items-center z-[5] overflow-hidden top-[50%] w-[60px] h-[60px] bg-transparent border-none rounded-[50%]">

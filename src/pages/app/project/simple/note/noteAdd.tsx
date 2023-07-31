@@ -67,7 +67,7 @@ const Page: NextPage = (
           </div>
         </div>
 
-        <div className={`${viewState === "MID" ?  "w-[50%]" : viewState === "CHAT" ? "w-[calc(100%-70px)]" : "w-[0%]"} h-[calc(100vh-50px)] bg-blue-500 relative`}>
+        <div className={`${viewState === "MID" ?  "w-[50%]" : viewState === "CHAT" ? "w-[calc(100%-70px)]" : "w-[0%]"} h-[calc(100vh-50px)] bg-white relative`}>
           {/* This is the circle */}
           <div className="absolute left-[-30px] shadow-md flex items-center z-[5] overflow-hidden top-[50%] w-[60px] h-[60px] bg-transparent border-none rounded-[50%]">
             <AbdullahButton onClick={() => changeViewState("CHAT")} className={cn(buttonVariants({variant: "ghost"}), "p-1 h-16 w-10 bg-white")}>
