@@ -36,6 +36,9 @@ export const send_message  = protectedProcedure
       throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message and ${err.message}`})
     })
 
+    console.log("here it is the messge created")
+    console.log(message)
+
     //send the message in the chat feed
     await pusherServer.trigger(toPusherKey(`chat:${input.partnerId}-${ctx?.session?.user.id}`), 'incoming-message', message).catch(err => {
       throw new TRPCError({code :"INTERNAL_SERVER_ERROR" , message :`faild to send the message pucher error and ${err.message}`})

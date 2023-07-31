@@ -4,8 +4,8 @@ import type { User  , Message, ChatMessageProject} from '@prisma/client'
 import { ScrollArea } from '../ui/scroll-area'
 import { pusherClient } from '~/lib/pusher'
 import AudioPlayer from './AudioPlayer'
-import { block } from 'million/react'
 import type { Project } from '@prisma/client'
+import { getProjectMetaData } from '~/lib/MetaData'
 
 
 interface MessagesProps {
@@ -33,7 +33,7 @@ const MessagesFlow: FC<MessagesProps> = ({
 
   useEffect(() => {
     pusherClient.subscribe( 
-     toPusherKey(`chat:${project.id}`)
+     toPusherKey(`chat:${getProjectMetaData()}`)
     )
 
     const messageHandler = (message: ChatMessageProject) => {
@@ -49,14 +49,17 @@ const MessagesFlow: FC<MessagesProps> = ({
 
     return () => {
       pusherClient.unsubscribe(
-      toPusherKey(`chat:${project.id}`)
+      toPusherKey(`chat:${getProjectMetaData()}`)
       )
       pusherClient.unbind('incoming-message', messageHandler)
     }
   }, [  project.id , messages ])
 
 
-  
+  useEffect(() => {
+    setMessages(initialMessages)
+    scrollDownRef?.current?.scrollIntoView({ behavior: 'smooth' });
+  },[initialMessages])
 
 
   function getFormattedHourAndMinutesFromDate(date: string): string {
@@ -72,7 +75,7 @@ const MessagesFlow: FC<MessagesProps> = ({
     <AudioPlayer audioRef={audioRef} />
     <div
       id='messages'
-      className='flex h-full flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
+      className='flex h-full   flex-1 flex-col-reverse gap-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch'>
       <div ref={scrollDownRef} />
     
 
@@ -139,4 +142,4 @@ const MessagesFlow: FC<MessagesProps> = ({
   )
 }
 
-export default block(MessagesFlow)
+export default MessagesFlow

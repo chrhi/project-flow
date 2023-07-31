@@ -56,7 +56,7 @@ export default function DropDowsMenu({ serverSession }: Props) {
   const {isLoading} = api.organizationRouter.getUserOrganization.useQuery(undefined, {
     onSuccess: (orgs) => {
       setOrgs(orgs);
-      console.log(orgs)
+      
     },
   });
 

@@ -14,9 +14,13 @@ import ProjectGroupe from './project-groupe'
 import { Search } from 'lucide-react'
 import { getOrganizationId } from '~/lib/data-in-cookies'
 import { api } from '~/utils/api'
+import ContactLoading from './contact-loading'
 
+type Props = {
+  isOnProjectChatPage? : boolean
+}
 
-function ContactFeed() {
+function ContactFeed({isOnProjectChatPage = false } : Props) {
 
   const [projects , setProjects] = useState<Project[]>([])
   const [orgMemebers , setOrgMemebers] = useState<MemberOrg[]>([])
@@ -49,10 +53,10 @@ function ContactFeed() {
  
 
   return (
-    <div className='w-[0] hidden md:block md:w-[370px] pt-[50px]  fixed top-0 left-0 bottom-0 border-r-gray-500 border-r-[2px] bg-white h-screen'>
+    <div className='w-[0] hidden md:block md:w-[370px] pt-[50px]  fixed top-0 left-0 bottom-0 border-r- border-r bg-white h-screen'>
         <ChatHeader  />
    
-        <Tabs defaultValue="team" className="w-[360px] mx-auto ">
+        <Tabs defaultValue={isOnProjectChatPage ? "projects" : "team" }  className="w-[360px] mx-auto ">
       <TabsList className="grid w-full grid-cols-2 h-[50px] rounded-none">
         <TabsTrigger className='h-full' value="team">My team</TabsTrigger>
         <TabsTrigger className='h-full' value="projects">Projects</TabsTrigger>
@@ -64,7 +68,11 @@ function ContactFeed() {
           className='h-[40px] w-[90%] mr-auto border-none ' />
           <Search className="w-6 h-6 text-gray-500" />
         </div>
-        {projects.map(item => {
+        { 
+           isLoading ? 
+               [1,2,3].map(() => <ContactLoading />)
+            :
+        projects.map(item => {
          return (
           <ProjectGroupe
             title={item.title}
@@ -76,7 +84,8 @@ function ContactFeed() {
             key={item.id + "project groupe-098765432"}
            />
            )
-        })}
+        })
+        }
       </TabsContent>
       <TabsContent value="team">
        
@@ -86,22 +95,27 @@ function ContactFeed() {
           className='h-[40px] w-[90%] mr-auto border-none ' />
           <Search className="w-6 h-6 text-gray-500" />
         </div>
+        { 
+           orgMemebersLoading ? 
+               [1,2,3].map(() => <ContactLoading />)
+            :
           <ScrollArea>
-            {    
-               orgMemebers.map(item => (
-                <ChatContact 
-                  id={item.user}
-                  key={item.user}
-                  image={item.image}
-                  isUnseenMessages={true}
-                  lastMessage={item.email}
-                  name={item.name}
-                />
-             ))
-            }
-    
-        </ScrollArea>
-        {/* } */}
+          {    
+             orgMemebers.map(item => (
+              <ChatContact 
+                id={item.user}
+                key={item.user}
+                image={item.image}
+                isUnseenMessages={true}
+                lastMessage={item.email}
+                name={item.name}
+              />
+           ))
+          }
+         </ScrollArea>
+         }
+         
+     
        </TabsContent>
     </Tabs>
 
