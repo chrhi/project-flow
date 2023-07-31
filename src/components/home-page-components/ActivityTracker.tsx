@@ -7,9 +7,11 @@ import { useEffect, useState } from 'react';
 import Clock from 'react-clock';
 import { formatTimeWithAMPM } from '~/hooks/date-to-houres';
 import { getPrayerTimes } from '~/hooks/get-prayer-times';
+import useLocalStorage from '~/hooks/use-local-storage';
+import { SetPriyerTimePopUp } from '../popup/home-page/prayer-popup';
 
-const algeriaLatitude = 36.752887;
-const algeriaLongitude = 3.042048;
+// const algeriaLatitude = 36.752887;
+// const algeriaLongitude = 3.042048;
 
 
 export function getCurrentYearAndMonth(): { year: number, month: number } {
@@ -29,19 +31,28 @@ const style = {
 
 export default function ActivityTracker() {
 
+  const [wilaya ] = useLocalStorage<{
+    latitude : number , 
+    longitude : number ,
+    name : string
+  }>("WILAYA_TIME" , {
+    latitude :36.7667 ,
+    longitude : 3.4667,
+    name : "Boumerdes",
+  })
 
   const [value, setValue] = useState<PrayerTimes | null>(null);
 
   useEffect(() => {
     // Call the function and log the results
-    getPrayerTimes(algeriaLatitude, algeriaLongitude, getCurrentYearAndMonth().year, getCurrentYearAndMonth().month)
+    getPrayerTimes(wilaya.latitude, wilaya.longitude, getCurrentYearAndMonth().year, getCurrentYearAndMonth().month)
       .then(prayerTimes => {
         setValue(prayerTimes);
       })
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  }, [wilaya.longitude , wilaya.latitude]);
 
   const BlockClock = ({name , showBorder  , time} : {name: string, showBorder :true, time: Date | null}) => (
     <div className={`w-[18%] h-[80%] px-1 ${showBorder ? "border-r border-gray-300 " : ""} flex flex-col items-center justify-center gap-y-4`}>
@@ -73,9 +84,11 @@ export default function ActivityTracker() {
      * Abdullah Chahri created this component to display activity times.
      * Email: mahdi.chahri55@gmail.com
      */
+    <>
+    <SetPriyerTimePopUp />
    
-    <div className='hidden w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center'>
-    
+    <div className='hidden relative w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center'>
+     <SetPriyerTimePopUp />
       {/* @ts-ignore */}
       {BlockClock({name : "Fajr" , time :  value?.Fajr , showBorder : false})}
       {/* @ts-ignore */}
@@ -88,6 +101,7 @@ export default function ActivityTracker() {
       {BlockClock({name : "Isha" , time : value?.Isha , showBorder : false})}
     
     </div>
+    </>
   );
 }
 

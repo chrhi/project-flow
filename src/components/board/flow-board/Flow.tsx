@@ -78,7 +78,7 @@ function Flow({
       {(provided, snapshot) => (
         <Card
           onClick={handleRouting}
-          className={`w-[100%] transition duration-500 transform hover:-translate-y-1  ${layout === BIG ? 'max-w-[400px] h-[400px] ' : layout === SMALL ?  'max-w-[290px] h-[300px]' : 'max-w-[290px] h-[110px]' }  cursor-pointer flex flex-col items-start gap-y-2 shadow-lg hover:shadow-sky-200 hover:shadow-2xl min-h-[50px] rounded-lg bg-white my-4 ${
+          className={`w-[100%] transition duration-500 border-none transform hover:-translate-y-1  ${layout === BIG ? 'max-w-[400px] h-[400px] ' : layout === SMALL ?  'max-w-[290px] h-[300px]' : 'max-w-[290px] h-[110px]' }  cursor-pointer flex flex-col items-start gap-y-2 shadow-lg hover:shadow-sky-200 hover:shadow-2xl min-h-[50px] rounded-lg bg-white my-4 ${
             snapshot.isDragging ? "shadow-xl" : ""
           }`}
           {...provided.draggableProps}
@@ -117,14 +117,14 @@ function Flow({
             {/* in here goes the status and the due date */}
             <div className={`w-full  ${layout === BIG ? 'flex' : 'hidden'}  justify-between h-[100px]`}>
               <div className='w-[50%] h-[100px] flex flex-col items-start justify-start gap-y-2'>
-                <h4 className='text-md font-medium text-[#2F3349]'>Due date</h4>
-                <p className='text-sm'>
+                <h4 className='text-sm text-gray-500'>Due date</h4>
+                <p className=' text-md font-medium text-[#2F3349]'>
                   {isOnGoing ? "on going" : AlgeriaformatDate(dueDate || new Date())}
                 </p>
               </div>
               <div className='w-[50%] h-[100px] flex flex-col items-end justify-start gap-y-2'>
-                <h4 className='text-md font-medium text-[#2F3349]'>Current phase</h4>
-                <p className='text-sm'>{currentPhase}</p>
+                <h4 className='text-sm text-gray-500 '>Current phase</h4>
+                <p className=' text-md font-medium text-[#2F3349]'>{currentPhase}</p>
               </div>
             </div>
           </CardContent>

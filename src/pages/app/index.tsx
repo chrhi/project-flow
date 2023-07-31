@@ -10,6 +10,7 @@ import { getOrganizationId } from "~/lib/data-in-cookies";
 import { api } from "~/utils/api";
 import type { Project } from "@prisma/client";
 import Flow from "~/components/board/flow-board/Flow";
+import HomwPageFlow from "~/components/home-page-components/HomwPageFlow";
 
 
 
@@ -50,11 +51,11 @@ const Page: NextPage = () => {
             <RecentMessages />
           </div>
           <h1 className="lg:text-3xl  text-xl font-medium text-[#2F3349]"> Most Recent Flows</h1>  
-          <div className="">
-            {/* {projects.map((item , index) => <Flow 
-                {...item}
-                index={index}
-             />)} */}
+          <div className=" flex overflow-x-auto overflow-y-hidden gap-x-6 items-center h-[430px] w-full">
+            {projects.map((item ) => <HomwPageFlow  
+              project={item}
+            
+            />  )}
           </div>
       </main>
     </>
