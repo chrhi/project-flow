@@ -10,8 +10,10 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { cn } from "~/lib/utils";
 import { useSession, signIn, signOut } from "next-auth/react"
-
-
+import Image from "next/image";
+import { Input } from "~/components/ui/input";
+import { useState } from "react";
+import { Eye } from "lucide-react";
 
 const validateSchema = z
     .object({
@@ -58,41 +60,77 @@ const Page: NextPage = () => {
            })
     }
 
+    const [passwordInputType, setPasswordInputType] = useState<'password' | 'text'>('password');
+
+    const [passwordContifermeType, setPasswordContifermeType] = useState<'password' | 'text'>('password');
+
+    const togglePassword = () => {
+      setPasswordInputType(prevType => prevType === 'password' ? 'text' : 'password');
+    };
+
+    const togglePasswordConfirme = () => {
+      setPasswordContifermeType(prevType => prevType === 'password' ? 'text' : 'password');
+    };
 
   return (
     <>
      
-      <NotAuthHeader  />
-      <main className=" w-full custom-hieght-navbar bg-white flex justify-center pl-16 items-center  ">
-        
-      <div className="w-[50%] max-w-md p-4 bg-white border shadow-2xl border-gray-200 rounded-md  sm:p-6 md:p-8 ">
+      
+      <main className="w-full h-[calc(100vh)] bg-white flex justify-center items-center">
+        <div className="md:w-[50%] w-0 h-full bg-[#2563EB] ">
+          <div className="h-[60px] w-full flex gap-x-3 p-4 items-center">
+            <Image src="/svg/logowhite.svg" width={35} height={35} alt="My logo" />
+            <p className="text-white font-medium text-lg ">ProjectFlow</p>
+          </div>
+          <div className="w-full h-[calc(100%-60px)] flex p-4 justify-center items-center">
+            <Image src="/assets/authBanner1.c7c634cd.png" width={700} height={700} alt="My SVG" />
+          </div>
+        </div>
+        <div className="w-full md:w-[50%] bg-white h-full flex flex-col justify-center items-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-4" action="#">
-      <h5 className="text-xl font-semibold text-gray-900 ">Sign Up for an Account </h5>
+        className="space-y-6   w-[95%] md:w-[60%] md:max-w-[400px]  mt-12 mx-auto p-2" action="#">
+             
+             <div className="w-full h-[30px] flex flex-col  gap-y-2">
+              <h5 className="text-3xl md:text-2xl font-semibold text-gray-900">Sign up for an  Account</h5>
+             
+            </div>
+  
        
-        <div>
-            <input
+            <div className="relative w-full my-4  h-[55px]">
+         <Input
              {...register("email")}
              type="email"
-             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+             className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  h-[55px] block w-full p-3 "
              placeholder="Email Adress"  />
           <p className='mt-1 text-sm text-red-600'>{errors.email?.message}</p>
         </div>
-        <div>
-            <input  
+        <div className="relative w-full my-4   h-[55px]">
+        <Input  
              {...register("password")}
-             type="password"  
+             type={passwordInputType} 
              placeholder="password" 
-             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  />
+             className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-[55px] p-3 "  />
+               <button
+                  onClick={togglePassword}
+                  type="button"
+                  className="w-4 h-4 absolute right-[20px] top-[25%] text-gray-500">
+                  <Eye />
+                </button>
             <p className='mt-1 text-sm text-red-600'>{errors.password?.message}</p>
         </div>
-        <div>
-            <input  
+        <div className="relative w-full my-4  h-[55px]">
+        <Input
               {...register("confirmPassword")}
-               type="password"  
+               type={passwordContifermeType}  
                placeholder="Confirm Password"
-               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "  />
+               className=" border  border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  h-[55px] w-full p-3 "  />
+                 <button
+                  onClick={togglePasswordConfirme}
+                  type="button"
+                  className="w-4 h-4 absolute right-[20px] top-[25%] text-gray-500">
+                  <Eye />
+                </button>
               <p className='mt-1 text-sm text-red-600'>{errors.confirmPassword?.message}</p>
         </div>
           <AbdullahButton
@@ -104,7 +142,7 @@ const Page: NextPage = () => {
          </AbdullahButton>
         
     </form>
-    <div className="relative">
+    <div className="relative w-[95%] my-4 md:w-[60%] md:max-w-[400px]  mx-auto ">
            <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t" />
           </div>
@@ -117,12 +155,13 @@ const Page: NextPage = () => {
     <AbdullahButton
               //build the loding state in here
               onClick={async () =>  await signIn("github")}
-              className={cn(buttonVariants({size :'lg' , variant :'secondary'}) , "w-full flex justify-center ")}
+              className={cn(buttonVariants({size :'lg' , variant :'secondary'}) , "w-[95%] md:max-w-[400px] md:w-[60%] my-4  mx-auto gap-x-4 p-4 flex justify-center ")}
               isLoading ={false}
            >
-             github
+             <Image src="/assets/github.png" alt="github" width={20} height={20} />
+             continue with github
          </AbdullahButton>
-           <div className="text-sm font-medium text-gray-500 ">
+           <div className="text-sm font-medium text-gray-500 w-[95%] md:w-[60%] my-4  mx-auto ">
               Have an account? <Link href="/" className="text-blue-500 hover:underline ">log in</Link>
            </div>
 </div>

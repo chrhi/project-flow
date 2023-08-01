@@ -21,7 +21,8 @@ const NoteElement: FC<NoteAbdullahProps> = ({title , createdAt , authorEmail , a
 
     const handleRouting = async  () => {
          setIsLoading(true)
-         await router.push(`/app/simple-project/notes/${noteId}`)
+         
+         await router.push(`/app/project/simple/note${noteId}`)
          setIsLoading(false)
     }
 
