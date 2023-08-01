@@ -1,26 +1,36 @@
 import { Button } from "~/components/ui/button"
-import { Input } from "~/components/ui/input"
-import { Label } from "~/components/ui/label"
+
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "~/components/ui/sheet"
-import { Menu } from "lucide-react"
+import { Home, Menu, MessageCircle, Package } from "lucide-react"
  
 export function MobileSideBar() {
   return (
     <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" className="lg:hidden">
-          <Menu />
-        </Button>
-      </SheetTrigger>
+      <div>
+        <div className="bg-white md:hidden flex items-center justify-between px-4 z-[99] w-full h-[70px] absolute bottom-0 ">
+          <div className="w-[90%] flex items-center gap-x-4 h-full">
+          <Button variant="ghost" className="lg:hidden">
+             <Home className="w-6 h-6 text-[#64748B]" />
+          </Button>
+          <Button variant="ghost" className="lg:hidden">
+             <MessageCircle className="w-6 h-6 text-[#64748B]" />
+          </Button>
+          <Button variant="ghost" className="lg:hidden">
+          <Package  className="w-6 h-6 text-[#64748B]" />
+             </Button>
+          </div>
+          <Button variant="ghost" className="lg:hidden">
+            <Menu className="w-6 h-6 text-[#64748B]"  />
+          </Button>
+        </div>
+       
+      </div>
       <SheetContent className="w-full">
         <SheetHeader>
           <SheetTitle>ProjectFlow Navigation</SheetTitle>

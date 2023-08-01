@@ -29,8 +29,8 @@ function FutureReminder() {
   };
 
   return (
-    <div className='w-full lg:w-[48%] h-[200px] bg-white p-8 rounded-lg'>
-      <h1 className='text-2xl text-[#2F3349]'>
+    <div className='w-full lg:w-[48%] h-[100px] lg:h-[200px] bg-white p-2 lg:p-8 rounded-lg'>
+      <h1 className=' text-lg lg:text-2xl text-[#2F3349]'>
         A daily reminder to your future self:
       </h1>
       <textarea
@@ -38,8 +38,8 @@ function FutureReminder() {
         onChange={handleInputChange}
         ref={textAreaRef}
         className={cn(
-          'placeholder:text-transparent w-full h-[180px] border-none focus:outline-none focus:ring-0 focus:border-none ',
-          '!bg-clip-text !font-medium !bg-gradient-to-r !from-blue-500 !to-indigo-600 !text-transparent text-lg my-8'
+          'placeholder:text-transparent w-full h-[90px] lg:h-[180px] border-none focus:outline-none focus:ring-0 focus:border-none ',
+          '!bg-clip-text !font-medium !bg-gradient-to-r !from-blue-500 !to-indigo-600 !text-transparent text-lg lg:my-8'
         )}
         placeholder={text}
       />
