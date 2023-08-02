@@ -9,6 +9,7 @@ import type { Message, User } from '@prisma/client'
 import ChatHeaderLoading from './ChatHeaderLoading'
 
 import MessagesLoading from './MessagesLoading'
+import ChatNotFound from './ChatNotFound'
 
 
 
@@ -20,12 +21,20 @@ const ChatFeed =  ({  }) => {
 
   const [initialMessages , setInitialMessages] = useState<Message[]>([])
 
+  const [isError , setIsError] = useState<boolean>(false)
+
   const [chatPartner , setChatPartner] = useState<User>({} as User)
 
+  useEffect(()=> {
+    if(getChatPartnerId() === ""){
+      setIsError(true)
+    }
+  
+  },[])
   
 
 
-  const {refetch , isLoading}  = api.chatRouter.get_messages.useQuery({partnerId : getChatPartnerId() },{
+  const {refetch , isLoading }  = api.chatRouter.get_messages.useQuery({partnerId : getChatPartnerId() },{
     onSuccess : (data) => {
 
       const sortedArray = data.sort((item1, item2) => item1.timestamp.getTime() - item2.timestamp.getTime())
@@ -35,10 +44,11 @@ const ChatFeed =  ({  }) => {
     },
     onError : () => {
      toast.error("there is an error fetching the messages")
+     setIsError(true)
     }
   })
 
-  const {isLoading : isChatPartnerLoading} = api.chatRouter.get_chat_partner.useQuery({receiverId : getChatPartnerId()} , {
+  const {isLoading : isChatPartnerLoading } = api.chatRouter.get_chat_partner.useQuery({receiverId : getChatPartnerId()} , {
     onSuccess : (user) => {
       if(user){
         setChatPartner(user)
@@ -48,6 +58,7 @@ const ChatFeed =  ({  }) => {
     },
     onError : () => {
       toast.error("there is an error fetching the chat partner ")
+      setIsError(true)
     }
   })
 
@@ -56,11 +67,22 @@ const ChatFeed =  ({  }) => {
 
   return (
     <div className='flex-1 w-full md:max-w-[calc(100vw-370px)] md:ml-[370px] bg-white  justify-between flex flex-col h-full max-h-[calc(100vh-6rem)]'>
-      {isLoading? 
+   
+     
+      {isError ? <ChatNotFound /> :
+      
+    
+      
+      
+      
+    
+       
+
+     !isError  && isLoading? 
 
       <ChatHeaderLoading />
       :
-      <div className='flex sm:items-center justify-between py-3 h-[50px]   border-b-2 border-gray-200'>
+         !isError && <div className='flex sm:items-center justify-between py-3 h-[50px]   border-b-2 border-gray-200'>
         <div className='relative flex items-center space-x-4 p-4'>
           <div className='relative'>
             <div className='relative w-8 sm:w-8 h-8 sm:h-8'>
@@ -88,9 +110,10 @@ const ChatFeed =  ({  }) => {
           </div>
         </div>
       </div>
-     }
+   }
 
           {
+             !isError  &&
         isChatPartnerLoading || isLoading  ? <MessagesLoading /> : 
         <>
         <Messages
