@@ -11,6 +11,7 @@ import { ReactFlowProvider } from 'reactflow';
 import { Toaster } from 'react-hot-toast';
 import Head from '../common/Head';
 import { OpenInvitationMessage } from '../popup/invites/organization-invite';
+import { ThemeProvider } from "next-themes"
 
 /*
  * Interface for the Providers component props.
@@ -30,6 +31,7 @@ const Providers: FC<ProvidersAbdullahProps> = ({ children }) => {
      * Main container for the Providers component.
      * Includes NextNProgress, OpenInvitationMessage, Toaster, Head, and ReactFlowProvider.
      */
+    <ThemeProvider attribute="class">
     <div className="w-full h-fit relative scrollbar-hide ">
       {/* Progress bar for Next.js routes */}
       <NextNProgress options={{ showSpinner: false }} />
@@ -47,6 +49,7 @@ const Providers: FC<ProvidersAbdullahProps> = ({ children }) => {
         {children}
       </ReactFlowProvider>
     </div>
+    </ThemeProvider>
   );
 };
 

@@ -29,8 +29,8 @@ function FutureReminder() {
   };
 
   return (
-    <div className='w-full lg:w-[48%] h-[100px] lg:h-[200px] bg-white p-2 lg:p-8 rounded-lg'>
-      <h1 className=' text-lg lg:text-2xl text-[#2F3349]'>
+    <div className='w-full lg:w-[48%] h-[100px] lg:h-[200px] bg-white dark:bg-neutral-900  p-2 lg:p-8 rounded-lg'>
+      <h1 className=' text-lg lg:text-2xl text-[#2F3349] dark:text-white'>
         A daily reminder to your future self:
       </h1>
       <textarea
