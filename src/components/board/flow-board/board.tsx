@@ -23,9 +23,12 @@ function Board({ projects }: PropsType) {
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              {projects.map((item, index) => (
+              {
+              projects.length > 0 ? projects.map((item, index) => (
                 <Flow key={item?.id} index={index} {...item} />
-              ))}
+              )) : <p>there is no projects</p>
+             }
+          
               {provided.placeholder}
             </div>
           )}
