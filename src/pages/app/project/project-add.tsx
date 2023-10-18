@@ -263,14 +263,26 @@ const Page: NextPage = ()=> {
             
               {projectTags.map(item => (
                  <SelectItem value={`${item.name}_${item.color}`}>
-                 <div className="w-[390px] h-[30px] flex justify-between  items-center px-2">
+                 <div
+                 
+                 className="w-[390px] h-[30px] flex justify-between  items-center px-2">
                    <p>{item.name}</p>
-                   <div className={`w-4 h-4  rounded-[50px] `}
+                   <div 
+                   
+                   className={`w-4 h-4  rounded-[50px] `}
                      style={{
                       border : `${item.color} 2px solid`
                      }}
+
+
+
+
+                     
+
                      />
                  </div>
+
+
                </SelectItem>
               ))}
               

@@ -19,13 +19,21 @@ function Board({ projects }: PropsType) {
         <Droppable droppableId="board">
           {(provided, snapshot) => (
             <div
+
+
+
               className="w-full justify-start flex gap-y-4 gap-x-10 flex-wrap h-fit"
               ref={provided.innerRef}
+
+              
               {...provided.droppableProps}
             >
-              {projects.map((item, index) => (
+              {
+              projects.length > 0 ? projects.map((item, index) => (
                 <Flow key={item?.id} index={index} {...item} />
-              ))}
+              )) : <p>there is no projects</p>
+             }
+          
               {provided.placeholder}
             </div>
           )}

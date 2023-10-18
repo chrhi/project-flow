@@ -72,8 +72,8 @@ export default function ActivityTracker() {
         className={`!w-[92px] !h-[92px] bg-[#2E3349] rounded-[50%] !text-[#A5AABE]`}
       />
       <div>
-        <h1 className='text-md text-[#2F3349] font-medium text-center'>{name}</h1>
-        <span className='text-sm text-gray-500 text-center'>{formatTimeWithAMPM(time || new Date())}</span>
+        <h1 className='text-md text-[#2F3349]  dark:text-white font-medium text-center'>{name}</h1>
+        <span className='text-sm text-gray-500 dark:text-gray-200 text-center'>{formatTimeWithAMPM(time || new Date())}</span>
       </div>
     </div>
   );
@@ -87,7 +87,7 @@ export default function ActivityTracker() {
     <>
     <SetPriyerTimePopUp />
    
-    <div className='hidden relative w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white rounded-lg items-center justify-center'>
+    <div className='hidden relative w-full lg:w-[48%] h-[200px] lg:flex gap-x-2 bg-white dark:bg-neutral-900 rounded-lg items-center justify-center'>
      <SetPriyerTimePopUp />
       {/* @ts-ignore */}
       {BlockClock({name : "Fajr" , time :  value?.Fajr , showBorder : false})}

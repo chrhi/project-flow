@@ -1,15 +1,5 @@
 {
-  "cSpell.words": [
-    "Créez",
-    "démarrage",
-    "exigenc",
-    "maintenant",
-    "Objectif",
-    "Projet",
-    "superjson",
-    "tailwindcss",
-    "TRPC"
-  ],
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "reactSnippets.settings.prettierEnabled": true
 }

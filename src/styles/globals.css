@@ -75,10 +75,11 @@
 @layer base {
   * {
     @apply border-border;
+    
   }
   body {
     /* @apply bg-background text-foreground; */
-    @apply bg-[#f4f6f9] text-foreground;
+    @apply     dark:bg-black bg-[#f4f6f9] text-foreground;
   }
 }
 
