@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { publicProcedure } from "../api/trpc";
 import { TRPCError } from "@trpc/server";
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 
 
 

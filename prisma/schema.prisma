@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
-  url          = env("DATABASE_URL")
-  relationMode = "prisma"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum ROLES {
@@ -84,7 +83,7 @@ model Message {
     senderImage String
     senderName  String 
     senderEmail String
-    text        String  @db.LongText
+    text        String  @db.Text
     type        String 
     url         String?
     timestamp   DateTime  @default(now())
@@ -100,7 +99,7 @@ model ChatMessageProject {
     receiverId  String 
     ChatId      String
     senderId     String
-    text        String  @db.LongText
+    text        String  @db.Text
     type        String 
     url         String?
     timestamp   DateTime  @default(now())
@@ -161,12 +160,12 @@ model Project {
   image                String
   imagetype            String     
   createdBy            String         
-  description          String              @db.LongText
+  description          String              @db.Text
   tag                  String?
   tagColor             String?        
   dueDate              DateTime?
   isOnGoing            Boolean?
-  currentPhase         String?             @db.LongText
+  currentPhase         String?             @db.Text
   OrganizationId       String
   WorkBreakDownStorage Json?
   Budget               Float?

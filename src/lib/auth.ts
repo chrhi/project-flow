@@ -2,7 +2,7 @@ import GithubProvider from "next-auth/providers/github"
 import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter} from "@auth/prisma-adapter";
 import { prisma } from "./prisma";
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 import { type GetServerSidePropsContext } from "next";
 
 import {
